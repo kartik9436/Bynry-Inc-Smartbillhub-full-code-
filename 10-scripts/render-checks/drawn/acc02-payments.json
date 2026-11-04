@@ -1,0 +1,13 @@
+{
+ "tab": "payments",
+ "note": "ACC-T03, transcribed from 04-docs/05-modules/03-customers/blueprint/02-account-detail.md lines 605–690 — the EXTRACTED TEXT, not from looking at the picture. The drawing is ONE group filling the width: a toolbar (All · Cleared · Processing, Filter, search, Columns, Export), then expandable rows over eight columns — PAYMENT # · POSTED ▼ · TYPE · METHOD · REFERENCE · APPLIED TO · AMOUNT · STATUS — then the pagination footer. An opened row shows Amount · Posted · Cleared · Applied to · Recorded by.",
+ "groups": [
+  {
+   "col": "left",
+   "slug": "payments",
+   "heading": "PAYMENTS",
+   "notice": true,
+   "note": "The columns are not asserted here for the same reason the Bills spec gives: the shared `DataTable` swaps its table for the empty block on an account with no payments, and the account this check drives is whichever `/accounts?per=1` answers first. They are asserted in `AccountDetailPage.test.tsx` instead. The OPENED-ROW panel is likewise absent from this file rather than forgotten — it exists only while a clerk has a row open, and a spec entry for it would be a check that fails on every ordinary load."
+  }
+ ]
+}

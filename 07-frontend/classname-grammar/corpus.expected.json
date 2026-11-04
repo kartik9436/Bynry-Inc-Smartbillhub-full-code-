@@ -1,0 +1,166 @@
+{
+  "_what": "The expected extraction of corpus.tsx, asserted by BOTH readers as SET EQUALITY. Python: g31_declared_classes.grammar_corpus_selftest(), inside G31's run(), on every push (gates.yml). TypeScript: routeBUtilities.test.ts, on every 07-frontend change (ci-frontend.yml). Closes OQ-277.",
+  "_why_set_equality": "Not 'contains'. The bug this whole file exists for went 871 -> 870: a reader that LOSES a name while GAINING another looks like an improvement to every check that only asks whether the names it expects are present. Equality is the only assertion that sees a loss.",
+  "_how_to_add_a_case": "Add the component to corpus.tsx AND its names here. Half a change fails immediately, in both languages. That is intended.",
+  "shared_expected": [
+    "cg-comment-real",
+    "cg-commented-attribute-still-read",
+    "cg-commented-real",
+    "cg-comparison-kept",
+    "cg-flat-one",
+    "cg-flat-two",
+    "cg-multiline-base",
+    "cg-multiline-cool",
+    "cg-multiline-hot",
+    "cg-newline-cmp-no",
+    "cg-newline-cmp-yes",
+    "cg-plain-alpha",
+    "cg-plain-beta",
+    "cg-prefix-kept",
+    "cg-tpl-base",
+    "cg-tpl-blocked",
+    "cg-tpl-selected",
+    "cg-variant-plain"
+  ],
+  "stylesheet_reader_only": [],
+  "utility_reader_only": [
+    "sm:cg-variant-utility"
+  ],
+  "_reader_only_why": "The only sanctioned divergence, and it is the TOKEN pattern, which patterns.json deliberately does not share: `sm:cg-variant-utility` is a Tailwind candidate the vitest reader must consider and a name no stylesheet can ever declare. G31 asserts shared_expected + stylesheet_reader_only; vitest asserts shared_expected + utility_reader_only. Each list is exact, so the gap between the readers has a size and cannot silently grow.",
+  "must_not_find": [
+    "auto",
+    "compact",
+    "cg-comment-line",
+    "cg-comment-block",
+    "cg-prefix-",
+    "undefined",
+    "Save",
+    "changes",
+    "https://example.invalid/docs",
+    "cg-kit-keyname",
+    "cg-kit-notautility"
+  ],
+  "_must_not_find_why": "Redundant against set equality by construction, and kept anyway: when this corpus fails, the failure message should name the SPECIFIC old bug that came back rather than print a set diff and leave the reader to work out which of ten cases moved.",
+  "cases": [
+    {
+      "id": "C1-plain",
+      "shape": "className=\"a b\"",
+      "finds": [
+        "cg-plain-alpha",
+        "cg-plain-beta"
+      ],
+      "rejects": [],
+      "guards": "The ordinary path. If this breaks, everything is broken and the message should say so plainly."
+    },
+    {
+      "id": "C2-comparison-operand",
+      "shape": "className={row.state === \"auto\" ? undefined : \"cg-comparison-kept\"}",
+      "finds": [
+        "cg-comparison-kept"
+      ],
+      "rejects": [
+        "auto",
+        "undefined"
+      ],
+      "guards": "HISTORICAL BUG 1 — G31's first draft counted the comparison operand and reported 130 undeclared classes where 125 were real. A false positive is the failure this family of gates cannot survive (DEF-323: a gate that cries wolf gets switched off). This case is the one that goes red if the COMPARISON strike-out is removed or weakened."
+    },
+    {
+      "id": "C3-interpolated-template",
+      "shape": "className={`cg-tpl-base ${sel ? \"cg-tpl-selected\" : \"cg-tpl-blocked\"}`}",
+      "finds": [
+        "cg-tpl-base",
+        "cg-tpl-selected",
+        "cg-tpl-blocked"
+      ],
+      "rejects": [],
+      "guards": "HISTORICAL BUG 2, BOTH HALVES — the case that has been read wrong twice in opposite directions. The narrow first reader accepted only a backtick string with no `${`, so it found the two state classes and LOST the base class that draws the element (this is the reading that would have let DEF-327 survive its own fix). The first widening then used ONE alternation, so the backtick branch consumed the template whole and it found the base class and SILENTLY LOST both state classes — 871 -> 870, looking like an improvement, caught only by hand-tallying how each of 125 names resolved. Three names, all three required, is the assertion neither reading passes."
+    },
+    {
+      "id": "C4-comment",
+      "shape": "// cg-comment-line ...   /* cg-comment-block ... */",
+      "finds": [
+        "cg-comment-real"
+      ],
+      "rejects": [
+        "cg-comment-line",
+        "cg-comment-block"
+      ],
+      "guards": "Prose naming a class is not a reference. Neither reader parses TSX; both scan for `className=`, so a widened CLASSNAME pattern that started matching bare identifiers would show up here first."
+    },
+    {
+      "id": "C5-flat-template",
+      "shape": "className={`cg-flat-one cg-flat-two`}",
+      "finds": [
+        "cg-flat-one",
+        "cg-flat-two"
+      ],
+      "rejects": [],
+      "guards": "A template with no interpolation is just a string. It is the case the NARROW reader handled correctly, so it is the case that must not regress while fixing the interpolated one — the two have been traded for each other once already (see C3)."
+    },
+    {
+      "id": "C6-interpolated-prefix",
+      "shape": "className={`cg-prefix-${service} cg-prefix-kept`}",
+      "finds": [
+        "cg-prefix-kept"
+      ],
+      "rejects": [
+        "cg-prefix-"
+      ],
+      "guards": "A token ending in `-` is a prefix an interpolation completes (`svc-${service}`), never a class name. Six live in the app; counting them would be six false positives. The static-chunk split of C3 is what CREATES these, so this case and C3 have to hold together."
+    },
+    {
+      "id": "C7-multiline-expression",
+      "shape": "className={`cg-multiline-base ${\\n  hot ? \"...\" : \"...\"\\n}`}",
+      "finds": [
+        "cg-multiline-base",
+        "cg-multiline-hot",
+        "cg-multiline-cool"
+      ],
+      "rejects": [],
+      "guards": "HISTORICAL BUG 3, generalised — G34's `^\\s*` matched across a newline and the gate reported the wrong line number. Anchors and whitespace classes are where Python `re` and JS `RegExp` most easily disagree, so this grammar uses NO anchors (patterns.json/forbidden_constructs refuses them) and this case proves `\\s*` and the negated character classes span a newline identically in both engines. It is also, verbatim, the shape the app really writes."
+    },
+    {
+      "id": "C8-newline-comparison",
+      "shape": "className={ mode !==\\n \"compact\" ? \"...\" : \"...\" }",
+      "finds": [
+        "cg-newline-cmp-yes",
+        "cg-newline-cmp-no"
+      ],
+      "rejects": [
+        "compact"
+      ],
+      "guards": "HISTORICAL BUG 3 crossed with BUG 1, which is the combination neither of the single-language fixes could have found. COMPARISON's `\\s*` must span the newline; if it stops doing so in either engine, `compact` becomes a reported class and the gate cries wolf on correct code."
+    },
+    {
+      "id": "C9-commented-out-attribute",
+      "shape": "// className=\"cg-commented-attribute-still-read\"",
+      "finds": [
+        "cg-commented-attribute-still-read",
+        "cg-commented-real"
+      ],
+      "rejects": [],
+      "guards": "The honest limit of C4, pinned rather than admitted. A commented-out attribute IS read, by both, because neither strips comments. Harmless today. Recorded so that if one reader learns to strip comments, the OTHER goes red on the same commit instead of quietly reading the codebase by different rules — which is OQ-277 itself."
+    },
+    {
+      "id": "C10-variant-utility",
+      "shape": "className=\"cg-variant-plain sm:cg-variant-utility\"",
+      "finds": [
+        "cg-variant-plain"
+      ],
+      "rejects": [],
+      "guards": "The sanctioned divergence, given a size. `sm:cg-variant-utility` is in utility_reader_only and in neither reader's shared set: G31 must reject it (no stylesheet can declare it) and vitest must accept it (Tailwind can compile it). Both readers assert exact equality, so this gap is one token wide and cannot grow without a failure."
+    }
+  ],
+  "kit_constant_expected": [
+    "inline-flex",
+    "cg-kit-items-center",
+    "cg-kit-rounded",
+    "cg-kit-text-btn",
+    "cg-kit-text-btn-sm",
+    "cg-kit-px-[14.4px]",
+    "cg-kit-keyed-value",
+    "cg-kit-picked",
+    "cg-kit-other"
+  ],
+  "_kit_constant_why": "OQ-280. What `kit_tokens()` must find in corpus.tsx's C11-C14 — the three shapes buttonKit.ts actually uses (multi-line concatenation, object-literal values, a single arbitrary value) — and NOTHING from the two negatives. `Save changes` and `https://example.invalid/docs` must contribute nothing AT ALL, not their lowercase halves: the all-or-nothing rule rejects the whole string because `Save` is not utility-shaped and the URL contains `://`. A reader that leaked `changes` here would report ordinary copy as an undeclared class, which is how a gate gets switched off (DEF-323)."
+}

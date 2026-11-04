@@ -1,0 +1,752 @@
+<title>New Connect, Five Steps</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+:root{
+  --page:#eceaea; --ink:#201e1d; --ink-2:#5b5654; --line:#d4d0cf; --card:#f7f6f6;
+  --accent:#ec3013; --accent-soft:#fff2ef; --q:#8a5a00; --q-soft:#fff4d6; --bug:#1f5fa8; --bug-soft:#e5eefa;
+  --del:#a81600; --del-soft:#fde4df; --ok:#1e6b3a; --ok-soft:#e2f3e8;
+  /* product screen tokens (tokens.css) stay light in both themes: the drawing depicts the product */
+  --s-bg:#f3f2f2; --s-surface:#eae9e9; --s-text:#201e1d; --s-muted:#6d6866; --s-line:#cfcbca; --s-side:#1c1a19;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --page:#181615; --ink:#efeceb; --ink-2:#b3adab; --line:#3a3533; --card:#221f1e;
+    --accent-soft:#3a1c16; --q:#f0c25a; --q-soft:#3a2e10; --bug:#8fb8ec; --bug-soft:#172a42;
+    --del:#ff9783; --del-soft:#3d1a14; --ok:#8fd4a8; --ok-soft:#15301f; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --page:#181615; --ink:#efeceb; --ink-2:#b3adab; --line:#3a3533; --card:#221f1e;
+  --accent-soft:#3a1c16; --q:#f0c25a; --q-soft:#3a2e10; --bug:#8fb8ec; --bug-soft:#172a42;
+  --del:#ff9783; --del-soft:#3d1a14; --ok:#8fd4a8; --ok-soft:#15301f; color-scheme: dark;
+}
+*{box-sizing:border-box}
+body{background:var(--page);color:var(--ink);font-family:"Archivo",system-ui,sans-serif;line-height:1.5;margin:0;padding-inline:clamp(16px,3vw,40px);padding-block:28px 64px}
+.wrap{max-width:1360px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+h1,h2,h3{text-wrap:balance;margin:0}
+h1{font-weight:800;font-size:clamp(28px,4vw,40px);letter-spacing:-.01em}
+.lede{color:var(--ink-2);max-width:70ch;margin:6px 0 0}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.legend{display:flex;flex-wrap:wrap;gap:10px 18px;font-size:13px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);background:var(--page);z-index:5;padding-block:8px 0}
+.tab{font:inherit;font-weight:700;font-size:14px;padding:9px 14px;border:1px solid transparent;border-bottom:none;border-radius:6px 6px 0 0;background:none;color:var(--ink-2);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--card);color:var(--ink);border-color:var(--line)}
+.tab:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab .n{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:4px;background:var(--line);color:var(--ink);font-size:12px;margin-right:6px}
+.tab[aria-selected="true"] .n{background:var(--accent);color:#fff}
+.panel{display:flex;flex-direction:column;gap:22px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.meta div{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px;font-size:14px}
+.meta b{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin-bottom:2px}
+/* markers */
+.m{display:inline-flex;align-items:center;font:600 11px/1 "JetBrains Mono",ui-monospace,monospace;padding:3px 6px;border-radius:4px;margin-left:6px;vertical-align:middle;white-space:nowrap}
+.m.b{background:var(--bug-soft);color:var(--bug)}
+.m.q{background:var(--q-soft);color:var(--q)}
+.m.new{background:var(--ok-soft);color:var(--ok)}
+/* screen frame */
+.frame-scroll{overflow-x:auto;border-radius:10px;border:1px solid var(--line);box-shadow:0 8px 28px rgba(0,0,0,.08)}
+.screen{min-width:1120px;display:grid;grid-template-columns:200px 1fr;background:var(--s-bg);color:var(--s-text);font-size:13px}
+.side{background:var(--s-side);color:#d9d5d4;padding:14px 12px;display:flex;flex-direction:column;gap:6px}
+.brand{font-weight:800;color:#fff;font-size:15px;display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.brand i{width:10px;height:10px;background:var(--accent);display:inline-block}
+.side .nav{padding:6px 8px;border-radius:4px;font-size:12.5px}
+.side .nav.on{background:#2e2b2a;color:#fff}
+.side .ver{margin-top:auto;font-size:11px;color:#8d8785}
+.main{padding:18px 26px 20px;display:flex;flex-direction:column;gap:14px}
+.back{color:var(--accent);font-weight:700;font-size:12.5px}
+.s-eyebrow{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--accent)}
+.s-title{font-weight:800;font-size:30px;letter-spacing:-.01em;line-height:1.1}
+.s-sub{color:var(--s-muted);font-size:11.5px}
+.rail{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--s-line);border-bottom:1px solid var(--s-line)}
+.rail div{display:flex;align-items:center;gap:10px;padding:12px 14px;font-weight:700;border-right:1px solid var(--s-line)}
+.rail div:last-child{border-right:none}
+.rail span{display:inline-grid;place-items:center;width:22px;height:22px;background:#dcd8d7;font-size:11.5px}
+.rail .done span{background:var(--s-text);color:#fff}
+.rail .on{color:var(--accent)}
+.rail .on span{background:var(--accent);color:#fff}
+.sec{background:var(--s-surface);border:1px solid var(--s-line);padding:14px 16px;display:flex;flex-direction:column;gap:12px}
+.sec h4{margin:0;font-size:15px;font-weight:800}
+.sec h5{margin:0;font-size:12.5px;font-weight:800;color:var(--s-text)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px 18px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px 18px}
+.f{display:flex;flex-direction:column;gap:4px}
+.f label{font-size:11.5px;color:#3d3937}
+.f label .req{color:var(--accent)}
+.in{height:32px;border:1px solid var(--s-line);background:#f6f5f5;display:flex;align-items:center;justify-content:space-between;padding:0 10px;font-size:12.5px;color:var(--s-text)}
+.in.ph{color:#8f8a88}
+.in.dd::after{content:"▾";font-size:11px;color:#6d6866}
+.in.srch::after{content:"⌕";font-size:13px;color:#6d6866}
+.in.dis{opacity:.5}
+.chk{display:flex;align-items:center;gap:8px;font-size:12.5px}
+.chk i{width:14px;height:14px;border:1px solid #8f8a88;background:#fff;display:inline-grid;place-items:center;font-style:normal;font-size:10px}
+.chk i.on{background:var(--s-text);color:#fff;border-color:var(--s-text)}
+table.t{width:100%;border-collapse:collapse;font-size:12px}
+table.t th{text-align:left;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;padding:7px 8px;border-bottom:1px solid var(--s-line)}
+table.t td{padding:6px 8px;border-bottom:1px solid var(--s-line);vertical-align:middle}
+table.t td .in{height:26px;font-size:11.5px}
+table.t tr.grp td{background:#e2e0df;font-weight:800;font-size:11.5px}
+table.t td.num,table.t th.num{text-align:right;font-variant-numeric:tabular-nums}
+.x{color:var(--accent);font-weight:800;text-align:center;width:28px}
+.btn{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 13px;font-weight:800;font-size:12.5px;border:1px solid var(--s-text);background:transparent;color:var(--s-text)}
+.btn.p{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.ghost{border-color:var(--s-line)}
+.btn.dis{opacity:.45}
+.row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.foot{display:flex;justify-content:space-between;align-items:center;padding-top:6px}
+.card-found{border:1px solid var(--s-line);background:#f6f5f5;padding:10px 12px;display:grid;grid-template-columns:repeat(3,1fr);gap:4px 16px;font-size:12px}
+.card-found b{display:block;font-size:10.5px;color:var(--s-muted);font-weight:600}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px 18px;font-size:12.5px}
+.facts div{border-left:2px solid var(--s-line);padding-left:9px}
+.facts b{display:block;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--s-muted);font-weight:700;margin-bottom:1px}
+.warn{background:#fde4df;border-left:3px solid #e0341a;padding:7px 10px;font-size:12px;color:#7c1405}
+.sum{display:grid;grid-template-columns:repeat(7,1fr);border:1px solid var(--s-line);background:#f6f5f5}
+.sum div{padding:9px 11px;border-right:1px solid var(--s-line);font-size:11px;color:var(--s-muted)}
+.sum div:last-child{border-right:none}
+.sum b{display:block;font-size:14px;color:var(--s-text);font-variant-numeric:tabular-nums}
+.badges{display:flex;gap:4px}
+.badges i{font-style:normal;width:20px;height:20px;display:inline-grid;place-items:center;font-size:10.5px;font-weight:800;color:#fff}
+.totals{display:grid;grid-template-columns:1fr auto;gap:4px 24px;justify-self:end;margin-left:auto;font-size:12.5px;min-width:320px}
+.totals .big{font-size:16px;font-weight:800}
+.totals span:nth-child(even){text-align:right;font-variant-numeric:tabular-nums}
+.coll{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--s-line);background:#f6f5f5;padding:9px 12px;font-size:12.5px}
+.coll b{font-weight:800}
+.coll .edit{color:var(--accent);font-weight:800}
+.chipn{font-size:10.5px;color:var(--s-muted)}
+/* notes below each screen */
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.note{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+.note h3{font-size:15px;margin-bottom:8px}
+.note ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:5px;font-size:14px}
+.note li s{color:var(--del);text-decoration-thickness:1px}
+.qtable{width:100%;border-collapse:collapse;font-size:14px}
+.qtable th,.qtable td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.qtable th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.tbl-scroll{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:8px}
+.foot-note{font-size:13px;color:var(--ink-2)}
+@media (prefers-reduced-motion: no-preference){.tab{transition:background .15s}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Accounts · New Connect · NCT-01 · redesign draft</div>
+    <h1>New Connect in five steps</h1>
+    <p class="lede">The eight current steps redrawn as five, from what we agreed in chat on 28 September. Every field on today's screens appears on one of these five. Only explanation sentences are removed. Nothing here is built yet.</p>
+  </header>
+
+  <div class="legend" aria-label="Legend">
+    <span><span class="m b">B5</span> resolves reported bug 5</span>
+    <span><span class="m q">Q3</span> waits on your answer</span>
+    <span style="color:var(--ok)">18 of 19 questions answered in chat</span>
+    <span><span class="m new">NEW</span> field not on today's screen</span>
+  </div>
+
+  <div class="tabs" role="tablist" aria-label="Steps">
+    <button class="tab" role="tab" id="t-overview" aria-controls="overview" aria-selected="true">Overview</button>
+    <button class="tab" role="tab" id="t-customer" aria-controls="customer" aria-selected="false"><span class="n">1</span>Customer</button>
+    <button class="tab" role="tab" id="t-premise" aria-controls="premise" aria-selected="false"><span class="n">2</span>Premise</button>
+    <button class="tab" role="tab" id="t-units" aria-controls="units" aria-selected="false"><span class="n">3</span>Units</button>
+    <button class="tab" role="tab" id="t-addrow" aria-controls="addrow" aria-selected="false"><span class="n">3a</span>Add row</button>
+    <button class="tab" role="tab" id="t-addwo" aria-controls="addwo" aria-selected="false"><span class="n">3b</span>Add work order</button>
+    <button class="tab" role="tab" id="t-charges" aria-controls="charges" aria-selected="false"><span class="n">4</span>Charges</button>
+    <button class="tab" role="tab" id="t-review" aria-controls="review" aria-selected="false"><span class="n">5</span>Review</button>
+    <button class="tab" role="tab" id="t-questions" aria-controls="questions" aria-selected="false">Open questions</button>
+  </div>
+
+  <!-- ================= OVERVIEW ================= -->
+  <section class="panel" id="overview" role="tabpanel" aria-labelledby="t-overview">
+    <div class="tbl-scroll">
+      <table class="qtable">
+        <thead><tr><th>New step</th><th>What is on it</th><th>From today's steps</th><th>Bugs resolved</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><b>1 · Customer</b></td><td>Owner details as move-in takes them, gov-ID, co-applicant, mailing address, communication preferences, the existing-customer match as a dropdown, reference and work mode, documents</td><td>1 Owner &amp; scope (without scope)</td><td>1, 2, 4</td><td>Discussed; A and B to confirm</td></tr>
+          <tr><td><b>2 · Premise</b></td><td>Address search, then the Scope dropdown, the record, one multi-select for services, the plan and its coverage check</td><td>2 Premise, plus scope</td><td>1, 3, 5</td><td><b>Confirmed</b></td></tr>
+          <tr><td><b>3 · Units</b></td><td>One common selection with a required Apply to all, then one table: a row per unit and service, grouped by unit, with Add row</td><td>3 Units, 4 Map services, 5 Work orders</td><td>1, 6, 7, 8, 9</td><td>Discussed; C to confirm</td></tr>
+          <tr><td><b>4 · Charges</b></td><td>Summary on top, who is billed, payment and billing preferences above the table, a charges table with Add charge, totals at the end</td><td>6 Charges</td><td>1, 10, 11, 12</td><td>Discussed; Q3, Q6, Q7</td></tr>
+          <tr><td><b>5 · Review</b></td><td>At a glance, four collapsible groups each with Edit, the messages table with Add template, the occupancy choice, what happens next, Create</td><td>7 Communication, 8 Review &amp; confirm</td><td>1, 13, 14</td><td>Discussed; E to confirm</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="notes">
+      <div class="note"><h3>Carried across all five</h3><ul>
+        <li>Step names are one word each (your ruling).</li>
+        <li>"Nothing is written until step 8. Create connection writes it." is removed from every step.</li>
+        <li>Every table that grows (units, service points, work orders, charges, messages) is one shared table component with an Add button at the bottom.</li>
+        <li>Save &amp; exit, Park, Back and Continue stay where they are today.</li>
+      </ul></div>
+      <div class="note"><h3>Parked drafts and old links</h3><ul>
+        <li>A build parked on an old step reopens on its new one: 1→1, 2→2, 3/4/5→3, 6→4, 7/8→5.</li>
+        <li>Nothing a clerk already typed is lost.</li>
+        <li>Old <code>?step=6</code> links go to the new step.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <!-- ================= STEP 1 ================= -->
+  <section class="panel" id="customer" role="tabpanel" aria-labelledby="t-customer" hidden>
+    <div class="frame-scroll"><div class="screen">
+      <aside class="side"><div class="brand"><i></i>SMARTBillHub</div><div class="nav">Dashboard</div><div class="nav">Plans &amp; Rates</div><div class="nav">Premises</div><div class="nav">Assets</div><div class="nav on">Accounts</div><div class="nav">Reads</div><div class="nav">Billing</div><div class="nav">Payments</div><div class="nav">Work</div><div class="nav">Finance</div><div class="nav">Settings</div><div class="ver">v2.x</div></aside>
+      <div class="main">
+        <div class="back">← Accounts</div>
+        <div><div class="s-eyebrow">NEW CONNECT</div><div class="s-title">Who is asking, and what for?</div><div class="s-sub">Step 1 of 5 · Customer</div></div>
+        <div class="rail"><div class="on"><span>1</span>Customer</div><div><span>2</span>Premise</div><div><span>3</span>Units</div><div><span>4</span>Charges</div><div><span>5</span>Review</div></div>
+
+        <div class="sec"><h4>Owner <span class="m b">B2</span></h4>
+          <div class="grid3">
+            <div class="f"><label>Owner type <span class="req">*</span></label><div class="in dd">Property owner</div></div>
+            <div class="f"><label>Customer category <span class="req">*</span><span class="m new">NEW</span></label><div class="in dd">Residential</div></div>
+            <div class="f"><label>Sub-category</label><div class="in dd">Permanent</div></div>
+            <div class="f"><label>Person or company</label><div class="in dd">Person</div></div>
+            <div class="f"><label>Full name <span class="req">*</span></label><div class="in">Jonas Janssen</div></div>
+            <div class="f"><label>Date of birth <span class="m new">NEW</span></label><div class="in ph">MM/DD/YYYY</div></div>
+            <div class="f"><label>Email</label><div class="in">jonas@example.com</div></div>
+            <div class="f"><label>Phone</label><div class="in">(641) 555-1009</div></div>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="sec"><h4>Gov-ID <span class="m b">B2</span></h4>
+            <div class="grid2">
+              <div class="f"><label>Social Security number</label><div class="in">&bull;&bull;&bull;-&bull;&bull;-4471</div></div>
+              <div class="f"><label>Driving licence</label><div class="in ph">Last 4 show</div></div>
+            </div>
+            <div class="chipn">A company is asked for Tax ID instead.</div>
+          </div>
+          <div class="sec"><h4>Communication <span class="m new">NEW</span></h4>
+            <div class="grid3">
+              <div class="f"><label>Language</label><div class="in dd">English</div></div>
+              <div class="chk" style="align-self:end;height:32px"><i class="on">&#10003;</i>Paperless bill</div>
+              <div class="chk" style="align-self:end;height:32px"><i>&nbsp;</i>SMS reminders</div>
+            </div>
+            <div class="chipn">A bill is always printed.</div>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="sec"><h4>Co-applicant <span class="m new">NEW</span></h4>
+            <div class="row"><button class="btn ghost" type="button">+ Add a co-applicant</button></div>
+            <div class="chipn">Opens the same fields as the owner.</div>
+          </div>
+          <div class="sec"><h4>Mailing address <span class="m new">NEW</span></h4>
+            <div class="chk"><i class="on">&#10003;</i>Same as service address</div>
+            <div class="grid2">
+              <div class="f"><label>Street address</label><div class="in dis ph">1200 Main St</div></div>
+              <div class="f"><label>Apt, suite, other</label><div class="in dis ph">Apt 4B</div></div>
+            </div>
+            <div class="grid3">
+              <div class="f"><label>City</label><div class="in dis ph">Ottumwa</div></div>
+              <div class="f"><label>State</label><div class="in dd dis ph">IA</div></div>
+              <div class="f"><label>ZIP code</label><div class="in dis ph">52501 or 52501-1234</div></div>
+            </div>
+            <div class="chipn">The product&rsquo;s own US address block, the one move-in and new account already use. Nothing is required; the ZIP is checked for five digits or ZIP+4.</div>
+          </div>
+        </div>
+
+        <div class="sec"><h4>Documents <span class="m b">B4</span></h4>
+          <table class="t"><thead><tr><th>Document</th><th>Required</th><th>File</th><th>Document number <span class="m new">NEW</span></th><th></th></tr></thead>
+          <tbody><tr><td>Contract</td><td>No</td><td>Screenshot 16-05-12.png &middot; 74 KB</td><td>&bull;&bull;&bull;&bull; 2291</td><td class="x">&times;</td></tr></tbody></table>
+          <div class="chipn">Uploaded by and State appear once the connection exists. The file is filed then, so until then there is nobody and no time to show.</div>
+          <div class="grid4">
+            <div class="f"><label>Document type <span class="req">*</span></label><div class="in dd">Contract</div></div>
+            <div class="f"><label>File <span class="req">*</span></label><div class="in">Choose a file</div></div>
+            <div class="f"><label>What it proves</label><div class="in ph">Ownership</div></div>
+            <div class="f"><label>Document number</label><div class="in ph">Last 4 show</div></div>
+          </div>
+          <div class="row"><div class="chk"><i>&nbsp;</i>Required on this request</div><button class="btn p" type="button">Attach a file</button><button class="btn" type="button">Add another document</button></div>
+        </div>
+
+        <div class="sec"><h4>Search customer ID <span class="m b">B2</span></h4>
+          <div class="grid2">
+            <div class="f"><label>Customer ID</label><div class="in srch">C-00010</div></div>
+            <div class="row" style="align-self:end;height:32px"><button class="btn" type="button">Search</button><span class="chipn">Searched on the details entered above.</span></div>
+          </div>
+          <div class="card-found"><div><b>Customer #</b>C-00010</div><div><b>Name</b>Jonas Janssen</div><div><b>Accounts held</b>AC-2026-00010</div></div>
+          <div class="chipn">When nothing matches: <b>No customer ID found. A new customer is created.</b></div>
+          <h5 style="margin-top:4px">Account details</h5>
+          <div class="grid3">
+            <div class="f"><label>Service area</label><div class="in dd">North district</div></div>
+            <div class="f"><label>Rate class code</label><div class="in ph">Type it</div></div>
+            <div class="f"><label>Legacy account no.</label><div class="in ph">Type it</div></div>
+          </div>
+          <div class="chipn"><b>The clerk fills these in.</b> They are the extra fields this utility set up in Settings, so the three drawn here are only an example. A list field offers the utility&rsquo;s own list; a text field is typed. Nothing appears if the utility set none up, and none is required unless the utility said so.</div>
+          <div class="chipn">When the search finds an existing customer, anything already held against them arrives filled in and can be changed.</div>
+        </div>
+
+        <div class="grid2">
+          <div class="sec"><h4>Reference</h4>
+            <div class="grid2">
+              <div class="f"><label>Prefix</label><div class="in">BAL</div></div>
+              <div class="f"><label>External system reference <span class="m q">A</span></label><div class="in dd">unit-9</div></div>
+            </div>
+          </div>
+          <div class="sec"><h4>Work <span class="m q">B</span></h4>
+            <div class="f"><label>Mode</label><div class="in dd">Our crew did it</div></div>
+            <div class="chipn">Options: Our crew did it &middot; External system &middot; We schedule it (disabled)</div>
+          </div>
+        </div>
+
+        <div class="foot"><div class="row"><button class="btn" type="button">Save &amp; exit</button><button class="btn" type="button">Park</button></div><button class="btn p" type="button">Continue</button></div>
+      </div>
+    </div></div>
+    <div class="notes">
+      <div class="note"><h3>Removed from this step</h3><ul>
+        <li><s>Nothing is written until step 8. Create connection writes it.</s></li>
+        <li><s>Search by name or customer number.</s> &mdash; the search is now by customer ID, run on the details entered above</li>
+        <li><s>No match. Fill in below.</s> replaced by &ldquo;No customer ID found. A new customer is created.&rdquo;</li>
+        <li><s>Becomes a customer / Already a customer</s> chips</li>
+        <li><s>if known</s> under External system reference</li>
+        <li><s>Name the owner first.</s> shown only as an error on Continue</li>
+        <li><s>Only the last four show.</s> now the Document number column</li>
+        <li><s>This build has no home yet. The premise arrives next step.</s></li>
+        <li><s>Coming with the Work module — crews, dispatch and scheduling are a later release.</s></li>
+        <li><s>Scope and its three explanation lines</s>, moved to step 2</li>
+      </ul></div>
+      <div class="note"><h3>Waiting on you here</h3><ul>
+        <li><b>A</b>: External system reference drawn as a dropdown &mdash; what fills the list?</li>
+        <li><b>B</b>: Mode drawn as a dropdown.</li>
+        <li><b>Confirmed 28 Sep</b>: Owner &rarr; Gov-ID &amp; Communication &rarr; Co-applicant &amp; Mailing &rarr; Documents &rarr; Search customer ID (with account details) &rarr; Reference &amp; Work.</li>
+        <li><b>Uploaded by and State are hidden</b> until the connection exists, confirmed 28 Sep. The shared document component files each file straight after creation.</li>
+        <li><b>Q4</b>: the Becomes-a-customer chip is drawn as removed.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <!-- ================= STEP 2 ================= -->
+  <section class="panel" id="premise" role="tabpanel" aria-labelledby="t-premise" hidden>
+    <div class="frame-scroll"><div class="screen">
+      <aside class="side"><div class="brand"><i></i>SMARTBillHub</div><div class="nav">Dashboard</div><div class="nav">Plans &amp; Rates</div><div class="nav">Premises</div><div class="nav">Assets</div><div class="nav on">Accounts</div><div class="nav">Reads</div><div class="nav">Billing</div><div class="nav">Payments</div><div class="nav">Work</div><div class="nav">Finance</div><div class="nav">Settings</div><div class="ver">v2.x</div></aside>
+      <div class="main">
+        <div class="back">← Accounts</div>
+        <div><div class="s-eyebrow">NEW CONNECT</div><div class="s-title">The premise</div><div class="s-sub">Step 2 of 5 · Premise</div></div>
+        <div class="rail"><div class="done"><span>1</span>Customer</div><div class="on"><span>2</span>Premise</div><div><span>3</span>Units</div><div><span>4</span>Charges</div><div><span>5</span>Review</div></div>
+
+        <div class="sec"><h4>Address</h4>
+          <div class="grid2">
+            <div class="f"><label>Premise type</label><div class="in dd">Multi-unit residential</div></div>
+            <div class="f"><label>Premises name</label><div class="in">New Highland Park</div></div>
+            <div class="f"><label>Street address or premise <span class="req">*</span></label><div class="in srch">New Highland Park</div></div>
+            <div class="f"><label>Unit, apt. or suite <span class="m q">F</span></label><div class="in">Suite 200</div></div>
+            <div class="f"><label>City <span class="req">*</span></label><div class="in">Ottumwa</div></div>
+            <div class="grid2"><div class="f"><label>State <span class="req">*</span></label><div class="in dd">Iowa</div></div><div class="f"><label>ZIP <span class="req">*</span></label><div class="in">58245</div></div></div>
+          </div>
+          <div class="chipn">No match. Keep typing the new address. · or: On file: 12 Elm St, Ottumwa, IA · Change address</div>
+          <div class="chipn">Part of the postal address, optional. The units themselves are named on step 3.</div>
+          <div class="warn"><b>This unit already has that service.</b> Raise a move-in request instead.</div>
+          <div class="chipn">Fires only when the exact unit already has the service being added. A served building with unserved units is still a New Connect. Continue is blocked while it shows; the clerk is not moved anywhere.</div>
+        </div>
+
+        <div class="sec"><h4>What is built <span class="m b">B3</span><span class="m q">Q1</span></h4>
+          <div class="grid2">
+            <div class="f"><label>Scope <span class="req">*</span></label><div class="in dd">A new premise</div></div>
+            <div class="chipn" style="align-self:end">Options: A new premise · New units at an existing premise · A new service at an existing unit. Pre-filled from the address found; changeable.</div>
+          </div>
+        </div>
+
+        <div class="sec"><h4>The record</h4>
+          <div class="grid2">
+            <div class="f"><label>Parcel or GIS reference</label><div class="in">858559883</div></div>
+            <div class="f"><label>Read route</label><div class="in dd ph">Choose a route</div></div>
+          </div>
+          <div class="grid3">
+            <div class="f"><label>Latitude <span class="m new">NEW</span></label><div class="in">41.019800</div></div>
+            <div class="f"><label>Longitude <span class="m new">NEW</span></label><div class="in">-92.411500</div></div>
+            <div class="chk" style="align-self:end;height:32px"><i class="on">✓</i>Location verified <span class="m new">NEW</span></div>
+          </div>
+          <div class="chipn">All four are optional. Owner: Jonas Janssen</div>
+          <div class="chipn">The point is the building’s. A unit may carry its own later; every screen says which one it shows.</div>
+        </div>
+
+        <div class="sec"><h4>Services and plan <span class="m b">B5</span></h4>
+          <div class="grid2">
+            <div class="f"><label>Utility services <span class="req">*</span></label><div class="in dd">Water, Sewer, Trash, Fire, Broadband</div></div>
+            <div class="f"><label>Plan <span class="req">*</span></label><div class="in dd">Residential City Plan</div></div>
+          </div>
+
+          <h5>This plan</h5>
+          <div class="facts">
+            <div><b>Code</b>RES-CITY</div>
+            <div><b>Status</b>Published · v4</div>
+            <div><b>Effective</b>2026-09-01 → open</div>
+            <div><b>Account type</b>Residential</div>
+            <div><b>Budget billing</b>Not offered</div>
+            <div><b>Minimum bill</b>$12.00</div>
+            <div><b>Covers</b>4 of the 5 chosen</div>
+          </div>
+          <div class="chipn">Residential water, sewer, trash and fire for city addresses.</div>
+
+          <h5>What each service is priced at <span class="m new">NEW</span></h5>
+          <table class="t"><thead><tr><th>Utility service</th><th>In the plan</th><th>Priced as</th><th class="num">Base charge</th><th class="num">Minimum</th><th>Outside city</th></tr></thead>
+            <tbody>
+              <tr><td>Water</td><td>Yes</td><td>Metered · Water 1&quot;</td><td class="num">$12.00</td><td class="num">$6.00</td><td>Charged</td></tr>
+              <tr><td>Sewer</td><td>Yes</td><td>Follows water</td><td class="num">$8.00</td><td class="num">—</td><td>Charged</td></tr>
+              <tr><td>Trash</td><td>Yes</td><td>Per container</td><td class="num">$18.00</td><td class="num">—</td><td>Exempt</td></tr>
+              <tr><td>Fire</td><td>Yes</td><td>By line size · counted</td><td class="num">$60.00</td><td class="num">—</td><td>Charged</td></tr>
+              <tr><td>Broadband</td><td style="color:#a81600">No</td><td colspan="4" style="color:#a81600">Not in this plan. Left unpriced.</td></tr>
+            </tbody></table>
+          <div class="chipn">Figures come from the plan as the server states them. No monthly total is multiplied up here.</div>
+          <div class="warn">WON'T COVER — the plan misses Broadband.</div>
+        </div>
+
+        <div class="foot"><div class="row"><button class="btn" type="button">Save &amp; exit</button><button class="btn" type="button">Park</button></div><div class="row"><button class="btn" type="button">Back</button><button class="btn p dis" type="button">Continue</button></div></div>
+      </div>
+    </div></div>
+    <div class="notes">
+      <div class="note"><h3>Removed from this step</h3><ul>
+        <li><s>Becomes the service address of every unit below it.</s></li>
+        <li><s>From Premises.</s> · <s>If the building has one</s></li>
+        <li><s>Search Premises. Pick the address.</s> now the search box placeholder</li>
+        <li><s>What this address offers, and what prices it.</s></li>
+        <li><s>What this address can bill. Add more in Settings.</s></li>
+        <li><s>Service chips, the Add a service search box and the second dropdown</s>, replaced by one multi-select</li>
+      </ul></div>
+      <div class="note"><h3>Kept checks</h3><ul>
+        <li>The WON'T COVER warning when the plan misses a chosen service.</li>
+        <li>"Plans could not be loaded" when the plan list fails.</li>
+        <li><b>Q1</b> decides whether Scope arrives pre-filled.</li>
+      </ul></div>
+      <div class="note"><h3>Changed 28 Sep, on your review</h3><ul>
+        <li><b>Unit, apt. or suite is enabled</b> and optional. It is part of the postal address; unit labels stay on step 3. See <b>F</b>.</li>
+        <li><b>The record gains latitude, longitude and a verified tick</b>, all optional. The point belongs to the building; a unit may carry its own later, and a screen always says which it is showing.</li>
+        <li><b>The plan is shown in full</b>: code, status and version, effective dates, account type, budget billing, minimum bill, description.</li>
+        <li><b>Each service shows how the plan prices it</b>: base charge, minimum, and whether it is charged outside the city. A service the plan misses gets its own row.</li>
+        <li>No monthly total is worked out on this screen. Money is multiplied and rounded once, on the server.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <!-- ================= STEP 3 ================= -->
+  <section class="panel" id="units" role="tabpanel" aria-labelledby="t-units" hidden>
+    <div class="frame-scroll"><div class="screen">
+      <aside class="side"><div class="brand"><i></i>SMARTBillHub</div><div class="nav">Dashboard</div><div class="nav">Plans &amp; Rates</div><div class="nav">Premises</div><div class="nav">Assets</div><div class="nav on">Accounts</div><div class="nav">Reads</div><div class="nav">Billing</div><div class="nav">Payments</div><div class="nav">Work</div><div class="nav">Finance</div><div class="nav">Settings</div><div class="ver">v2.x</div></aside>
+      <div class="main">
+        <div class="back">← Accounts</div>
+        <div><div class="s-eyebrow">NEW CONNECT</div><div class="s-title">The units</div><div class="s-sub">Step 3 of 5 · Units</div></div>
+        <div class="rail"><div class="done"><span>1</span>Customer</div><div class="done"><span>2</span>Premise</div><div class="on"><span>3</span>Units</div><div><span>4</span>Charges</div><div><span>5</span>Review</div></div>
+
+        <div class="sum" style="grid-template-columns:repeat(4,1fr)"><div>Services here<b>4 of 4</b></div><div>Service points<b>12</b></div><div>Meters to fit<b>3</b></div><div>Work orders<b>4 will be written</b></div></div>
+
+        <div class="sec"><h4>Common selection <span class="m b">B8</span></h4>
+          <div class="grid4">
+            <div class="f"><label>Units from</label><div class="in">1</div></div>
+            <div class="f"><label>To</label><div class="in">3</div></div>
+            <div class="f"><label>Occupancy <span class="m b">B14</span></label><div class="in dd">Vacant, service off</div></div>
+            <div class="f"><label>Target activation date</label><div class="in">10/15/2026</div></div>
+          </div>
+          <div class="row"><div class="chk"><i>&nbsp;</i>Include a common-area unit</div><button class="btn ghost dis" type="button">↑ Upload a unit schedule</button></div>
+          <table class="t"><thead><tr><th>Service</th><th>Asset</th><th>Size</th><th class="num">Qty <span class="m new">NEW</span></th><th>Work order <span class="m b">B9</span></th></tr></thead>
+            <tbody>
+              <tr><td>Water</td><td><div class="in dd">Meter</div></td><td><div class="in dd">Water 1"</div></td><td class="num"><div class="in" style="justify-content:flex-end">1</div></td><td><div class="in srch">Site inspection &amp; mark-out</div></td></tr>
+              <tr><td>Sewer</td><td><div class="in dd">None</div></td><td><div class="in dis">—</div></td><td class="num"><div class="in" style="justify-content:flex-end">1</div></td><td><div class="in srch">Tap and connection inspection</div></td></tr>
+              <tr><td>Trash</td><td><div class="in dd">Container / Cart</div></td><td><div class="in dd">35-gallon cart</div></td><td class="num"><div class="in" style="justify-content:flex-end">2</div></td><td><div class="in srch">Container delivery</div></td></tr>
+              <tr><td>Fire</td><td><div class="in dd">Fire line</div></td><td><div class="in dd">Fire line 6"</div></td><td class="num"><div class="in" style="justify-content:flex-end">1</div></td><td><div class="in srch">Fire marshal inspection</div></td></tr>
+            </tbody></table>
+          <div class="chipn">Occupancy options: Vacant, service off · Vacant, base charges only · Landlord-billed between tenants · Open an account now. Moved here from the review step, 28 Sep.</div>
+          <div class="row"><button class="btn p" type="button">Apply to all</button><span class="chipn">Required before Continue. Rows stay editable.</span></div>
+        </div>
+
+        <div class="sec"><h4>Units and service points <span class="m b">B6</span><span class="m b">B7</span><span class="m q">C</span></h4>
+          <table class="t"><thead><tr><th>Unit</th><th>Kind</th><th>Service</th><th>Asset</th><th>Size</th><th class="num">Qty <span class="m new">NEW</span></th><th>Work order</th><th>Completes</th><th>Occupancy</th><th></th></tr></thead>
+            <tbody>
+              <tr class="grp"><td colspan="10">Unit 1 · Dwelling</td></tr>
+              <tr><td><div class="in">1</div></td><td><div class="in dd">Dwelling</div></td><td><div class="in dd">Water</div></td><td><div class="in dd">Meter</div></td><td><div class="in dd">Water 1"</div></td><td class="num"><div class="in" style="justify-content:flex-end">1</div></td><td><div class="in srch">Site inspection &amp; mark-out</div></td><td><div class="chk"><i class="on">✓</i></div></td><td><div class="in dd">Vacant, service off</div></td><td class="x">×</td></tr>
+              <tr><td></td><td></td><td><div class="in dd">Sewer</div></td><td><div class="in dd">None</div></td><td><div class="in dis">—</div></td><td class="num"><div class="in" style="justify-content:flex-end">1</div></td><td><div class="in srch">Tap and connection inspection</div></td><td><div class="chk"><i>&nbsp;</i></div></td><td><div class="in dd">Vacant, service off</div></td><td class="x">×</td></tr>
+              <tr><td></td><td></td><td><div class="in dd">Trash</div></td><td><div class="in dd">Container / Cart</div></td><td><div class="in dd">35-gallon cart</div></td><td class="num"><div class="in" style="justify-content:flex-end">2</div></td><td><div class="in srch">Container delivery</div></td><td><div class="chk"><i>&nbsp;</i></div></td><td><div class="in dd">Vacant, service off</div></td><td class="x">×</td></tr>
+              <tr><td></td><td></td><td><div class="in dd">Fire</div></td><td><div class="in dd">Fire line</div></td><td><div class="in dd">Fire line 6"</div></td><td class="num"><div class="in" style="justify-content:flex-end">1</div></td><td><div class="in srch">Fire marshal inspection</div></td><td><div class="chk"><i>&nbsp;</i></div></td><td><div class="in dd">Vacant, service off</div></td><td class="x">×</td></tr>
+              <tr><td></td><td></td><td><div class="in dd">Fire</div></td><td><div class="in dd">Fire line</div></td><td><div class="in dd">Fire line 2"</div></td><td class="num"><div class="in" style="justify-content:flex-end">2</div></td><td><div class="in srch">Fire marshal inspection</div></td><td><div class="chk"><i>&nbsp;</i></div></td><td><div class="in dd">Vacant, service off</div></td><td class="x">×</td></tr>
+              <tr class="grp"><td colspan="10">Unit 2 · Dwelling · 4 service points</td></tr>
+              <tr class="grp"><td colspan="10">Unit 15 · Dwelling · 4 service points</td></tr>
+              <tr><td colspan="10"><div class="warn">Unit 15 takes Broadband. This address does not.</div></td></tr>
+            </tbody></table>
+          <div class="row"><button class="btn ghost" type="button">+ Add row</button><button class="btn ghost" type="button">+ Add work order</button></div>
+          <div class="chipn">An extra work order not tied to a service becomes its own row with Utility service "—". "No template covers these services." + Write a template appears when relevant.</div>
+        </div>
+
+        <div class="foot"><div class="row"><button class="btn" type="button">Save &amp; exit</button><button class="btn" type="button">Park</button></div><div class="row"><button class="btn" type="button">Back</button><button class="btn p" type="button">Continue</button></div></div>
+      </div>
+    </div></div>
+    <div class="notes">
+      <div class="note"><h3>Removed from this step</h3><ul>
+        <li><s>Produces 1–3 — 3 units, editable below.</s></li>
+        <li><s>Not built yet. Add the units here.</s></li>
+        <li><s>Tick a column / Clear a column / Copy unit 1 to all</s>, replaced by Apply to all and editable rows</li>
+        <li><s>Separate Work orders step</s>: its list, Completes service, target date and Add work order now live here</li>
+      </ul></div>
+      <div class="note"><h3>Kept checks</h3><ul>
+        <li>"already exists here" on a duplicate unit label.</li>
+        <li>"{unit} takes {service}. This address does not." on the row.</li>
+        <li>"Sewer follows water." on the row.</li>
+        <li><b>Grouped by unit</b>, confirmed 28 Sep. The unit is named once at the head of its group.</li>
+        <li>What each button does is drawn on its own screen: tabs <b>3a Add row</b> and <b>3b Add work order</b>.</li>
+      </ul></div>
+      <div class="note"><h3>Columns, short names — 28 Sep</h3><ul>
+        <li><b>Unit · Kind · Service · Asset · Size · Qty · Work order · Completes · Occupancy</b></li>
+        <li><b>Qty is the one column I would add.</b> Fire is priced by line size and multiplied by the count, so a 6" line and two 2" lines are two rows, qty 1 and qty 2. Trash carts count the same way. This is very likely your 1, 2 and 15 — see <b>Q3</b>.</li>
+        <li><b>Occupancy now carries the four real choices</b> and the review step no longer asks it. Your call, 28 Sep.</li>
+        <li>Considered and left out: <b>activation date per row</b> (one date at the top) · <b>meter serial</b> (the meter is fitted by the work order, so there is none yet) · <b>sub-meter parent</b> (an asset record, which cannot be made here) · <b>notes</b>.</li>
+        <li><b>Plan is not a column</b>: every unit takes the premise plan, a common area included (confirmed 28 Sep). That also closes an open question the code carried.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <section class="panel" id="addrow" role="tabpanel" aria-labelledby="t-addrow" hidden>
+    <div class="frame-scroll"><div class="screen">
+      <aside class="side"><div class="brand"><i></i>SMARTBillHub</div><div class="nav">Dashboard</div><div class="nav">Plans &amp; Rates</div><div class="nav">Premises</div><div class="nav">Assets</div><div class="nav on">Accounts</div><div class="nav">Reads</div><div class="nav">Billing</div><div class="nav">Payments</div><div class="nav">Work</div><div class="nav">Finance</div><div class="nav">Settings</div><div class="ver">v2.x</div></aside>
+      <div class="main">
+        <div class="back">← Accounts</div>
+        <div><div class="s-eyebrow">NEW CONNECT</div><div class="s-title">The units</div><div class="s-sub">Step 3 of 5 · Units · after Add row</div></div>
+        <div class="rail"><div class="done"><span>1</span>Customer</div><div class="done"><span>2</span>Premise</div><div class="on"><span>3</span>Units</div><div><span>4</span>Charges</div><div><span>5</span>Review</div></div>
+
+        <div class="sec"><h4>The new row</h4>
+          <div class="chipn">A row appears at the bottom of the unit you added it to, empty and ready to type. Nothing opens on top of the screen.</div>
+          <table class="t"><thead><tr><th>Unit</th><th>Kind</th><th>Service</th><th>Asset</th><th>Size</th><th class="num">Qty</th><th>Work order</th><th>Completes</th><th>Occupancy</th><th></th></tr></thead>
+            <tbody>
+              <tr class="grp"><td colspan="10">Unit 1 · Dwelling</td></tr>
+              <tr style="opacity:.5"><td colspan="10" style="text-align:center;padding:9px">the rows above, unchanged</td></tr>
+              <tr style="outline:2px solid var(--accent);outline-offset:-2px"><td><div class="in dis">1</div></td><td><div class="in dis">Dwelling</div></td><td><div class="in dd ph">Choose a service</div></td><td><div class="in dd ph">—</div></td><td><div class="in dis ph">—</div></td><td class="num"><div class="in" style="justify-content:flex-end">1</div></td><td><div class="in srch ph">Search work orders</div></td><td><div class="chk"><i>&nbsp;</i></div></td><td><div class="in dd">Vacant, service off</div></td><td class="x">×</td></tr>
+            </tbody></table>
+          <div class="grid2"><div class="chipn"><b>Filled in for you:</b> Unit and Kind from the group · Qty 1 · Occupancy from the common selection.</div><div class="chipn"><b>Waiting on you:</b> Service first. Asset and Size stay empty until a service is chosen, because their lists depend on it.</div></div>
+          <div class="warn">Choose a service. · shown only if Continue is pressed with the row still empty.</div>
+        </div>
+
+        <div class="foot"><div class="row"><button class="btn" type="button">Save &amp; exit</button><button class="btn" type="button">Park</button></div><div class="row"><button class="btn" type="button">Back</button><button class="btn p" type="button">Continue</button></div></div>
+      </div>
+    </div></div>
+    <div class="notes"><div class="note"><h3>What this screen is</h3><ul><li>The same step 3 screen, right after <b>Add row</b> is pressed. It is not a dialog: the row is added in place, at the bottom of the unit you were in.</li><li>Unit, Kind, Qty and Occupancy arrive filled from that unit and the common selection.</li><li>Asset and Size stay empty until a service is chosen, because their lists depend on the service.</li><li>The refusal appears only if Continue is pressed with the row still empty.</li></ul></div></div>
+  </section>
+
+  <section class="panel" id="addwo" role="tabpanel" aria-labelledby="t-addwo" hidden>
+    <div class="frame-scroll"><div class="screen">
+      <aside class="side"><div class="brand"><i></i>SMARTBillHub</div><div class="nav">Dashboard</div><div class="nav">Plans &amp; Rates</div><div class="nav">Premises</div><div class="nav">Assets</div><div class="nav on">Accounts</div><div class="nav">Reads</div><div class="nav">Billing</div><div class="nav">Payments</div><div class="nav">Work</div><div class="nav">Finance</div><div class="nav">Settings</div><div class="ver">v2.x</div></aside>
+      <div class="main">
+        <div class="back">← Accounts</div>
+        <div><div class="s-eyebrow">NEW CONNECT</div><div class="s-title">The units</div><div class="s-sub">Step 3 of 5 · Units · after Add work order</div></div>
+        <div class="rail"><div class="done"><span>1</span>Customer</div><div class="done"><span>2</span>Premise</div><div class="on"><span>3</span>Units</div><div><span>4</span>Charges</div><div><span>5</span>Review</div></div>
+
+        <div class="sec"><h4>The new row</h4>
+          <div class="chipn">An order that belongs to the build rather than to one service point. It becomes its own row, with Service, Asset and Size shown as —.</div>
+          <table class="t"><thead><tr><th>Unit</th><th>Kind</th><th>Service</th><th>Asset</th><th>Size</th><th class="num">Qty</th><th>Work order</th><th>Completes</th><th>Occupancy</th><th></th></tr></thead>
+            <tbody>
+              <tr style="opacity:.5"><td colspan="10" style="text-align:center;padding:9px">the unit rows above, unchanged</td></tr>
+              <tr class="grp"><td colspan="10">Whole build</td></tr>
+              <tr style="outline:2px solid var(--accent);outline-offset:-2px"><td><div class="in dd">Whole build</div></td><td><div class="in dis">—</div></td><td><div class="in dis">—</div></td><td><div class="in dis">—</div></td><td><div class="in dis">—</div></td><td class="num"><div class="in" style="justify-content:flex-end">1</div></td><td><div class="in srch ph">Search templates</div></td><td><div class="chk"><i>&nbsp;</i></div></td><td><div class="in dis">—</div></td><td class="x">×</td></tr>
+            </tbody></table>
+          <div class="grid2"><div class="f"><label>Applies to</label><div class="in dd">Whole build</div></div><div class="chipn" style="align-self:end">Options: Whole build · one unit · one service point. Pick a unit and the row moves into that unit&rsquo;s group.</div></div>
+          <div class="chipn">The search offers published templates only, by the name a person gave them. <b>A draft cannot be used.</b></div>
+          <div class="warn">No template covers these services. · with <b>Write a template</b> beside it, as today.</div>
+        </div>
+
+        <div class="foot"><div class="row"><button class="btn" type="button">Save &amp; exit</button><button class="btn" type="button">Park</button></div><div class="row"><button class="btn" type="button">Back</button><button class="btn p" type="button">Continue</button></div></div>
+      </div>
+    </div></div>
+    <div class="notes"><div class="note"><h3>What this screen is</h3><ul><li>The same step 3 screen, right after <b>Add work order</b> is pressed. Also in place, at the bottom of the table.</li><li>The row belongs to the build rather than to a service point, so Service, Asset and Size read —.</li><li><b>Applies to</b> decides where it sits: whole build, one unit, or one service point. Choose a unit and the row moves into that unit’s group.</li><li>Only published templates are offered. A draft cannot be used.</li></ul></div></div>
+  </section>
+
+  <!-- ================= STEP 4 ================= -->
+  <section class="panel" id="charges" role="tabpanel" aria-labelledby="t-charges" hidden>
+    <div class="frame-scroll"><div class="screen">
+      <aside class="side"><div class="brand"><i></i>SMARTBillHub</div><div class="nav">Dashboard</div><div class="nav">Plans &amp; Rates</div><div class="nav">Premises</div><div class="nav">Assets</div><div class="nav on">Accounts</div><div class="nav">Reads</div><div class="nav">Billing</div><div class="nav">Payments</div><div class="nav">Work</div><div class="nav">Finance</div><div class="nav">Settings</div><div class="ver">v2.x</div></aside>
+      <div class="main">
+        <div class="back">← Accounts</div>
+        <div><div class="s-eyebrow">NEW CONNECT</div><div class="s-title">Charges</div><div class="s-sub">Step 4 of 5 · Charges</div></div>
+        <div class="rail"><div class="done"><span>1</span>Customer</div><div class="done"><span>2</span>Premise</div><div class="done"><span>3</span>Units</div><div class="on"><span>4</span>Charges</div><div><span>5</span>Review</div></div>
+
+        <div class="sum"><div>Customer<b>Jonas Janssen</b></div><div>Premise<b>New Highland Park</b></div><div>Scope<b>New premise</b></div><div>Units<b>3 · 1, 2, 15</b></div><div>Services<b><span class="badges"><i style="background:#1f5fa8">W</i><i style="background:#3b6e3b">S</i><i style="background:#555">T</i><i style="background:#a81600">F</i></span></b></div><div>Counted<b>3 · 3 · 1</b></div><div>Plan<b>Residential City</b></div></div>
+
+        <div class="grid2">
+          <div class="sec"><h4>Who is billed <span class="m b">B11</span></h4>
+            <div class="f"><label>Billed to <span class="req">*</span></label><div class="in dd">The owner’s account · Jonas Janssen</div></div>
+            <div class="chipn">Options: The owner’s account · Each unit’s bill · The connection. Only the owner’s account can be chosen today, and an option is disabled by a real check rather than by a value typed into the code — which was bug 11.</div>
+            <div class="grid2">
+              <div class="f"><label>Payment terms (days) <span class="req">*</span></label><div class="in ph">No default</div></div>
+              <div class="f"><label>Posting date</label><div class="in">09/28/2026</div></div>
+            </div>
+          </div>
+          <div class="sec"><h4>Payment <span class="m b">B12</span><span class="m q">Q7</span></h4>
+            <div class="grid2">
+              <div class="f"><label>Payment option</label><div class="in dd">Cheque</div></div>
+              <div class="f"><label>Amount</label><div class="in">$500.00</div></div>
+              <div class="f"><label>Payment date</label><div class="in">09/28/2026</div></div>
+              <div class="f"><label>Cheque number</label><div class="in">4471</div></div>
+            </div>
+            <div class="chipn">Options: No payment now · Cash · Cheque · Card · Bank transfer. The reference label follows the option.</div>
+          </div>
+        </div>
+
+        <div class="sec"><h4>Billing preferences <span class="m new">NEW</span></h4>
+          <div class="grid4">
+            <div class="chk" style="align-self:end;height:32px"><i>&nbsp;</i>Autopay</div>
+            <div class="chk" style="align-self:end;height:32px"><i>&nbsp;</i>Tax exempt</div>
+            <div class="f"><label>Certificate number</label><div class="in dis ph">When exempt</div></div>
+            <div class="f"><label>Exemption expires</label><div class="in dis ph">When exempt</div></div>
+          </div>
+        </div>
+
+        <div class="sec"><h4>What is charged <span class="m b">B10</span><span class="m q">Q3</span></h4>
+          <table class="t"><thead><tr><th>Charge</th><th>Basis</th><th class="num">Qty</th><th class="num">Each</th><th class="num">Amount</th><th></th></tr></thead>
+            <tbody>
+              <tr><td><div class="in srch">CONN · Connection fee</div></td><td><div class="in dd">per unit</div></td><td class="num"><div class="in" style="justify-content:flex-end">3</div></td><td class="num">$45.00</td><td class="num">$135.00</td><td class="x">×</td></tr>
+              <tr><td><div class="in srch">SAME-DAY · Same-day service</div></td><td><div class="in dd">per unit</div></td><td class="num"><div class="in" style="justify-content:flex-end">3</div></td><td class="num">$50.00</td><td class="num">$150.00</td><td class="x">×</td></tr>
+              <tr><td><div class="in srch">TAMPER · Tamper fee</div></td><td><div class="in dd">per unit</div></td><td class="num"><div class="in" style="justify-content:flex-end">3</div></td><td class="num">$250.00</td><td class="num">$750.00</td><td class="x">×</td></tr>
+            </tbody></table>
+          <div class="row" style="justify-content:space-between;align-items:flex-start">
+            <button class="btn ghost" type="button">+ Add charge</button>
+            <div class="totals"><span class="big">Total</span><span class="big">$1,035.00</span><span>Paid now</span><span>$500.00</span><span>Remaining, due in {terms} days</span><span>$535.00</span><span class="chipn">Priced, not posted</span><span></span></div>
+          </div>
+        </div>
+
+        <div class="foot"><div class="row"><button class="btn" type="button">Save &amp; exit</button><button class="btn" type="button">Park</button></div><div class="row"><button class="btn" type="button">Back</button><button class="btn p" type="button">Continue</button></div></div>
+      </div>
+    </div></div>
+    <div class="notes">
+      <div class="note"><h3>Removed from this step</h3><ul>
+        <li><s>Counted from step 4.</s> and <s>Named at step 1.</s> (the summary shows both)</li>
+        <li><s>Those accounts do not exist.</s> / <s>Nobody can settle this debt.</s> — the three options stay on screen; what changes is that a disabled one is disabled by a real check, not by a value typed into the code.</li>
+        <li><s>Days until this charge is due.</s> / <s>The day this charge counts from.</s></li>
+        <li><s>No payment is taken here. Record it against the account.</s>, replaced by the payment option</li>
+      </ul></div>
+      <div class="note"><h3>Kept rules and checks</h3><ul>
+        <li>Payment terms stay required with <b>no default</b>. A guessed due date starts a late-fee clock.</li>
+        <li>"This charge has no price. Choose another." and "The price could not be read." on the row.</li>
+        <li>"No charge here carries a price." under the table.</li>
+        <li><b>Q3</b>: Qty drawn editable, filled from the counts.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <!-- ================= STEP 5 ================= -->
+  <section class="panel" id="review" role="tabpanel" aria-labelledby="t-review" hidden>
+    <div class="frame-scroll"><div class="screen">
+      <aside class="side"><div class="brand"><i></i>SMARTBillHub</div><div class="nav">Dashboard</div><div class="nav">Plans &amp; Rates</div><div class="nav">Premises</div><div class="nav">Assets</div><div class="nav on">Accounts</div><div class="nav">Reads</div><div class="nav">Billing</div><div class="nav">Payments</div><div class="nav">Work</div><div class="nav">Finance</div><div class="nav">Settings</div><div class="ver">v2.x</div></aside>
+      <div class="main">
+        <div class="back">← Accounts</div>
+        <div><div class="s-eyebrow">NEW CONNECT</div><div class="s-title">What will be created</div><div class="s-sub">Step 5 of 5 · Review</div></div>
+        <div class="rail"><div class="done"><span>1</span>Customer</div><div class="done"><span>2</span>Premise</div><div class="done"><span>3</span>Units</div><div class="done"><span>4</span>Charges</div><div class="on"><span>5</span>Review</div></div>
+
+        <div class="sec"><h4>At a glance <span class="m b">B14</span></h4>
+          <div class="sum" style="grid-template-columns:repeat(9,1fr)"><div>Customer<b>1 new</b></div><div>Premises<b>1</b></div><div>Units<b>3</b></div><div>Service points<b>12</b></div><div>Meters<b>3</b></div><div>Sub-meter links<b>—</b></div><div>Plan assignments<b>3</b></div><div>Work orders<b>4</b></div><div>One-time charges<b>$1,035.00</b></div></div>
+          <div class="row"><span class="chipn">Services</span><span class="badges"><i style="background:#1f5fa8">W</i><i style="background:#3b6e3b">S</i><i style="background:#555">T</i><i style="background:#a81600">F</i></span></div>
+        </div>
+
+        <div class="sec"><h4>Details <span class="m q">E</span></h4>
+          <div class="coll"><span><b>Customer</b> · Jonas Janssen · new · paperless · 1 document</span><span class="edit">Edit ›</span></div>
+          <div class="coll"><span><b>Premise</b> · New Highland Park, Ottumwa, IA 58245 · New premise · Residential City Plan</span><span class="edit">Edit ›</span></div>
+          <div class="coll"><span><b>Units and work</b> · 3 units · 12 service points · 4 work orders · all vacant, service off · activation 10/15/2026</span><span class="edit">Edit ›</span></div>
+          <div class="coll" style="flex-direction:column;align-items:stretch;gap:8px"><div style="display:flex;justify-content:space-between"><span><b>Charges and payment</b> · $1,035.00 · owner's account · $500.00 cheque · 30-day terms</span><span class="edit">Edit ›</span></div>
+            <table class="t"><thead><tr><th>Charge</th><th>Basis</th><th class="num">Qty</th><th class="num">Each</th><th class="num">Amount</th></tr></thead><tbody><tr><td>CONN · Connection fee</td><td>per unit</td><td class="num">3</td><td class="num">$45.00</td><td class="num">$135.00</td></tr><tr><td>SAME-DAY · Same-day service</td><td>per unit</td><td class="num">3</td><td class="num">$50.00</td><td class="num">$150.00</td></tr><tr><td>TAMPER · Tamper fee</td><td>per unit</td><td class="num">3</td><td class="num">$250.00</td><td class="num">$750.00</td></tr></tbody></table>
+            <span class="chipn">Opened: each group expands to every field from its step, read-only.</span></div>
+        </div>
+
+        <div class="sec"><h4>Messages <span class="m b">B13</span></h4>
+          <table class="t"><thead><tr><th>Message</th><th>To</th><th>Channel</th><th>Template</th><th>When</th><th>State</th><th></th></tr></thead>
+            <tbody>
+              <tr><td>Build confirmed</td><td>Jonas Janssen</td><td><div class="in dd">Email</div></td><td><div class="in srch ph">—</div></td><td>On commit</td><td>Not queued</td><td class="x">×</td></tr>
+              <tr><td>The contract</td><td>Jonas Janssen</td><td><div class="in dd">Print</div></td><td><div class="in srch ph">—</div></td><td>On commit</td><td>No published wording</td><td class="x">×</td></tr>
+              <tr><td>Quote and what is owed</td><td>Jonas Janssen</td><td><div class="in dd">Email · Print</div></td><td><div class="in srch ph">—</div></td><td>On commit</td><td>Not in the books</td><td class="x">×</td></tr>
+            </tbody></table>
+          <div class="row"><button class="btn ghost" type="button">+ Add template</button><span class="chipn">Opens the template picker: Template · Group · Channel · Variant · Version · Would be used. A draft cannot be used.</span></div>
+        </div>
+
+                <div class="sec"><h4>What pressing Create makes</h4>
+          <table class="t"><thead><tr><th>What</th><th class="num">How many</th><th>Named</th><th>Where it shows</th><th>When</th></tr></thead>
+            <tbody>
+              <tr><td>Customer record, with its customer ID</td><td class="num">1</td><td>C-00011</td><td>Accounts › Customers</td><td>On create</td></tr>
+              <tr><td>Owner&rsquo;s account</td><td class="num">1</td><td>AC-2026-00011</td><td>Accounts</td><td>On create</td></tr>
+              <tr><td>Premises</td><td class="num">1</td><td>New Highland Park</td><td>Premises</td><td>On create</td></tr>
+              <tr><td>Units</td><td class="num">3</td><td>1, 2, 15</td><td>Premises › New Highland Park</td><td>On create</td></tr>
+              <tr><td>Meters and assets to fit</td><td class="num">3</td><td>—</td><td>Assets</td><td>On the work order</td></tr>
+              <tr><td>Plan assignments</td><td class="num">3</td><td>Residential City Plan</td><td>Plans &amp; Rates</td><td>On create</td></tr>
+              <tr><td>Work orders</td><td class="num">4</td><td>—</td><td>Work › Orders</td><td>On create</td></tr>
+              <tr style="background:#e2e0df"><td><b>Entry in the books for the one-time charges</b> <span class="m new">NEW</span><span class="m q">H</span></td><td class="num">$1,035.00</td><td>invoice no.</td><td>Billing &amp; Finance</td><td>On create</td></tr>
+              <tr style="background:#e2e0df"><td><b>Payment recorded</b> <span class="m new">NEW</span><span class="m q">Q7</span></td><td class="num">$500.00</td><td>cheque 4471</td><td>Payments</td><td>On create</td></tr>
+              <tr><td>Messages queued</td><td class="num">3</td><td>—</td><td>Notifications</td><td>On create</td></tr>
+              <tr><td>Audit entry</td><td class="num">1</td><td>—</td><td>Settings › Audit</td><td>On create</td></tr>
+              <tr><td>Service starts</td><td class="num">—</td><td>—</td><td>Premises › New Highland Park</td><td>On completion, 10/15/2026</td></tr>
+            </tbody></table>
+          <div class="chipn">A customer record is created only when the search above found none. A per-unit account is created only where that unit&rsquo;s occupancy says <i>Open an account now</i>.</div>
+          <div class="warn"><b>The two shaded rows are new work.</b> Today the quote is kept as a figure on the build with no invoice, so nothing reaches the books. Ruled 28 Sep: they are written at creation, in the same act — if the books entry fails, the connection is not created.</div>
+          <div class="chipn">Outstanding work listed below the table, as today.</div>
+        </div>
+
+        <div class="foot"><div class="row"><button class="btn" type="button">Save &amp; exit</button><button class="btn" type="button">Park</button></div><div class="row"><button class="btn" type="button">Back</button><button class="btn p" type="button">Create connection</button></div></div>
+      </div>
+    </div></div>
+    <div class="notes">
+      <div class="note"><h3>Removed from this step</h3><ul>
+        <li><s>A build ends with its units vacant. This chooses whether an empty unit bills anybody in the meantime.</s></li>
+        <li><s>The four "— The default. Nothing is billed…" lines under Occupancy</s></li>
+        <li><s>Cannot be created from here — a sub-meter link is an asset record.</s></li>
+        <li><s>These counts are a contract.</s> · <s>No quote on this build, so nothing is charged.</s></li>
+        <li><s>Not answered yet. / No parcel given. / No route chosen. / Not captured on this build.</s> (empty shows "—")</li>
+        <li><s>Everything is queued. Nothing is sent. / These three are the default. None can be queued yet. / This utility has published none. / Searches the name a human gave. / This names a version. It renders nothing.</s></li>
+      </ul></div>
+      <div class="note"><h3>Changed</h3><ul>
+        <li>"1035.00" is shown as <b>$1,035.00</b>.</li>
+        <li><b>Occupancy has moved to step 3</b>, onto the unit rows where it belongs. The review step shows it, and does not ask it. Your call, 28 Sep.</li>
+        <li>"From each step" becomes four groups, each with Edit. <b>E</b>: drawn collapsed except Charges, shown opened.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <!-- ================= QUESTIONS ================= -->
+  <section class="panel" id="questions" role="tabpanel" aria-labelledby="t-questions" hidden>
+    <div><h2 style="font-size:20px">Still open — 1</h2><p class="foot-note">Answer in any words, for example “Q3 is (b), rest as recommended”. Q3 is the only one that blocks a fix.</p></div>
+    <div class="tbl-scroll">
+      <table class="qtable">
+        <thead><tr><th>#</th><th>Step</th><th>Question</th><th>Real example</th><th>Options</th><th>Recommendation</th></tr></thead>
+        <tbody>
+          <tr><td>Q3</td><td>4 Charges</td><td>Which numbers were 1, 2 and 15, and is Qty typed per charge?</td><td>Charges show qty 3 on every line (3 units); you entered 1, 2, 15 earlier</td><td>(a) They were unit names; Qty stays counted · (b) Per-charge quantities, e.g. 1 connection fee, 2 same-day visits, 15 tamper seals · (c) Something else</td><td>I have drawn a <b>Qty</b> column on step 3, which may already be your answer. Still needs confirming: it is money on a real invoice</td></tr>
+          <tr><td>Q5</td><td>3 Units</td><td>After Apply to all, can a single row still be changed?</td><td>3 units get a Water 1" meter, but unit 15 needs 2"</td><td>(a) Yes, every row stays editable · (b) No, change the common selection and apply again</td><td>(a) Yes</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div><h2 style="font-size:20px">Answered in chat, 28 September — 18</h2><p class="foot-note">Recorded here so the next session builds what you said, not what it guesses.</p></div>
+    <div class="tbl-scroll">
+      <table class="qtable">
+        <thead><tr><th>#</th><th>Step</th><th>Question</th><th>What you said</th><th>Settled as</th></tr></thead>
+        <tbody>
+          <tr><td>Q1a</td><td>2 Premise</td><td>Which case triggers the already-served error?</td><td>“A”</td><td><b>Only when the exact unit already has that service.</b> A served building with unserved units is still a New Connect, so all three scope choices keep working.</td></tr>
+          <tr><td>Q2</td><td>1 Customer</td><td>Uploaded by and State before the connection exists?</td><td>“keep today’s behaviour and hide the two columns until creation”</td><td><b>Hidden on the wizard.</b> The file is filed right after the connection is created, and both columns then show the real uploader and time. State stays blank until a reviewer says verified or rejected.</td></tr>
+          <tr><td>H</td><td>5 Review</td><td>Do the one-time charges reach the books at creation?</td><td>“do it at creation once submitted”</td><td><b>Yes.</b> Pressing Create writes the invoice on the owner’s account, due after the payment terms, and records the payment if one was taken. It is one act: if the books entry cannot be written, the connection is not created either.</td></tr>
+          <tr><td>Q1</td><td>2 Premise</td><td>What happens when the address is already served?</td><td>“if premises is found - then it cannot be new connect request; it will be move in request”, and “just display the error and show the message; next step will be blocked”</td><td><b>An error on the screen, and Continue blocked.</b> The clerk is not sent anywhere automatically and nothing is carried over. Scope is still chosen here.</td></tr>
+          <tr><td>A2</td><td>1 Customer</td><td>What fills the External system reference list?</td><td>“it should free text - (b) Free text as today”</td><td><b>Free text, as today.</b> Not a dropdown.</td></tr>
+          <tr><td>G</td><td>3 Units</td><td>Which plan prices a common-area unit?</td><td>“similar to unit - apply same plan that we have given to premises”</td><td><b>The premise plan</b>, the same one every other unit gets. A common area is a unit like any other for pricing.</td></tr>
+          <tr><td>E</td><td>5 Review</td><td>Do the detail groups start collapsed?</td><td>“this is good - yes”</td><td><b>Collapsed</b>, each one summarised in a line and opened on click. As drawn.</td></tr>
+          <tr><td>C</td><td>3 Units</td><td>Is the units table grouped or flat?</td><td>“grouped by units”</td><td><b>Grouped by unit</b>, the unit named once at the head of its group. As drawn.</td></tr>
+          <tr><td>Q6</td><td>4 Charges</td><td>Which payer is offered?</td><td>“owner account only”</td><td><b>The owner’s account is the only one that can be chosen.</b> All three options stay on screen; the other two are disabled by a real check instead of a typed-in value, which was bug 11.</td></tr>
+          <tr><td>Q7</td><td>4 Charges</td><td>Does New Connect take a real payment?</td><td>“based on payment type we need to give all payment fields — amount, payment type, date”</td><td><b>Yes.</b> Payment option, amount, date and reference on step 4. Payment terms stay required with no default.</td></tr>
+          <tr><td>F</td><td>2 Premise</td><td>Unit, apt. or suite — enabled or not?</td><td>“why have you disabled it if it is part of premise address then it should be there”</td><td><b>Enabled and optional</b>, part of the postal address. Units are still named on step 3. Only A2 above is left over from it.</td></tr>
+          <tr><td>A</td><td>1 Customer</td><td>Which field is the dropdown, and how is a customer found?</td><td>“this should be search Customer ID — based on what information is inputed above it will search”</td><td><b>A Customer ID search</b>, run on the details entered above. The dropdown you meant was External system reference — see A2.</td></tr>
+          <tr><td>B</td><td>1 Customer</td><td>Is Mode a dropdown?</td><td>“and this one also”, said of Mode</td><td><b>Yes, a dropdown.</b> Our crew did it · External system · We schedule it (disabled).</td></tr>
+          <tr><td>Q4</td><td>1 Customer</td><td>What happens to the “Becomes a customer” chip?</td><td>The Search customer ID block replaced it, and you confirmed that part of step 1 reads correctly</td><td><b>Removed.</b> The search says whether the customer exists; nothing else is needed.</td></tr>
+          <tr><td>D</td><td>1 and 4</td><td>Where do the preferences go?</td><td>“we need to add all communication and account preferences somewhere”, then “Communication NEW — these are correct”</td><td><b>Split.</b> Communication on step 1 beside the email and phone; autopay and tax exemption on step 4 with the money.</td></tr>
+          <tr><td>Occupancy</td><td>3 and 5</td><td>Where is occupancy chosen?</td><td>“why dont you keep this with units itself”</td><td><b>On the unit rows, step 3</b>, with the four real choices. The review step shows it and no longer asks it.</td></tr>
+          <tr><td>Steps</td><td>All</td><td>Eight steps or five?</td><td>“these steps are good — we need 1 word for every step — we dont want any information to be reduced or lost”</td><td><b>Five, one word each.</b> Customer · Premise · Units · Charges · Review. Every field survives; only explanation text is cut.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="foot-note">Figures on the screens are examples from your screenshots of v2.385.1 (Ottumwa Water Works), not live data.</p>
+  </section>
+</div>
+
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  function show(id){
+    tabs.forEach(function(t){
+      var on=t.getAttribute('aria-controls')===id;
+      t.setAttribute('aria-selected',on?'true':'false');
+      document.getElementById(t.getAttribute('aria-controls')).hidden=!on;
+    });
+  }
+  tabs.forEach(function(t){t.addEventListener('click',function(){
+    var id=t.getAttribute('aria-controls'); show(id);
+    try{history.replaceState(null,'','#'+id)}catch(e){}
+  });});
+  var h=(location.hash||'').slice(1);
+  if(h&&document.getElementById(h)&&document.getElementById(h).getAttribute('role')==='tabpanel')show(h);
+})();
+</script>

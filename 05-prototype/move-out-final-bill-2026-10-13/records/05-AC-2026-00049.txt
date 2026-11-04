@@ -1,0 +1,65 @@
+== account
+  account_no   | closed_at  | status | behavior_class | deposit_on_file | close_reason 
+---------------+------------+--------+----------------+-----------------+--------------
+ AC-2026-00049 | 2026-10-12 | closed | terminal       |        0.000000 | lease_ended
+(1 row)
+
+== final invoices
+   invoice_no   | bill_type | status | period_start | period_end |   total    | marker | bill_date  | due_days 
+----------------+-----------+--------+--------------+------------+------------+--------+------------+----------
+ BL-2610-000254 | final     | issued | 2026-10-01   | 2026-10-12 | 510.760000 | t      | 2026-10-12 |       20
+(1 row)
+
+== lines
+               description                |  qty   | unit_price |   amount    
+------------------------------------------+--------+------------+-------------
+ water usage tier 3 (5.81+ kgal)          |  46.19 |   8.480000 |  391.720000
+ electric usage tier 3 (387.1+ kWh)       | 852.90 |   0.170000 |  144.990000
+ electric usage tier 2 (193.55-387.1 kWh) | 193.55 |   0.145000 |   28.060000
+ water usage tier 2 (1.94-5.81 kgal)      |   3.87 |   6.890000 |   26.670000
+ electric usage tier 1 (0-193.55 kWh)     | 193.55 |   0.120000 |   23.230000
+ Tax Local                                |        |   0.020000 |   12.460000
+ water usage tier 1 (0-1.94 kgal)         |   1.94 |   4.240000 |    8.210000
+ electric base charge (prorated)          |        |            |    0.000000
+ water base charge (prorated)             |        |            |    0.000000
+ Municipal account                        |        |            | -124.580000
+(10 rows)
+
+== journal (by entry, designation)
+                     posting_key                     |       designation       |  side  |    amt     
+-----------------------------------------------------+-------------------------+--------+------------
+ invoice|01a13351-2256-7dbc-9fd7-1250095406a1|issued |                         | credit | 635.340000
+ invoice|01a13351-2256-7dbc-9fd7-1250095406a1|issued | accounts_receivable     | debit  | 510.760000
+ invoice|01a13351-2256-7dbc-9fd7-1250095406a1|issued | discount_contra_revenue | debit  | 124.580000
+(3 rows)
+
+== entries balanced?
+                     posting_key                     |     dr     |     cr     
+-----------------------------------------------------+------------+------------
+ invoice|01a13351-2256-7dbc-9fd7-1250095406a1|issued | 635.340000 | 635.340000
+(1 row)
+
+== delivery rows
+  channel  | status | template_code | unavailable_reason 
+-----------+--------+---------------+--------------------
+ email     | queued |               | 
+ pdf_print | queued |               | 
+ portal    | queued |               | 
+(3 rows)
+
+== audit rows today
+        action         | entity_type |          created_at           
+-----------------------+-------------+-------------------------------
+ invoice.drafted       | invoice     | 2026-10-13 03:31:57.662343+00
+ account.closed        | account     | 2026-10-13 03:31:57.929471+00
+ invoice.issued        | invoice     | 2026-10-13 03:32:08.958516+00
+ invoice.one_time_sent | invoice     | 2026-10-13 03:32:09.213196+00
+(4 rows)
+
+== meter reads today
+  read_at   | current_value | consumption | unit | source | lifecycle 
+------------+---------------+-------------+------+--------+-----------
+ 2026-10-12 |   6416.000000 |   40.000000 | kWh  | manual | billed
+ 2026-10-12 |   2852.000000 |   40.000000 | kgal | manual | billed
+(2 rows)
+

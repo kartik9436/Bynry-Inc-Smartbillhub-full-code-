@@ -1,0 +1,21 @@
+  [R. Patel] POST   /auth/session -> 201 (820 ms)
+  [R. Patel] POST   /work/mobile/capture-token -> 200 (79 ms)
+  [R. Patel] GET    /work/mobile/changes?page_size=50 -> 200 (551 ms)
+
+R. Patel: 3 job(s) in the feed, 3 open, 1 chosen: ['WO-0105']
+
+── WO-0105 ─────────────────────────────────────────
+  [R. Patel] GET    /work/mobile/jobs/01a10a23-84b6-765f-985d-3cf6d7078fc5 -> 200 (127 ms)
+  [R. Patel] GET    /work/mobile/jobs/01a10a23-84b6-765f-985d-3cf6d7078fc5/readings?page=1&page_size=50 -> 200 (81 ms)
+  [R. Patel] POST   /work/mobile/jobs/01a10a23-84b6-765f-985d-3cf6d7078fc5/accept -> 200 (90 ms)
+  [R. Patel] POST   /work/mobile/jobs/01a10a23-84b6-765f-985d-3cf6d7078fc5/acts -> 200 (111 ms)
+  [R. Patel] POST   /work/mobile/jobs/01a10a23-84b6-765f-985d-3cf6d7078fc5/acts -> 200 (83 ms)
+  [R. Patel] POST   /work-orders/01a10a23-84b6-765f-985d-3cf6d7078fc5/signature -> 200 (71 ms)
+  [R. Patel] POST   /work/mobile/jobs/01a10a23-84b6-765f-985d-3cf6d7078fc5/sync -> 200 (219 ms)
+      page 1: {'accepted': 5, 'duplicate': 0, 'held_for_review': 0, 'refused': 0} · acknowledged 5/5
+  [R. Patel] PUT    /work/mobile/photos/ed8510e7-f7f3-4d66-ada7-cf5129bd1c34 -> 200 · 94,019 bytes · landed
+  [R. Patel] POST   /work/mobile/jobs/01a10a23-84b6-765f-985d-3cf6d7078fc5/sync -> 200 (151 ms)
+      page 1: {'accepted': 0, 'duplicate': 0, 'held_for_review': 1, 'refused': 0} · acknowledged 1/1
+
+FINAL (closed by the technician; the office accepts in its browser):
+   WO-0105: closed

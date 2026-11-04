@@ -1,0 +1,14 @@
+name: Feature request
+description: New capability beyond the current spec
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes: { label: Problem / user need }
+    validations: { required: true }
+  - type: textarea
+    id: proposal
+    attributes: { label: Proposed behaviour }
+  - type: input
+    id: module
+    attributes: { label: Module affected, placeholder: "billing" }

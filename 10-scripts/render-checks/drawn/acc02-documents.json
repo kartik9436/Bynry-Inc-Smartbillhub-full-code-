@@ -1,0 +1,23 @@
+{
+ "tab": "documents",
+ "note": "Transcribed from 04-docs/05-modules/03-customers/blueprint/02-account-detail.md — the EXTRACTED TEXT of `ACC-T10`, not from looking at the picture, and cross-read against the step-1 transcription in conformance/CR-094-lane2-account-detail-step1.md §1.5. The drawing places the toolbar directly under the tile row: `All` `Correspondence` `Evidence` `Filter ▾` `Search` · `Upload document` `Columns ▾` `Export`, then `DOCUMENT · TYPE · DATE · UPLOADED BY · SIZE`, then `1–4 of 4 · Rows per page 50 ‹ ›`.",
+ "groups": [
+  {
+   "col": "left",
+   "slug": "documents",
+   "heading": "DOCUMENTS",
+   "table": [
+    "DOCUMENT",
+    "TYPE",
+    "DATE",
+    "UPLOADED BY",
+    "SIZE"
+   ],
+   "elsewhere": {
+    "Evidence": "not one of BR-CUS-036's five CONFIRMED types (System · Contract · KYC · Payment · Correspondence, PO closure batch 2026-08-08). A wireframe cannot amend signed law, so the filter follows the rule and the divergence is filed — decision log 2026-09-12.",
+    "Export": "BR-SHL-010 — `POST /exports` resolves only the resources a module REGISTERS and nothing registers `account_documents`, so a download button here would be wired to a 404 (hard-won law 2).",
+    "ACTIONS": "a SIXTH column the drawing does not have, added by BR-CUS-1052 (PO 2026-09-13) — the drawing is older than the ruling, and B14 rule 15 decides its shape."
+   }
+  }
+ ]
+}

@@ -1,0 +1,68 @@
+== account
+  account_no   | closed_at  | status | behavior_class | deposit_on_file | close_reason 
+---------------+------------+--------+----------------+-----------------+--------------
+ AC-2026-00012 | 2026-10-12 | closed | terminal       |      500.000000 | lease_ended
+(1 row)
+
+== final invoices
+   invoice_no   | bill_type | status | period_start | period_end |   total    | marker | bill_date  | due_days 
+----------------+-----------+--------+--------------+------------+------------+--------+------------+----------
+ BL-2610-000257 | final     | issued | 2026-09-01   | 2026-10-12 | 423.290000 | t      | 2026-10-12 |       20
+(1 row)
+
+== lines
+             description              |  qty   | unit_price |   amount   
+--------------------------------------+--------+------------+------------
+ electric usage tier 3 (1000+ kWh)    | 610.00 |   0.170000 | 103.700000
+ electric usage tier 2 (500-1000 kWh) | 500.00 |   0.145000 |  72.500000
+ water usage tier 2 (5-15 kgal)       |  10.00 |   6.890000 |  68.900000
+ water usage tier 3 (15+ kgal)        |   8.10 |   8.480000 |  68.690000
+ electric usage tier 1 (0-500 kWh)    | 500.00 |   0.120000 |  60.000000
+ water usage tier 1 (0-5 kgal)        |   5.00 |   4.240000 |  21.200000
+ electric base charge                 |        |            |  12.000000
+ Tax Local                            |        |   0.020000 |   8.300000
+ water base charge                    |        |            |   8.000000
+(9 rows)
+
+== journal (by entry, designation)
+                         posting_key                          |       designation       |  side  |    amt     
+--------------------------------------------------------------+-------------------------+--------+------------
+ invoice|01a13352-d774-780d-87b3-8ebf4ac24d1f|deposit_applied | accounts_receivable     | credit | 423.290000
+ invoice|01a13352-d774-780d-87b3-8ebf4ac24d1f|deposit_applied | customer_credit_balance | credit |  76.710000
+ invoice|01a13352-d774-780d-87b3-8ebf4ac24d1f|deposit_applied | deposit_liability       | debit  | 500.000000
+ invoice|01a13352-d774-780d-87b3-8ebf4ac24d1f|issued          |                         | credit | 423.290000
+ invoice|01a13352-d774-780d-87b3-8ebf4ac24d1f|issued          | accounts_receivable     | debit  | 423.290000
+(5 rows)
+
+== entries balanced?
+                         posting_key                          |     dr     |     cr     
+--------------------------------------------------------------+------------+------------
+ invoice|01a13352-d774-780d-87b3-8ebf4ac24d1f|deposit_applied | 500.000000 | 500.000000
+ invoice|01a13352-d774-780d-87b3-8ebf4ac24d1f|issued          | 423.290000 | 423.290000
+(2 rows)
+
+== delivery rows
+  channel  | status | template_code | unavailable_reason 
+-----------+--------+---------------+--------------------
+ email     | queued |               | 
+ pdf_print | queued |               | 
+ portal    | queued |               | 
+(3 rows)
+
+== audit rows today
+        action         | entity_type |          created_at           
+-----------------------+-------------+-------------------------------
+ deposit.received      | account     | 2026-10-13 03:29:07.072934+00
+ invoice.drafted       | invoice     | 2026-10-13 03:33:49.56802+00
+ account.closed        | account     | 2026-10-13 03:33:49.822+00
+ invoice.issued        | invoice     | 2026-10-13 03:34:00.724534+00
+ invoice.one_time_sent | invoice     | 2026-10-13 03:34:01.045569+00
+(5 rows)
+
+== meter reads today
+  read_at   | current_value | consumption | unit | source | lifecycle 
+------------+---------------+-------------+------+--------+-----------
+ 2026-10-12 |   3917.000000 |   10.000000 | kWh  | manual | billed
+ 2026-10-12 |     26.000000 |   10.000000 | kgal | manual | billed
+(2 rows)
+

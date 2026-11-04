@@ -1,0 +1,92 @@
+{
+  "id": "01a106e4-2ad5-7a9a-8a92-886d9205a50f",
+  "order_no": "WO-0041",
+  "type": "Meter exchange — residential",
+  "premise": {
+    "id": "01a106a7-2b05-7dd5-be94-ea3e264227f4",
+    "premise_no": "P-00007",
+    "address": "101 Silver Creek Rd"
+  },
+  "service": "water",
+  "state": "planned",
+  "outcome": null,
+  "mode": "our_crew",
+  "is_gate": false,
+  "connection": null,
+  "account": {
+    "id": "01a106a7-757b-7c50-9586-5eac8366194e",
+    "account_no": "AC-2026-00001"
+  },
+  "raised_at": "2026-10-04T12:29:38.901925+00:00",
+  "priority": null,
+  "technician": {
+    "kind": "person",
+    "name": "D. Ortiz",
+    "slug": "d-ortiz"
+  },
+  "due_at": null,
+  "window_start": "2026-10-05T09:00:00+00:00",
+  "window_end": "2026-10-05T12:00:00+00:00",
+  "dispatch_state": "scheduled",
+  "source": "dispatcher",
+  "source_ref": null,
+  "area": {
+    "id": "01a106a6-e1c8-7c6a-b791-89ef08ca02e1",
+    "code": "NORTH-NW",
+    "name": "NW"
+  },
+  "technician_acceptance": {
+    "state": "pending",
+    "at": null,
+    "reason": null
+  },
+  "hold": null,
+  "accepted": null,
+  "sla": {
+    "due_at": "2026-10-07T12:29:38.901925+00:00",
+    "target": "default",
+    "at_risk": false
+  },
+  "shape": "open",
+  "customer": {
+    "name": "Ana Alvarez",
+    "phone": "+1 (402) 555-1000",
+    "account_no": "AC-2026-00001"
+  },
+  "location": {
+    "premises": {
+      "id": "01a106a7-2b05-7dd5-be94-ea3e264227f4",
+      "premise_no": "P-00007"
+    },
+    "unit": {
+      "id": "01a106a7-2b11-734e-a21e-126bc0654353",
+      "label": "Unit 1"
+    },
+    "asset": {
+      "id": "01a106a7-6548-7b6b-ba9e-59ac0d0d5a3f",
+      "asset_no": "W-5000",
+      "serial": null
+    },
+    "address": "101 Silver Creek Rd"
+  },
+  "signature": null,
+  "closed": null,
+  "timeline": [
+    {
+      "kind": "raised",
+      "at": "2026-10-04T12:29:38.901925+00:00",
+      "by": null,
+      "detail": "dispatcher"
+    },
+    {
+      "kind": "assigned",
+      "at": "2026-10-04T12:29:38.953250+00:00",
+      "by": {
+        "name": "Dana Whitfield"
+      },
+      "detail": "D. Ortiz"
+    }
+  ],
+  "est_duration_minutes": 38,
+  "custom_data": {}
+}

@@ -1,0 +1,595 @@
+# G33 BASELINE — refusal messages that were already over SIX words on the day
+# six became the rule. 598 of them, measured 2026-08-31. IT MAY ONLY SHRINK.
+#
+# PO ruling 2026-08-30, verbatim: "Refusal copy is short - your 12-word ruling -
+# this shuld be 6 words only - not too long; this family BORN ASPIRATIONAL it
+# cannot be ASPIRATIONAL any more - there are so many bugs becuase of this."
+#
+# The two halves of that ruling pull against each other and this file is how
+# both are honoured. Re-measured 2026-08-31 over all 850 English refusal
+# messages: 817 pass at twelve words (96%) and 252 pass at six (30%). Setting
+# six with no baseline would take this gate from 96% passing to 30% passing --
+# a backlog of 598 wearing a gate's clothes, which is the exact "BORN
+# ASPIRATIONAL -> NEVER GREEN" shape the second half of the ruling forbids.
+#
+# So: SIX IS THE RULE FROM TODAY and it binds every NEW or CHANGED refusal.
+# The 598 already here are parked, one per line, and the file may only shrink.
+# The project of rewriting them is DEF-2606 -- 598 messages across eleven
+# catalogues, worked down a lane at a time, never all at once.
+#
+# ONE LINE PER MESSAGE:  <key> :: <the English text, whitespace normalised>
+#
+# ⚠ THE TEXT IS PART OF THE IDENTITY, ON PURPOSE. The ruling binds every new or
+# CHANGED refusal, so editing the English makes the line stop matching and the
+# message owes six words. A baseline keyed on the key alone would let a message
+# be rewritten and stay long forever, which is decoration and not a ratchet.
+#
+# ⚠ AND WHEN YOU SHORTEN ONE, SHORTEN BY DELETING THE RATIONALE, NEVER THE
+# INSTRUCTION. Two sentences of six beat one sentence of twelve. Cutting the
+# sentence that says what to do next PASSES the gate and makes the message
+# useless -- nothing downstream can catch that. Move the reason into the code
+# comment beside the string. All eleven catalogues move together (G15).
+#
+# TO RETIRE A LINE: shorten the message in all eleven catalogues and delete the
+# line in the SAME diff. G33 reports a stale line on every run until you do.
+
+assets.allocation_share_range :: An allocation share is a percentage between 0 and 100.
+assets.already_assigned :: That asset is already assigned to another unit. Reassign it instead.
+assets.asset_no_required_no_series :: There is no asset numbering series yet, so enter the asset number yourself.
+assets.assign_requires_active_or_inventory :: An asset in {{status}} can't be assigned to a unit. Unassign it or finish the repair first.
+assets.bad_date :: Enter that date as a real calendar date.
+assets.book_value_treatment_required :: Choose what happens to the remaining book value.
+assets.book_value_treatment_without_value :: There is no book value to treat — the asset has no purchase cost or expected life on record.
+assets.delete_blocked_referenced :: This asset has history against it, so it can't be deleted. Retire it instead.
+assets.delete_requires_inventory :: Only an asset in inventory can be deleted. Retire this one instead.
+assets.effective_before_from_date :: The effective date is before this assignment started, which would overlap the history.
+assets.external_ref_duplicate :: {{external_ref}} is already the external reference for {{asset_no}}. An external reference names one record.
+assets.final_read_capture_unavailable :: The final read for {{asset_no}} can't be taken yet. Nothing was moved.
+assets.final_read_needs_assignment :: A final read needs a current assignment — this asset is not on a unit.
+assets.final_read_value_required :: Enter the final register reading — or uncheck 'Record the final read'.
+assets.illegal_transition :: An asset can't go from {{from}} straight to {{to}}.
+assets.import_moved_to_runner :: This import moved to the step-by-step workflow. Open Assets and use the Import button on its tab.
+assets.install_date_required :: Enter the install date — it opens the assignment.
+assets.lookups.system_row_not_deletable :: {{code}} ships with the platform, so it can't be deleted. Deactivate it instead.
+assets.lookups.too_long :: Keep this to {{max}} characters or fewer.
+assets.lookups.unknown_field :: This app sent a field this list doesn't have. Nothing was saved.
+assets.maintenance_date_future :: The date can't be in the future.
+assets.meter_type_unavailable :: Meter type does not apply to this kind of device ({{type}}), so it wasn't saved.
+assets.meter_type_unknown :: That meter type isn't in your Reference data.
+assets.net_metering_unavailable :: Net metering does not apply to this kind of device ({{type}}), so it wasn't saved.
+assets.parent_must_be_a_meter :: A sub-meter must sit under a meter. Choose one.
+assets.payload_not_object :: This app sent something the server couldn't read. Nothing was saved.
+assets.read_method_unknown :: That read method isn't in your Reference data.
+assets.reference_fixture_invalid :: The seeded reference data couldn't be read.
+assets.register_digits_range :: Register digits must be a whole number from 1 to 9.
+assets.retire_before_install :: The retire date can't be before the install date.
+assets.retired_is_terminal :: {{asset_no}} is retired, and retired is the end state. Create the asset anew if you need it back.
+assets.service_not_enabled :: {{service}} isn't one of the services this utility bills. Enable it in Settings first.
+assets.stage_missing :: The {{stage}} lifecycle stage is missing from your Reference data.
+assets.test_interval_range :: The test interval must be at least 1 month.
+assets.type_unknown :: That asset type isn't in your Reference data.
+assets.unknown_field :: This app sent a field an asset doesn't have. Nothing was saved.
+assets.uom_required :: Choose the unit this asset reads in.
+audit.export.row_cap_exceeded :: That's {{rows}} rows — more than the {{cap}} an export can carry. Narrow your filters.
+audit.feed.column_unratified :: Those columns are not part of the user-activity audit: {{columns}}. Available columns: {{available}}.
+audit.feed.format_unavailable :: The {{format}} format is not available for this report. CSV is available now.
+billing.budget.plan_flag_required :: Confirm whether this account's plan offers budget billing.
+billing.budget.refused :: This account can't be put on budget billing as asked. Check its billing history and settings.
+billing.catch_up.account_ids_required :: Choose the held accounts this catch-up run will bill.
+billing.catch_up.duplicate :: A catch-up run for exactly these accounts already exists. Open that one instead of starting a second.
+billing.correction.preview_hash_required :: Approve from a preview you are looking at.
+billing.correction.refused :: This correction can't be made as asked. Check the bill's status and the figures you entered.
+billing.customer_name_search_unavailable :: Searching bills by customer name isn't available yet. Search by bill number instead.
+billing.customer_name_unavailable :: Something went wrong on our side. Nothing was changed — quote {{ref}} to support.
+billing.document.refused :: This bill can't be turned into a document yet. Check the bill design and try again.
+billing.oneTime.duplicate :: This customer was already billed this way for this period. Open the {{ran_at}} bill instead.
+billing.oneTime.notACycleRun :: This is a one-time bill, so it has no run findings. Its preview is on the One-time bill tab.
+billing.oneTime.subPeriodInvalid :: One of the periods listed is not a pair of calendar dates.
+billing.oneTime.subPeriodsRequired :: List the periods being recovered. A catch-up is priced one period at a time.
+billing.ops.date_required :: Say which day this is happening on.
+billing.ops.money_string :: Type the amount as text, for example 242.00.
+billing.past_due_not_computable :: Past due isn't a status we can work out yet. Choose another status.
+billing.payload_not_object :: Something went wrong on our side. Nothing was changed — quote {{ref}} to support.
+billing.pending.as_of_required :: Choose the date to measure the queue against. Ages are counted from your utility's today, so we never guess it.
+billing.pending.escalation_days_invalid :: Escalation days must be a whole number of days, zero or more.
+billing.run.amount_invalid :: Enter that amount as a number, like 125.00.
+billing.run.confirmations_required :: The sign-off confirmations did not reach us, so nothing was recorded.
+billing.run.cycle_has_no_bill_date :: This cycle has no bill date, so the run can't start. Set one on the cycle first.
+billing.run.date_invalid :: Enter that date as YYYY-MM-DD, like 2026-08-19.
+billing.run.due_days_invalid :: Enter a whole number of days, zero or more.
+billing.run.duplicate :: This cycle and period have already been run. Nothing was started — open the existing run.
+billing.run.event_time_invalid :: The date and time sent with this request could not be read. Nothing was recorded.
+billing.run.event_time_naive :: The time sent with this request has no time zone. Nothing was recorded.
+billing.run.event_time_required :: The moment you confirmed did not reach us, so nothing was recorded. Try again.
+billing.run.invoice_ids_invalid :: The list of bills to issue could not be read. Nothing was issued.
+billing.run.no_authorised_release :: This run has no recorded sign-off, so no bill was issued. Confirm the run first.
+billing.run.refused :: This billing run can't go ahead as asked. Check the cycle and dates, then retry.
+billing.run.template_pin_partial :: A bill design was named without its version, or the reverse. Nothing was issued.
+billing.templates.refused :: That bill design can't be used as asked. Check its version and try again.
+checklist.item_not_advisory :: {{item}} completes itself once the data is filled in.
+customFields.data_type_unknown :: This field's type isn't one this app can show.
+customFields.option_unknown :: “{{value}}” isn't one of the options for this field.
+customFields.too_long :: Keep this to {{max}} characters or fewer.
+customFields.unknown_key :: “{{key}}” isn't one of your custom fields. Nothing was saved.
+customers.account.activate_wrong_starting_status :: Only a draft account can be activated here. This one is "{{status}}".
+customers.account.active_status_missing :: No active status is set up, so this account cannot be opened.
+customers.account.addresses_not_a_list :: Something went wrong on our side. Nothing was changed — quote {{ref}} to support.
+customers.account.amount_invalid :: That is not an amount we can read. Use digits only, like 150.00.
+customers.account.amount_negative :: A deposit is money you are holding, so it cannot be negative.
+customers.account.close_is_the_move_out_flow :: Close this account through Move out. That records the end date and the final bill.
+customers.account.close_out_already_terminal :: This account is already closed. Correcting a close-out means a new record.
+customers.account.close_out_before_cut :: The close-out date cannot be earlier than the cut date.
+customers.account.close_out_not_a_cut_account :: Only an account whose service was cut can be closed out.
+customers.account.close_out_still_occupying :: This customer still occupies the unit, so use Move-out instead.
+customers.account.closed_status_missing :: No closed status is set up, so this account cannot be closed.
+customers.account.date_invalid :: Enter that date as a real calendar date.
+customers.account.language_unknown :: "{{value}}" is not a language this product speaks.
+customers.account.lock_outside_transaction :: Something went wrong on our side. Nothing was changed — quote {{ref}} to support.
+customers.account.move_out_before_start :: A move-out date can't be before the account started. Pick a later date.
+customers.account.move_out_behind_issued_bill :: This move-out date is behind the bill issued through {{billed_through}}. An issued bill cannot be changed — correct it instead.
+customers.account.not_an_occupant :: This account doesn't hold a unit, so it can't move out.
+customers.account.not_found :: We could not find an account with that number.
+customers.account.numbering_unavailable :: Something went wrong on our side. Nothing was changed — quote {{ref}} to support.
+customers.account.plan_required_at_activation :: This unit has no rate plan yet. Add one before activating the account.
+customers.account.start_date_required :: Enter the date service starts for this account.
+customers.account.start_on_prior_move_day :: Service can't start on the day the last occupant left. Choose the next day.
+customers.account.status_does_not_activate :: That status doesn't make an account active. Choose an active status instead.
+customers.account.status_does_not_occupy :: That status doesn't put the account into the unit. Choose an active status.
+customers.account.status_unknown :: "{{value}}" is not one of your account statuses.
+customers.account.subtype_unknown :: "{{value}}" is not one of your account sub-types.
+customers.account.tenant_currency_missing :: Something went wrong on our side. Nothing was changed — quote {{ref}} to support.
+customers.account.type_is_legacy :: "{{value}}" is retired and cannot be chosen. Existing accounts keep it.
+customers.account.type_unknown :: "{{value}}" is not one of your customer categories.
+customers.account.unit_not_eligible :: This unit is deactivated, so no account can start on it.
+customers.account.unit_required :: Choose the unit this account is for.
+customers.account.unknown_field :: This app sent a field an account doesn't have. Nothing was saved.
+customers.address.kind_unknown :: "{{value}}" is not a kind of address we keep.
+customers.address.line1_required :: Enter the first line of the address.
+customers.contact.email_format :: That email address does not look right.
+customers.customer.numbering_unavailable :: Something went wrong on our side. Nothing was changed — quote {{ref}} to support.
+customers.date_not_iso :: {{field}} is not a date we can read.
+customers.date_required :: Enter the {{field}}. Nothing here is dated from the server.
+customers.deposit_position.money_not_a_decimal :: That amount did not arrive as money. Nothing was carried across.
+customers.disconnects.refused :: This disconnect step can't be done as asked. Check the case.
+customers.eligibility.householdSizeHasNoColumn :: Household size cannot be saved yet. Record the program and the evidence instead.
+customers.event_reads.door_unwired :: Meter readings cannot be saved here yet. Nothing on this form was recorded.
+customers.event_reads.rows_required :: No readings arrived with this form. Enter at least one and try again.
+customers.import.file_already_imported :: This file was already imported on {{committed_at}} as “{{filename}}”. Nothing was imported twice.
+customers.import.file_required :: Choose a file, or paste its contents.
+customers.import.file_too_large :: That file is larger than {{max_bytes}} bytes.
+customers.import.opening_bucket_not_numeric :: “{{value}}” in {{field}} is not an amount. Enter digits only.
+customers.import.required_column_missing :: The file is missing a required column: {{columns}}.
+customers.import.row_cap_exceeded :: That file has more than {{max_rows}} rows.
+customers.import.rows_must_be_fixed :: {{errors}} row(s) are in error, and this import requires a clean file.
+customers.lookups.duplicate_code :: "{{value}}" is already used in this list.
+customers.lookups.parent_required :: Pick the account type this sub-type belongs to.
+customers.lookups.parent_unknown :: “{{value}}” is not one of the account types.
+customers.lookups.seeded_not_deletable :: This is a built-in row and can't be deleted. Switch it off instead.
+customers.lookups.unknown_behavior_class :: "{{value}}" is not a behavior a status can have.
+customers.move_out.balance_not_readable :: This account's balance cannot be read, so nothing can be settled yet.
+customers.move_out.excess_not_held :: There is no disputed excess on this account to hold.
+customers.move_out.forwarding_street_required :: Add a forwarding street address before recording this refund.
+customers.move_out.money_not_a_decimal :: That amount did not arrive as money. Nothing was changed.
+customers.move_out.no_refund_due :: Nothing is owed back here, so no refund can be recorded.
+customers.move_out.no_shortfall :: Nothing is left unrecovered here, so there is no shortfall to decide.
+customers.move_out.refund_method_required :: Choose how the refund reaches the customer before recording it.
+customers.move_out.refund_method_unknown :: "{{method}}" is not a refund method we offer. Choose another.
+customers.move_out.shortfall_path_unknown :: Choose one of the offered ways to handle this shortfall.
+customers.note.title_or_body_required :: A note needs a title, some text, or both.
+customers.payload_not_object :: Something went wrong on our side. Nothing was changed — quote {{ref}} to support.
+customers.plan.moneyMustBeText :: Send money as text, never as a decimal number.
+customers.plan_change.assignment_unavailable :: The plan was not moved, and nothing was written. Try again shortly.
+customers.plan_change.bad_effective :: Give the date the new plan starts.
+customers.plan_change.behind_issued_bill :: This date falls inside a period already billed. The earliest date you can use is {{earliest}}.
+customers.plan_change.no_current_plan :: This account's unit is on no published plan. There is nothing to change from.
+customers.plan_change.period_unavailable :: This unit's billing period can't be read. Give an exact date instead.
+customers.plan_change.plan_required :: Choose the plan this account moves to.
+customers.plan_change.plan_unknown_or_unpublished :: That plan cannot be assigned. Only a published plan has prices a bill can be produced from.
+customers.reference_fixture_invalid :: Something went wrong on our side. Nothing was changed — quote {{ref}} to support.
+customers.serviceRequest.addressAsGivenImmutable :: The address the applicant gave cannot change after submission. Add a note instead.
+customers.serviceRequest.applicantKindUnknown :: Choose whether this is a person or a business.
+customers.serviceRequest.categoryIsLegacy :: "{{category}}" can no longer be chosen. Pick one of the seven current categories.
+customers.serviceRequest.categoryNotSeeded :: This customer category is not set up here. Pick one your utility uses.
+customers.serviceRequest.condition.arrearsNotSearched :: Nobody has checked yet whether this applicant held an account before.
+customers.serviceRequest.condition.arrearsOutstanding :: {{amount}} is outstanding on an account this applicant already holds.
+customers.serviceRequest.condition.arrearsUnknown :: We could not check this applicant's history, so anything owed is unknown.
+customers.serviceRequest.condition.documentMissing :: {{count}} required document has no file attached.
+customers.serviceRequest.condition.documentRejected :: {{count}} document was rejected and must be supplied again.
+customers.serviceRequest.condition.documentsUnverified :: Verified {{verified}} of {{total}}. Attaching a file is not verifying it.
+customers.serviceRequest.dateFormat :: Enter {{field}} as a date, for example 2026-09-07.
+customers.serviceRequest.documentHasNoFile :: There is no file to check yet. Attach one first.
+customers.serviceRequest.documentTypeUnknown :: "{{value}}" is not a document type this form accepts.
+customers.serviceRequest.feeAlreadySettled :: This fee has been settled and cannot be waived.
+customers.serviceRequest.feeReceiptRequired :: Enter the receipt number you gave the customer.
+customers.serviceRequest.feeTimingUnknown :: Choose whether the fee is collected now or later.
+customers.serviceRequest.identifierNotStorable :: We cannot store an identity number yet. Leave it off this request.
+customers.serviceRequest.matchTierRequired :: Say how strong this customer match is before linking.
+customers.serviceRequest.matchTierUnknown :: Say how strong the match is: strong, probable or weak.
+customers.serviceRequest.moneyMustBeString :: Enter {{field}} as an amount, for example "25.00".
+customers.serviceRequest.numberingUnavailable :: The request number series is not set up. Ask an administrator.
+customers.serviceRequest.outcomeRequired :: Pick what this request becomes before approving it.
+customers.serviceRequest.outcomeUnknown :: That is not one of the five outcomes.
+customers.serviceRequest.propertyTypeUnknown :: Pick one of the six property types.
+customers.serviceRequest.reasonRequired :: A reason is required. Type one and we will record it.
+customers.serviceRequest.rejectReasonRequired :: Say why the document is being rejected.
+customers.serviceRequest.segmentUnknown :: "{{value}}" is not one of the request list's tabs.
+customers.serviceRequest.ssnTooShort :: That Social Security number looks too short. Check it and enter it again.
+customers.serviceRequest.terminalNoEdit :: This request is closed and cannot be edited.
+customers.serviceRequest.terminalNoPark :: This request is closed, so there is nothing to wait for.
+customers.serviceRequest.useDedicatedAction :: Use the Approve or Refuse button for this.
+customers.serviceRequest.waitingOnRequired :: Say what this request is waiting for.
+customers.transfer.already_cancelled :: This transfer was canceled and cannot be changed.
+customers.transfer.money_not_a_decimal :: That amount could not be read as money. Nothing has been changed.
+customers.transfer.not_an_occupant :: {{account_no}} is {{status}} and holds no unit, so it cannot transfer.
+customers.transfer.step_incomplete :: This transfer is not ready to complete yet: {{missing}}.
+errors.auth.password_change_required :: Set a new password before you carry on.
+errors.identity.allowlist_self_lockout :: Your address {{ip}} is outside those ranges, so nothing was saved.
+errors.identity.already_a_member :: That email already belongs to someone at this utility.
+errors.identity.email_deactivated_reactivate :: That email belongs to a deactivated user here. Reactivate them instead of adding them again.
+errors.identity.email_taken :: That email already belongs to someone at this utility.
+errors.identity.invalid_cidr :: Not a valid IPv4 CIDR block: {{value}}.
+errors.identity.last_system_admin :: A utility needs one active System Admin. You can't {{action}} this one.
+errors.identity.password_needs_mixed :: Use upper case, lower case and a digit.
+errors.identity.password_needs_symbol :: Add at least one symbol, such as ! or #.
+errors.identity.password_policy :: That password doesn't meet the rules below. Pick a stronger one.
+errors.identity.row_state_disallows :: That isn't possible while the user is in this state.
+errors.identity.unknown_role :: Pick one of the three predefined roles.
+ledger.chart.designation_unknown :: {{designation}} is not a role this product has.
+ledger.chart.field_not_editable :: {{fields}} can't be changed once anything is posted to this account.
+ledger.chart.import_has_bad_rows :: {{bad}} of {{total}} rows can't be loaded, so nothing was loaded. Fix those rows and try again.
+ledger.chart.import_rows_not_a_list :: That import could not be read as a list of accounts. Nothing was changed.
+ledger.chart.reactivate_designation_taken :: {{code}} still carries the {{designation}} role and {{holder}} holds it now. Clear one of them, then bring this account back.
+ledger.chart.tax_account_wrong_series :: Account code {{code}} is not in the {{series}} series. Tax payable accounts live in the {{series}} series.
+ledger.close.already_closed :: That month is already closed. Reopening it is a System Admin action and is recorded.
+ledger.close.closed_at_required :: Give the date you are closing on.
+ledger.close.reason_required :: {{count}} items on the checklist are not done. Closing is still allowed, but it needs a typed reason.
+ledger.close.refused :: This month can't be closed as asked. Check for unposted entries and try again.
+ledger.cost.amount_invalid :: Enter the amount as a plain number.
+ledger.cost.redate_after_close_refused :: A purchase in a closed period can't be re-dated. Void it and capture it again.
+ledger.cost.refused :: This purchase can't be recorded as asked. Check the date, account and amount.
+ledger.cost.voided_at_required :: The time of the void is required.
+ledger.export.already_exported :: {{from}} to {{to}} has already gone to {{target}}. Download that handover again instead of sending a second one.
+ledger.export.does_not_foot :: The month doesn't add up: {{debits}} against {{credits}}. Nothing was handed over.
+ledger.export.drill_code_required :: Say which account figure you want to open.
+ledger.export.extract_unknown :: There is no breakdown of that kind: {{kind}}
+ledger.export.granularity_invalid :: That way of splitting the period is not offered.
+ledger.export.missing_export_codes :: These accounts have no code for {{target}}: {{accounts}}. The handover stopped.
+ledger.export.period_not_closed :: {{from}} to {{to}} is not closed yet. Close it before handing it over.
+ledger.export.refused :: The handover was refused. Check the period and the export codes, then try again.
+ledger.je.amount_invalid :: The amount on line {{line}} is not a number we can read.
+ledger.je.amount_must_be_string :: The amount on line {{line}} arrived as a decimal number. Money travels as text so no cent is ever lost in rounding.
+ledger.je.amount_negative :: The amount on line {{line}} is negative. Use a positive amount and the right column.
+ledger.je.lines_required :: A journal entry needs at least one GL line.
+ledger.je.posted_at_required :: The moment of posting has to be stated.
+ledger.je.reverse_reason_required :: Say why this entry is being reversed. It goes on the record beside both entries.
+ledger.je.side_unknown :: Line {{line}} must be one of: {{sides}}.
+ledger.remittance.amount_invalid :: Enter the amount as digits, for example 13.87.
+ledger.remittance.basis_required :: Say whether this return covers what you billed or what you collected.
+ledger.remittance.confirmation_required :: Enter the filing confirmation reference. It is the only proof the return was filed.
+ledger.remittance.posted_at_required :: Give the date the money left your bank.
+ledger.remittance.refused :: This remittance can't be recorded as asked. Check the period, amount and reference.
+ledger.reopen.reason_required :: Reopening a closed month needs a reason. Enter one and we'll record it.
+ledger.reopen.reopened_at_required :: Give the date you are reopening on.
+ledger.report.range_inverted :: The end of the range is before its start.
+metering.characteristic_not_numeric :: {{key}} reads "{{value}}", which this charge cannot price.
+metering.connection_cancelled :: This connection was canceled. Nothing further can be recorded against it.
+metering.connection_master_path_unavailable :: Master accounts aren't available in this build.
+metering.connection_service_state_unknown :: {{state}} isn't a service state on a connection.
+metering.connection_service_transition_refused :: This service is {{from}} and can't move to {{to}}. A live service comes off supply through a disconnect, not here.
+metering.cycle.bill_day_before_read :: Bills go out after the read window closes, so the bill day cannot come first.
+metering.cycle.code_duplicate :: A cycle with that code already exists.
+metering.cycle.day_of_month_range :: Enter a day of the month between 1 and 31.
+metering.cycle.days_to_complete_range :: Days to complete has to be at least 1 — a window of no days leaves nobody a day to read on.
+metering.cycle.delete_blocked_referenced :: Reads or bills already reference this cycle, so it can't be deleted.
+metering.cycle.due_days_range :: Enter a whole number of days, zero or more.
+metering.cycle.frequency_unknown :: Pick one of the eight: Daily, Weekly, Biweekly, Monthly, Bimonthly, Quarterly, Semiannual or Annual.
+metering.cycle.money_field_removed :: Routes and cycles carry no fee or late-payment settings. Grace and late fees are set once, on Billing defaults.
+metering.cycle.read_window_order :: The read window has to start on or before it ends.
+metering.event_reads.errors_refuse :: {{count}} reading(s) cannot be accepted. Nothing was saved — fix them and try again.
+metering.event_reads.no_rows :: No readings were sent, so there is nothing to record.
+metering.event_reads.unknown_event :: That is not a move this product records readings for.
+metering.event_reads.value_and_estimate :: A meter cannot have both a reading and be unreadable.
+metering.import.accounts_unwired :: The account register is not available, so nothing was loaded.
+metering.import.approval_required :: {{rejected}} of {{of_rows}} rows were rejected. Ask an Owner or an Admin to approve this load.
+metering.import.approver_role :: Only an Owner or an Admin can approve a load this size.
+metering.import.assets_unwired :: The asset registry is not available, so nothing was loaded.
+metering.import.changeover_in_future :: Your changeover date ({{given}}) is in the future. It is the last day your old system was in charge of the money, so it cannot be later than today ({{today}}) — and a future date would leave every opening balance not yet due, so nothing would ever be chased.
+metering.import.changeover_not_accounts :: Only an account upload holds opening balances, and this run loaded {{target}}.
+metering.import.errors_must_be_fixed :: {{errors}} row(s) must be fixed before this can be imported.
+metering.import.file_too_large :: That file is over the {{max_bytes}}-byte limit.
+metering.import.issued_number_taken :: Row {{row}}: the number {{number}} we issued is already in use. Check Settings → Numbering — the counter is behind the records already on file.
+metering.import.no_rollback_point :: That run was committed without a rollback point, so it cannot be reversed.
+metering.import.no_worker :: Nothing is running to process a file this size. Start the background worker and try again, or upload a smaller file.
+metering.import.not_checked_no_download :: That run has not been checked, so there is nothing to download.
+metering.import.not_loaded :: That run has not been loaded, so there is nothing to reverse.
+metering.import.not_loaded_no_download :: That run has not been loaded, so there is nothing to download.
+metering.import.not_validated :: Check the file at the Validate stage before loading it.
+metering.import.parent_premise_missing :: Row {{row}} names a premise that is not on file. Load the premises first.
+metering.import.pattern_cap_exceeded :: {{total}} units is over the {{max_units}}-per-run cap. Split the run into smaller batches.
+metering.import.pattern_counts_not_integers :: Floors and units per floor must be whole numbers.
+metering.import.pattern_counts_range :: Floors and units per floor must each be at least 1.
+metering.import.pattern_token_unknown :: "{{value}}" is not a pattern this format understands.
+metering.import.premise_must_exist :: The premise must exist before its units can be created.
+metering.import.rollback_expired :: The window for reversing that run has closed.
+metering.import.rollback_opening_unruled :: This run posted opening balances to your books. Rolling it back is not available yet.
+metering.import.row_cap_exceeded :: That file has more than {{max_rows}} rows. Split it and upload the parts.
+metering.import.unknown_mapping_target :: {{target}} isn't a column this import understands.
+metering.import.unknown_row_handling :: {{option}} isn't a row-handling option we know. Pick one of: {{allowed}}.
+metering.lookups.code_frozen_in_use :: “{{code}}” is on {{used_by}} unit(s), so its code can’t be renamed. Add a new type and deactivate this one instead.
+metering.lookups.duplicate_code :: "{{value}}" is already used in this list.
+metering.lookups.row_in_use_not_deletable :: “{{code}}” is in use by {{used_by}} unit(s), so it can’t be deleted. Deactivate it instead.
+metering.lookups.system_row_not_deletable :: This is a built-in row and can't be deleted. Switch it off instead.
+metering.lookups.unknown_field :: This app sent a field this list doesn't have. Nothing was saved.
+metering.meter.mode_unknown :: "{{value}}" is not a way this meter can be read.
+metering.meter.one_per_service :: This unit already has a meter for that service.
+metering.meters_not_a_list :: This app sent the meters in the wrong shape. Nothing was saved.
+metering.plan.bad_date :: Enter the effective date as a calendar date.
+metering.plan.history_unavailable :: Something went wrong on our side. Nothing was changed — quote {{ref}} to support.
+metering.plan.locked :: This unit's plan is locked. Only a System Admin can change it.
+metering.read.already_disputed :: This reading already carries an open dispute. Clear that one before raising another.
+metering.read.billed_correction_required :: This reading is billed. Correct it through the billing correction path instead.
+metering.read.channel_unknown :: "{{value}}" is not a register on this meter.
+metering.read.dispute_not_head :: This version was already superseded. Dispute the current version of the reading instead.
+metering.read.invoice_required :: Name the bill this read was priced on — a billed-read correction has to travel with its invoice.
+metering.read.invoice_unresolvable :: That bill could not be found, so no correction was opened. Check the bill number and try again.
+metering.read.no_active_dispute :: There is no open dispute on this reading to clear.
+metering.read.not_billed :: This read is not on an issued bill. Correct it with a normal supersede.
+metering.read.read_at_required :: Enter the date this reading was taken.
+metering.read.value_not_a_number :: The register value must be a number.
+metering.read_batch.already_posted :: This batch is already posted, so it can no longer be changed.
+metering.read_batch.already_posted_identical :: This exact file and batch tags have already been posted. Open the original batch instead.
+metering.read_batch.ami_replay_disabled :: Re-pulling from the meter head-end is not available yet — that connection is not built. Upload a file or type the readings instead.
+metering.read_batch.certification_required :: Confirm the certification before posting the batch.
+metering.read_batch.no_input :: There is nothing to stage: upload a file or type at least one reading.
+metering.read_batch.period :: Give the reading month as a date.
+metering.read_batch.read_method_unknown :: “{{value}}” is not one of the read methods on this utility’s list. A System Admin maintains it under Settings, Reference data.
+metering.read_batch.source_detail :: That is not one of the read sources on the list.
+metering.read_batch.source_kind :: That is not a way readings can arrive. Choose CSV upload or manual entry.
+metering.read_batch.write_mode_unknown :: That is not one of the three write modes. Choose Insert new only, Insert & update, or Replace.
+metering.read_import.file_not_utf8 :: The file is not UTF-8 text. Re-save it as UTF-8 CSV and upload it again.
+metering.read_row.batch_posted :: This batch is already posted, so its rows can't be deleted.
+metering.read_row.committed :: This row has already become a committed read. Correct it with a supersede — committed reads are never deleted.
+metering.read_row.demand_reset_not_demand :: Only a demand register can carry a reset. This row is not one.
+metering.read_row.disposition :: That is not one of the decisions this row can be given.
+metering.read_row.error_needs_resolution :: A row with an error cannot simply be accepted. Correct the reading, reject the row, or send someone out.
+metering.read_row.reason_required :: Give a reason. It is stored on the row and travels onto the posted reading.
+metering.read_validation.create_incomplete :: This service has no figures yet — fill in every field to set them.
+metering.read_validation.est_max_min_one :: Allow at least one estimate in a row.
+metering.read_validation.low_pct_range :: The low-use threshold is a percentage above 0, up to 100.
+metering.read_validation.pct_positive :: This percentage must be more than zero.
+metering.read_validation.rule_switch_not_object :: Send the checks as a list of names and settings.
+metering.read_validation.unknown_rule :: We do not have a check called {{rule}}. Check the spelling.
+metering.read_validation.zero_scope_choice :: Choose one of the offered zero-read scopes.
+metering.reads.bulk.disposition_unknown :: That action cannot be done in bulk.
+metering.reference_fixture_invalid :: The seeded reference data couldn't be read.
+metering.route.asset_unknown :: One of the meters you excluded is not a meter we recognize.
+metering.route.code_duplicate :: A route with that code already exists.
+metering.route.delete_blocked_read_history :: {{reads}} reads were collected on this route. Deactivate it instead.
+metering.route.delete_blocked_referenced :: {{members}} members and {{service_points}} service points are on this route. Deactivate it instead.
+metering.route.draft_cannot_take_from_active :: A draft route can't take premises already on {{routes}}. Activate this route, or remove them.
+metering.route.sequence_range_removed :: Routes no longer use number ranges — members are chosen from Premises & Units.
+metering.route.service_unknown :: That service is not one this utility runs.
+metering.service_catalog_missing :: The service catalog is unavailable, so nothing was saved.
+metering.service_not_enabled :: {{service}} isn't one of the services this utility bills. Enable it in Settings first.
+metering.services_not_a_list :: This app sent the services in the wrong shape. Nothing was saved.
+metering.todo.human_close_required :: A person has to close this. The system cannot close it for you.
+metering.todo.title_required :: Give this outstanding item a short name.
+metering.unit.common_area_boolean :: Common area must be yes or no.
+metering.unit.delete_blocked_referenced :: This unit is referenced elsewhere, so it can't be deleted. Deactivate it instead.
+metering.unit.label_duplicate :: {{premise}} already has a unit labeled {{label}}.
+metering.unit.move_date_future :: A move cannot be dated in the future.
+metering.unit.move_date_required :: Enter the date this move takes effect.
+metering.unit.occupancy_is_derived :: Occupancy follows the active account on the unit and can't be set here.
+metering.unit.premises_immutable :: A unit never moves between premises. Deactivate it and create it under the other premise.
+metering.unit.premises_required :: Choose the premise this unit belongs to.
+metering.unknown_field :: This app sent a field this record doesn't have. Nothing was saved.
+metering.work_order_mode_unknown :: {{mode}} isn't a way of running this work. Use our crew or an external system.
+metering.work_order_not_accepted_for_send :: Accept this work order before telling the customer.
+metering.work_order_not_completed :: {{order_no}} is {{state}}. Accept it once the crew reports it done.
+notifications.dispatch.timeFormat :: Use a time of day in the form HH:MM.
+notifications.dispatch.timeRequired :: A time of day is required, as HH:MM.
+notifications.payload_not_object :: This request could not be read. Send the details as a set of named fields.
+notifications.rules.channelRequired :: Choose a channel to send the test to.
+notifications.rules.channelsNotObject :: Something went wrong on our side. Nothing was changed — quote {{ref}} to support.
+notifications.rules.timeFormat :: Enter the time as HH:MM, like 09:30.
+notifications.templates.contractCannotBeSeeded :: Something went wrong on our side. Nothing was changed — quote {{ref}} to support.
+notifications.templates.effectiveFromFormat :: Enter the start date as YYYY-MM-DD, like 2026-08-19.
+notifications.templates.refused :: That template change was refused. Check its class, version and start date.
+payments.amount_invalid :: That is not an amount. Enter it in dollars and cents, for example 25.00.
+payments.as_of_invalid :: That is not a date this screen can read. Use the year-month-day form, for example 2026-08-15.
+payments.bankrec.amount_required :: Enter the amount this explanation accounts for.
+payments.bankrec.bank_account_required :: Choose the bank account this statement belongs to.
+payments.bankrec.bank_line_required :: Choose the bank line to pair with this deposit.
+payments.bankrec.gl_account_required :: Name the account this difference posts to.
+payments.bankrec.reason_required :: Say why you are reopening this batch.
+payments.bankrec.resolutions_invalid :: The explanations were not in a form the server could read.
+payments.collections.no_selection :: Choose at least one account. A collections run with nothing selected would report success having chased nobody.
+payments.customer_name_unavailable :: The customer's name could not be looked up for this payment.
+payments.date_invalid :: That is not a date this action can read. Use the year-month-day form, for example 2026-08-15.
+payments.deposits.status_invalid :: That is not one of the four deposit states.
+payments.lookups.mask_shape :: Enter the last {{max}} digits only, or leave it blank.
+payments.lookups.too_long :: Keep the name to {{max}} characters or fewer.
+payments.lookups.unknown_field :: This list holds a name and the last digits only.
+payments.payload_not_object :: That request body was not readable. Send the payment fields as a single object.
+payments.record.amount_invalid :: Enter the amount as digits, with up to six decimal places.
+payments.record.date_invalid :: Give the date as a calendar day, for example 2026-08-22.
+payments.record.idempotency_key_required :: This submission carried no one-time token, so nothing was recorded. Open the form again.
+payments.record.posted_at_required :: Give the posting date. It is never filled in for you from the clock.
+payments.record.refused :: This payment can't be recorded as asked. Check the date, amount and account.
+payments.record.target_invoice_required :: Each bill you name has to carry its bill number.
+payments.record.targets_invalid :: The list of bills to pay was not readable. Send one entry per bill.
+payments.write_off.amount :: Enter the amount to write off. It cannot be more than the account actually owes.
+payments.write_off.note :: A note is required. It records why this debt stopped being chased.
+payments.write_off.posted_at :: Enter the moment this approval posts to the books.
+rating.above_maximum :: That is above the highest value allowed here.
+rating.assignment.reason_required_behind_issued_bill :: A reason is required: this date is behind {{billed_through}}.
+rating.below_minimum :: That is below the lowest value allowed here.
+rating.bulk.batch_already_applied :: This exact change was already applied on {{created_at}} (batch {{batch_id}}). A batch never runs twice.
+rating.bulk.entities_required :: Pick at least one rate schedule or plan to change.
+rating.bulk.entity_window_conflict :: {{entity}} already has pricing starting {{current_from}}, so this batch would overlap it. Nothing was changed.
+rating.bulk.entity_without_version :: {{entity}} has no active pricing, so there is nothing to change.
+rating.bulk.percent_zero :: A percentage change of zero would change nothing.
+rating.bulk.unknown_entity :: We don't recognize one of the entries you picked.
+rating.charges.amount_and_size_table :: A charge code has one amount or per-size amounts, not both. Clear one of them.
+rating.charges.duplicate_code :: A charge code with that code already exists.
+rating.charges.formula_disabled :: Formula charges aren't defined yet, so that option can't be saved.
+rating.charges.gl_account_unknown :: We don't recognize the income account {{account}}, or it has been deactivated.
+rating.charges.locked_referenced :: This charge is used by {{plans}} plans and {{invoice_lines}} bill lines. Deactivate it instead.
+rating.charges.per_size_not_billable :: {{code}} prices per connection size, and a bill cannot yet resolve which size applies. Give it a single amount, or bill it by hand.
+rating.discounts.no_effective_date :: Set a start date before activating this discount version.
+rating.discounts.not_a_draft :: Only a draft version can be sent for approval.
+rating.discounts.not_pending :: Only a version awaiting approval can be approved.
+rating.discounts.retired :: This discount is retired, so no one can be enrolled.
+rating.discounts.type_not_priceable :: This discount type can't be priced yet, so it can't go live.
+rating.lookups.deactivate_unsupported :: {{name}} can't be deactivated: this list has nowhere to record it yet.
+rating.lookups.too_long :: Keep this to {{max}} characters or fewer.
+rating.lookups.unknown_field :: This list doesn't hold that field. Set it on the Charges or Taxes screen.
+rating.money_not_decimal :: Enter an amount using digits and at most one decimal point.
+rating.out_of_range :: That value is outside the range allowed here.
+rating.percent.not_positive :: The percentage has to be above zero.
+rating.plan.unknown_or_unpublished :: That plan is not published, so it cannot be used yet.
+rating.plans.archived_not_editable :: This plan is archived, so it can't be edited.
+rating.plans.draft_schedule :: That rate schedule is still a draft. Activate it before a plan can use it.
+rating.plans.duplicate_category :: There is already a deposit for that customer category.
+rating.plans.duplicate_charge :: That charge code is already attached to this plan.
+rating.plans.duplicate_code :: A plan with that code already exists.
+rating.plans.duplicate_discount :: That discount is already offered on this plan.
+rating.plans.duplicate_jurisdiction :: That authority is already attached to this plan.
+rating.plans.duplicate_name :: A plan with that name already exists.
+rating.plans.duplicate_service :: That service is already in this plan.
+rating.plans.duplicate_tax :: That tax is already attached to this plan.
+rating.plans.effective_from_required :: A published plan must keep its start date.
+rating.plans.gl_account_unknown :: We don't recognize the revenue account {{account}}, or it has been deactivated.
+rating.plans.grace_days_range :: Grace days have to be between 0 and {{max}}.
+rating.plans.last_tax_not_detachable :: This is the plan's last tax — at least one must stay. Attach another before detaching {{tax}}.
+rating.plans.locked_referenced :: This plan is used by {{accounts}} accounts and {{invoices}} bills. Archive it instead.
+rating.plans.no_effective_from :: Set a start date before publishing this plan.
+rating.plans.no_services :: Add at least one service before publishing this plan.
+rating.plans.not_publishable :: Only a draft plan can be published. This one is {{status}}.
+rating.plans.rule_not_object :: We couldn't read one of the rules.
+rating.plans.rule_two_sources :: A tax rule names an authority or a single tax — never both.
+rating.plans.rules_not_list :: We couldn't read that list of rules.
+rating.plans.schedule_service_mismatch :: That rate schedule prices a different service.
+rating.plans.service_not_object :: We couldn't read one of the services.
+rating.plans.services_not_list :: We couldn't read the list of services.
+rating.plans.tax_not_attached :: {{tax}} is not attached to this plan.
+rating.plans.window_inverted :: The end date has to come after the start date.
+rating.reason_required :: A reason is required for every rate change.
+rating.reference_fixture_invalid :: Something went wrong on our side. Nothing was changed — quote {{ref}} to support.
+rating.sample.account_type_missing :: The platform account types are missing, so a sample plan cannot say which customers it prices. Re-run the database migrations.
+rating.schedules.activate_first :: Activate this schedule before adding a new version to it.
+rating.schedules.already_activated :: This schedule is already active. Create a new version to change it.
+rating.schedules.dates_land_at_activation :: Dates are set when you activate, not while saving a draft. ({{fields}})
+rating.schedules.duplicate_name :: A rate schedule with that name already prices this service.
+rating.schedules.effective_from_invalid :: That effective date is not a date. Use YYYY-MM-DD.
+rating.schedules.incomplete_structure :: The {{model}} pricing isn't complete yet: {{missing}} is still missing. Fill it in, then activate.
+rating.schedules.locked_referenced :: These plans still use this schedule: {{names}}. Detach it from them first.
+rating.schedules.locked_referenced_many :: {{plans}} plans still use this schedule, including {{names}}. Detach it from them first.
+rating.schedules.no_base_charge_code :: This service has no active base charge code. Add the base charge code for {{service}} first.
+rating.schedules.nothing_to_duplicate :: This schedule has no rates to copy yet. Add them first.
+rating.schedules.second_approval_required :: This filing raises a bill by {{pct}}%, above the {{threshold}}% bar. A second approval is required and cannot be recorded yet.
+rating.schedules.version_immutable :: This schedule is already in force, so {{fields}} can't be edited. Create a new version instead.
+rating.schedules.window_inverted :: The end date has to come after the start date.
+rating.schedules.window_overlap :: Versions may not overlap. This one starts {{effective_from}} but the current version already starts {{current_from}}.
+rating.seasons.coverage :: The seasons must cover the whole year with no gap and no overlap.
+rating.seasons.not_object :: We couldn't read one of the seasons.
+rating.service_not_enabled :: That service isn't switched on for this utility.
+rating.size_rows.duplicate_size :: {{size_class}} appears twice. Each connection size can have only one row.
+rating.size_rows.not_object :: We couldn't read one of the per-size rows.
+rating.taxes.category_inactive :: That exemption category is no longer active.
+rating.taxes.certificate_exists :: This account already holds a live certificate for {{category}}.
+rating.taxes.certificate_required :: This exemption category needs a certificate on file. Enter the certificate reference.
+rating.taxes.classes_not_list :: This app sent the customer classes in the wrong shape. Nothing was saved.
+rating.taxes.correct_draft :: This tax is still a draft. Edit it directly instead of correcting it.
+rating.taxes.correction_empty :: A correction has to change something. Nothing here differs from the rate already in force.
+rating.taxes.correction_reason :: Say why this rate is being corrected, in a sentence someone will still understand in a year.
+rating.taxes.duplicate_category :: This tax already has an exemption category with that code.
+rating.taxes.duplicate_code :: You already have a tax with this code.
+rating.taxes.gl_account_unknown :: We don't recognize the liability account {{account}}, or it has been deactivated.
+rating.taxes.in_force_edit_refused :: This tax is in force, so its rate cannot be changed here. Record a correction with a reason instead.
+rating.taxes.services_not_list :: We couldn't read the list of services.
+rating.taxes.unknown_customer_class :: "{{value}}" is not one of your customer classes.
+rating.taxes.window_inverted :: The end date has to come after the start date.
+rating.tiers.inverted :: A tier has to end above where it starts.
+rating.tiers.not_object :: We couldn't read one of the tiers.
+rating.tiers.open_middle_tier :: Only the last tier can be left open-ended.
+rating.tiers.size_override_without_base :: Set the base tiers before you override them by meter size.
+rating.tou.coverage :: Every hour must belong to exactly one window. Check {{season}} on a {{day_type}}.
+rating.tou.not_object :: We couldn't read one of the windows.
+rating.tou.register_reused :: {{windows}} both read the {{channel}} register in {{season}}. One register holds one number, so give each window its own.
+rating.tou.too_many_seasons :: There can be at most {{max}} seasons.
+rating.tou.too_many_windows :: There can be at most {{max}} windows for {{season}} on a {{day_type}}.
+rating.tou.unknown_season :: That window points at a season that isn't defined.
+rating.unknown_value :: That isn't one of the values allowed here.
+reports.account_ledger.account_required :: Choose an account. This report runs for one account at a time.
+reports.ar_aging.unavailable :: We could not produce the aging just now. Nothing was changed; try again, and tell support if it keeps happening.
+reports.cash.unavailable :: We could not produce the payments report just now. Nothing was changed; try again, and tell support if it keeps happening.
+reports.register.unavailable :: We could not produce the billing register just now. Nothing was changed; try again, and tell support if it keeps happening.
+reports.register.unknown_bill_type :: “{{bill_type}}” is not a bill type here. Choose one of: {{values}}.
+reports.revenue.unavailable :: We could not produce the revenue report just now. Nothing was changed; try again, and tell support if it keeps happening.
+reports.viewer.no_fiscal_period :: This report needs a date range and your utility has none set. Enter a range above.
+reports.viewer.param_required :: This report needs both a start and an end date.
+reports.viewer.range_inverted :: The end date is before the start date. Swap them.
+settings.areas.has_sub_areas :: {{count}} sub-areas sit under this one, so it cannot itself become a sub-area. Areas go two levels deep.
+settings.areas.parent_is_sub_area :: {{picked}} is already a sub-area of {{picked_parent}}. Areas go two levels deep — area, then sub-area.
+settings.areas.parent_self :: An area cannot be its own parent.
+settings.areas.parent_unknown :: There is no area with the code {{picked}}.
+settings.collections.ladder_empty :: The notice ladder needs at least one tier.
+settings.collections.ladder_not_descending :: Each tier has to come closer to disconnection than the one before it. You entered {{tiers}}.
+settings.company.logo_svg_dtd_forbidden :: That SVG declares a document type, which isn't allowed. Export it again without one.
+settings.company.logo_svg_malformed :: That SVG couldn't be read. Export it again from your design tool.
+settings.company.logo_too_large :: That file is over the 2 MB limit.
+settings.company.too_long :: Keep this to {{max}} characters or fewer.
+settings.customFields.cap_reached :: {{entity}} already has {{active}} active custom fields, and {{cap}} is the limit. Deactivate one to make room.
+settings.customFields.data_type_unknown :: “{{data_type}}” isn't one of the field types this product has.
+settings.customFields.duplicate_key :: “{{key}}” is already used by another field on this record.
+settings.customFields.entity_not_covered :: Custom fields can't be added to “{{entity}}”.
+settings.customFields.immutable_after_create :: The key and the record a field applies to are fixed when it is created. Nothing was saved.
+settings.customFields.invalid :: Some of this field's settings need fixing. Nothing was saved.
+settings.customFields.key_shape :: A key starts with a letter and uses lowercase letters, digits and underscores only.
+settings.customFields.key_underivable :: That label doesn't produce a usable key. Use some letters and digits.
+settings.customFields.options_required :: This type needs a list of options.
+settings.customFields.order_not_a_number :: The display order has to be a whole number.
+settings.customFields.order_out_of_range :: The display order has to be between 0 and 999.
+settings.customFields.placement_mode_unknown :: “{{mode}}” isn't Input, View or Not shown.
+settings.customFields.slot_not_eligible :: {{screen}} isn't a screen a {{entity}} field can be placed on in {{mode}} mode.
+settings.customFields.too_long :: Keep this to {{max}} characters or fewer.
+settings.holidays.duplicate_date :: That date is already in the holiday calendar.
+settings.holidays.label_too_long :: Keep the name to {{max}} characters or fewer.
+settings.lookups.code_locked :: {{used_by}} records already use this code, so it can't be changed. The name still can.
+settings.lookups.gl_account_unknown :: That account is not one of yours, or it has been deactivated.
+settings.lookups.gl_not_a_uuid :: That is not an account we can recognize.
+settings.lookups.locked_referenced :: {{used_by}} records reference this entry, so it can't be deleted. Deactivate it instead.
+settings.lookups.service_unknown :: "{{value}}" is not one of your services.
+settings.lookups.system_row_not_deletable :: This entry came with the platform and can't be deleted. Deactivate it instead.
+settings.lookups.too_long :: Keep this to {{max}} characters or fewer.
+settings.numbering.bulk_payload_invalid :: We could not read the numbering changes to save.
+settings.param_above_max :: Too high — the maximum is {{max}}.
+settings.param_below_min :: Too low — the minimum is {{min}}.
+settings.param_not_list :: Enter the days as a list, separated by commas.
+settings.param_not_sequence :: Put the options in order as a list. Allowed: {{allowed}}.
+settings.preferences.key_invalid :: That is not a preference we store. Nothing was changed.
+settings.preferences.value_not_json :: That preference could not be saved because its value is not in a format we can store.
+settings.preferences.value_required :: This preference was sent with no value, so nothing was saved.
+settings.preferences.value_too_large :: That preference is too large to save. It must be under {{max_bytes}} bytes and this one is {{bytes}}.
+settings.read_validation.day_window_inverted :: The window runs from {{min}} to {{max}} — the first number must be the smaller one.
+settings.read_validation.soft_outside_hard :: The flag window {{soft}} has to sit inside the hard window {{hard}}.
+settings.regional.bad_day :: That day doesn't exist in the chosen month.
+settings.regional.bad_month :: Pick a month between 1 and 12.
+settings.regional.currency_locked :: Currency stays {{currency}} — this utility already has financial records. Nothing was changed.
+settings.services.alt_equals_primary :: The alternate unit must differ from the primary one.
+settings.services.disable_blocked :: {{service}} has {{rate_schedules}} rate schedules and {{active_accounts}} active accounts. End or reassign them first.
+settings.services.factor_format :: Enter the conversion factor as a number, like 0.748052.
+settings.services.factor_positive :: The conversion factor must be greater than zero.
+settings.services.gl_account_unknown :: We don't recognize the account {{account}}, or it has been deactivated.
+settings.services.uom_unknown :: We don't recognize the unit {{uom}}, or it has been deactivated.
+settings.unknown_field :: This app sent a field this setting doesn't have. Nothing was saved.
+shell.wizardPark.flowUnknown :: "{{value}}" is not a wizard that can be parked.
+shell.wizardPark.remindOnFormat :: Use a date like 2026-09-02 for the reminder.
+shell.wizardPark.stepInvalid :: Step "{{value}}" is not a step in this wizard.
+shell.wizardPark.tooLarge :: This form is too big to park. Shorten your notes.
+signup.name_too_long :: Keep the name to {{max}} characters or fewer.
+signup.reference_fixture_invalid :: We couldn't load the standard reference data for that state. Nothing was created.
+signup.services_required :: Pick at least one service you bill.
+signup.subdomain_invalid :: That web address can't be used ({{problem}}).
+signup.subdomain_taken :: {{subdomain}} is taken — pick another web address.

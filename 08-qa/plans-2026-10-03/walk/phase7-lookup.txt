@@ -1,0 +1,6 @@
+LOOKUP PW-RES 2026-12-31 version_on=v1 candidates=1 ['v1 2026-11-01..2026-12-31'] minimum=10.000000
+LOOKUP PW-RES 2027-01-01 version_on=v2 candidates=1 ['v2 2027-01-01..None'] minimum=12.000000
+LOOKUP PW-COM 2026-12-31 version_on=v1 candidates=1 ['v1 2026-11-01..2026-12-31'] minimum=25.000000
+LOOKUP PW-COM 2027-01-01 version_on=v2 candidates=1 ['v2 2027-01-01..None'] minimum=30.000000
+LOOKUP PW-FIRE 2026-12-31 version_on=v1 candidates=1 ['v1 2026-11-01..None'] minimum=None
+LOOKUP PW-FIRE 2027-01-01 version_on=v1 candidates=1 ['v1 2026-11-01..None'] minimum=None

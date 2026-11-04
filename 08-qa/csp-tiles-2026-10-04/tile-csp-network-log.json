@@ -1,0 +1,160 @@
+{
+  "results": {
+    "Work map (WRK-09)": {
+      "tileHost": "https://server.arcgisonline.com",
+      "meta": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https://server.arcgisonline.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self'; frame-src 'self'; object-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors 'self'",
+      "header": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https://server.arcgisonline.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self'; frame-src 'self'; object-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors 'self'",
+      "csp": [
+        "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
+      ],
+      "outcomes": {
+        "failed: net::ERR_TUNNEL_CONNECTION_FAILED": 12
+      },
+      "tiles": [
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1871",
+          "outcome": "failed: net::ERR_TUNNEL_CONNECTION_FAILED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1872",
+          "outcome": "failed: net::ERR_TUNNEL_CONNECTION_FAILED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1871",
+          "outcome": "failed: net::ERR_TUNNEL_CONNECTION_FAILED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1872",
+          "outcome": "failed: net::ERR_TUNNEL_CONNECTION_FAILED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1870",
+          "outcome": "failed: net::ERR_TUNNEL_CONNECTION_FAILED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1873",
+          "outcome": "failed: net::ERR_TUNNEL_CONNECTION_FAILED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1870",
+          "outcome": "failed: net::ERR_TUNNEL_CONNECTION_FAILED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1873",
+          "outcome": "failed: net::ERR_TUNNEL_CONNECTION_FAILED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1869",
+          "outcome": "failed: net::ERR_TUNNEL_CONNECTION_FAILED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1874",
+          "outcome": "failed: net::ERR_TUNNEL_CONNECTION_FAILED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1869",
+          "outcome": "failed: net::ERR_TUNNEL_CONNECTION_FAILED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1874",
+          "outcome": "failed: net::ERR_TUNNEL_CONNECTION_FAILED"
+        }
+      ]
+    },
+    "Assets map (AST-03)": {
+      "tileHost": "https://server.arcgisonline.com",
+      "meta": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https://server.arcgisonline.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self'; frame-src 'self'; object-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors 'self'",
+      "header": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https://server.arcgisonline.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self'; frame-src 'self'; object-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors 'self'",
+      "csp": [
+        "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
+      ],
+      "outcomes": {
+        "failed: net::ERR_ABORTED": 18,
+        "failed: net::ERR_TUNNEL_CONNECTION_FAILED": 18
+      },
+      "tiles": [
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1871",
+          "outcome": "failed: net::ERR_ABORTED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1872",
+          "outcome": "failed: net::ERR_ABORTED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3371/1871",
+          "outcome": "failed: net::ERR_ABORTED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3371/1872",
+          "outcome": "failed: net::ERR_ABORTED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1871",
+          "outcome": "failed: net::ERR_ABORTED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1872",
+          "outcome": "failed: net::ERR_ABORTED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1870",
+          "outcome": "failed: net::ERR_ABORTED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1873",
+          "outcome": "failed: net::ERR_ABORTED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3371/1870",
+          "outcome": "failed: net::ERR_ABORTED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3371/1873",
+          "outcome": "failed: net::ERR_ABORTED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1870",
+          "outcome": "failed: net::ERR_ABORTED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1873",
+          "outcome": "failed: net::ERR_ABORTED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1869",
+          "outcome": "failed: net::ERR_ABORTED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1874",
+          "outcome": "failed: net::ERR_ABORTED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3371/1869",
+          "outcome": "failed: net::ERR_ABORTED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3371/1874",
+          "outcome": "failed: net::ERR_ABORTED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1869",
+          "outcome": "failed: net::ERR_ABORTED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1874",
+          "outcome": "failed: net::ERR_ABORTED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/12/1686/935",
+          "outcome": "failed: net::ERR_TUNNEL_CONNECTION_FAILED"
+        },
+        {
+          "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/12/1686/936",
+          "outcome": "failed: net::ERR_TUNNEL_CONNECTION_FAILED"
+        }
+      ]
+    }
+  },
+  "problems": []
+}

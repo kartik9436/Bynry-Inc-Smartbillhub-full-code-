@@ -1,0 +1,201 @@
+{
+  "count": 4,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": "01a10793-b6a5-79bb-9b2b-a502c41d2fdc",
+      "kind": "person",
+      "name": "D. Ortiz",
+      "slug": "d-ortiz",
+      "role_label": "Field technician",
+      "crew": {
+        "id": "01a10793-b67f-76b5-806e-2d6b7fe6ce5c",
+        "name": "Field crew A"
+      },
+      "skills": [
+        {
+          "skill_id": "01a10790-de94-79e4-9fcb-958122e5fae8",
+          "code": "WATER_I",
+          "name": "Water I",
+          "proficiency": "certified"
+        },
+        {
+          "skill_id": "01a10790-dea1-77f3-a46d-a1c2fc64f69b",
+          "code": "METER_I",
+          "name": "Meter I",
+          "proficiency": "certified"
+        },
+        {
+          "skill_id": "01a10790-dea3-7d2d-9b6f-3a9bfee4bd1f",
+          "code": "READS",
+          "name": "Reads",
+          "proficiency": "trained"
+        }
+      ],
+      "certifications": [
+        {
+          "certification_type_id": "01a10790-ddc1-764e-a8ad-11384efb53ce",
+          "name": "Traffic control · 3-yr",
+          "expires_on": "2026-10-22"
+        },
+        {
+          "certification_type_id": "01a10790-ddc2-7ff8-aa84-450a3a123312",
+          "name": "First aid / CPR · 2-yr",
+          "expires_on": "2028-03-27"
+        }
+      ],
+      "shift": "07:00–15:30",
+      "status": "on_shift",
+      "unavailable_reason": null,
+      "phone": null,
+      "email": "d.ortiz@sample.test"
+    },
+    {
+      "id": "01a10793-b78e-78bb-99b2-77ccfd44ff20",
+      "kind": "person",
+      "name": "J. Okoro",
+      "slug": "j-okoro",
+      "role_label": "Field technician",
+      "crew": {
+        "id": "01a10793-b68b-769b-87cb-394d1ccdbf09",
+        "name": "Field crew B"
+      },
+      "skills": [
+        {
+          "skill_id": "01a10790-de94-79e4-9fcb-958122e5fae8",
+          "code": "WATER_I",
+          "name": "Water I",
+          "proficiency": "trained"
+        },
+        {
+          "skill_id": "01a10790-dea3-7d2d-9b6f-3a9bfee4bd1f",
+          "code": "READS",
+          "name": "Reads",
+          "proficiency": "trained"
+        }
+      ],
+      "certifications": [
+        {
+          "certification_type_id": "01a10790-ddc2-7ff8-aa84-450a3a123312",
+          "name": "First aid / CPR · 2-yr",
+          "expires_on": "2026-09-22"
+        }
+      ],
+      "shift": "12:00–20:30",
+      "status": "off_today",
+      "unavailable_reason": "Annual leave until Monday",
+      "phone": null,
+      "email": "j.okoro@sample.test"
+    },
+    {
+      "id": "01a10793-b74a-782a-858f-0d273a17d4a7",
+      "kind": "person",
+      "name": "M. Chen",
+      "slug": "m-chen",
+      "role_label": "Field technician",
+      "crew": {
+        "id": "01a10793-b68b-769b-87cb-394d1ccdbf09",
+        "name": "Field crew B"
+      },
+      "skills": [
+        {
+          "skill_id": "01a10790-dea1-77f3-a46d-a1c2fc64f69b",
+          "code": "METER_I",
+          "name": "Meter I",
+          "proficiency": "certified"
+        },
+        {
+          "skill_id": "01a10790-dea3-7d2d-9b6f-3a9bfee4bd1f",
+          "code": "READS",
+          "name": "Reads",
+          "proficiency": "certified"
+        },
+        {
+          "skill_id": "01a10790-de9f-70c6-819b-982340109083",
+          "code": "ELECTRIC_I",
+          "name": "Electric I",
+          "proficiency": "trained"
+        }
+      ],
+      "certifications": [
+        {
+          "certification_type_id": "01a10790-ddc2-7ff8-aa84-450a3a123312",
+          "name": "First aid / CPR · 2-yr",
+          "expires_on": "2027-01-07"
+        }
+      ],
+      "shift": "12:00–20:30",
+      "status": "on_shift",
+      "unavailable_reason": null,
+      "phone": null,
+      "email": "m.chen@sample.test"
+    },
+    {
+      "id": "01a10793-b704-70b8-b614-c16ae19ad411",
+      "kind": "person",
+      "name": "R. Patel",
+      "slug": "r-patel",
+      "role_label": "Senior technician",
+      "crew": {
+        "id": "01a10793-b67f-76b5-806e-2d6b7fe6ce5c",
+        "name": "Field crew A"
+      },
+      "skills": [
+        {
+          "skill_id": "01a10790-de94-79e4-9fcb-958122e5fae8",
+          "code": "WATER_I",
+          "name": "Water I",
+          "proficiency": "certified"
+        },
+        {
+          "skill_id": "01a10790-de98-7324-b45d-32562ba1ab3b",
+          "code": "WATER_II",
+          "name": "Water II",
+          "proficiency": "certified"
+        },
+        {
+          "skill_id": "01a10790-dea1-77f3-a46d-a1c2fc64f69b",
+          "code": "METER_I",
+          "name": "Meter I",
+          "proficiency": "certified"
+        },
+        {
+          "skill_id": "01a10790-dea4-7b8c-8362-7262bd5fcd22",
+          "code": "EXCAVATION",
+          "name": "Excavation",
+          "proficiency": "certified"
+        }
+      ],
+      "certifications": [
+        {
+          "certification_type_id": "01a10790-ddc2-7ff8-aa84-450a3a123312",
+          "name": "First aid / CPR · 2-yr",
+          "expires_on": "2027-06-21"
+        },
+        {
+          "certification_type_id": "01a10790-ddc3-7624-a3c2-086dc96342bd",
+          "name": "Trench safety · 3-yr",
+          "expires_on": "2028-09-03"
+        },
+        {
+          "certification_type_id": "01a10790-ddbd-7557-9add-9e3cbb1a0dbe",
+          "name": "Confined space · 3-yr validity",
+          "expires_on": "2027-11-18"
+        }
+      ],
+      "shift": "07:00–15:30",
+      "status": "on_shift",
+      "unavailable_reason": null,
+      "phone": null,
+      "email": "r.patel@sample.test"
+    }
+  ],
+  "counts": {
+    "technicians": 4,
+    "crews": 2,
+    "contractors": 1,
+    "rows": 7,
+    "people": 4
+  }
+}

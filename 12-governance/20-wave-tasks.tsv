@@ -1,0 +1,389 @@
+# One line per task, tab-separated: cr<TAB>wave<TAB>task<TAB>state<TAB>what it is
+#
+# WHY THIS FILE EXISTS (DEF-1932, 2026-08-28)
+# The PO asked "how many waves and tasks are there and how many completed" and the
+# answer could not be produced. The BUGS half was one command, because defects live
+# in a CSV with a status column. The waves half was impossible, because tasks are
+# written as sentences scattered through 30,000-70,000 characters per change
+# request. Three extraction attempts gave three different answers and the first was
+# silently wrong: an unscoped search matched ONE change request's "6 waves, 34
+# tasks" against all nine and printed it nine times as though each had been
+# measured. It looked like a clean table.
+#
+# So the STATE moves here where a script can read it. The narrative stays in
+# 11-change-requests.md, which is what it is good at.
+#
+# STATES, and a script refuses any other (the G46 lesson - a column holding two
+# vocabularies makes every count taken from it wrong):
+#   done     the task is built and proved
+#   verify   built, not yet proved - it is not done
+#   open     not started, or started and not finished
+#   blocked  cannot proceed; the reason belongs in the change request
+#
+# ⚠ PO STEER 2026-08-28: "I will not worry too much on 2 - Make task progress
+# countable." NOBODY BACK-FILLS THIS AND IT DOES NOT BECOME A GATE. Rows accumulate
+# only where a lane owning a wave finds them useful. Do not spend a lane on coverage.
+#
+# ⚠ SEEDED WITH SIX ROWS, NOT BACK-FILLED, AND THAT IS DELIBERATE.
+# These six are the only tasks anywhere in the register already written in a
+# countable shape (CR-046 wave A). The other eight change requests record their
+# tasks as prose, and back-filling them would mean extracting truth from sentences
+# - the exact thing that produced the wrong table above. A lane that OWNS a wave
+# adds its rows here when it starts. `10-scripts/wave_report.py` names every change
+# request with nothing recorded, so the gap is counted rather than silent.
+#
+cr	wave	task	state	description
+CR-046	A	A1	done	asset_no reshaped: header "Meter number (existing only)", sample blank, new help text
+CR-046	A	A2	done	serial_no added to the meters template - the ruling rests on it and it was never offered
+CR-046	A	A3	done	external_ref column + unique index + migration (BR-AST-049)
+CR-046	A	A4	done	number_sample parameter removed so no reader believes a number is proposed
+CR-046	A	A5	verify	_catch_up_target_series docstring amended - it carried the opposite reasoning (law 1)
+CR-046	A	A6	verify	the downloadable sample CSV ships the number cell blank, proved by reading the file
+CR-069	A	A1	done	ground / doc: C34 — B2 FIRST. 04-docs/02-decisions/02-database-design-brief.md gains ### Module
+CR-069	A	A2	done	ground: 07-frontend/src/features/integrations/
+CR-069	A	A3	done	2a: apps/integrations/models.py
+CR-069	A	A4	done	2a: apps/integrations/registry.py becomes THE registry
+CR-069	A	A5	done	2a: apps/integrations/api.py + a URLconf mounted in config/urls.py
+CR-069	A	A6	done	2b: features/integrations/IntegrationsTab.tsx mounted from SettingsPage.tsx:139-143 replacing arrivesWithKey
+CR-069	A	A7	done	2c: Tests named for their TCs
+CR-069	A	A8	done	gate: Three gates proven RED first, registered in run_gates.py's GATES in the same commit
+CR-069	A	A9	done	2d: 10-scripts/render-checks/cr069-a-grid-not-set-up.mjs
+CR-069	A	A10	done	doc / version: CHANGELOG entry
+CR-069	B	B1	done	2a: apps/integrations/adapters/base.py
+CR-069	B	B2	done	2a: apps/integrations/apps.py
+CR-069	B	B3	done	2a: api.py writes
+CR-069	B	B4	done	2b: S141 — features/integrations/ConnectModal.tsx, template I2
+CR-069	B	B5	done	2c: Tests: US-INT-019 TC-1..8
+CR-069	B	B6	done	gate: Two gates RED first, registered the same commit
+CR-069	B	B7	done	doc: Six badges for S141–S146 allocated into 10-scripts/gates/g29_allocated_badges.txt
+CR-069	B	B8	done	2d: cr069-b-modal-and-refusal.mjs
+CR-069	B	B9	done	doc / version: CHANGELOG · version lockstep
+CR-069	C	C1	done	2a: services.py run lifecycle
+CR-069	C	C2	done	2a: GET /integrations/{key}/runs
+CR-069	C	C3	done	2b: S142 — features/integrations/ConnectionDetailPage.tsx at /:tenant/settings/integrations/:key, template I3
+CR-069	C	C4	done	2c: US-INT-020 TC-1..7
+CR-069	C	C5	done	2d: cr069-c-run-record.mjs
+CR-069	C	C6	done	doc / version: CHANGELOG · lockstep
+CR-069	D	D1	done	2a: apps/integrations/codecs.py
+CR-069	D	D2	done	2a: integration_target_reference in services.py / selectors.py
+CR-069	D	D3	done	2b: S143 — features/integrations/ValueMappingPage.tsx, template I5, the *Their words* tab only
+CR-069	D	D4	done	2c: US-INT-037 TC-1..6
+CR-069	D	D5	done	2d: cr069-d-their-words.mjs
+CR-069	D	D6	done	doc / version: CHANGELOG · lockstep
+CR-069	E	E1	review-owed	review: BEFORE a real credential is stored
+CR-069	E	E2	done	2a: The deletion path first
+CR-069	E	E3	done	2a: Versioning (US-INT-024)
+CR-069	E	E4	done	2a: adapters/email_smtp.py
+CR-069	E	E5	done	2b: The Manage view live on S141/S142
+CR-069	E	E6	done	2c: US-INT-024 TC-1..7
+CR-069	E	E7	done	gate: §13 gate 2 as a permanent check
+CR-069	E	E8	done	2d: cr069-e-smtp-connect-day.mjs
+CR-069	E	E9	done	doc / version: CHANGELOG · lockstep
+CR-069	F	F1	done	2a: apps/integrations/runtime.py
+CR-069	F	F2	open	2a: US-INT-023 — THE DOOR ONLY. The send half is built; build the feedback door (authenticate, dedupe, reply, persist raw). Marking rows delivered/bounced and the suppression list are DEFERRED to Runbooks — OQ-INT-1729 ruled 2026-09-06 (a). Deferred is not blocked.
+CR-069	F	F3	open	2b: S8 card and S142 breaker note *Not working
+CR-069	F	F4	open	2c: US-INT-022 TC-1..6
+CR-069	F	F5	open	2d: cr069-f-dead-mail-server.mjs
+CR-069	F	F6	open	doc / version: CHANGELOG · lockstep
+CR-069	G	G1	open	2a: CELERY_BEAT_SCHEDULE in config/settings/base.py
+CR-069	G	G2	open	2a: The request budget
+CR-069	G	G3	open	2b: S142 BudgetLine *9,980 of 10,000 requests used this week
+CR-069	G	G4	open	2c: US-INT-029 TC-1..7
+CR-069	G	G5	open	2d: cr069-g-thursday-budget.mjs
+CR-069	G	G6	open	doc / version: CHANGELOG · lockstep
+CR-069	H	H1	done	2a: adapters/email_microsoft.py and adapters/email_google.py
+CR-069	H	H2	done	2a: integration.sweep_expiry's body
+CR-069	H	H3	done	2b: S141 the OAuth body
+CR-069	H	H4	done	2c: US-INT-027 TC-1..6
+CR-069	H	H5	done	2d: cr069-h-token-lapse.mjs
+CR-069	H	H6	done	doc / version: CHANGELOG · lockstep
+CR-069	I	I1	open	2a: The bank connection on the substrate
+CR-069	I	I2	open	2b: S38 (features/payments/BankImportWizard.tsx) picks a named bank connection
+CR-069	I	I3	open	2c: tests/pg/test_us_int_033_duplicate_file_pg.py TC-1
+CR-069	I	I4	open	2d: cr069-i-same-file-twice.mjs
+CR-069	I	I5	open	doc / version: CHANGELOG · lockstep
+CR-069	J	J1	open	2a: File the I-16 defect first
+CR-069	J	J2	open	2b: S43 picks the saved target
+CR-069	J	J3	open	2c: US-INT-033 TC-2, 3, 5
+CR-069	J	J4	open	2d: cr069-j-export-target.mjs
+CR-069	J	J5	open	doc / version: CHANGELOG · lockstep
+CR-069	K	K1	open	2a: manifests/meters_neptune360.py
+CR-069	K	K2	open	2b: S142: *They are building the file. We will collect it when it is ready
+CR-069	K	K3	open	2c: US-INT-028 TC-1..6
+CR-069	K	K4	open	review: Review-ledger row for US-INT-035 in plain English with the figure
+CR-069	K	K5	open	2d: cr069-k-building-the-file.mjs
+CR-069	K	K6	open	doc / version: CHANGELOG · lockstep
+CR-069	L	L1	open	2a: runners/reconcile.py
+CR-069	L	L2	open	2b: S142 *1,240 read
+CR-069	L	L3	open	2c: tests/pg/test_us_int_034_reconcile_pg.py TC-1
+CR-069	L	L4	open	review: Review-ledger row for US-INT-034
+CR-069	L	L5	open	2d: cr069-l-backfill-tuesday.mjs
+CR-069	L	L6	open	doc / version: CHANGELOG · lockstep
+CR-069	M	M1	open	2a: File the two I-15 defects first
+CR-069	M	M2	open	2b: features/metering/AddPremisesWizard.tsx step 1 *Find the address*
+CR-069	M	M3	open	2c: US-INT-042 TC-1..7
+CR-069	M	M4	open	2d: cr069-m-address-search.mjs
+CR-069	M	M5	open	doc / version: CHANGELOG · lockstep
+CR-069	N	N1	open	2a (payments'): payments.channel and payments.external_ref do not exist
+CR-069	N	N2	open	2a: manifests/payments_kiosk.py
+CR-069	N	N3	open	2b: The payment's detail shows channel *Kiosk* and reference K-88231
+CR-069	N	N4	open	2c: US-INT-044 TC-1..11
+CR-069	N	N5	open	review: Review-ledger row for inbound.py and the kiosk key handling
+CR-069	N	N6	open	2d: cr069-n-kiosk-twice.mjs
+CR-069	N	N7	open	doc / version: CHANGELOG · lockstep
+CR-069	O	O1	open	2a: The seventh outcome indeterminate wired in services.py
+CR-069	O	O2	open	2b: S142 and the payment's detail
+CR-069	O	O3	open	2c: US-INT-045 TC-1..7
+CR-069	O	O4	open	review: Review-ledger row for US-INT-045
+CR-069	O	O5	open	2d: cr069-o-we-do-not-know.mjs
+CR-069	O	O6	blocked	blocked: After OQ-INT-1476 is read
+CR-069	O	O7	open	doc / version: CHANGELOG · lockstep
+CR-069	P	P1	open	2c: The boundary only
+CR-069	P	P2	open	2d: cr069-p-consent-boundary.mjs
+CR-069	P	P3	blocked	blocked: When OQ-INT-1482 is ruled
+CR-069	Q	Q1	open	2a: runners/reconcile.py
+CR-069	Q	Q2	open	2b: S143's second tab *Waiting for a decision*
+CR-069	Q	Q3	open	2c: US-INT-043 TC-1..10
+CR-069	Q	Q4	open	review: Review-ledger row for US-INT-043
+CR-069	Q	Q5	open	2d: cr069-q-night-report.mjs
+CR-069	Q	Q6	blocked	blocked: After the three rulings
+CR-069	Q	Q7	open	doc / version: CHANGELOG · lockstep
+CR-069	R	R1	open	ground: Mint identity's companion story
+CR-069	R	R2	open	2a: The issued_secret field kind end to end
+CR-069	R	R3	open	2b: S144 (template I6 as 08-screen-layouts.md draws it
+CR-069	R	R4	open	2c: US-INT-040 TC-1..7
+CR-069	R	R5	open	review: Review-ledger row for US-INT-040
+CR-069	R	R6	open	2d: cr069-r-issued-key.mjs
+CR-069	R	R7	open	doc / version: CHANGELOG · lockstep
+CR-069	S	S1	open	2a: runners/serve.py
+CR-069	S	S2	open	2b: S142 *Who has been reading*
+CR-069	S	S3	open	2c: US-INT-041 TC-1..9
+CR-069	S	S4	open	2d: cr069-s-partner-morning.mjs
+CR-069	S	S5	blocked	blocked: After OQ-INT-1481
+CR-069	S	S6	open	doc / version: CHANGELOG · lockstep
+CR-068	A	A1	done	ground: 07-frontend/src/styles/route-b-migrated.txt gains `portal/` — a DIRECTORY entry both readers (G31, routeBUtilities.test.ts) expand (B14 rule 21, DEF-974)
+CR-068	A	A2	done	ground: 06-backend/apps/portal/ per CR-068 §11b — guest and back-office edges as separate files and includes; api.py/session.py/credentials.py/delegates.py arrive with the waves that fill them, never empty
+CR-068	A	A3	done	ground: DEF-CWP block, gates G81–G82 and migrations portal 0001–0002 reserved in 14-id-reservations.md; module code cwp/CWP in r2_status, module_report, screen_report
+CR-068	A	A4	done	gate: G81 four-write-points (reads write_points.py as data; RED with a fifth def and with a write in the guest edge) and G82 CWP screen register (RED with CWP-999), registered same commit — the plan's G75/G78 were taken
+CR-068	A	A5	done	2a: portal_settings + RLS migration (R8 defaults fail closed); GET/PUT settings/portal(+branding) and GET settings/portal/qr.svg in apps/portal; GET portal/public/front behind the 60/min per-address throttle PLUS a per-tenant throttle and an in-flight budget (NFR-39)
+CR-068	A	A6	done	2b: Settings → Configure → Customer portal (fifth segment) with Overview CWP-069 and Branding CWP-070 (live preview = the front page component); GuestFrame + CWP-001 at /{tenant}/portal with the holding page; every Start → and Sign in HELD (R3)
+CR-068	A	A7	done	2c: test_us_cwp_001/069/070 incl. isolation on PostgreSQL and the load cases; portal sample_data — pine-hill and oak-ridge provisioned through the real sign-up, no Brazos Bend figure moved
+CR-068	A	A8	done	2d: render-checks/cr068-a-switch-it-on.mjs — the demo clicked, sentences and computed style asserted, the front page's round trip measured and printed, screenshots; G81/G82 RED proofs quoted in their docstrings
+CR-068	A	A9	done	doc: CHANGELOG + version 2.133.0; decision-log rows (guest root under /portal, back-office endpoints in apps/portal, the fixture, the load ruling applied); review-ledger row for the two locked migrations; endpoints §1/§3, field map, story §5 columns, inventory tokens and the plan stamped
+CR-068	B	B1	done	2a: interruption table in apps/metering with the affected-area rule (street + number range → premises), status transitions, RLS migration
+CR-068	B	B2	done	2a: POST public/reports (gas_smell returns the phone and writes nothing) and POST public/track (progress, never data); lockout cache per tenant + form + address
+CR-068	B	B3	done	2a: the clerk's interruption status/affected-area write on the staff request API (new — no §12 task)
+CR-068	B	B4	done	2b: CWP-006 Report a problem (photo picker held), CWP-007 Report sent, CWP-012 Track anything; refusal sentences in eleven catalogues
+CR-068	B	B5	done	2b: Interruption section on the staff ServiceRequestDetailPage; channel Customer portal on the list (new — no §12 task)
+CR-068	B	B6	done	2c: test_us_cwp_002/007/008/009/010 incl. the 61st request, the six-wrong-pairs lock and the affected-area cases; Elm St fixture
+CR-068	B	B7	done	2d: render-checks/cr068-b-report-and-track.mjs — Crew on site, no customer field in the track body, the lock sentence, gas-smell writes nothing
+CR-068	B	B8	done	doc: J31 journey file; CHANGELOG + version; review-ledger rows for the RLS migration; decision-log row for B3/B5 placement
+CR-068	B	B9	open	doc: consumer-upload re-sign put to the PO in plain English (HUMAN-GUIDE §6, CR-068 §2b); every PhotoPicker held until ruled — ASKED 2026-09-04: the review-ledger row is written in plain English with its figure; the RULING is the PO's and the task stays open until it lands
+CR-068	C	C1	done	2a: GET public/premises/availability over premises, service points, the plan's one-time charges and PlanDepositRule — computes nothing; unknown address is never a refusal. ⚠ GET public/prices NOT built: no wave-C screen reads it (DEF-CWP-3704)
+CR-068	C	C2	done	2a: PUT/GET public/applications/{token} (draft saved from the first keystroke, no reference until submit), POST .../submit (the request through customers' own portal door + portal_consent with its wording version), POST public/requests quick asks
+CR-068	C	C3	done	2b: CWP-008 Can I get service here, CWP-047 About you, CWP-009 Check and send with the boxed consent, CWP-010 Ask for a quick service — and B14 rule 36 met (the kit's StatusPill, r10 button grammar, the r10 table type)
+CR-068	C	C4	done	2c: test_us_cwp_012/013/014/015 on SQLite and test_us_cwp_014_pg on PostgreSQL (the future-date constraint, which SQLite cannot hold); 31 Palm Ct and the occupied 1408 Elm St in sample_data
+CR-068	C	C5	done	2d: render-checks/cr068-c-start-service.mjs — eleven steps, the four availability rows and figures, the consent through the API, computed style including a COLOUR, and the response times measured through lib/timings.mjs
+CR-068	C	C6	done	doc: J32 journey file; CHANGELOG + 2.137.0; decision-log row with twelve judgments; review-ledger row for portal/0003–0004; DEF-CWP-3700–3704; OQ-CWP-1560; gate G84
+CR-068	D	D1	done	2a: help_answer, help_answer_variant (eleven locales), help_answer_feedback, tip, service_centre, service_centre_hour in apps/tenancy with RLS FORCE on all six; back-office endpoints
+CR-068	D	D2	done	2a: guest reads — help (status=published in the query, English fallback that SAYS so), service centres (hidden absent; 404 when none; holidays from HolidayCalendar), tips (at most one; empty is normal). ⚠ The one guest WRITE is served by apps/tenancy, because help_answer_feedback is a tenancy table and B2 §2 forbids a cross-module write (DEF-CWP-3727)
+CR-068	D	D3	done	2b: staff CWP-071–075 and guest CWP-011/060/013/014, composing the SHARED KIT after B14 rule 36 landed mid-wave; Switch and ChipMultiSelect ADDED to the kit; 191 catalogue lines in eleven languages, and a language's own name computed rather than translated
+CR-068	D	D4	done	2c: test_us_cwp_071/072/073/074 (42 cases) incl. the query-level exclusion, no hidden count, the English fallback, the two-reasons freeze tip, Thanksgiving from the calendar, hide-every-centre; test_us_cwp_071_pg.py (10, run on PostgreSQL 16) checks relrowsecurity AND relforcerowsecurity; 30 vitest cases
+CR-068	D	D5	done	2d: render-checks/cr068-d-help-tips-centres.mjs — 70 assertions green with the clock pinned to Wednesday 18 November 2026; G88 proved RED twice on the real code first
+CR-068	D	D6	done	doc: J33/J34/J46 walked-in-a-browser sections; CHANGELOG + 2.138.0; four defect rows; decision-log entry (four judgments); review-ledger row for the two locked migrations; id reservations
+CR-068	E	E1	done	2a 🔒: portal_credential + portal_session + portal_one_time_code with RLS FORCE in migration 0008 (tenant resolved from the path BEFORE the credential is read — session.py's first four lines are the rule); three lockouts at 3/5/6; codes on the existing outbound queue under a NEW source kind `portal` (filing them under `account` would have posted a login code by letter); SMS held until W8. ⊕ portal_one_time_code is a SEVENTH portal table the field map does not list, because a code exists BEFORE a credential does (DEF-CWP-3741)
+CR-068	E	E2	done	2a: the seven auth endpoints on a THIRD portal edge with its own cookie and authentication class + enrol/consequences (a TWELFTH route BR-CWP-039's panel needs) — find-account discloses nothing and the test compares two refusals as BYTES, a code goes only to a stored contact and the test asserts the OUTBOUND ROW's destination, both reset bodies are one shared object, a staff credential gets the ordinary failure and writes no session row
+CR-068	E	E3	done	2a: accounts/{id}/balance and balance/summary in seams/payments_seam.py, composing open_bill_position and billing_seam.outstanding_positions and computing nothing; never cached (no-store on the wire AND no query cache); totalled never merged. ⚠ outstandings() was named by the plan and is deliberately NOT composed — it joins four BR-CWP-052 held-back facts onto every row; decision logged
+CR-068	E	E4	done	gate: G91 portal/staff separation and G92 guest-leaks-nothing, registered in the same commit, each proved RED first on the REAL tree and through the dispatch run_gates uses (module.run(), never __main__ — DEF-GOV-3733). G91 also went red on the untouched tree: sample_data.py provisions AS staff, and the exemption is written down rather than the clause softened
+CR-068	E	E5	done	2b: CWP-015/016/017/018/019 and the PortalShell — the switcher is a LABEL for one account and a real <select> for more (never a disabled one), six tabs with aria-current, bell, avatar; Home's balance tile; 86 keys in each of the eleven catalogues in their own language. PortalShell IMPORTS brandStyle rather than writing a second accent helper (BR-CWP-099). Phone layouts deferred by the PO
+CR-068	E	E6	done	2c: ALL GREEN. test_us_cwp_016_getting_in.py — 14 passed (the four disclosure refusals, the identical-refusal pairs compared as bytes, the outbound row's destination, a staff credential writing no session row) · test_us_cwp_024_balance.py — 5 passed, $872.82 as four rows the read added up and $102.18 part-paid · test_us_cwp_021_pg.py — 4 passed on real PostgreSQL 16 under the non-superuser rls_probe_role, asserting relrowsecurity AND relforcerowsecurity · PortalShell.test.tsx — 8 passed. ⚠ **TC-6 WAS UNPROVABLE AS WRITTEN, NOT MERELY UNPROVED, AND THE DIFFERENCE COST THREE RERUNS** (`DEF-CWP-3761`): it compared two refusal bodies as raw BYTES, and every error envelope carries `trace_id = uuid.uuid4().hex` per request, so it could only ever have passed comparing a request with itself. Byte-equality was also a stronger claim than `BR-CWP-010` makes — the rule wants the two refusals INDISTINGUISHABLE, and a random id in BOTH bodies is noise by construction; what would be a tell is the field appearing in one and not the other. It now asserts the shape, that the two ids DIFFER, and that the bodies match with that field set aside.
+CR-068	E	E7	done	2d: render-checks/cr068-e-getting-in.mjs — the eight steps; the masked phone ON SCREEN and the real number ABSENT FROM THE DOM, the consequence panel's $142.18, computed border width and colour on the active tab, no <select> at all for one account, the two reset bodies compared as strings; G91/G92 RED proofs quoted verbatim in their docstrings
+CR-068	E	E8	done	doc: J35 gains a walked-in-a-browser section naming THREE places the journey and the build read differently rather than reconciling them quietly; CHANGELOG + 2.141.0; review-ledger row for the four 🔒 files in plain English with its figure; human_owned.txt +2 globs; field map and endpoints stamped; decision-log row and section with six judgments
+CR-068	F	F1	open	2a: accounts/add (code to the added account), details PATCH (contact only; legal name refused), preferences (print floor), paperless withdraw (never deleted), account-facts omitting the three held-back fields; OQ-1397 stub
+CR-068	F	F2	open	2b: CWP-022 Home, CWP-023 All my accounts, CWP-020 Add another account, CWP-024 My details, CWP-025 How we contact you (ALWAYS chip), CWP-065 Your account
+CR-068	F	F3	open	2c: test_us_cwp_025/026/027/028/031 incl. four ids and no fifth, one save updates four accounts, the three absent fields; deposit/exemption/returned-mail fixture
+CR-068	F	F4	open	2d: render-checks/cr068-f-home-accounts-details.mjs — $872.82, the absent tip container, the ALWAYS chip, the audit actor sentence, the OQ-1397 refusal
+CR-068	F	F5	open	doc: J37 and J45 journey files; CHANGELOG + version; OQ-1397 boundary; decision-log row on the audit actor label
+CR-068	G	G1	open	2a: bills, one bill grouped by service, the pinned document served never re-rendered, documents with channel, payments/receipts/adjustments/write-offs without reason, autopay intents read-only; held Pay reasons; no update/delete for a payment
+CR-068	G	G2	open	2b: CWP-027 Bills, CWP-028 One bill, CWP-029 As printed, CWP-031 Documents, CWP-041 Payments; CWP-038/039/040 rendered held with their reasons (R3)
+CR-068	G	G3	open	2c: test_us_cwp_032/033/034/036/048 incl. the displayed-figures sum, byte-identical PDF after a template redesign, the bounce as two rows, no reason code; forced click writes nothing
+CR-068	G	G4	open	2d: render-checks/cr068-g-bills-and-money-list.mjs — owing vs amount, Replaced by, unit on every quantity, disabled Pay controls with reasons, PDF hash
+CR-068	G	G5	open	doc: J36 journey file + spec; CHANGELOG + version; OQ-1340 wording constraint in the screen's docstring
+CR-068	H	H1	open	2a: usage (unmeasured services say so), readings with method and correction in words, equipment by serial, signed-in help/tips/feedback, the answer attached under a bill
+CR-068	H	H2	open	2b: CWP-033 Usage (axis in gallons), CWP-034 Every reading, CWP-037 Meters and equipment, CWP-062 tip slot, CWP-059/060/061 signed-in help and the answer under the bill
+CR-068	H	H3	open	2c: test_us_cwp_040/041/043 and the signed-in cases of 072/073 incl. unit column, rollover, the correction sentence; twelve months of reads fixture
+CR-068	H	H4	open	2d: render-checks/cr068-h-usage-readings.mjs — clock pinned to 2 Sep and 1 Oct; axis label, no chart in unmeasured panels, the correction sentence, the attached answer
+CR-068	H	H5	open	doc: CHANGELOG + version; US-CWP-072/073 marked complete across D and H; dataviz palette recorded once
+CR-068	I	I1	open	2a: request categories from configuration, create/submit/notes/list/detail (customer-visible notes on, internal filtered), NEW withdraw until approval; move-out request (OQ-1392 stub); stop/restart comparison over stored figures; dispute marker with per-amount hold; question naming the bill
+CR-068	I	I2	open	2b: CWP-046 What do you need, CWP-048 Moving out (danger tier), CWP-052 Stop or restart, CWP-051 Track your request, CWP-049 Documents (no file input), CWP-055 Dispute, CWP-054 Ask a question
+CR-068	I	I3	open	2c: test_us_cwp_060–066 incl. the first customer_portal row, both comparison branches, the internal note absent from the body, invoice.total unchanged; SR-26-0056 fixture
+CR-068	I	I4	open	2d: render-checks/cr068-i-requests-and-disputes.mjs — danger tier by computed style, the distinction sentence, no file input, the OQ-1392 refusal
+CR-068	I	I5	open	doc: J40 spine and J33 completed; CHANGELOG + version; OQ-1392 boundary; the withdraw transition recorded in the customers rule table
+CR-068	J	J1	open	2a: POST readings through the one metering validator; source=portal on the existing column; review_state awaiting_review excluded from bill runs; supersession via true-up; OQ-1393 stub; final bill via move_out_settlement; visits over WorkOrder with the OQ-249 stub
+CR-068	J	J2	open	2b: CWP-035 Send your own reading (flagged dial, photo held), CWP-032 Your final bill (we owe you), CWP-067 A visit is booked (absent when none)
+CR-068	J	J3	open	2c: test_us_cwp_042/037/068 incl. next bill run excludes the read, superseded never charged twice, −$89.80 as a refund; meter 88-40219 fixture
+CR-068	J	J4	open	2d: render-checks/cr068-j-self-read-and-final-bill.mjs — the nineteen-times sentence, the empty bill cell, $89.80, the vanished query route, two refusal sentences
+CR-068	J	J5	open	doc: J39 journey file and J40 bill half; CHANGELOG + version; review_state/BR-MET-053 reconciliation as a decision-log row
+CR-068	K	K0	open	doc: OQ-1399 put to the PO in plain English with the 15 Sep no-forwarding-address figure BEFORE Phase 3 starts; ruling recorded verbatim on return
+CR-068	K	K1	open	2a: portal as a fourth channel (CHANNELS_BY_KIND gains portal, dated); portal-owned per-recipient message row and read state; notices incl. skips and returned mail; statement range read (document raises OQ-1395); planned work read (write raises OQ-249, no table)
+CR-068	K	K2	open	2b: CWP-053 Messages and the bell count, CWP-068 Everything we sent you, the statement range picker with its held document, CWP-058 Outages and planned work; the portal preference switch made live
+CR-068	K	K3	open	2c: test_us_cwp_067/039/038/011 incl. post still goes, the skip sentence, its absence on documents, the three raises; five messages / three notices fixture
+CR-068	K	K4	open	2d: render-checks/cr068-k-messages-and-notices.mjs — bell 2→1→0, the skip sentence, the three refusal sentences, the absent CWP-058 link
+CR-068	K	K5	open	doc: J47 journey file; CHANGELOG + version; catalogue amendment dated; three boundaries; US-CWP-011 frontmatter wave amended with the reason
+CR-068	L	L1	open	2a: arrears over the account's own DisconnectCase (TIER_UNMAPPED rendered as an absence), protections over AccountProtection with three lifetimes, certificate route creates a request never a protection, credits never cached, refunds lifecycle; OQ-1391 stub
+CR-068	L	L2	open	2b: CWP-057 What happens if this is not paid, CWP-056 Help paying (moratorium with no button), CWP-064 What is protecting your supply, CWP-045 Credits and refunds
+CR-068	L	L3	open	2c: test_us_cwp_056/057/058/059 incl. $657.60, the five-day absence, no protection row from the form, the credit re-read; overdue and protections fixture
+CR-068	L	L4	open	2d: render-checks/cr068-l-overdue-and-protections.mjs — $657.60, no ten-day date on the five-day account, no button in the moratorium card, three lifetime sentences
+CR-068	L	L5	open	doc: J43 journey file; CHANGELOG + version; OQ-1391 boundary in the close record
+CR-068	M	M1	open	2a 🔒: plan preview over the existing instalment arithmetic, ask lands for a person (OQ-1391 stub), current plan with the clearing payment and per-plan elections, offer/accept/decline with NEW customer_signed_on and offer_expires_on, level pay over budget_api
+CR-068	M	M2	open	2b: CWP-042 Ask for a payment plan, CWP-043 Your payment plan, CWP-063 A plan offered (Accept · Different terms · Decline), CWP-044 Level pay, CWP-066 Where your level pay stands
+CR-068	M	M3	open	2c: test_us_cwp_051–055 incl. five of $22.03 and one of $22.05, fees still apply, activation on the signature alone, expiry 16 Sep, rounding by setting; plan fixture
+CR-068	M	M4	open	2d: render-checks/cr068-m-plans-and-level-pay.mjs — the six instalment strings, the five-payments copy, agreement_sent→active via the API, $125.00, the OQ-1391 refusal
+CR-068	M	M5	open	doc: J41 and J42 journey files; CHANGELOG + version; review-ledger row for plans.py/PaymentPlan in plain English with the worked plan; OQ-1391 boundary
+CR-068	N	N1	open	2a 🔒: portal_delegate with RLS (permissions never close/change-owner/move-out; expiry column built, policy raises OQ-1396); invite/accept/revoke endpoints outside the account set; audit_log portal actor columns written on every delegate action
+CR-068	N	N2	open	2b: CWP-026 People with access (icons for row actions), CWP-021 Accept an invitation stated in both directions
+CR-068	N	N3	open	2c: test_us_cwp_029/030 incl. the audit actor, the permission set, expiry on the next request, token entropy and single use; Kestrel fixture
+CR-068	N	N4	open	2d: render-checks/cr068-n-people-with-access.mjs — the could-not-do list, the audit actor label via the API, the ended row still present, the OQ-1396 refusal
+CR-068	N	N5	open	doc: J44 journey file; CHANGELOG + version; review-ledger row for the delegate RLS and audit actor columns with the Kestrel figure; OQ-1396 boundary
+CR-068	O	O1	open	2a 🔒: bills/{no}/explain — four components over stored reads, days, rate version and ended discount, summing exactly to the difference, refusing if they do not; the high-usage alert read from a seeded row with nothing firing it
+CR-068	O	O2	open	2b: CWP-030 Why is this bill different (signed money), CWP-036 Your usage looks high (honest billing-time copy)
+CR-068	O	O3	open	2c: test_us_cwp_035/044 incl. the exact sum, a perturbation fails, no comparison on a first bill, nothing fires the alert; $138.44 → $142.18 fixture
+CR-068	O	O4	open	2d: render-checks/cr068-o-why-different.mjs — the four line strings and $3.74, the cost-less variant, the absent first-bill comparison, the billing-time sentence
+CR-068	O	O5	open	doc: J38 journey file; CHANGELOG + version; review-ledger row putting the decomposition rule to finance with the figure; US-CWP-044 scope decision recorded
+CR-068	P	P1	open	ground: resolve the payment_methods table-name collision in the decision log before any migration
+CR-068	P	P2	open	2a 🔒: verify webhooks.py (577 lines, 15 tests) first; payment_method stored instrument in apps/payments with RLS; methods endpoints with step-up; replay proved concurrently and on PostgreSQL with a savepoint; OQ-1394 stub
+CR-068	P	P3	open	2b: CWP-039 Your payment methods live with the step-up code screen; refused controls carry their reasons; autopay still held until Q
+CR-068	P	P4	open	2c: test_us_cwp_006/046/022 incl. the replay, the concurrent case, the PostgreSQL batch case, no column over four digits, the session code refused; sandbox card fixture
+CR-068	P	P5	open	2d: render-checks/cr068-p-rails-and-webhook.mjs — masked method string, refused-without-code sentence, one row after replay, the cash-only reason, no fee line; RED proof without the unique constraint
+CR-068	P	P6	open	doc: CHANGELOG + version; review-ledger rows for payment_method RLS and the webhook/gateway changes with the $142.18-twice figure; collision decision; OQ-1394 boundary
+CR-068	Q	Q1	open	2a 🔒: POST accounts/{id}/payments — write point one with allocation preview, key minted before the call, no row on an unknown outcome, receipt and audit with the portal actor; autopay enrolment/execution over the intents; refunds to the original method with the fallback stated; connection fee paid in full, deposit left for the first bill
+CR-068	Q	Q2	open	2b: CWP-038 Pay now live, CWP-040 Autopay live, CWP-045 refund timeline, CWP-050 Fees to pay (waived row struck through); every Pay control flips from held to live in one place
+CR-068	Q	Q3	open	2c: test_us_cwp_045/047/049/050 incl. oldest first, timeout writes nothing, same key on retry, the intent keeps the told amount, the fallback stated, $335.00 now and $150.00 later
+CR-068	Q	Q4	open	2d: render-checks/cr068-q-pay-now-autopay-refunds.mjs — where it will go before the click, Cleared after, zero rows after a timeout, to the card ending 8812, $335.00
+CR-068	Q	Q5	open	doc: J40 activation; CHANGELOG + version; review-ledger rows for the write point and the allocation seam with the $40.00 → $102.18 figure
+CR-068	R	R1	open	2a 🔒: POST public/bills/lookup (server-side masked name, byte-identical refusals, paid/corrected/void states) and POST public/bills/{ref}/pay — the guest write point with no account and no credential; receipt by reference; OQ-1394 stub; G77 allow-list extended
+CR-068	R	R2	open	2b: CWP-002 Find the bill live, CWP-003 Check and pay with the masked Billed to, CWP-004 Paid with the receipt and the enrolment offer routing to CWP-017
+CR-068	R	R3	open	2c: test_us_cwp_003/004/005 incl. byte-identical refusals, no other customer field in the body, fixed-width mask, no account and no credential created, no code skipped; 002's lock re-run on quick pay
+CR-068	R	R4	open	2d: render-checks/cr068-r-quick-pay.mjs — M. A•••••• and the body's field set, $142.18, PAY-26-08841, the receipt without an email, no Pay on a paid bill, the lock sentence, no fee line
+CR-068	R	R5	open	doc: J30 journey file + spec; CR-059 rows 68/70/71/72/73 stamped SUPERSEDED BY CR-068; CHANGELOG + version; review-ledger row for the guest write point; OQ-1394 boundary; CR-068 closes with Q
+CR-070	A	A1	done	ground / doc: B2 and the module map FIRST, in the commit that carries the first migration
+CR-070	A	A2	done	ground: 07-frontend/src/styles/route-b-migrated
+CR-070	A	A3	done	2a: 06-backend/apps/work/
+CR-070	A	A4	done	2a: metering/0044
+CR-070	A	A5	done	2b: features/work/WorkShell
+CR-070	A	A6	done	2c: Tests named for their TCs: US-WRK-001 TC-1
+CR-070	A	A7	done	gate: The boundary gate
+CR-070	A	A8	done	2d: 10-scripts/render-checks/cr070-a-work-shell-and-anchor
+CR-070	A	A9	done	doc / version: CHANGELOG entry
+CR-070	B	B1	done	2a: Fourteen routes, no rewrite
+CR-070	B	B2	done	2a: apps/work/selectors
+CR-070	B	B3	verify	2b: Work-002
+CR-070	B	B4	done	2c: US-WRK-002 TC-1
+CR-070	B	B5	done	2d: cr070-b-fourteen-doors-and-the-queue
+CR-070	B	B6	done	doc / version: CHANGELOG
+CR-070	C	C1	done	2a: apps/work/models
+CR-070	C	C2	done	2b: features/tenancy/referenceDataConfig
+CR-070	C	C3	done	2c: US-WRK-007 TC-1
+CR-070	C	C4	done	review: Review-ledger row for work/0002_rls_force 🔒 in plain English with a figure: six new lists
+CR-070	C	C5	done	2d: cr070-c-settings-tell-the-truth
+CR-070	C	C6	done	doc / version: CHANGELOG · lockstep · TSV · decision-log row
+CR-070	C	C7	blocked	blocked: After OQ-WRK-1490 is ruled: the stock columns, the reorder box and deduct-on-issue on Work-025
+CR-070	D	D1	done	2a: Header columns and the relaxed key
+CR-070	D	D2	done	2a: apps/work/templates_svc
+CR-070	D	D3	done	2b: features/work/TemplatesPage
+CR-070	D	D4	done	2c: US-WRK-013 TC-1
+CR-070	D	D5	done	review: Review-ledger row for the RLS migration 🔒: eight new tables hold a template's contents
+CR-070	D	D6	open	2d: cr070-d-the-bundle-and-the-write.mjs — NOT WRITTEN; the wave is not signed off until it runs green on the built product
+CR-070	D	D7	done	doc / version: CHANGELOG · lockstep · TSV · decision-log rows: the §16 reading and the 03-field-map
+CR-070	E	E1	open	2b: features/work/TemplateBuilder
+CR-070	E	E2	open	2a: GET /connections/proposed-work-orders?services=
+CR-070	E	E3	open	2b: features/customers/NewConnectWizard
+CR-070	E	E4	open	2a: The 24 starters become bundles
+CR-070	E	E5	open	gate: Every seeded starter row has a reader
+CR-070	E	E6	open	2c: US-WRK-016 TC-1
+CR-070	E	E7	open	2d: cr070-e-eight-steps-and-step-six
+CR-070	E	E8	open	doc / version: CHANGELOG
+CR-070	F	F1	open	2a: Four tables
+CR-070	F	F2	open	2a: Identity's companion, written in identity's app because identity owns the write
+CR-070	F	F3	open	2b: features/work/CrewsPage
+CR-070	F	F4	open	2c: US-WRK-020 TC-1
+CR-070	F	F5	open	review: Review-ledger row for the RLS migration 🔒: four new tables say who works for a utility and what they may do
+CR-070	F	F6	open	2d: cr070-f-who-can-do-what
+CR-070	F	F7	open	doc / version: CHANGELOG · lockstep · TSV · decision-log row
+CR-070	F	F8	blocked	blocked: After OQ-WRK-1492: assign work_accept to the ruled roles and turn the log line into a refusal
+CR-070	G	G1	open	2a: The twelve dispatch columns on the orders table
+CR-070	G	G2	open	2a: apps/work/dispatch
+CR-070	G	G3	open	2b: Work-007 becomes template W2
+CR-070	G	G4	open	2c: US-WRK-024 TC-1
+CR-070	G	G5	open	review: Review-ledger row for the RLS migration 🔒: the assignment history is written, never rewritten
+CR-070	G	G6	open	2d: cr070-g-the-dispatcher
+CR-070	G	G7	open	doc / version: CHANGELOG · lockstep · TSV · decision-log row
+CR-070	H	H1	open	2a: Six copy tables
+CR-070	H	H2	open	2b: features/work/OrderDetailPage
+CR-070	H	H3	open	2c: US-WRK-028 TC-1
+CR-070	H	H4	open	review: Review-ledger row for the RLS migration 🔒: six new tables are the order's own copy of its template
+CR-070	H	H5	open	2d: cr070-h-the-order-in-hand
+CR-070	H	H6	open	doc / version: CHANGELOG · lockstep · TSV · decision-log row
+CR-070	I	I1	open	2a: PATCH /work-orders/{id}
+CR-070	I	I2	open	2b: features/work/OrderEditPage
+CR-070	I	I3	open	2c: US-WRK-031 TC-1
+CR-070	I	I4	open	2d: cr070-i-changing-course
+CR-070	I	I5	open	doc / version: CHANGELOG · lockstep · TSV · decision-log row
+CR-070	I	I6	blocked	blocked: After OQ-WRK-1495: the send
+CR-070	J	J1	open	2a: technician_devices
+CR-070	J	J2	open	2b: The phone shell
+CR-070	J	J3	open	2b: Work-010 Today
+CR-070	J	J4	open	2c: US-WRK-040 TC-1
+CR-070	J	J5	open	gate: Two gates RED first, registered the same commit: the queue pair
+CR-070	J	J6	open	review: Review-ledger row for the RLS migration 🔒: a phone's push token belongs to one technician of one utility
+CR-070	J	J7	open	2d: cr070-j-the-phone-day-one
+CR-070	J	J8	open	doc / version: CHANGELOG · lockstep · TSV · decision-log row
+CR-070	K	K1	done	2a: Tenancy's migration, written in tenancy's app
+CR-070	K	K2	done	2b: Work-033
+CR-070	K	K3	done	2c: US-WRK-048 TC-1
+CR-070	K	K4	done	review: Review-ledger row for the RLS migration 🔒: a photograph, a signature and a report each belong to one order of 
+CR-070	K	K5	open	2d: cr070-k-what-came-back
+CR-070	K	K6	done	doc / version: CHANGELOG · lockstep · TSV · decision-log row
+CR-070	K	K7	blocked	blocked: NOT on a ruling any more — OQ-WRK-1496 CLOSED 2026-09-04 (twelve months, export before deletion, 100 KB at capture). Blocked on the EXPORT, which is a story nobody has written; nothing may be deleted before it exists and the utility has been told. retention_policy() returns the regime; prune_due() refuses; no pruning job is scheduled
+CR-070	L	L1	open	2a: POST /work/mobile/jobs/{id}/sync
+CR-070	L	L2	open	2a 🔒: apps/work/seams/metering_seam
+CR-070	L	L3	open	2a: The letter, to its boundary
+CR-070	L	L4	open	2b: Work-012's close
+CR-070	L	L5	open	2c: US-WRK-044 TC-1
+CR-070	L	L6	open	review: Review-ledger row for metering_seam
+CR-070	L	L7	open	2d: cr070-l-the-offline-day-and-the-read
+CR-070	L	L8	open	doc / version: CHANGELOG · lockstep · TSV · decision-log row · phase 2 LAUNCH declared
+CR-070	L	L9	blocked	blocked: After OQ-376: the connection source kind and its template in notifications
+CR-070	M	M1	open	2a: work_order_rules
+CR-070	M	M2	open	2a: The Assets door
+CR-070	M	M3	moved	MOVED TO WAVE P (CR-070 section W.10, 2026-09-04): the Customers door became P3 + P4, on step 2 rather than step 4 (DEF-WRK-3725), widened from move-out to five flows. The id is kept and not reused
+CR-070	M	M4	open	2b: features/work/RulesPage
+CR-070	M	M5	open	2c: US-WRK-037 TC-1
+CR-070	M	M6	open	review: Review-ledger row for the RLS migration 🔒: a rule belongs to one utility and reads only that utility's payment
+CR-070	M	M7	open	2d: cr070-m-rules-and-doors
+CR-070	M	M8	open	doc / version: CHANGELOG · lockstep · TSV · decision-log row
+CR-070	N	N1	open	2a: labour_rates
+CR-070	N	N2	open	2a 🔒: apps/work/costing
+CR-070	N	N3	open	2b: features/work/LabourRatesPage
+CR-070	N	N4	open	2c: US-WRK-050 TC-1
+CR-070	N	N5	open	review: Review-ledger row for costing
+CR-070	N	N6	open	gate: Two permanent checks, RED first: the performance tab and the report carry no route, link or word into Finance
+CR-070	N	N7	open	2d: cr070-n-what-it-cost
+CR-070	N	N8	open	doc / version: CHANGELOG · lockstep · TSV · decision-log row
+CR-070	N	N9	blocked	blocked: After OQ-WRK-1491: the posting
+CR-070	O	O1	done	2a: two scoped readers - GET /premises/{id}/work-orders and GET /accounts/{id}/work-orders, plus the build reader; BR-WRK-026's six filters untouched
+CR-070	O	O2	done	2b: features/metering/PremisesDetailPage gains Build and Work orders tabs, with B1's EIGHT acts (see the defect register)
+CR-070	O	O3	done	2b: features/customers/AccountDetailPage gains a twelfth tab, work
+CR-070	O	O4	done	2b: /connections/:connectionId redirects; ConnectionDetailPage deleted; every link repointed; NCT-02 badge retired
+CR-070	O	O5	done	2b: the queue and dispatcher CONNECTION cell links to the build's home
+CR-070	O	O6	done	2c: US-WRK-002 TC-1..7 re-pointed; the redirect case; the grep case that no link goes to /connections/<id>
+CR-070	O	O7	done	2d: cr070-o-one-destination.mjs - wave B's EIGHT acts re-run through the new door
+CR-070	O	O8	done	doc / version: CHANGELOG, screen layouts stamped, review-ledger row; phase 0 NOT re-declared
+CR-070	P	P1	open	2a: the flow stamp - source gains four values, source_ref added; no new anchor, the CHECK does not move; G1 amended
+CR-070	P	P2	open	2a: apps/work/from_flows.py - one raise service, five callers, over the API not the ORM
+CR-070	P	P3	open	2a: the four flow doors in customers' own app; VISIT_NOT_SCHEDULED kept and dated
+CR-070	P	P4	open	2b: one shared RaiseFieldWork panel on five screens; MoveOutWizard STEP 2, not step 4
+CR-070	P	P5	open	2c: US-WRK-039 TC-1..12; J64 activated plus two new journeys; the DEF-WRK-3725 regression case
+CR-070	P	P6	open	gate: no flow raises a job silently and no flow can be blocked by one; number at push
+CR-070	P	P7	open	2d: cr070-p-the-five-flows.mjs
+CR-070	P	P8	open	doc / version: CHANGELOG, 04-flows.md, BR-WRK-055 widened, review-ledger row

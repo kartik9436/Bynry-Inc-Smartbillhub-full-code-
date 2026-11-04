@@ -1,0 +1,1207 @@
+[
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/auth/session",
+  "status": 201,
+  "request": {
+   "email": "r.patel@sample.test",
+   "password": "S3cure!passw0rd",
+   "surface": "mobile"
+  },
+  "response": {
+   "user": {
+    "id": "01a109dd-43a7-72ab-a652-47a7cb1bc928",
+    "full_name": "R. Patel",
+    "email": "r.patel@sample.test",
+    "phone": null,
+    "role": "field_technician",
+    "role_name": "Field technician",
+    "must_change_password": false
+   }
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/capture-token",
+  "status": 200,
+  "request": {
+   "device_label": "Tablet 3"
+  },
+  "response": {
+   "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZMJ:wexUiBX3Lv1ooRbafPCgh7oD8OYiSrZeT5sttMQOTGI",
+   "technician": {
+    "name": "R. Patel"
+   },
+   "max_age_seconds": 604800,
+   "br_ref": "BR-WRK-059"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "GET",
+  "path": "/work/mobile/changes?page_size=50",
+  "status": 200,
+  "request": null,
+  "response": {
+   "changes": [
+    {
+     "change": "upsert",
+     "order_id": "01a109dd-aaa8-7c04-9312-e4b29225df8c",
+     "at": "2026-10-05T02:25:01.564061+00:00",
+     "job": {
+      "id": "01a109dd-aaa8-7c04-9312-e4b29225df8c",
+      "order_no": "WO-0038",
+      "type": "Tap and service line",
+      "premise": {
+       "id": "01a109dd-9523-7225-82ad-9a94cdb166c9",
+       "premise_no": "P-00064",
+       "address": "240 Sable Court"
+      },
+      "window_start": null,
+      "window_end": null,
+      "due_at": "2026-10-08T02:21:24.515606+00:00",
+      "est_minutes": null,
+      "priority": {
+       "id": "01a109dc-f63d-7590-a15d-0638f84feaae",
+       "code": "NORMAL",
+       "name": "Normal",
+       "colour": "info",
+       "rank": 3
+      },
+      "state": "planned",
+      "dispatch_state": "en_route",
+      "access_notes": null,
+      "hazards": null,
+      "gate_code": null
+     }
+    },
+    {
+     "change": "upsert",
+     "order_id": "01a109dd-a8a6-7e3b-8c66-2c4dced0b7bb",
+     "at": "2026-10-05T02:56:23.255390+00:00",
+     "job": {
+      "id": "01a109dd-a8a6-7e3b-8c66-2c4dced0b7bb",
+      "order_no": "WO-0028",
+      "type": "Tap and service line",
+      "premise": {
+       "id": "01a109dd-95d6-7642-bcfa-f7112273ce69",
+       "premise_no": "P-00066",
+       "address": "12 Harbour View"
+      },
+      "window_start": null,
+      "window_end": null,
+      "due_at": "2026-10-08T02:21:24.001370+00:00",
+      "est_minutes": null,
+      "priority": {
+       "id": "01a109dc-f63d-7590-a15d-0638f84feaae",
+       "code": "NORMAL",
+       "name": "Normal",
+       "colour": "info",
+       "rank": 3
+      },
+      "state": "planned",
+      "dispatch_state": "en_route",
+      "access_notes": null,
+      "hazards": null,
+      "gate_code": null
+     }
+    },
+    {
+     "change": "upsert",
+     "order_id": "01a10a19-937b-7dbe-8807-b23c40f929b8",
+     "at": "2026-10-05T03:27:19.599954+00:00",
+     "job": {
+      "id": "01a10a19-937b-7dbe-8807-b23c40f929b8",
+      "order_no": "WO-0058",
+      "type": "Meter exchange \u2014 residential",
+      "premise": {
+       "id": "01a109dd-6199-7647-abaf-aff83a3e1da6",
+       "premise_no": "P-00007",
+       "address": "101 Silver Creek Rd"
+      },
+      "window_start": null,
+      "window_end": null,
+      "due_at": "2026-10-05T11:26:50.748032+00:00",
+      "est_minutes": 38,
+      "priority": {
+       "id": "01a109dc-f63b-7846-96ad-b393d52b4afc",
+       "code": "HIGH",
+       "name": "High",
+       "colour": "warning",
+       "rank": 2
+      },
+      "state": "planned",
+      "dispatch_state": "scheduled",
+      "access_notes": null,
+      "hazards": null,
+      "gate_code": null
+     }
+    }
+   ],
+   "count": 3,
+   "next_cursor": "MjAyNi0xMC0wNVQwMzoyNzoxOS41OTk5NTQrMDA6MDB8MDFhMTBhMTktOTM3Yi03ZGJlLTg4MDctYjIzYzQwZjkyOWI4",
+   "has_more": false,
+   "br_ref": "BR-WRK-063"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "GET",
+  "path": "/work/mobile/jobs/01a10a19-937b-7dbe-8807-b23c40f929b8",
+  "status": 200,
+  "request": null,
+  "response": {
+   "order_id": "01a10a19-937b-7dbe-8807-b23c40f929b8",
+   "order_no": "WO-0058",
+   "template_id": "01a109dd-8ea9-79f3-a221-156b4975b680",
+   "template_version": 2,
+   "safety": [
+    {
+     "id": "01a10a19-9382-7471-bca0-4bc6f9616b78",
+     "seq": 1,
+     "text": "Shut the curb stop before breaking the union",
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null
+    },
+    {
+     "id": "01a10a19-9382-70f2-8a54-be0ebbb78390",
+     "seq": 2,
+     "text": "Check the pit for standing water before reaching in",
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null
+    }
+   ],
+   "safety_lock": {
+    "locked": true,
+    "remaining": 2,
+    "first_outstanding": "Shut the curb stop before breaking the union",
+    "ticked": 0,
+    "total": 2,
+    "mandatory_total": 2
+   },
+   "tasks": [
+    {
+     "id": "01a10a19-9386-77a6-b81f-795679ac230a",
+     "seq": 1,
+     "title": "Read and photograph the OLD meter before it comes out",
+     "instruction": null,
+     "est_minutes": 5,
+     "photo_required": true,
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null,
+     "photo_attachment_id": null
+    },
+    {
+     "id": "01a10a19-9386-7843-8257-724c74d976ee",
+     "seq": 2,
+     "title": "Shut the curb stop and break the unions",
+     "instruction": null,
+     "est_minutes": 5,
+     "photo_required": false,
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null,
+     "photo_attachment_id": null
+    },
+    {
+     "id": "01a10a19-9386-79bb-96da-63943911cea4",
+     "seq": 3,
+     "title": "Fit the new meter with new gaskets",
+     "instruction": null,
+     "est_minutes": 15,
+     "photo_required": false,
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null,
+     "photo_attachment_id": null
+    },
+    {
+     "id": "01a10a19-9386-766b-99f1-19a676b0e843",
+     "seq": 4,
+     "title": "Charge the line and check for weeps",
+     "instruction": null,
+     "est_minutes": 5,
+     "photo_required": false,
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null,
+     "photo_attachment_id": null
+    },
+    {
+     "id": "01a10a19-9386-757c-9bb8-9fcc0f8b6b04",
+     "seq": 5,
+     "title": "Seal and photograph the NEW meter and its register",
+     "instruction": null,
+     "est_minutes": 5,
+     "photo_required": true,
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null,
+     "photo_attachment_id": null
+    },
+    {
+     "id": "01a10a19-9386-76eb-a2f4-23ba7ca586d5",
+     "seq": 6,
+     "title": "Leave the exchange card with the customer",
+     "instruction": null,
+     "est_minutes": 3,
+     "photo_required": false,
+     "is_mandatory": false,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null,
+     "photo_attachment_id": null
+    }
+   ],
+   "tasks_total": 6,
+   "tasks_ticked": 0,
+   "tasks_est_minutes": 38,
+   "readings": [
+    {
+     "id": "01a10a19-938e-7ae8-8999-d819539f11c9",
+     "seq": 1,
+     "prompt": "Closing read on the OLD meter",
+     "unit_of_measure": "gal",
+     "min_value": "0.0000",
+     "max_value": "99999999.0000",
+     "required": true,
+     "photo_required": false,
+     "posts_as_meter_read": true,
+     "value": null,
+     "kind": "number",
+     "value_text": null,
+     "captured_at": null,
+     "photo_attachment_id": null,
+     "in_range": null
+    },
+    {
+     "id": "01a10a19-938e-7c76-917b-893983233a73",
+     "seq": 2,
+     "prompt": "New meter number",
+     "unit_of_measure": "text",
+     "min_value": null,
+     "max_value": null,
+     "required": true,
+     "photo_required": false,
+     "posts_as_meter_read": true,
+     "value": null,
+     "kind": "number",
+     "value_text": null,
+     "captured_at": null,
+     "photo_attachment_id": null,
+     "in_range": null
+    },
+    {
+     "id": "01a10a19-938e-72e4-95a7-ec65263e8b0b",
+     "seq": 3,
+     "prompt": "Opening read on the NEW meter",
+     "unit_of_measure": "gal",
+     "min_value": "0.0000",
+     "max_value": "99999999.0000",
+     "required": true,
+     "photo_required": false,
+     "posts_as_meter_read": true,
+     "value": null,
+     "kind": "number",
+     "value_text": null,
+     "captured_at": null,
+     "photo_attachment_id": null,
+     "in_range": null
+    }
+   ],
+   "materials": [
+    {
+     "id": "01a10a19-938a-7d50-a4a2-29431b2cbdd6",
+     "part_id": "01a109e0-ec1c-76ee-b23f-702b7b805bc4",
+     "part_no": "GSK-58",
+     "part_name": "Meter gasket 5/8\"",
+     "planned_qty": "2.0000",
+     "used_qty": null,
+     "unit_of_measure": "each",
+     "unplanned": false
+    },
+    {
+     "id": "01a10a19-938a-76df-a996-e34fa25b3055",
+     "part_id": "01a109e0-ec07-7134-80dc-ca8fd98b75c1",
+     "part_no": "MTR-W58",
+     "part_name": "Water meter 5/8\" positive displacement",
+     "planned_qty": "1.0000",
+     "used_qty": null,
+     "unit_of_measure": "each",
+     "unplanned": false
+    },
+    {
+     "id": "01a10a19-938a-71c3-9fa7-1299f6443a81",
+     "part_id": "01a109e0-ec24-70c1-afae-28cc2b41f591",
+     "part_no": "SEAL-WIRE",
+     "part_name": "Meter seal, wire and tag",
+     "planned_qty": "1.0000",
+     "used_qty": null,
+     "unit_of_measure": "each",
+     "unplanned": false
+    }
+   ],
+   "help": [
+    {
+     "id": "01a10a19-9392-7dd8-b223-13d6041ad080",
+     "seq": 1,
+     "kind": "document",
+     "label": "Meter exchange procedure",
+     "ref": "STD-WA-012",
+     "url": null
+    },
+    {
+     "id": "01a10a19-9392-7508-8750-4c7cf76dacf8",
+     "seq": 2,
+     "kind": "note",
+     "label": "Leave the old meter in the van; the shop logs it in",
+     "ref": null,
+     "url": null
+    }
+   ],
+   "details": {
+    "access_notes": null,
+    "hazards": null,
+    "gate_code": null,
+    "show_account_summary": true,
+    "show_asset_card": true,
+    "show_access_notes": true,
+    "show_appointment": true
+   },
+   "customer": {
+    "name": "Ana Alvarez",
+    "phone": "+1 (402) 555-1000",
+    "account_no": "AC-2026-00001"
+   },
+   "card": {
+    "id": "01a10a19-937b-7dbe-8807-b23c40f929b8",
+    "order_no": "WO-0058",
+    "type": "Meter exchange \u2014 residential",
+    "premise": {
+     "id": "01a109dd-6199-7647-abaf-aff83a3e1da6",
+     "premise_no": "P-00007",
+     "address": "101 Silver Creek Rd"
+    },
+    "window_start": null,
+    "window_end": null,
+    "due_at": "2026-10-05T11:26:50.748032+00:00",
+    "est_minutes": 38,
+    "priority": {
+     "id": "01a109dc-f63b-7846-96ad-b393d52b4afc",
+     "code": "HIGH",
+     "name": "High",
+     "colour": "warning",
+     "rank": 2
+    },
+    "state": "planned",
+    "dispatch_state": "scheduled",
+    "access_notes": null,
+    "hazards": null,
+    "gate_code": null
+   },
+   "technician_acceptance": {
+    "state": "pending",
+    "at": null,
+    "reason": null
+   }
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "GET",
+  "path": "/work/mobile/jobs/01a10a19-937b-7dbe-8807-b23c40f929b8/readings?page=1&page_size=50",
+  "status": 200,
+  "request": null,
+  "response": {
+   "count": 3,
+   "page": 1,
+   "pages": 1,
+   "next": null,
+   "previous": null,
+   "results": [
+    {
+     "id": "01a10a19-938e-7ae8-8999-d819539f11c9",
+     "seq": 1,
+     "prompt": "Closing read on the OLD meter",
+     "unit_of_measure": "gal",
+     "required": true,
+     "photo_required": false,
+     "posts_as_meter_read": true,
+     "kind": "number",
+     "value": null,
+     "value_text": null,
+     "photo_attachment_id": null
+    },
+    {
+     "id": "01a10a19-938e-7c76-917b-893983233a73",
+     "seq": 2,
+     "prompt": "New meter number",
+     "unit_of_measure": "text",
+     "required": true,
+     "photo_required": false,
+     "posts_as_meter_read": true,
+     "kind": "number",
+     "value": null,
+     "value_text": null,
+     "photo_attachment_id": null
+    },
+    {
+     "id": "01a10a19-938e-72e4-95a7-ec65263e8b0b",
+     "seq": 3,
+     "prompt": "Opening read on the NEW meter",
+     "unit_of_measure": "gal",
+     "required": true,
+     "photo_required": false,
+     "posts_as_meter_read": true,
+     "kind": "number",
+     "value": null,
+     "value_text": null,
+     "photo_attachment_id": null
+    }
+   ]
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a10a19-937b-7dbe-8807-b23c40f929b8/accept",
+  "status": 200,
+  "request": {},
+  "response": {
+   "order_id": "01a10a19-937b-7dbe-8807-b23c40f929b8",
+   "order_no": "WO-0058",
+   "technician_acceptance": {
+    "state": "accepted",
+    "at": "2026-10-05T03:27:23.897167+00:00",
+    "reason": null
+   }
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a10a19-937b-7dbe-8807-b23c40f929b8/acts",
+  "status": 200,
+  "request": {
+   "act": "depart"
+  },
+  "response": {
+   "assignment_id": "01a10a1a-1559-778c-95fb-4da7b0619bd5",
+   "order_no": "WO-0058",
+   "act": "depart",
+   "dispatch_state": "en_route",
+   "technician": {
+    "kind": "person",
+    "name": "R. Patel",
+    "slug": "r-patel"
+   },
+   "reason": null,
+   "against_advice": null,
+   "push_job_id": null,
+   "customer_notice": "visit_message_no_channel_elected"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a10a19-937b-7dbe-8807-b23c40f929b8/acts",
+  "status": 200,
+  "request": {
+   "act": "arrive"
+  },
+  "response": {
+   "assignment_id": "01a10a1a-15dd-7260-a53f-721d38a91b28",
+   "order_no": "WO-0058",
+   "act": "arrive",
+   "dispatch_state": "on_site",
+   "technician": {
+    "kind": "person",
+    "name": "R. Patel",
+    "slug": "r-patel"
+   },
+   "reason": null,
+   "against_advice": null,
+   "push_job_id": null,
+   "customer_notice": null
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work-orders/01a10a19-937b-7dbe-8807-b23c40f929b8/signature",
+  "status": 200,
+  "request": {
+   "printed_name": "S. Miller",
+   "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZMJ:wexUiBX3Lv1ooRbafPCgh7oD8OYiSrZeT5sttMQOTGI",
+   "signed_at": "2026-10-05T03:27:25.034752+00:00"
+  },
+  "response": {
+   "id": "01a10a1a-19a2-7ec8-a4f3-f58c81dc9b02",
+   "refused": false,
+   "printed_name": "S. Miller",
+   "decline_reason": null,
+   "door_hanger_attachment_id": null,
+   "signed_at": "2026-10-05T03:27:25.034752Z",
+   "captured_by": {
+    "name": "R. Patel"
+   },
+   "image_url": "/api/brazosbend/work-orders/01a10a19-937b-7dbe-8807-b23c40f929b8/signature/image"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a10a19-937b-7dbe-8807-b23c40f929b8/sync",
+  "status": 200,
+  "request": {
+   "items": [
+    {
+     "key": "WO-0058-1791170844-0001",
+     "kind": "safety_tick",
+     "seq": 1,
+     "captured_at": "2026-10-05T03:27:24.181633+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZMJ:wexUiBX3Lv1ooRbafPCgh7oD8OYiSrZeT5sttMQOTGI",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T03:27:24.181671+00:00"
+     },
+     "payload": {
+      "safety_id": "01a10a19-9382-7471-bca0-4bc6f9616b78"
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0002",
+     "kind": "safety_tick",
+     "seq": 2,
+     "captured_at": "2026-10-05T03:27:24.181679+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZMJ:wexUiBX3Lv1ooRbafPCgh7oD8OYiSrZeT5sttMQOTGI",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T03:27:24.181682+00:00"
+     },
+     "payload": {
+      "safety_id": "01a10a19-9382-70f2-8a54-be0ebbb78390"
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0003",
+     "kind": "task_tick",
+     "seq": 3,
+     "captured_at": "2026-10-05T03:27:24.181688+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZMJ:wexUiBX3Lv1ooRbafPCgh7oD8OYiSrZeT5sttMQOTGI",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T03:27:24.181691+00:00"
+     },
+     "payload": {
+      "task_id": "01a10a19-9386-77a6-b81f-795679ac230a"
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0004",
+     "kind": "task_tick",
+     "seq": 4,
+     "captured_at": "2026-10-05T03:27:24.181695+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZMJ:wexUiBX3Lv1ooRbafPCgh7oD8OYiSrZeT5sttMQOTGI",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T03:27:24.181697+00:00"
+     },
+     "payload": {
+      "task_id": "01a10a19-9386-7843-8257-724c74d976ee"
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0005",
+     "kind": "task_tick",
+     "seq": 5,
+     "captured_at": "2026-10-05T03:27:24.181700+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZMJ:wexUiBX3Lv1ooRbafPCgh7oD8OYiSrZeT5sttMQOTGI",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T03:27:24.181703+00:00"
+     },
+     "payload": {
+      "task_id": "01a10a19-9386-79bb-96da-63943911cea4"
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0006",
+     "kind": "task_tick",
+     "seq": 6,
+     "captured_at": "2026-10-05T03:27:24.181706+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZMJ:wexUiBX3Lv1ooRbafPCgh7oD8OYiSrZeT5sttMQOTGI",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T03:27:24.181708+00:00"
+     },
+     "payload": {
+      "task_id": "01a10a19-9386-766b-99f1-19a676b0e843"
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0007",
+     "kind": "task_tick",
+     "seq": 7,
+     "captured_at": "2026-10-05T03:27:24.181711+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZMJ:wexUiBX3Lv1ooRbafPCgh7oD8OYiSrZeT5sttMQOTGI",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T03:27:24.181714+00:00"
+     },
+     "payload": {
+      "task_id": "01a10a19-9386-757c-9bb8-9fcc0f8b6b04"
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0008",
+     "kind": "task_tick",
+     "seq": 8,
+     "captured_at": "2026-10-05T03:27:24.181717+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZMJ:wexUiBX3Lv1ooRbafPCgh7oD8OYiSrZeT5sttMQOTGI",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T03:27:24.181719+00:00"
+     },
+     "payload": {
+      "task_id": "01a10a19-9386-76eb-a2f4-23ba7ca586d5"
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0009",
+     "kind": "reading",
+     "seq": 9,
+     "captured_at": "2026-10-05T03:27:24.181724+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZMJ:wexUiBX3Lv1ooRbafPCgh7oD8OYiSrZeT5sttMQOTGI",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T03:27:24.181726+00:00"
+     },
+     "payload": {
+      "reading_id": "01a10a19-938e-7ae8-8999-d819539f11c9",
+      "value": "48221",
+      "unit": "gal"
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0010",
+     "kind": "reading",
+     "seq": 10,
+     "captured_at": "2026-10-05T03:27:24.181730+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZMJ:wexUiBX3Lv1ooRbafPCgh7oD8OYiSrZeT5sttMQOTGI",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T03:27:24.181732+00:00"
+     },
+     "payload": {
+      "reading_id": "01a10a19-938e-7c76-917b-893983233a73",
+      "value": "48221",
+      "unit": "text"
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0011",
+     "kind": "reading",
+     "seq": 11,
+     "captured_at": "2026-10-05T03:27:24.181736+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZMJ:wexUiBX3Lv1ooRbafPCgh7oD8OYiSrZeT5sttMQOTGI",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T03:27:24.181738+00:00"
+     },
+     "payload": {
+      "reading_id": "01a10a19-938e-72e4-95a7-ec65263e8b0b",
+      "value": "48221",
+      "unit": "gal"
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0012",
+     "kind": "material",
+     "seq": 12,
+     "captured_at": "2026-10-05T03:27:24.181757+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZMJ:wexUiBX3Lv1ooRbafPCgh7oD8OYiSrZeT5sttMQOTGI",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T03:27:24.181762+00:00"
+     },
+     "payload": {
+      "material_id": "01a10a19-938a-7d50-a4a2-29431b2cbdd6",
+      "used_qty": "2.0000"
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0013",
+     "kind": "material",
+     "seq": 13,
+     "captured_at": "2026-10-05T03:27:24.181766+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZMJ:wexUiBX3Lv1ooRbafPCgh7oD8OYiSrZeT5sttMQOTGI",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T03:27:24.181768+00:00"
+     },
+     "payload": {
+      "material_id": "01a10a19-938a-76df-a996-e34fa25b3055",
+      "used_qty": "1.0000"
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0014",
+     "kind": "material",
+     "seq": 14,
+     "captured_at": "2026-10-05T03:27:24.181772+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZMJ:wexUiBX3Lv1ooRbafPCgh7oD8OYiSrZeT5sttMQOTGI",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T03:27:24.181774+00:00"
+     },
+     "payload": {
+      "material_id": "01a10a19-938a-71c3-9fa7-1299f6443a81",
+      "used_qty": "1.0000"
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0015",
+     "kind": "photo",
+     "seq": 15,
+     "captured_at": "2026-10-05T03:27:24.644494+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZMJ:wexUiBX3Lv1ooRbafPCgh7oD8OYiSrZeT5sttMQOTGI",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T03:27:24.644521+00:00"
+     },
+     "payload": {
+      "photo_id": "d073fffe-4e38-47c9-b8d5-eca183e2b95b",
+      "sha256": "c9782c59d8b3f2a89a29a1878face60d915838744f25e7030da3359545ab2ec4",
+      "task_id": "01a10a19-9386-77a6-b81f-795679ac230a"
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0016",
+     "kind": "photo",
+     "seq": 16,
+     "captured_at": "2026-10-05T03:27:25.034056+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZMJ:wexUiBX3Lv1ooRbafPCgh7oD8OYiSrZeT5sttMQOTGI",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T03:27:25.034083+00:00"
+     },
+     "payload": {
+      "photo_id": "9c378ef0-4a52-40e8-a22e-bb209c34d872",
+      "sha256": "73c97dcff659387f048f1845d21729505a00a429b6cd4f81d450c28b6215db1a",
+      "task_id": "01a10a19-9386-757c-9bb8-9fcc0f8b6b04"
+     }
+    }
+   ]
+  },
+  "response": {
+   "work_order_id": "01a10a19-937b-7dbe-8807-b23c40f929b8",
+   "accepted": 16,
+   "duplicate": 0,
+   "refused": 0,
+   "held_for_review": 0,
+   "acknowledged": [
+    "WO-0058-1791170844-0001",
+    "WO-0058-1791170844-0002",
+    "WO-0058-1791170844-0003",
+    "WO-0058-1791170844-0004",
+    "WO-0058-1791170844-0005",
+    "WO-0058-1791170844-0006",
+    "WO-0058-1791170844-0007",
+    "WO-0058-1791170844-0008",
+    "WO-0058-1791170844-0009",
+    "WO-0058-1791170844-0010",
+    "WO-0058-1791170844-0011",
+    "WO-0058-1791170844-0012",
+    "WO-0058-1791170844-0013",
+    "WO-0058-1791170844-0014",
+    "WO-0058-1791170844-0015",
+    "WO-0058-1791170844-0016"
+   ],
+   "items": [
+    {
+     "key": "WO-0058-1791170844-0001",
+     "kind": "safety_tick",
+     "seq": 1,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a10a19-9382-7471-bca0-4bc6f9616b78",
+      "ticked_at": "2026-10-05T03:27:25.181106+00:00",
+      "safety_lock": {
+       "locked": true,
+       "remaining": 1,
+       "first_outstanding": "Check the pit for standing water before reaching in",
+       "ticked": 1,
+       "total": 2,
+       "mandatory_total": 2
+      }
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0002",
+     "kind": "safety_tick",
+     "seq": 2,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a10a19-9382-70f2-8a54-be0ebbb78390",
+      "ticked_at": "2026-10-05T03:27:25.220152+00:00",
+      "safety_lock": {
+       "locked": false,
+       "remaining": 0,
+       "first_outstanding": null,
+       "ticked": 2,
+       "total": 2,
+       "mandatory_total": 2
+      }
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0003",
+     "kind": "task_tick",
+     "seq": 3,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a10a19-9386-77a6-b81f-795679ac230a",
+      "ticked_at": "2026-10-05T03:27:25.258687+00:00",
+      "tasks_ticked": 1,
+      "tasks_total": 6
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0004",
+     "kind": "task_tick",
+     "seq": 4,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a10a19-9386-7843-8257-724c74d976ee",
+      "ticked_at": "2026-10-05T03:27:25.285427+00:00",
+      "tasks_ticked": 2,
+      "tasks_total": 6
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0005",
+     "kind": "task_tick",
+     "seq": 5,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a10a19-9386-79bb-96da-63943911cea4",
+      "ticked_at": "2026-10-05T03:27:25.310016+00:00",
+      "tasks_ticked": 3,
+      "tasks_total": 6
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0006",
+     "kind": "task_tick",
+     "seq": 6,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a10a19-9386-766b-99f1-19a676b0e843",
+      "ticked_at": "2026-10-05T03:27:25.336377+00:00",
+      "tasks_ticked": 4,
+      "tasks_total": 6
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0007",
+     "kind": "task_tick",
+     "seq": 7,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a10a19-9386-757c-9bb8-9fcc0f8b6b04",
+      "ticked_at": "2026-10-05T03:27:25.365303+00:00",
+      "tasks_ticked": 5,
+      "tasks_total": 6
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0008",
+     "kind": "task_tick",
+     "seq": 8,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a10a19-9386-76eb-a2f4-23ba7ca586d5",
+      "ticked_at": "2026-10-05T03:27:25.395686+00:00",
+      "tasks_ticked": 6,
+      "tasks_total": 6
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0009",
+     "kind": "reading",
+     "seq": 9,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a10a19-938e-7ae8-8999-d819539f11c9",
+      "seq": 1,
+      "prompt": "Closing read on the OLD meter",
+      "unit": "gal",
+      "kind": "number",
+      "value_text": null,
+      "value": "48221",
+      "in_range": true,
+      "required": true,
+      "photo_required": false,
+      "photo_attachment_id": null,
+      "captured_at": "2026-10-05T03:27:25.422847Z",
+      "posts_as_meter_read": true
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0010",
+     "kind": "reading",
+     "seq": 10,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a10a19-938e-7c76-917b-893983233a73",
+      "seq": 2,
+      "prompt": "New meter number",
+      "unit": "text",
+      "kind": "number",
+      "value_text": null,
+      "value": "48221",
+      "in_range": null,
+      "required": true,
+      "photo_required": false,
+      "photo_attachment_id": null,
+      "captured_at": "2026-10-05T03:27:25.453684Z",
+      "posts_as_meter_read": true
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0011",
+     "kind": "reading",
+     "seq": 11,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a10a19-938e-72e4-95a7-ec65263e8b0b",
+      "seq": 3,
+      "prompt": "Opening read on the NEW meter",
+      "unit": "gal",
+      "kind": "number",
+      "value_text": null,
+      "value": "48221",
+      "in_range": true,
+      "required": true,
+      "photo_required": false,
+      "photo_attachment_id": null,
+      "captured_at": "2026-10-05T03:27:25.476297Z",
+      "posts_as_meter_read": true
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0012",
+     "kind": "material",
+     "seq": 12,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a10a19-938a-7d50-a4a2-29431b2cbdd6",
+      "part_no": "GSK-58",
+      "planned_qty": "2.0000",
+      "used_qty": "2.0000",
+      "unit_of_measure": "each",
+      "issued_at": "2026-10-05T03:27:25.499023+00:00"
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0013",
+     "kind": "material",
+     "seq": 13,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a10a19-938a-76df-a996-e34fa25b3055",
+      "part_no": "MTR-W58",
+      "planned_qty": "1.0000",
+      "used_qty": "1.0000",
+      "unit_of_measure": "each",
+      "issued_at": "2026-10-05T03:27:25.525099+00:00"
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0014",
+     "kind": "material",
+     "seq": 14,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a10a19-938a-71c3-9fa7-1299f6443a81",
+      "part_no": "SEAL-WIRE",
+      "planned_qty": "1.0000",
+      "used_qty": "1.0000",
+      "unit_of_measure": "each",
+      "issued_at": "2026-10-05T03:27:25.550245+00:00"
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0015",
+     "kind": "photo",
+     "seq": 15,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "photo_id": "d073fffe-4e38-47c9-b8d5-eca183e2b95b",
+      "upload_url": "/api/brazosbend/work/mobile/photos/d073fffe-4e38-47c9-b8d5-eca183e2b95b",
+      "state": "pending",
+      "attachment_id": null
+     }
+    },
+    {
+     "key": "WO-0058-1791170844-0016",
+     "kind": "photo",
+     "seq": 16,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "photo_id": "9c378ef0-4a52-40e8-a22e-bb209c34d872",
+      "upload_url": "/api/brazosbend/work/mobile/photos/9c378ef0-4a52-40e8-a22e-bb209c34d872",
+      "state": "pending",
+      "attachment_id": null
+     }
+    }
+   ],
+   "synced_at": "2026-10-05T03:27:25.588855+00:00",
+   "br_ref": "BR-WRK-042"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "PUT",
+  "path": "/work/mobile/photos/d073fffe-4e38-47c9-b8d5-eca183e2b95b",
+  "status": 200,
+  "request": "<94,084 bytes>",
+  "response": {
+   "photo_id": "d073fffe-4e38-47c9-b8d5-eca183e2b95b",
+   "upload_url": "/api/brazosbend/work/mobile/photos/d073fffe-4e38-47c9-b8d5-eca183e2b95b",
+   "state": "landed",
+   "attachment_id": "01a10a1a-1c15-7be6-b998-c9a079a97959",
+   "duplicate": false,
+   "job_id": "01a10a1a-1be5-7141-9b7e-f01c6d145e7b"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "PUT",
+  "path": "/work/mobile/photos/9c378ef0-4a52-40e8-a22e-bb209c34d872",
+  "status": 200,
+  "request": "<94,524 bytes>",
+  "response": {
+   "photo_id": "9c378ef0-4a52-40e8-a22e-bb209c34d872",
+   "upload_url": "/api/brazosbend/work/mobile/photos/9c378ef0-4a52-40e8-a22e-bb209c34d872",
+   "state": "landed",
+   "attachment_id": "01a10a1a-1ca9-7f9f-b758-b63dd1c98e06",
+   "duplicate": false,
+   "job_id": "01a10a1a-1c81-796e-8369-1c1083d69e4a"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a10a19-937b-7dbe-8807-b23c40f929b8/sync",
+  "status": 200,
+  "request": {
+   "items": [
+    {
+     "key": "WO-0058-1791170844-close",
+     "kind": "close",
+     "seq": 17,
+     "captured_at": "2026-10-05T03:27:25.034090+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZMJ:wexUiBX3Lv1ooRbafPCgh7oD8OYiSrZeT5sttMQOTGI",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T03:27:25.034093+00:00"
+     },
+     "payload": {
+      "outcome": "passed"
+     }
+    }
+   ]
+  },
+  "response": {
+   "work_order_id": "01a10a19-937b-7dbe-8807-b23c40f929b8",
+   "accepted": 1,
+   "duplicate": 0,
+   "refused": 0,
+   "held_for_review": 0,
+   "acknowledged": [
+    "WO-0058-1791170844-close"
+   ],
+   "items": [
+    {
+     "key": "WO-0058-1791170844-close",
+     "kind": "close",
+     "seq": 17,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a10a19-937b-7dbe-8807-b23c40f929b8",
+      "state": "completed",
+      "awaiting_review": true,
+      "br_ref": "BR-MET-110"
+     }
+    }
+   ],
+   "synced_at": "2026-10-05T03:27:26.049603+00:00",
+   "br_ref": "BR-WRK-042"
+  }
+ }
+]

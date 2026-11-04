@@ -1,0 +1,33 @@
+{
+    "count": 2,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": "01a106a7-4a20-764c-8712-43529ccad428",
+            "name": "Meter set",
+            "scope": "per_asset",
+            "restricted": true,
+            "service": {
+                "code": "electric",
+                "name": "Electric"
+            }
+        },
+        {
+            "id": "01a106a7-49f9-7bea-a27b-d2f2a523b295",
+            "name": "Service drop",
+            "scope": "per_premise",
+            "restricted": true,
+            "service": {
+                "code": "electric",
+                "name": "Electric"
+            }
+        }
+    ],
+    "asset": {
+        "id": "01a106a7-6c79-745c-9453-5ff0856946a3",
+        "asset_no": "E-5000",
+        "asset_type_id": "01a106a6-e18e-72b6-bd54-ff6455da4f1b",
+        "service_code": "electric"
+    }
+}

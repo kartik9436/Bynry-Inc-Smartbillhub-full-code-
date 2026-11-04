@@ -1,0 +1,33 @@
+— the plan row (one row, its id never changes)
+                  id                  |  code   | version |        name         |                    description                     | effective_from | effective_to | minimum_bill_amount | budget_billing |           head_version_id            
+--------------------------------------+---------+---------+---------------------+----------------------------------------------------+----------------+--------------+---------------------+----------------+--------------------------------------
+ 01a102d8-94ee-7740-a876-c39c258be6d8 | SCW-IND |       2 | Sample — Industrial | Water and electric for businesses inside the city. | 2026-08-01     |              |           12.000000 | f              | 01a1032e-a61e-708c-bf7b-be05035bbcc4
+(1 row)
+
+— every version row, oldest first (nothing is ever deleted)
+                  id                  | v |  status   | effective_from | effective_to |  minimum  | budget | is_correction | superseded |                  reason                   
+--------------------------------------+---+-----------+----------------+--------------+-----------+--------+---------------+------------+-------------------------------------------
+ 01a102d8-94f0-7f31-92f5-6958cac37b15 | 1 | published | 2026-08-01     | 2026-12-31   |           | f      | f             | t          | 
+ 01a1032e-a61e-708c-bf7b-be05035bbcc4 | 2 | published | 2027-01-01     |              | 12.000000 | f      | f             | f          | New minimum bill from council
+ 01a1032e-cca4-7769-86fc-70df760f419a | 1 | published | 2026-08-01     | 2026-12-31   |           | t      | t             | f          | Budget billing was ruled on for this plan
+(3 rows)
+
+— bindings per version row (services · schedules · charge rules · tax rules)
+ v |  status   | superseded | services | schedules | charges | taxes 
+---+-----------+------------+----------+-----------+---------+-------
+ 1 | published | t          |        0 |         0 |       0 |     0
+ 2 | published | f          |        2 |         2 |       0 |     7
+ 1 | published | f          |        2 |         2 |       0 |     7
+(3 rows)
+
+— audit_log rows for the plan, newest first
+          created_at           |         action         |                                                                    after                                                                     
+-------------------------------+------------------------+----------------------------------------------------------------------------------------------------------------------------------------------
+ 2026-10-03 19:12:41.227813+00 | plan.version_corrected | {"id": "01a102d8-94ee-7740-a876-c39c258be6d8", "code": "SCW-IND", "name": "Sample — Industrial", "reason": "Budget billing was ruled on for 
+ 2026-10-03 19:12:31.372256+00 | plan.version_published | {"reason": "New minimum bill from council", "version_no": 2, "effective_to": null, "effective_from": "2027-01-01"}
+ 2026-10-03 19:12:31.276207+00 | plan.version_saved     | {"reason": "New minimum bill from council", "version_no": 2, "effective_from": "2027-01-01"}
+ 2026-10-03 19:12:20.406511+00 | plan.details_updated   | {"id": "01a102d8-94ee-7740-a876-c39c258be6d8", "code": "SCW-IND", "name": "Sample — Industrial", "status": "published", "version": 1, "servi
+ 2026-10-03 17:38:31.174347+00 | plan.published         | {"status": "published", "version": 1}
+ 2026-10-03 17:38:30.907974+00 | plan.created           | {"id": "01a102d8-94ee-7740-a876-c39c258be6d8", "code": "SCW-IND", "name": "Sample — Industrial", "status": "draft", "services": [{"name": "E
+(6 rows)
+

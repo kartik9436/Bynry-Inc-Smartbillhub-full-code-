@@ -1,0 +1,397 @@
+[project]
+name = "smartbillhub"
+# THE PRODUCT VERSION — `<release>.<change>.<fix>`, change process step 7
+# (12-governance/13-change-process.md, PO-ruled 2026-08-16). Allocated
+# 2026-08-17: release 2 (R2) · change 7 (CR-007 SET-09/10 templates, the most
+# recent CR to land code) · fix 0 (no defect has been fixed ON TOP of CR-007 —
+# DEF-191 was introduced by CR-007's own backend commit and fixed inside it,
+# and DEF-190's remainder is a rewiring nobody has taken).
+# ⚠ MOVED 2.344.0 → 2.7.0 with CR-007, and BOTH literals moved in the same commit
+# because nothing yet asserts they agree (see below). This replaces `0.1.0`, which was
+# scaffolding and had never moved; the state step 7 was written about was "the
+# backend carries no version at all".
+#
+# ⚠ THIS LINE IS A DERIVED COPY, NOT THE SOURCE. The source of truth is
+# `07-frontend/package.json`'s `version` field — that is the number the running
+# app reads and shows a user (AppShell.tsx), and it is the file the PO's own
+# complaint names. Python packaging cannot read a version out of a JSON file in
+# a SIBLING docker build context (`./06-backend` and `./07-frontend` are
+# separate contexts, docker-compose.yml), and setuptools' `dynamic = ["version"]`
+# can only read a file inside this project directory or an attribute of an
+# importable module — so the number cannot be derived here without adding a
+# THIRD copy, which is hard-won law 5 pointing the wrong way.
+#
+# So it is two literals and one owed guard, stated rather than hidden (law 1):
+# NOTHING FAILS TODAY IF THESE TWO DISAGREE. The gate that would close it —
+# assert `pyproject.version == package.json.version`, and refuse a CR marked
+# done with no version, which change process §7 rule 4 requires and
+# `10-scripts/gates/` does not have — is recorded as owed in
+# 12-governance/11-change-requests.md (CR-004 §7). Until it exists, moving one
+# of these two lines means moving the other in the same commit.
+#
+# 2.7.4 — CR-007's disconnect defaults (2026-08-17). `<release>.<change>.<fix>`:
+# R2, CR-007, fix 4. It is a FIX level rather than a change level because the
+# CR itself already landed at 2.7.0; what this build adds is the three tier
+# bodies and the five rights clauses the CR could not ship until the PO ruled
+# who writes them, plus DEF-193's open remainder (the ladder now selects by
+# tier). Both literals moved in this commit, which is still the only thing
+# keeping them equal — the gate that would assert it is owed and unbuilt.
+#
+# ⚠ 2.18.0 — THE PREDICTED FAILURE HAPPENED, AND THIS IS THE REPAIR (DEF-242,
+# 2026-08-18). The paragraph above says "NOTHING FAILS TODAY IF THESE TWO
+# DISAGREE" and "moving one of these two lines means moving the other in the
+# same commit". Nine changes were assigned between 2026-08-17 and 2026-08-18
+# (2.10.0 → 2.18.0) and this literal moved for NONE of them: it read 2.9.0
+# while 07-frontend/package.json read 2.18.0, and the comment directly above
+# still narrated 2.7.4 — so BOTH the number and the prose describing it were
+# stale, by nine changes and eleven respectively. Nothing went red, because the
+# guard is still owed. That is the whole point: a step depending on someone
+# remembering is the step that is not followed.
+#
+# Corrected to 2.18.0 to match package.json, the ONE source of truth (CR-004
+# §7). This repair does not close the gap — only the gate does. Until
+# 10-scripts/gates/ carries a check asserting these two literals are equal,
+# this line will drift again, and the next drift will also be invisible.
+#
+# 2.18.1 — the FIRST <fix> this scheme has ever recorded (2026-08-18). Three
+# defect fixes on the CR-007 template screens landed on top of an unchanged
+# 2.18.0: DEF-211 (eight of B14's twenty rules), DEF-212 (four of five faults)
+# and DEF-209's remainder, plus DEF-244 and DEF-245 found while fixing them.
+# `<fix>` and not `<change>` because no CR moved — the change process's own
+# reading: a fix counts defects landed ON TOP OF a shipped change. Both
+# literals moved in this commit, which is STILL the only thing keeping them
+# equal, one day after DEF-242 proved that is not enough.
+
+# 2.19.0 — CR-011 item 9 (2026-08-18): the four contract classes stop being
+# empty. A <change> and not a <fix>, because a CR landed code: the PO reversed a
+# standing refusal ("already answer - provide default and allow user to change")
+# and the count of classes with no wording went 4 -> 0. The authoring lane
+# declined to take this bump itself and was right to — the source of truth lives
+# in 07-frontend/, another lane was working in that directory, and a pathspec
+# commit takes the WHOLE file (DEF-165). Taken here once that tree was clean,
+# with both literals moving in the same commit, which is still the only thing
+# keeping them equal (DEF-242).
+
+# 2.19.1 — THE SECOND <fix> THIS SCHEME HAS RECORDED (2026-08-19), and it exists
+# to stamp two fixes that shipped without one. DEF-264 (86f748a — every refusal
+# on the S8 Notifications tab rendered the same nine words and threw the
+# server's own sentence away) and DEF-265 (9dd7862 — SET-12D refused a test on
+# in-app, the ONE channel that can deliver) both landed on 2026-08-19 morning on
+# top of an unchanged 2.19.0, and neither moved a version literal. They are
+# customer-visible changes to what a System Admin reads on screen, and until
+# this bump no build could be named that contains them — which is precisely the
+# failure that put step 7 in the change process. Also carries CR-009's closing
+# walkthrough (10/10 in Chromium against a booted stack) and the four defect
+# rows it filed: DEF-284, DEF-285, DEF-286 (CR-009's one blocker) and DEF-287.
+# <fix> and not <change> because no CR landed code. Both literals moved in this
+# commit, which is STILL the only thing keeping them equal (DEF-242).
+
+#
+# 2.29.0 — CR-018 Phase 0: the Tailwind build chain and theme (2026-08-19).
+# `<release>.<change>.<fix>`: R2, CR-018, fix 0. CHANGE level rather than fix
+# because it is the first build of a new CR — even though it renders nothing.
+# That is the point of Phase 0: built twice at one commit in an isolated
+# worktree with nothing changed but the plugin line, the production CSS is
+# byte-identical — index-DSjCOfdd.css, 125.25 kB, sha256 6ab0e6ad…85f123ed —
+# so the CR-016 build the PO is verifying in a browser cannot have moved. Both
+# literals moved in this commit, which is still the only thing keeping them
+# equal (DEF-242).
+#
+# 2.29.1 — CR-018 Phase 1.5, DEF-335: the two sentences the PO photographed on
+# Settings → Templates are rewritten as customer English, and G28 stopped being
+# an allowlist. `<release>.<change>.<fix>`: R2, CR-018, fix 1. FIX level because
+# no new capability lands — a served string changed and a gate widened — but the
+# bump is not optional: this is the build that must be named when the PO looks
+# at that screen again, which is the whole reason step 7 exists. The gate now
+# sweeps every string 25 API modules serialise and finds 29 where the allowlist
+# found 0; two are fixed, 27 are baselined. Both literals moved in this commit,
+# which is still the only thing keeping them equal (DEF-242).
+#
+# 2.29.3 — CR-018 Phase 1.5, DEF-336: SET-04's card badge has three states
+# instead of two (2026-08-19). `<release>.<change>.<fix>`: R2, CR-018, fix 3.
+# FIX level: no new capability, a screen stopped drawing a blank. The BILLING
+# section showed a bare chevron on all three cards while READS showed 5 and
+# PAYMENTS showed 7; no count was ever lost — the screen threw one away
+# (`custom_fields`, counted by the server and discarded because its kind was
+# not "list") and had no words for the rest. The grid endpoint is built from
+# `reference_data_report()` now, so the screen and the seeder read the same
+# sentence about the same list.
+#
+# ⚠ **2.29.2 IS DELIBERATELY SKIPPED, AND THIS IS THE NOTE THAT SAYS SO.** The
+# CR-018 Phase 1 lane holds 2.29.2 in the shared working tree for the Tailwind
+# migration of Rate schedules; it had not committed when this landed. Taking it
+# too would put two different builds behind one number, which is precisely what
+# step 7 exists to prevent — a skipped number costs nothing, a duplicated one
+# costs the ability to say which build a defect was seen on. Both literals
+# moved in this commit, which is still the only thing keeping them equal
+# (DEF-242).
+#
+# 2.29.4 — CR-018 Phase 1: the Tailwind utilities enter the app, on ONE screen.
+# `<release>.<change>.<fix>`: R2, CR-018, increment 4. `src/styles/tailwind.css`
+# is imported from `main.tsx` for the first time, so this is the first build a
+# customer downloads Tailwind in at all: +7,324 raw / +1,670 gzip on the CSS
+# bundle, of which 6,388 raw is a ONE-TIME floor and 936 is the migrated screen.
+# Measured at one commit in an isolated worktree, because a bundle hash is a
+# fact about the whole tree and six lanes are committing.
+#
+# Preflight is deliberately NOT part of it. Importing it moved 684 computed
+# property values on one screen and dropped every <h1> in the product from 30px
+# to 15px — `global.css:21` gives headings no font-size and the browser has
+# always supplied it. It lands at the end of Phase 3, blocked on OQ-275.
+#
+# Rate schedules (`/plans-rates/rates`) is the migrated screen and it renders
+# BYTE-IDENTICALLY: 0 differing computed values across 237 elements and an
+# identical full-page PNG. CR-016's conformance register holds every number.
+#
+# ⚠ **THIS LANE WAS RESERVED 2.29.2 AND TOOK 2.29.4 INSTEAD, WHICH IS THE NOTE
+# ABOVE WORKING.** The DEF-336 lane skipped 2.29.2 because this lane was holding
+# it uncommitted, and shipped 2.29.3. By the time Phase 1 committed, 2.29.3 was
+# on the branch — so taking 2.29.2 would move the PRODUCT VERSION BACKWARDS, and
+# a defect reported against "2.29.2" could then mean either of two builds, which
+# is the exact ambiguity step 7 exists to remove. Two skipped numbers cost
+# nothing. **And this was caught only by rebuilding both files from the remote
+# tip rather than from the copy this lane had read 40 minutes earlier** — the
+# stale-base half of hard-won law 11, which would otherwise have reverted the
+# whole 2.29.3 block in a commit whose file count was correct.
+#
+# Both literals moved in this commit, which is still the only thing keeping them
+# equal (DEF-242).
+#
+# ⚠ **2.29.7 IS SKIPPED HERE AND THIS LITERAL WAS FOUND TWO CHANGES BEHIND —
+# DEF-242's SHAPE, THIRD OCCURRENCE (recorded 2026-08-20, not filed).** At tip
+# `e1a652c` `07-frontend/package.json` read **2.29.7** and this file read
+# **2.29.6**: commit `8ea7847` (CR-018 Phase 2c step 1) moved the frontend
+# literal and not this one. That lane is mid-change and may yet move it, so the
+# OQ-277 lane recorded the drift rather than filing a defect against work that
+# has not finished — but it could not leave the literals unequal either, because
+# the sentence directly above is the only thing keeping them so.
+#
+# The resolution is the same one the 2.29.2 note reasoned out: a skipped number
+# costs nothing, a duplicated one costs the ability to say which build a defect
+# was seen on. So this goes 2.29.6 -> **2.29.8** rather than to 2.29.7, which is
+# forward for BOTH files and cannot move the product version backwards.
+#
+# 2.29.8 — OQ-277 CLOSED: one source for the className grammar. The regex that
+# reads class names out of a `.tsx` file existed twice, in two languages, in two
+# workflows that share no runtime, and all three corrections it has ever had
+# landed in one language only. `<release>.<change>.<fix>`: R2, CR-018, fix 8.
+# No user-visible behaviour: G31 reports the same 908 declared / 863 referenced
+# / 0 undeclared before and after.
+# 2.76.4 — DEF-1108 (high): the approver on a deferred import load is decided
+# at the DOOR and no longer re-asked in the worker, where `_JobActor` carries
+# no role by design. A <fix> and not a <change> because no CR moved — CR-026
+# and BR-MET-098 are both unchanged; a check was in the wrong place.
+# 2.125.4 — DEF-3156: a capacity companion (solar, broadband, battery) had no
+# rate-schedule payload in `apps/rating/sample_data`, so a utility selling one
+# of them received the whole sample estate and then 0 accounts and 0 bills.
+# A <fix> and not a <change> because no CR moved. ⚠ THIS LITERAL READ 2.125.2
+# while `07-frontend/package.json` — the ONE source of truth (CR-004 §7) — read
+# 2.125.3, so it is corrected to match in the same commit that moves the other,
+# which is what the paragraph above has asked for since 2026-08-18. The gate
+# that would assert the two are equal is still owed and this will drift again
+# until it exists.
+version = "2.614.0"
+description = "Multi-tenant meter-to-cash + finance platform for small utilities"
+requires-python = ">=3.12"
+dependencies = [
+  "django>=5.0,<6",
+  "djangorestframework>=3.15",
+  "drf-spectacular>=0.27",
+  "psycopg[binary]>=3.1",
+  "celery[redis]>=5.4",
+  "django-environ>=0.11",
+  # CR-068 wave A (2026-09-03): the portal address as a QR code a utility prints
+  # on its bills (US-CWP-069 TC-1). Pure Python, no dependency of its own, BSD.
+  "segno>=1.6,<2",
+  # CR-168-BRC10 §F, DEF-WRK-9641 (2026-10-04): a field photograph over 100 KB is
+  # SHRUNK by the server, never refused (PO: "you cannot reject the photo - that
+  # will drop the data"), and a file that is not an image is told apart from one
+  # that is. The backend had no image library; Pillow is the standard one (HPND).
+  # A RUNTIME dependency — the Dockerfile installs exactly this list.
+  "pillow>=11,<12",
+  # CR-172-BRC10 (2026-10-05): BR-TEN-019's "SVG … rasterized for PDF/print" —
+  # an SVG logo is rendered to PNG ONCE, at upload (apps/tenancy/logo.py
+  # `raster_png`), and bills draw that PNG. Nothing in the backend could render
+  # an SVG before. resvg-py is a self-contained wheel (the resvg renderer in
+  # Rust): no system library, no network fetch, no script engine. MIT.
+  # A RUNTIME dependency — the Dockerfile installs exactly this list.
+  "resvg-py>=0.5,<1",
+  # CR-169-BRC10 (2026-10-04): server-side product analytics, sent after commit
+  # (`config/product_analytics.py`). Off unless POSTHOG_KEY is set. MIT.
+  "posthog>=7,<8",
+  # CR-190-BRC10 (2026-10-22): money in every email is written with its currency
+  # SYMBOL in the utility's region — PO: *"the symbol comes from the utility's
+  # currency and region settings … Nothing is hardcoded"*. Babel carries the
+  # Unicode CLDR locale data (symbols, placement, marks), so no table of symbols
+  # is typed in this repo (`apps/notifications/rendering.format_money`). Pure
+  # Python, BSD. A RUNTIME dependency — the Dockerfile installs exactly this list.
+  "babel>=2.14,<3",
+  # WSGI server. Closes the 09-infra/02 §10.1 residue: config/wsgi.py has existed
+  # since 2026-08-10 but nothing declared a server to import it, so `pip install -e .`
+  # produced an application with nothing to run it. `manage.py runserver` is a dev
+  # tool and is never the answer here. Declared as a real dependency (not an extra)
+  # because a serving container is the normal shape of this project, not an option:
+  # 06-backend/Dockerfile installs exactly this list and runs
+  # `gunicorn config.wsgi:application`.
+  "gunicorn>=23.0,<27",
+  # App-layer field encryption (BR-CUS-092 / OQ-016 CLOSED, B2 §6). AES-256-GCM
+  # and HKDF for core/crypto.py — a VETTED library, never hand-rolled crypto.
+  #
+  # ⚠ IT WAS ALREADY IMPORTABLE IN THE DEV CONTAINER AND THAT PROVED NOTHING
+  # (hard-won law 1). `pip show cryptography` reported 41.0.7 with an EMPTY
+  # `Required-by`: a distro package nothing here declared. The Dockerfile builds
+  # its requirements from THIS LIST ONLY (`tomllib.load(...)['project']
+  # ['dependencies']`), so `from cryptography...` would have raised
+  # ModuleNotFoundError in the shipped image while every local test passed.
+  # >=42 because the 41.x line still needs a separate `_cffi_backend`, which the
+  # distro build in this environment was missing outright — importing it panicked
+  # the Rust bindings until `cffi` was installed by hand.
+  "cryptography>=42,<47",
+  # CR-049 — the document store's AWS S3 adapter (apps/tenancy/document_storage.py).
+  #
+  # A RUNTIME dependency, not a dev one, and that is the whole reason this
+  # comment exists: the `cryptography` note above records what happens
+  # otherwise — a library importable in the dev container, undeclared here,
+  # every local test green, and `ModuleNotFoundError` in the shipped image,
+  # because 06-backend/Dockerfile builds its requirements from THIS LIST ONLY.
+  #
+  # PO ruling 2026-08-30: *"curently we will start with AWS, but we need to
+  # keep it multi cloud - google or any other cloud - in future we mght have
+  # differnt requirements"*. So exactly ONE cloud client is declared. A GCS or
+  # Azure adapter brings its own, and neither exists.
+  #
+  # ⚠ IT IS NOT INSTALLED IN THE ENVIRONMENT THIS LANE AUTHORED IN, so the AWS
+  # adapter is proved against an injected client rather than a real bucket —
+  # the request is verified, a real round trip is not. Reported, not hidden.
+  # The filesystem backend needs nothing at all, which is what keeps the suite
+  # honest without a cloud account.
+  "boto3>=1.34,<2",
+  # CR-144-BRC07 (X1) — CORS. The SPA is served from a DIFFERENT HOST to this
+  # API (decision log 2026-09-28 ruling 1: two hosts, because the PO refused
+  # CDN path-routing of `/api/*` and the lock-in that comes with it), so every
+  # call the browser makes is cross-origin and needs an explicit grant.
+  #
+  # A RUNTIME dependency, and the `cryptography` note above records exactly why
+  # that matters: 06-backend/Dockerfile builds its requirements from THIS LIST
+  # ONLY, so a library importable in the dev container and undeclared here is
+  # green on every local test and `ModuleNotFoundError` in the shipped image —
+  # and here it would be raised at settings import, so the container would not
+  # start at all.
+  "django-cors-headers>=4.4,<5",
+  # CR-173-BRC10 (2026-10-07): the New World / Logos receipt file is PLACED in
+  # a city's SFTP folder (PO: *"this path is specific for 1 tenant/utility and
+  # not common for everyone"*). paramiko is the one SFTP client, adapted to
+  # `FolderWriter` in apps/integrations/sftp.py and bound there once; it does
+  # nothing for a utility that has not typed a server on its connection. LGPL.
+  # A RUNTIME dependency — the Dockerfile installs exactly this list.
+  "paramiko>=3.4,<5",
+  # DEF-BIL-10546 (portal accessibility F-06, PO/QA ruling 2026-10-23, Group
+  # H): every customer PDF is written as tagged PDF/UA-1 by WeasyPrint from the
+  # document's HTML (`core/tagged_pdf.py`). PINNED EXACTLY: the bytes of every
+  # bill issued are kept write-once for seven years, and a WeasyPrint upgrade
+  # changes those bytes, so moving this pin is a deliberate act with its own
+  # veraPDF run (`10-scripts/a11y/verapdf_customer_pdfs.py`). 70.0 was released
+  # 2026-09-08 and supports `pdf_variant="pdf/ua-1"`. BSD-3-Clause. It brings
+  # pydyf, tinyhtml5, tinycss2, cssselect2, Pyphen and fontTools (all BSD/MIT)
+  # and needs Pango + HarfBuzz as SYSTEM libraries — the Dockerfile installs
+  # them, and a running host gets them only when its image is rebuilt.
+  "weasyprint==70.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8",
+  "pytest-django>=4.8",
+  "pytest-cov>=5",
+  "ruff>=0.5",
+  "black>=24",
+  "mypy>=1.10",
+  "factory-boy>=3.3",
+  # An in-process S3 EMULATOR for the export store's tests (PO 2026-10-02:
+  # exports live in S3 in every environment, no filesystem stand-in). The suite
+  # drives the real boto3 client against it; no test needs AWS credentials.
+  # tests/conftest.py `_export_store_on_s3_emulator`.
+  "moto[s3]>=5,<6",
+]
+
+# Package discovery. Without this, setuptools' flat-layout auto-discovery sees
+# four top-level directories (apps, config, core, tests), calls the project
+# ambiguous and REFUSES — so `pip install -e ".[dev]"` failed outright, which is
+# the command .github/workflows/ci-backend.yml runs and the command
+# 09-infra/02 §10.1 assumed produced a serving install. The old dev Dockerfile
+# worked around it with `|| pip install <the same pins again>`, i.e. a second
+# dependency list that could drift from this one. Naming the three real packages
+# fixes the cause; tests/ is correctly not one of them.
+[tool.setuptools.packages.find]
+include = ["apps*", "config*", "core*"]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings.test"
+testpaths = ["tests", "apps"]
+markers = [
+  "golden: B5 golden billing tests (release gate)",
+  "isolation: tenant-isolation suite (release gate)",
+]
+
+[tool.ruff]
+line-length = 100
+
+# DEF-025: the lint bar is now a REPO decision, not a property of the installed
+# ruff. Until this line existed `[tool.ruff]` set only `line-length`, so the
+# project inherited ruff's DEFAULT select — and "the narrow bar E4,E7,E9,F" was a
+# convention nobody had written down. A future ruff release moving its default
+# would have moved this project's bar with no diff to review.
+#
+# The value below is NOT a new bar: it is the bar that was already running,
+# pinned. Verified mechanically against ruff 0.15.8 — `ruff check --show-settings`
+# enumerated exactly 59 enabled rules before this change (E401/E402, E7xx, E902,
+# F4xx–F9xx) and the SAME 59 after, diffed rule-by-rule: nothing widened and,
+# more importantly, nothing narrowed. `ruff check .` is clean on both sides.
+# Re-verify after a ruff upgrade the same way, against an unpinned replica config.
+#
+# Note what is deliberately NOT here: E501 (line-too-long) is in E5, is not in
+# ruff's default select and is not added now — `line-length = 100` above feeds
+# the formatter and `[tool.black]`, and black owns line length in this repo
+# (enforced in CI since DEF-024). Widening this list is a reviewable diff, which
+# is the entire point.
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+
+# F811 in tests/ only: this repo shares pytest fixtures by importing them from
+# helper modules (tests/test_us_rat_helpers.py, tests/isolation_helpers.py,
+# tests/test_us_idn_helpers.py) so pytest can resolve them by name; the test then
+# names the same fixture as a function PARAMETER. Ruff reads that parameter as a
+# redefinition of the import and raises F811 — 191 times as of ruff 0.15.8. The
+# imports already carry `# noqa: F401 (fixture import)`; the noqa cannot cover the
+# parameter, which is on a different line.
+#
+# This is a tool disagreement, not drift: every one of the 191 sites was checked
+# mechanically and all 191 resolve to a function parameter, and an AST scan for
+# duplicate module-/class-level function definitions across tests/ and apps/
+# returned zero — so nothing real is being masked here today. Ruff's own fix for
+# F811 (--unsafe-fixes) would DELETE the fixture imports and break collection.
+#
+# Deliberately scoped to one rule in one directory: F811 stays live for apps/,
+# config/ and core/, where a redefinition is a genuine bug. The real remedy is to
+# move the shared fixtures into tests/conftest.py so the imports are unnecessary
+# at all — that is a fixture-resolution refactor across 21 files, not a lint fix,
+# and it is not done here.
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["F811"]
+
+[tool.black]
+line-length = 100
+
+[tool.mypy]
+python_version = "3.12"
+# B8: hints mandatory; --strict applies to services.py and engine modules.
+strict = true
+ignore_missing_imports = true
+
+[tool.coverage.run]
+source = ["apps", "core"]
+
+[tool.coverage.report]
+# B8/G10: services coverage floor is 85% once story code exists; enforced per-story
+# by the gate, not as a repo-wide fail_under while scaffolding dominates.
+show_missing = true

@@ -1,0 +1,143 @@
+# CR-166-BRC10 web walk, steps 8, 10, 11 — what the server and the database said (PostgreSQL 16, sbh_discwalk, 2026-10-03)
+
+## Step 8 — the read billing uses: rating.selectors.billable_discount_rules(account, plan, day), SENIOR rows per walk account
+LOOKUP SENIOR 2026-12-25 DW-SENIOR rows=1 15.00% (Senior discount)
+LOOKUP SENIOR 2026-12-25 DW-PLAIN rows=0 
+LOOKUP SENIOR 2026-12-30 DW-SENIOR rows=1 15.00% (Senior discount)
+LOOKUP SENIOR 2026-12-30 DW-PLAIN rows=0 
+LOOKUP SENIOR 2026-12-31 DW-SENIOR rows=1 15.00% (Senior discount)
+LOOKUP SENIOR 2026-12-31 DW-PLAIN rows=0 
+LOOKUP SENIOR 2027-01-01 DW-SENIOR rows=1 12.00% (Senior discount)
+LOOKUP SENIOR 2027-01-01 DW-PLAIN rows=0 
+LOOKUP SENIOR 2027-01-02 DW-SENIOR rows=1 12.00% (Senior discount)
+LOOKUP SENIOR 2027-01-02 DW-PLAIN rows=0 
+LOOKUP SENIOR 2027-01-15 DW-SENIOR rows=1 12.00% (Senior discount)
+LOOKUP SENIOR 2027-01-15 DW-PLAIN rows=0 
+
+## Step 8 — versions of SENIOR in force on each day (SQL over discount_versions, status active)
+2026-12-31|1
+2027-01-01|1
+
+## Step 8 — December run, issued (cr166_discwalk_world.py run 2026-11-16 2026-12-15)
+run RUN-0001 2026-11-16..2026-12-15
+BILL DW-SENIOR AC-2026-00001 BL-2612-000001 · 2026-11-16..2026-12-15 · issued · before 60.00 · discounts -9.26 · total 50.74
+   base       water base charge                            qty=None 8.0000
+   discount   Autopay savings                              qty=None -0.2600
+   discount   Senior discount                              qty=None -9.0000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+BILL DW-CAP AC-2026-00002 BL-2612-000002 · 2026-11-16..2026-12-15 · issued · before 60.00 · discounts -10.00 · total 50.00
+   base       water base charge                            qty=None 8.0000
+   discount   CAP credit                                   qty=None -10.0000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+BILL DW-MEDIC AC-2026-00003 BL-2612-000003 · 2026-11-16..2026-12-15 · issued · before 60.00 · discounts 0.00 · total 60.00
+   base       water base charge                            qty=None 8.0000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+BILL DW-PLAIN AC-2026-00004 BL-2612-000004 · 2026-11-16..2026-12-15 · issued · before 60.00 · discounts -9.00 · total 51.00
+   base       water base charge                            qty=None 8.0000
+   discount   Veteran discount                             qty=None -9.0000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+BILL DW-OFF AC-2026-00005 BL-2612-000005 · 2026-11-16..2026-12-15 · issued · before 60.00 · discounts 0.00 · total 60.00
+   base       water base charge                            qty=None 8.0000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+BILL DW-CITY AC-2026-00006 BL-2612-000006 · 2026-11-16..2026-12-15 · issued · before 52.00 · discounts -5.00 · total 47.00
+   base       water base charge                            qty=None 0.0000
+   discount   Municipal account                            qty=None -5.0000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+BILL DW-GARDEN AC-2026-00007 BL-2612-000007 · 2026-11-16..2026-12-15 · issued · before 60.00 · discounts 0.00 · total 60.00
+   base       water base charge                            qty=None 8.0000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+
+## Step 8 — January run, issued (run 2026-12-16 2027-01-15)
+run RUN-0002 2026-12-16..2027-01-15
+BILL DW-SENIOR AC-2026-00001 BL-2701-000008 · 2026-12-16..2027-01-15 · issued · before 60.00 · discounts -7.46 · total 52.54
+   base       water base charge                            qty=None 8.0000
+   discount   Autopay savings                              qty=None -0.2600
+   discount   Senior discount                              qty=None -7.2000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+BILL DW-CAP AC-2026-00002 BL-2701-000009 · 2026-12-16..2027-01-15 · issued · before 60.00 · discounts -10.00 · total 50.00
+   base       water base charge                            qty=None 8.0000
+   discount   CAP credit                                   qty=None -10.0000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+BILL DW-MEDIC AC-2026-00003 BL-2701-000010 · 2026-12-16..2027-01-15 · issued · before 60.00 · discounts 0.00 · total 60.00
+   base       water base charge                            qty=None 8.0000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+BILL DW-PLAIN AC-2026-00004 BL-2701-000011 · 2026-12-16..2027-01-15 · issued · before 60.00 · discounts -9.00 · total 51.00
+   base       water base charge                            qty=None 8.0000
+   discount   Veteran discount                             qty=None -9.0000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+BILL DW-OFF AC-2026-00005 BL-2701-000012 · 2026-12-16..2027-01-15 · issued · before 60.00 · discounts 0.00 · total 60.00
+   base       water base charge                            qty=None 8.0000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+BILL DW-CITY AC-2026-00006 BL-2701-000013 · 2026-12-16..2027-01-15 · issued · before 52.00 · discounts -5.00 · total 47.00
+   base       water base charge                            qty=None 0.0000
+   discount   Municipal account                            qty=None -5.0000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+BILL DW-GARDEN AC-2026-00007 BL-2701-000014 · 2026-12-16..2027-01-15 · issued · before 60.00 · discounts 0.00 · total 60.00
+   base       water base charge                            qty=None 8.0000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+
+## Step 10 — after Retire SENIOR (last day 01/31/2027): the read billing uses
+LOOKUP SENIOR 2027-01-31 DW-SENIOR rows=1 12.00% (Senior discount)
+LOOKUP SENIOR 2027-02-01 DW-SENIOR rows=0 
+LOOKUP SENIOR 2027-02-15 DW-SENIOR rows=0 
+
+## Step 10 — February run, issued (run 2027-01-16 2027-02-15), then every bill of the walk accounts re-read
+run RUN-0003 2027-01-16..2027-02-15
+BILL DW-SENIOR AC-2026-00001 BL-2702-000015 · 2027-01-16..2027-02-15 · issued · before 60.00 · discounts -0.30 · total 59.70
+   base       water base charge                            qty=None 8.0000
+   discount   Autopay savings                              qty=None -0.3000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+BILL DW-CAP AC-2026-00002 BL-2702-000016 · 2027-01-16..2027-02-15 · issued · before 60.00 · discounts -10.00 · total 50.00
+   base       water base charge                            qty=None 8.0000
+   discount   CAP credit                                   qty=None -10.0000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+BILL DW-MEDIC AC-2026-00003 BL-2702-000017 · 2027-01-16..2027-02-15 · issued · before 60.00 · discounts 0.00 · total 60.00
+   base       water base charge                            qty=None 8.0000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+BILL DW-PLAIN AC-2026-00004 BL-2702-000018 · 2027-01-16..2027-02-15 · issued · before 60.00 · discounts -9.00 · total 51.00
+   base       water base charge                            qty=None 8.0000
+   discount   Veteran discount                             qty=None -9.0000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+BILL DW-OFF AC-2026-00005 BL-2702-000019 · 2027-01-16..2027-02-15 · issued · before 60.00 · discounts 0.00 · total 60.00
+   base       water base charge                            qty=None 8.0000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+BILL DW-CITY AC-2026-00006 BL-2702-000020 · 2027-01-16..2027-02-15 · issued · before 52.00 · discounts -5.00 · total 47.00
+   base       water base charge                            qty=None 0.0000
+   discount   Municipal account                            qty=None -5.0000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+BILL DW-GARDEN AC-2026-00007 BL-2702-000021 · 2027-01-16..2027-02-15 · issued · before 60.00 · discounts 0.00 · total 60.00
+   base       water base charge                            qty=None 8.0000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+
+## Step 11 — RLS in the database: a throwaway NOSUPERUSER NOBYPASSRLS role inside a rolled-back transaction
+BEGIN
+CREATE ROLE
+GRANT
+SET
+no tenant set: discounts 0
+SET
+as B (app.tenant_id=riverbend): discounts 0 versions 0 enrolments 0 SENIOR rows 0
+SET
+as A (app.tenant_id=brazosbend): discounts 9 versions 11 enrolments 5 SENIOR rows 1
+ROLLBACK

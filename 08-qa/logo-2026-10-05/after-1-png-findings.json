@@ -1,0 +1,90 @@
+{
+  "base": "http://127.0.0.1:5235",
+  "api": "http://127.0.0.1:8103",
+  "findings": [
+    {
+      "surface": "upload POST",
+      "shows": "HTTP 201",
+      "detail": "{\"logo_file_id\":\"01a10b7f-79ac-7297-88c4-1a256672073a\",\"content_type\":\"image/png\",\"size_bytes\":562,\"content_hash\":\"sha256:5539e85c0ccdebc741b61409ae78a76051f5903a990b8fd891b5008555030059\"}"
+    },
+    {
+      "surface": "Settings › Company › Brand",
+      "shows": "the logo (240x96)",
+      "detail": "http://127.0.0.1:8103/api/brazosbend/settings/company/logo/file?v=01a10b7f-79ac-7297-88c4-1a256672073a"
+    },
+    {
+      "surface": "App header",
+      "shows": "the logo (240x96)",
+      "detail": "http://127.0.0.1:8103/api/brazosbend/settings/company/logo/file?v=01a10b7f-79ac-7297-88c4-1a256672073a"
+    },
+    {
+      "surface": "Bill layout (screen)",
+      "shows": "no logo drawn on the chooser",
+      "detail": "http://127.0.0.1:8103/api/brazosbend/bill-templates/layouts/standard-letter-v1/preview.pdf"
+    },
+    {
+      "surface": "Customer portal settings",
+      "shows": "the logo (240x96)",
+      "detail": "http://127.0.0.1:8103/api/brazosbend/settings/company/logo/file?v=01a10b7f-79ac-7297-88c4-1a256672073a"
+    },
+    {
+      "surface": "Customer portal",
+      "shows": "the logo (240x96)",
+      "detail": "http://127.0.0.1:8103/api/brazosbend/settings/company/logo/file?v=01a10b7f-79ac-7297-88c4-1a256672073a"
+    },
+    {
+      "surface": "Generated bill (PDF)",
+      "shows": "1 embedded image(s)",
+      "detail": "HTTP 200 19072 bytes"
+    },
+    {
+      "surface": "Issued bill (PDF)",
+      "shows": "1 embedded image(s)",
+      "detail": "send HTTP 201 · pdf HTTP 200 18309 bytes"
+    }
+  ],
+  "logoRequests": [
+    {
+      "url": "http://127.0.0.1:8103/api/brazosbend/settings/company/logo/file?v=01a10b7c-284e-730c-a5ee-c0ba34952d62",
+      "status": 200,
+      "type": "image/svg+xml",
+      "etag": "\"01a10b7c-284e-730c-a5ee-c0ba34952d62\"",
+      "cache": "private, max-age=0, must-revalidate"
+    },
+    {
+      "url": "http://127.0.0.1:8103/api/brazosbend/settings/company/logo",
+      "status": 201,
+      "type": "application/json",
+      "etag": "",
+      "cache": ""
+    },
+    {
+      "url": "http://127.0.0.1:8103/api/brazosbend/settings/company/logo/file?v=01a10b7f-79ac-7297-88c4-1a256672073a",
+      "status": 200,
+      "type": "image/png",
+      "etag": "\"01a10b7f-79ac-7297-88c4-1a256672073a\"",
+      "cache": "private, max-age=0, must-revalidate"
+    },
+    {
+      "url": "http://127.0.0.1:8103/api/brazosbend/settings/company/logo/file?v=01a10b7f-79ac-7297-88c4-1a256672073a",
+      "status": 304,
+      "type": "",
+      "etag": "\"01a10b7f-79ac-7297-88c4-1a256672073a\"",
+      "cache": "private, max-age=0, must-revalidate"
+    },
+    {
+      "url": "http://127.0.0.1:8103/api/brazosbend/settings/company/logo/file?v=01a10b7f-79ac-7297-88c4-1a256672073a",
+      "status": 304,
+      "type": "",
+      "etag": "\"01a10b7f-79ac-7297-88c4-1a256672073a\"",
+      "cache": "private, max-age=0, must-revalidate"
+    },
+    {
+      "url": "http://127.0.0.1:8103/api/brazosbend/settings/company/logo/file?v=01a10b7f-79ac-7297-88c4-1a256672073a",
+      "status": 200,
+      "type": "image/png",
+      "etag": "\"01a10b7f-79ac-7297-88c4-1a256672073a\"",
+      "cache": "private, max-age=0, must-revalidate"
+    }
+  ]
+}

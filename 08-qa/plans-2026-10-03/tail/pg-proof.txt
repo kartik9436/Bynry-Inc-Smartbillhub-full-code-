@@ -1,0 +1,8 @@
+PLAN PT-RESD: combined 2.00% · TX State Utility Tax 6.25% reaches=none, Local · Bexar County 2.00% reaches=all
+  BILL AC-2026-00054 BL-2611-000101 issued taxable 94.87 tax 1.90 = 2.00% · lines Tax Local · Bexar County 1.90
+    ✓ equals the plan's combined figure
+  BILL AC-2026-00055 BL-2611-000102 issued taxable 94.87 tax 1.90 = 2.00% · lines Tax Local · Bexar County 1.90
+    ✓ equals the plan's combined figure
+PLAN PT-COMD: combined 8.25% · TX State Utility Tax 6.25% reaches=all, Local · Bexar County 2.00% reaches=all
+  BILL AC-2026-00056 BL-2611-000103 issued taxable 101.60 tax 8.38 = 8.25% · lines Tax Local · Bexar County 2.03; Tax TX State Utility Tax 6.35
+    ✓ equals the plan's combined figure

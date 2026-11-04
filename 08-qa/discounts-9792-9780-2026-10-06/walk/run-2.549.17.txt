@@ -1,0 +1,9 @@
+  PASS  Autopay (automatic) draws no + Enroll an account
+  PASS  CAP (a person applies) still draws + Enroll an account
+  PASS  Harold's Proof pending row carries View proof (System Admin)
+  PASS  Harold still reads Proof pending — not verified
+  PASS  the account door refuses Autopay by name — 422 customers.moveIn.discountAutomatic
+  PASS  the eye opens the account document's content route — /api/mvimatrix/accounts/01a11036-b6a0-7c70-8c31-a9fb3f00ed6f/documents/01a11036-9fd6-7c34-b28d-61f8ad6c702e/content?as=view
+  PASS  the letter itself is served — 200 application/pdf 193 bytes
+  PASS  a Billing Clerk sees the row and no proof (BR-RAT-079)
+  ALL PASS

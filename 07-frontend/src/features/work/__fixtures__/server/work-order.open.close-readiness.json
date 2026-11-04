@@ -1,0 +1,22 @@
+{
+  "can_close": false,
+  "blocking": [
+    {
+      "kind": "missing_required_photo",
+      "scope": "task",
+      "id": "01a106e4-2ae2-7b7c-9d8f-dca3678d96e3",
+      "prompt": "Read and photograph the OLD meter before it comes out"
+    },
+    {
+      "kind": "missing_required_photo",
+      "scope": "task",
+      "id": "01a106e4-2ae2-7db6-958d-2122bb451eef",
+      "prompt": "Seal and photograph the NEW meter and its register"
+    }
+  ],
+  "flagged": [],
+  "readings_captured": 0,
+  "readings_total": 3,
+  "required_photos_taken": 0,
+  "required_photos_total": 2
+}

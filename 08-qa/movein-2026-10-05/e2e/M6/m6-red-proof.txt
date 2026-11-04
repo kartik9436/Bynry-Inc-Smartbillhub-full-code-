@@ -1,0 +1,16 @@
+M6 red proofs on 2.549.9 — each key check broken in memory, read against the case's committed database (PostgreSQL 16), then restored
+
+BROKEN (m6-deposit):
+  FAIL  the fee lines are the plan's deposit and connection charge — expected [('deposit', 'DEPOSIT', '450.0000'), ('fee', 'CONN', '25.0000')], read [('deposit', 'DEPOSIT', '500.0000'), ('fee', 'CONN', '25.0000')]
+RESTORED:
+  PASS  the fee lines are the plan's deposit and connection charge
+
+BROKEN (m6-city-tax):
+  FAIL  the first bill carries City of Cedar Ford utility tax — ['Local · Bexar County', 'TX State Utility Tax']
+RESTORED:
+  PASS  the first bill carries NO City of Cedar Ford utility tax (not this account's class)
+
+BROKEN (m6-inverter):
+  FAIL  PV-M6 still stands under W-M6 (the move-in moved no equipment) — E-M6
+RESTORED:
+  PASS  PV-M6 still stands under E-M6 (the move-in moved no equipment)

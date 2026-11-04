@@ -1,0 +1,23 @@
+# J10 — Theft end-to-end (tamper → assessed reads → back-bill across versions → penalty → payment always accepted)
+
+---
+id: J10
+tier: 2
+rules: [BR-BIL-018, BR-BIL-019, BR-BIL-007, BR-MET-015, BR-MET-053, BR-CUS-055, BR-PAY-010, BR-PAY-036, BR-LED-007, BR-AUD-018, BR-REP-007]
+stories: [US-MET-012, US-MET-013, US-BIL-013, US-BIL-014, US-PAY-001, US-PAY-006, US-LED-001, US-REP-009]
+# journey→story wiring sweep pending: story frontmatter `journeys:` updated in a later sweep (00-e2e-design.md §6)
+---
+
+**Intent.** The ugliest revenue case, played clean: a meter bypass discovered in July, six months of unbilled consumption reconstructed as ASSESSED reads, back-billed across a tariff-version boundary (each period on ITS version — WE-10 **305.18**), the tamper penalty entered ONLY through the engine + charge code (WE-11 **626.42**, no hand-typed amount anywhere), and then the tonight-ratified BR-PAY-036: while the account sits Marked disconnect, the customer's money is ALWAYS taken — and taking it changes no status.
+
+**Fixture.** Tenant brazos-bend · ACC-1301, Residential Standard, water + electric · bypass found **Jul 7, 2026** · unbilled water Jan–Jun 6 kgal/mo · water tariff v3 through Mar 31 (T1 4.00/T2 6.50/base 8.00), v4 from Apr 1 (4.25/6.85/8.50) · assessed TOU electric 150/300/450 kWh · TAMPER charge code **$500.00** (non-taxable fee, own GL) · back-bill cap 12 mo — theft EXEMPT.
+
+| # | Date · action | Handoff contract (what this step leaves) | Downstream assertions (bill · ledger · reports · queue · audit) | Rule |
+|---|---|---|---|---|
+| 1 | **Jul 7** — field visit documents the bypass; account status → **Marked disconnect** (explicit staff action, reason-coded) | Status = Marked disconnect, behavior class BILLABLE (consuming until cut, BR-CUS-055); evidence attached to account documents | "Active accounts" KPI still INCLUDES the account (BR-REP-012); audit rows for status + evidence | BR-CUS-055 |
+| 2 | **Jul 8** — assessed reads entered per required channel (water total; electric tou_on/tou_mid/tou_off), reason-coded, flagged `assessed` | Committed reads with disposition + reason per BR-MET-015; supersede-only lineage (BR-MET-053); NO free-typed dollar exists anywhere | Reads visible with assessed flag + compliance stamp; validation outcomes stored self-describing | BR-BIL-019 · BR-MET-015/053 |
+| 3 | **Jul 9** — back-bill Jan–Jun (Admin-approved): one bill, **6 period-labeled groups**, each priced on ITS tariff version — Jan–Mar **45.10/mo** (v3) · Apr–Jun **47.84/mo** (v4) → taxable **278.82** → tax **26.36** → total **305.18** (WE-10); theft EXEMPT from the 12-mo cap | Immutable back-bill invoice, GL-stamped per line; approval recorded before any money-bearing write | Ledger: one balanced JE (DR AR 305.18 / CR per-GL buckets); back-bills/penalty report row (BR-REP-007); posting-basis billed KPI; delivery queued; audit | BR-BIL-018 |
+| 4 | **Jul 9** — penalty bill (Admin-approved): assessed TOU priced by the ENGINE — on 33.00 · mid 42.00 · off 40.50 = **115.50** taxable → tax **10.92**; + **TAMPER $500.00** charge-code line (fee, non-taxable) → total **626.42** (WE-11) | Charge-code lines only — hand-typed amounts NEVER exist on any bill; TAMPER carries its own GL | Balanced JE; fee GL bucket = 500.00 exactly; tax only on the usage portion; audit | BR-BIL-019 · BR-BIL-007 |
+| 5 | **Jul 21** — customer walks in with **$400.00 cash** while Marked disconnect | **PAYMENT ACCEPTED** (BR-PAY-036: every status — money is taken, tagged to the account); allocated per BR-PAY-010 oldest-first → back-bill 305.18 settles, remainder flows to the penalty bill (running balances **engine-computed**, 00-e2e-design.md §5); acceptance changes NO status | Account still Marked disconnect after the payment — restoration is a separate explicit act; receipt queued (BR-PAY-024); DR cash / CR AR balanced; audit | **BR-PAY-036** · BR-PAY-010 |
+| 6 | **Jul 28** — after arrangement on the rest, staff RESTORE service: explicit, audited status action; RECONN $45 charge code added if reconnection performed (tenant charge code) | Status → Active by staff decision only; RECONN line on the next bill via charge code, never typed | Audit rows: who/when/reason for restoration (the BR-PAY-036 second half); status history append-only | BR-PAY-036 · BR-BIL-007 |
+| 7 | **INVARIANCE** — no invoice line on either bill was hand-entered; each back-bill period priced on its version forever (reprints identical); assessed reads keep their flag + lineage; the cap exemption applied only because reason=theft | — | Append-only books; tie-outs hold (BR-LED-007); an attempt to hand-edit a computed line has NO PATH (T5-19) and any refusal writes an attempt row (BR-AUD-018) | BR-BIL-004 · hard rule 4 |

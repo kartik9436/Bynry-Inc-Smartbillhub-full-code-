@@ -1,0 +1,27 @@
+signed in as dana@brazosbendutilities.com
+PASS the server still serves usage_allowance (a saved one must read its type) — percentage, fixed_amount, rate_override, charge_waiver, usage_allowance
+offered: [["percentage","Percentage — A share of the charges"],["fixed_amount","Fixed amount — A flat sum off"],["rate_override","Rate override — Bills from another schedule"],["charge_waiver","Charge waiver — Removes the whole charge"]]
+PASS the New form offers no Usage allowance
+
+=== 01-new-form-type-list.png — New discount · Type offers: Percentage — A share of the charges | Fixed amount — A flat sum off | Rate override — Bills from another schedule | Charge waiver — Removes the whole charge
+
+=== 02-new-form-type-percentage.png — New discount · Type chosen: Percentage — A share of the charges
+
+=== 03-new-form-type-fixed_amount.png — New discount · Type chosen: Fixed amount — A flat sum off
+
+=== 04-new-form-type-rate_override.png — New discount · Type chosen: Rate override — Bills from another schedule
+
+=== 05-new-form-type-charge_waiver.png — New discount · Type chosen: Charge waiver — Removes the whole charge
+PASS POST /discounts with usage_allowance is refused on the type box by name — 422 {"field":"discount_type","code":"VAL-003","message_key":"rating.discounts.usage_allowance_not_offered","params":{"br_ref":"BR-RAT-962"}}
+PASS the saved usage allowance is on the list — {"id":"01a1036c-a4fe-77c0-ae63-a28197d524da","code":"GARDEN","name":"Garden allowance","type":"usage_allowance","value":"2.000000","value_display":"2.00 kgal","allowance_unit":"kgal","currency":"USD",
+
+=== 10-list-garden-still-listed.png — Discounts list · the saved Garden allowance (draft) still reads
+PASS its details page offers Edit and no Submit for approval
+
+=== 11-details-garden-edit-only.png — Garden allowance details · Draft · Edit only
+PASS POST …/submit is refused (it could never be approved) — 422 rating.discounts.type_not_priceable
+PASS Edit opens with the type read-only — P Usage allowance
+
+=== 12-edit-garden-type-read-only.png — Edit Garden allowance · Type reads Usage allowance, not a list
+
+ALL PASS

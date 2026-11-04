@@ -1,0 +1,1729 @@
+{
+  "W1": {
+    "id": "W1",
+    "walk": {
+      "id": "W1",
+      "prem": "A",
+      "addr": "14 Alder Run",
+      "unit": "",
+      "unitLabel": "Main",
+      "who": {
+        "kind": "person",
+        "first": "Lena",
+        "last": "Ortiz",
+        "dob": "1988-04-12",
+        "name": "Lena Ortiz"
+      },
+      "email": "lena.ortiz@example.test",
+      "phone": "(281) 555-0301",
+      "services": [
+        "water"
+      ],
+      "link": null,
+      "master": false,
+      "cls": "residential",
+      "fix": "name",
+      "fixTo": "Lena M. Ortiz"
+    },
+    "request": {
+      "no": "SR-26-0009",
+      "state": "approved",
+      "name": "Lena M. Ortiz",
+      "start": "2026-10-23",
+      "outcome": "move_in",
+      "class": "residential",
+      "linked": "C-00059",
+      "outcome_ref": "",
+      "kind": "person"
+    },
+    "services": [
+      "water"
+    ],
+    "documents": [
+      [
+        "w1-lease.pdf",
+        "223"
+      ],
+      [
+        "w1-photo-id.png",
+        "70"
+      ]
+    ],
+    "viewed": [
+      [
+        "customers.service_request_document.viewed",
+        "w1-lease.pdf"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w1-lease.pdf"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w1-photo-id.png"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w1-photo-id.png"
+      ]
+    ],
+    "audit_actions": [
+      "service_request.applicant_message.decision",
+      "service_request.approved",
+      "service_request.category_set",
+      "service_request.created_from_portal",
+      "service_request.customer_linked",
+      "service_request.job_raised",
+      "service_request.numbered",
+      "service_request.outcome_decided",
+      "service_request.submitted_from_portal",
+      "service_request.updated"
+    ],
+    "corrected": {
+      "field": "applicant_name",
+      "from": "Lena Ortiz",
+      "to": "Lena M. Ortiz"
+    },
+    "correction_audit": [
+      [
+        "service_request.updated",
+        "Lena Ortiz",
+        "Lena M. Ortiz"
+      ]
+    ],
+    "correction_now": [
+      "Lena M. Ortiz"
+    ],
+    "account": {
+      "no": "AC-2026-00061",
+      "kind": "regular",
+      "class": "residential",
+      "status": "active",
+      "behavior": "billable",
+      "unit": "Main",
+      "address": "14 Alder Run",
+      "customer_no": "C-00059",
+      "customer_name": "Lena M. Ortiz",
+      "customer_kind": "person",
+      "customer_id": "01a0faf3-31b3-7dc2-b404-c4ea2872c608",
+      "customer_new": "true",
+      "match_tier": "",
+      "id": "01a0faf3-3198-7fc8-b95f-a8c8efb3a0fb"
+    },
+    "agreements": [
+      "water"
+    ],
+    "equipment": [
+      [
+        "water",
+        "W-58",
+        "true"
+      ]
+    ],
+    "portal_login": [
+      "w1.login@example.test",
+      "active"
+    ],
+    "customers_for_applicant": [
+      "C-00059"
+    ]
+  },
+  "W2": {
+    "id": "W2",
+    "walk": {
+      "id": "W2",
+      "prem": "A",
+      "addr": "16 Alder Run",
+      "unit": "",
+      "unitLabel": "Main",
+      "who": {
+        "kind": "person",
+        "first": "Marcus",
+        "last": "Bell",
+        "dob": "1979-03-21",
+        "name": "Marcus Bell"
+      },
+      "email": "marcus.applies@example.test",
+      "phone": "(281) 555-0302",
+      "services": [
+        "water",
+        "sewer",
+        "trash",
+        "solar",
+        "battery",
+        "fire"
+      ],
+      "link": "Marcus Bell",
+      "master": false,
+      "cls": "commercial",
+      "fix": "date"
+    },
+    "request": {
+      "no": "SR-26-0010",
+      "state": "approved",
+      "name": "Marcus Bell",
+      "start": "2026-10-30",
+      "outcome": "move_in",
+      "class": "commercial",
+      "linked": "C-00053",
+      "outcome_ref": "",
+      "kind": "person"
+    },
+    "services": [
+      "water",
+      "sewer",
+      "trash",
+      "solar",
+      "battery",
+      "fire"
+    ],
+    "documents": [
+      [
+        "w2-lease.pdf",
+        "223"
+      ],
+      [
+        "w2-photo-id.png",
+        "70"
+      ]
+    ],
+    "viewed": [
+      [
+        "customers.service_request_document.viewed",
+        "w2-lease.pdf"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w2-lease.pdf"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w2-photo-id.png"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w2-photo-id.png"
+      ]
+    ],
+    "audit_actions": [
+      "service_request.applicant_message.decision",
+      "service_request.approved",
+      "service_request.category_set",
+      "service_request.created_from_portal",
+      "service_request.customer_linked",
+      "service_request.job_raised",
+      "service_request.numbered",
+      "service_request.outcome_decided",
+      "service_request.services_set",
+      "service_request.submitted_from_portal",
+      "service_request.updated"
+    ],
+    "corrected": {
+      "field": "requested_start",
+      "from": "2026-10-23",
+      "to": "2026-10-30"
+    },
+    "correction_audit": [
+      [
+        "service_request.updated",
+        "2026-10-23",
+        "2026-10-30"
+      ]
+    ],
+    "correction_now": [
+      "2026-10-30"
+    ],
+    "account": {
+      "no": "AC-2026-00062",
+      "kind": "regular",
+      "class": "commercial",
+      "status": "active",
+      "behavior": "billable",
+      "unit": "Main",
+      "address": "16 Alder Run",
+      "customer_no": "C-00053",
+      "customer_name": "Marcus Bell",
+      "customer_kind": "person",
+      "customer_id": "01a0fa41-17c2-71ca-9495-88d150c1090a",
+      "customer_new": "false",
+      "match_tier": "",
+      "id": "01a0faf3-e855-7149-8920-439480ce317f"
+    },
+    "agreements": [
+      "water",
+      "sewer",
+      "trash",
+      "solar",
+      "battery",
+      "fire"
+    ],
+    "equipment": [
+      [
+        "water",
+        "W-58",
+        "true"
+      ],
+      [
+        "trash",
+        "CART-96",
+        "true"
+      ],
+      [
+        "solar",
+        "SOL-P4",
+        "true"
+      ],
+      [
+        "battery",
+        "BAT-10",
+        "true"
+      ],
+      [
+        "fire",
+        "FL-4",
+        "true"
+      ]
+    ],
+    "portal_login": [
+      "marcus.bell@example.test",
+      "active"
+    ],
+    "customers_for_applicant": [
+      "C-00053"
+    ]
+  },
+  "W3": {
+    "id": "W3",
+    "walk": {
+      "id": "W3",
+      "prem": "A",
+      "addr": "18 Alder Run",
+      "unit": "",
+      "unitLabel": "Main",
+      "who": {
+        "kind": "business",
+        "company": "Alder Bakry LLC",
+        "tax": "74-2000003",
+        "name": "Alder Bakry LLC"
+      },
+      "email": "books@alderbakery.test",
+      "phone": "(281) 555-0303",
+      "services": [
+        "sewer"
+      ],
+      "link": null,
+      "master": true,
+      "cls": "institutional",
+      "fix": "name",
+      "fixTo": "Alder Bakery LLC"
+    },
+    "request": {
+      "no": "SR-26-0011",
+      "state": "approved",
+      "name": "Alder Bakery LLC",
+      "start": "2026-10-23",
+      "outcome": "move_in",
+      "class": "institutional",
+      "linked": "C-00060",
+      "outcome_ref": "",
+      "kind": "business"
+    },
+    "services": [
+      "sewer"
+    ],
+    "documents": [
+      [
+        "w3-lease.pdf",
+        "223"
+      ],
+      [
+        "w3-photo-id.png",
+        "70"
+      ]
+    ],
+    "viewed": [
+      [
+        "customers.service_request_document.viewed",
+        "w3-lease.pdf"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w3-lease.pdf"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w3-photo-id.png"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w3-photo-id.png"
+      ]
+    ],
+    "audit_actions": [
+      "service_request.applicant_message.decision",
+      "service_request.approved",
+      "service_request.category_set",
+      "service_request.created_from_portal",
+      "service_request.customer_linked",
+      "service_request.fulfilled_by_master_account",
+      "service_request.job_raised",
+      "service_request.numbered",
+      "service_request.outcome_decided",
+      "service_request.submitted_from_portal",
+      "service_request.updated"
+    ],
+    "corrected": {
+      "field": "applicant_name",
+      "from": "Alder Bakry LLC",
+      "to": "Alder Bakery LLC"
+    },
+    "correction_audit": [
+      [
+        "service_request.updated",
+        "Alder Bakry LLC",
+        "Alder Bakery LLC"
+      ]
+    ],
+    "correction_now": [
+      "Alder Bakery LLC"
+    ],
+    "account": {
+      "no": "AC-2026-00063",
+      "kind": "master",
+      "class": "institutional",
+      "status": "active",
+      "behavior": "billable",
+      "unit": "",
+      "address": "18 Alder Run",
+      "customer_no": "C-00060",
+      "customer_name": "Alder Bakery LLC",
+      "customer_kind": "company",
+      "customer_id": "01a0faf4-6e73-7c0b-ae92-fa5809f1e085",
+      "customer_new": "true",
+      "match_tier": "",
+      "id": "01a0faf4-6e69-76fd-9f3e-bca1a291a7a5"
+    },
+    "agreements": [
+      "sewer"
+    ],
+    "equipment": [],
+    "portal_login": [
+      "w3.login@example.test",
+      "active"
+    ],
+    "customers_for_applicant": [
+      "C-00060"
+    ]
+  },
+  "W4": {
+    "id": "W4",
+    "walk": {
+      "id": "W4",
+      "prem": "A",
+      "addr": "20 Alder Run",
+      "unit": "",
+      "unitLabel": "Main",
+      "who": {
+        "kind": "business",
+        "company": "Alder Freight Co",
+        "tax": "74-1000004",
+        "name": "Alder Freight Co"
+      },
+      "email": "ap@alderfreight.test",
+      "phone": "(281) 555-0304",
+      "services": [
+        "water",
+        "sewer",
+        "trash",
+        "solar",
+        "battery",
+        "fire"
+      ],
+      "link": "Alder Freight Co",
+      "master": false,
+      "cls": "industrial",
+      "fix": "date"
+    },
+    "request": {
+      "no": "SR-26-0012",
+      "state": "approved",
+      "name": "Alder Freight Co",
+      "start": "2026-10-30",
+      "outcome": "move_in",
+      "class": "industrial",
+      "linked": "C-00054",
+      "outcome_ref": "",
+      "kind": "business"
+    },
+    "services": [
+      "water",
+      "sewer",
+      "trash",
+      "solar",
+      "battery",
+      "fire"
+    ],
+    "documents": [
+      [
+        "w4-lease.pdf",
+        "223"
+      ],
+      [
+        "w4-photo-id.png",
+        "70"
+      ]
+    ],
+    "viewed": [
+      [
+        "customers.service_request_document.viewed",
+        "w4-lease.pdf"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w4-lease.pdf"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w4-photo-id.png"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w4-photo-id.png"
+      ]
+    ],
+    "audit_actions": [
+      "service_request.applicant_message.decision",
+      "service_request.approved",
+      "service_request.category_set",
+      "service_request.created_from_portal",
+      "service_request.customer_linked",
+      "service_request.job_raised",
+      "service_request.numbered",
+      "service_request.outcome_decided",
+      "service_request.services_set",
+      "service_request.submitted_from_portal",
+      "service_request.updated"
+    ],
+    "corrected": {
+      "field": "requested_start",
+      "from": "2026-10-23",
+      "to": "2026-10-30"
+    },
+    "correction_audit": [
+      [
+        "service_request.updated",
+        "2026-10-23",
+        "2026-10-30"
+      ]
+    ],
+    "correction_now": [
+      "2026-10-30"
+    ],
+    "account": {
+      "no": "AC-2026-00064",
+      "kind": "regular",
+      "class": "industrial",
+      "status": "active",
+      "behavior": "billable",
+      "unit": "Main",
+      "address": "20 Alder Run",
+      "customer_no": "C-00054",
+      "customer_name": "Alder Freight Co",
+      "customer_kind": "company",
+      "customer_id": "01a0fa41-192c-7cbe-ac4d-48a5cb87c353",
+      "customer_new": "false",
+      "match_tier": "",
+      "id": "01a0faf5-35f6-7dda-b453-25885ee506b3"
+    },
+    "agreements": [
+      "water",
+      "sewer",
+      "trash",
+      "solar",
+      "battery",
+      "fire"
+    ],
+    "equipment": [
+      [
+        "water",
+        "W-58",
+        "true"
+      ],
+      [
+        "trash",
+        "CART-96",
+        "true"
+      ],
+      [
+        "solar",
+        "SOL-P4",
+        "true"
+      ],
+      [
+        "battery",
+        "BAT-10",
+        "true"
+      ],
+      [
+        "fire",
+        "FL-4",
+        "true"
+      ]
+    ],
+    "portal_login": [
+      "ap@alderfreight.test",
+      "active"
+    ],
+    "customers_for_applicant": [
+      "C-00054"
+    ]
+  },
+  "W5": {
+    "id": "W5",
+    "walk": {
+      "id": "W5",
+      "prem": "B",
+      "addr": "400 Heron Court",
+      "unit": "Unit 2",
+      "unitLabel": "Unit 2",
+      "who": {
+        "kind": "person",
+        "first": "Nadia",
+        "last": "Rahmen",
+        "dob": "1985-11-02",
+        "name": "Nadia Rahmen"
+      },
+      "email": "nadia.applies@example.test",
+      "phone": "(281) 555-0305",
+      "services": [
+        "trash"
+      ],
+      "link": "Nadia Rahman",
+      "master": false,
+      "cls": "municipal",
+      "fix": "name",
+      "fixTo": "Nadia Rahman"
+    },
+    "request": {
+      "no": "SR-26-0013",
+      "state": "approved",
+      "name": "Nadia Rahman",
+      "start": "2026-10-23",
+      "outcome": "move_in",
+      "class": "municipal",
+      "linked": "C-00055",
+      "outcome_ref": "",
+      "kind": "person"
+    },
+    "services": [
+      "trash"
+    ],
+    "documents": [
+      [
+        "w5-lease.pdf",
+        "223"
+      ],
+      [
+        "w5-photo-id.png",
+        "70"
+      ]
+    ],
+    "viewed": [
+      [
+        "customers.service_request_document.viewed",
+        "w5-lease.pdf"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w5-lease.pdf"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w5-photo-id.png"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w5-photo-id.png"
+      ]
+    ],
+    "audit_actions": [
+      "service_request.applicant_message.decision",
+      "service_request.approved",
+      "service_request.category_set",
+      "service_request.created_from_portal",
+      "service_request.customer_linked",
+      "service_request.job_raised",
+      "service_request.numbered",
+      "service_request.outcome_decided",
+      "service_request.submitted_from_portal",
+      "service_request.updated"
+    ],
+    "corrected": {
+      "field": "applicant_name",
+      "from": "Nadia Rahmen",
+      "to": "Nadia Rahman"
+    },
+    "correction_audit": [
+      [
+        "service_request.updated",
+        "Nadia Rahmen",
+        "Nadia Rahman"
+      ]
+    ],
+    "correction_now": [
+      "Nadia Rahman"
+    ],
+    "account": {
+      "no": "AC-2026-00065",
+      "kind": "regular",
+      "class": "municipal",
+      "status": "active",
+      "behavior": "billable",
+      "unit": "Unit 2",
+      "address": "400 Heron Court",
+      "customer_no": "C-00055",
+      "customer_name": "Nadia Rahman",
+      "customer_kind": "person",
+      "customer_id": "01a0fa41-1a88-7eb0-9c8b-cf2d72c5f73f",
+      "customer_new": "false",
+      "match_tier": "",
+      "id": "01a0faf5-e66a-7b1a-9304-eb1e88bd55e8"
+    },
+    "agreements": [
+      "trash"
+    ],
+    "equipment": [
+      [
+        "trash",
+        "CART-96",
+        "true"
+      ]
+    ],
+    "portal_login": [
+      "nadia.rahman@example.test",
+      "active"
+    ],
+    "customers_for_applicant": [
+      "C-00055"
+    ]
+  },
+  "W6": {
+    "id": "W6",
+    "walk": {
+      "id": "W6",
+      "prem": "B",
+      "addr": "402 Heron Court",
+      "unit": "Unit 2",
+      "unitLabel": "Unit 2",
+      "who": {
+        "kind": "person",
+        "first": "Owen",
+        "last": "Price",
+        "dob": "1992-06-30",
+        "name": "Owen Price"
+      },
+      "email": "owen.price@example.test",
+      "phone": "(281) 555-0306",
+      "services": [
+        "water",
+        "sewer",
+        "trash",
+        "solar",
+        "battery",
+        "fire"
+      ],
+      "link": null,
+      "master": false,
+      "cls": "agricultural",
+      "fix": "date"
+    },
+    "request": {
+      "no": "SR-26-0014",
+      "state": "approved",
+      "name": "Owen Price",
+      "start": "2026-10-30",
+      "outcome": "move_in",
+      "class": "agricultural",
+      "linked": "C-00061",
+      "outcome_ref": "",
+      "kind": "person"
+    },
+    "services": [
+      "water",
+      "sewer",
+      "trash",
+      "solar",
+      "battery",
+      "fire"
+    ],
+    "documents": [
+      [
+        "w6-lease.pdf",
+        "223"
+      ],
+      [
+        "w6-photo-id.png",
+        "70"
+      ]
+    ],
+    "viewed": [
+      [
+        "customers.service_request_document.viewed",
+        "w6-lease.pdf"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w6-lease.pdf"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w6-photo-id.png"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w6-photo-id.png"
+      ]
+    ],
+    "audit_actions": [
+      "service_request.applicant_message.decision",
+      "service_request.approved",
+      "service_request.category_set",
+      "service_request.created_from_portal",
+      "service_request.customer_linked",
+      "service_request.job_raised",
+      "service_request.numbered",
+      "service_request.outcome_decided",
+      "service_request.services_set",
+      "service_request.submitted_from_portal",
+      "service_request.updated"
+    ],
+    "corrected": {
+      "field": "requested_start",
+      "from": "2026-10-23",
+      "to": "2026-10-30"
+    },
+    "correction_audit": [
+      [
+        "service_request.updated",
+        "2026-10-23",
+        "2026-10-30"
+      ]
+    ],
+    "correction_now": [
+      "2026-10-30"
+    ],
+    "account": {
+      "no": "AC-2026-00066",
+      "kind": "regular",
+      "class": "agricultural",
+      "status": "active",
+      "behavior": "billable",
+      "unit": "Unit 2",
+      "address": "402 Heron Court",
+      "customer_no": "C-00061",
+      "customer_name": "Owen Price",
+      "customer_kind": "person",
+      "customer_id": "01a0faf6-99a5-7e36-abb7-b7b90fae9746",
+      "customer_new": "true",
+      "match_tier": "",
+      "id": "01a0faf6-9988-7c91-bdcb-c00f5a16f1e1"
+    },
+    "agreements": [
+      "water",
+      "sewer",
+      "trash",
+      "solar",
+      "battery",
+      "fire"
+    ],
+    "equipment": [
+      [
+        "water",
+        "W-58",
+        "true"
+      ],
+      [
+        "trash",
+        "CART-96",
+        "true"
+      ],
+      [
+        "solar",
+        "SOL-P4",
+        "true"
+      ],
+      [
+        "battery",
+        "BAT-10",
+        "true"
+      ],
+      [
+        "fire",
+        "FL-4",
+        "true"
+      ]
+    ],
+    "portal_login": [
+      "w6.login@example.test",
+      "active"
+    ],
+    "customers_for_applicant": [
+      "C-00061"
+    ]
+  },
+  "W7": {
+    "id": "W7",
+    "walk": {
+      "id": "W7",
+      "prem": "B",
+      "addr": "404 Heron Court",
+      "unit": "Unit 3",
+      "unitLabel": "Unit 3",
+      "who": {
+        "kind": "business",
+        "company": "Heron Fire Suply Inc",
+        "tax": "74-2000007",
+        "name": "Heron Fire Suply Inc"
+      },
+      "email": "office@heronfire.test",
+      "phone": "(281) 555-0307",
+      "services": [
+        "fire"
+      ],
+      "link": null,
+      "master": false,
+      "cls": "builder_developer",
+      "fix": "name",
+      "fixTo": "Heron Fire Supply Inc"
+    },
+    "request": {
+      "no": "SR-26-0015",
+      "state": "approved",
+      "name": "Heron Fire Supply Inc",
+      "start": "2026-10-23",
+      "outcome": "move_in",
+      "class": "builder_developer",
+      "linked": "C-00062",
+      "outcome_ref": "",
+      "kind": "business"
+    },
+    "services": [
+      "fire"
+    ],
+    "documents": [
+      [
+        "w7-lease.pdf",
+        "223"
+      ],
+      [
+        "w7-photo-id.png",
+        "70"
+      ]
+    ],
+    "viewed": [
+      [
+        "customers.service_request_document.viewed",
+        "w7-lease.pdf"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w7-lease.pdf"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w7-photo-id.png"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w7-photo-id.png"
+      ]
+    ],
+    "audit_actions": [
+      "service_request.applicant_message.decision",
+      "service_request.approved",
+      "service_request.category_set",
+      "service_request.created_from_portal",
+      "service_request.customer_linked",
+      "service_request.job_raised",
+      "service_request.numbered",
+      "service_request.outcome_decided",
+      "service_request.submitted_from_portal",
+      "service_request.updated"
+    ],
+    "corrected": {
+      "field": "applicant_name",
+      "from": "Heron Fire Suply Inc",
+      "to": "Heron Fire Supply Inc"
+    },
+    "correction_audit": [
+      [
+        "service_request.updated",
+        "Heron Fire Suply Inc",
+        "Heron Fire Supply Inc"
+      ]
+    ],
+    "correction_now": [
+      "Heron Fire Supply Inc"
+    ],
+    "account": {
+      "no": "AC-2026-00067",
+      "kind": "regular",
+      "class": "builder_developer",
+      "status": "active",
+      "behavior": "billable",
+      "unit": "Unit 3",
+      "address": "404 Heron Court",
+      "customer_no": "C-00062",
+      "customer_name": "Heron Fire Supply Inc",
+      "customer_kind": "company",
+      "customer_id": "01a0faf7-5493-732d-94aa-acca90b58e88",
+      "customer_new": "true",
+      "match_tier": "",
+      "id": "01a0faf7-5483-7c11-a13d-ff5fd301e1dc"
+    },
+    "agreements": [
+      "fire"
+    ],
+    "equipment": [
+      [
+        "fire",
+        "FL-4",
+        "true"
+      ]
+    ],
+    "portal_login": [
+      "w7.login@example.test",
+      "active"
+    ],
+    "customers_for_applicant": [
+      "C-00062"
+    ]
+  },
+  "W8": {
+    "id": "W8",
+    "walk": {
+      "id": "W8",
+      "prem": "B",
+      "addr": "406 Heron Court",
+      "unit": "Unit 1",
+      "unitLabel": "Unit 1",
+      "who": {
+        "kind": "business",
+        "company": "Heron Court Partners LLC",
+        "tax": "74-1000008",
+        "name": "Heron Court Partners LLC"
+      },
+      "email": "ops.applies@heroncourt.test",
+      "phone": "(281) 555-0308",
+      "services": [
+        "water",
+        "sewer",
+        "trash",
+        "solar",
+        "battery",
+        "fire"
+      ],
+      "link": "Heron Court Partners LLC",
+      "master": true,
+      "cls": "commercial",
+      "fix": "date"
+    },
+    "request": {
+      "no": "SR-26-0016",
+      "state": "approved",
+      "name": "Heron Court Partners LLC",
+      "start": "2026-10-30",
+      "outcome": "move_in",
+      "class": "commercial",
+      "linked": "C-00056",
+      "outcome_ref": "",
+      "kind": "business"
+    },
+    "services": [
+      "water",
+      "sewer",
+      "trash",
+      "solar",
+      "battery",
+      "fire"
+    ],
+    "documents": [
+      [
+        "w8-lease.pdf",
+        "223"
+      ],
+      [
+        "w8-photo-id.png",
+        "70"
+      ]
+    ],
+    "viewed": [
+      [
+        "customers.service_request_document.viewed",
+        "w8-lease.pdf"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w8-lease.pdf"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w8-photo-id.png"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w8-photo-id.png"
+      ]
+    ],
+    "audit_actions": [
+      "service_request.applicant_message.decision",
+      "service_request.approved",
+      "service_request.category_set",
+      "service_request.created_from_portal",
+      "service_request.customer_linked",
+      "service_request.fulfilled_by_master_account",
+      "service_request.job_raised",
+      "service_request.numbered",
+      "service_request.outcome_decided",
+      "service_request.services_set",
+      "service_request.submitted_from_portal",
+      "service_request.updated"
+    ],
+    "corrected": {
+      "field": "requested_start",
+      "from": "2026-10-23",
+      "to": "2026-10-30"
+    },
+    "correction_audit": [
+      [
+        "service_request.updated",
+        "2026-10-23",
+        "2026-10-30"
+      ]
+    ],
+    "correction_now": [
+      "2026-10-30"
+    ],
+    "account": {
+      "no": "AC-2026-00068",
+      "kind": "master",
+      "class": "commercial",
+      "status": "active",
+      "behavior": "billable",
+      "unit": "",
+      "address": "406 Heron Court",
+      "customer_no": "C-00056",
+      "customer_name": "Heron Court Partners LLC",
+      "customer_kind": "company",
+      "customer_id": "01a0fa41-1bda-73db-b9f8-abaa93095424",
+      "customer_new": "false",
+      "match_tier": "",
+      "id": "01a0faf7-f253-7ceb-84d4-75b37c98ceef"
+    },
+    "agreements": [
+      "water",
+      "sewer",
+      "trash",
+      "solar",
+      "battery",
+      "fire"
+    ],
+    "equipment": [],
+    "portal_login": [
+      "ops@heroncourt.test",
+      "active"
+    ],
+    "customers_for_applicant": [
+      "C-00056"
+    ]
+  },
+  "W9": {
+    "id": "W9",
+    "walk": {
+      "id": "W9",
+      "prem": "C",
+      "addr": "77 Juniper Bend",
+      "unit": "",
+      "unitLabel": "1",
+      "who": {
+        "kind": "person",
+        "first": "Priya",
+        "last": "Naer",
+        "dob": "1990-01-15",
+        "name": "Priya Naer"
+      },
+      "email": "priya.nair@example.test",
+      "phone": "(281) 555-0309",
+      "services": [
+        "solar"
+      ],
+      "link": null,
+      "master": false,
+      "cls": "residential",
+      "fix": "name",
+      "fixTo": "Priya Nair"
+    },
+    "request": {
+      "no": "SR-26-0017",
+      "state": "approved",
+      "name": "Priya Nair",
+      "start": "2026-10-23",
+      "outcome": "new_connection",
+      "class": "residential",
+      "linked": "C-00063",
+      "outcome_ref": "CON-26-0129",
+      "kind": "person"
+    },
+    "services": [
+      "solar"
+    ],
+    "documents": [
+      [
+        "w9-lease.pdf",
+        "223"
+      ],
+      [
+        "w9-photo-id.png",
+        "70"
+      ]
+    ],
+    "viewed": [
+      [
+        "customers.service_request_document.viewed",
+        "w9-lease.pdf"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w9-lease.pdf"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w9-photo-id.png"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w9-photo-id.png"
+      ]
+    ],
+    "audit_actions": [
+      "service_request.applicant_message.decision",
+      "service_request.approved",
+      "service_request.category_set",
+      "service_request.child_linked",
+      "service_request.created_from_portal",
+      "service_request.customer_linked",
+      "service_request.fulfilled_by_master_account",
+      "service_request.job_raised",
+      "service_request.numbered",
+      "service_request.outcome_decided",
+      "service_request.submitted_from_portal",
+      "service_request.updated"
+    ],
+    "corrected": {
+      "field": "applicant_name",
+      "from": "Priya Naer",
+      "to": "Priya Nair"
+    },
+    "correction_audit": [
+      [
+        "service_request.updated",
+        "Priya Naer",
+        "Priya Nair"
+      ]
+    ],
+    "correction_now": [
+      "Priya Nair"
+    ],
+    "account": {
+      "no": "AC-2026-00070",
+      "kind": "regular",
+      "class": "residential",
+      "status": "active",
+      "behavior": "billable",
+      "unit": "1",
+      "address": "77 Juniper Bend",
+      "customer_no": "C-00063",
+      "customer_name": "Priya Nair",
+      "customer_kind": "person",
+      "customer_id": "01a0faf8-a4ac-74dd-bda0-69642b7f7e21",
+      "customer_new": "true",
+      "match_tier": "",
+      "id": "01a0faf8-e981-7216-972f-5e4155e147b0"
+    },
+    "agreements": [
+      "solar"
+    ],
+    "equipment": [
+      [
+        "solar",
+        "SOL-P1",
+        "false"
+      ]
+    ],
+    "portal_login": [
+      "w9.login@example.test",
+      "active"
+    ],
+    "customers_for_applicant": [
+      "C-00063"
+    ],
+    "build_owner": [
+      "AC-2026-00069",
+      "master",
+      "C-00063"
+    ]
+  },
+  "W10": {
+    "id": "W10",
+    "walk": {
+      "id": "W10",
+      "prem": "C",
+      "addr": "79 Juniper Bend",
+      "unit": "",
+      "unitLabel": "1",
+      "who": {
+        "kind": "person",
+        "first": "Tomas",
+        "last": "Vega",
+        "dob": "1983-08-08",
+        "name": "Tomas Vega"
+      },
+      "email": "tomas.applies@example.test",
+      "phone": "(281) 555-0310",
+      "services": [
+        "water",
+        "sewer",
+        "trash",
+        "solar",
+        "battery",
+        "fire"
+      ],
+      "link": "Tomas Vega",
+      "master": false,
+      "cls": "municipal",
+      "fix": "date"
+    },
+    "request": {
+      "no": "SR-26-0018",
+      "state": "approved",
+      "name": "Tomas Vega",
+      "start": "2026-10-30",
+      "outcome": "new_connection",
+      "class": "municipal",
+      "linked": "C-00057",
+      "outcome_ref": "CON-26-0130",
+      "kind": "person"
+    },
+    "services": [
+      "water",
+      "sewer",
+      "trash",
+      "solar",
+      "battery",
+      "fire"
+    ],
+    "documents": [
+      [
+        "w10-lease.pdf",
+        "224"
+      ],
+      [
+        "w10-photo-id.png",
+        "70"
+      ]
+    ],
+    "viewed": [
+      [
+        "customers.service_request_document.viewed",
+        "w10-lease.pdf"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w10-lease.pdf"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w10-photo-id.png"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w10-photo-id.png"
+      ]
+    ],
+    "audit_actions": [
+      "service_request.applicant_message.decision",
+      "service_request.approved",
+      "service_request.category_set",
+      "service_request.child_linked",
+      "service_request.created_from_portal",
+      "service_request.customer_linked",
+      "service_request.fulfilled_by_master_account",
+      "service_request.job_raised",
+      "service_request.numbered",
+      "service_request.outcome_decided",
+      "service_request.services_set",
+      "service_request.submitted_from_portal",
+      "service_request.updated"
+    ],
+    "corrected": {
+      "field": "requested_start",
+      "from": "2026-10-23",
+      "to": "2026-10-30"
+    },
+    "correction_audit": [
+      [
+        "service_request.updated",
+        "2026-10-23",
+        "2026-10-30"
+      ]
+    ],
+    "correction_now": [
+      "2026-10-30"
+    ],
+    "account": {
+      "no": "AC-2026-00072",
+      "kind": "regular",
+      "class": "municipal",
+      "status": "active",
+      "behavior": "billable",
+      "unit": "1",
+      "address": "79 Juniper Bend",
+      "customer_no": "C-00057",
+      "customer_name": "Tomas Vega",
+      "customer_kind": "person",
+      "customer_id": "01a0fa41-1d3e-7f4f-9389-9bb32f3d4739",
+      "customer_new": "false",
+      "match_tier": "",
+      "id": "01a0faf9-ecf4-75ca-a222-c7a5e0d16a35"
+    },
+    "agreements": [
+      "water",
+      "sewer",
+      "trash",
+      "solar",
+      "battery",
+      "fire"
+    ],
+    "equipment": [
+      [
+        "water",
+        "\u2014",
+        "false"
+      ],
+      [
+        "trash",
+        "CART-35",
+        "false"
+      ],
+      [
+        "solar",
+        "SOL-P1",
+        "false"
+      ],
+      [
+        "battery",
+        "BAT-10",
+        "false"
+      ]
+    ],
+    "portal_login": [
+      "tomas.vega@example.test",
+      "active"
+    ],
+    "customers_for_applicant": [
+      "C-00057"
+    ],
+    "build_owner": [
+      "AC-2026-00071",
+      "master",
+      "C-00057"
+    ]
+  },
+  "W11": {
+    "id": "W11",
+    "walk": {
+      "id": "W11",
+      "prem": "C",
+      "addr": "81 Juniper Bend",
+      "unit": "",
+      "unitLabel": "1",
+      "who": {
+        "kind": "business",
+        "company": "Kestrel Energy Coop",
+        "tax": "74-1000011",
+        "name": "Kestrel Energy Coop"
+      },
+      "email": "office.applies@kestrel.test",
+      "phone": "(281) 555-0311",
+      "services": [
+        "battery"
+      ],
+      "link": "Kestrel Energy Co-op",
+      "master": true,
+      "cls": "agricultural",
+      "fix": "name",
+      "fixTo": "Kestrel Energy Co-op"
+    },
+    "request": {
+      "no": "SR-26-0019",
+      "state": "approved",
+      "name": "Kestrel Energy Co-op",
+      "start": "2026-10-23",
+      "outcome": "new_connection",
+      "class": "agricultural",
+      "linked": "C-00058",
+      "outcome_ref": "CON-26-0131",
+      "kind": "business"
+    },
+    "services": [
+      "battery"
+    ],
+    "documents": [
+      [
+        "w11-lease.pdf",
+        "224"
+      ],
+      [
+        "w11-photo-id.png",
+        "70"
+      ]
+    ],
+    "viewed": [
+      [
+        "customers.service_request_document.viewed",
+        "w11-lease.pdf"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w11-lease.pdf"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w11-photo-id.png"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w11-photo-id.png"
+      ]
+    ],
+    "audit_actions": [
+      "service_request.applicant_message.decision",
+      "service_request.approved",
+      "service_request.category_set",
+      "service_request.child_linked",
+      "service_request.created_from_portal",
+      "service_request.customer_linked",
+      "service_request.fulfilled_by_master_account",
+      "service_request.job_raised",
+      "service_request.numbered",
+      "service_request.outcome_decided",
+      "service_request.submitted_from_portal",
+      "service_request.updated"
+    ],
+    "corrected": {
+      "field": "applicant_name",
+      "from": "Kestrel Energy Coop",
+      "to": "Kestrel Energy Co-op"
+    },
+    "correction_audit": [
+      [
+        "service_request.updated",
+        "Kestrel Energy Coop",
+        "Kestrel Energy Co-op"
+      ]
+    ],
+    "correction_now": [
+      "Kestrel Energy Co-op"
+    ],
+    "account": {
+      "no": "AC-2026-00073",
+      "kind": "master",
+      "class": "agricultural",
+      "status": "active",
+      "behavior": "billable",
+      "unit": "",
+      "address": "81 Juniper Bend",
+      "customer_no": "C-00058",
+      "customer_name": "Kestrel Energy Co-op",
+      "customer_kind": "company",
+      "customer_id": "01a0fa41-1e92-772b-a856-c00db542acdf",
+      "customer_new": "false",
+      "match_tier": "",
+      "id": "01a0fafa-98ea-7212-9175-7e53259aa63a"
+    },
+    "agreements": [],
+    "equipment": [],
+    "portal_login": [
+      "office@kestrel.test",
+      "active"
+    ],
+    "customers_for_applicant": [
+      "C-00058"
+    ]
+  },
+  "W12": {
+    "id": "W12",
+    "walk": {
+      "id": "W12",
+      "prem": "C",
+      "addr": "83 Juniper Bend",
+      "unit": "",
+      "unitLabel": "1",
+      "who": {
+        "kind": "business",
+        "company": "Juniper Foods Co",
+        "tax": "74-2000012",
+        "name": "Juniper Foods Co"
+      },
+      "email": "ap@juniperfoods.test",
+      "phone": "(281) 555-0312",
+      "services": [
+        "water",
+        "sewer",
+        "trash",
+        "solar",
+        "battery",
+        "fire"
+      ],
+      "link": null,
+      "master": false,
+      "cls": "industrial",
+      "fix": "date"
+    },
+    "request": {
+      "no": "SR-26-0020",
+      "state": "approved",
+      "name": "Juniper Foods Co",
+      "start": "2026-10-30",
+      "outcome": "new_connection",
+      "class": "industrial",
+      "linked": "C-00064",
+      "outcome_ref": "CON-26-0132",
+      "kind": "business"
+    },
+    "services": [
+      "water",
+      "sewer",
+      "trash",
+      "solar",
+      "battery",
+      "fire"
+    ],
+    "documents": [
+      [
+        "w12-lease.pdf",
+        "224"
+      ],
+      [
+        "w12-photo-id.png",
+        "70"
+      ]
+    ],
+    "viewed": [
+      [
+        "customers.service_request_document.viewed",
+        "w12-lease.pdf"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w12-lease.pdf"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w12-photo-id.png"
+      ],
+      [
+        "customers.service_request_document.viewed",
+        "w12-photo-id.png"
+      ]
+    ],
+    "audit_actions": [
+      "service_request.applicant_message.decision",
+      "service_request.approved",
+      "service_request.category_set",
+      "service_request.child_linked",
+      "service_request.created_from_portal",
+      "service_request.customer_linked",
+      "service_request.fulfilled_by_master_account",
+      "service_request.job_raised",
+      "service_request.numbered",
+      "service_request.outcome_decided",
+      "service_request.services_set",
+      "service_request.submitted_from_portal",
+      "service_request.updated"
+    ],
+    "corrected": {
+      "field": "requested_start",
+      "from": "2026-10-23",
+      "to": "2026-10-30"
+    },
+    "correction_audit": [
+      [
+        "service_request.updated",
+        "2026-10-23",
+        "2026-10-30"
+      ]
+    ],
+    "correction_now": [
+      "2026-10-30"
+    ],
+    "account": {
+      "no": "AC-2026-00075",
+      "kind": "regular",
+      "class": "industrial",
+      "status": "active",
+      "behavior": "billable",
+      "unit": "1",
+      "address": "83 Juniper Bend",
+      "customer_no": "C-00064",
+      "customer_name": "Juniper Foods Co",
+      "customer_kind": "company",
+      "customer_id": "01a0fafb-4946-7e3f-898a-d547e0647994",
+      "customer_new": "true",
+      "match_tier": "",
+      "id": "01a0fafb-8ac7-79ef-9089-366d16f5f296"
+    },
+    "agreements": [
+      "water",
+      "sewer",
+      "trash",
+      "solar",
+      "battery",
+      "fire"
+    ],
+    "equipment": [
+      [
+        "water",
+        "\u2014",
+        "false"
+      ],
+      [
+        "trash",
+        "CART-35",
+        "false"
+      ],
+      [
+        "solar",
+        "SOL-P1",
+        "false"
+      ],
+      [
+        "battery",
+        "BAT-10",
+        "false"
+      ]
+    ],
+    "portal_login": [
+      "w12.login@example.test",
+      "active"
+    ],
+    "customers_for_applicant": [
+      "C-00064"
+    ],
+    "build_owner": [
+      "AC-2026-00074",
+      "master",
+      "C-00064"
+    ]
+  }
+}

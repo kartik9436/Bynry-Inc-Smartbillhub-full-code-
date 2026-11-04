@@ -1,0 +1,593 @@
+signed in as dana@brazosbendutilities.com
+PLANS SERVED: 200 [["01a1023a-ef55-70de-90bc-708019bda005","Industrial","IND","published",1],["01a1023a-ecfa-7ca9-966a-b5f91796105f","Residential Standard","RES-STD","published",1],["01a1023b-22db-7121-afcc-1d61309d0763","Sample — Commercial","SCW-COM","published",1],["01a1023b-23f5-7598-8260-2607e81e576d","Sample — Industrial","SCW-IND","published",1],["01a1023b-21b9-7b8c-b67e-f3492171042e","Sample — Residential","SCW-RES","published",1],["01a1023a-ee2e-704c-bbe3-011e63990c96","Small Commercial","COM-SM","published",1]]
+TARGET PLAN: 01a1023b-21b9-7b8c-b67e-f3492171042e Sample — Residential
+PLAN READ KEYS: ["id","code","name","description","status","version","account_type_ids","account_type_id","account_subtype_id","budget_billing","eligibility","minimum_bill_amount","outside_city_factor","outside_city_percent","outside_city_percent_display","effective_from","effective_to","services","base_charges","base_charges_display","base_charges_unavailable","rate_schedules","accounts","charge_rules","deposit_rules","late_fee_charge","penalty_rule","tax_rules","tax_attachments","tax_lines","combined_tax_rate_display","discounts","versions"]
+PLAN READ: {"id":"01a1023b-21b9-7b8c-b67e-f3492171042e","code":"SCW-RES","name":"Sample — Residential","description":"Sample plan. Water on inclining tiers, sewer at 40% of the water usage charge, trash at $15.00 per cart with no monthly base. Electric is metered too.","status":"published","version":1,"account_type_ids":["01a1023a-e194-775d-8948-9817511773ba"],"account_type_id":"01a1023a-e194-775d-8948-9817511773ba","account_subtype_id":null,"budget_billing":false,"eligibility":{},"minimum_bill_amount":null,"outside_city_factor":"1.500000","outside_city_percent":"50.000000","outside_city_percent_display":"50.00%","effective_from":"2026-08-01","effective_to":null,"services":[{"service":"electric","name":"Electric","base_charge":"12.000000","base_charge_code":null,"currency":"USD","schedule_minimum_amount":null,"schedule_minimum_amount_display":null,"gl_account_id":null,"outside_city_exempt":false},{"service":"water","name":"Water","base_charge":"8.000000","base_charge_code":null,"currency":"USD","schedule_minimum_amount":null,"schedule_minimum_amount_display":null,"gl_account_id":null,"outside_city_exempt":false}],"base_charges":"20.000000","base_charges_display":"20.00","base_charges_unavailable":null,"rate_schedules":[{"service":"electric","tariff_id":"01a1023b-1dfb-7be4-b177-42e61b1ce538","tariff_name":"Sample — Electric usage"},{"service":"water","tariff_id":"01a1023b-1ea9-7f69-9e1a-4ad2dfcd75df","tariff_name":"Sample — Residential water (inclining tiers)"}],"accounts":75,"charge_rules":[],"deposit_rules":[],"late_fee_charge":{"id":"01a1023a-df5e-7376-aaf4-db2abf0a9e38","code":"LATE","name":"Late payment fee","amount_rule":"percent_with_minimum","percent_display":"1.50%","min_amount_display":"5.00"},"penalty_rule":null,"tax_rules":[{"jurisdiction_id":"01a1023a-dfbb-7aca-a842-d5e915a6ee45","jurisdiction":"City","rate_override":null},{"jurisdiction_id":"01a1023a-dfc1-732d-aa67-0c9de9087a47","jurisdiction":"County","rate_override":null},{"jurisdiction_id":"01a1023a-dfb5-751d-89ea-961cf0967ca6","jurisdiction":"Local","rate_override":null},{"jurisdiction_id":"01a1023a-dfc3-777b-a33c-abe6f54ed157","jurisdiction":"Special district","rate_override":null},{"jurisdiction_id":"01a1023a-dfb8-7c12-a913-2f9a03539ac1","jurisdiction":"Texas Public Utility Commission","rate_override":null},{"jurisdiction_id":"01a1023a-dfb0-798e-a91a-999ce8cfe850","jurisdiction":"Texas State","rate_override":null},{"jurisdiction_id":"01a1023a-dfbe-7893-b133-4d4939f60980","jurisdiction":"Texas Water Development Board","rate_override":null}],"tax_attachments":[],"tax_lines":[{"level":"state","authority":"Texas Comptroller of Public Accounts","name":"TX State Utility Tax","kind":"percent","rate_display":"6.25%","flat_amount_display":null,"applies_to_services":[]},{"level":"county","authority":"Bexar County Tax Office","name":"Local · Bexar County","kind":"percent","rate_display":"2.00%","flat_amount_display":null,"applies_to_services":[]}],"combined_tax_rate_display":"8.25%","discounts":[{"id":"01a1023b-2613-7c5c-82f4-ad568a7ff5f8","discount_id":"01a1023b-2599-7eeb-ab0a-1d8ed2606aa5","code":"AUTOPAY","name":"Autopay discount","status":"active","type":"percentage","value_display":"0.50%","eligibility":"Autopay is on","terms":{"version_no":1,"version_status":"active","effective_from":"2026-08-01","effective_to":null,"resolved_on":"2026-10-03","eligibility_summary":"Autopay is on","eligibility_rule_recorded":false,"eligibility_checked":{"served":false,"reason":"no_code_evaluates_a_discount_eligibility_rule","tracks":null},"enrolment_mode":"automatic","verification_method":"automatic","proof_required":false,"accepted_proof_kinds":[],"proof_before_first_reduction":false,"recertification_months":null,"recertification_notice_days":60,"recertification_grace_days":0,"lapse_behaviour":"never_expires","applies_to":"whole_bill","applies_to_service":null,"applies_to_service_name":null,"applies_to_charge_codes":[],"currency":"USD","cap_per_bill_display":null,"cap_per_year_display":null,"cap_lifetime_display":null,"bill_floor_amount_display":"0.00","stacks_with_others":true,"exclusivity_group":null,"stacking_precedence":40},"available_from":null,"available_to":null,"enrolled":0},{"id":"01a1023b-261a-7746-bb07-a69858bcbf50","discount_id":"01a1023b-25e2-7521-9290-90db94320d6c","code":"MUNICIPAL","name":"Municipal account","status":"active","type":"percentage","value_display":"20.00%","eligibility":"Government or municipal account","terms":{"version_no":1,"version_status":"active","effective_from":"2026-08-01","effective_to":null,"resolved_on":"2026-10-03","eligibility_summary":"Government or municipal account","eligibility_rule_recorded":false,"eligibility_checked":{"served":false,"reason":"no_code_evaluates_a_discount_eligibility_rule","tracks":null},"enrolment_mode":"automatic","verification_method":"automatic","proof_required":false,"accepted_proof_kinds":[],"proof_before_first_reduction":false,"recertification_months":null,"recertification_notice_days":60,"recertification_grace_days":0,"lapse_behaviour":"never_expires","applies_to":"whole_bill","applies_to_service":null,"applies_to_service_name":null,"applies_to_charge_codes":[],"currency":"USD","cap_per_bill_display":null,"cap_per_year_display":null,"cap_lifetime_display":null,"bill_floor_amount_display":"0.00","stacks_with_others":true,"exclusivity_group":null,"stacking_precedence":60},"available_from":null,"available_to":null,"enrolled":1},{"id":"01a1023b-260b-75ff-836b-f8aacfce8746","discount_id":"01a1023b-2566-79b5-aac0-e3044288867c","code":"PAPERLESS","name":"Paperless billing","status":"active","type":"fixed_amount","value_display":"$1.00","eligibility":"Paperless billing is on","terms":{"version_no":1,"version_status":"active","effective_from":"2026-08-01","effective_to":null,"resolved_on":"2026-10-03","eligibility_summary":"Paperless billing is on","eligibility_rule_recorded":false,"eligibility_checked":{"served":false,"reason":"no_code_evaluates_a_discount_eligibility_rule","tracks":nu
+CLASS PICK Residential: true
+
+=== p1-new-step1-filled.png — new · step 1 filled (class picked from 'Add a class…')
+← Plans & Rates
+NEW PLAN
+New plan
+Eight steps · takes about 5 minutes.
+Save draft & exit
+1
+Basics
+2
+Services
+3
+Rate schedules
+4
+Charges
+5
+Taxes
+6
+Discounts & billing
+7
+Eligibility
+8
+Review & activate
+STEP 1 OF 8
+Name and describe this plan.
+Customers see this on their bills. Keep it plain.
+Plan name (customer-facing)*
+Plan code (internal)*
+Residential
+×
+Add a class…
+Add a class…
+Agricultural
+Builder or developer
+Commercial
+Government
+Industrial
+Institutional
+Municipal
+Description shown to customer
+Cancel
+Continue
+SERVICE OPTIONS: ["Add a service…","Electric","Water"]
+SERVICE PICK Water: true
+
+=== p2-new-step2-water-added.png — new · step 2 after picking Water from 'Add a service…'
+← Plans & Rates
+NEW PLAN
+New plan
+Eight steps · takes about 5 minutes.
+Save draft & exit
+1
+Basics
+2
+Services
+3
+Rate schedules
+4
+Charges
+5
+Taxes
+6
+Discounts & billing
+7
+Eligibility
+8
+Review & activate
+STEP 2 OF 8
+Pick the services this plan covers.
+SERVICES IN THIS PLAN
+Water
+×
+Add a service…
+Add a service…
+Electric
+Switch more services on in Settings
+1 services selected
+OUTSIDE-CITY SURCHARGE
+Do outside-city premises pay more?
+No — the same price everywhere
+Yes — a percentage more
+SERVICES SURCHARGED
+Water
+×
+Remove the ones to spare.
+Cancel
+Back
+Continue
+CONTROLS p-step2 (2):
+   {"id":"","label":"Add a service…Add a service…Electric","kind":"select[select-one]","value":"Add a service…","disabled":false,"width":1118,"options":["Add a service…","Electric"]}
+   {"id":"plan-outside-city-charges-more","label":"Do outside-city premises pay more?","kind":"select[select-one]","value":"No — the same price everywhere","disabled":false,"width":1118,"options":["No — the same price everywhere","Yes — a percentage more"]}
+BUTTONS p-step2: ["link:← Plans & Rates","Save draft & exit","1Basics","2Services [DISABLED]","3Rate schedules [DISABLED]","4Charges [DISABLED]","5Taxes [DISABLED]","6Discounts & billing [DISABLED]","7Eligibility [DISABLED]","8Review & activate [DISABLED]","×","link:Switch more services on in Settings","×","Cancel","Back","Continue"]
+SCHEDULE OPTIONS water: ["Choose a rate schedule","Residential Water — Inclining tiers · Tiered · 7 accounts","Sample — Commercial water (flat) · Flat · 3 accounts","Sample — Residential water (inclining tiers) · Tiered · 75 accounts","Small Commercial Water — Flat · Flat · 2 accounts"]
+
+=== p3-new-step3.png — new · step 3 schedule picked
+
+=== p4-new-step4.png — new · step 4 charges
+← Plans & Rates
+NEW PLAN
+New plan
+Eight steps · takes about 5 minutes.
+Save draft & exit
+1
+Basics
+2
+Services
+3
+Rate schedules
+4
+Charges
+5
+Taxes
+6
+Discounts & billing
+7
+Eligibility
+8
+Review & activate
+STEP 4 OF 8
+Confirm the base and add the charges this plan carries.
+MONTHLY BASE
+WATER
+8.00 · from BASE-W
+ON THIS PLAN · 0
+Charge code
++ Add
+Not listed? Define it in Charge codes →
+No charges added yet.
+A plan cannot change an amount.
+Cancel
+Back
+Continue
+
+=== p5-new-step5.png — new · step 5 taxes
+← Plans & Rates
+NEW PLAN
+New plan
+Eight steps · takes about 5 minutes.
+Save draft & exit
+1
+Basics
+2
+Services
+3
+Rate schedules
+4
+Charges
+5
+Taxes
+6
+Discounts & billing
+7
+Eligibility
+8
+Review & activate
+STEP 5 OF 8
+What this plan's customers will be taxed.
+ON THIS PLAN · 0
+Tax or authority
++ Add
+No tax on this plan yet.
+A plan cannot change a rate.
+Cancel
+Back
+Continue
+
+=== p6-new-step6.png — new · step 6 minimum bill 10 typed
+
+=== p7-new-step7-note-added.png — new · step 7 note Customer class is Residential, start 11/01/2026
+← Plans & Rates
+NEW PLAN
+New plan
+Eight steps · takes about 5 minutes.
+Save draft & exit
+1
+Basics
+2
+Services
+3
+Rate schedules
+4
+Charges
+5
+Taxes
+6
+Discounts & billing
+7
+Eligibility
+8
+Review & activate
+STEP 7 OF 8
+Who this plan is meant for.
+WHO THIS PLAN IS MEANT FOR
+Nothing here refuses anybody.
+These are notes for staff.
+Attribute
+Choose an attribute
+Customer class
+Service
+Operator
+Choose an operator
+is
+is not
+is at most
+is at least
+is one of
+Value
++ Add a note
+NOTES · 1
+Customer class is Residential
+×
+WHEN IT RUNS
+Effective from*
+Effective to
+Cancel
+Back
+Continue
+
+=== p8-new-step8-review.png — new · step 8 review (what are the closing buttons?)
+← Plans & Rates
+NEW PLAN
+New plan
+Eight steps · takes about 5 minutes.
+Save draft & exit
+1
+Basics
+2
+Services
+3
+Rate schedules
+4
+Charges
+5
+Taxes
+6
+Discounts & billing
+7
+Eligibility
+8
+Review & activate
+STEP 8 OF 8
+Everything, on one page.
+Basics · Walk — Residential City · WALK19754 · Residential
+Edit Basics
+Services · Water
+Edit Services
+Rate schedules · Sample — Residential water (inclining tiers)
+Edit Rate schedules
+Charges · 0 charge codes
+Edit Charges
+Taxes · 0 tax authorities
+Edit Taxes
+Discounts & billing · 0 discount(s) offered · Budget billing not allowed
+Edit Discounts & billing
+Eligibility · 1 eligibility rules
+Edit Eligibility
+The price
+effective before the first bill
+Rate schedule
+SERVICE	BASE	RATE SCHEDULE	USAGE	RATE
+Water	8.00 · 15.00	Sample — Residential water (inclining tiers)	Tiered	$4.24 · $6.89 · $8.48
+from BASE-W · BASE-W-COM
+Charge codes
+What each one lands on.
+CODE	NAME	AMOUNT	WHEN IT APPLIES
+none	Charge codes	none	after the due date
+No charge code names one.
+Discounts
+This plan offers no discount.
+Taxes
+No tax authority reaches this plan.
+Other terms
+Everything else that changes a bill.
+Outside the city limits
+not set
+premises beyond the boundary
+Budget billing
+not offered
+Minimum bill
+$10.00
+Cycle and due date
+not settable per plan
+from the utility’s billing defaults
+Service	Rate schedule
+Water	Sample — Residential water (inclining tiers)
+No live customer is affected.
+SAVE IT
+Effective from 11/01/2026
+Edit Effective from
+Bills change for accounts moved here.
+Cancel
+Back
+Publish plan ✓
+CONTROLS p-step8 (0):
+BUTTONS p-step8: ["link:← Plans & Rates","Save draft & exit","1Basics","2Services","3Rate schedules","4Charges","5Taxes","6Discounts & billing","7Eligibility","8Review & activate [DISABLED]","Edit Basics","Edit Services","Edit Rate schedules","Edit Charges","Edit Taxes","Edit Discounts & billing","Edit Eligibility","Edit Effective from","Cancel","Back","Publish plan ✓"]
+AFTER SAVE DRAFT URL: http://127.0.0.1:5231/brazosbend/plans-rates
+SAVED DRAFT: {"id":"01a10240-7bfb-72fa-8953-9abee15190b3","status":"draft","version":1}
+DRAFT READ: {"id":"01a10240-7bfb-72fa-8953-9abee15190b3","code":"WALK19754","name":"Walk — Residential City","description":null,"status":"draft","version":1,"account_type_ids":["01a1023a-e194-775d-8948-9817511773ba"],"account_type_id":"01a1023a-e194-775d-8948-9817511773ba","account_subtype_id":null,"budget_billing":false,"eligibility":{"rules":[{"value":"01a1023a-e194-775d-8948-9817511773ba","operator":"is","attribute":"customer_class"}]},"minimum_bill_amount":"10.000000","outside_city_factor":null,"outside_city_percent":null,"outside_city_percent_display":null,"effective_from":"2026-11-01","effective_to":null,"services":[{"service":"water","name":"Water","base_charge":null,"base_charge_code":null,"currency":"USD","schedule_minimum_amount":null,"schedule_minimum_amount_display":null,"gl_account_id":null,"outside_city_exempt":false}],"base_charges":"8.000000","base_charges_display":"8.00","base_charges_unavailable":null,"rate_schedules":[{"service":"water","tariff_id":"01a1023b-1ea9-7f69-9e1a-4ad2dfcd75df","tariff_name":"Sample — Residential water (inclining tiers)"}],"accounts":0,"charge_rules":[],"deposit_rules":[],"late_fee_charge":{"id":"01a1023a-df5e-7376-aaf4-db2abf0a9e38","code":"LATE","name":"Late payment fee","amount_rule":"percent_with_minimum","percent_display":"1.50%","min_amount_display":"5.00"},"penalty_rule":null,"tax_rules":[],"tax_attachments":[],"tax_lines":[],"combined_tax_rate_display":null,"discounts":[],"versions":[]}
+REOPENED step 6 minimum bill box: 10.000000
+
+=== r6-reopen-step6-minimum.png — reopened draft · step 6 minimum bill box
+
+=== r7-reopen-step7-notes.png — reopened draft · step 7 notes
+← Plans & Rates
+EDIT PLAN
+Edit Walk — Residential City
+Eight steps · takes about 5 minutes.
+Save draft & exit
+Archive
+1
+Basics
+2
+Services
+3
+Rate schedules
+4
+Charges
+5
+Taxes
+6
+Discounts & billing
+7
+Eligibility
+8
+Review & activate
+STEP 7 OF 8
+Who this plan is meant for.
+WHO THIS PLAN IS MEANT FOR
+Nothing here refuses anybody.
+These are notes for staff.
+Attribute
+Choose an attribute
+Customer class
+Service
+Operator
+Choose an operator
+is
+is not
+is at most
+is at least
+is one of
+Value
++ Add a note
+NOTES · 1
+Customer class is Residential
+×
+WHEN IT RUNS
+Effective from*
+Effective to
+Cancel
+Back
+Continue
+PUBLISH: 200 {"id":"01a10240-7bfb-72fa-8953-9abee15190b3","code":"WALK19754","name":"Walk — Residential City","description":null,"status":"published","version":1,"account_type_ids":["01a1023a-e194-775d-8948-9817511773ba"],"account_type_id":"01a1023a-e194-775d-8948-9817511773ba","account_subtype_id":null,"budget_
+CLASSES READ: 200 {"count":8,"next":null,"previous":null,"results":[{"id":"01a1023a-e198-745a-ad73-45f7964ef99b","code":"agricultural","name":"Agricultural","is_system":true,"active":true,"legacy":false,"used_by":0},{"id":"01a1023a-e19b-7fcc-b3b8-1e6a92303747","code":"builder_developer","name":"Builder or developer","is_system":true,"active":true,"legacy":false,"used_by":1},{"id":"01a1023a-e195-7b10-8090-56d018f395
+
+=== v1-published-overview.png — published walk plan · overview
+← Plans & Rates
+PLAN · WALK19754 · V1
+Walk — Residential City
+Published
+Effective from
+11/01/2026
+onwards
+·
+Customer class Set, but the class cannot be named here yet — customer classes are kept with accounts.
+·
+Editing a published plan writes a new version; this one keeps its own history.
+Duplicate
+Edit
+Retire
+Overview
+Units
+Audit
+What this plan is, and what a customer is told it is.
+UNITS
+0
+on this plan today
+REVENUE
+—
+Nothing adds up what this plan has billed. This is not zero — no figure exists to show.
+SERVICES
+1
+Water
+EXCEPTIONS
+—
+Waivers granted and tax exemption certificates are not recorded yet, so neither half of this count can be worked out.
+CHANGE ALREADY DATED
+A rate schedule can change what this plan charges without the plan itself changing. When a dated change arrives, bills move to the new prices and this plan stays on the version it is on.
+Sample — Residential water (inclining tiers)
+·
+from
+03/01/2027
+What this plan is
+PLAN
+Walk — Residential City
+CODE
+WALK19754
+SERVICES INCLUDED
+1
+BUDGET BILLING
+No
+MINIMUM BILL
+$10.00
+BASE CHARGES
+$8.00
+WHAT CUSTOMERS ARE TOLD
+—
+Nobody has written the customer-facing description. It is what appears in self-service and on the move-in Plan step.
+The price
+in force today
+Rate schedule
+SERVICE	BASE	RATE SCHEDULE	USAGE	RATE
+Water	8.00 · 15.00	Sample — Residential water (inclining tiers)	Tiered	$4.24 · $6.89 · $8.48
+from BASE-W · BASE-W-COM
+Charge codes
+What each one lands on.
+CODE	NAME	AMOUNT	WHEN IT APPLIES
+LATE	Late payment fee	1.50% · 5.00	after the due date
+Discounts
+This plan offers no discount.
+Taxes
+No tax authority reaches this plan.
+Other terms
+Everything else that changes a bill.
+Outside the city limits
+not set
+premises beyond the boundary
+Budget billing
+not offered
+Minimum bill
+$10.00
+Cycle and due date
+not settable per plan
+from the utility’s billing defaults
+HOW A PLAN WORKS
+A plan composes; it does not price. It may not override a rate, add an amount of its own, or leave out a tax the law requires. Different pricing means a different rate schedule, charge code or discount.
+Sample bill
+A worked example comes from a bill run, not from this screen. Run a bill for an account on this plan to see the figures priced.
+Where the money is posted
+Water
+4110 — Water usage
+This account is set in Settings, under Accounting. Open Accounting settings
+Splitting these by inside or outside the city limits needs a figure nothing works out yet.
+A schedule that is being drafted while its current prices are still live does not show here. A draft prices nothing until it is dated and activated.
+Intended for
+CUSTOMER CLASS
+Set, but the class cannot be named here yet — customer classes are kept with accounts.
+CUSTOMERS WITH PROOF OF A HARDSHIP OR ASSISTANCE PROGRAM
+No
+CUSTOMERS WITH AT LEAST 25 KW OF DEMAND
+No
+OWNER-OCCUPIED PREMISES
+No
+Checking a box records an intention only. Staff attest to it when they assign the plan, and that attestation is what gets audited.
+Not recorded on a plan yet
+—
+A plan has nowhere to record this yet.
+Area or zone
+Connection size limits
+Occupancy limits
+Proof required
+How often proof is renewed
+Chosen by the customer or by staff
+Pre-selected at move-in
+This plan is Draft, Published or Archived. The wording being agreed for plans also includes a softer state — closed to new sign-ups, while existing accounts keep being billed — and this product has no such state yet.
+BEFORE minimum/classes: 10.000000 ["01a1023a-e194-775d-8948-9817511773ba"]
+
+=== c8-change-step8.png — change · step 8 with reason
+AFTER PUBLISH CHANGE URL: http://127.0.0.1:5231/brazosbend/plans-rates/plans/01a10240-7bfb-72fa-8953-9abee15190b3/edit | ← Plans & Rates
+EDIT PLAN
+Edit Walk — Residential City
+Eight steps · takes about 5 minutes.
+Save draft & exit
+Archive
+Only a draft plan can be published. This one is published.
+1
+Basics
+2
+Services
+3
+Rate schedules
+4
+Charges
+5
+Taxes
+6
+Discounts & billing
+7
+Eligibility
+8
+Review & activate
+STEP 8 OF 8
+Everything, on one page.
+Basics · Walk — Residential City · WALK19754 · Residential, Commercial
+Edit Basics
+Services · Water
+Edit Services
+Rate schedules · Sample — Residential water (inclining tiers)
+Edit Rate schedules
+Charges · 0 charge codes
+Edit Charges
+Taxes · 0 tax authorities
+Edit Taxes
+Disc
+
+=== v2-audit-after-change.png — published walk plan · audit after the change
+← Plans & Rates
+PLAN · WALK19754 · V2
+Walk — Residential City
+Published
+Effective from
+11/01/2026
+onwards
+·
+Customer class Set, but the class cannot be named here yet — customer classes are kept with accounts.
+·
+Editing a published plan writes a new version; this one keeps its own history.
+Duplicate
+Edit
+Retire
+Overview
+Units
+Audit
+What this plan has said, and from when.
+UNITS
+0
+on this plan today
+REVENUE
+—
+Nothing adds up what this plan has billed. This is not zero — no figure exists to show.
+SERVICES
+1
+Water
+EXCEPTIONS
+—
+Waivers granted and tax exemption certificates are not recorded yet, so neither half of this count can be worked out.
+CHANGE ALREADY DATED
+A rate schedule can change what this plan charges without the plan itself changing. When a dated change arrives, bills move to the new prices and this plan stays on the version it is on.
+Sample — Residential water (inclining tiers)
+·
+from
+03/01/2027
+Audit
+VERSION	CHANGED	CHANGE	STATUS
+v2
+Dana Whitfield
+	10/03/2026	
+Walk: add Commercial, minimum 12
+account_type_ids[1]: — → 01a1023a-e195-7b10-8090-56d018f395c7
+base_charges: 8.000000 → —
+base_charges_display: 8.00 → —
+base_charges_unavailable: — → differs_by_customer_class
+minimum_bill_amount: 10.000000 → 12.000000
+	Published
+v1
+Dana Whitfield
+	10/03/2026	
+—
+No reason was written down
+The first version on record — there is nothing before it to compare against.
+	Superseded
+This history is a record of what the plan said. Nothing here changes what an account is charged.
+DATED
+Composition changes save as a new plan version via the builder — accounts re-price from its effective date.
+Changes underneath
+WHAT CHANGED	CHANGED	WHY
+Sample — Residential water (inclining tiers)
+Rate schedule
+	10/03/2026
+Dana Whitfield
+	2027 filing (pending) · adds conservation pricing
+Sample — Residential water (inclining tiers)
+Rate schedule
+	10/03/2026
+Dana Whitfield
+	+6% across tiers · PUC #W-2025-1184
+1–2 of 2
+Page 1 of 1
+Rows per page
+50
+100
+200
+500
+1000
+‹
+›
+Taxes and discounts are not tracked.

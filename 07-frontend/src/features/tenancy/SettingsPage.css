@@ -1,0 +1,995 @@
+/* S8 Settings (US-TEN-005..012 · US-IDN-004..010 · US-MET-006) — Modernist
+ * tokens only (B8: no hex literals here). Layout values are PORTED from the
+ * signed reference 05-prototype/UtilityBilling.html (.settings-tabs, .panel,
+ * .table, .lookup-grid/.lookup-card, the sticky save row); its runtime is never
+ * ported. This is the ONE stylesheet for every Settings surface, which is what
+ * makes BR-SHL-035's "same shell everywhere" true in the paint as well as the
+ * markup. */
+
+.settings-page {
+  padding: var(--space-6) var(--space-4) var(--space-8);
+}
+
+.settings-head h1 {
+  font-size: var(--text-h2);
+  margin: 0;
+}
+
+.settings-sub {
+  font-size: var(--text-base);
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+  margin: var(--space-1) 0 var(--space-6);
+}
+
+/* ── Tab bar (ported .settings-tabs) ─────────────────────────────────────── */
+.settings-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--color-divider);
+  margin-bottom: var(--space-6);
+  flex-wrap: wrap;
+}
+/* B14 rule 5 (CR-016 / DEF-311) — "Two button sizes only." These are real
+   <button> elements and there are fourteen of them on every Settings screen,
+   so 13px was the single largest contributor to the five sizes measured.
+   14px is the default tier. r10's own `.settings-tabs button` says 13px; that
+   rule predates B14 rule 5 and rule 5 is the ratified law — recorded as a
+   divergence in 12-governance/02-decision-log.md. */
+.settings-tabs button {
+  background: none;
+  border: 0;
+  padding: var(--space-3) 18px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--text-btn);
+  cursor: pointer;
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+}
+.settings-tabs button.active {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+.settings-tabs button:hover {
+  color: var(--color-text);
+}
+
+/* Company's SECOND-LEVEL strip. The prototype nests a plain `.settings-tabs`
+ * block inside the Company tab body and changes ONE thing about it —
+ * `style="margin:0 0 20px"` — so that is the only thing overridden here: same
+ * type, same rule, same active treatment, one level in. */
+.settings-subtabs > .settings-tabs {
+  margin: 0 0 20px;
+}
+
+/* ── Tab bodies ──────────────────────────────────────────────────────────── */
+.settings-tab {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.settings-lede {
+  font-size: var(--text-base);
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+  margin: var(--space-1) 0 var(--space-2);
+  /* r10 UI-RULES rule 18 — the lede was unbounded and ran the full width. */
+  max-width: var(--desc-measure);
+}
+
+/* ⚠ `.settings-note` LEFT ON 2026-08-20 (CR-018 Phase 4b-3) — 89 sites, now
+   `<Note>` in `components/TextBits.tsx`. */
+
+/* ⚠ **THE COLUMN MINIMUM IS A PARAMETER SINCE `CR-155-BRC09`, AND NOTHING
+   MOVED.** `--panel-min` defaults to the 320px this rule has always used, so
+   every caller that does not set it renders byte-for-byte what it rendered
+   before; `PanelGrid`'s new `min` prop is the only way to change it.
+
+   WHY IT WAS NEEDED, WITH THE ARITHMETIC. The PO approved the redesigned
+   Security tab at 1280 with a caption saying three cards still fit. In the
+   REAL frame they did not: 1280 − 240 (the sidebar) − 48 (`.view`'s padding
+   at this breakpoint) leaves **992px**, and three 320px columns with two
+   24px gaps need **1008px** — sixteen pixels short, so the grid dropped to
+   two columns and the third card fell under the first. The drawing's own
+   frame was a simplified render with a narrower rail, which is why it fit
+   there and not here.
+
+   **B14 rule 44 is what decides this and it decides FOR the drawing**: the
+   drawing says what is on the screen AND HOW IT IS ARRANGED, and three cards
+   in one row is the arrangement the PO approved. The UI standard owns HOW —
+   so the fix is a token on the existing rule rather than a second grid
+   class (rule 21: no new class) or a bespoke grid in a page (rule 43). At
+   288px the sum is 912px and the columns still grow to `1fr`, so at 1440
+   nothing about the drawn shape changes. */
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--panel-min, 320px), 1fr));
+  gap: var(--space-6);
+  align-items: start;
+}
+
+/* Ported .panel */
+.panel {
+  background: var(--color-surface);
+  padding: var(--space-6) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  border-top: 2px solid var(--color-divider);
+}
+.panel.hi {
+  border-top-color: var(--color-accent);
+}
+.panel h3 {
+  font-size: var(--text-h5);
+  margin: 0;
+}
+.panel-hint {
+  font-size: var(--text-sm);
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+  margin: 0;
+}
+
+/* ── Sticky save row (BR-TEN-024) ────────────────────────────────────────── */
+.settings-savebar {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 2px solid var(--color-divider);
+  flex-wrap: wrap;
+}
+/* ⚠ RETARGETED FROM `.settings-note` TO `[data-note]` (CR-018 Phase 4b-3).
+   The note in the save bar is `<Note as="span">` now and carries no class, so
+   this rule stopped matching the moment the class was deleted — a save-bar
+   caption that quietly lost its right-alignment and its dimming, on every
+   settings screen. It was caught by reading the stylesheet for leftover
+   references, BEFORE the census ran; the census would have caught it too, which
+   is the point of running one.
+
+   ⚠ AND `.settings-note.settings-savebar-note` IS GONE, NOT RETARGETED:
+   `settings-savebar-note` is referenced by NO component — a dead compound
+   selector that has been styling nothing. Deleting it is not part of the
+   migration, it is the migration noticing.
+
+   This adds no class, so B14 rule 21 is satisfied: it is the same rule, aimed
+   at the same element by a different handle. */
+.settings-readonly {
+  font-size: var(--text-sm);
+}
+.settings-savebar [data-note],
+.settings-savebar .settings-readonly {
+  margin-left: auto;
+  font-size: var(--text-sm);
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+
+/* ── Server refusals (BR-SHL-020) ────────────────────────────────────────── */
+/* ⚠ `.settings-refusal` LEFT ON 2026-08-20 (CR-018 Phase 4b-4) — 70 sites, now
+   `<RefusalStrip>` in `components/Surfaces.tsx`.
+
+   ⚠ IT WAS DECLARED TWICE, 700 LINES APART: here for its colours and padding,
+   and again below in a `.panel-hint, .settings-refusal` pair for `max-width`
+   alone. Both applied, so the class worked — and nobody reading either rule
+   could see the whole of it. The component is one place to read, which is the
+   part of this migration that is worth more than the bytes. */
+/* `.settings-refusal-ref` WAS HERE and is deleted, not merely unused: DEF-332,
+   2026-08-21. It styled the ` (BR-IDN-013)` span `RefusalNotice` appended after
+   every Settings refusal, and the PO's standing ruling of 2026-08-19 is that our
+   internal ids do not belong on a customer's screen. The id did not disappear —
+   it is `data-br-ref` on the strip now, which needs no rule. A dead declaration
+   left behind is an invitation to render the span again. */
+.settings-warning {
+  background: var(--color-warning-100);
+  color: var(--color-warning-700);
+  font-size: var(--text-base);
+  padding: var(--space-2) var(--space-3);
+  margin: 0;
+  border-left: 2px solid var(--color-warning-500);
+}
+
+/* ── The honest "arrives with …" state ───────────────────────────────────── */
+.settings-arrives {
+  background: var(--color-surface);
+  border-top: 2px solid var(--color-divider);
+  padding: var(--space-8) var(--space-6);
+  text-align: center;
+}
+.settings-arrives h3 {
+  font-size: var(--text-h4);
+  margin: 0 0 var(--space-2);
+}
+.settings-arrives p {
+  font-size: var(--text-base);
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+  margin: 0;
+  max-width: 60ch;
+  margin-inline: auto;
+}
+
+/* ── The ONE Reference-data frame (BR-SHL-035) ───────────────────────────── */
+.settings-frame {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.settings-back {
+  align-self: flex-start;
+  padding-inline: 0;
+  font-size: var(--text-base);
+}
+.settings-frame-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+.settings-frame-head-spaced {
+  margin-top: var(--space-8);
+}
+.settings-frame-title {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  /* OQ-278 CLOSED THE METRIC TIER AND THIS IS A TITLE, NOT A METRIC. There is
+     no 24px step in the ruled scale: --text-h3 is 25px, one pixel up, and
+     --text-metric-sm is 22px and is a metric name. Both are pixel MOVES on a
+     surface no before/after covers, and the ruling's own nudge list is 30 -> 26,
+     40 -> 32 and 18 -> 16/20 — it does not name 24. Stays 24px. OQ-279. */
+  font-size: 24px;
+  margin: var(--space-1) 0 0;
+}
+.settings-frame-desc {
+  font-size: var(--text-base);
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+  margin: var(--space-1) 0 0;
+}
+.settings-frame-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+.settings-frame-toolbar {
+  display: flex;
+  justify-content: flex-end;
+}
+.settings-audit-line {
+  font-size: var(--text-xs);
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+  margin: var(--space-2) 0 0;
+}
+
+/* ── Card grid (ported .lookup-grid/.lookup-card) ────────────────────────── */
+.lookup-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-3);
+}
+.lookup-card {
+  background: var(--color-surface);
+  padding: var(--space-4);
+  border: 0;
+  border-top: 2px solid var(--color-divider);
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-family: inherit;
+  color: inherit;
+}
+.lookup-card:hover {
+  border-top-color: var(--color-accent);
+}
+.lookup-card .n {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: var(--text-md);
+}
+.lookup-card .c {
+  font-size: var(--text-xs);
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+.lookup-card .v {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  /* OQ-279 RULED 2026-08-20 (commit 5dbf2d7) — this one STAYS. It is the row
+     COUNT on a lookup card: a figure, not a title, and `--text-metric-sm` is
+     the name for exactly that. The ruling moved the three TITLES that were
+     borrowing this key and left the two genuine metrics alone. */
+  /* OQ-278 RULED — 22px IS --text-metric-sm, and a lookup-card figure (accent,
+     tabular numerals) is exactly the role it was named for. Same pixel. */
+  font-size: var(--text-metric-sm);
+  color: var(--color-accent);
+  margin-top: var(--space-2);
+  font-feature-settings: "tnum" 1;
+}
+
+/* ── Plain config tables (B9 rows declaring no table capabilities) ───────── */
+.settings-table {
+  width: 100%;
+  border-collapse: collapse;
+  /* B14 rule 20 (DEF-223): one table type. Was a hardcoded 14px. */
+  font-size: var(--table-font-size);
+}
+.settings-table th {
+  text-align: left;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  /* The ONE header tier (CR-016 / DEF-310). Was 11px. r10's tracking is 0.08em. */
+  font-size: var(--table-header-font-size);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 2px solid var(--color-divider);
+}
+.settings-table td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-text) 12%, transparent);
+  vertical-align: middle;
+}
+.settings-table th.cell-num,
+.settings-table td.cell-num {
+  text-align: right;
+  font-feature-settings: "tnum" 1;
+}
+.settings-row-off td {
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+
+/* ⚠ .settings-row-actions / .rating-row-actions / .fin-row-actions WERE HERE
+   AND ARE GONE (2026-08-20), with .ast-row-actions and .met-row-actions. Five
+   containers declared the same flex row with three different gaps, and the
+   `.settings-row-actions .btn { padding: 2px 6px }` under this one was half of
+   DEF-342 — a PARENT selector re-styling a button, which Route B cannot express
+   and which nothing had ever compared against its four siblings.
+   `components/RowActions.tsx` is the one that remains. */
+
+.settings-danger {
+  color: var(--color-danger-700);
+}
+.settings-locked {
+  cursor: not-allowed;
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+
+/* ── Company: logo drop-zone + letterhead preview ────────────────────────── */
+.settings-dropzone {
+  border: 2px dashed var(--color-divider);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  align-items: center;
+  font-size: var(--text-sm);
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+}
+.settings-letterhead {
+  background: var(--color-bg);
+  padding: var(--space-3);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  /* The brand colors are tenant DATA, delivered as custom properties by the
+     screen; the painting itself lives here (no inline design values). */
+  border-left: 3px solid var(--settings-brand-accent, var(--color-divider));
+}
+/* CR-048 wave D / DEF-195 — this rule USED TO BE THE MARK.
+   It painted `background: var(--settings-brand-primary, …)` into an empty
+   26 x 26 span: a colour swatch with no letters in it, identical whether a
+   logo was on file or not. The mark itself is now drawn by
+   `BrandMark.tsx` — a <span> carrying its own two colours inline (or the
+   logo's own <img>), because a tenant's brand colour is DATA and cannot live
+   in a stylesheet (B8, OQ-800(b)). It is a <span> and NOT an inline <svg>:
+   G37 allows an <svg> only in `components/icons.tsx`, and G34 bans the
+   inline `fontSize` an <svg> would need to size its text. This comment said
+   "an inline SVG" until 2026-08-30 — it described the draft two gates
+   rejected, not the component that shipped. So this rule keeps only the BOX: the size the
+   letterhead reserves, and the refusal to be squeezed by the name beside it.
+   No class was added here and none was needed (B14 rule 21). */
+.settings-letterhead-mark {
+  width: 26px;
+  height: 26px;
+  display: inline-block;
+  flex: 0 0 auto;
+}
+.settings-letterhead-note {
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+
+/* ── Brand hex fields: r10 SET-01.profile's live colour chip ──────────────
+   The chip sits BESIDE the input rather than inside it, matching r10, and the
+   grid keeps it aligned to the input row while the label and any inline error
+   still occupy the full field width. `--settings-swatch` is tenant data set by
+   the screen; only well-formed #RRGGBB reaches it (see `isPaintableHex`), so
+   there is no fallback colour here — an unpaintable value renders no chip at
+   all rather than a misleading one. */
+.settings-color-field {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: var(--space-2);
+  align-items: end;
+}
+.settings-color-field > .settings-swatch {
+  width: 28px;
+  height: 28px;
+  /* Sits level with the input, not the label above it. */
+  margin-bottom: var(--space-1);
+  /* Not a DEF-312 case: `--settings-swatch` is declared at RUNTIME, on this
+     element's own `style` attribute (SettingsCompanyTab.tsx `const swatch`),
+     because the value is a tenant's brand hex from the database. Same for
+     `--settings-brand-primary` / `--settings-brand-accent` below. */
+  background: var(--settings-swatch);
+  border: 1px solid var(--color-divider);
+}
+/* With no chip the field takes the whole row, so the input never jumps width
+   as a user finishes typing a valid hex. */
+.settings-color-field > :only-child {
+  grid-column: 1 / -1;
+}
+
+/* ── Regional: live preview + period card ────────────────────────────────── */
+.settings-preview {
+  background: var(--color-bg);
+  padding: var(--space-3);
+}
+.settings-preview-line {
+  font-size: var(--text-md);
+  font-feature-settings: "tnum" 1;
+  margin: var(--space-1) 0 0;
+}
+.settings-preview-note {
+  font-size: var(--text-xs);
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+  margin: 2px 0 0;
+}
+
+/* ── Numbering: one block per series ─────────────────────────────────────── */
+.settings-series {
+  border-top: 1px solid var(--color-divider);
+  padding-top: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.settings-series:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+.settings-series-preview {
+  font-size: var(--text-sm);
+  font-feature-settings: "tnum" 1;
+  color: color-mix(in srgb, var(--color-text) 70%, transparent);
+  margin: 0;
+}
+.settings-series-actions .settings-savebar {
+  margin-top: 0;
+  padding-top: var(--space-2);
+  border-top: 0;
+}
+
+/* ── Users: the shown-once temporary password (BR-IDN-022) ───────────────── */
+.settings-temp-password {
+  background: var(--color-warning-100);
+  border-left: 3px solid var(--color-warning-500);
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  align-items: flex-start;
+}
+.settings-temp-password-for {
+  font-size: var(--text-base);
+  margin: 0;
+}
+.settings-temp-password-value {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: var(--text-h4);
+  letter-spacing: 0.04em;
+  background: var(--color-bg);
+  padding: var(--space-2) var(--space-3);
+}
+.settings-temp-password-note {
+  font-size: var(--text-sm);
+  color: var(--color-warning-700);
+  margin: 0;
+}
+
+.settings-matrix {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+}
+
+/* ── Rule-page fields, and the two controls of 2026-08-15 ────────────────── */
+/* `.settings-rule-field` has been the wrapper every rule-page field renders in
+ * since the five pages landed and carried no rules of its own; the sequence
+ * control and the per-authority table are the first things on those pages that
+ * are not a single input, so it acquires spacing here. Tokens only (B8). */
+.settings-rule-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  /* DEF-312 — `--space-5` is not in r10's scale; was invalid, never applied. */
+  margin-bottom: var(--space-6);
+}
+.settings-rule-echo {
+  margin: 0;
+  font-size: var(--text-base);
+}
+
+/* The ORDER control (`allocation_class_order`, S66). An ordered list whose
+ * position is the setting, so the number is drawn rather than implied. */
+.settings-sequence {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.settings-sequence-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-divider);
+}
+.settings-sequence-pos {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-feature-settings: "tnum" 1;
+  min-width: 1.5em;
+  text-align: right;
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+.settings-sequence-name {
+  flex: 1 1 auto;
+}
+.settings-sequence-of {
+  font-size: var(--text-sm);
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+
+/* The worked example that says what the chosen order DOES. */
+.settings-example {
+  margin-top: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg);
+  border-left: 3px solid var(--color-divider);
+}
+.settings-example-title {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: var(--text-h4);
+  margin: 0;
+}
+.settings-example-table tfoot th,
+.settings-example-table tfoot td {
+  border-top: 2px solid var(--color-divider);
+  border-bottom: none;
+  padding: var(--space-2) var(--space-3);
+  font-weight: 600;
+  text-align: left;
+}
+.settings-example-table tfoot td {
+  text-align: right;
+  font-feature-settings: "tnum" 1;
+}
+
+/* ── US-TEN-019 · Sample data (S8 → Company profile, BR-TEN-069) ──────────
+   The visual weight is deliberately on the REASONS, not on the counts. Every
+   module line carries its own diagnostic sentence and that sentence is the
+   widest element in the row, because the defect this panel guards against is a
+   truthful report being read as a success at a glance. */
+.settings-sample-never,
+.settings-sample-nothing,
+.settings-sample-ok {
+  font-size: var(--text-base);
+  margin: 0 0 var(--space-2);
+}
+.settings-sample-nothing {
+  color: var(--color-warning-700);
+  font-weight: 600;
+}
+.settings-sample-ok {
+  color: var(--color-success-700);
+  font-weight: 600;
+}
+.settings-sample-never {
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+}
+.settings-sample-list {
+  list-style: none;
+  margin: 0 0 var(--space-3);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.settings-sample-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-1) var(--space-3);
+  padding: var(--space-2) 0;
+  border-top: 1px solid var(--color-divider);
+}
+.settings-sample-module {
+  font-weight: 600;
+  font-size: var(--text-base);
+}
+.settings-sample-outcome {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  align-self: center;
+  color: color-mix(in srgb, var(--color-text) 70%, transparent);
+}
+/* The diagnostic spans BOTH columns so it is never truncated into a hint. */
+.settings-sample-detail {
+  grid-column: 1 / -1;
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+  overflow-wrap: anywhere;
+}
+.settings-sample-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+/* ── Icon row actions (r10 UI-RULES rule 15) ──────────────────────────────
+   The rule is "icons with tooltips, never text links". A square target keeps
+   the two controls the same size whichever state the row is in — the old text
+   buttons changed width between "Enable" and "Disable", so the pencil beside
+   them moved as you toggled rows. */
+/* B14 rule 5's SMALL TIER — "two button sizes only: default and small (12px)".
+   The icon action every Settings list uses.
+
+   ⚠ THE 12px WAS RATIFIED AND NEVER IMPLEMENTED (DEF-198). This class set only
+   geometry, so every icon button inherited `.btn`'s 14px and the small tier
+   existed on paper and nowhere else — the same shape as `btn-icon-sm`, a name
+   referenced by one file and declared by none, and as `--table-font-size`,
+   read with a fallback and never defined. Three of the same failure in one
+   screen's worth of CSS.
+
+   Safe to set: the icons are fixed 16px SVGs (`ICON_BOX`), so the type size
+   governs any text label without resizing the glyphs.
+
+   32 × 32 is the ratified geometry, NOT the 44 × 44 of the WCAG target-size
+   guidance. PO ruling 2026-08-17, "as per rule"; the 44px argument is live and
+   product-wide as OQ-259. */
+.settings-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  font-size: var(--text-btn-sm);
+}
+/* r10 draws the on/off control as a ring that fills when the service is on.
+   Colour is not the only signal: the STATUS column already says On/Off in
+   words, and this control carries its own aria-label. */
+.settings-toggle {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--color-divider);
+  display: inline-block;
+}
+.settings-toggle.is-on {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* ── r10 SET-04: reference-data cards filed under module headings ─────────
+   A heading is rendered by the screen only when it has cards (the grid is
+   server-driven and omits unwired lists), so this styles the section, never
+   the emptiness. */
+.lookup-group + .lookup-group {
+  margin-top: var(--space-6);
+}
+.lookup-group-heading {
+  font-size: var(--text-base);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  margin: 0 0 var(--space-2);
+  padding-bottom: var(--space-1);
+  border-bottom: 2px solid var(--color-text);
+}
+
+/* ── CR-005 · r10 SET-08 Numbering: the table plus its right rail ─────────
+   The layout r10 draws: a table of entities on the left, a sticky "How they
+   appear together" rail at 320px on the right. It collapses to one column
+   below 1100px — the rail is a preview of the table's own values, so it is the
+   half that stacks. */
+.numbering-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: var(--space-6);
+  align-items: start;
+}
+@media (max-width: 1100px) {
+  .numbering-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.numbering-rail {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  /* ⚠ CR-048 wave H — "'How they appear together' scrolls away". MEASURED at
+     four window sizes against the running app, because the reported cause and
+     the real one are not the same thing:
+
+       1728×1080 · rail 729px in a 1024px scroll area → sticks, top holds at
+                   84px through a 2,154px scroll. Correct.
+       1440× 900 · rail 729px in an 844px area → sticks. Correct.
+       1366× 768 · rail 729px in a  712px area → the foot of it is 41px BELOW
+                   the window and there is no way to reach it.
+       1280× 720 · rail 729px in a  664px area → 89px unreachable.
+
+     So `align-items: start` on the grid is NOT the fault — a grid item's
+     containing block is its grid AREA, which is the full 2,673px row, and the
+     rail has 1,944px of travel and uses it. The fault is that on a laptop the
+     rail is TALLER THAN THE WINDOW: sticky pins the top, and everything past
+     the bottom edge is permanently out of reach. That is exactly "it scrolls
+     away" from the reader's side, and it is why every previous fix aimed at
+     the sticky declaration changed nothing.
+
+     A pinned panel therefore gets its own scroll once it outgrows the window.
+     `6rem` is the 56px app header plus the view's 28px top padding, rounded up
+     so the last card is not flush against the bottom edge. Above 900px of
+     window height nothing is capped and no scrollbar is drawn — the cap
+     engages only in the case that produced the complaint. */
+  max-height: calc(100vh - 6rem);
+  overflow-y: auto;
+}
+@media (max-width: 1100px) {
+  /* Below the breakpoint the rail is stacked UNDER the table and is not
+     pinned, so a cap here would put a scrollbar around a panel that has the
+     whole page to sit in. */
+  .numbering-rail {
+    max-height: none;
+    overflow-y: visible;
+  }
+}
+/* A wide table scrolls INSIDE its own box; the page never scrolls sideways. */
+.numbering-scroll {
+  overflow-x: auto;
+}
+.numbering-table {
+  width: 100%;
+  border-collapse: collapse;
+  /* B14 rule 20 (CR-016 / DEF-310) — the ONE body size; was 13px. */
+  font-size: var(--table-font-size);
+}
+.numbering-table th,
+.numbering-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: var(--space-2);
+  border-bottom: 1px solid var(--color-divider);
+}
+.numbering-table thead th {
+  /* The ONE header tier; was `var(--text-h6)` = 13px. */
+  font-size: var(--table-header-font-size);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+  /* ⚠ CR-048 wave H — "'Next Counter' wraps to two lines". Measured: that
+     header needs 146px set uppercase at this size and tracking, and its column
+     was fixed at 130px, so it wrapped and took the whole header row to two
+     lines with it. Widening the column alone would fix THIS label and leave
+     the next one to be discovered by the PO, so the no-wrap is the rule and
+     the width below is the room: a column label is a name, and a name that
+     breaks mid-phrase stops being scannable — the same reasoning `CODE_CELL`
+     spells out for `NTF-01` on the notifications matrix. The table already
+     scrolls inside `.numbering-scroll`, so a header that insists on its width
+     can never push the page sideways. */
+  white-space: nowrap;
+}
+.numbering-group th {
+  border-bottom: 0;
+  padding-top: var(--space-4);
+}
+/* CR-005 UX rule: "Numbers in tnum", right-aligned counters. */
+.numbering-num,
+.numbering-preview {
+  font-feature-settings: "tnum" 1;
+}
+.numbering-num {
+  text-align: right;
+  /* 152px, was 130px — "NEXT COUNTER" measures 146px including this column's
+     padding (CR-048 wave H). The header no-wrap above is the rule; this is the
+     room, so the column is not sized by a rule that has to fight it. */
+  width: 152px;
+}
+.numbering-preview b {
+  font-weight: 700;
+}
+.numbering-format {
+  min-width: 220px;
+  font-feature-settings: "tnum" 1;
+}
+.numbering-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-top: var(--space-4);
+}
+.numbering-sample {
+  background: var(--color-surface);
+  padding: var(--space-3);
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  line-height: 1.9;
+  font-feature-settings: "tnum" 1;
+}
+.numbering-sample-line {
+  display: block;
+}
+/* The column whose header is for a screen reader only (the reset icons). */
+.numbering-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ── CR-006 · SET-05 Routes & Cycles landing ──────────────────────────────
+   Two classes the tab needed and the stylesheet did not have.
+
+   `.settings-search` is B14 rule 12's first toolbar slot. It is defined here
+   rather than inside the tab so the next settings list that grows a search box
+   inherits it instead of inventing a ninth width — the same reason rule 18's
+   `--desc-measure` token exists.
+
+   `.settings-empty` is B14 rule 17: an empty state states what is missing AND
+   carries the action that fills it. The old markup was a bare sentence in a
+   `<td>` with nothing to click, which is exactly the shape the rule names.
+   Deliberately NOT capped at `--desc-measure`: rule 18's own amendment exempts
+   centred cards, where a percentage measure reads worse, not better. */
+.settings-frame-toolbar {
+  /* Search sits on the LEFT of the toolbar (B14 rule 12's order); the
+     pre-CR-006 rule pushed a lone button right, which is still the right
+     answer for a toolbar with no search in it. */
+  align-items: center;
+  gap: var(--space-2);
+}
+/* DEF-313 — this restated the field kit with the PAGE background and a 32px
+   height, so it was a fourth control shape. `.input`'s ground is
+   `--color-surface` and its height is 36px. */
+.settings-search {
+  font: inherit;
+  min-height: 36px;
+  padding: 6px 10px;
+  border: 1px solid var(--color-divider);
+  background: var(--color-surface);
+  color: var(--color-text);
+  max-width: 260px;
+  margin-right: auto;
+}
+.settings-empty {
+  text-align: center;
+  /* DEF-312 — `--space-5` is not in r10's scale; was invalid, so this empty
+     state had no vertical padding at all. */
+  padding: var(--space-6) var(--space-2);
+}
+.settings-empty-body {
+  font-size: var(--text-base);
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+  margin: var(--space-1) 0 var(--space-3);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CR-048 WAVE C · TWENTY-ONE RULES RETIRED HERE, AND THE MARKUP THAT ASKED FOR
+   THEM IS NOW TAILWIND
+   ══════════════════════════════════════════════════════════════════════════
+   The five files in `features/notifications/` were legacy CSS hosting a
+   CONVERTED shared table, and the CR-048 teardown found that ONE fact behind
+   seven of the eleven visible defects on those three screens. They are on
+   `styles/route-b-migrated.txt` as of this commit and their utilities live in
+   `features/notifications/notificationsKit.ts`, which transcribes every rule
+   this block used to hold, declaration by declaration.
+
+   RETIRED, because nothing in `src/` names them any more: `.settings-helper`,
+   `.settings-chips` (and its `button.active` companion), `.settings-badge`,
+   `.settings-badge-muted`, `.settings-actions`, `.settings-inline-form`,
+   `.settings-preview-strip`, `.settings-subhead`, `.settings-offer-body`,
+   `.settings-tokens`, `.settings-muted`, `.settings-field` and the seven
+   `.settings-clause-*` rules of the disconnect-rights card.
+
+   ⚠ THE COMMENTS THAT STOOD HERE ARE DELETED WITH THEIR RULES, NOT LEFT BESIDE
+   THEM. They were DEF-211's and DEF-327's own notes, and every one of them
+   described a declaration that is gone — a comment claiming a guarantee is not
+   the guarantee (hard-won law 1), and `DataTable.css`'s `.table-search` block
+   is the same lesson written down after DEF-1150. Their reasoning survives
+   where it is now load-bearing: `notificationsKit.ts` carries the transcription
+   and the three values that could not cross exactly.
+
+   ⚠ `.settings-chips button.active` IS THE ONE THAT COULD HAVE GONE WRONG
+   SILENTLY. It was a PARENT rule, which Route B cannot express, so the selected
+   variant tab on SET-10 would have become indistinguishable from an unselected
+   one the moment the strip stopped being `.settings-chips` — DEF-343 exactly,
+   on the other template screen. `TemplateDetail.tsx` says selection in the
+   button kit's `primary` variant instead, which is the ruled fix and renders
+   the same accent fill.
+
+   DELIBERATELY KEPT, because screens that are NOT migrated still render them:
+   `.panel-hint` (below — `settingsShared.tsx`'s `Panel` writes it on every
+   Settings screen), `.settings-search`, `.settings-frame-toolbar`,
+   `.settings-icon-btn`, `.settings-table`, `.settings-empty*`. A migrated file
+   keeps shared vocabulary; B14 rule 21 shrinks a stylesheet only as far as a
+   migration actually reaches.
+
+   ⚠ AND NOTHING IN THIS REPO WOULD HAVE NOTICED IF THEY HAD BEEN LEFT. G31
+   asks whether every class a component NAMES is declared; the mirror — whether
+   every class a stylesheet DECLARES is named — is still nobody's, and is
+   raised as OQ-630. This retirement was done by hand, by grepping every `.ts`,
+   `.tsx`, `.css` and `e2e/*.spec.ts` in the repo for each of the twenty-one
+   names. */
+
+/* B14 rule 18 (80%, PO 2026-08-16). ⚠ KEPT, and it reaches every Settings
+   screen: `Panel` in `settingsShared.tsx` renders this class for its own hint,
+   so retiring it with the block above would have uncapped every description in
+   Settings. The migrated notification files carry `max-w-measure`, the same
+   token through `--container-measure`. */
+.panel-hint {
+  max-width: var(--desc-measure);
+}
+
+/* ── The chart-of-accounts import modal (S8 → Accounting) ────────────────── */
+.settings-import-modal {
+  max-width: 720px;
+}
+
+.settings-import-mapping {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: var(--space-3) 0;
+  padding: var(--space-3);
+  background: var(--color-surface);
+}
+
+.settings-import-report {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-divider);
+}
+
+/* ── Odds and ends, each asked for by exactly one screen ─────────────────── */
+
+/* The second-level heading inside a settings frame — below
+   `.settings-frame-title`, above a sub-table. */
+.settings-frame-subtitle {
+  margin: var(--space-4) 0 var(--space-2);
+  font-size: var(--text-base);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+
+.settings-custom-fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+

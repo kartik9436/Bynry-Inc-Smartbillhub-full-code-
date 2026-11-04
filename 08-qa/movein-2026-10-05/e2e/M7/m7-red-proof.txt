@@ -1,0 +1,18 @@
+M7 red proofs on 2.549.9 — each key check broken in memory, read against the case's committed database (PostgreSQL 16), then restored
+
+BROKEN (m7-exemption):
+  FAIL  the first bill STILL carries City of Cedar Ford utility tax (an exemption removes only its own tax) — ['Local · Bexar County']
+  PASS  the certificate is GOVERNMENT for the City of Cedar Ford utility tax — expected ('GOVERNMENT', 'City of Cedar Ford utility tax'), read ('GOVERNMENT', 'City of Cedar Ford utility tax')
+RESTORED:
+  PASS  the first bill carries NO City of Cedar Ford utility tax (its certificate removes it)
+  PASS  the certificate is GOVERNMENT for the City of Cedar Ford utility tax
+
+BROKEN (m7-po):
+  FAIL  the account carries PO PO-2026-119 as typed (accounts.po_number) — expected 'PO-2026-119', read 'PO-2026-118'
+RESTORED:
+  PASS  the account carries PO PO-2026-118 as typed (accounts.po_number)
+
+BROKEN (m7-trash):
+  FAIL  trash is priced for 3 carts, $60.00 (count × size price) — expected '60.00', read '45.00'
+RESTORED:
+  PASS  trash is priced for 3 carts, $45.00 (count × size price)

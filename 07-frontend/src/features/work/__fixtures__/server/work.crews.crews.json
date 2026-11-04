@@ -1,0 +1,76 @@
+{
+  "count": 2,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": "01a10793-b67f-76b5-806e-2d6b7fe6ce5c",
+      "kind": "crew",
+      "name": "Field crew A",
+      "slug": "field-crew-a",
+      "role_label": "Network crew",
+      "members": 2,
+      "member_names": [
+        "D. Ortiz",
+        "R. Patel"
+      ],
+      "crew": null,
+      "skills": [
+        {
+          "skill_id": "01a10790-de94-79e4-9fcb-958122e5fae8",
+          "code": "WATER_I",
+          "name": "Water I",
+          "proficiency": "certified"
+        },
+        {
+          "skill_id": "01a10790-dea4-7b8c-8362-7262bd5fcd22",
+          "code": "EXCAVATION",
+          "name": "Excavation",
+          "proficiency": "trained"
+        }
+      ],
+      "certifications": [],
+      "shift": "07:00–15:30",
+      "status": "crew",
+      "unavailable_reason": null,
+      "phone": null,
+      "email": null,
+      "active": true
+    },
+    {
+      "id": "01a10793-b68b-769b-87cb-394d1ccdbf09",
+      "kind": "crew",
+      "name": "Field crew B",
+      "slug": "field-crew-b",
+      "role_label": "Meter crew",
+      "members": 2,
+      "member_names": [
+        "J. Okoro",
+        "M. Chen"
+      ],
+      "crew": null,
+      "skills": [
+        {
+          "skill_id": "01a10790-dea1-77f3-a46d-a1c2fc64f69b",
+          "code": "METER_I",
+          "name": "Meter I",
+          "proficiency": "certified"
+        }
+      ],
+      "certifications": [],
+      "shift": "12:00–20:30",
+      "status": "crew",
+      "unavailable_reason": null,
+      "phone": null,
+      "email": null,
+      "active": true
+    }
+  ],
+  "counts": {
+    "technicians": 4,
+    "crews": 2,
+    "contractors": 1,
+    "rows": 7,
+    "people": 4
+  }
+}

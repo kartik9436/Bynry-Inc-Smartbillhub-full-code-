@@ -1,0 +1,366 @@
+STEP1 VALUES:
+opened_at=11/08/2026
+moveIn-open-read-M-7301-value=1100
+moveIn-open-read-M-7301-date=10/17/2026
+move_in-fv-needed=[x]
+
+STEP2 TEXT:
+← Move-ins
+Edit move-in · MVI-26-0025
+Save draft & exit
+✓
+Unit
+2
+Customer
+3
+Billing
+4
+Review
+Who is moving in
+
+Filled from request SR-26-0065.
+
+Person or company
+Person
+Company
+Category*
+Residential
+Commercial
+Industrial
+Agricultural
+Institutional
+Municipal
+Builder or developer
+Sub-category
+No sub-category
+Multi-family
+Senior/Low-income
+Single-family
+
+Optional
+
+Full name*
+Email
+Phone*
+
+Texts go to this number.
+
+Date of birth
+Contact by
+Choose…
+Email
+Text
+Phone
+Letter
+Identity
+Search customer ID
+Social Security number
+Show
+
+Staff see the last four only.
+
+Driver's license
+Government ID
+
+At least one ID, unless linked.
+
+Co-owners
+Has co-owners
+Daniel Lopez
+Spouse · (734) 555-0144 · No ID
+Expand▾
+
+1 added
+
++ Add co-owner
+Documents
+1 required still missing · PDF, JPG or PNG up to 10 MB
+DOCUMENT	NEEDED	FILE	
+Proof of identity	Required	maria-id.pdf	
+✕
+
+Signed service agreement	Required	
+Upload
+	
+✕
++ Add document
+Required rows stay
+Mailing address
+Same as service address
+Mailing address
+PO Box 2210, Ypsilanti, MI
+Collapse▴
+Street address
+Apt, suite or unit
+City
+State
+ZIP code
+Park
+Back
+Continue
+
+STEP2 VALUES:
+customer_kind=[x]
+customer_kind=[ ]
+account_type=residential
+account_subtype=multi_family
+full_name=Maria Lopez
+email=maria.lopez@example.com
+phone=(734) 555-0182
+dob=04/12/1988
+contact_by=text
+ssn=
+driving_licence=
+gov_id_last4=
+co_owner_enabled=[x]
+doc-upload-required-signed_service_agreement=
+mailing_same=[ ]
+mailing_line1=PO Box 2210
+mailing_line2=
+mailing_city=Ypsilanti
+mailing_state=Michigan
+mailing_postal_code=48197
+
+STEP3 TEXT:
+← Move-ins
+Edit move-in · MVI-26-0025
+Save draft & exit
+✓
+Unit
+✓
+Customer
+3
+Billing
+4
+Review
+Plan
+From the unit
+Plan
+Residential Standard
+Version on 10/17/2026
+v1 · from 08/01/2026
+Base charge
+$20.00 a month
+Deposit rule
+No deposit
+See full rates
+Expand▾
+Preferences
+Set preferences
+Autopay
+On
+Off
+Paperless billing
+On
+Off
+Text reminders
+On
+Off
+Portal language
+Choose…
+English
+English (US)
+Español
+Español (México)
+Deutsch
+हिन्दी
+Français (France)
+Indonesia (Indonesia)
+Italiano (Italia)
+日本語 (日本)
+한국어 (대한민국)
+Português (Brasil)
+Discounts
+Claim discounts
+Tax
+Tax exempt
+Fees
+Plan fees come first · add any other charge code
+#	FEE	FROM	AMOUNT	NOTE	
+1	
+CONN · Connection fee · Residential
+	Plan	$45.00		
+✕
+
+	Total		$45.00		
++ Add fee
+Plan rows stay
+Payment
+Fees total $45.00
+Pay now
+Add to bill
+Method*
+Choose a method
+ACH
+Card
+Cash
+Check
+Lockbox
+Money order
+Tap & pay
+Wire
+Amount*
+$
+Reference or check #
+Received*
+
+All fees paid now. Receipt prints on complete.
+
+Park
+Back
+Continue
+
+STEP3 VALUES:
+move_in_prefs_on=[x]
+autopay=off
+paperless=on
+sms_reminders=on
+preferred_language=es
+move_in_discounts_on=[ ]
+move_in_tax_on=[ ]
+move_in_payment_method=cash
+move_in_payment_amount=45.00
+move_in_payment_reference=
+move_in_payment_received=2026-10-17
+
+STEP4 TEXT:
+← Move-ins
+Edit move-in · MVI-26-0025
+Save draft & exit
+✓
+Unit
+✓
+Customer
+✓
+Billing
+4
+Review
+Unit
+✎ Edit
+Unit
+U-00318-101 · Apt 101
+Address
+2200 Riverbend Ct, Katy, TX 77494
+Previous
+None · first occupant
+Services
+Electric · Water
+Move-in date
+11/08/2026
+Opening read
+M-7301 · 95000 kWh
+Field visit
+None
+Customer
+✎ Edit
+Customer ID
+New · given when you complete
+Full name
+Maria Lopez · Person
+Customer type
+Residential · Multi-family
+SSN
+None
+Co-owners
+Daniel Lopez · spouse
+Email
+maria.lopez@example.com
+Phone
+(734) 555-0182
+Documents
+None
+Mailing address
+PO Box 2210, Ypsilanti, MI 48197
+Billing
+✎ Edit
+Plan
+Residential Standard · v1
+Preferences
+Paperless · Text reminders
+Discounts
+None
+Tax
+Not exempt
+Fees
+CONN $45.00 · total $45.00
+Payment
+Pay now · $45.00
+Account number
+Given when you complete
+Messaging
+Defaults come from Settings · add any other
+SEND	MESSAGE *	TO	CHANNEL	WHEN	
+
+Send
+	Welcome · account opened	Maria Lopez · customer	Printed letter · Email	On complete	
+✕
+
+
+Send
+	Service agreement
+No template
+	Maria Lopez · customer	Printed letter	On complete	
+✕
++ Add message
+2 will send
+Park
+Back
+Complete move-in ✓
+
+DONE URL: http://127.0.0.1:8113/brazosbend/move-ins/new?request=01a14d4f-a4d8-7a0e-95a0-b9909dcc07eb&parked=01a14d50-35e5-72d1-bed4-a047956bfae0&step=4
+
+DONE TEXT:
+← Move-ins
+Move-in completed
+Completed
+MVI-26-0025
+From request SR-26-0065 · Maria Lopez · Apt 101
+What happened
+✓
+Done
+Customer
+Created C-00057 · Maria Lopez
+✓
+Done
+Account
+Opened AC-2026-00058 · Residential Standard · v1
+✓
+Done
+Services
+Electric · Water start 11/08/2026
+✓
+Done
+Opening reads
+1 recorded
+✓
+Done
+Unit
+Apt 101 · Vacant → Occupied
+✓
+Done
+Co-owners
+1 added
+✓
+Done
+Documents
+1 filed on the customer
+✓
+Done
+Fees
+$45.00 posted · CONN
+✓
+Done
+Payment
+$45.00 received · receipt PY-261017-0087
+✓
+Done
+Messages
+3 queued
+What the server could not do
+No deposit was carried forward.
++ Start another move-in
+Open the move-in
+Open the account →
+
+ERRORS:
+

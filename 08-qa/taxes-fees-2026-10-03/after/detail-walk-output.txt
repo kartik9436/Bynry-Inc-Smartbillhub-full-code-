@@ -1,0 +1,342 @@
+signed in as dana@brazosbendutilities.com
+liability account 2000 Vendor accounts payable
+kept Harbor City Levy
+kept Lone Star Utility Tax
+kept Hill County
+
+=== 18-detail-overview-over20.png
+← Taxes & fees
+Harbor City LevyHC-LEVY
+Active
+V1
+Over 20%
+Harbor City · 09/01/2026 – no end
+Filing due 10/20/2026
+Edit
+More
+▾
+Overview
+Plans2
+Audit
+RATE
+62.50%
+of the taxed amount
+PREMISES
+6
+of 6
+PLANS
+2
+using it
+COLLECTED
+—
+Not counted yet
+62.50% is high. On a $60.00 bill this adds $37.50. Fix the rate
+Rate and scope
+Charged as
+A percentage of the bill
+Rate
+62.50%
+What is taxed
+Usage charges, Base charges
+Services
+Electric
+Customer classes
+Every class
+Boundary
+Everywhere this utility serves
+Starts
+09/01/2026
+Ends
+No end
+Discounts · rounding
+Tax the full amount · Standard (half up)
+VERSION	RATE	DATES	STATUS
+V1	62.50%	09/01/2026 – No end	Active
+See every change in Audit
+On the bill and filing
+Code
+HC-LEVY
+Bill label
+Harbor City levy
+Liability account
+2000 · Vendor accounts payable
+Filed
+Monthly
+Due
+20th of the next month
+Account with the authority
+Harbor City Finance · HC-4417
+Allowance you keep
+0.50%
+Late-filing interest
+1.50% / month
+Filing reminder to
+filings@brazosbend.example
+
+=== 19-detail-plans.png
+← Taxes & fees
+Harbor City LevyHC-LEVY
+Active
+V1
+Over 20%
+Harbor City · 09/01/2026 – no end
+Filing due 10/20/2026
+Edit
+More
+▾
+Overview
+Plans2
+Audit
+Plans
++ Add to a plan
+PLAN	REACHED BY	ACCOUNTS	UNITS	
+ACTIONS
+Industrial	Attached on the plan	0	1	
+×
+Residential Standard	Attached on the plan	0	7	
+×
+2 plans	0	8	
+
+=== 20-detail-audit.png
+← Taxes & fees
+Harbor City LevyHC-LEVY
+Active
+V1
+Over 20%
+Harbor City · 09/01/2026 – no end
+Filing due 10/20/2026
+Edit
+More
+▾
+Overview
+Plans2
+Audit
+Audit
+WHEN	WHO	WHAT	CHANGE	REASON
+10/03/2026 03:31	Dana Whitfield	Changed	Liability account: — → 2000	—
+10/03/2026 03:29	Dana Whitfield	Added to plan	Residential Standard	Harbor City levy applies here.
+10/03/2026 03:29	Dana Whitfield	Added to plan	Industrial	Harbor City levy applies here.
+10/03/2026 03:29	Dana Whitfield	Changed	Filing reminder to: — → filings@brazosbend.example	—
+10/03/2026 03:29	Dana Whitfield	Created	Active · 62.50% · Electric	—
+1–5 of 5
+Page 1 of 1
+Rows per page
+50
+100
+200
+500
+1000
+‹
+›
+
+=== 21-detail-more-menu.png
+← Taxes & fees
+Harbor City LevyHC-LEVY
+Active
+V1
+Over 20%
+Harbor City · 09/01/2026 – no end
+Filing due 10/20/2026
+Edit
+More
+▾
+Duplicate
+Retire
+Overview
+Plans2
+Audit
+RATE
+62.50%
+of the taxed amount
+PREMISES
+6
+of 6
+PLANS
+2
+using it
+COLLECTED
+—
+Not counted yet
+62.50% is high. On a $60.00 bill this adds $37.50. Fix the rate
+Rate and scope
+Charged as
+A percentage of the bill
+Rate
+62.50%
+What is taxed
+Usage charges, Base charges
+Services
+Electric
+Customer classes
+Every class
+Boundary
+Everywhere this utility serves
+Starts
+09/01/2026
+Ends
+No end
+Discounts · rounding
+Tax the full amount · Standard (half up)
+VERSION	RATE	DATES	STATUS
+V1	62.50%	09/01/2026 – No end	Active
+See every change in Audit
+On the bill and filing
+Code
+HC-LEVY
+Bill label
+Harbor City levy
+Liability account
+2000 · Vendor accounts payable
+Filed
+Monthly
+Due
+20th of the next month
+Account with the authority
+Harbor City Finance · HC-4417
+Allowance you keep
+0.50%
+Late-filing interest
+1.50% / month
+Filing reminder to
+filings@brazosbend.example
+
+=== 22-detail-overview-scheduled.png
+← Taxes & fees
+Lone Star Utility Tax
+Active
+V1
+Lone Star State · 01/01/2026 – 12/31/2026
+Filing due 10/20/2026
+Next: 6.50% from 01/01/2027
+Edit
+More
+▾
+Overview
+Plans0
+Audit
+RATE
+6.25%
+of the taxed amount
+PREMISES
+0
+of 6
+PLANS
+0
+using it
+COLLECTED
+—
+Not counted yet
+Rate and scope
+Charged as
+A percentage of the bill
+Rate
+6.25%
+What is taxed
+Usage charges, Base charges
+Services
+All services
+Customer classes
+Commercial, Industrial
+Boundary
+Everywhere this utility serves
+Starts
+01/01/2026
+Ends
+12/31/2026
+Discounts · rounding
+Tax the full amount · Standard (half up)
+VERSION	RATE	DATES	STATUS
+V2	6.50%	01/01/2027 – No end	Scheduled
+V1	6.25%	01/01/2026 – 12/31/2026	Active
+See every change in Audit
+On the bill and filing
+Code
+—
+Bill label
+Lone Star Utility Tax
+Liability account
+2000 · Vendor accounts payable
+Filed
+Monthly
+Due
+20th of the next month
+Account with the authority
+—
+Allowance you keep
+—
+Late-filing interest
+—
+Filing reminder to
+—
+
+=== 23-detail-overview-versions.png
+← Taxes & fees
+Hill County
+Active
+V3
+Hill County · 01/01/2026 – no end
+Filing due 10/20/2026
+Edit
+More
+▾
+Overview
+Plans0
+Audit
+RATE
+2.00%
+of the taxed amount
+PREMISES
+6
+of 6
+PLANS
+0
+using it
+COLLECTED
+—
+Not counted yet
+Rate and scope
+Charged as
+A percentage of the bill
+Rate
+2.00%
+What is taxed
+Usage charges, Base charges
+Services
+All services
+Customer classes
+Every class
+Boundary
+Everywhere this utility serves
+Starts
+01/01/2026
+Ends
+No end
+Discounts · rounding
+Tax the full amount · Standard (half up)
+VERSION	RATE	DATES	STATUS
+V3	2.00%	01/01/2026 – No end	Active
+V2	1.75%	01/01/2025 – 12/31/2025	Ended
+V1	1.50%	01/01/2024 – 12/31/2024	Ended
+See every change in Audit
+On the bill and filing
+Code
+—
+Bill label
+Hill County
+Liability account
+2000 · Vendor accounts payable
+Filed
+Monthly
+Due
+20th of the next month
+Account with the authority
+—
+Allowance you keep
+—
+Late-filing interest
+—
+Filing reminder to
+—
+
+Edit → /brazosbend/plans-rates/taxes-fees/01a100e2-07de-7ffb-b64d-013aabe50dd9/edit?change=info
+Fix the rate → /brazosbend/plans-rates/taxes-fees/01a100e2-07de-7ffb-b64d-013aabe50dd9/edit?change=correct

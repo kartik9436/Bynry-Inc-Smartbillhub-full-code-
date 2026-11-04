@@ -1,0 +1,482 @@
+/* S9–S13 Plans & Rates (US-RAT-001..011) — TOKENS ONLY (B8: no hex literal
+ * belongs in a feature stylesheet). The page rhythm is borrowed from the
+ * Settings surfaces so the app reads as one product; what is specific here is
+ * the rate-card grid, the structure-preview tables, the wizard bar and the
+ * bulk-change preview. Service dot colours come from the ported A12 tokens. */
+
+.rating-page {
+  padding: var(--space-6) var(--space-4) var(--space-8);
+}
+
+.rating-head h1 {
+  font-size: var(--text-h2);
+  margin: 0;
+}
+
+.rating-sub {
+  font-size: var(--text-base);
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+  margin: var(--space-1) 0 var(--space-4);
+  max-width: var(--desc-measure); /* r10 UI-RULES 18 (was 72ch) */
+}
+
+.rating-rollup {
+  margin: var(--space-1) 0 0;
+  font-size: var(--text-base);
+  color: color-mix(in srgb, var(--color-text) 70%, transparent);
+}
+
+/* ── Tab strip (same shape as the S8 Settings tabs) ───────────────────────── */
+.rating-tabs {
+  display: flex;
+  gap: var(--space-1);
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--color-divider);
+  margin-bottom: var(--space-4);
+}
+
+.rating-tabs button {
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  padding: var(--space-2) var(--space-3);
+  font: inherit;
+  color: color-mix(in srgb, var(--color-text) 70%, transparent);
+  cursor: pointer;
+}
+
+.rating-tabs button.active {
+  color: var(--color-text);
+  border-bottom-color: var(--color-accent-500);
+  font-weight: 600;
+}
+
+
+.rating-tab-spacer {
+  flex: 1 1 auto;
+}
+
+/* ── Cells ───────────────────────────────────────────────────────────────── */
+/* B14 rule 5 (CR-016 / DEF-311) — a link-shaped <button> is still a button.
+   `font: inherit` made it take the surrounding cell's size, which is a third
+   tier the moment that cell is not 14px. 14px IS the default tier and is half
+   a pixel from the 13.5px table body it sits in. Same fix as `.met-link`. */
+.rating-link {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  font-size: var(--text-md);
+  color: var(--color-accent-700);
+  cursor: pointer;
+  text-align: left;
+}
+
+.rating-link:hover,
+.rating-link:focus-visible {
+  text-decoration: underline;
+}
+
+.rating-link:disabled {
+  color: color-mix(in srgb, var(--color-text) 50%, transparent);
+  cursor: not-allowed;
+  text-decoration: none;
+}
+
+/* A value that is genuinely absent — visibly quieter than data, so nobody
+ * reads a placeholder as a number. */
+.rating-empty {
+  color: color-mix(in srgb, var(--color-text) 45%, transparent);
+  font-style: italic;
+}
+
+.rating-muted {
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+
+.rating-note {
+  font-size: var(--text-sm);
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+  margin: 0;
+}
+
+.rating-gl {
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+}
+
+.rating-tags,
+.rating-schedule-refs {
+  display: inline-flex;
+  gap: var(--space-1);
+  flex-wrap: wrap;
+}
+
+.rating-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 1px var(--space-2);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+}
+
+/* A12 service dots — status/identity meaning only, never decoration. */
+.rating-tag::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-neutral-500);
+}
+
+/* ELEVEN dots for an ELEVEN-service platform, in the seed order of
+   `tenancy/migrations/0001_initial.py`. Six are r9's; storm_water, solar,
+   thermal_heat and battery are OQ-273, RULED 2026-08-20 (decision log, commit
+   4e78da4). ⚠ The SELECTOR keeps the underscore because the class is built at
+   runtime as `svc-${service.code}` and the codes are `storm_water` /
+   `thermal_heat`; the TOKEN hyphenates, for the Tailwind reason in tokens.css.
+   Before this, four of the ten fell through to `--color-neutral-500` and drew
+   the SAME grey dot — three services a reader could not tell apart. */
+.rating-tag.svc-electric::before {
+  background: var(--color-service-electric);
+}
+.rating-tag.svc-water::before {
+  background: var(--color-service-water);
+}
+.rating-tag.svc-gas::before {
+  background: var(--color-service-gas);
+}
+.rating-tag.svc-sewer::before {
+  background: var(--color-service-sewer);
+}
+.rating-tag.svc-trash::before {
+  background: var(--color-service-trash);
+}
+/* ⚠ STORM WATER IS THE ONE HOLLOW DOT, AND THE SHAPE IS THE POINT.
+   OQ-273's answer ratified the fill variant as a GENERAL rule, not a one-off:
+   any service family that outgrows safe hue separation gets a SHAPE variant.
+   Storm water is the newcomer to the water family — #2f4a7a beside water's
+   #1e6b8f is a value separation, and value separation is what a 6px dot loses
+   first. Shape carries where hue cannot, and it is colourblind-safe where hue
+   alone is not: a deuteranope reads ring-vs-disc at any size.
+   The dot stays 6x6 — `box-sizing: border-box` is global (global.css:9), so the
+   2px border eats inward and this dot occupies exactly the same box as the
+   other nine. Do not "fix" it to a solid fill. */
+.rating-tag.svc-storm_water::before {
+  background: transparent;
+  border: 2px solid var(--color-service-storm-water);
+}
+.rating-tag.svc-solar::before {
+  background: var(--color-service-solar);
+}
+.rating-tag.svc-broadband::before {
+  background: var(--color-service-broadband);
+}
+.rating-tag.svc-thermal_heat::before {
+  background: var(--color-service-thermal-heat);
+}
+.rating-tag.svc-battery::before {
+  background: var(--color-service-battery);
+}
+/* ⚠ FIRE IS THE SECOND HOLLOW DOT, AND IT IS OQ-273's GENERAL RULE APPLIED
+   RATHER THAN A SECOND EXCEPTION (CR-063, 2026-09-02). That answer ratified the
+   fill variant as a rule: any service family that outgrows safe hue separation
+   gets a SHAPE variant. Storm water was the newcomer to water's blue family;
+   fire is the newcomer to electric's warm one, and #8f1f14 beside electric's
+   #ec3013 is a VALUE separation — the kind a 6x6 dot loses first. Shape carries
+   where hue cannot and is colourblind-safe where hue alone is not.
+   Same 6x6 box: `box-sizing: border-box` is global (global.css:9), so the 2px
+   border eats inward. Do not "fix" it to a solid fill.
+   ⚠ AND THIS RULE IS NOT NEW UI UNDER B14 rule 21 — it is the ELEVENTH member of
+   a ratified family of ten that already lives in this stylesheet, and the class
+   it answers is built at RUNTIME as `svc-${service.code}`, which no Tailwind
+   utility and no compiler check can see. Without it fire falls through to
+   `--color-neutral-500` and draws the same grey dot four services drew before
+   OQ-273 — the exact defect the block above was written to close. */
+.rating-tag.svc-fire::before {
+  background: transparent;
+  border: 2px solid var(--color-service-fire);
+}
+
+/* ⚠ .settings-row-actions / .rating-row-actions / .fin-row-actions WERE HERE
+   AND ARE GONE (2026-08-20), with .ast-row-actions and .met-row-actions. Five
+   containers declared the same flex row with three different gaps, and the
+   `.settings-row-actions .btn { padding: 2px 6px }` under this one was half of
+   DEF-342 — a PARENT selector re-styling a button, which Route B cannot express
+   and which nothing had ever compared against its four siblings.
+   `components/RowActions.tsx` is the one that remains. */
+
+
+/* ── Structure / diff preview tables ─────────────────────────────────────── */
+.rating-preview {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+  margin: var(--space-1) 0;
+}
+
+.rating-preview th,
+.rating-preview td {
+  text-align: left;
+  padding: 2px var(--space-2);
+  border-bottom: 1px solid var(--color-divider);
+  /* Every price in here is a decimal STRING from the server — tabular numerals
+   * so columns of them line up without any client-side formatting. */
+  font-variant-numeric: tabular-nums;
+}
+
+.rating-preview th {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+}
+
+
+.rating-diff-summary {
+  font-variant-numeric: tabular-nums;
+}
+
+.rating-diff-field {
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+.rating-diff-before {
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+  text-decoration: line-through;
+}
+
+.rating-diff-after {
+  color: var(--color-success-700);
+}
+
+.rating-batch {
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Drawer (the same shell every dialog uses) ────────────────────────────── */
+.rating-drawer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.rating-facts {
+  display: grid;
+  grid-template-columns: minmax(140px, auto) 1fr;
+  gap: var(--space-2) var(--space-3);
+  margin: 0;
+  font-size: var(--text-base);
+}
+
+.rating-facts dt {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+}
+
+.rating-facts dd {
+  margin: 0;
+}
+
+.rating-diff {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-3);
+}
+
+.rating-json {
+  margin: 0;
+  padding: var(--space-2);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-sm);
+  background: var(--color-neutral-100);
+  font-size: var(--text-sm);
+  line-height: var(--line-height-body);
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ── Wizards (S10 · S11) ─────────────────────────────────────────────────── */
+.rating-wizard-bar {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: flex-end;
+  margin-bottom: var(--space-3);
+}
+
+.rating-form-section {
+  font-size: var(--text-base);
+  margin: var(--space-4) 0 var(--space-1);
+  border-bottom: 1px solid var(--color-divider);
+  padding-bottom: var(--space-1);
+}
+
+.rating-checklist {
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+  margin: var(--space-2) 0;
+}
+
+.rating-checklist legend {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--text-base);
+  padding: 0 var(--space-1);
+}
+
+.rating-service-chip {
+  display: block;
+  margin: var(--space-1) 0;
+}
+
+/* BR-RAT-024: a service the tenant has not enabled is DISABLED, never hidden. */
+.rating-disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.rating-service-block,
+.rating-rule-row {
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+  margin: var(--space-2) 0;
+}
+
+.rating-service-block h5 {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-base);
+}
+
+.rating-rule-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.rating-tier-row,
+.rating-season-row,
+.rating-window-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--space-2);
+  align-items: end;
+  border-bottom: 1px solid var(--color-divider);
+  padding-bottom: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+/* A field the app cannot offer yet: present, named, and honest about what it
+ * is waiting for — never a silently missing input. */
+.rating-arrives {
+  border: 1px dashed var(--color-divider);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+  margin: var(--space-2) 0;
+  font-size: var(--text-base);
+}
+
+.rating-arrives-label {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  display: block;
+}
+
+.rating-arrives p {
+  margin: var(--space-1) 0 0;
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+}
+
+.rating-notices {
+  border: 1px solid var(--color-divider);
+  border-left: 3px solid var(--color-warning-500);
+  border-radius: var(--radius-sm);
+  background: var(--color-warning-100);
+  padding: var(--space-2) var(--space-3);
+  margin-bottom: var(--space-3);
+  font-size: var(--text-base);
+}
+
+.rating-notices p {
+  margin: 0 0 var(--space-1);
+}
+
+.rating-derived {
+  font-size: var(--text-md);
+  margin: var(--space-2) 0;
+}
+
+/* ── Bulk rate change (US-RAT-011) ───────────────────────────────────────── */
+.rating-bulk {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.rating-bulk-preview section {
+  margin-bottom: var(--space-3);
+}
+
+.rating-bulk-preview h6 {
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-base);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   DEF-327 — FOUR rating-* CLASSES ASKED FOR BY SIX FILES AND DECLARED NOWHERE
+   ══════════════════════════════════════════════════════════════════════════
+   `.rating-tab` is the worst of them: FIVE of the six Plans & Rates tabs wrap
+   their whole body in it (Plans, Rate schedules, Charge codes, Taxes & fees,
+   Rate changes), so every one of them rendered with no rhythm between its
+   toolbar, its table and its notices — and `.rating-tab-actions` and
+   `.rating-tab-spacer`, its two CHILDREN, were declared all along. A parent
+   missing while its children exist is the exact shape a name-by-name gate
+   catches and a person reading the stylesheet does not.
+
+   ⚠ AMENDED 2026-08-19 by CR-018 Phase 1: `.rating-tab-actions` NO LONGER
+   EXISTS in this file. It had exactly one caller (RateSchedulesTab) and its
+   five declarations are now `flex items-end gap-3 flex-wrap mb-3` in that
+   component's markup. `.rating-tab-spacer` still has no caller at all and is
+   left alone — deleting a rule nothing references is a separate change with a
+   separate blast radius, and G31 measures references, not orphans. */
+
+/* One tab's body. Vertical rhythm only — every tab composes the same pieces
+   (a toolbar, a table or a card grid, a notices block) and they must not run
+   together. */
+.rating-tab {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+/* The plan and rate-schedule wizards. `.rating-wizard-bar` (the step rail) was
+   declared; the frame around it was not, so the rail sat hard against the
+   step's fields. */
+.rating-wizard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+
+/* ONE schedule reference inside `.rating-schedule-refs`. The container was
+   declared and the items were not, so a plan's schedules rendered as one
+   unbroken run — "Electric E-1Water W-2Gas G-1". `.rating-tag` next door is
+   the same object with a service dot; this is the plain form. */
+.rating-schedule-ref {
+  display: inline-flex;
+  align-items: baseline;
+  padding: 1px var(--space-2);
+  background: color-mix(in srgb, var(--color-text) 6%, transparent);
+  font-size: var(--text-xs);
+  font-family: var(--font-heading);
+  white-space: nowrap;
+}

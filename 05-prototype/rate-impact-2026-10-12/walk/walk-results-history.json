@@ -1,0 +1,82 @@
+[
+ {
+  "width": 1440,
+  "name": "History lists the Rate Impact export",
+  "pass": true,
+  "detail": "Oct 12 02:25 PM\tRate Impact\tDana Whitfield\t[{\"type\":\"rate\",\"item\":\"01a12b2b-d4fc-7157-85ec-217e38dd9c0a\",\"version\":\"01a1306b-e0f3-7621-90ae-817506137f7b\",\"capacity\":\"E-1P-100\",\"base\":\"12.60\",\"price\":\"0.125\",\"min\":null},{\"type\":\"rate\",\"item\":\"01a12b2b-d4fc-7157-85ec-217e38dd9c0a\",\"version\":\"01a1306b-e0f3-7621-90ae-817506137f7b\",\"capacity\":\"E-1P-200\",\"base\":\"12.60\",\"price\":\"0.125\",\"min\":null},{\"type\":\"rate\",\"item\":\"01a12b2b-d4fc-7157-85ec-217e38dd9c0a\",\"version\":\"01a1306b-e0f3-7621-90ae-817506137f7b\",\"capacity\":\"E-3P-400\",\"base\":\"12.60\",\"price\":\"0.125\",\"min\":null},{\"type\":\"rate\",\"item\":\"01a12b2b-d6a4-7e6d-877b-f6e03ec584f4\",\"version\":\"01a12b2b-da11-759f-89f8-4e72b8d30389\",\"capacity\":\"W-58\",\"base\":\"8.40\",\"price\":\"4.5\",\"min\":\"10\"},{\"type\":\"rate\",\"item\":\"01a12b2b-d6a4-7e6d-877b-f6e03ec584f4\",\"version\":\"01a12b2b-d6a9-702c-b9fc-90f93fcc26b3\",\"capacity\":\"W-58\",\"base\":\"8.40\",\"price\":\"4.5\",\"min\":\"10\"}] · 12 · residential,municipal · water,electric\tFailed\t5\t"
+ },
+ {
+  "width": 1440,
+  "name": "History row is finished, not queued",
+  "pass": true,
+  "detail": "Oct 12 02:25 PM\tRate Impact\tDana Whitfield\t[{\"type\":\"rate\",\"item\":\"01a12b2b-d4fc-7157-85ec-217e38dd9c0a\",\"version\":\"01a1306b-e0f3-7621-90ae-817506137f7b\",\"capacity\":\"E-1P-100\",\"base\":\"12.60\",\"price\":\"0.125\",\"min\":null},{\"type\":\"rate\",\"item\":\"01a12b2b-d4fc-7157-85ec-217e38dd9c0a\",\"version\":\"01a1306b-e0f3-7621-90ae-817506137f7b\",\"capacity\":\"E-1P-200\",\"base\":\"12.60\",\"price\":\"0.125\",\"min\":null},{\"type\":\"rate\",\"item\":\"01a12b2b-d4fc-7157-85ec-217e38dd9c0a\",\"version\":\"01a1306b-e0f3-7621-90ae-817506137f7b\",\"capacity\":\"E-3P-400\",\"base\":\"12.60\",\"price\":\"0.125\",\"min\":null},{\"type\":\"rate\",\"item\":\"01a12b2b-d6a4-7e6d-877b-f6e03ec584f4\",\"version\":\"01a12b2b-da11-759f-89f8-4e72b8d30389\",\"capacity\":\"W-58\",\"base\":\"8.40\",\"price\":\"4.5\",\"min\":\"10\"},{\"type\":\"rate\",\"item\":\"01a12b2b-d6a4-7e6d-877b-f6e03ec584f4\",\"version\":\"01a12b2b-d6a9-702c-b9fc-90f93fcc26b3\",\"capacity\":\"W-58\",\"base\":\"8.40\",\"price\":\"4.5\",\"min\":\"10\"}] · 12 · residential,municipal · water,electric\tFailed\t5\t"
+ },
+ {
+  "width": 1440,
+  "name": "B14 rule 31 — no database id on screen (History)",
+  "pass": false,
+  "detail": "visible: 01a12b2b-d4fc-7157-85ec-217e38dd9c0a"
+ },
+ {
+  "width": 1440,
+  "name": "History row has 'Open in report'",
+  "pass": true
+ },
+ {
+  "width": 1440,
+  "name": "rows after Open in report",
+  "pass": null,
+  "detail": "[{\"item\":\"Sample — Electric usage\",\"version\":\"2026-09-20\",\"capacity\":\"Electric 1φ 100A\",\"base\":\"12.60\",\"price\":\"0.125\"},{\"item\":\"Sample — Electric usage\",\"version\":\"2026-09-20\",\"capacity\":\"Electric 1φ 200A\",\"base\":\"12.60\",\"price\":\"0.125\"},{\"item\":\"Sample — Electric usage\",\"version\":\"2026-09-20\",\"capacity\":\"Electric 3φ 400A\",\"base\":\"12.60\",\"price\":\"0.125\"},{\"item\":\"Sample — Residential water (inclining tiers)\",\"version\":\"2026-10-01\",\"capacity\":\"Water 5/8\\\"\",\"base\":\"8.40\",\"price\":\"4.5\"},{\"item\":\"Sample — Residential water (inclining tiers)\",\"version\":\"2026-08-01\",\"capacity\":\"Water 5/8\\\"\",\"base\":\"8.40\",\"price\":\"4.5\"}]"
+ },
+ {
+  "width": 1440,
+  "name": "Open in report re-opens the typed rows",
+  "pass": true,
+  "detail": "5 rows back"
+ },
+ {
+  "width": 1440,
+  "name": "re-opened report shows its result",
+  "pass": true
+ },
+ {
+  "width": 1280,
+  "name": "History lists the Rate Impact export",
+  "pass": true,
+  "detail": "Oct 12 02:25 PM\tRate Impact\tDana Whitfield\t[{\"type\":\"rate\",\"item\":\"01a12b2b-d4fc-7157-85ec-217e38dd9c0a\",\"version\":\"01a1306b-e0f3-7621-90ae-817506137f7b\",\"capacity\":\"E-1P-100\",\"base\":\"12.60\",\"price\":\"0.125\",\"min\":null},{\"type\":\"rate\",\"item\":\"01a12b2b-d4fc-7157-85ec-217e38dd9c0a\",\"version\":\"01a1306b-e0f3-7621-90ae-817506137f7b\",\"capacity\":\"E-1P-200\",\"base\":\"12.60\",\"price\":\"0.125\",\"min\":null},{\"type\":\"rate\",\"item\":\"01a12b2b-d4fc-7157-85ec-217e38dd9c0a\",\"version\":\"01a1306b-e0f3-7621-90ae-817506137f7b\",\"capacity\":\"E-3P-400\",\"base\":\"12.60\",\"price\":\"0.125\",\"min\":null},{\"type\":\"rate\",\"item\":\"01a12b2b-d6a4-7e6d-877b-f6e03ec584f4\",\"version\":\"01a12b2b-da11-759f-89f8-4e72b8d30389\",\"capacity\":\"W-58\",\"base\":\"8.40\",\"price\":\"4.5\",\"min\":\"10\"},{\"type\":\"rate\",\"item\":\"01a12b2b-d6a4-7e6d-877b-f6e03ec584f4\",\"version\":\"01a12b2b-d6a9-702c-b9fc-90f93fcc26b3\",\"capacity\":\"W-58\",\"base\":\"8.40\",\"price\":\"4.5\",\"min\":\"10\"}] · 12 · residential,municipal · water,electric\tFailed\t5\t"
+ },
+ {
+  "width": 1280,
+  "name": "History row is finished, not queued",
+  "pass": true,
+  "detail": "Oct 12 02:25 PM\tRate Impact\tDana Whitfield\t[{\"type\":\"rate\",\"item\":\"01a12b2b-d4fc-7157-85ec-217e38dd9c0a\",\"version\":\"01a1306b-e0f3-7621-90ae-817506137f7b\",\"capacity\":\"E-1P-100\",\"base\":\"12.60\",\"price\":\"0.125\",\"min\":null},{\"type\":\"rate\",\"item\":\"01a12b2b-d4fc-7157-85ec-217e38dd9c0a\",\"version\":\"01a1306b-e0f3-7621-90ae-817506137f7b\",\"capacity\":\"E-1P-200\",\"base\":\"12.60\",\"price\":\"0.125\",\"min\":null},{\"type\":\"rate\",\"item\":\"01a12b2b-d4fc-7157-85ec-217e38dd9c0a\",\"version\":\"01a1306b-e0f3-7621-90ae-817506137f7b\",\"capacity\":\"E-3P-400\",\"base\":\"12.60\",\"price\":\"0.125\",\"min\":null},{\"type\":\"rate\",\"item\":\"01a12b2b-d6a4-7e6d-877b-f6e03ec584f4\",\"version\":\"01a12b2b-da11-759f-89f8-4e72b8d30389\",\"capacity\":\"W-58\",\"base\":\"8.40\",\"price\":\"4.5\",\"min\":\"10\"},{\"type\":\"rate\",\"item\":\"01a12b2b-d6a4-7e6d-877b-f6e03ec584f4\",\"version\":\"01a12b2b-d6a9-702c-b9fc-90f93fcc26b3\",\"capacity\":\"W-58\",\"base\":\"8.40\",\"price\":\"4.5\",\"min\":\"10\"}] · 12 · residential,municipal · water,electric\tFailed\t5\t"
+ },
+ {
+  "width": 1280,
+  "name": "B14 rule 31 — no database id on screen (History)",
+  "pass": false,
+  "detail": "visible: 01a12b2b-d4fc-7157-85ec-217e38dd9c0a"
+ },
+ {
+  "width": 1280,
+  "name": "History row has 'Open in report'",
+  "pass": true
+ },
+ {
+  "width": 1280,
+  "name": "rows after Open in report",
+  "pass": null,
+  "detail": "[{\"item\":\"Sample — Electric usage\",\"version\":\"2026-09-20\",\"capacity\":\"Electric 1φ 100A\",\"base\":\"12.60\",\"price\":\"0.125\"},{\"item\":\"Sample — Electric usage\",\"version\":\"2026-09-20\",\"capacity\":\"Electric 1φ 200A\",\"base\":\"12.60\",\"price\":\"0.125\"},{\"item\":\"Sample — Electric usage\",\"version\":\"2026-09-20\",\"capacity\":\"Electric 3φ 400A\",\"base\":\"12.60\",\"price\":\"0.125\"},{\"item\":\"Sample — Residential water (inclining tiers)\",\"version\":\"2026-10-01\",\"capacity\":\"Water 5/8\\\"\",\"base\":\"8.40\",\"price\":\"4.5\"},{\"item\":\"Sample — Residential water (inclining tiers)\",\"version\":\"2026-08-01\",\"capacity\":\"Water 5/8\\\"\",\"base\":\"8.40\",\"price\":\"4.5\"}]"
+ },
+ {
+  "width": 1280,
+  "name": "Open in report re-opens the typed rows",
+  "pass": true,
+  "detail": "5 rows back"
+ },
+ {
+  "width": 1280,
+  "name": "re-opened report shows its result",
+  "pass": true
+ }
+]

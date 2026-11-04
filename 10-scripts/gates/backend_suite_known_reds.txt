@@ -1,0 +1,80 @@
+# ── 10-scripts/gates/backend_suite_known_reds.txt ─────────────────────────
+# Reds in `12-governance/backend-suite-receipt.json` that G135 lets past.
+#
+# Format:  <pytest node id><space><the DEF- id, and why it is parked>
+#
+# ⚠ **A DEF- ID IS REQUIRED AND G135 FAILS WITHOUT ONE.** A parked red with no
+# defect row is a red nobody can count, which is exactly the failure this gate
+# was written for: `DEF-RAT-6980`, 28 tests red for four days with nothing
+# naming them.
+#
+# ⚠ **THIS FILE CAN ONLY SHRINK.** A row that stops being red FAILS the gate
+# and must be deleted in the same diff (G95's ratchet, and its reasoning: the
+# file cannot quietly re-grow).
+#
+# ── NINE DOWN TO ONE ON 2026-09-27, AND BOTH HALVES ARE MEASURED ──────────
+#
+# ⚠ **THIS FILE HELD NINE ROWS AND EVERY ONE OF THEM NAMED A CAUSE THAT WAS
+# ALREADY FIXED.** They were parked under `DEF-RAT-7000` — `apps/rating/seams.py`
+# passing a stale `code_label=` to `apps/billing/gather._base_charge_for` — and
+# that fix landed in `bb62396d2`, which is an **ANCESTOR of every commit those
+# reds have been measured at since**, the parking commit `96a8ba5d1` included.
+# So the park was not wrong about the node ids; it was wrong about WHY, and a
+# park that names the wrong cause reads as accounted-for forever.
+#
+# **THE REAL CAUSE WAS A SECOND FAULT STANDING BEHIND THE FIRST.**
+# `test_br_rat_091_rate_change_impact.py`'s fixture states a `$0.00` water base
+# on the PLAN — BR-RAT-091's ratified `$59.00 → $62.54` is the two usage blocks
+# and nothing else — while `tests/test_us_rat_helpers` auto-declares `BASE-W` at
+# the sample workbook's signed `$8`. Since `BR-RAT-088` the charge code is the
+# FIRST question, so billing refused the pair BY NAME:
+#
+#     GatherProblem: Two base charges for water. Clear 0.00 on the plan.
+#
+# `seams.base_charge_for`'s bare `except Exception` reports that and a
+# `TypeError` identically, which is why one hid behind the other — the same
+# shape `DEF-CWP-7001` records for the portal's trash base.
+#
+# **MEASURED, NOT ASSERTED.** At tip `5a75e6258`, before the fix:
+# `8 failed, 7 passed in 1319.76s`. After it: `15 passed in 67.53s`. The ninth
+# parked row — `silver_creeks_OWN_water_filing_reads_5_28_pct_not_6_pct` — had
+# ALREADY stopped being red and would have failed G135's ratchet on its own.
+#
+# ⚠ **AND THE SENTENCE THIS BLOCK REPLACES WAS FALSE, WHICH IS THE LESSON.**
+# It read: *"Empty on 2026-09-27 — and that is a claim, not a default: the
+# receipt taken that day records 0 red over the six scoped files."* The scope
+# was SEVEN files by then, and a receipt taken the same day over it recorded
+# NINE reds. **A claim nothing re-checks is this repo's most-filed rot**, and a
+# park is a claim about a CAUSE, not merely about a node id — nothing in this
+# repo re-asks whether a parked red is still red for the reason it was parked
+# for. If you park a row here, name a defect that is OPEN *and* re-measure it
+# when that defect closes.
+
+# ── THE ONE ROW BELOW IS NOT THE NINE. IT IS NEWER THAN THEM AND HAS NEVER
+# PASSED (`DEF-RAT-7141`) ────────────────────────────────────────────────────
+#
+# `tc10`'s THIRD assertion was added by `96a8ba5d1` — the same commit that
+# parked the nine — and was pushed without the file being re-measured. It reads
+#
+#     assert classes[PLAN_INDUSTRIAL] == [str(seams.account_type_id_by_code("industrial"))]
+#
+# and `account_type_id_by_code("industrial")` answers **None** on the rating test
+# tenant, so `str()` turns the absence into the perfectly good string `'None'`
+# and the comparison can never be true. That is hard-won law 7's **INCAPABLE OF
+# PASSING** shape: the assertion is well-formed, type-checks and reads correctly
+# to a reviewer. Dated with
+# `git log -S 'PLAN_INDUSTRIAL' -- 06-backend/tests/test_br_rat_088_base_migration.py`,
+# which returns that one commit and no other.
+#
+# ⚠ **PARKED AND NOT FIXED BECAUSE IT IS A DIFFERENT FILE, A DIFFERENT FAULT AND
+# ANOTHER LANE'S IN-FLIGHT WORK** — `test_br_rat_088_base_migration.py` was
+# edited by that lane today. Whether the rating fixture should seed an
+# `industrial` account type at all is a question for whoever owns it; this row
+# counts the red and names the defect so it cannot go quiet again.
+#
+# Measured TWICE with `DEF-RAT-7140` fixed, on two tips, same answer both
+# times: at `5a75e6258`, **90 passed, 1 red** over 7 scoped files in `346.72s`;
+# and again at `ad46c5cdc` — the commit the LANDED receipt names — **90 passed,
+# 1 red** in `874.8s`, after a sibling landed `apps/rating/projection.py` and
+# `apps/rating/discount_enrolments_read.py` in `a5466d209`.
+tests/test_br_rat_088_base_migration.py::test_tc10__the_shipped_sample_plans_now_SAY_which_customers_they_price DEF-RAT-7141 — tc10's third assertion compares a real uuid against the literal string 'None'; added 2026-09-27 in 96a8ba5d1 and never measured; incapable of passing while account_type_id_by_code('industrial') answers None

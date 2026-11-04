@@ -1,0 +1,139 @@
+
+── M1 · Residential · Single-family · person — Electric, Water, Sewer, Trash · new customer · field visit · pay by check
+  PASS  M1 · Units     · U-00004 is offered as vacant before the move-in
+  PASS  M1 · Units     · step 1 lists Electric
+  PASS  M1 · Units     · step 1 lists Water
+  PASS  M1 · Units     · step 1 lists Sewer
+  PASS  M1 · Units     · step 1 lists Trash
+  PASS  M1 · Assets    · step 1 asks an opening read for E-M1
+  PASS  M1 · Assets    · step 1 asks an opening read for W-M1
+  PASS  M1 · Work      · the Work order list offers "Opening read"
+  PASS  M1 · Accounts  · Search customer ID answers "new"
+  PASS  M1 · Accounts  · no match block is drawn for a new person
+  PASS  M1 · Payments  · Fees total reads $175.00 — $175.00
+  PASS  M1 · Payments  · no fee row is taxed at move-in (no Taxable column, no tax row)
+  NOTE  M1 · Complete warned deposit_carry_forward_unavailable: no deposit was carried forward from an earlier account
+  NOTE  M1 · Complete warned deposit_payment_has_not_cleared: 
+  PASS  M1 · Accounts  · Move-in completed prints no raw server code
+  PASS  M1 · Messages  · Move-in completed counts the queued welcome (not 0 queued) — reads "3 queued"
+  PASS  M1 · Accounts  · Move-in completed names an MVI- number — MVI-26-0007
+2026-10-06 06:23:44,551 INFO apps.billing.resolution_switch ruled path skipped trash for account AC-2026-00057: billed one line per size
+2026-10-06 06:23:44,551 INFO apps.billing.resolution_switch ruled path served R3, R4 for account AC-2026-00057
+  PASS  M1 · Accounts  · one move record MVI-26-0007 exists
+  PASS  M1 · Accounts  · the move record is a move-in
+  PASS  M1 · Accounts  · the move-in is dated as typed
+  PASS  M1 · Accounts  · the account is active
+  PASS  M1 · Accounts  · the account opens on the move-in date
+  PASS  M1 · Accounts  · the account type is the one the clerk picked
+  PASS  M1 · Accounts  · the sub-type is the one the clerk picked
+  PASS  M1 · Accounts  · the account is on the case's unit
+  PASS  M1 · Accounts  · exactly one customer holds the account
+  PASS  M1 · Accounts  · the customer's name is as typed
+  PASS  M1 · Accounts  · the customer is a person/company as picked
+  PASS  M1 · Accounts  · a NEW customer holds this one account only (nothing was linked)
+  PASS  M1 · Accounts  · one agreement per started service
+  PASS  M1 · Accounts  · every agreement starts on the move-in date
+  PASS  M1 · Units     · the unit stores no status or occupancy (it is derived)
+  PASS  M1 · Units     · the unit now has exactly one open account (reads Occupied)
+  PASS  M1 · Assets    · an opening read for each meter the clerk read, and none other
+  PASS  M1 · Assets    · E-M1's opening read is 4300 as typed
+  PASS  M1 · Assets    · E-M1's opening read is in kWh, the meter's own unit
+  PASS  M1 · Assets    · E-M1's opening read is dated the move-in date
+  PASS  M1 · Assets    · E-M1's opening read is committed
+  PASS  M1 · Assets    · W-M1's opening read is 315.0 as typed
+  PASS  M1 · Assets    · W-M1's opening read is in kgal, the meter's own unit
+  PASS  M1 · Assets    · W-M1's opening read is dated the move-in date
+  PASS  M1 · Assets    · W-M1's opening read is committed
+  PASS  M1 · Assets    · the move-in wrote no asset status (meter status is derived) — 0 asset audit rows read since the move
+  PASS  M1 · Payments  · the fee lines are the plan's deposit and connection charge
+  PASS  M1 · Payments  · no tax was charged on any move-in fee (OQ-BIL-12788 (a))
+  PASS  M1 · Payments  · the payments total $175.00
+  PASS  M1 · Payments  · the payments total the fees (paid in full)
+  PASS  M1 · Payments  · every payment carries check number 2041
+  PASS  M1 · Payments  · every payment's tender is check
+  PASS  M1 · Payments  · the deposit is paid as a deposit-purpose payment
+  PASS  M1 · Payments  · every payment wrote audit_log (hard rule 7)
+  PASS  M1 · Accounts  · the move-in wrote audit_log account.moved_in
+  PASS  M1 · Payments  · every journal entry for the account balances DR = CR (hard rule 5) — 0 entries read, 2 payment(s) not journaled yet (PY-261010-0086, PY-261010-0087; a check journals when it clears)
+  PASS  M1 · Billing   · the first-bill preview prices (every started service has what it needs)
+  PASS  M1 · Billing   · the first bill carries the move-in's fee lines
+  PASS  M1 · Billing   · no fee or deposit line on the first bill is taxable
+  PASS  M1 · Billing   · a deposit paid at move-in is not billed again on the first bill
+  PASS  M1 · Billing   · the first bill carries each move-in fee line at its recorded amount
+  PASS  M1 · Route     · every service point of the unit is on a route (4 points)
+  PASS  M1 · Route     · every service point of the unit is on a billing cycle (4 points)
+  PASS  M1 · Route     · the unit holds a place in its route's walk order
+  PASS  M1 · Work      · one work order per field-visit row
+  PASS  M1 · Work      · WO-0053 is raised from the move-in
+  PASS  M1 · Work      · WO-0053 carries the template Opening read
+  PASS  M1 · Work      · WO-0053 is for meter W-M1
+  PASS  M1 · Work      · WO-0053 is due on the move-in date
+  PASS  M1 · Work      · WO-0053's window is the one picked (utility time)
+  PASS  M1 · Work      · WO-0053 is assigned to a technician
+  PASS  M1 · Work      · WO-0053 carries no labour yet (labour comes from arrived/finished times)
+  PASS  M1 · Messages  · the move-in's welcome is queued (3 rows)
+  PASS  M1 · Messages  · a receipt is queued for each payment (6 rows for 2 payments)
+  PASS  M1 · Messages  · no message is marked sent (BR-NOT-013: queued is never sent)
+  NOTE  M1 · first bill · usage · electric usage tier 1 (0-500 kWh) · 82.50
+  NOTE  M1 · first bill · base · electric base charge · 27.00
+  NOTE  M1 · first bill · usage · trash - 1 × Trash 96-gallon cart · 22.50
+  NOTE  M1 · first bill · usage · water usage tier 1 (0-5 kgal) · 31.80
+  NOTE  M1 · first bill · usage · water usage tier 2 (5-15 kgal) · 10.34
+  NOTE  M1 · first bill · base · water base charge · 12.00
+  NOTE  M1 · first bill · usage · sewer usage — 90.00% of water volume · 27.00
+  NOTE  M1 · first bill · base · sewer base charge · 9.00
+  NOTE  M1 · first bill · fee · Connection charge · 25.00
+  NOTE  M1 · first bill · tax · Tax Local · 4.44
+  PASS  M1 · Units     · /premises/units/01a10fe0-6baf-71a7-9e40-23315a4fe22d opens (h1 drawn, no error page)
+  PASS  M1 · Units     · the unit reads Occupied
+  PASS  M1 · Units     · the unit names account AC-2026-00057
+  PASS  M1 · Units     · the unit names the account holder (AC-2026-00057 · Avery Collins)
+  PASS  M1 · Assets    · /assets/01a10fe0-6c27-7303-ba49-16d0b6f89127 opens (h1 drawn, no error page)
+  PASS  M1 · Assets    · E-M1 is on account AC-2026-00057
+  PASS  M1 · Assets    · E-M1 reads Installed (derived, the move-in wrote no status)
+  PASS  M1 · Assets    · E-M1 names the account holder (AC-2026-00057 · Avery Collins)
+  PASS  M1 · Assets    · /assets/01a10fe0-6c27-7303-ba49-16d0b6f89127?tab=reads opens (h1 drawn, no error page)
+  PASS  M1 · Assets    · E-M1's Reads tab shows the opening read 4300
+  PASS  M1 · Assets    · E-M1's Reads tab shows it in kWh
+  PASS  M1 · Assets    · /assets/01a10fe0-6d33-7c48-8c21-d1743bb54f80 opens (h1 drawn, no error page)
+  PASS  M1 · Assets    · W-M1 is on account AC-2026-00057
+  PASS  M1 · Assets    · W-M1 reads Installed (derived, the move-in wrote no status)
+  PASS  M1 · Assets    · W-M1 names the account holder (AC-2026-00057 · Avery Collins)
+  PASS  M1 · Assets    · /assets/01a10fe0-6d33-7c48-8c21-d1743bb54f80?tab=reads opens (h1 drawn, no error page)
+  PASS  M1 · Assets    · W-M1's Reads tab shows the opening read 315
+  PASS  M1 · Assets    · W-M1's Reads tab shows it in kgal
+  PASS  M1 · Accounts  · /accounts/01a10fe1-c8f6-7026-9a93-e4d3a3eebe19 opens (h1 drawn, no error page)
+  PASS  M1 · Accounts  · the account shows Avery Collins
+  PASS  M1 · Accounts  · the account shows Residential
+  PASS  M1 · Accounts  · the account lists Electric
+  PASS  M1 · Accounts  · the account lists Sewer
+  PASS  M1 · Accounts  · the account lists Trash
+  PASS  M1 · Accounts  · the account lists Water
+  PASS  M1 · Accounts  · the account's title is the account holder Avery Collins — title reads "Avery Collins"
+  PASS  M1 · Payments  · /accounts/01a10fe1-c8f6-7026-9a93-e4d3a3eebe19?tab=payments opens (h1 drawn, no error page)
+  PASS  M1 · Payments  · payment PY-261010-0086 ($150.00) is listed
+  PASS  M1 · Payments  · payment PY-261010-0087 ($25.00) is listed
+  PASS  M1 · Billing   · /moves/MVI-26-0007?tab=billing opens (h1 drawn, no error page)
+  PASS  M1 · Billing   · the move's Billing tab lists DEPOSIT
+  PASS  M1 · Billing   · the move's Billing tab lists CONN
+  PASS  M1 · Billing   · the fees total $175.00
+  PASS  M1 · Billing   · each payment is dated the day the clerk typed (10/10/2026)
+  PASS  M1 · Payments  · a deposit paid in full reads as taken, nothing still to collect — STILL TO COLLECT
+$0.00
+  PASS  M1 · Route     · /reads/routes/01a10fe0-79a8-7b0e-8740-9d973cdbfb13 opens (h1 drawn, no error page)
+  PASS  M1 · Route     · route RT-006 is the unit's (Matrix walk)
+  PASS  M1 · Work      · /work/orders/WO-0053 opens (h1 drawn, no error page)
+  PASS  M1 · Work      · WO-0053 shows its template's type Re-read
+  PASS  M1 · Work      · WO-0053 names the account AC-2026-00057
+  PASS  M1 · Work      · WO-0053 names the meter W-M1
+  PASS  M1 · Work      · WO-0053 is on the technician's day (10/10/2026)
+  PASS  M1 · Messages  · /moves/MVI-26-0007?tab=messages opens (h1 drawn, no error page)
+  PASS  M1 · Messages  · the move's Messages tab lists the welcome
+  PASS  M1 · Accounts  · /moves/MVI-26-0007 opens (h1 drawn, no error page)
+  PASS  M1 · Accounts  · the move-in record reads MVI-26-0007
+  PASS  M1 · Accounts  · the move-in record names AC-2026-00057
+  PASS  M1 · Assets    · the move-in record no longer reads 'Waiting on a read' (every meter read)
+
+── summary
+  M1: 118 PASS · 0 FAIL
+ALL PASS

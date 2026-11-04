@@ -1,0 +1,25 @@
+— the plan row (one row, its id never changes)
+                  id                  |  code   | version |        name         |                         description                          | effective_from | effective_to | minimum_bill_amount | budget_billing |           head_version_id            
+--------------------------------------+---------+---------+---------------------+--------------------------------------------------------------+----------------+--------------+---------------------+----------------+--------------------------------------
+ 01a102d8-94ee-7740-a876-c39c258be6d8 | SCW-IND |       1 | Sample — Industrial | Sample plan. Electricity at a $180.00 monthly base and $0.08 | 2026-08-01     |              |                     | f              | 01a102d8-94f0-7f31-92f5-6958cac37b15
+(1 row)
+
+— every version row, oldest first (nothing is ever deleted)
+                  id                  | v |  status   | effective_from | effective_to | minimum | budget | is_correction | superseded | reason 
+--------------------------------------+---+-----------+----------------+--------------+---------+--------+---------------+------------+--------
+ 01a102d8-94f0-7f31-92f5-6958cac37b15 | 1 | published | 2026-08-01     |              |         | f      | f             | f          | 
+(1 row)
+
+— bindings per version row (services · schedules · charge rules · tax rules)
+ v |  status   | superseded | services | schedules | charges | taxes 
+---+-----------+------------+----------+-----------+---------+-------
+ 1 | published | f          |        2 |         2 |       0 |     7
+(1 row)
+
+— audit_log rows for the plan, newest first
+          created_at           |     action     |                                                                    after                                                                     
+-------------------------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------
+ 2026-10-03 17:38:31.174347+00 | plan.published | {"status": "published", "version": 1}
+ 2026-10-03 17:38:30.907974+00 | plan.created   | {"id": "01a102d8-94ee-7740-a876-c39c258be6d8", "code": "SCW-IND", "name": "Sample — Industrial", "status": "draft", "services": [{"name": "E
+(2 rows)
+

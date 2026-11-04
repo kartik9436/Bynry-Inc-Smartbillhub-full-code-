@@ -1,0 +1,27 @@
+# G86 — the hand-rolled buttons that were already here on 2026-09-04.
+#
+# ⚠ THIS FILE MAY ONLY SHRINK. Every line is a `<button>` in a screen file that
+# draws its own box — a border, padding and a colour — where `components/Button`
+# would serve. `g86_house_style_controls.py` refuses any button NOT on this
+# list, and refuses a line here that matches nothing any more, so a fix must
+# delete its line in the same commit. That is the ratchet `G28` already uses.
+#
+# ⚠ AND READ THE FOUR IDENTICAL LINES BELOW, BECAUSE THEY ARE THE DEFECT ITSELF.
+# `border border-divider bg-transparent bg-none px-2 py-[3px] text-sm
+# text-inherit hover:border-accent` appears in FOUR files — the same small chip,
+# written out four separate times by four lanes, none of whom could see the
+# other three. That is what B14 rule 36 means by *"four screens acquire four
+# different chips"*, except here they happened to converge; the next one would
+# not have. The kit's `Chip` (2026-09-04) is where this belongs, and the day
+# somebody moves these four onto it, four lines leave this file.
+#
+# A key is `<path> :: <the first 100 characters of the class string>`, never a
+# line number: a line number moves when another lane edits the file above it,
+# and a gate that goes red on somebody else's commit is a gate nobody trusts.
+features/customers/serviceRequestShared.tsx :: flex w-full items-start gap-3 border p-3 text-left border-accent bg-surface border-divider bg-surfac
+features/metering/OwnerMatchingPanel.tsx :: rounded-md border border-divider px-3 py-1.5 text-sm hover:bg-bg disabled:opacity-50
+features/metering/ServicesAvailableField.tsx :: cursor-pointer border border-divider bg-transparent bg-none px-2 py-[3px] text-sm text-inherit hover
+features/metering/UploadReadsWizard.tsx :: cursor-pointer border border-divider bg-transparent bg-none px-2 py-[3px] text-sm text-inherit hover
+features/tenancy/RoutesCyclesWizards.tsx :: cursor-pointer border border-accent bg-[color-mix(in_srgb,var(--color-accent)_12%,transparent)] bg-n
+features/tenancy/RoutesCyclesWizards.tsx :: cursor-pointer border border-divider bg-transparent bg-none px-2 py-[3px] text-sm text-inherit hover
+features/tenancy/RoutesCyclesWizards.tsx :: cursor-pointer border border-divider bg-transparent bg-none px-2 py-[3px] text-sm text-inherit hover

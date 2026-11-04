@@ -1,0 +1,60 @@
+== account
+  account_no   | closed_at  | status | behavior_class | deposit_on_file | close_reason 
+---------------+------------+--------+----------------+-----------------+--------------
+ AC-2026-00050 | 2026-10-12 | closed | terminal       |        0.000000 | lease_ended
+(1 row)
+
+== final invoices
+   invoice_no   | bill_type | status | period_start | period_end |    total    | marker | bill_date  | due_days 
+----------------+-----------+--------+--------------+------------+-------------+--------+------------+----------
+ BL-2610-000253 | final     | issued | 2026-10-01   | 2026-10-12 | 5392.070000 | t      | 2026-10-12 |       20
+(1 row)
+
+== lines
+           description           |   qty    | unit_price |   amount    
+---------------------------------+----------+------------+-------------
+ electric usage                  | 54050.00 |   0.085000 | 4594.250000
+ water usage                     |    61.00 |   5.200000 |  317.200000
+ Tax Texas State                 |          |   0.062500 |  311.320000
+ Tax Local                       |          |   0.020000 |   99.620000
+ electric base charge (prorated) |          |            |   69.680000
+ water base charge (prorated)    |          |            |    0.000000
+(6 rows)
+
+== journal (by entry, designation)
+                     posting_key                     |     designation     |  side  |     amt     
+-----------------------------------------------------+---------------------+--------+-------------
+ invoice|01a13350-8ff3-7520-ab90-e998246a2c57|issued |                     | credit | 5392.070000
+ invoice|01a13350-8ff3-7520-ab90-e998246a2c57|issued | accounts_receivable | debit  | 5392.070000
+(2 rows)
+
+== entries balanced?
+                     posting_key                     |     dr      |     cr      
+-----------------------------------------------------+-------------+-------------
+ invoice|01a13350-8ff3-7520-ab90-e998246a2c57|issued | 5392.070000 | 5392.070000
+(1 row)
+
+== delivery rows
+  channel  | status | template_code | unavailable_reason 
+-----------+--------+---------------+--------------------
+ email     | queued |               | 
+ pdf_print | queued |               | 
+ portal    | queued |               | 
+(3 rows)
+
+== audit rows today
+        action         | entity_type |          created_at           
+-----------------------+-------------+-------------------------------
+ invoice.drafted       | invoice     | 2026-10-13 03:31:20.186504+00
+ account.closed        | account     | 2026-10-13 03:31:20.410507+00
+ invoice.issued        | invoice     | 2026-10-13 03:31:31.702709+00
+ invoice.one_time_sent | invoice     | 2026-10-13 03:31:31.898733+00
+(4 rows)
+
+== meter reads today
+  read_at   | current_value | consumption | unit | source | lifecycle 
+------------+---------------+-------------+------+--------+-----------
+ 2026-10-12 | 164863.000000 |   50.000000 | kWh  | manual | billed
+ 2026-10-12 |   2896.000000 |   50.000000 | kgal | manual | billed
+(2 rows)
+

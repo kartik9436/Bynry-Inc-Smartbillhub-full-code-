@@ -1,0 +1,36 @@
+MERGE-ACCESS walk · PostgreSQL 16, PRIVATE copy of the dev database (sbh_mergeaccess_walk: pg_dump/pg_restore of smartbillhub, migrated to notifications 0024 / tenancy 0065_cr188 / identity 0014_cr188; dropped after), Chromium at 1440, 2026-10-22
+walk: WEB=http://127.0.0.1:<spa> MAIL_CMD=<manage.py shell runner> MAIL_PY=<reads + renders the newest email queued this run> node 10-scripts/walk_account_access_fragment_2026_10_22.mjs
+world: portal switched live; email channel switched on with a placeholder credential on the existing SMTP connection (no worker ran, so rows stay queued; each email is RENDERED with the dispatcher's own renderer and its kept copy built with frozen_documents.redact_credentials); one account's contacts blanked for the dead end
+migration check on the copy: all six account-access classes planted on the existing utility (13 variants each: default + 12 registry languages)
+
+FIRST RUNS: "portal reset: the link opens the new-password form" FAILED. The emailed link was opened in the tab already showing Forgot your password?; a fragment-only navigation does not reload, and the read-once page stayed on the ask form with the secret in the address bar. Fixed by 07-frontend/src/routing/useLinkSecret.ts (re-reads on every location change); vitest case added.
+
+FINAL RUN
+PASS  staff invite: an outbound email row exists for the new user
+PASS  staff invite: priority is immediate and the body renders with the link  priority=100 subject="Your Brazos Bend Utilities account is ready"
+PASS  staff invite: the secret is in the FRAGMENT, not the query  /brazosbend/set-password#…
+PASS  staff invite: the kept copy has the link redacted
+      rendered body: "Hi Walk Staffer, / Brazos Bend Utilities has created an account for you. / Your username is walk.staff.<run>@example.com. / Set your password here: http://127.0.0.1:5611/brazosbend/set-password#token=<secret> / This link works once and expires on 10/29/2026. If it has expired, ask your System Admin to send a new one."
+PASS  set-password: the token is taken off the address bar  /brazosbend/set-password
+PASS  set-password: no request URL carried the token  17 requests
+PASS  set-password: lands on sign-in with the changed note
+PASS  staff: signs in with the password they chose  /brazosbend/dashboard
+PASS  portal forgot: an empty box is refused inline  Please enter your email.
+PASS  portal reset: an outbound email row exists
+PASS  portal reset: the body renders with the link  subject="Reset your Brazos Bend Utilities portal password"
+PASS  portal reset: ref and token are in the FRAGMENT, not the query  /brazosbend/portal/forgot-password#…
+PASS  portal reset: the kept copy has the link redacted
+PASS  portal reset: the link opens the new-password form (same tab, no reload)
+PASS  portal reset: the link is taken off the address bar  /brazosbend/portal/forgot-password
+PASS  portal reset: no request URL carried the token
+PASS  portal reset: the done panel shows
+PASS  portal: signs in with the new password  /brazosbend/portal/home
+PASS  update-email: a one-time code email went to the address on file  subject="Your Brazos Bend Utilities code"
+PASS  update-email: the code renders in the body; the kept copy is redacted
+PASS  update-email: a confirmation code went to the NEW address  subject="Confirm your new email for Brazos Bend Utilities"
+PASS  update-email: the OLD address is told  subject="Your Brazos Bend Utilities registered email was changed"
+PASS  update-email: a reset link went to the NEW address
+PASS  update-email: that link's secret is in the FRAGMENT
+PASS  update-email: signs in at the NEW address with the new password  /brazosbend/portal/home
+PASS  update-email dead end: says call the office, with the utility's number  +1 (281) 555-0164
+WALK PASS (26 checks)

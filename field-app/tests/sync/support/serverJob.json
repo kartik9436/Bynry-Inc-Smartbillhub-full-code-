@@ -1,0 +1,56 @@
+{
+  "_about": "One job card (GET work/mobile/today, GET work/mobile/changes) and one bundle (GET work/mobile/jobs/{id}) in the server's own shape (apps/work/mobile.py); the bundle also carries this same card under `card`, which the test support adds. 06-backend/tests/test_def_fld_10582_job_card_meter_point.py builds a real job and fails if these keys drift from what the server sends. Values are test data (B14 rule 37).",
+  "card": {
+    "id": "0192f1a2-5e00-7000-8000-000000000028",
+    "order_no": "WO-0028",
+    "type": "Meter exchange",
+    "premise": {
+      "id": "0192f1a2-5e00-7000-8000-0000000000p1",
+      "premise_no": "PR-1400",
+      "address": "1400 Elm Street",
+      "lat": "30.267153",
+      "lng": "-97.743057",
+      "position_source": "premises"
+    },
+    "window_start": "2026-10-24T13:00:00+00:00",
+    "window_end": "2026-10-24T17:00:00+00:00",
+    "due_at": null,
+    "appointment": { "date": "2026-10-24", "start": "08:00", "end": "12:00", "time_zone": "America/Chicago" },
+    "unscheduled": false,
+    "est_minutes": 45,
+    "priority": { "id": "0192f1a2-5e00-7000-8000-0000000000r3", "code": "P3", "name": "Normal", "colour": "neutral", "rank": 3 },
+    "state": "scheduled",
+    "dispatch_state": "SCHEDULED",
+    "technician_acceptance": { "state": "pending", "at": null, "reason": null },
+    "completed_at": null,
+    "outcome": null,
+    "accepted_at": null,
+    "access_notes": "Dog in rear yard",
+    "hazards": "",
+    "gate_code": "4417",
+    "meter": {
+      "id": "0192f1a2-5e00-7000-8000-0000000000a1",
+      "asset_no": "W-5000",
+      "serial_no": "88-2041",
+      "model": "Neptune T-10",
+      "size_class": "W-58",
+      "service": "water"
+    }
+  },
+  "bundle": {
+    "order_id": "0192f1a2-5e00-7000-8000-000000000028",
+    "order_no": "WO-0028",
+    "template_id": null,
+    "template_version": null,
+    "safety": [],
+    "tasks": [],
+    "readings": [],
+    "materials": [],
+    "customer": {
+      "name": "Sarah Miller",
+      "phone": "(512) 555-0114",
+      "account_no": "A-10432",
+      "customer_no": "C-20871"
+    }
+  }
+}

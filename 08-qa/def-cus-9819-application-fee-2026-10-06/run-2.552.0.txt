@@ -1,0 +1,19 @@
+  INFO  APP-FEE already exists (422) — a re-run over its own leftovers
+  PASS  re-run: APP-FEE back at $10.00 — 200
+  PASS  a second application fee is refused by name — "rating.charges.application_fee_taken"
+  PASS  charge-code details · How it bills reads Application fee Yes
+  PASS  the charge-code form asks Application fee, and it reads Yes
+  PASS  Kyle Mark's draft saved — 200
+  PASS  Check and send — Application fee $10.00 — $10.00
+  PASS  Kyle Mark's application sent — 200 SR-26-0017
+  PASS  Kyle Mark's request arrives with Application fee $10.00 on it
+  PASS  and the clerk can take it
+  PASS  APP-FEE re-priced to $0.00 (a $0.00 price saves) — 200
+  PASS  a counter request is opened — 201
+  PASS  and submitted — 200
+  PASS  it reads Nothing to collect.
+  PASS  and draws no collect button
+  PASS  the $0.00 line can still be waived
+  PASS  Check and send at $0.00 — Nothing to pay — Nothing to pay
+
+ALL PASS · build v2.552.0

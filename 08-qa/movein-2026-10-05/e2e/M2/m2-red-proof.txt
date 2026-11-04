@@ -1,0 +1,7 @@
+-- broken (AC-2026-00055 -> AC-2026-00056 expected):
+46 PASS 2 FAIL
+  FAIL LINKED: the returning customer holds her accounts on file AND this one — expected ['AC-2026-00054', 'AC-2026-00056', 'AC-2026-00057'], read ['AC-2026-00054', 'AC-2026-00055', 'AC-2026-00057']
+  FAIL the first-bill preview answers — [DEF-MET-9773] This connection's size is not recorded. Record the connection's size.
+-- restored:
+47 PASS 1 FAIL
+  FAIL the first-bill preview answers — [DEF-MET-9773] This connection's size is not recorded. Record the connection's size.

@@ -1,0 +1,22 @@
+{
+  "can_close": false,
+  "blocking": [
+    {
+      "kind": "missing_required_photo",
+      "scope": "task",
+      "id": "01a106a9-8fe7-7aac-af35-a48bebbf7801",
+      "prompt": "Seal and record the seal number"
+    },
+    {
+      "kind": "missing_required_photo",
+      "scope": "task",
+      "id": "01a106a9-8fe7-7641-bfc8-af91398e3792",
+      "prompt": "Photograph the meter in the pit"
+    }
+  ],
+  "flagged": [],
+  "readings_captured": 0,
+  "readings_total": 2,
+  "required_photos_taken": 0,
+  "required_photos_total": 2
+}

@@ -1,0 +1,104 @@
+[
+  {
+    "step": "1.1",
+    "what": "More ▾ Duplicate is enabled on a live discount",
+    "pass": true,
+    "evidence": "enabled=true"
+  },
+  {
+    "step": "1.2",
+    "what": "empty boxes are refused on the box",
+    "pass": true,
+    "evidence": "Duplicate Senior discount✕Copies every value and condition. No plans, no accounts.Code*Enter a new code.Bill line label*Enter a bill line label.CancelDuplicate"
+  },
+  {
+    "step": "1.3",
+    "what": "the copy's version equals SENIOR's version in force",
+    "pass": true,
+    "evidence": "source=15.000000|age_65_or_over|apply_and_approve|annual_recertification||10|12 copy=15.000000|age_65_or_over|apply_and_approve|annual_recertification||10|12"
+  },
+  {
+    "step": "1.4",
+    "what": "the copy is a draft with no dates, no enrollments, no plans",
+    "pass": true,
+    "evidence": "draft|draft|none|0|0"
+  },
+  {
+    "step": "1.5",
+    "what": "the page shows the copy as Draft",
+    "pass": true,
+    "evidence": "http://127.0.0.1:5371/brazosbend/plans-rates/discounts/01a103ad-f75f-76ab-8860-97ef77d31930"
+  },
+  {
+    "step": "2.1",
+    "what": "Add with no reason is refused on the box",
+    "pass": true,
+    "evidence": "Give a reason."
+  },
+  {
+    "step": "2.2",
+    "what": "the binding is offered from today, open-ended",
+    "pass": true,
+    "evidence": "2026-10-03|open"
+  },
+  {
+    "step": "3.1",
+    "what": "Accounts CSV: the header and one row per current enrollment (the whole set)",
+    "pass": true,
+    "evidence": "2 rows, 2 enrolled; Account,Customer,Address,Plan,Enrolled,Renew by,This month,Status / AC-2026-00054,Ruth Alvarez,11 Discount Walk Way,Discount walk · Residential,10/03/2026,10/03/2027,,Receiving / AC-2026-00054,Ruth Alvarez,11 Discount Walk Way,Discount walk · Residential,10/03/2026,10/03/2027,,Receiving"
+  },
+  {
+    "step": "3.2",
+    "what": "Accounts CSV names Ruth by account number, never an id",
+    "pass": true,
+    "evidence": "AC-2026-00054,Ruth Alvarez,11 Discount Walk Way,Discount walk · Residential,10/03/2026,10/03/2027,,Receiving"
+  },
+  {
+    "step": "4.1",
+    "what": "Ruth's issued bill carries a discount line",
+    "pass": true,
+    "evidence": "Senior discount|-9.000000"
+  },
+  {
+    "step": "4.2",
+    "what": "Document tab breakdown names Discounts and not 'Charged to the bill'",
+    "pass": true,
+    "evidence": "Water $60.00·Discounts -$9.00·See every charge →"
+  },
+  {
+    "step": "4.3",
+    "what": "By service names Discounts with its figure, no 'Charged to the bill' row",
+    "pass": true,
+    "evidence": "ServiceLinesAmountWater3$60.00Discounts1-$9.00"
+  },
+  {
+    "step": "5.1",
+    "what": "ruling 2: the binding ends yesterday (or is removed if it never started)",
+    "pass": true,
+    "evidence": "available_to=(row deleted)"
+  },
+  {
+    "step": "5.2",
+    "what": "Ruth's enrollment ended with 'Removed from plan'",
+    "pass": true,
+    "evidence": "2026-10-03|Removed from plan Discount walk · Residential"
+  },
+  {
+    "step": "5.3",
+    "what": "the issued bill keeps its discount line (hard rule 4)",
+    "pass": true,
+    "evidence": "1 discount line(s) on the issued bill"
+  },
+  {
+    "step": "6.1",
+    "what": "Audit shows both acts with the person's reasons",
+    "pass": true,
+    "evidence": "AuditWhenWhoWhatChangeReason10/03/2026 16:32Dana WhitfieldRemoved from planDiscount walk · ResidentialWalk tariff closes to seniors10/03/2026 16:31Dana WhitfieldProof verified——10/03/2026 16:31Dana WhitfieldAccount enrolledAC-2026-00054—10/03/2026 16:31Dana WhitfieldAdded to planDiscount walk · Resi"
+  },
+  {
+    "step": "6.2",
+    "what": "Audit CSV: header, every row, the plan by name, no plan id",
+    "pass": true,
+    "evidence": "11 rows"
+  }
+]

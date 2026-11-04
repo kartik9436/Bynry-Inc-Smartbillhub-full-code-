@@ -1,0 +1,1309 @@
+signed in as dana@brazosbendutilities.com
+PLANS SERVED: 200 [["01a1023a-ef55-70de-90bc-708019bda005","Industrial","IND","published",1],["01a1023a-ecfa-7ca9-966a-b5f91796105f","Residential Standard","RES-STD","published",1],["01a1023b-22db-7121-afcc-1d61309d0763","Sample — Commercial","SCW-COM","published",1],["01a1023b-23f5-7598-8260-2607e81e576d","Sample — Industrial","SCW-IND","published",1],["01a1023b-21b9-7b8c-b67e-f3492171042e","Sample — Residential","SCW-RES","published",1],["01a1023a-ee2e-704c-bbe3-011e63990c96","Small Commercial","COM-SM","published",1]]
+TARGET PLAN: 01a1023b-21b9-7b8c-b67e-f3492171042e Sample — Residential
+PLAN READ KEYS: ["id","code","name","description","status","version","account_type_ids","account_type_id","account_subtype_id","budget_billing","eligibility","minimum_bill_amount","outside_city_factor","outside_city_percent","outside_city_percent_display","effective_from","effective_to","services","base_charges","base_charges_display","base_charges_unavailable","rate_schedules","accounts","charge_rules","deposit_rules","late_fee_charge","penalty_rule","tax_rules","tax_attachments","tax_lines","combined_tax_rate_display","discounts","versions"]
+PLAN READ: {"id":"01a1023b-21b9-7b8c-b67e-f3492171042e","code":"SCW-RES","name":"Sample — Residential","description":"Sample plan. Water on inclining tiers, sewer at 40% of the water usage charge, trash at $15.00 per cart with no monthly base. Electric is metered too.","status":"published","version":1,"account_type_ids":["01a1023a-e194-775d-8948-9817511773ba"],"account_type_id":"01a1023a-e194-775d-8948-9817511773ba","account_subtype_id":null,"budget_billing":false,"eligibility":{},"minimum_bill_amount":null,"outside_city_factor":"1.500000","outside_city_percent":"50.000000","outside_city_percent_display":"50.00%","effective_from":"2026-08-01","effective_to":null,"services":[{"service":"electric","name":"Electric","base_charge":"12.000000","base_charge_code":null,"currency":"USD","schedule_minimum_amount":null,"schedule_minimum_amount_display":null,"gl_account_id":null,"outside_city_exempt":false},{"service":"water","name":"Water","base_charge":"8.000000","base_charge_code":null,"currency":"USD","schedule_minimum_amount":null,"schedule_minimum_amount_display":null,"gl_account_id":null,"outside_city_exempt":false}],"base_charges":"20.000000","base_charges_display":"20.00","base_charges_unavailable":null,"rate_schedules":[{"service":"electric","tariff_id":"01a1023b-1dfb-7be4-b177-42e61b1ce538","tariff_name":"Sample — Electric usage"},{"service":"water","tariff_id":"01a1023b-1ea9-7f69-9e1a-4ad2dfcd75df","tariff_name":"Sample — Residential water (inclining tiers)"}],"accounts":75,"charge_rules":[],"deposit_rules":[],"late_fee_charge":{"id":"01a1023a-df5e-7376-aaf4-db2abf0a9e38","code":"LATE","name":"Late payment fee","amount_rule":"percent_with_minimum","percent_display":"1.50%","min_amount_display":"5.00"},"penalty_rule":null,"tax_rules":[{"jurisdiction_id":"01a1023a-dfbb-7aca-a842-d5e915a6ee45","jurisdiction":"City","rate_override":null},{"jurisdiction_id":"01a1023a-dfc1-732d-aa67-0c9de9087a47","jurisdiction":"County","rate_override":null},{"jurisdiction_id":"01a1023a-dfb5-751d-89ea-961cf0967ca6","jurisdiction":"Local","rate_override":null},{"jurisdiction_id":"01a1023a-dfc3-777b-a33c-abe6f54ed157","jurisdiction":"Special district","rate_override":null},{"jurisdiction_id":"01a1023a-dfb8-7c12-a913-2f9a03539ac1","jurisdiction":"Texas Public Utility Commission","rate_override":null},{"jurisdiction_id":"01a1023a-dfb0-798e-a91a-999ce8cfe850","jurisdiction":"Texas State","rate_override":null},{"jurisdiction_id":"01a1023a-dfbe-7893-b133-4d4939f60980","jurisdiction":"Texas Water Development Board","rate_override":null}],"tax_attachments":[],"tax_lines":[{"level":"state","authority":"Texas Comptroller of Public Accounts","name":"TX State Utility Tax","kind":"percent","rate_display":"6.25%","flat_amount_display":null,"applies_to_services":[]},{"level":"county","authority":"Bexar County Tax Office","name":"Local · Bexar County","kind":"percent","rate_display":"2.00%","flat_amount_display":null,"applies_to_services":[]}],"combined_tax_rate_display":"8.25%","discounts":[{"id":"01a1023b-2613-7c5c-82f4-ad568a7ff5f8","discount_id":"01a1023b-2599-7eeb-ab0a-1d8ed2606aa5","code":"AUTOPAY","name":"Autopay discount","status":"active","type":"percentage","value_display":"0.50%","eligibility":"Autopay is on","terms":{"version_no":1,"version_status":"active","effective_from":"2026-08-01","effective_to":null,"resolved_on":"2026-10-03","eligibility_summary":"Autopay is on","eligibility_rule_recorded":false,"eligibility_checked":{"served":false,"reason":"no_code_evaluates_a_discount_eligibility_rule","tracks":null},"enrolment_mode":"automatic","verification_method":"automatic","proof_required":false,"accepted_proof_kinds":[],"proof_before_first_reduction":false,"recertification_months":null,"recertification_notice_days":60,"recertification_grace_days":0,"lapse_behaviour":"never_expires","applies_to":"whole_bill","applies_to_service":null,"applies_to_service_name":null,"applies_to_charge_codes":[],"currency":"USD","cap_per_bill_display":null,"cap_per_year_display":null,"cap_lifetime_display":null,"bill_floor_amount_display":"0.00","stacks_with_others":true,"exclusivity_group":null,"stacking_precedence":40},"available_from":null,"available_to":null,"enrolled":0},{"id":"01a1023b-261a-7746-bb07-a69858bcbf50","discount_id":"01a1023b-25e2-7521-9290-90db94320d6c","code":"MUNICIPAL","name":"Municipal account","status":"active","type":"percentage","value_display":"20.00%","eligibility":"Government or municipal account","terms":{"version_no":1,"version_status":"active","effective_from":"2026-08-01","effective_to":null,"resolved_on":"2026-10-03","eligibility_summary":"Government or municipal account","eligibility_rule_recorded":false,"eligibility_checked":{"served":false,"reason":"no_code_evaluates_a_discount_eligibility_rule","tracks":null},"enrolment_mode":"automatic","verification_method":"automatic","proof_required":false,"accepted_proof_kinds":[],"proof_before_first_reduction":false,"recertification_months":null,"recertification_notice_days":60,"recertification_grace_days":0,"lapse_behaviour":"never_expires","applies_to":"whole_bill","applies_to_service":null,"applies_to_service_name":null,"applies_to_charge_codes":[],"currency":"USD","cap_per_bill_display":null,"cap_per_year_display":null,"cap_lifetime_display":null,"bill_floor_amount_display":"0.00","stacks_with_others":true,"exclusivity_group":null,"stacking_precedence":60},"available_from":null,"available_to":null,"enrolled":1},{"id":"01a1023b-260b-75ff-836b-f8aacfce8746","discount_id":"01a1023b-2566-79b5-aac0-e3044288867c","code":"PAPERLESS","name":"Paperless billing","status":"active","type":"fixed_amount","value_display":"$1.00","eligibility":"Paperless billing is on","terms":{"version_no":1,"version_status":"active","effective_from":"2026-08-01","effective_to":null,"resolved_on":"2026-10-03","eligibility_summary":"Paperless billing is on","eligibility_rule_recorded":false,"eligibility_checked":{"served":false,"reason":"no_code_evaluates_a_discount_eligibility_rule","tracks":nu
+
+=== l01-list.png — plans list as it opens
+Plans & Rates
+6 plans · 9 rate schedules · 31 charge codes · 6 discounts · 2 taxes & fees · effective 10/01/2026
+History
++ New plan
+Plans
+Rate schedules
+Charge codes
+Discounts
+Taxes & fees
+A plan is what customers subscribe to — a bundle of rate schedules and charges per service, with a name customers understand. A rate schedule defines the pricing math; plans reference them.
+All
++ Filter
+▾
+PLAN
+▲
+	SERVICES INCLUDED	RATE SCHEDULES	BASE CHARGES	ACCOUNTS	STATUS	ACTIONS
+Industrial	
+E
+	
+Industrial Electric — Energy + demand
+	—	1	Published	
+Residential Standard	
+E
+W
+	
+Residential Electric — TOU
+Residential Water — Inclining tiers
+	—	7	Published	
+Sample — Commercial	
+E
+W
+	
+Sample — Electric usage
+Sample — Commercial water (flat)
+	—	2	Published	
+Sample — Industrial	
+E
+W
+	
+Sample — Industrial electric usage
+Sample — Commercial water (flat)
+	—	1	Published	
+Sample — Residential	
+E
+W
+	
+Sample — Electric usage
+Sample — Residential water (inclining tiers)
+	$20.00	75	Published	
+Small Commercial	
+W
+	
+Small Commercial Water — Flat
+	—	2	Published	
+1–6 of 6
+Rows per page
+50
+100
+200
+500
+1000
+‹
+›
+LIST COLUMNS: ["Plan▲","Services included","Rate schedules","Base charges","Accounts","Status","Actions"]
+CONTROLS list (16):
+   {"id":"","label":"Search plan name or code…","kind":"input[search]","value":"","disabled":false,"width":512}
+   {"id":"","label":"Draft","kind":"input[checkbox]","value":"unchecked","disabled":false,"width":13}
+   {"id":"","label":"Published","kind":"input[checkbox]","value":"unchecked","disabled":false,"width":13}
+   {"id":"","label":"Archived","kind":"input[checkbox]","value":"unchecked","disabled":false,"width":13}
+   {"id":"","label":"Electric","kind":"input[checkbox]","value":"unchecked","disabled":false,"width":13}
+   {"id":"","label":"Water","kind":"input[checkbox]","value":"unchecked","disabled":false,"width":13}
+   {"id":"","label":"Plan","kind":"input[checkbox]","value":"checked","disabled":true,"width":13}
+   {"id":"","label":"Services included","kind":"input[checkbox]","value":"checked","disabled":false,"width":13}
+   {"id":"","label":"Rate schedules","kind":"input[checkbox]","value":"checked","disabled":false,"width":13}
+   {"id":"","label":"Base charges","kind":"input[checkbox]","value":"checked","disabled":false,"width":13}
+   {"id":"","label":"Accounts","kind":"input[checkbox]","value":"checked","disabled":false,"width":13}
+   {"id":"","label":"Status","kind":"input[checkbox]","value":"checked","disabled":false,"width":13}
+   {"id":"","label":"Actions","kind":"input[checkbox]","value":"checked","disabled":false,"width":13}
+   {"id":"","label":"Code","kind":"input[checkbox]","value":"unchecked","disabled":false,"width":13}
+   {"id":"","label":"Effective from","kind":"input[checkbox]","value":"unchecked","disabled":false,"width":13}
+   {"id":"","label":"Rows per page501002005001000","kind":"select[select-one]","value":"50","disabled":false,"width":78,"options":["50","100","200","500","1000"]}
+BUTTONS list: ["History","+ New plan","Plans","Rate schedules","Charge codes","Discounts","Taxes & fees","All","Download CSV","↑ [DISABLED]","↓","↑","↓","↑","↓","↑","↓","↑","↓","↑","↓","↑","↓ [DISABLED]","Reset table","Plan▲","Accounts","Status","Industrial","New version","Archive","Residential Standard","New version","Archive","Sample — Commercial","New version","Archive","Sample — Industrial","New version","Archive","Sample — Residential","New version","Archive","Small Commercial","New version","Archive","‹ [DISABLED]","› [DISABLED]"]
+
+=== d-overview.png — details · overview
+← Plans & Rates
+PLAN · SCW-RES · V1
+Sample — Residential
+Published
+Effective from
+08/01/2026
+onwards
+·
+Customer class Set, but the class cannot be named here yet — customer classes are kept with accounts.
+·
+Editing a published plan writes a new version; this one keeps its own history.
+Duplicate
+Edit
+Retire
+Overview
+Units
+Audit
+What this plan is, and what a customer is told it is.
+UNITS
+75
+on this plan today
+REVENUE
+—
+Nothing adds up what this plan has billed. This is not zero — no figure exists to show.
+SERVICES
+2
+Electric · Water
+EXCEPTIONS
+—
+Waivers granted and tax exemption certificates are not recorded yet, so neither half of this count can be worked out.
+CHANGE ALREADY DATED
+A rate schedule can change what this plan charges without the plan itself changing. When a dated change arrives, bills move to the new prices and this plan stays on the version it is on.
+Sample — Residential water (inclining tiers)
+·
+from
+03/01/2027
+What this plan is
+PLAN
+Sample — Residential
+CODE
+SCW-RES
+SERVICES INCLUDED
+2
+BUDGET BILLING
+No
+MINIMUM BILL
+—
+No floor is set on this plan.
+BASE CHARGES
+$20.00
+WHAT CUSTOMERS ARE TOLD
+Sample plan. Water on inclining tiers, sewer at 40% of the water usage charge, trash at $15.00 per cart with no monthly base. Electric is metered too.
+The price
+in force today
+Rate schedule
+SERVICE	BASE	RATE SCHEDULE	USAGE	RATE
+Electric	12.00 · 180.00	Sample — Electric usage	Tiered	$0.11 · $0.135 · $0.16
+from BASE-E · BASE-E-COM · BASE-E-IND
+Water	8.00 · 15.00	Sample — Residential water (inclining tiers)	Tiered	$4.24 · $6.89 · $8.48
+from BASE-W · BASE-W-COM
+Charge codes
+What each one lands on.
+CODE	NAME	AMOUNT	WHEN IT APPLIES
+LATE	Late payment fee	1.50% · 5.00	after the due date
+Discounts
+CODE	NAME	VALUE	TAKE-UP
+AUTOPAY	Autopay discount	0.50%	0
+enrolled; how many are eligible is not worked out
+MUNICIPAL	Municipal account	20.00%	1
+enrolled; how many are eligible is not worked out
+PAPERLESS	Paperless billing	$1.00	0
+enrolled; how many are eligible is not worked out
+Taxes
+8.25% combined
+LEVEL	AUTHORITY	RATE	APPLIES TO
+State	Texas Comptroller of Public Accounts — TX State Utility Tax	6.25%	every service
+County	Bexar County Tax Office — Local · Bexar County	2.00%	every service
+Other terms
+Everything else that changes a bill.
+Outside the city limits
+50.00% more
+premises beyond the boundary
+Budget billing
+not offered
+Minimum bill
+no floor is set on this plan
+Cycle and due date
+not settable per plan
+from the utility’s billing defaults
+HOW A PLAN WORKS
+A plan composes; it does not price. It may not override a rate, add an amount of its own, or leave out a tax the law requires. Different pricing means a different rate schedule, charge code or discount.
+Sample bill
+A worked example comes from a bill run, not from this screen. Run a bill for an account on this plan to see the figures priced.
+Where the money is posted
+Electric
+4100 — Electric usage
+This account is set in Settings, under Accounting. Open Accounting settings
+Water
+4110 — Water usage
+This account is set in Settings, under Accounting. Open Accounting settings
+Splitting these by inside or outside the city limits needs a figure nothing works out yet.
+A schedule that is being drafted while its current prices are still live does not show here. A draft prices nothing until it is dated and activated.
+Intended for
+CUSTOMER CLASS
+Set, but the class cannot be named here yet — customer classes are kept with accounts.
+CUSTOMERS WITH PROOF OF A HARDSHIP OR ASSISTANCE PROGRAM
+No
+CUSTOMERS WITH AT LEAST 25 KW OF DEMAND
+No
+OWNER-OCCUPIED PREMISES
+No
+Checking a box records an intention only. Staff attest to it when they assign the plan, and that attestation is what gets audited.
+Not recorded on a plan yet
+—
+A plan has nowhere to record this yet.
+Area or zone
+Connection size limits
+Occupancy limits
+Proof required
+How often proof is renewed
+Chosen by the customer or by staff
+Pre-selected at move-in
+This plan is Draft, Published or Archived. The wording being agreed for plans also includes a softer state — closed to new sign-ups, while existing accounts keep being billed — and this product has no such state yet.
+CONTROLS details-overview (0):
+BUTTONS details-overview: ["link:← Plans & Rates","Duplicate [DISABLED]","Edit","Retire","Overview","Units","Audit","Open Accounting settings","Open Accounting settings"]
+
+=== d-units.png — details · units
+← Plans & Rates
+PLAN · SCW-RES · V1
+Sample — Residential
+Published
+Effective from
+08/01/2026
+onwards
+·
+Customer class Set, but the class cannot be named here yet — customer classes are kept with accounts.
+·
+Editing a published plan writes a new version; this one keeps its own history.
+Duplicate
+Edit
+Retire
+Overview
+Units
+Audit
+The units this plan prices, and what each one is.
+UNITS
+75
+on this plan today
+REVENUE
+—
+Nothing adds up what this plan has billed. This is not zero — no figure exists to show.
+SERVICES
+2
+Electric · Water
+EXCEPTIONS
+—
+Waivers granted and tax exemption certificates are not recorded yet, so neither half of this count can be worked out.
+CHANGE ALREADY DATED
+A rate schedule can change what this plan charges without the plan itself changing. When a dated change arrives, bills move to the new prices and this plan stays on the version it is on.
+Sample — Residential water (inclining tiers)
+·
+from
+03/01/2027
+Units on this plan
+Every unit this plan prices, whether or not somebody lives there.
+UNIT	PREMISES	SERVICES	ACCOUNT	ON THIS PLAN SINCE
+Unit 1	101 Silver Creek Rd	
+E
+W
+	
+AC-2026-00001
+	08/01/2026
+Unit 1	103 Willow Bend Dr	
+E
+W
+	
+AC-2026-00002
+	08/01/2026
+Unit 1	105 Cedar Ridge Way	
+E
+W
+	
+AC-2026-00003
+	08/01/2026
+Unit 1	107 Mill Pond Ln	
+E
+W
+	
+AC-2026-00004
+	08/01/2026
+Unit 1	109 Quarry Hill Ct	
+E
+W
+	
+AC-2026-00005
+	08/01/2026
+Unit 1	111 Silver Creek Rd	
+E
+W
+	
+AC-2026-00006
+	08/01/2026
+Unit 1	113 Willow Bend Dr	
+E
+W
+	
+AC-2026-00007
+	08/01/2026
+Unit 1	115 Cedar Ridge Way	
+E
+W
+	
+AC-2026-00008
+	08/01/2026
+Unit 1	117 Mill Pond Ln	
+E
+W
+	
+AC-2026-00009
+	08/01/2026
+Unit 1	119 Quarry Hill Ct	
+E
+W
+	
+AC-2026-00010
+	08/01/2026
+Unit 2	12 Harbour View	
+E
+W
+	
+A-11109
+	08/01/2026
+Unit 1	121 Silver Creek Rd	
+E
+W
+	
+AC-2026-00011
+	08/01/2026
+Unit 1	123 Willow Bend Dr	
+E
+W
+	
+AC-2026-00012
+	08/01/2026
+Unit 1	125 Cedar Ridge Way	
+E
+W
+	
+AC-2026-00013
+	08/01/2026
+Unit 1	127 Mill Pond Ln	
+E
+W
+	
+AC-2026-00014
+	08/01/2026
+Unit 1	129 Quarry Hill Ct	
+E
+W
+	
+AC-2026-00015
+	08/01/2026
+Unit 1	131 Silver Creek Rd	
+E
+W
+	
+AC-2026-00016
+	08/01/2026
+Unit 1	133 Willow Bend Dr	
+E
+W
+	
+AC-2026-00017
+	08/01/2026
+Unit 1	135 Cedar Ridge Way	
+E
+W
+	
+AC-2026-00018
+	08/01/2026
+Unit 1	137 Mill Pond Ln	
+E
+W
+	
+AC-2026-00019
+	08/01/2026
+Unit 1	139 Quarry Hill Ct	
+E
+W
+	
+AC-2026-00020
+	08/01/2026
+Unit A	1408 Elm Street	
+E
+W
+	
+A-10432
+	08/01/2026
+Unit 1	141 Silver Creek Rd	
+E
+W
+	
+AC-2026-00021
+	08/01/2026
+Suite 1	142 Bakers Row	
+E
+W
+	
+A-11812
+	08/01/2026
+Unit 1	143 Willow Bend Dr	
+E
+W
+	
+AC-2026-00022
+	08/01/2026
+Unit 1	145 Cedar Ridge Way	
+E
+W
+	
+AC-2026-00023
+	08/01/2026
+Unit 1	147 Mill Pond Ln	
+E
+W
+	
+AC-2026-00024
+	08/01/2026
+Unit 1	149 Quarry Hill Ct	
+E
+W
+	
+AC-2026-00025
+	08/01/2026
+Unit 1	151 Silver Creek Rd	
+E
+W
+	
+AC-2026-00026
+	08/01/2026
+Unit 1	153 Willow Bend Dr	
+E
+W
+	
+AC-2026-00027
+	08/01/2026
+Unit 1	155 Cedar Ridge Way	
+E
+W
+	
+AC-2026-00028
+	08/01/2026
+Unit 1	157 Mill Pond Ln	
+E
+W
+	
+AC-2026-00029
+	08/01/2026
+Unit 1	159 Quarry Hill Ct	
+E
+W
+	
+AC-2026-00030
+	08/01/2026
+Unit 1	16 Poplar Grove	
+E
+W
+	
+—
+Vacant — base charges still bill to the owner.
+	08/01/2026
+Unit 1	161 Silver Creek Rd	
+E
+W
+	
+AC-2026-00031
+	08/01/2026
+Unit 1	163 Willow Bend Dr	
+E
+W
+	
+AC-2026-00032
+	08/01/2026
+Unit 1	165 Cedar Ridge Way	
+E
+W
+	
+AC-2026-00033
+	08/01/2026
+Unit 1	167 Mill Pond Ln	
+E
+W
+	
+AC-2026-00034
+	08/01/2026
+Unit 1	169 Quarry Hill Ct	
+E
+W
+	
+AC-2026-00035
+	08/01/2026
+Unit 1	171 Silver Creek Rd	
+E
+W
+	
+AC-2026-00036
+	08/01/2026
+Unit 1	18 Marten Row	
+E
+W
+	
+A-10650
+	08/01/2026
+Unit A	181 Willow Bend Dr	
+E
+W
+	
+AC-2026-00037
+	08/01/2026
+Unit B	181 Willow Bend Dr	
+E
+W
+	
+AC-2026-00038
+	08/01/2026
+Unit A	183 Cedar Ridge Way	
+E
+W
+	
+AC-2026-00039
+	08/01/2026
+Unit B	183 Cedar Ridge Way	
+E
+W
+	
+AC-2026-00040
+	08/01/2026
+Unit 1	204 Quarry Lane	
+E
+W
+	
+—
+Vacant — base charges still bill to the owner.
+	08/01/2026
+Unit 1	220 Sable Court	
+E
+W
+	
+A-11780
+	08/01/2026
+Unit 1	26 Meadowbank Rise	
+E
+W
+	
+—
+Vacant — base charges still bill to the owner.
+	08/01/2026
+Unit 1	27 Selby Drive	
+E
+W
+	
+A-11902
+	08/01/2026
+Unit 1	3 Kestrel Close	
+E
+W
+	
+A-10714
+	08/01/2026
+1–50 of 75
+Page 1 of 2
+Rows per page
+50
+100
+200
+500
+1000
+‹
+›
+WHY UNITS AND NOT ACCOUNTS
+A plan is attached to a unit, not to an account, so a vacant unit is still on this plan and its base charges still reach the owner’s bill.
+CONTROLS details-units (1):
+   {"id":"","label":"Rows per page501002005001000","kind":"select[select-one]","value":"50","disabled":false,"width":78,"options":["50","100","200","500","1000"]}
+BUTTONS details-units: ["link:← Plans & Rates","Duplicate [DISABLED]","Edit","Retire","Overview","Units","Audit","‹ [DISABLED]","›"]
+
+=== d-audit.png — details · audit
+← Plans & Rates
+PLAN · SCW-RES · V1
+Sample — Residential
+Published
+Effective from
+08/01/2026
+onwards
+·
+Customer class Set, but the class cannot be named here yet — customer classes are kept with accounts.
+·
+Editing a published plan writes a new version; this one keeps its own history.
+Duplicate
+Edit
+Retire
+Overview
+Units
+Audit
+What this plan has said, and from when.
+UNITS
+75
+on this plan today
+REVENUE
+—
+Nothing adds up what this plan has billed. This is not zero — no figure exists to show.
+SERVICES
+2
+Electric · Water
+EXCEPTIONS
+—
+Waivers granted and tax exemption certificates are not recorded yet, so neither half of this count can be worked out.
+CHANGE ALREADY DATED
+A rate schedule can change what this plan charges without the plan itself changing. When a dated change arrives, bills move to the new prices and this plan stays on the version it is on.
+Sample — Residential water (inclining tiers)
+·
+from
+03/01/2027
+Audit
+VERSION	CHANGED	CHANGE	STATUS
+v1
+Dana Whitfield
+	10/03/2026	
+—
+No reason was written down
+The first version on record — there is nothing before it to compare against.
+	Published
+This history is a record of what the plan said. Nothing here changes what an account is charged.
+DATED
+Composition changes save as a new plan version via the builder — accounts re-price from its effective date.
+Changes underneath
+WHAT CHANGED	CHANGED	WHY
+Sample — Residential water (inclining tiers)
+Rate schedule
+	10/03/2026
+Dana Whitfield
+	2027 filing (pending) · adds conservation pricing
+Sample — Residential water (inclining tiers)
+Rate schedule
+	10/03/2026
+Dana Whitfield
+	+6% across tiers · PUC #W-2025-1184
+1–2 of 2
+Page 1 of 1
+Rows per page
+50
+100
+200
+500
+1000
+‹
+›
+Taxes and discounts are not tracked.
+CONTROLS details-audit (1):
+   {"id":"","label":"Rows per page501002005001000","kind":"select[select-one]","value":"50","disabled":false,"width":78,"options":["50","100","200","500","1000"]}
+BUTTONS details-audit: ["link:← Plans & Rates","Duplicate [DISABLED]","Edit","Retire","Overview","Units","Audit","‹ [DISABLED]","› [DISABLED]"]
+RAIL: ["1:1Basics:active","2:2Services:upcoming","3:3Rate schedules:upcoming","4:4Charges:upcoming","5:5Taxes:upcoming","6:6Discounts & billing:upcoming","7:7Eligibility:upcoming","8:8Review & activate:upcoming"]
+
+=== e1-edit-step1.png — edit · step 1
+← Plans & Rates
+EDIT PLAN
+Edit Sample — Residential
+Eight steps · takes about 5 minutes.
+Save draft & exit
+Archive
+1
+Basics
+2
+Services
+3
+Rate schedules
+4
+Charges
+5
+Taxes
+6
+Discounts & billing
+7
+Eligibility
+8
+Review & activate
+STEP 1 OF 8
+Name and describe this plan.
+Change or correction
+Change the plan
+Fix an error
+A new version is filed.
+Customers see this on their bills. Keep it plain.
+Plan name (customer-facing)*
+Plan code (internal)*
+Residential
+×
+Add a class…
+Add a class…
+Agricultural
+Builder or developer
+Commercial
+Government
+Industrial
+Institutional
+Municipal
+Description shown to customer
+Cancel
+Continue
+CONTROLS edit-step1 (6):
+   {"id":"","label":"Change the plan","kind":"input[radio]","value":"checked","disabled":false,"width":0}
+   {"id":"","label":"Fix an error","kind":"input[radio]","value":"unchecked","disabled":false,"width":0}
+   {"id":"plan-name","label":"Plan name (customer-facing)*","kind":"input[text]","value":"Sample — Residential","disabled":false,"width":1118}
+   {"id":"plan-code","label":"Plan code (internal)*","kind":"input[text]","value":"SCW-RES","disabled":false,"width":553}
+   {"id":"","label":"Add a class…Add a class…AgriculturalBuilder or developerCommercialGovernmentIndustrialInst","kind":"select[select-one]","value":"Add a class…","disabled":false,"width":553,"options":["Add a class…","Agricultural","Builder or developer","Commercial","Government","Industrial","Institutional","Municipal"]}
+   {"id":"plan-description","label":"Description shown to customer","kind":"textarea[textarea]","value":"Sample plan. Water on inclining tiers, sewer at 40% of the water usage charge, t","disabled":false,"width":1118}
+BUTTONS edit-step1: ["link:← Plans & Rates","Save draft & exit","Archive","1Basics [DISABLED]","2Services [DISABLED]","3Rate schedules [DISABLED]","4Charges [DISABLED]","5Taxes [DISABLED]","6Discounts & billing [DISABLED]","7Eligibility [DISABLED]","8Review & activate [DISABLED]","×","Cancel","Continue"]
+RAIL: ["1:1Basics:done","2:2Services:active","3:3Rate schedules:upcoming","4:4Charges:upcoming","5:5Taxes:upcoming","6:6Discounts & billing:upcoming","7:7Eligibility:upcoming","8:8Review & activate:upcoming"]
+
+=== e2-edit-step2.png — edit · step 2
+← Plans & Rates
+EDIT PLAN
+Edit Sample — Residential
+Eight steps · takes about 5 minutes.
+Save draft & exit
+Archive
+1
+Basics
+2
+Services
+3
+Rate schedules
+4
+Charges
+5
+Taxes
+6
+Discounts & billing
+7
+Eligibility
+8
+Review & activate
+STEP 2 OF 8
+Pick the services this plan covers.
+SERVICES IN THIS PLAN
+Electric
+×
+Water
+×
+Switch more services on in Settings
+2 services selected
+OUTSIDE-CITY SURCHARGE
+Do outside-city premises pay more?
+No — the same price everywhere
+Yes — a percentage more
+How much more (%)
+50% more. Outside the city, $100.00 becomes $150.00.
+SERVICES SURCHARGED
+Electric
+×
+Water
+×
+Remove the ones to spare.
+Cancel
+Back
+Continue
+CONTROLS edit-step2 (2):
+   {"id":"plan-outside-city-charges-more","label":"Do outside-city premises pay more?","kind":"select[select-one]","value":"Yes — a percentage more","disabled":false,"width":1118,"options":["No — the same price everywhere","Yes — a percentage more"]}
+   {"id":"plan-outside-city-percent","label":"How much more (%)","kind":"input[text]","value":"50","disabled":false,"width":1118}
+BUTTONS edit-step2: ["link:← Plans & Rates","Save draft & exit","Archive","1Basics","2Services [DISABLED]","3Rate schedules [DISABLED]","4Charges [DISABLED]","5Taxes [DISABLED]","6Discounts & billing [DISABLED]","7Eligibility [DISABLED]","8Review & activate [DISABLED]","×","×","link:Switch more services on in Settings","×","×","Cancel","Back","Continue"]
+RAIL: ["1:1Basics:done","2:2Services:done","3:3Rate schedules:active","4:4Charges:upcoming","5:5Taxes:upcoming","6:6Discounts & billing:upcoming","7:7Eligibility:upcoming","8:8Review & activate:upcoming"]
+
+=== e3-edit-step3.png — edit · step 3
+← Plans & Rates
+EDIT PLAN
+Edit Sample — Residential
+Eight steps · takes about 5 minutes.
+Save draft & exit
+Archive
+1
+Basics
+2
+Services
+3
+Rate schedules
+4
+Charges
+5
+Taxes
+6
+Discounts & billing
+7
+Eligibility
+8
+Review & activate
+STEP 3 OF 8
+Bind one rate schedule to each service.
+One rate schedule for each service in the plan.
+Service	Rate schedule	GL
+E
+Electric	
+Choose a rate schedule
+Industrial Electric — Energy + demand · Demand · 1 accounts
+Residential Electric — TOU · Time-of-use · 7 accounts
+Sample — Electric usage · Tiered · 77 accounts
+Sample — Industrial electric usage · Flat · 1 accounts
+	4100
+W
+Water	
+Choose a rate schedule
+Residential Water — Inclining tiers · Tiered · 7 accounts
+Sample — Commercial water (flat) · Flat · 3 accounts
+Sample — Residential water (inclining tiers) · Tiered · 75 accounts
+Small Commercial Water — Flat · Flat · 2 accounts
+	4110
+This account is set in Settings, under Accounting. Open Accounting settings
+Create one on Rate schedules.
+Cancel
+Back
+Continue
+CONTROLS edit-step3 (2):
+   {"id":"schedule-electric","label":"Rate schedule for Electric","kind":"select[select-one]","value":"Sample — Electric usage · Tiered · 77 accounts","disabled":false,"width":923,"options":["Choose a rate schedule","Industrial Electric — Energy + demand · Demand · 1 accounts","Residential Electric — TOU · Time-of-use · 7 accounts","Sample — Electric usage · Tiered · 77 accounts","Sample — Industrial electric usage · Flat · 1 accounts"]}
+   {"id":"schedule-water","label":"Rate schedule for Water","kind":"select[select-one]","value":"Sample — Residential water (inclining tiers) · Tiered · 75 accounts","disabled":false,"width":923,"options":["Choose a rate schedule","Residential Water — Inclining tiers · Tiered · 7 accounts","Sample — Commercial water (flat) · Flat · 3 accounts","Sample — Residential water (inclining tiers) · Tiered · 75 accounts","Small Commercial Water — Flat · Flat · 2 accounts"]}
+BUTTONS edit-step3: ["link:← Plans & Rates","Save draft & exit","Archive","1Basics","2Services","3Rate schedules [DISABLED]","4Charges [DISABLED]","5Taxes [DISABLED]","6Discounts & billing [DISABLED]","7Eligibility [DISABLED]","8Review & activate [DISABLED]","Open Accounting settings","Cancel","Back","Continue"]
+RAIL: ["1:1Basics:done","2:2Services:done","3:3Rate schedules:done","4:4Charges:active","5:5Taxes:upcoming","6:6Discounts & billing:upcoming","7:7Eligibility:upcoming","8:8Review & activate:upcoming"]
+
+=== e4-edit-step4.png — edit · step 4
+← Plans & Rates
+EDIT PLAN
+Edit Sample — Residential
+Eight steps · takes about 5 minutes.
+Save draft & exit
+Archive
+1
+Basics
+2
+Services
+3
+Rate schedules
+4
+Charges
+5
+Taxes
+6
+Discounts & billing
+7
+Eligibility
+8
+Review & activate
+STEP 4 OF 8
+Confirm the base and add the charges this plan carries.
+MONTHLY BASE
+ELECTRIC
+12.00 · from BASE-E
+WATER
+8.00 · from BASE-W
+Monthly base total $20.00 across all sizes
+ON THIS PLAN · 0
+Charge code
++ Add
+Not listed? Define it in Charge codes →
+No charges added yet.
+A plan cannot change an amount.
+Cancel
+Back
+Continue
+CONTROLS edit-step4 (1):
+   {"id":"plan-charge-pick","label":"Charge code","kind":"input[text]","value":"","disabled":false,"width":320}
+BUTTONS edit-step4: ["link:← Plans & Rates","Save draft & exit","Archive","1Basics","2Services","3Rate schedules","4Charges [DISABLED]","5Taxes [DISABLED]","6Discounts & billing [DISABLED]","7Eligibility [DISABLED]","8Review & activate [DISABLED]","+ Add [DISABLED]","Not listed? Define it in Charge codes →","Cancel","Back","Continue"]
+RAIL: ["1:1Basics:done","2:2Services:done","3:3Rate schedules:done","4:4Charges:done","5:5Taxes:active","6:6Discounts & billing:upcoming","7:7Eligibility:upcoming","8:8Review & activate:upcoming"]
+
+=== e5-edit-step5.png — edit · step 5
+← Plans & Rates
+EDIT PLAN
+Edit Sample — Residential
+Eight steps · takes about 5 minutes.
+Save draft & exit
+Archive
+1
+Basics
+2
+Services
+3
+Rate schedules
+4
+Charges
+5
+Taxes
+6
+Discounts & billing
+7
+Eligibility
+8
+Review & activate
+STEP 5 OF 8
+What this plan's customers will be taxed.
+ON THIS PLAN · 7
+Tax or authority
++ Add
+Every tax is added.
+#	TAX	RATE	GL CODE	SOURCE	
+1	No authority recorded			Authority	
+✕
+2	No authority recorded			Authority	
+✕
+3	Bexar County Tax Office			Authority	
+✕
+4	
+Local · Bexar County
+usage + base charges
+	2.00%	
+2200-01
+Tax payable — Local · Bexar County
+	From Bexar County Tax Office	
+✕
+5	No authority recorded			Authority	
+✕
+6	No authority recorded			Authority	
+✕
+7	Texas Comptroller of Public Accounts			Authority	
+✕
+8	
+TX State Utility Tax
+usage + base charges
+	6.25%	
+2200-02
+Tax payable — TX State Utility Tax
+	From Texas Comptroller of Public Accounts	
+✕
+9	No authority recorded			Authority	
+✕
+A plan cannot change a rate.
+Cancel
+Back
+Continue
+CONTROLS edit-step5 (1):
+   {"id":"plan-tax-pick","label":"Tax or authority","kind":"input[text]","value":"","disabled":false,"width":320}
+BUTTONS edit-step5: ["link:← Plans & Rates","Save draft & exit","Archive","1Basics","2Services","3Rate schedules","4Charges","5Taxes [DISABLED]","6Discounts & billing [DISABLED]","7Eligibility [DISABLED]","8Review & activate [DISABLED]","+ Add [DISABLED]","✕","✕","✕","✕ [DISABLED]","✕","✕","✕","✕ [DISABLED]","✕","Cancel","Back","Continue"]
+RAIL: ["1:1Basics:done","2:2Services:done","3:3Rate schedules:done","4:4Charges:done","5:5Taxes:done","6:6Discounts & billing:active","7:7Eligibility:upcoming","8:8Review & activate:upcoming"]
+
+=== e6-edit-step6.png — edit · step 6
+← Plans & Rates
+EDIT PLAN
+Edit Sample — Residential
+Eight steps · takes about 5 minutes.
+Save draft & exit
+Archive
+1
+Basics
+2
+Services
+3
+Rate schedules
+4
+Charges
+5
+Taxes
+6
+Discounts & billing
+7
+Eligibility
+8
+Review & activate
+STEP 6 OF 8
+Which discounts this plan offers, and its billing terms.
+ON THIS PLAN · 3
+Discount
++ Add
+#	DISCOUNT	VALUE	GL CODE	ENROLLED	OFFERED FROM	OFFERED UNTIL	
+1	
+AUTOPAY
+Autopay discount
+	0.50%	
+4760
+Customer discounts (contra-revenue)
+	0	
+Offered from — AUTOPAY
+	
+Offered until — AUTOPAY
+	
+✕
+2	
+MUNICIPAL
+Municipal account
+	20.00%	
+4760
+Customer discounts (contra-revenue)
+	1	
+Offered from — MUNICIPAL
+	
+Offered until — MUNICIPAL
+	
+✕
+3	
+PAPERLESS
+Paperless billing
+	$1.00	
+4760
+Customer discounts (contra-revenue)
+	0	
+Offered from — PAPERLESS
+	
+Offered until — PAPERLESS
+	
+✕
+A plan cannot change a value.
+Your utility sets it in Settings.
+An uncapped discount always needs it.
+BILLING TERMS
+Offer budget billing on this plan
+Minimum bill for the whole plan
+Applied after the per-service minimums.
+Late fees and deposits: step 4.
+Cancel
+Back
+Continue
+CONTROLS edit-step6 (9):
+   {"id":"plan-discount-pick","label":"Discount","kind":"input[text]","value":"","disabled":false,"width":320}
+   {"id":"plan-discount-from-01a1023b-2599-7eeb-ab0a-1d8ed2606aa5","label":"Offered from — AUTOPAY","kind":"input[date]","value":"","disabled":false,"width":190}
+   {"id":"plan-discount-to-01a1023b-2599-7eeb-ab0a-1d8ed2606aa5","label":"Offered until — AUTOPAY","kind":"input[date]","value":"","disabled":false,"width":190}
+   {"id":"plan-discount-from-01a1023b-25e2-7521-9290-90db94320d6c","label":"Offered from — MUNICIPAL","kind":"input[date]","value":"","disabled":false,"width":190}
+   {"id":"plan-discount-to-01a1023b-25e2-7521-9290-90db94320d6c","label":"Offered until — MUNICIPAL","kind":"input[date]","value":"","disabled":false,"width":190}
+   {"id":"plan-discount-from-01a1023b-2566-79b5-aac0-e3044288867c","label":"Offered from — PAPERLESS","kind":"input[date]","value":"","disabled":false,"width":190}
+   {"id":"plan-discount-to-01a1023b-2566-79b5-aac0-e3044288867c","label":"Offered until — PAPERLESS","kind":"input[date]","value":"","disabled":false,"width":190}
+   {"id":"plan-budget-billing","label":"Offer budget billing on this plan","kind":"input[checkbox]","value":"unchecked","disabled":false,"width":1}
+   {"id":"plan-minimum-bill","label":"Minimum bill for the whole plan","kind":"input[text]","value":"","disabled":false,"width":1118}
+BUTTONS edit-step6: ["link:← Plans & Rates","Save draft & exit","Archive","1Basics","2Services","3Rate schedules","4Charges","5Taxes","6Discounts & billing [DISABLED]","7Eligibility [DISABLED]","8Review & activate [DISABLED]","+ Add [DISABLED]","✕","✕","✕","Cancel","Back","Continue"]
+RAIL: ["1:1Basics:done","2:2Services:done","3:3Rate schedules:done","4:4Charges:done","5:5Taxes:done","6:6Discounts & billing:done","7:7Eligibility:active","8:8Review & activate:upcoming"]
+
+=== e7-edit-step7.png — edit · step 7
+← Plans & Rates
+EDIT PLAN
+Edit Sample — Residential
+Eight steps · takes about 5 minutes.
+Save draft & exit
+Archive
+1
+Basics
+2
+Services
+3
+Rate schedules
+4
+Charges
+5
+Taxes
+6
+Discounts & billing
+7
+Eligibility
+8
+Review & activate
+STEP 7 OF 8
+Who this plan is meant for.
+WHO THIS PLAN IS MEANT FOR
+Nothing here refuses anybody.
+These are notes for staff.
+Attribute
+Choose an attribute
+Customer class
+Service
+Operator
+Choose an operator
+is
+is not
+is at most
+is at least
+is one of
+Value
++ Add a note
+NOTES · 0
+No notes yet. Every account qualifies for this plan.
+WHEN IT RUNS
+Effective from*
+Effective to
+Cancel
+Back
+Continue
+CONTROLS edit-step7 (5):
+   {"id":"eligibility-attribute","label":"Attribute","kind":"select[select-one]","value":"Choose an attribute","disabled":false,"width":274,"options":["Choose an attribute","Customer class","Service"]}
+   {"id":"eligibility-operator","label":"Operator","kind":"select[select-one]","value":"Choose an operator","disabled":false,"width":274,"options":["Choose an operator","is","is not","is at most","is at least","is one of"]}
+   {"id":"eligibility-value","label":"Value","kind":"input[text]","value":"","disabled":false,"width":274}
+   {"id":"plan-effective-from","label":"Effective from*","kind":"input[date]","value":"2026-08-01","disabled":false,"width":1118}
+   {"id":"plan-effective-to","label":"Effective to","kind":"input[date]","value":"","disabled":false,"width":1118}
+BUTTONS edit-step7: ["link:← Plans & Rates","Save draft & exit","Archive","1Basics","2Services","3Rate schedules","4Charges","5Taxes","6Discounts & billing","7Eligibility [DISABLED]","8Review & activate [DISABLED]","+ Add a note [DISABLED]","Cancel","Back","Continue"]
+RAIL: ["1:1Basics:done","2:2Services:done","3:3Rate schedules:done","4:4Charges:done","5:5Taxes:done","6:6Discounts & billing:done","7:7Eligibility:done","8:8Review & activate:active"]
+
+=== e8-edit-step8.png — edit · step 8
+← Plans & Rates
+EDIT PLAN
+Edit Sample — Residential
+Eight steps · takes about 5 minutes.
+Save draft & exit
+Archive
+1
+Basics
+2
+Services
+3
+Rate schedules
+4
+Charges
+5
+Taxes
+6
+Discounts & billing
+7
+Eligibility
+8
+Review & activate
+STEP 8 OF 8
+Everything, on one page.
+Basics · Sample — Residential · SCW-RES · Residential
+Edit Basics
+Services · Electric, Water
+Edit Services
+Rate schedules · Sample — Electric usage, Sample — Residential water (inclining tiers)
+Edit Rate schedules
+Charges · 0 charge codes
+Edit Charges
+Taxes · 7 tax authorities
+Edit Taxes
+Discounts & billing · 3 discount(s) offered · Budget billing not allowed
+Edit Discounts & billing
+Eligibility · 0 eligibility rules
+Edit Eligibility
+The price
+effective before the first bill
+Rate schedule
+SERVICE	BASE	RATE SCHEDULE	USAGE	RATE
+Electric	12.00 · 180.00	Sample — Electric usage	Tiered	$0.11 · $0.135 · $0.16
+from BASE-E · BASE-E-COM · BASE-E-IND
+Water	8.00 · 15.00	Sample — Residential water (inclining tiers)	Tiered	$4.24 · $6.89 · $8.48
+from BASE-W · BASE-W-COM
+Charge codes
+What each one lands on.
+CODE	NAME	AMOUNT	WHEN IT APPLIES
+LATE	Late payment fee	1.50% · 5.00	after the due date
+Discounts
+CODE	NAME	VALUE	TAKE-UP
+AUTOPAY	Autopay discount	0.50%	0
+enrolled; how many are eligible is not worked out
+MUNICIPAL	Municipal account	20.00%	1
+enrolled; how many are eligible is not worked out
+PAPERLESS	Paperless billing	$1.00	0
+enrolled; how many are eligible is not worked out
+Taxes
+LEVEL	AUTHORITY	RATE	APPLIES TO
+State	Texas Comptroller of Public Accounts — TX State Utility Tax	6.25%	every service
+County	Bexar County Tax Office — Local · Bexar County	2.00%	every service
+Other terms
+Everything else that changes a bill.
+Outside the city limits
+50% more
+premises beyond the boundary
+Budget billing
+not offered
+Minimum bill
+no floor is set on this plan
+Cycle and due date
+not settable per plan
+from the utility’s billing defaults
+Service	Rate schedule
+Electric	Sample — Electric usage
+Water	Sample — Residential water (inclining tiers)
+Plan base charge: $20.00
+Reason for this change*
+Required for a published plan: every change becomes a new version with this reason in the compliance record.
+No live customer is affected.
+SAVE IT
+Effective from 08/01/2026
+Edit Effective from
+Bills change for accounts moved here.
+Cancel
+Back
+Publish plan ✓
+CONTROLS edit-step8 (1):
+   {"id":"plan-reason","label":"Reason for this change*","kind":"textarea[textarea]","value":"","disabled":false,"width":1118}
+BUTTONS edit-step8: ["link:← Plans & Rates","Save draft & exit","Archive","1Basics","2Services","3Rate schedules","4Charges","5Taxes","6Discounts & billing","7Eligibility","8Review & activate [DISABLED]","Edit Basics","Edit Services","Edit Rate schedules","Edit Charges","Edit Taxes","Edit Discounts & billing","Edit Eligibility","Edit Effective from","Cancel","Back","Publish plan ✓"]
+RAIL: ["1:1Basics:active","2:2Services:upcoming","3:3Rate schedules:upcoming","4:4Charges:upcoming","5:5Taxes:upcoming","6:6Discounts & billing:upcoming","7:7Eligibility:upcoming","8:8Review & activate:upcoming"]
+
+=== n1-new-step1-empty.png — new · step 1 empty
+CONTROLS new-step1 (4):
+   {"id":"plan-name","label":"Plan name (customer-facing)*","kind":"input[text]","value":"","disabled":false,"width":1118}
+   {"id":"plan-code","label":"Plan code (internal)*","kind":"input[text]","value":"","disabled":false,"width":553}
+   {"id":"","label":"Add a class…Add a class…AgriculturalBuilder or developerCommercialGovernmentIndustrialInst","kind":"select[select-one]","value":"Add a class…","disabled":false,"width":553,"options":["Add a class…","Agricultural","Builder or developer","Commercial","Government","Industrial","Institutional","Municipal","Residential"]}
+   {"id":"plan-description","label":"Description shown to customer","kind":"textarea[textarea]","value":"","disabled":false,"width":1118}
+BUTTONS new-step1: ["link:← Plans & Rates","Save draft & exit","1Basics [DISABLED]","2Services [DISABLED]","3Rate schedules [DISABLED]","4Charges [DISABLED]","5Taxes [DISABLED]","6Discounts & billing [DISABLED]","7Eligibility [DISABLED]","8Review & activate [DISABLED]","Cancel","Continue"]
+
+=== n2-new-step1-continue-empty.png — new · step 1 · Continue pressed on empty
+← Plans & Rates
+NEW PLAN
+New plan
+Eight steps · takes about 5 minutes.
+Save draft & exit
+1
+Basics
+2
+Services
+3
+Rate schedules
+4
+Charges
+5
+Taxes
+6
+Discounts & billing
+7
+Eligibility
+8
+Review & activate
+STEP 1 OF 8
+Name and describe this plan.
+Customers see this on their bills. Keep it plain.
+Plan name (customer-facing)*
+Plan code (internal)*
+Every customer class
+Add a class…
+Add a class…
+Agricultural
+Builder or developer
+Commercial
+Government
+Industrial
+Institutional
+Municipal
+Residential
+Description shown to customer
+Cancel
+Continue
+This step isn't finished. Fill in what's marked above, then press Continue again.
+RAIL: ["1:1Basics:done","2:2Services:active","3:3Rate schedules:upcoming","4:4Charges:upcoming","5:5Taxes:upcoming","6:6Discounts & billing:upcoming","7:7Eligibility:upcoming","8:8Review & activate:upcoming"]
+
+=== n3-new-step2-services.png — new · step 2 services as it opens
+← Plans & Rates
+NEW PLAN
+New plan
+Eight steps · takes about 5 minutes.
+Save draft & exit
+1
+Basics
+2
+Services
+3
+Rate schedules
+4
+Charges
+5
+Taxes
+6
+Discounts & billing
+7
+Eligibility
+8
+Review & activate
+STEP 2 OF 8
+Pick the services this plan covers.
+SERVICES IN THIS PLAN
+No service chosen yet.
+Add a service…
+Add a service…
+Electric
+Water
+Switch more services on in Settings
+0 services selected
+OUTSIDE-CITY SURCHARGE
+Do outside-city premises pay more?
+No — the same price everywhere
+Yes — a percentage more
+Pick the services above first.
+Cancel
+Back
+Continue
+CONTROLS new-step2 (2):
+   {"id":"","label":"Add a service…Add a service…ElectricWater","kind":"select[select-one]","value":"Add a service…","disabled":false,"width":1118,"options":["Add a service…","Electric","Water"]}
+   {"id":"plan-outside-city-charges-more","label":"Do outside-city premises pay more?","kind":"select[select-one]","value":"No — the same price everywhere","disabled":false,"width":1118,"options":["No — the same price everywhere","Yes — a percentage more"]}
+BUTTONS new-step2: ["link:← Plans & Rates","Save draft & exit","1Basics","2Services [DISABLED]","3Rate schedules [DISABLED]","4Charges [DISABLED]","5Taxes [DISABLED]","6Discounts & billing [DISABLED]","7Eligibility [DISABLED]","8Review & activate [DISABLED]","link:Switch more services on in Settings","Cancel","Back","Continue"]
+
+=== n4-new-step2-continue-empty.png — new · step 2 · Continue with no service
+← Plans & Rates
+NEW PLAN
+New plan
+Eight steps · takes about 5 minutes.
+Save draft & exit
+1
+Basics
+2
+Services
+3
+Rate schedules
+4
+Charges
+5
+Taxes
+6
+Discounts & billing
+7
+Eligibility
+8
+Review & activate
+STEP 2 OF 8
+Pick the services this plan covers.
+SERVICES IN THIS PLAN
+No service chosen yet.
+Add a service…
+Add a service…
+Electric
+Water
+Switch more services on in Settings
+0 services selected
+OUTSIDE-CITY SURCHARGE
+Do outside-city premises pay more?
+No — the same price everywhere
+Yes — a percentage more
+Pick the services above first.
+Cancel
+Back
+Continue
+This step isn't finished. Fill in what's marked above, then press Continue again.

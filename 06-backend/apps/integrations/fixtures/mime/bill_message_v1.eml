@@ -1,0 +1,10 @@
+To: s.kelly@example.com
+From: bills@brazosbend.example
+Subject: Your September bill is ready
+X-Bill-Reference: AC-2026-00214
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Your bill for September is $142.18, due 1 October.
+Thank you.

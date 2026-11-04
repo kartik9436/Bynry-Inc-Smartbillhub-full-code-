@@ -1,0 +1,39 @@
+{
+  "count": 1,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": "01a10793-b693-7d72-b473-2f386a694c80",
+      "kind": "contractor",
+      "name": "Redline Meter Services",
+      "slug": "redline-meter-services",
+      "role_label": "Contractor",
+      "members": 0,
+      "member_names": [],
+      "crew": null,
+      "skills": [
+        {
+          "skill_id": "01a10790-dea1-77f3-a46d-a1c2fc64f69b",
+          "code": "METER_I",
+          "name": "Meter I",
+          "proficiency": "certified"
+        }
+      ],
+      "certifications": [],
+      "shift": null,
+      "status": "contractor",
+      "unavailable_reason": null,
+      "phone": null,
+      "email": null,
+      "active": true
+    }
+  ],
+  "counts": {
+    "technicians": 4,
+    "crews": 2,
+    "contractors": 1,
+    "rows": 7,
+    "people": 4
+  }
+}

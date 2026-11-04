@@ -1,0 +1,13 @@
+{
+  "taken": "2026-10-02, headless Chromium against this branch's build (vite --mode compose) and a freshly seeded demo utility, Archivo 800 loaded from Google Fonts",
+  "why_this_file": "A headless screenshot has no browser chrome, so the tab title cannot appear in a PNG. These are document.title as the browser reported it on each page.",
+  "document_title": {
+    "01-pricing (/)": "SMART360 Next",
+    "02-sign-in (/brazosbend/signin)": "SMART360 Next",
+    "03-portal (/brazosbend/portal)": "SMART360 Next",
+    "04-app-frame (/brazosbend/dashboard)": "Dashboard · SMART360 Next"
+  },
+  "old_name_in_page_html": { "pricing": false, "sign-in": false, "portal": false, "app-frame-expanded": false, "app-frame-collapsed": false },
+  "brand_lockup_expanded": { "text": "SMART360 Next", "lines": 1, "name_px": [40, 188], "toggle_px": [196, 220], "rail_px": [0, 240] },
+  "brand_lockup_collapsed": { "name_visible": false }
+}

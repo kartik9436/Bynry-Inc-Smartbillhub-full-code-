@@ -1,0 +1,78 @@
+# G95's known gaps — a `Tests:` line naming a file that does not exist.
+#
+# ⚠ THIS FILE CAN ONLY SHRINK. A row that starts resolving fails the gate
+# until it is deleted in the same diff, so the debt cannot quietly re-grow;
+# a NEW broken citation fails outright and never reaches this list.
+#
+# Written 2026-09-04 with 120 rows (DEF-CWP-3766). Each is a claim some file
+# makes about being tested that is not true today — fix them by writing the
+# test where the case is real, or by correcting the line where it is not.
+#
+# ⚠ **CUT FROM 144 ROWS TO 55 ON 2026-09-05 (`DEF-CWP-3932`), AND NOT ONE TEST
+# WAS WRITTEN TO DO IT — 89 OF THESE ROWS WERE NEVER DEBT.** The gate resolved a
+# citation against four fixed roots and this repo does not write lists that way:
+# the common form is a fully-pathed FIRST token with bare siblings after it
+# (`06-backend/tests/test_us_rat_plans.py · test_us_rat_schedules.py`), and a
+# front-end file often writes the whole list bare, as siblings of itself. Of the
+# **105** bare citations in the tree, **NOT ONE** resolved and **92** named a
+# file that was sitting there. So this register — whose every row is a claim
+# somebody can check — was 62% fiction, and the 13 real absences were hiding
+# inside them. `resolves()` now also tries the citing file's own directory and
+# the directory of every fully-pathed token in the same block.
+#
+# **THE 55 BELOW ARE THE REAL ONES**: a file that says it is tested by something
+# nobody has written. They are what the gate was always for, and they are now
+# legible. Fix one by writing the test, or by correcting the line.
+#
+# Format: <file that makes the claim> -> <path it cites>
+06-backend/apps/integrations/scrubbing.py -> 10-scripts/gates/g84_provider_error_scrubbed.py
+06-backend/apps/metering/register_units.py -> 06-backend/tests/test_br_met_141_register_units.py
+06-backend/apps/notifications/delivery_ops.py -> 06-backend/tests/test_us_not_013_015_delivery_isolation.py
+06-backend/apps/notifications/notices.py -> 06-backend/tests/test_us_not_009_010_notice_isolation.py
+06-backend/apps/payments/transfer.py -> 06-backend/tests/test_cr059_cs32_move_payment.py
+06-backend/apps/payments/transfer.py -> 06-backend/tests/test_cr059_cs8_transfer.py
+06-backend/apps/payments/transfer_api.py -> 06-backend/tests/test_cr059_cs32_move_payment.py
+06-backend/apps/payments/transfer_api.py -> 06-backend/tests/test_cr059_cs8_transfer.py
+06-backend/apps/portal/api.py -> 06-backend/tests/test_us_cwp_016_find_account.py
+06-backend/apps/portal/credentials.py -> 06-backend/tests/test_us_cwp_016_find_account.py
+06-backend/apps/portal/credentials.py -> test_us_cwp_017_prove_it.py
+06-backend/apps/portal/credentials.py -> test_us_cwp_018_password.py
+06-backend/apps/portal/credentials.py -> test_us_cwp_019_forgotten.py
+06-backend/apps/portal/credentials.py -> test_us_cwp_021_pg.py
+06-backend/apps/portal/seams/identity_seam.py -> 06-backend/tests/test_us_cwp_018_password.py
+06-backend/apps/portal/session.py -> 06-backend/tests/test_us_cwp_020_session.py
+06-backend/apps/portal/session.py -> test_us_cwp_021_pg.py
+06-backend/apps/portal/session.py -> test_us_cwp_023_account_set.py
+06-backend/apps/portal/write_points.py -> 10-scripts/gates/g78_portal_write_points.py
+06-backend/apps/rating/pricing/models/demand.py -> 06-backend/tests/test_us_rat_012_demand.py
+06-backend/apps/reports/queries.py -> 06-backend/tests/test_us_rep_005_007_ar_and_cash.py
+06-backend/apps/reports/queries.py -> 06-backend/tests/test_us_rep_006_billing_reports.py
+06-backend/apps/reports/queries.py -> 06-backend/tests/test_us_rep_catalog_and_viewer.py
+06-backend/apps/work/lookups.py -> 06-backend/tests/test_us_wrk_007_types.py
+06-backend/apps/work/lookups.py -> tests/test_us_wrk_008_priorities.py
+06-backend/apps/work/lookups.py -> tests/test_us_wrk_009_lookups.py
+06-backend/apps/work/models.py -> 06-backend/tests/test_us_wrk_007_types.py
+06-backend/apps/work/models.py -> tests/test_us_wrk_008_priorities.py
+06-backend/apps/work/models.py -> tests/test_us_wrk_009_lookups.py
+06-backend/apps/work/models.py -> tests/test_us_wrk_010_parts.py
+06-backend/tests/test_us_cwp_069_settings.py -> SettingsCustomerPortalTab.test.tsx
+07-frontend/src/components/Chip.tsx -> src/components/Chip.test.tsx
+07-frontend/src/components/ChipMultiSelect.tsx -> src/components/ChipMultiSelect.test.tsx
+07-frontend/src/components/SegmentedControl.tsx -> src/components/SegmentedControl.test.tsx
+07-frontend/src/components/Switch.tsx -> src/components/Switch.test.tsx
+07-frontend/src/features/customers/CloseOutPage.tsx -> 07-frontend/src/features/customers/CloseOutPage.test.tsx
+07-frontend/src/features/customers/newConnectEndpoints.ts -> ConnectionDetailPage.test.tsx
+07-frontend/src/features/customers/newConnectShared.tsx -> ConnectionDetailPage.test.tsx
+07-frontend/src/features/customers/wizardParkEndpoints.ts -> WaitingOnTab.dom.test.tsx
+07-frontend/src/features/metering/QuickReadModal.tsx -> 07-frontend/src/features/metering/QuickReadModal.test.tsx
+07-frontend/src/features/tenancy/SettingsPortalHelp.tsx -> src/features/tenancy/SettingsPortalHelp.test.tsx
+07-frontend/src/features/tenancy/serviceCentreWeek.ts -> src/features/tenancy/SettingsServiceCentres.test.tsx
+07-frontend/src/portal/api/portalClient.ts -> PortalShell.test.tsx
+07-frontend/src/portal/api/portalClient.ts -> src/portal/signin/Enrol.test.tsx
+07-frontend/src/portal/components/content.tsx -> CentresPage.test.tsx
+07-frontend/src/portal/components/content.tsx -> src/portal/guest/HelpPage.test.tsx
+07-frontend/src/portal/components/languageName.ts -> src/features/tenancy/SettingsPortalHelp.test.tsx
+07-frontend/src/portal/guest/CentresPage.tsx -> src/portal/guest/CentresPage.test.tsx
+07-frontend/src/portal/guest/HelpPage.tsx -> src/portal/guest/HelpPage.test.tsx
+07-frontend/src/portal/guest/QuickService.tsx -> src/portal/guest/QuickService.test.tsx
+10-scripts/gates/g91_portal_staff_separation.py -> 06-backend/tests/test_us_cwp_020_session.py

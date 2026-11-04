@@ -1,0 +1,50 @@
+
+── 1440 ──
+  PASS  1440 · step 1 draws the four boxes in the drawn order
+  PASS  1440 · Check is held, with its reason
+  PASS  1440 · a four-digit ZIP is refused on the box
+  PASS  1440 · street + town + ZIP of a held premises is matched
+  PASS  1440 · step 1 draws the four boxes in the drawn order
+  PASS  1440 · Check is held, with its reason
+  PASS  1440 · a four-digit ZIP is refused on the box
+  PASS  1440 · an address we do not hold is not refused
+  PASS  1440 · step 2's head names the US-format line
+  PASS  1440 · step 3's rail reads the US-format line
+  PASS  1440 · Continue holds on the category, with its reason
+  PASS  1440 · Category lists the offered categories by name
+  PASS  1440 · Sub-category lists only Commercial's children
+  PASS  1440 · Check and send restates the line
+  PASS  1440 · …and the category by name
+  PASS  1440 · sent, with a reference
+
+── 390 ──
+  PASS  390 · step 1 draws the four boxes in the drawn order
+  PASS  390 · Check is held, with its reason
+  PASS  390 · a four-digit ZIP is refused on the box
+  PASS  390 · street + town + ZIP of a held premises is matched
+  PASS  390 · step 1 draws the four boxes in the drawn order
+  PASS  390 · Check is held, with its reason
+  PASS  390 · a four-digit ZIP is refused on the box
+  PASS  390 · an address we do not hold is not refused
+  PASS  390 · step 2's head names the US-format line
+  PASS  390 · step 3's rail reads the US-format line
+  PASS  390 · Continue holds on the category, with its reason
+  PASS  390 · Category lists the offered categories by name
+  PASS  390 · Sub-category lists only Commercial's children
+  PASS  390 · Check and send restates the line
+  PASS  390 · …and the category by name
+
+── Staff › the request ──
+  PASS  the request is on the clerk's list
+  PASS  the request carries the town and ZIP as given
+  PASS  Customer category is the applicant's pick
+  PASS  Address as given carries the town and ZIP
+
+── Keyboard only ──
+  PASS  Tab walks street → town → ZIP → unit
+  PASS  …then reaches Check →
+  PASS  the focused control shows where you are
+  PASS  Enter on Check → checks the address
+  PASS  every box has a bound label and an autocomplete purpose
+
+40 PASS · 0 FAIL

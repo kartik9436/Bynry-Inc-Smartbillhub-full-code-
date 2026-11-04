@@ -1,0 +1,517 @@
+STEP1 IDS:
+trf_account=
+
+STEP2 IDS:
+customer_kind=person
+customer_kind=company
+full_name=
+email=
+phone=
+dob=
+?=
+contact_by=
+ssn=
+driving_licence=
+gov_id_last4=
+co_owner_enabled[ ]
+doc-upload-required-proof_of_identity=
+doc-upload-required-signed_service_agreement=
+mailing_same[x]
+move_in_tax_on[ ]
+move_in_discounts_on[ ]
+move_in_prefs_on[x]
+autopay=off
+paperless=off
+sms_reminders=off
+preferred_language=en-US
+transfer-fv-none[ ]
+
+STEP2 TEXT:
+← Transfers
+TRANSFER
+The buyer
+
+Step 2 of 5 · The buyer
+
+1
+Find the account
+2
+The buyer
+3
+Date of sale
+4
+What they take on
+5
+Review & confirm
+Seller
+Account	A-10650 · Iversen, Britt
+Category	Residential
+Who is buying
+Person or company
+Person
+Company
+Full name*
+Email
+Phone*
+
+Texts go to this number.
+
+Date of birth
+Contact by
+Choose…
+Email
+Text
+Phone
+Letter
+Identity
+Search customer ID
+Social Security number
+Show
+
+Staff see the last four only.
+
+Driver's license
+Government ID
+
+At least one ID, unless linked.
+
+Co-buyers
+Has co-buyers
+Documents
+2 required still missing · PDF, JPG or PNG up to 10 MB
+DOCUMENT	NEEDED	FILE	
+Proof of identity	Required	
+Upload
+	
+✕
+
+Signed service agreement	Required	
+Upload
+	
+✕
++ Add document
+Required rows stay
+Mailing address
+Same as service address
+Service address
+18 Marten Row, Silver Creek, TX 78611
+Tax
+Tax exempt
+Discounts
+Claim discounts
+Preferences
+Set preferences
+Autopay
+On
+Off
+Paperless billing
+On
+Off
+Text reminders
+On
+Off
+Portal language
+Choose…
+English
+English (US)
+Español
+Español (México)
+Deutsch
+हिन्दी
+Français (France)
+Indonesia (Indonesia)
+Italiano (Italia)
+日本語 (日本)
+한국어 (대한민국)
+Português (Brasil)
+
+Name the buyer.
+
+Field visit
+No visit needed
++ Add work order
+Save & exit
+Park
+Back
+Continue
+
+STEP2 IDS AFTER TICKS:
+customer_kind=person
+customer_kind=company
+full_name=Jordan Reyes
+email=jordan.reyes@example.com
+phone=(281) 555-0199
+dob=02/14/1985
+?=1985-02-14
+contact_by=email
+ssn=123-45-6789
+driving_licence=
+gov_id_last4=
+co_owner_enabled[x]
+co_owner_0_full_name=
+co_owner_0_relationship=
+co_owner_0_responsible_for_bills=no
+co_owner_0_phone=
+co_owner_0_email=
+co_owner_0_date_of_birth=
+?=
+co_owner_0_ssn=
+co_owner_0_driving_licence=
+co_owner_0_contact_by=
+doc-upload-required-proof_of_identity=
+doc-upload-required-signed_service_agreement=
+mailing_same[x]
+move_in_tax_on[x]
+move_in_tax_category=
+move_in_tax_ref=
+move_in_tax_issued=
+move_in_tax_expires=
+move_in_tax_certificate=
+move_in_discounts_on[x]
+?=
+?=
+move_in_prefs_on[x]
+autopay=off
+paperless=off
+sms_reminders=off
+preferred_language=en-US
+transfer-fv-none[ ]
+
+STEP2 TEXT FILLED:
+← Transfers
+TRANSFER
+The buyer
+
+Step 2 of 5 · The buyer
+
+1
+Find the account
+2
+The buyer
+3
+Date of sale
+4
+What they take on
+5
+Review & confirm
+Seller
+Account	A-10650 · Iversen, Britt
+Category	Residential
+Who is buying
+Person or company
+Person
+Company
+Full name*
+Email
+Phone*
+
+Texts go to this number.
+
+Date of birth
+Contact by
+Choose…
+Email
+Text
+Phone
+Letter
+Identity
+Search customer ID
+Social Security number
+Show
+
+Staff see the last four only.
+
+Driver's license
+Government ID
+
+At least one ID, unless linked.
+
+Co-buyers
+Has co-buyers
+Ana Reyes
+Spouse · (281) 555-0142 · No ID
+Collapse▴
+Full name*
+Relationship
+Choose…
+Spouse
+Partner
+Family member
+Other
+Responsible for bills
+Yes
+No
+Phone
+Email
+Date of birth
+Social Security number
+Show
+Driver's license
+Contact by
+Choose…
+Email
+Text
+Phone
+Letter
+Remove Ana Reyes
+
+1 added
+
++ Add co-buyer
+Documents
+PDF, JPG or PNG up to 10 MB
+DOCUMENT	NEEDED	FILE	
+Proof of identity	Required	
+jordan-id.pdf
+✕
+	
+✕
+
+Signed service agreement	Required	
+signed-agreement.pdf
+✕
+	
+✕
++ Add document
+Required rows stay
+Mailing address
+Same as service address
+Service address
+18 Marten Row, Silver Creek, TX 78611
+Tax
+Tax exempt
+Exemption*
+Choose an exemption
+Nonprofit organisation
+Certificate number*
+Issued
+Expires*
+Certificate*
+Discounts
+Claim discounts
+#	DISCOUNT	AMOUNT	NOTE	
+1	
+Choose a discount
+Autopay discount
+Paperless billing
+	$1.00		
+✕
++ Add discount
+From the plan
+Preferences
+Set preferences
+Autopay
+On
+Off
+Paperless billing
+On
+Off
+Text reminders
+On
+Off
+Portal language
+Choose…
+English
+English (US)
+Español
+Español (México)
+Deutsch
+हिन्दी
+Français (France)
+Indonesia (Indonesia)
+Italiano (Italia)
+日本語 (日本)
+한국어 (대한민국)
+Português (Brasil)
+
+Matched an existing customer. C-00056 · Jordan Reyes
+
+Field visit
+No visit needed
++ Add work order
+Save & exit
+Park
+Back
+Continue
+
+STEP3 TEXT:
+← Transfers
+TRANSFER
+The date
+
+Step 3 of 5 · Date of sale
+
+1
+Find the account
+2
+The buyer
+3
+Date of sale
+4
+What they take on
+5
+Review & confirm
+The date of sale
+
+The day the account changes hands.
+
+Date of sale*
+
+Nothing is prorated at a sale. One period, one bill.
+
+What changes hands on that day
+Unit	Unit 1
+Unit type	Residential
+Premises	18 Marten Row · P-00068
+Service address	18 Marten Row, Silver Creek, TX 78611
+Services	Electric · Water
+Meters	
+—
+No meter on this unit
+
+Plan	SCW-RES · Sample — Residential · v1
+Base charge	$20.00
+Billing cycle	
+—
+No billing cycle set.
+
+Current period	
+—
+No period set.
+
+Next bill	
+—
+No bill date set.
+What the date does
+
+The buyer owns the account then.
+
+The buyer pays for days the seller used.
+
+Save & exit
+Park
+Back
+Continue
+
+STEP3 IDS:
+trf_sold_on=
+?=
+
+sold_on type: text
+
+STEP4 TEXT:
+← Transfers
+TRANSFER
+The money
+
+Step 4 of 5 · What they take on
+
+1
+Find the account
+2
+The buyer
+3
+Date of sale
+4
+What they take on
+5
+Review & confirm
+What the buyer takes on
+
+As it stands on 10/17/2026
+
+Account balance	$0.00
+Deposit on file	$150.00
+Deposit interest earned	
+—
+Not recorded
+
+Taken on by the buyer	$0.00
+
+The debt goes with the property.
+
+Fees on this sale
+
+No fee is charged.
+
+Before you continue
+I have shown this to the buyer
+
+Recorded with the sale.
+
+Save & exit
+Park
+Back
+Continue
+
+STEP4 IDS:
+trf_shown_to_buyer[ ]
+
+STEP5 TEXT:
+← Transfers
+TRANSFER
+Review & confirm
+
+Step 5 of 5 · Review & confirm
+
+1
+Find the account
+2
+The buyer
+3
+Date of sale
+4
+What they take on
+5
+Review & confirm
+One account, one new owner
+The account being sold	A-10650
+Seller	Iversen, Britt
+The buyer	Jordan Reyes
+Customer number	Issued at the sale
+Identifier given	Social Security number
+Date of sale	10/17/2026
+Account balance	$0.00
+Mailing address	Same as service address
+Co-applicant	Ana Reyes
+Documents	2 to file
+Tax	Exempt · TX-EX-20417
+Discounts	1 claimed
+Preferences	Paperless · Text reminders
+Shown to the buyer	Yes
+What this will do
+The buyer becomes the customer.
+The seller is recorded by name.
+Balance and deposit move with it.
+Seller's email, phone and autopay removed.
+Bills go to the service address.
+The property's owner stays the same.
+Ana Reyes is stored as co-applicant.
+2 documents are filed.
+What goes out
+WHAT IT SAYS	TO	CHANNEL	SENT TO	WHEN
+The account is now yours	Jordan Reyes	Email	jordan.reyes@example.com	Queued on confirm
+The account is no longer yours	Iversen, Britt	Email	
+—
+No email on file
+	Queued on confirm
+Save & exit
+Park
+Back
+Complete the sale ✓
+
+DONE URL: http://127.0.0.1:8113/brazosbend/transfers/new?step=5
+
+DONE TEXT:
+The sale is recorded
+Account	A-10650
+New owner	Jordan Reyes
+Seller	Iversen, Britt
+Property owner	Unchanged
+What goes out
+The account is now yours	Queued to jordan.reyes@example.com
+The account is no longer yours	Queued. No address to send to.
+Back to transfers
+
+ERRORS:
+

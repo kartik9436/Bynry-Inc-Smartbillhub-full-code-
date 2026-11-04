@@ -1,0 +1,509 @@
+<title>Discounts Redesign</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap">
+<style>
+/* Discounts redesign mock-up. SMARTBillHub tokens: light-only, square corners, 4px scale. */
+:root{
+  --bg:#f3f2f2; --surface:#ffffff; --panel:#eae9e9; --text:#201e1d; --muted:#605d5d; --faint:#9b9797;
+  --line:#d7d3d3; --accent:#ec3013; --accent-ink:#ae1800; --accent-soft:#fff2ef;
+  --ok:#0f6e3a; --ok-soft:#e6f4ec; --warn:#a65d0a; --warn-soft:#fdf0d8; --bad:#a81600; --bad-soft:#fde4df; --info:#1d4ea8; --info-soft:#e6eefb;
+  --font:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --t-xs:11px; --t-sm:12px; --t-base:13px; --t-md:14px; --t-body:15px; --t-h4:20px; --t-h2:32px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:var(--t-body);line-height:1.55;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:20px 48px;display:flex;flex-direction:column;gap:20px}
+h1,h2,h3{font-weight:800;letter-spacing:-.015em;line-height:1.12;margin:0;text-wrap:balance}
+h1{font-size:var(--t-h2)} h2{font-size:var(--t-h4)} h3{font-size:var(--t-md);font-weight:700}
+.kicker{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.num{font-variant-numeric:tabular-nums}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.demo{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 12px;border:1px dashed var(--faint);font-size:var(--t-sm);color:var(--muted)}
+.demo b{color:var(--text)}
+.chipbtn{border:1px solid var(--line);background:var(--surface);padding:4px 10px;cursor:pointer;font-size:var(--t-sm)}
+.chipbtn[aria-pressed="true"]{border-color:var(--text);font-weight:600}
+.head{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:flex-end}
+.crumb{font-size:var(--t-sm);color:var(--muted)}
+.crumb a{color:var(--accent-ink)}
+.rail{display:flex;border:1px solid var(--line);background:var(--surface)}
+.rail button{flex:1;display:flex;align-items:center;gap:10px;padding:12px 16px;border:0;background:transparent;cursor:pointer;text-align:left;border-right:1px solid var(--line);min-width:0}
+.rail button:last-child{border-right:0}
+.rail .n{width:24px;height:24px;display:grid;place-items:center;border:1.5px solid var(--faint);font-size:var(--t-sm);font-weight:700;flex:none}
+.rail button[data-state="current"]{box-shadow:inset 0 -3px 0 var(--accent)}
+.rail button[data-state="current"] .n{background:var(--accent);border-color:var(--accent);color:#fff}
+.rail button[data-state="done"] .n{background:var(--text);border-color:var(--text);color:#fff}
+.rail .lbl{font-size:var(--t-md);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:640px){.rail .lbl{display:none}.rail button{justify-content:center}}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:20px;align-items:start}
+@media (max-width:960px){.grid{grid-template-columns:minmax(0,1fr)}}
+.stack{display:flex;flex-direction:column;gap:20px;min-width:0}
+.panel{background:var(--surface);border:1px solid var(--line);padding:20px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px)}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:720px){.fields{grid-template-columns:minmax(0,1fr)}}
+.span2{grid-column:1/-1}
+.f{display:flex;flex-direction:column;gap:4px;min-width:0}
+.f label,.f .lab{font-size:var(--t-base);font-weight:600}
+.req{color:var(--accent)}
+.f input,.f select{border:1px solid var(--line);background:var(--surface);padding:8px 10px;min-height:38px;width:100%;font-size:var(--t-md)}
+.f .help{font-size:var(--t-sm);color:var(--muted)}
+.f.err input,.f.err select,.f.err .ms-btn{border-color:var(--bad);background:var(--bad-soft)}
+.f .msg{font-size:var(--t-sm);color:var(--bad);font-weight:600}
+.f .wmsg{font-size:var(--t-sm);color:var(--warn);font-weight:600}
+.f.wn input{border-color:var(--warn)}
+.suffix{display:flex;align-items:stretch;border:1px solid var(--line);background:var(--surface)}
+.suffix input{border:0;flex:1;min-width:0}
+.suffix span{display:grid;place-items:center;padding:0 12px;background:var(--bg);border-left:1px solid var(--line);font-weight:700;color:var(--muted)}
+.f.wn .suffix{border-color:var(--warn)}
+.f.err .suffix{border-color:var(--bad);background:var(--bad-soft)}
+.f.err .suffix input{background:transparent}
+/* one dropdown with ticks — services, customer classes */
+.ms{position:relative}
+.ms-btn{width:100%;display:flex;justify-content:space-between;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);padding:8px 10px;min-height:38px;cursor:pointer;text-align:left;font-size:var(--t-md)}
+.ms-btn .val{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ms-btn .caret{color:var(--muted);flex:none}
+.ms-list{position:absolute;top:calc(100% + 2px);left:0;right:0;z-index:5;background:var(--surface);border:1px solid var(--text);box-shadow:0 12px 32px rgba(45,43,43,.22);max-height:300px;overflow:auto}
+.ms-list label{display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px solid var(--line);cursor:pointer;font-size:var(--t-md)}
+.ms-list label:last-child{border-bottom:0}
+.ms-list label.all{font-weight:700;background:var(--bg)}
+.ms-list input{width:16px;height:16px;accent-color:var(--accent)}
+.ms-list .sw{width:10px;height:10px;flex:none}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--bg);padding:2px 8px;font-size:var(--t-sm);font-weight:600}
+.chip i{width:8px;height:8px;display:inline-block}
+.ticks{display:flex;flex-wrap:wrap;gap:12px 24px}
+.ticks label{display:flex;align-items:center;gap:8px;font-size:var(--t-md);font-weight:500;cursor:pointer}
+.ticks input{width:18px;height:18px;accent-color:var(--accent)}
+.reach{display:flex;flex-direction:column;gap:8px;border:1px solid var(--line);background:var(--bg);padding:12px 14px}
+.reach-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.reach b.big{font-size:22px;font-weight:800}
+.tw{overflow-x:auto;border:1px solid var(--line);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:var(--t-base)}
+th{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;font-weight:600;background:var(--bg);padding:8px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.r,th.r{text-align:right}
+tr.tot td{font-weight:700;background:var(--bg)}
+.pill{display:inline-block;font-size:var(--t-xs);font-weight:700;padding:2px 8px;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.p-ok{background:var(--ok-soft);color:var(--ok)} .p-warn{background:var(--warn-soft);color:var(--warn)} .p-off{background:var(--panel);color:var(--muted)} .p-bad{background:var(--bad-soft);color:var(--bad)}
+.note{display:flex;gap:10px;padding:10px 12px;font-size:var(--t-base);align-items:flex-start}
+.note.warn{background:var(--warn-soft);color:var(--warn)} .note.bad{background:var(--bad-soft);color:var(--bad)} .note.info{background:var(--info-soft);color:var(--info)} .note.ok{background:var(--ok-soft);color:var(--ok)}
+.btn{border:1px solid var(--text);background:var(--surface);padding:0 18px;min-height:40px;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.link{border:0;background:none;color:var(--accent-ink);padding:0;min-height:0;text-decoration:underline;font-weight:600}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:16px}
+.actions .right{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.why{font-size:var(--t-sm);color:var(--bad);font-weight:600}
+.sum{display:flex;flex-direction:column;gap:6px;font-size:var(--t-base)}
+.sum .row{display:flex;justify-content:space-between;gap:12px}
+.sum .row span:first-child{color:var(--muted)}
+.sum .row span:last-child{text-align:right;font-weight:600;overflow-wrap:anywhere}
+.bigrate{font-size:30px;font-weight:800;line-height:1.05}
+.hr{border-top:1px solid var(--line)}
+.rev{display:grid;grid-template-columns:180px minmax(0,1fr);gap:0;border:1px solid var(--line)}
+.rev div{padding:9px 12px;border-bottom:1px solid var(--line);font-size:var(--t-md)}
+.rev div:nth-child(odd){color:var(--muted);background:var(--bg)}
+.rev div:nth-last-child(-n+2){border-bottom:0}
+.rev .edit{color:var(--accent-ink);font-size:var(--t-sm);margin-left:8px;cursor:pointer;text-decoration:underline;background:none;border:0;padding:0}
+@media (max-width:560px){.rev{grid-template-columns:minmax(0,1fr)}.rev div:nth-child(odd){border-bottom:0;padding-bottom:0}}
+.done{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.done .check{width:44px;height:44px;background:var(--ok);color:#fff;display:grid;place-items:center;font-size:24px;font-weight:800}
+.fixes h2{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--text);color:var(--surface);padding:10px 16px;z-index:60;max-width:min(560px,calc(100% - 32px));font-size:var(--t-sm)}
+@media (prefers-reduced-motion:no-preference){.panel{animation:in .18s ease-out}@keyframes in{from{opacity:.4;transform:translateY(3px)}to{opacity:1;transform:none}}}
+.tabs{display:flex;gap:24px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.tabs button{border:0;background:none;padding:8px 0;cursor:pointer;font-size:var(--t-md);font-weight:600;color:var(--muted)}
+.tabs button[aria-selected="true"]{color:var(--text);box-shadow:inset 0 -3px 0 var(--accent)}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.toolbar input{border:1px solid var(--line);background:var(--surface);padding:8px 10px;min-height:38px;flex:1;min-width:180px;font-size:var(--t-md)}
+.seg{border:1px solid var(--line);background:var(--surface);padding:6px 12px;font-size:var(--t-sm);cursor:pointer;min-height:38px}
+.seg[aria-pressed="true"]{background:var(--text);color:#fff;border-color:var(--text)}
+.rate{font-weight:800;font-size:var(--t-md);white-space:nowrap}
+.ico{border:1px solid var(--line);background:var(--surface);width:32px;height:32px;cursor:pointer;display:inline-grid;place-items:center;font-size:14px}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:720px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.tile{border:1px solid var(--line);background:var(--surface);padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.tile span{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.tile b{font-size:24px;font-weight:800}
+.tile small{color:var(--muted);font-size:var(--t-sm)}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border:1px solid var(--line)}
+@media (max-width:720px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.fact{padding:10px 12px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);display:flex;flex-direction:column;gap:2px;min-width:0}
+.fact span{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.fact b{font-size:var(--t-md);font-weight:600;overflow-wrap:anywhere}
+.ph{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.lock{font-size:var(--t-sm);color:var(--muted)}
+[hidden]{display:none!important}
+.choice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.choice button{border:1px solid var(--line);background:var(--surface);padding:10px 12px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:2px}
+.choice button[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 3px 0 var(--accent)}
+.choice.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:480px){.choice.three{grid-template-columns:minmax(0,1fr)}}
+.choice button span{font-size:var(--t-sm);color:var(--muted)}
+.hcode{font-size:var(--t-md);font-weight:600;color:var(--muted);letter-spacing:.02em;vertical-align:middle}
+.hfact{font-size:var(--t-md);color:var(--muted);border-left:1px solid var(--line);padding-left:10px}
+.hfact b{color:var(--text);font-weight:700}
+.ro{padding:8px 0;font-size:var(--t-md);font-weight:600}
+.muted{color:var(--muted)}
+.hact{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.morewrap{position:relative}
+.menu{position:absolute;right:0;top:calc(100% + 2px);z-index:20;background:var(--surface);border:1px solid var(--text);box-shadow:0 12px 32px rgba(45,43,43,.22);display:flex;flex-direction:column;min-width:160px}
+.menu button{border:0;border-bottom:1px solid var(--line);background:var(--surface);padding:10px 14px;text-align:left;cursor:pointer;font-size:var(--t-md)}
+.menu button:last-child{border-bottom:0}
+.menu button:hover{background:var(--bg)}
+details.lim{border:1px solid var(--line);background:var(--surface)}
+details.lim>summary{cursor:pointer;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:var(--t-h4);list-style:none}
+details.lim>summary::-webkit-details-marker{display:none}
+details.lim>summary .muted{font-size:var(--t-md);font-weight:500}
+details.lim[open]>summary{border-bottom:1px solid var(--line)}
+details.lim .fields{padding:16px}
+.fchip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--text);background:var(--surface);padding:4px 8px;font-size:var(--t-sm);font-weight:600}
+.fchip button{border:0;background:none;cursor:pointer;font-size:var(--t-md);padding:0;line-height:1}
+.allbtn{border:1px solid var(--text);background:var(--text);color:#fff;padding:6px 12px;font-weight:700;font-size:var(--t-sm);cursor:pointer}
+.allbtn[aria-pressed="false"]{background:var(--surface);color:var(--text)}
+</style>
+
+<div class="wrap">
+  <div class="demo" role="group" aria-label="Demo controls">
+    <b>Design mock-up · example data</b>
+    <span>Screen:</span>
+    <button class="chipbtn" data-view="list" aria-pressed="true">List</button>
+    <button class="chipbtn" data-view="wiz" aria-pressed="false">New discount</button>
+    <button class="chipbtn" data-view="detail" aria-pressed="false">Details</button>
+    <span class="wizonly">Form:</span>
+    <button class="chipbtn wizonly" data-preset="pct" aria-pressed="true">Percentage</button>
+    <button class="chipbtn wizonly" data-preset="fixed" aria-pressed="false">Fixed amount</button>
+    <button class="chipbtn wizonly" data-preset="empty" aria-pressed="false">Empty form</button>
+    <span>Ottumwa Water Works · USD.</span>
+  </div>
+
+  <div id="listView"></div>
+  <div id="detailView" hidden></div>
+  <div id="wizView" class="stack" hidden>
+  <header class="head">
+    <div>
+      <div class="crumb" id="wizCrumb"></div>
+      <h1 id="wizTitle">New discount</h1>
+    </div>
+    <button class="btn" id="draft">Save draft &amp; exit</button>
+  </header>
+  <section class="panel" id="editChoice" hidden></section>
+  <nav class="rail" id="rail" aria-label="Steps"></nav>
+  <div class="grid">
+    <main class="stack" id="main"></main>
+    <aside class="aside"><div class="panel" id="summary"></div></aside>
+  </div>
+  </div>
+  <section class="panel fixes" id="fixes">
+    <h2 id="fixtitle">What this design fixes</h2>
+    <div class="tw"><table>
+      <thead><tr><th>#</th><th>Where</th><th>Today</th><th>In this design</th></tr></thead>
+      <tbody id="fixrows"></tbody>
+    </table></div>
+  </section>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const money=v=>(v<0?"−":"")+"$"+Math.abs(v).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,",");
+const usDate=iso=>{if(!iso)return "—";const [y,m,d]=iso.split("-");return `${m}/${d}/${y}`};
+const dayBefore=iso=>{const d=new Date(iso+"T12:00:00");d.setDate(d.getDate()-1);return d.toISOString().slice(0,10)};
+const lbl=(arr,v)=>(arr.find(a=>a[0]===v)||["","—"])[1]||"—";
+
+const TYPES=[["pct","Percentage","A share of the charges"],["fixed","Fixed amount","A flat sum off"],["override","Rate override","Bills from another schedule"],["waiver","Charge waiver","Removes the whole charge"],["allow","Usage allowance","Free units before pricing"]];
+const SCOPE=[["subtotal","Subtotal before taxes"],["service","One service"],["codes","Named charge codes"]];
+const SERVICES=[["water","Water"],["sewer","Sewer"],["trash","Trash"],["storm","Storm water"]];
+const CODES=[["BASE-W","BASE-W · Water base"],["USE-W","USE-W · Water usage"],["BASE-S","BASE-S · Sewer base"],["CART-64","CART-64 · Trash cart"]];
+const SCHED=[["","Choose a schedule"],["RS-LIFE","RS-LIFE · Lifeline water"],["RS-MUNI","RS-MUNI · Municipal water"]];
+const ENROL=[["auto","Automatic"],["apply","Apply and approve"]];
+const VERIFY=[["auto","Automatic"],["once","One-time proof at enrollment"],["agency","Agency file · monthly"],["annual","Annual recertification"]];
+const LAPSE=[["drop","Notify, then drop the enrollment"],["dropnow","Drop the enrollment"],["keep","Keep it and flag for review"]];
+const BPERIOD=[["annual","Annual"],["monthly","Monthly"],["life","Life of the program"]];
+const BOUT=[["suspend","Suspend the discount"],["flag","Keep granting and flag"]];
+const OWNER=[["","Choose"],["billing","Billing"],["custsvc","Customer service"],["finance","Finance"],["conserve","Conservation"],["community","Community programs"],["city","City or county agency"],["state","State agency"],["nonprofit","Nonprofit partner"]];
+const EXCL=[["","None"],["LOW-INCOME","Low-income programs"],["AGE","Age-based"],["PAYMENT","Payment method (autopay, paperless)"],["PUBLIC","Government and municipal"],["SERVICE","Military and veterans"]];
+const WHO_SYS=[["everyone","Everyone on the plan"],["autopay","Autopay is on"],["paperless","Paperless billing is on"],["govt","Government or municipal account"]];
+const WHO_PROOF=[["age65","Age 65 or over"],["income","Household income under a limit"],["assist","In a state assistance program"],["veteran","Veteran or active military"],["disability","Person with a disability"],["medical","Medical equipment at home"],["nonprofit","Nonprofit or place of worship"]];
+const WHO=[...WHO_SYS,...WHO_PROOF];
+const FUND=[["","Choose"],["ratepayer","Rate-payer funded"],["grant","State grant"],["general","City general fund"],["donor","Donations"]];
+const STEPS={new:[["details","Details"],["elig","Eligibility"],["review","Review"]],
+ info:[["details","Details"],["elig","Eligibility"],["review","Review"]],
+ change:[["value","New value"],["review","Review"]],
+ correct:[["value","Fix the value"],["review","Review"]]};
+
+const PRE={
+ pct:{code:"SENIOR",label:"Senior discount",owner:"billing",fund:"ratepayer",filing:true,type:"pct",value:"15",currency:"USD",scope:"subtotal",svc:"water",svcs:[],codes:[],sched:"",units:"",capBill:"",capYear:"",capLife:"",floor:"",prec:"40",stacks:true,excl:"",who:"age65",enrol:"apply",proof:true,verify:"annual",recert:"12",notice:"30",grace:"15",lapse:"drop",from:"2026-11-01",to:"",budget:"",bperiod:"annual",bout:"suspend"},
+ fixed:{code:"CAP",label:"CAP / low-income credit",owner:"custsvc",fund:"grant",filing:true,type:"fixed",value:"25",currency:"USD",scope:"subtotal",svc:"water",svcs:[],codes:[],sched:"",units:"",capBill:"",capYear:"300",capLife:"",floor:"0",prec:"20",stacks:false,excl:"LOW-INCOME",who:"assist",enrol:"apply",proof:true,verify:"agency",recert:"",notice:"",grace:"",lapse:"drop",from:"2026-11-01",to:"2027-10-31",budget:"12000",bperiod:"annual",bout:"suspend"},
+ empty:{code:"",label:"",owner:"",fund:"",filing:false,type:"pct",value:"",currency:"USD",scope:"subtotal",svc:"water",svcs:[],codes:[],sched:"",units:"",capBill:"",capYear:"",capLife:"",floor:"",prec:"",stacks:true,excl:"",who:"",enrol:"auto",proof:false,verify:"auto",recert:"",notice:"",grace:"",lapse:"drop",from:"",to:"",budget:"",bperiod:"annual",bout:"suspend"}};
+const clone=o=>JSON.parse(JSON.stringify(o));
+let S={mode:"new",step:0,saved:false,tried:{},limOpen:false,reason:"",orig:null,...clone(PRE.pct)};
+const flow=()=>STEPS[S.mode];const key=()=>flow()[S.step][0];
+const num=v=>{const n=parseFloat(v);return isNaN(n)?null:n};
+function valueText(o=S){const v=num(o.value);
+  if(o.type==="pct")return v===null?"—":`${v}%`;if(o.type==="fixed")return v===null?"—":money(v);
+  if(o.type==="override")return o.sched?lbl(SCHED,o.sched).split(" · ")[0]:"—";if(o.type==="waiver")return "Whole charge";
+  return o.units?`${o.units} kgal free`:"—"}
+function scopeText(o=S){return o.scope==="subtotal"?"Subtotal before taxes":o.scope==="service"?lbl(SERVICES,o.svc):(o.codes.length?o.codes.join(", "):"—")}
+function limitCount(o=S){return ["capBill","capYear","capLife","floor","excl"].filter(k=>String(o[k]).trim()!=="").length+(o.stacks?0:1)}
+function example(o=S){const sub=60,v=num(o.value)||0;let d=o.type==="pct"?sub*v/100:o.type==="fixed"?v:o.type==="waiver"?20:o.type==="allow"?Math.min(sub,(num(o.units)||0)*1.5):8.4;
+  const cap=num(o.capBill);if(cap!==null)d=Math.min(d,cap);d=Math.min(d,sub-(num(o.floor)||0));d=Math.max(0,Math.round(d*100)/100);return {sub,d,after:sub-d}}
+
+function errors(k){const E={};
+  if(k==="details"){if(S.mode==="new"&&!S.code.trim())E.code="Enter a code.";if(!S.label.trim())E.label="Enter the bill line label.";
+    if(S.mode==="new")vErr(E);}
+  if(k==="value"){vErr(E);if(S.mode==="change"&&S.from&&S.from<=S.orig.from)E.from=`Must be after ${usDate(S.orig.from)}.`;if(S.mode==="change"&&!S.from)E.from="Enter the start date.";
+    if(S.mode==="correct"){if(!S.reason.trim())E.reason="Enter the reason.";}}
+  if(k==="elig"){if(!S.who)E.who="Choose who qualifies.";if(S.mode==="new"&&!S.from)E.from="Enter the start date.";if(S.to&&S.from&&S.to<S.from)E.to="Ends before it starts.";}
+  return E}
+function vErr(E){const v=num(S.value);
+  if((S.type==="pct"||S.type==="fixed")&&(v===null||v<=0))E.value="Enter the value.";
+  if(S.type==="pct"&&v!==null&&v>100)E.value="Cannot be over 100%.";
+  if(S.type==="override"&&!S.sched)E.sched="Choose a schedule.";
+  if(S.type==="allow"&&!(num(S.units)>0))E.units="Enter the free units.";
+  if(S.scope==="codes"&&!S.codes.length)E.codes="Choose at least one code.";}
+
+function f(id,label,html,o={}){return `<div class="f ${o.err?"err":""} ${o.cls||""}"><label for="${id}" class="lab">${label}${o.req?' <span class="req">*</span>':""}</label>${html}${o.err?`<span class="msg">${o.err}</span>`:o.help?`<span class="help">${o.help}</span>`:""}</div>`}
+const inp=(k,o={})=>`<input id="f-${k}" data-k="${k}" value="${esc(S[k])}" ${o.ph?`placeholder="${esc(o.ph)}"`:""} ${o.dec?'inputmode="decimal"':""} ${o.type?`type="${o.type}"`:""}>`;
+const sel=(k,opts)=>`<select id="f-${k}" data-k="${k}">${opts.map(x=>`<option value="${x[0]}" ${x[0]===S[k]?"selected":""}>${x[1]}</option>`).join("")}</select>`;
+const money2=(k,ph)=>`<div class="suffix"><span>$</span>${inp(k,{dec:1,ph})}</div>`;
+const ro=v=>`<div class="ro">${v}</div>`;
+
+function rail(){$("#rail").innerHTML=flow().map((s,i)=>{const st=S.saved||i<S.step?"done":i===S.step?"current":"todo";
+  return `<button data-go="${i}" data-state="${st}" ${i>S.step&&!S.saved?"disabled":""}><span class="n">${st==="done"?"✓":i+1}</span><span class="lbl">${s[1]}</span></button>`}).join("")}
+
+function valueFields(E){const t=S.type;
+  return `${t==="pct"?f("f-value","Percent off",`<div class="suffix">${inp("value",{dec:1,ph:"15"})}<span>%</span></div>`,{req:1,err:E.value,help:"Type 15 for 15%."})
+    :t==="fixed"?f("f-value","Amount off",money2("value","25.00"),{req:1,err:E.value})
+    :t==="override"?f("f-sched","Bill from schedule",sel("sched",SCHED),{req:1,err:E.sched})
+    :t==="waiver"?f("f-value","Amount off",ro("The whole charge"),{})
+    :f("f-units","Free units",`<div class="suffix">${inp("units",{dec:1,ph:"2"})}<span>kgal</span></div>`,{req:1,err:E.units})}
+   ${f("f-currency","Currency",ro("USD · US dollar"),{help:"Your utility's currency."})}
+   ${f("f-scope","Applies to",sel("scope",SCOPE),{})}
+   ${S.scope==="service"?f("f-svc","Service",sel("svc",SERVICES),{}):""}
+   ${S.scope==="codes"?`<div class="f span2 ${E.codes?"err":""}"><span class="lab">Charge codes <span class="req">*</span></span><div class="ticks">${CODES.map(c=>`<label><input type="checkbox" data-code="${c[0]}" ${S.codes.includes(c[0])?"checked":""}>${c[1]}</label>`).join("")}</div>${E.codes?`<span class="msg">${E.codes}</span>`:""}</div>`:""}`}
+function limitsPanel(){const n=limitCount();
+  return `<details class="lim" ${S.limOpen?"open":""} id="lim"><summary><span>Limits</span><span class="muted">${n?n+" set":"No limits"} ▾</span></summary><div class="fields">
+   ${f("f-capBill","Cap per bill",money2("capBill",""),{help:"Empty means no cap."})}
+   ${f("f-capYear","Cap per year",money2("capYear",""),{help:"Empty means no cap."})}
+   ${f("f-capLife","Lifetime cap",money2("capLife",""),{help:"Empty means no cap."})}
+   ${f("f-floor","Bill floor",money2("floor",""),{help:"Lowest the bill can go."})}
+   ${f("f-prec","Stacking order",inp("prec",{dec:1,ph:"40"}),{help:"Lower runs first."})}
+   ${f("f-excl","Exclusivity group",sel("excl",EXCL),{help:"Same group never stacks."})}
+   <div class="f span2"><div class="ticks"><label><input type="checkbox" data-tick="stacks" ${S.stacks?"checked":""}>Stacks with other discounts</label></div></div>
+  </div></details>`}
+
+function stepDetails(){const E=S.tried.details?errors("details"):{};const ed=S.mode==="info";
+  return `<section class="panel"><h2>Basics</h2><div class="fields">
+   ${f("f-code","Code",ed?ro(esc(S.code)):inp("code",{ph:"e.g. SENIOR"}),{req:!ed,err:E.code,help:ed?"":"Example: SENIOR"})}
+   ${f("f-label","Bill line label",inp("label",{ph:"e.g. Senior discount"}),{req:1,err:E.label,help:"What the customer reads."})}
+   ${f("f-owner","Program owner",sel("owner",OWNER),{})}
+   ${f("f-fund","Funding source",sel("fund",FUND),{})}
+   ${f("f-type","Type",ed?ro(lbl(TYPES,S.type)):sel("type",TYPES.map(t=>[t[0],t[1]+" — "+t[2]])),{req:!ed})}
+   <div class="f"><span class="lab">&nbsp;</span><div class="ticks"><label><input type="checkbox" data-tick="filing" ${S.filing?"checked":""}>In the assistance report</label></div></div>
+  </div></section>
+  ${ed?`<section class="panel"><div class="ph"><h2>Value and limits</h2><span class="lock">🔒 Change with a new value.</span></div>
+   <div class="facts">${fact("Value",valueText())}${fact("Applies to",scopeText())}${fact("Limits",limitCount()?limitCount()+" set":"No limits")}</div></section>`
+  :`<section class="panel"><h2>Value</h2><div class="fields">${valueFields(E)}</div></section>${limitsPanel()}`}
+  ${actions()}`}
+const fact=(k,v)=>`<div class="fact"><span>${k}</span><b>${v||"—"}</b></div>`;
+
+function stepValue(){const E=S.tried.value?errors("value"):{};
+  return `<section class="panel"><h2>Value</h2><div class="fields">${valueFields(E)}</div></section>${limitsPanel()}
+  ${S.mode==="change"?`<section class="panel"><h2>Dates</h2><div class="fields">
+    ${f("f-from","New value starts",inp("from",{type:"date"}),{req:1,err:E.from,help:S.from?`Today's value ends ${usDate(dayBefore(S.from))}.`:""})}
+    ${f("f-to","Ends",inp("to",{type:"date"}),{help:"Leave empty if it has no end."})}</div></section>`
+  :`<section class="panel"><div class="ph"><h2>Dates</h2><span class="lock">🔒 Same dates as today.</span></div><div class="fields">
+    ${f("x1","Starts",ro(usDate(S.from)),{})}${f("x2","Ends",ro(S.to?usDate(S.to):"No end"),{})}</div></section>
+   <section class="panel"><h2>Reason</h2><div class="fields">${f("f-reason","Why it was wrong",inp("reason",{ph:"e.g. Typed 15 instead of 1.5"}),{req:1,cls:"span2",err:E.reason,help:"Shown in Audit."})}</div></section>`}
+  ${actions()}`}
+
+function stepElig(){const E=S.tried.elig?errors("elig"):{};const ed=S.mode!=="new";
+  return `<section class="panel"><h2>Who qualifies</h2><div class="fields">
+   ${f("f-who","Who qualifies",`<select id="f-who" data-k="who"><option value="">Choose</option><optgroup label="The system checks">${WHO_SYS.map(x=>`<option value="${x[0]}" ${x[0]===S.who?"selected":""}>${x[1]}</option>`).join("")}</optgroup><optgroup label="The customer shows proof">${WHO_PROOF.map(x=>`<option value="${x[0]}" ${x[0]===S.who?"selected":""}>${x[1]}</option>`).join("")}</optgroup></select>`,{req:1,err:E.who,cls:"span2",help:"Shown in the Discounts list."})}
+   ${f("f-enrol","Enrollment",sel("enrol",ENROL),{})}
+   ${f("f-verify","Verification",sel("verify",VERIFY),{help:"How often it is checked."})}
+   <div class="f span2"><div class="ticks"><label><input type="checkbox" data-tick="proof" ${S.proof?"checked":""}>Proof needed before approval</label></div></div>
+   ${f("f-recert","Recertify every",`<div class="suffix">${inp("recert",{dec:1})}<span>months</span></div>`,{help:"Empty if it never expires."})}
+   ${f("f-lapse","If recertification lapses",sel("lapse",LAPSE),{})}
+   ${f("f-notice","Notice",`<div class="suffix">${inp("notice",{dec:1})}<span>days</span></div>`,{})}
+   ${f("f-grace","Grace",`<div class="suffix">${inp("grace",{dec:1})}<span>days</span></div>`,{})}
+  </div></section>
+  <section class="panel"><h2>Dates and budget</h2><div class="fields">
+   ${ed?f("x3","Starts",ro(usDate(S.from)),{help:"Change with a new value."}):f("f-from","Starts",inp("from",{type:"date"}),{req:1,err:E.from})}
+   ${f("f-to","Ends",inp("to",{type:"date"}),{err:E.to,help:"Leave empty if it has no end."})}
+   ${f("f-budget","Budget cap",money2("budget",""),{help:"Empty means no ceiling."})}
+   ${f("f-bperiod","Budget period",sel("bperiod",BPERIOD),{})}
+   ${f("f-bout","Budget runs out",sel("bout",BOUT),{cls:"span2"})}
+  </div></section>
+  ${actions()}`}
+
+function rows(){const yes=b=>b?"Yes":"No";const m=v=>v?money(num(v)):"—";
+  return [[0,"Code",esc(S.code)||"—"],[0,"Bill line label",esc(S.label)||"—"],[0,"Program owner",lbl(OWNER,S.owner)],[0,"Funding source",lbl(FUND,S.fund)],[0,"In the assistance report",yes(S.filing)],
+   [0,"Type",lbl(TYPES,S.type)],[0,"Value",`<b>${valueText()}</b>`],[0,"Currency",S.currency],[0,"Applies to",scopeText()],
+   [0,"Cap per bill · year · lifetime",`${m(S.capBill)} · ${m(S.capYear)} · ${m(S.capLife)}`],[0,"Bill floor",m(S.floor)],[0,"Stacking order",S.prec||"—"],[0,"Stacks with others",yes(S.stacks)],[0,"Exclusivity group",lbl(EXCL,S.excl)],
+   [1,"Who qualifies",lbl(WHO,S.who)],[1,"Enrollment",lbl(ENROL,S.enrol)],[1,"Proof before approval",yes(S.proof)],[1,"Verification",lbl(VERIFY,S.verify)],
+   [1,"Recertify every",S.recert?S.recert+" months":"Never expires"],[1,"Notice · grace",(S.notice?S.notice+" days":"—")+" · "+(S.grace?S.grace+" days":"—")],[1,"If recertification lapses",lbl(LAPSE,S.lapse)],
+   [1,"Starts",usDate(S.from)],[1,"Ends",S.to?usDate(S.to):"No end"],[1,"Budget",(S.budget?money(num(S.budget)):"No ceiling")+" · "+lbl(BPERIOD,S.bperiod)],[1,"Budget runs out",lbl(BOUT,S.bout)]]}
+function stepReview(){if(S.mode!=="new")return reviewEdit();const ex=example();
+  if(S.saved)return `<section class="panel done"><div class="check">✓</div><h2>${esc(S.label)} saved as a draft</h2><div>${valueText()} off · from ${usDate(S.from)}. Add it to a plan to offer it.</div><div class="actions" style="width:100%"><span></span><div class="right"><button class="btn" data-open="d6">Open discount</button><button class="btn primary" id="again">Add another</button></div></div></section>`;
+  return `<section class="panel"><h2>Check before saving</h2><div class="rev">${rows().map(r=>`<div>${r[1]}</div><div>${r[2]}<button class="edit" data-go="${r[0]}">Edit</button></div>`).join("")}</div></section>
+  <section class="panel"><h2>On an example bill</h2><div class="tw"><table><tbody>
+   <tr><td>Charges before taxes</td><td class="r num">${money(ex.sub)}</td></tr><tr><td>${esc(S.label)||"Discount"}</td><td class="r num">${money(-ex.d)}</td></tr>
+   <tr class="tot"><td>Before taxes</td><td class="r num">${money(ex.after)}</td></tr></tbody></table></div>
+   <div class="note info"><div>Saves as a draft.</div></div></section>${actions()}`}
+
+function reviewEdit(){const o=S.orig;
+  if(S.saved){const l={info:"Saved on this version. Logged in Audit.",change:`New value ${valueText()} from ${usDate(S.from)}.`,correct:`Corrected to ${valueText()}. Same dates.`}[S.mode];
+    return `<section class="panel done"><div class="check">✓</div><h2>${esc(S.label)} saved</h2><div>${l}</div><div class="actions" style="width:100%"><span></span><div class="right"><button class="btn primary" data-open="d6">Back to discount</button></div></div></section>`}
+  const cur=rows();const S0=S;S=Object.assign({},S0,o);const before=rows();S=S0;
+  const ch=cur.map((r,i)=>[r[1],before[i][2],r[2]]).filter(r=>r[1]!==r[2]&&!(S.mode==="change"&&r[0]==="Starts"));
+  const ob=example(o),nb=example();
+  const vrows=S.mode==="info"?`<tr><td>v1 · this version</td><td class="r num">${valueText(o)}</td><td class="num">${usDate(o.from)} – ${o.to?usDate(o.to):"No end"}</td><td>Updated in place</td></tr>`
+   :S.mode==="change"?`<tr><td>v1 · today</td><td class="r num">${valueText(o)}</td><td class="num">${usDate(o.from)} – ${usDate(dayBefore(S.from))}</td><td>Gets an end date</td></tr><tr><td><b>v2 · new</b></td><td class="r num"><b>${valueText()}</b></td><td class="num">${usDate(S.from)} – ${S.to?usDate(S.to):"No end"}</td><td>New version</td></tr>`
+   :`<tr><td>v1 · today</td><td class="r num">${valueText(o)}</td><td class="num">${usDate(o.from)} – ${o.to?usDate(o.to):"No end"}</td><td>Superseded, kept</td></tr><tr><td><b>v2 · correction</b></td><td class="r num"><b>${valueText()}</b></td><td class="num">${usDate(o.from)} – ${o.to?usDate(o.to):"No end"}</td><td>Replaces v1</td></tr>`;
+  return `<section class="panel"><h2>What changes</h2>${ch.length?`<div class="tw"><table><thead><tr><th>Field</th><th>Before</th><th>After</th></tr></thead><tbody>${ch.map(r=>`<tr><td>${r[0]}</td><td class="muted">${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</tbody></table></div>`:`<div class="note info"><div>Nothing changed yet.</div></div>`}
+   ${S.mode==="correct"?`<div class="fields"><div class="f span2"><span class="lab">Reason</span>${ro(esc(S.reason))}</div></div>`:""}</section>
+  ${S.mode==="info"?"":`<section class="panel"><h2>On a $60.00 bill</h2><div class="tw"><table><thead><tr><th></th><th class="r">Before</th><th class="r">After</th></tr></thead><tbody><tr class="tot"><td>${esc(S.label)}</td><td class="r num">${money(-ob.d)}</td><td class="r num">${money(-nb.d)}</td></tr></tbody></table></div></section>`}
+  <section class="panel"><h2>How it is saved</h2><div class="tw"><table><thead><tr><th>Version</th><th class="r">Value</th><th>Dates</th><th>After saving</th></tr></thead><tbody>${vrows}</tbody></table></div>
+   ${S.mode==="correct"?`<div class="note warn"><div>Issued bills keep ${valueText(o)}. Correct those bills separately.</div></div>`:S.mode==="change"?`<div class="note info"><div>Bills before ${usDate(S.from)} keep ${valueText(o)}.</div></div>`:""}</section>${actions()}`}
+
+function actions(){const i=S.step,k=key(),E=S.tried[k]?errors(k):{},n=Object.keys(E).length,last=i===flow().length-1;
+  const save={new:"Save as draft",info:"Save changes",change:"Save new value",correct:"Save correction"}[S.mode];
+  return `<div class="actions"><button class="btn" ${i===0?(S.mode==="new"?'data-view="list"':'data-open="d6"'):`data-go="${i-1}"`}>${i===0?"Cancel":"Back"}</button>
+  <div class="right">${n?`<span class="why">Fix ${n} thing${n>1?"s":""} first.</span>`:""}<button class="btn primary" id="next">${last?save:"Continue"}</button></div></div>`}
+
+function summary(){const ex=example();
+  $("#summary").innerHTML=`<div class="kicker">This discount</div><div class="bigrate num">${valueText()}</div><div class="muted">${S.type==="pct"?"off "+scopeText().toLowerCase():lbl(TYPES,S.type)}</div><div class="hr"></div>
+  <div class="sum"><div class="row"><span>Label</span><span>${esc(S.label)||"—"}</span></div><div class="row"><span>Code</span><span>${esc(S.code)||"—"}</span></div>
+  <div class="row"><span>Who</span><span>${S.who?lbl(WHO,S.who):"—"}</span></div><div class="row"><span>Enrollment</span><span>${lbl(ENROL,S.enrol)}</span></div>
+  <div class="row"><span>Limits</span><span>${limitCount()?limitCount()+" set":"None"}</span></div><div class="row"><span>Starts</span><span>${usDate(S.from)}</span></div></div>
+  <div class="hr"></div><div class="sum"><div class="row"><span>On a $60.00 bill</span><span class="num">${money(-ex.d)}</span></div></div>`}
+
+const CHOICES=[["info","Name and details","Saved on this version"],["change","New value from a date","Makes a new version"],["correct","Fix a mistake","Same dates, right value"]];
+function head(){const ed=S.mode!=="new";
+  $("#wizCrumb").innerHTML=ed?`<button class="btn link" data-open="d6">← ${esc(S.orig.label)}</button>`:`<button class="btn link" data-view="list">← Discounts</button>`;
+  $("#wizTitle").textContent=ed?`Edit ${S.orig.label}`:"New discount";$("#draft").hidden=ed;
+  const c=$("#editChoice");c.hidden=!ed;if(ed)c.innerHTML=`<h2>What to change</h2><div class="choice three">${CHOICES.map(x=>`<button data-mode="${x[0]}" aria-pressed="${S.mode===x[0]}"><b>${x[1]}</b><span>${x[2]}</span></button>`).join("")}</div>`}
+const RENDER={details:stepDetails,value:stepValue,elig:stepElig,review:stepReview};
+function render(){head();rail();$("#main").innerHTML=RENDER[key()]();summary()}
+function toast(t){const el=$("#toast");el.textContent=t;el.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>el.hidden=true,2200)}
+
+/* ───── LIST + DETAILS ───── */
+const D=[
+ {id:"d1",code:"AUTOPAY",label:"Autopay discount",type:"pct",value:"0.5",scope:"subtotal",who:"Autopay enrolled",verify:"auto",enrol:"auto",plans:1,enrolled:0,offered:75,status:"Active",from:"2026-08-01",to:""},
+ {id:"d2",code:"CAP",label:"CAP / low-income credit",type:"fixed",value:"25",scope:"subtotal",who:"Program enrolment",verify:"agency",enrol:"apply",plans:0,enrolled:0,offered:0,status:"Active",from:"2026-08-01",to:""},
+ {id:"d3",code:"MILITARY",label:"Veteran discount",type:"pct",value:"10",scope:"subtotal",who:"Veteran ID",verify:"once",enrol:"apply",plans:0,enrolled:0,offered:0,status:"Draft",from:"2026-11-01",to:""},
+ {id:"d4",code:"MUNICIPAL",label:"Municipal account",type:"pct",value:"20",scope:"subtotal",who:"Government account",verify:"auto",enrol:"auto",plans:1,enrolled:1,offered:4,status:"Active",from:"2026-08-01",to:""},
+ {id:"d5",code:"PAPERLESS",label:"Paperless billing",type:"fixed",value:"1",scope:"subtotal",who:"E-bill on",verify:"auto",enrol:"auto",plans:1,enrolled:0,offered:75,status:"Active",from:"2026-08-01",to:"2027-07-31"},
+ {id:"d7",code:"LIFELINE",label:"Lifeline water credit",type:"fixed",value:"10",scope:"service",who:"Household income under limit",verify:"annual",enrol:"apply",plans:0,enrolled:0,offered:0,status:"Waiting approval",from:"2026-11-01",to:""},
+ {id:"d6",code:"SENIOR",label:"Senior discount",type:"pct",value:"15",scope:"subtotal",who:"Age 65 or over",verify:"annual",enrol:"apply",plans:1,enrolled:12,offered:75,status:"Active",from:"2026-08-01",to:"",next:{value:"12%",from:"2027-01-01"}}];
+const V={view:"list",q:"",filters:[],sel:"d6",tab:"over",more:false,fmenu:false};
+const vtxt=t=>t.type==="pct"?`${t.value}%`:money(parseFloat(t.value));
+function listView(){const rows=D.filter(t=>(!V.q||(t.code+t.label).toLowerCase().includes(V.q.toLowerCase()))&&V.filters.every(fl=>fl[0]==="status"?t.status===fl[1]:t.type===fl[1]));
+  return `<header class="head"><div><div class="crumb">Plans &amp; Rates</div><h1>Plans &amp; Rates</h1><div class="muted">5 plans · 9 rate schedules · 36 charge codes · ${D.length} discounts · 4 taxes &amp; fees</div></div>
+   <div class="hact"><button class="btn" data-toast="Opens History.">History</button><button class="btn primary" data-view="wiz">+ New discount</button></div></header>
+  <nav class="tabs" role="tablist">${["Plans","Rate schedules","Charge codes","Discounts","Taxes & fees"].map(x=>`<button role="tab" aria-selected="${x==="Discounts"}">${x}</button>`).join("")}</nav>
+  <div class="toolbar"><input id="lq" placeholder="Search code or name" value="${esc(V.q)}">
+   <button class="allbtn" data-fall aria-pressed="${!V.filters.length}">All</button>${V.filters.map((fl,i)=>`<span class="fchip">${fl[0]==="status"?"Status":"Type"}: ${fl[0]==="status"?fl[1]:lbl(TYPES,fl[1])}<button data-frm="${i}" aria-label="Remove">×</button></span>`).join("")}
+   <span class="morewrap"><button class="btn" data-fmenu>+ Filter ▾</button>${V.fmenu?`<div class="menu" role="menu">${["Active","Draft","Waiting approval","Ended"].map(s=>`<button role="menuitem" data-fadd="status:${s}">Status: ${s}</button>`).join("")}${TYPES.slice(0,2).map(t=>`<button role="menuitem" data-fadd="type:${t[0]}">Type: ${t[1]}</button>`).join("")}</div>`:""}</span>
+   <span style="flex:1"></span><button class="ico" title="Download CSV" aria-label="Download CSV">⤓</button><button class="ico" title="Columns" aria-label="Columns">▦</button></div>
+  <div class="tw"><table><thead><tr><th>Code</th><th>Discount</th><th>Type</th><th class="r">Value</th><th>Eligibility</th><th>Verification</th><th>From</th><th>To</th><th class="r">Plans</th><th class="r">Enrolled</th><th>Status</th><th></th></tr></thead><tbody>
+  ${rows.map(t=>`<tr><td><button class="btn link" data-open="${t.id}">${t.code}</button></td><td>${esc(t.label)}</td><td>${lbl(TYPES,t.type)}</td><td class="r num"><b>${vtxt(t)}</b></td><td>${esc(t.who)}</td><td>${lbl(VERIFY,t.verify)}</td>
+   <td class="num">${usDate(t.from)}</td><td class="num">${t.to?usDate(t.to):"No end"}</td><td class="r num">${t.plans}</td><td class="r num">${t.enrolled}</td>
+   <td><span class="pill ${t.status==="Active"?"p-ok":"p-off"}">${t.status}</span></td><td><button class="ico" data-open="${t.id}" title="Open" aria-label="Open">›</button></td></tr>`).join("")||`<tr><td colspan="12" class="muted">No discount matches.</td></tr>`}
+  </tbody></table></div><div class="muted num">1–${rows.length} of ${rows.length}</div>`}
+
+const NAMES=["Ruth Alvarez","George Kim","Mary O'Neil","Harold Price","Linda Baker","Frank Ortiz","Joan Miller","Walter Reed","Alice Wong","Carl Jensen","Betty Shaw","Ed Novak"];
+const DACC=NAMES.map((n,i)=>({acct:"A-"+(10650+i*7),name:n,addr:(100+i*2)+" "+["Silver Creek Rd","Willow Bend Dr","Cedar Ridge Way","Maple Hollow Ct"][i%4],plan:"Residential Standard",on:["08/01/2026","08/04/2026","08/12/2026","09/02/2026"][i%4],
+  st:i===3?"Proof pending":i===7?"Renewal due":"Receiving",recert:i===7?"10/15/2026":["08/01/2027","08/04/2027","08/12/2027","09/02/2027"][i%4],granted:i===3?0:[6.30,8.10,5.40,7.20][i%4]}));
+const DPLANS=[["Residential Standard","Water, Sewer","Residential",61,"08/01/2026"]];
+const DAUDIT=[["09/24/2026 10:12 AM","Dana Whitfield","Changed recertification","No notice → 30 days notice","Recertification letters go out a month ahead."],["09/02/2026 3:40 PM","Vijay Bikkad","Added to plan","Residential Standard",""],["08/01/2026 8:00 AM","System","Went live","Draft → Active",""],["07/28/2026 2:05 PM","Vijay Bikkad","Created","Draft · 15% · Age 65 or over",""]];
+function detailView(){const t=D.find(x=>x.id===V.sel);const full=Object.assign(clone(PRE.pct),{code:t.code,label:t.label,type:t.type,value:t.value,who:t.who,verify:t.verify,enrol:t.enrol,from:t.from,to:t.to});
+  const fct=(k,v)=>`<div class="fact"><span>${k}</span><b>${v||"—"}</b></div>`;const m=v=>v?money(parseFloat(v)):"—";
+  const vers=t.next?[["v2",t.next.value,usDate(t.next.from)+" – No end","Scheduled"],["v1",vtxt(t),usDate(t.from)+" – "+usDate(dayBefore(t.next.from)),t.status]]:[["v1",vtxt(t),usDate(t.from)+" – "+(t.to?usDate(t.to):"No end"),t.status]];
+  const over=`<div class="tiles"><div class="tile"><span>Value</span><b class="num">${vtxt(t)}</b><small>off subtotal before taxes</small></div>
+    <div class="tile"><span>Offered to</span><b class="num">${t.offered}</b><small>units on its plans</small></div><div class="tile"><span>Receiving it</span><b class="num">${t.enrolled}</b><small>accounts</small></div>
+    <div class="tile"><span>Granted</span><b class="num">${money(t.id==="d6"?DACC.reduce((a,x)=>a+x.granted,0):t.enrolled*6.3)}</b><small>this month</small></div></div>
+   <section class="panel"><h2>Details</h2><div class="facts">${fct("Code",t.code)}${fct("Bill line label",esc(t.label))}${fct("Type",lbl(TYPES,t.type))}
+    ${fct("Program owner",lbl(OWNER,full.owner))}${fct("Funding source",lbl(FUND,full.fund))}${fct("In the assistance report",full.filing?"Yes":"No")}
+    ${fct("Value",vtxt(t))}${fct("Currency","USD")}${fct("Applies to","Subtotal before taxes")}
+    ${fct("Cap per bill · year · lifetime","— · — · —")}${fct("Bill floor","$0.00")}${fct("Stacking order","40 · stacks with others")}
+    ${fct("Exclusivity group","—")}</div></section>
+   <section class="panel"><h2>Eligibility</h2><div class="facts">${fct("Who qualifies",esc(t.who))}${fct("Enrollment",lbl(ENROL,t.enrol))}${fct("Verification",lbl(VERIFY,t.verify))}
+    ${fct("Proof before approval",t.enrol==="apply"?"Yes":"No")}${fct("Recertify every",t.verify==="annual"?"12 months":"Never expires")}${fct("Notice · grace",t.verify==="annual"?"30 days · 15 days":"—")}
+    ${fct("If recertification lapses",lbl(LAPSE,"drop"))}${fct("Starts",usDate(t.from))}${fct("Ends",t.to?usDate(t.to):"No end")}
+    ${fct("Budget","$2,383.00 · Annual")}${fct("Budget left","$2,383.00")}${fct("Budget runs out",lbl(BOUT,"suspend"))}</div>
+    <div class="tw"><table><thead><tr><th>Version</th><th class="r">Value</th><th>Dates</th><th>Status</th></tr></thead><tbody>${vers.map(h=>`<tr><td>${h[0]}</td><td class="r num"><b>${h[1]}</b></td><td class="num">${h[2]}</td><td><span class="pill ${h[3]==="Active"?"p-ok":"p-off"}">${h[3]}</span></td></tr>`).join("")}</tbody></table></div>
+    <div><button class="btn link" data-dtab="audit">See every change in Audit</button></div></section>`;
+  const plansT=`<section class="panel"><div class="ph"><h2>Plans</h2><button class="btn" data-toast="Opens a plan picker.">+ Add to a plan</button></div><div class="tw"><table><thead><tr><th>Plan</th><th>Services</th><th>Customer classes</th><th class="r">Accounts</th><th>Since</th><th></th></tr></thead><tbody>
+   ${DPLANS.map(p=>`<tr><td><button class="btn link" data-toast="Opens ${p[0]}.">${p[0]}</button></td><td>${p[1]}</td><td>${p[2]}</td><td class="r num">${p[3]}</td><td class="num">${p[4]}</td><td><button class="ico" title="Remove from plan" aria-label="Remove from plan" data-toast="Asks to confirm removal.">✕</button></td></tr>`).join("")}</tbody></table></div></section>`;
+  const accT=`<section class="panel"><div class="ph"><h2>Accounts</h2><button class="btn" data-toast="Opens an account picker. Enrollment needs proof.">+ Enroll an account</button></div>
+   <div class="toolbar"><input placeholder="Search account or name"><button class="allbtn" aria-pressed="true">All</button><button class="btn" data-toast="Filter by status or plan.">+ Filter ▾</button><span style="flex:1"></span><button class="ico" title="Download CSV" aria-label="Download CSV">⤓</button></div>
+   <div class="tw"><table><thead><tr><th>Account</th><th>Customer</th><th>Plan</th><th>Enrolled</th><th>Renew by</th><th class="r">This month</th><th>Status</th><th></th></tr></thead><tbody>
+   ${(t.id==="d6"?DACC:[]).map(a=>`<tr><td><button class="btn link" data-toast="Opens account ${a.acct}.">${a.acct}</button></td><td>${a.name}<div class="muted">${a.addr}</div></td><td>${a.plan}</td><td class="num">${a.on}</td><td class="num">${a.recert}</td><td class="r num">${a.granted?money(-a.granted):"—"}</td>
+    <td><span class="pill ${a.st==="Receiving"?"p-ok":a.st==="Renewal due"?"p-warn":"p-off"}">${a.st}</span></td><td><button class="ico" title="End enrollment" aria-label="End enrollment" data-toast="Asks for an end date and a reason.">✕</button></td></tr>`).join("")||`<tr><td colspan="8" class="muted">Nobody receives it yet.</td></tr>`}
+   </tbody></table></div><div class="muted num">${t.id==="d6"?"1–"+DACC.length+" of "+DACC.length:"0 of 0"}</div></section>`;
+  const auditT=`<section class="panel"><div class="ph"><h2>Audit</h2><button class="ico" title="Download CSV" aria-label="Download CSV">⤓</button></div><div class="tw"><table><thead><tr><th>When</th><th>Who</th><th>What</th><th>Change</th><th>Reason</th></tr></thead><tbody>
+   ${DAUDIT.map(a=>`<tr><td class="num">${a[0]}</td><td>${a[1]}</td><td>${a[2]}</td><td>${a[3]}</td><td>${a[4]||"—"}</td></tr>`).join("")}</tbody></table></div></section>`;
+  const ACT={"Draft":[["Edit","info"],["Submit for approval","t:Sent for approval."]],"Waiting approval":[["Approve","t:Approved. Live from its start date."],["Send back","t:Back to draft, with a note."]],"Active":[["Edit","info"]],"Ended":[]}[t.status]||[["Edit","info"]];
+  const MORE={"Draft":["Duplicate","Delete draft"],"Waiting approval":["Duplicate"],"Active":["Duplicate","Retire"],"Ended":["Duplicate"]}[t.status];
+  const more=V.more?`<div class="menu" role="menu">${MORE.map(x=>`<button role="menuitem" data-toast="${x==="Retire"?"Retire asks for an end date.":x==="Delete draft"?"Asks to confirm.":"Opens a copy in the form."}">${x}</button>`).join("")}</div>`:"";
+  return `<header class="head"><div><div class="crumb"><button class="btn link" data-view="list">← Discounts</button></div><h1>${esc(t.label)} <span class="hcode num">${t.code}</span></h1>
+   <div class="toolbar"><span class="pill ${t.status==="Active"?"p-ok":t.status==="Waiting approval"?"p-warn":"p-off"}">${t.status}</span><span class="pill p-off">v1</span><span class="muted">${lbl(TYPES,t.type)} · ${usDate(t.from)} – ${t.to?usDate(t.to):"no end"}</span>
+   ${t.next?`<span class="hfact">Next: <b class="num">${t.next.value} from ${usDate(t.next.from)}</b></span>`:""}</div></div>
+   <div class="hact">${ACT.map((a,i)=>a[1].startsWith("t:")?`<button class="btn ${i===ACT.length-1?"primary":""}" data-toast="${a[1].slice(2)}">${a[0]}</button>`:`<button class="btn ${ACT.length===1?"primary":""}" data-mode="${a[1]}">${a[0]}</button>`).join("")}<span class="morewrap"><button class="btn" data-more aria-expanded="${V.more}">More ▾</button>${more}</span></div></header>
+  <nav class="tabs" role="tablist">${[["over","Overview"],["acc","Accounts · "+(t.id==="d6"?DACC.length:t.enrolled)],["plans","Plans · "+DPLANS.length],["audit","Audit"]].map(x=>`<button role="tab" data-dtab="${x[0]}" aria-selected="${V.tab===x[0]}">${x[1]}</button>`).join("")}</nav>
+  ${V.tab==="over"?over:V.tab==="acc"?accT:V.tab==="plans"?plansT:auditT}`}
+
+const FIX={
+ wiz:[["Five steps.","Three: Details · Eligibility · Review."],["Title “Define an overlay.”","“New discount”."],["“Type the amount exactly as it should be stored…” under four boxes.","Removed. Boxes show $ or %."],["Currency typed as three letters.","Always your utility's currency. Shown, not changeable."],["Caps and stacking spread over a long page.","One Limits section, closed: “No limits”."],["“Blank means uncapped. Zero grants nothing.”","“Empty means no cap.”"],["“Available, not granted. Saving enrolls nobody.”","Removed. Review says “Saves as a draft.”"],["“Uppercased on save. Example: SENIOR.”","“Example: SENIOR”."],["Review lists a few fields, no example.","Every value, an Edit link per row, and a $60.00 bill."],["Long explanations under headings.","Short labels only."],["Who qualifies typed as free text.","A dropdown in two groups: what the system checks, and what the customer proves."],["Exclusivity group typed as free text.","A dropdown: None, Low-income programs, Age-based, Payment method, Government and municipal, Military and veterans."],["Program owner typed as free text.","A dropdown: Billing, Customer service, Finance, Conservation, Community programs, City or county agency, State agency, Nonprofit partner."]],
+ list:[["Overlay paragraph above the table.","Removed."],["Value 25.00 and 1.00 with no $.","$25.00 and $1.00."],["Pencil on every row.","Open goes to details."],["No dates.","From and To columns."],["Filters.","Kept: our standard toolbar."]],
+ detail:[["Kicker “DISCOUNT · AUTOPAY · PERCENTAGE · V1”.","Name, code, status, version, type and dates."],["Overlay paragraph under the title.","Removed."],["Dates as 01-Aug-26.","08/01/2026."],["Four buttons; Duplicate greyed out.","Buttons follow the status: Draft · Edit, Submit for approval. Waiting · Approve, Send back. Active · Edit. Rest in More ▾."],["Tiles repeat on every tab.","Tiles on Overview only."],["Type tile wraps on three lines.","Value tile: 15%."],["“75 · 75 units on a plan carrying it”.","“75 · units on its plans”."],["“Nothing works out a month's subsidy…”","Removed."],["Money without $.","$0.00, $2,383.00."],["Red kickers over grey labels.","Plain section headings."],["Plans tab empty.","Plans with accounts, and Add to a plan."],["No way to see who gets it.","Accounts tab: each account receiving it, its status, renew-by date and this month's amount."],["Audit shows versions only; stray “Discard draft” heading.","Who, when, what, before → after, why."],["“DATED” note box.","Removed."],["12 entered values never shown.","Every value shown, in form order."],["Effective to under Who qualifies.","With the dates."]],
+ edit:[["“Fix this version” and “Edit” as two buttons.","One Edit. Pick what to change first."],["Value editable on a live discount.","Locked under Name and details."],["New value: old version's end typed by hand.","Old version ends the day before."],["Fix with no before and after.","Review shows before, after and a $60.00 bill."]]};
+function setView(v){V.view=v;
+  document.querySelectorAll(".chipbtn[data-view]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.view===v));
+  document.querySelectorAll(".wizonly").forEach(e=>e.hidden=v!=="wiz");
+  $("#wizView").hidden=v!=="wiz";$("#listView").hidden=v!=="list";$("#detailView").hidden=v!=="detail";
+  if(v==="list")$("#listView").innerHTML=listView();if(v==="detail")$("#detailView").innerHTML=detailView();if(v==="wiz")render();
+  const k=v==="wiz"?(S.mode==="new"?"wiz":"edit"):v;const F=FIX[k];const where={wiz:"Form",list:"List",detail:"Details",edit:"Edit"}[k];
+  $("#fixtitle").innerHTML=`What this design fixes <span class="kicker">${F.length} issues · ${where.toLowerCase()}</span>`;
+  $("#fixrows").innerHTML=F.map((r,i)=>`<tr><td class="num">${i+1}</td><td>${where}</td><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("")}
+function loadEdit(mode){const t=D.find(x=>x.id==="d6");const base=Object.assign(clone(PRE.pct),{code:t.code,label:t.label,from:t.from,to:t.to});
+  S=Object.assign({},base,{mode,step:0,saved:false,tried:{},limOpen:false,reason:"",orig:clone(base)});
+  if(mode==="change"){S.value="12";S.from="2027-01-01";}if(mode==="correct"){S.value="1.5";S.reason="Typed 15 instead of 1.5.";}}
+function loadNew(p){S=Object.assign({},clone(PRE[p||"pct"]),{mode:"new",step:0,saved:false,tried:{},limOpen:false,reason:"",orig:null})}
+
+document.addEventListener("click",e=>{const t=e.target.closest("button,summary");if(!t)return;
+  if(t.tagName==="SUMMARY"){setTimeout(()=>{S.limOpen=$("#lim").open},0);return}
+  if(t.dataset.view){if(t.dataset.view==="wiz"&&(S.mode!=="new"||S.saved))loadNew("pct");setView(t.dataset.view);window.scrollTo({top:0});return}
+  if(t.dataset.preset){loadNew(t.dataset.preset);document.querySelectorAll("[data-preset]").forEach(b=>b.setAttribute("aria-pressed",b===t));setView("wiz");return}
+  if(t.dataset.open){V.sel=t.dataset.open;V.tab="over";V.more=false;setView("detail");window.scrollTo({top:0});return}
+  if(t.dataset.mode){V.more=false;loadEdit(t.dataset.mode);setView("wiz");window.scrollTo({top:0});return}
+  if(t.dataset.toast){toast(t.dataset.toast);if(t.getAttribute("role")==="menuitem"){V.more=false;setView("detail")}return}
+  if(t.dataset.dtab){V.tab=t.dataset.dtab;setView("detail");return}
+  if(t.dataset.more!==undefined){V.more=!V.more;setView("detail");return}
+  if(t.dataset.fmenu!==undefined){V.fmenu=!V.fmenu;setView("list");return}
+  if(t.dataset.fadd){const [a,b]=t.dataset.fadd.split(":");V.filters=V.filters.filter(x=>x[0]!==a).concat([[a,b]]);V.fmenu=false;setView("list");return}
+  if(t.dataset.frm!==undefined){V.filters.splice(+t.dataset.frm,1);setView("list");return}
+  if(t.dataset.fall!==undefined){V.filters=[];setView("list");return}
+  if(t.dataset.go!==undefined){S.step=+t.dataset.go;S.saved=false;render();window.scrollTo({top:0,behavior:"smooth"});return}
+  if(t.id==="draft"){toast("Draft saved.");return}
+  if(t.id==="again"){loadNew("empty");render();return}
+  if(t.id==="next"){const k=key();if(S.step<flow().length-1){S.tried[k]=true;if(Object.keys(errors(k)).length){if(errors(k).value||errors(k).sched||errors(k).units||errors(k).codes)S.limOpen=S.limOpen;render();return}S.step++;render();window.scrollTo({top:0,behavior:"smooth"});return}
+    S.saved=true;render();toast(S.mode==="new"?"Saved as a draft.":"Saved. Logged in Audit.");}
+});
+document.addEventListener("change",e=>{const el=e.target;
+  if(el.dataset.tick){S[el.dataset.tick]=el.checked;render();return}
+  if(el.dataset.code){S.codes=el.checked?[...new Set([...S.codes,el.dataset.code])]:S.codes.filter(c=>c!==el.dataset.code);render();return}
+  if(el.dataset.k){S[el.dataset.k]=el.value;if(el.tagName==="INPUT"&&el.type!=="date")summary();else render();}});
+document.addEventListener("input",e=>{const el=e.target;
+  if(el.id==="lq"){V.q=el.value;const p=el.selectionStart;$("#listView").innerHTML=listView();const n=$("#lq");n.focus();n.setSelectionRange(p,p);return}
+  if(el.dataset.k&&el.tagName==="INPUT"&&el.type!=="date"){S[el.dataset.k]=el.value;summary();}});
+setView("list");
+})();
+</script>

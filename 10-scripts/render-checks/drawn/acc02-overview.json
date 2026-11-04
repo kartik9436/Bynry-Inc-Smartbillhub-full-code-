@@ -1,0 +1,166 @@
+{
+ "tab": "overview",
+ "note": "Transcribed from 04-docs/05-modules/03-customers/blueprint/02-account-detail.md — the EXTRACTED TEXT, not from looking at the picture, so anybody can re-check it against the source. Two groups (`usage-trend`, `payment-method`) are transcribed from the blueprint's SAMPLE-DATA frame of this same tab; the other eleven from the empty-account frame.",
+ "groups": [
+  {
+   "col": "left",
+   "slug": "money",
+   "heading": "MONEY",
+   "elsewhere": {
+    "Balance": "the header tile — PO 2026-09-03, confirmed 2026-09-13"
+   },
+   "rows": [
+    "Balance",
+    "Basis",
+    "Source",
+    "Ageing",
+    "Days past due",
+    "Ageing source",
+    "Credit tier",
+    "Deposit on file",
+    "Deposit received",
+    "Interest accrued",
+    "Returned payments"
+   ]
+  },
+  {
+   "col": "left",
+   "slug": "service",
+   "heading": "SERVICE",
+   "table": [
+    "SERVICE",
+    "STARTED",
+    "ENDED"
+   ]
+  },
+  {
+   "col": "left",
+   "slug": "meters",
+   "heading": "METERS",
+   "notice": true
+  },
+  {
+   "col": "left",
+   "slug": "plan",
+   "heading": "PLAN",
+   "rows": [
+    "Plan",
+    "Code",
+    "Version",
+    "In force since"
+   ]
+  },
+  {
+   "col": "left",
+   "slug": "history",
+   "heading": "HISTORY",
+   "notice": true,
+   "trailing": "All bills"
+  },
+  {
+   "col": "left",
+   "slug": "usage-trend",
+   "heading": "USAGE TREND",
+   "table": [
+    "MONTH"
+   ],
+   "note": "Drawn on the blueprint's SAMPLE-DATA frame of this tab (`ACC-T01`) rather than on the empty-account frame the eleven groups above come from — same tab, same blueprint. Its rows are MONTH plus one column PER SERVICE, newest first, so only MONTH is a fixed column heading. The PO ruled the bars out and the table in on 2026-09-13: \"we just need table and not graphs here\"."
+  },
+  {
+   "col": "right",
+   "slug": "customer",
+   "heading": "CUSTOMER",
+   "rows": [
+    "Full name",
+    "Email",
+    "Phone",
+    "Date of birth",
+    "Government ID"
+   ]
+  },
+  {
+   "col": "right",
+   "slug": "co-applicant",
+   "heading": "CO-APPLICANT",
+   "notice": true,
+   "note": "NOT DRAWN — added by PO ruling 2026-09-23 (`DEF-CUS-6391`, transfer list item T4), verbatim: \"a) Store a second person on the account (name, email, phone), shown on the account page\". The blueprint has no co-applicant group, so there is no drawn position to follow: it is placed straight after CUSTOMER, the other person on the account, and nothing else moves. With a co-applicant on file it shows Full name · Email · Phone; with none, one sentence. `notice` rather than `rows` because the empty account the census walks has none."
+  },
+  {
+   "col": "right",
+   "slug": "mailing-address",
+   "heading": "MAILING ADDRESS",
+   "notice": true
+  },
+  {
+   "col": "right",
+   "slug": "customer-record",
+   "heading": "CUSTOMER RECORD",
+   "rows": [
+    "Customer ID",
+    "Linked accounts"
+   ]
+  },
+  {
+   "col": "right",
+   "slug": "billing-preferences",
+   "heading": "BILLING PREFERENCES",
+   "rows": [
+    "Autopay",
+    "Paperless",
+    "Text reminders",
+    "Preferred language",
+    "Notification template"
+   ]
+  },
+  {
+   "col": "right",
+   "slug": "account-setup",
+   "heading": "ACCOUNT SETUP",
+   "rows": [
+    "Category",
+    "Sub-type",
+    "Account kind",
+    "Master account",
+    "Behaviour class",
+    "Tax exempt",
+    "Exemption reference",
+    "Exemption expires",
+    "Bad address",
+    "Opened",
+    "Closed"
+   ]
+  },
+  {
+   "col": "right",
+   "slug": "unit",
+   "heading": "UNIT",
+   "rows": [
+    "Unit",
+    "Premises",
+    "Service address",
+    "Unit type",
+    "Unit plan"
+   ],
+   "note": "Drawn on the blueprint's R5 frame of this tab (`ACC-T01E`, 02-account-detail.md line 473, and again in 16-service-requests-list.md line 2401) rather than on the empty-account frame the eleven original groups come from. THREE TRANSCRIPTION DECISIONS, each recorded rather than silently taken. (1) THE HEADING is drawn `UNIT — WHAT THIS ACCOUNT IS ATTACHED TO`; the em-dash explainer is dropped, exactly as `MAILING ADDRESS — WHERE THE BILL GOES` above is transcribed `MAILING ADDRESS` and rendered `Mailing address` — B14 rule 33 caps a heading at three words and no sentence. (2) THE LAST ROW is drawn `Plan the unit carries`, four words for a label rule 33 caps at three. Built as `Unit plan`, on the 2026-09-10 precedent the PO applied twice in one batch: *the frame governs where it made a design decision, and loses where it simply did not consider a rule that already existed* — B14 rule 19's search placeholder beat a frame the same day for the same reason. It is the one thing on this group that B14 rule 41 sends to the PO. (3) THE POSITION: the R5 frame draws the right column as ACCOUNT · UNIT · CUSTOMER · MAILING ADDRESS, while the ACC-02 frame this file otherwise follows draws CUSTOMER first and ACCOUNT SETUP fifth. The two frames disagree about the ORDER of the whole column, so the shape they agree on is built — UNIT follows the ACCOUNT group — and nothing else moves. The drawn note beneath the group (*the address is the building's and the plan is the unit's*) is RATIONALE and is zero words on screen (rule 33); it lives in `AccountDetailPage.tsx` and in `DEF-CUS-5163`."
+  },
+  {
+   "col": "right",
+   "slug": "portal-access",
+   "heading": "PORTAL ACCESS",
+   "rows": [
+    "Sign-in",
+    "Locked",
+    "Last sign-in"
+   ]
+  },
+  {
+   "col": "right",
+   "slug": "payment-method",
+   "heading": "PAYMENT METHOD",
+   "rows": [
+    "On file"
+   ],
+   "note": "Also from `ACC-T01`. The drawing's other two rows — `Verified` and `Autopay` — are NOT here: payments serves no verification stamp for an account, and `Autopay` is drawn under BILLING PREFERENCES above, where the 2026-09-10 grouping ruling puts a fact exactly once."
+  }
+ ]
+}

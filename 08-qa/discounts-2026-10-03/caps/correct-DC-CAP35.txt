@@ -1,0 +1,142 @@
+PREVIEW [('discount', '-20.00')] total 60.00
+CORRECTED ExecutedBill(invoice_id='01a1054b-e8e8-7c41-873d-b10e123622b6', credit_note_id='01a1054c-47c9-79c8-b0d8-dd12f4a89303', rebill_invoice_id='01a1054c-48e9-7ac7-94fb-ae21630b5a1e', goodwill_adjustment_id=None, document_instance_id=None, released_amount=Decimal('0'), released_rows=(), problems=())
+BILL DC-PLAIN   2026-12-15 issued    BL-2612-000001   before   80.00 discount    0.00 total   80.00
+BILL DC-PLAIN   2027-01-15 issued    BL-2701-000007   before   80.00 discount    0.00 total   80.00
+BILL DC-PLAIN   2027-02-15 issued    BL-2702-000013   before   80.00 discount    0.00 total   80.00
+BILL DC-PLAIN   2027-03-15 issued    BL-2703-000019   before   80.00 discount    0.00 total   80.00
+BILL DC-PLAIN   2027-04-15 issued    BL-2704-000025   before   80.00 discount    0.00 total   80.00
+BILL DC-PLAIN   2027-05-15 issued    BL-2705-000031   before   80.00 discount    0.00 total   80.00
+BILL DC-PLAIN   2027-06-15 issued    BL-2706-000037   before   80.00 discount    0.00 total   80.00
+BILL DC-PLAIN   2027-07-15 issued    BL-2707-000043   before   80.00 discount    0.00 total   80.00
+BILL DC-PLAIN   2027-08-15 issued    BL-2708-000049   before   80.00 discount    0.00 total   80.00
+BILL DC-PLAIN   2027-09-15 issued    BL-2709-000055   before   80.00 discount    0.00 total   80.00
+BILL DC-PLAIN   2027-10-15 issued    BL-2710-000061   before   80.00 discount    0.00 total   80.00
+BILL DC-PLAIN   2027-11-15 issued    BL-2711-000067   before   80.00 discount    0.00 total   80.00
+BILL DC-PLAIN   2027-12-15 issued    BL-2712-000073   before   80.00 discount    0.00 total   80.00
+BILL DC-PLAIN   2028-01-15 issued    BL-2801-000079   before   80.00 discount    0.00 total   80.00
+BILL DC-SENIOR  2026-12-15 issued    BL-2612-000002   before   80.00 discount   -8.00 total   72.00
+BILL DC-SENIOR  2027-01-15 issued    BL-2701-000008   before   80.00 discount   -8.00 total   72.00
+BILL DC-SENIOR  2027-02-15 issued    BL-2702-000014   before   80.00 discount   -8.00 total   72.00
+BILL DC-SENIOR  2027-03-15 issued    BL-2703-000020   before   80.00 discount   -8.00 total   72.00
+BILL DC-SENIOR  2027-04-15 issued    BL-2704-000026   before   80.00 discount   -8.00 total   72.00
+BILL DC-SENIOR  2027-05-15 issued    BL-2705-000032   before   80.00 discount   -8.00 total   72.00
+BILL DC-SENIOR  2027-06-15 issued    BL-2706-000038   before   80.00 discount   -8.00 total   72.00
+BILL DC-SENIOR  2027-07-15 issued    BL-2707-000044   before   80.00 discount   -8.00 total   72.00
+BILL DC-SENIOR  2027-08-15 issued    BL-2708-000050   before   80.00 discount   -8.00 total   72.00
+BILL DC-SENIOR  2027-09-15 issued    BL-2709-000056   before   80.00 discount   -8.00 total   72.00
+BILL DC-SENIOR  2027-10-15 issued    BL-2710-000062   before   80.00 discount   -8.00 total   72.00
+BILL DC-SENIOR  2027-11-15 issued    BL-2711-000068   before   80.00 discount   -8.00 total   72.00
+BILL DC-SENIOR  2027-12-15 issued    BL-2712-000074   before   80.00 discount   -8.00 total   72.00
+BILL DC-SENIOR  2028-01-15 issued    BL-2801-000080   before   80.00 discount   -8.00 total   72.00
+BILL DC-CAP25   2026-12-15 issued    BL-2612-000003   before   80.00 discount  -25.00 total   55.00
+BILL DC-CAP25   2027-01-15 issued    BL-2701-000009   before   80.00 discount  -25.00 total   55.00
+BILL DC-CAP25   2027-02-15 issued    BL-2702-000015   before   80.00 discount  -25.00 total   55.00
+BILL DC-CAP25   2027-03-15 issued    BL-2703-000021   before   80.00 discount  -25.00 total   55.00
+BILL DC-CAP25   2027-04-15 issued    BL-2704-000027   before   80.00 discount  -25.00 total   55.00
+BILL DC-CAP25   2027-05-15 issued    BL-2705-000033   before   80.00 discount  -25.00 total   55.00
+BILL DC-CAP25   2027-06-15 issued    BL-2706-000039   before   80.00 discount  -25.00 total   55.00
+BILL DC-CAP25   2027-07-15 issued    BL-2707-000045   before   80.00 discount  -25.00 total   55.00
+BILL DC-CAP25   2027-08-15 issued    BL-2708-000051   before   80.00 discount  -25.00 total   55.00
+BILL DC-CAP25   2027-09-15 issued    BL-2709-000057   before   80.00 discount  -25.00 total   55.00
+BILL DC-CAP25   2027-10-15 issued    BL-2710-000063   before   80.00 discount  -25.00 total   55.00
+BILL DC-CAP25   2027-11-15 issued    BL-2711-000069   before   80.00 discount  -25.00 total   55.00
+BILL DC-CAP25   2027-12-15 corrected BL-2712-000075   before   80.00 discount  -25.00 total   55.00
+BILL DC-CAP25   2027-12-15 issued    BL-2712-000085   before   80.00 discount  -25.00 total   55.00
+BILL DC-CAP25   2028-01-15 issued    BL-2801-000081   before   80.00 discount  -25.00 total   55.00
+BILL DC-CAP35   2026-12-15 issued    BL-2612-000004   before   80.00 discount  -35.00 total   45.00
+BILL DC-CAP35   2027-01-15 issued    BL-2701-000010   before   80.00 discount  -35.00 total   45.00
+BILL DC-CAP35   2027-02-15 issued    BL-2702-000016   before   80.00 discount  -35.00 total   45.00
+BILL DC-CAP35   2027-03-15 issued    BL-2703-000022   before   80.00 discount  -35.00 total   45.00
+BILL DC-CAP35   2027-04-15 issued    BL-2704-000028   before   80.00 discount  -35.00 total   45.00
+BILL DC-CAP35   2027-05-15 issued    BL-2705-000034   before   80.00 discount  -35.00 total   45.00
+BILL DC-CAP35   2027-06-15 issued    BL-2706-000040   before   80.00 discount  -35.00 total   45.00
+BILL DC-CAP35   2027-07-15 issued    BL-2707-000046   before   80.00 discount  -35.00 total   45.00
+BILL DC-CAP35   2027-08-15 issued    BL-2708-000052   before   80.00 discount  -35.00 total   45.00
+BILL DC-CAP35   2027-09-15 corrected BL-2709-000058   before   80.00 discount  -20.00 total   60.00
+BILL DC-CAP35   2027-09-15 issued    BL-2709-000086   before   80.00 discount  -20.00 total   60.00
+BILL DC-CAP35   2027-10-15 issued    BL-2710-000064   before   80.00 discount    0.00 total   80.00
+BILL DC-CAP35   2027-11-15 issued    BL-2711-000070   before   80.00 discount    0.00 total   80.00
+BILL DC-CAP35   2027-12-15 issued    BL-2712-000076   before   80.00 discount    0.00 total   80.00
+BILL DC-CAP35   2028-01-15 issued    BL-2801-000082   before   80.00 discount  -35.00 total   45.00
+BILL DC-FUND-A  2026-12-15 issued    BL-2612-000005   before   80.00 discount  -10.00 total   70.00
+BILL DC-FUND-A  2027-01-15 issued    BL-2701-000011   before   80.00 discount  -10.00 total   70.00
+BILL DC-FUND-A  2027-02-15 issued    BL-2702-000017   before   80.00 discount  -10.00 total   70.00
+BILL DC-FUND-A  2027-03-15 issued    BL-2703-000023   before   80.00 discount   -5.00 total   75.00
+BILL DC-FUND-A  2027-04-15 issued    BL-2704-000029   before   80.00 discount    0.00 total   80.00
+BILL DC-FUND-A  2027-05-15 issued    BL-2705-000035   before   80.00 discount    0.00 total   80.00
+BILL DC-FUND-A  2027-06-15 issued    BL-2706-000041   before   80.00 discount    0.00 total   80.00
+BILL DC-FUND-A  2027-07-15 issued    BL-2707-000047   before   80.00 discount    0.00 total   80.00
+BILL DC-FUND-A  2027-08-15 issued    BL-2708-000053   before   80.00 discount    0.00 total   80.00
+BILL DC-FUND-A  2027-09-15 issued    BL-2709-000059   before   80.00 discount    0.00 total   80.00
+BILL DC-FUND-A  2027-10-15 issued    BL-2710-000065   before   80.00 discount    0.00 total   80.00
+BILL DC-FUND-A  2027-11-15 issued    BL-2711-000071   before   80.00 discount    0.00 total   80.00
+BILL DC-FUND-A  2027-12-15 issued    BL-2712-000077   before   80.00 discount    0.00 total   80.00
+BILL DC-FUND-A  2028-01-15 issued    BL-2801-000083   before   80.00 discount  -10.00 total   70.00
+BILL DC-FUND-B  2026-12-15 issued    BL-2612-000006   before   80.00 discount  -10.00 total   70.00
+BILL DC-FUND-B  2027-01-15 issued    BL-2701-000012   before   80.00 discount  -10.00 total   70.00
+BILL DC-FUND-B  2027-02-15 issued    BL-2702-000018   before   80.00 discount  -10.00 total   70.00
+BILL DC-FUND-B  2027-03-15 issued    BL-2703-000024   before   80.00 discount   -5.00 total   75.00
+BILL DC-FUND-B  2027-04-15 issued    BL-2704-000030   before   80.00 discount    0.00 total   80.00
+BILL DC-FUND-B  2027-05-15 issued    BL-2705-000036   before   80.00 discount    0.00 total   80.00
+BILL DC-FUND-B  2027-06-15 issued    BL-2706-000042   before   80.00 discount    0.00 total   80.00
+BILL DC-FUND-B  2027-07-15 issued    BL-2707-000048   before   80.00 discount    0.00 total   80.00
+BILL DC-FUND-B  2027-08-15 issued    BL-2708-000054   before   80.00 discount    0.00 total   80.00
+BILL DC-FUND-B  2027-09-15 issued    BL-2709-000060   before   80.00 discount    0.00 total   80.00
+BILL DC-FUND-B  2027-10-15 issued    BL-2710-000066   before   80.00 discount    0.00 total   80.00
+BILL DC-FUND-B  2027-11-15 issued    BL-2711-000072   before   80.00 discount    0.00 total   80.00
+BILL DC-FUND-B  2027-12-15 issued    BL-2712-000078   before   80.00 discount    0.00 total   80.00
+BILL DC-FUND-B  2028-01-15 issued    BL-2801-000084   before   80.00 discount  -10.00 total   70.00
+GRANTS 53
+  GRANT DCSENIOR  2026-12-15     8.00
+  GRANT DCCAP25   2026-12-15    25.00
+  GRANT DCCAP35   2026-12-15    35.00
+  GRANT DCFUND    2026-12-15    10.00
+  GRANT DCFUND    2026-12-15    10.00
+  GRANT DCSENIOR  2027-01-15     8.00
+  GRANT DCCAP25   2027-01-15    25.00
+  GRANT DCCAP35   2027-01-15    35.00
+  GRANT DCFUND    2027-01-15    10.00
+  GRANT DCFUND    2027-01-15    10.00
+  GRANT DCSENIOR  2027-02-15     8.00
+  GRANT DCCAP25   2027-02-15    25.00
+  GRANT DCCAP35   2027-02-15    35.00
+  GRANT DCFUND    2027-02-15    10.00
+  GRANT DCFUND    2027-02-15    10.00
+  GRANT DCSENIOR  2027-03-15     8.00
+  GRANT DCCAP25   2027-03-15    25.00
+  GRANT DCCAP35   2027-03-15    35.00
+  GRANT DCFUND    2027-03-15     5.00
+  GRANT DCFUND    2027-03-15     5.00
+  GRANT DCSENIOR  2027-04-15     8.00
+  GRANT DCCAP25   2027-04-15    25.00
+  GRANT DCCAP35   2027-04-15    35.00
+  GRANT DCSENIOR  2027-05-15     8.00
+  GRANT DCCAP25   2027-05-15    25.00
+  GRANT DCCAP35   2027-05-15    35.00
+  GRANT DCSENIOR  2027-06-15     8.00
+  GRANT DCCAP25   2027-06-15    25.00
+  GRANT DCCAP35   2027-06-15    35.00
+  GRANT DCSENIOR  2027-07-15     8.00
+  GRANT DCCAP25   2027-07-15    25.00
+  GRANT DCCAP35   2027-07-15    35.00
+  GRANT DCSENIOR  2027-08-15     8.00
+  GRANT DCCAP25   2027-08-15    25.00
+  GRANT DCCAP35   2027-08-15    35.00
+  GRANT DCSENIOR  2027-09-15     8.00
+  GRANT DCCAP25   2027-09-15    25.00
+  GRANT DCCAP35   2027-09-15    20.00
+  GRANT DCSENIOR  2027-10-15     8.00
+  GRANT DCCAP25   2027-10-15    25.00
+  GRANT DCSENIOR  2027-11-15     8.00
+  GRANT DCCAP25   2027-11-15    25.00
+  GRANT DCSENIOR  2027-12-15     8.00
+  GRANT DCCAP25   2027-12-15    25.00
+  GRANT DCSENIOR  2028-01-15     8.00
+  GRANT DCCAP25   2028-01-15    25.00
+  GRANT DCCAP35   2028-01-15    35.00
+  GRANT DCFUND    2028-01-15    10.00
+  GRANT DCFUND    2028-01-15    10.00
+  GRANT DCCAP25   2027-12-15   -25.00  (reversal)
+  GRANT DCCAP25   2027-12-15    25.00
+  GRANT DCCAP35   2027-09-15   -20.00  (reversal)
+  GRANT DCCAP35   2027-09-15    20.00

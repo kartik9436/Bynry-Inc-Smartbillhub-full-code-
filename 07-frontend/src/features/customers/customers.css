@@ -1,0 +1,415 @@
+/* Accounts (S17 list · S18 new-account wizard · S21 detail) — tokens only
+ * (B8: no hex literals here). The page rhythm deliberately matches Premises,
+ * Assets and Settings so the app reads as one product; everything below is what
+ * those surfaces do not already own. The panel, table, fact-list and link skins
+ * are metering's shared ones (`.met-panel` / `.met-table` / `.met-facts` /
+ * `.met-link`) — a second copy of a table skin is the drift US-SHL-020 exists
+ * to remove. */
+
+.cus-page {
+  padding: var(--space-6) var(--space-4) var(--space-8);
+}
+
+/* ── The header roll-up (prototype: "1,247 accounts · $184,320 outstanding ·
+ * 18 past-due 60+"). Rendered as LABEL·VALUE pairs rather than as a sentence:
+ * the money value is a MoneyCell, and a translated fragment either side of a
+ * component is the concatenated sentence B8 forbids. ─────────────────────── */
+.cus-rollup {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-1);
+  flex-wrap: wrap;
+}
+
+.cus-rollup-item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-1);
+}
+
+.cus-rollup-item + .cus-rollup-item::before {
+  content: "·";
+  margin-right: var(--space-1);
+  color: color-mix(in srgb, var(--color-text) 40%, transparent);
+}
+
+.cus-rollup-label {
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+}
+
+.cus-rollup-value {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-feature-settings: "tnum";
+}
+
+/* The account number: the row's identity, and (since S21 landed 2026-08-11) the
+ * link to its detail. Tabular numerals so a column of them aligns. */
+.cus-id {
+  font-feature-settings: "tnum";
+}
+
+/* ── A value the server answered with nothing ────────────────────────────── */
+.cus-muted {
+  color: color-mix(in srgb, var(--color-text) 45%, transparent);
+  font-style: italic;
+}
+
+/* ── A value the server CANNOT know yet — visibly not a dash and not a zero,
+ * because "unknown" and "none" are different claims (hard-won law 2). ────── */
+.cus-awaits {
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+  border-bottom: 1px dotted color-mix(in srgb, var(--color-text) 35%, transparent);
+  cursor: help;
+  font-size: var(--text-sm);
+}
+
+/* ── A value the endpoint REFUSES to hold, with the rule that owns the
+ * refusal. Distinct from `.cus-awaits` on purpose: "awaiting" means a writer is
+ * coming, "refused" means the server answers a reason today. ─────────────── */
+.cus-refused {
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+  cursor: help;
+  font-size: var(--text-sm);
+}
+
+/* `.cus-rule` WAS HERE and is deleted with its three call sites (DEF-332,
+ * 2026-08-21). It printed the SERVER's rule id beside a value — "Not recorded
+ * (plan_snapshot_unavailable)" — on three screens the defect row never named,
+ * found by the Wave B stated-absence sweep. The ids ride `data-rule-ref` and
+ * `data-br-ref` now: still in the DOM for support, out of the sentence. */
+
+/* ── The handoffs a create/activate could NOT perform (BR-CUS-029/023). The
+ * server sends them; this renders them where the result is read. ─────────── */
+.cus-warnings {
+  background: var(--color-surface);
+  border-left: 2px solid var(--color-accent);
+  padding: var(--space-3) var(--space-4);
+  margin-top: var(--space-3);
+}
+
+.cus-warnings h4 {
+  font-size: var(--text-h5);
+  margin: 0 0 var(--space-2);
+}
+
+.cus-warnings ul {
+  margin: 0;
+  padding-left: var(--space-4);
+  font-size: var(--text-base);
+  line-height: 1.6;
+}
+
+/* ── The S21 Overview's two columns (the prototype's `.two-col`). ────────── */
+.cus-two-col {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+  align-items: start;
+}
+
+.cus-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .cus-two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* A block heading INSIDE a panel — quieter than the panel's own h3. */
+.cus-subhead {
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+  margin: var(--space-3) 0 var(--space-1);
+}
+
+/* ── The "what this list cannot show yet" blocks. `.settings-arrives` is the
+ * one ArrivesWith skin (SettingsPage.css); this only lays the pair out. ──── */
+.cus-awaiting-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+/* BR-CUS-054 — the "all accounts for this customer" chip (S21).
+   Built 2026-08-11 with the customer entity: an account with no link renders
+   nothing here, so the block only exists when there is a customer to name. */
+.cus-customer-chip {
+  border: 1px solid var(--color-divider);
+  padding: 14px 16px;
+  margin-top: 16px;
+}
+
+.cus-customer-chip h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--text-md);
+  margin: 0 0 6px;
+}
+
+.cus-customer-chip ul {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cus-customer-count {
+  font-size: var(--text-sm);
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+  margin: 8px 0 0;
+}
+
+/* ── S21 Notes (US-CUS-011 / US-CUS-015) ──────────────────────────────────
+   `.cus-note-meta` was used by AccountActions.tsx and styled by NOTHING, so
+   the author and the date rendered with no separator between them: a note
+   written by the system on 16 August read literally "System08/16/2026".
+   Found 2026-08-16 by looking at the RENDERED screen (hard-won law 6) while
+   adding the pin control to the same line — no gate looks at output, and no
+   test asserted a gap that had never been declared. Logged as DEF-137. */
+.cus-note-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-3);
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+}
+/* The pin control sits at the end of the meta line, pushed away from the
+   facts so a click target never abuts the date it is not acting on. */
+.cus-note-meta .btn {
+  margin-left: auto;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   DEF-327 — THE cus-* CLASSES THE ACCOUNT WIZARDS ASK FOR AND NOTHING DECLARED
+   ══════════════════════════════════════════════════════════════════════════
+   24 of the 125 names G31 found were `cus-*`, and they were concentrated in
+   the two screens a clerk uses to change what a customer pays: the change-plan
+   wizard (11) and the account's actions/notes rail (9). Undeclared, a `<span>`
+   stays `display:inline`, so the plan list rendered as one run of text and
+   "Net impact" printed hard against its own figure.
+
+   ⚠ THREE OF THE ORIGINAL 24 ARE GONE RATHER THAN DECLARED. `cus-modal-fact`,
+   `cus-modal-fact-label` and `cus-modal-fact-value` were a third private copy
+   of the label/value row; the markup now uses the shared `.kv` / `.kv-k` /
+   `.kv-v` in `styles/global.css`, which notifications and this lane both need.
+   One shape, one name.
+
+   No `font-size` on a button, a table cell or a control — see the note in
+   `billing.css` and `e2e/ui-conformance-baseline.json`. */
+
+/* ── The change-plan wizard ─────────────────────────────────────────────── */
+
+/* A figure the server could not compute, with its reason and the rules it
+   cites. Three spans on one line collided into one word before this; each is
+   now its own block, and the reason keeps a readable measure. */
+.cus-unavailable {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin: var(--space-3) 0;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-surface);
+  border-left: 2px solid var(--color-divider);
+  max-width: var(--desc-measure);
+}
+
+.cus-unavailable-label {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+
+/* The SERVER's engineering sentence, shown so a clerk can quote it. */
+.cus-unavailable-detail {
+  font-size: var(--text-base);
+  line-height: 1.55;
+}
+
+/* The BR/OQ ids it cites — same treatment as `.cus-rule`, so a reason on
+   screen stays traceable to a rule wherever it appears. */
+.cus-unavailable-refs {
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  color: color-mix(in srgb, var(--color-text) 45%, transparent);
+}
+
+/* The list of plans the account may move to. Each row is a radio, a base
+   charge and possibly a "current" pill — three things that must sit on one
+   line with real separation, not run together. */
+.cus-plan-list {
+  list-style: none;
+  margin: var(--space-3) 0 0;
+  padding: 0;
+}
+
+.cus-plan-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-divider);
+  min-width: 0;
+}
+
+.cus-plan-row:last-child {
+  border-bottom: 0;
+}
+
+/* The base charge, pushed to the right so a column of plans compares. */
+.cus-plan-meta {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-1);
+  font-feature-settings: "tnum";
+}
+
+.cus-preview {
+  margin-top: var(--space-4);
+}
+
+.cus-preview h4 {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-h5);
+}
+
+/* THE ONE FIGURE THE WIZARD EXISTS TO PRODUCE — what the change costs. It sat
+   in body copy, level with the caveat beside it. The caveat matters (a net
+   that quietly summed a shorter list would look like the whole answer), so it
+   stays on the line and stays quiet. */
+.cus-net-impact {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-4) 0 0;
+  padding-top: var(--space-3);
+  border-top: 2px solid var(--color-text);
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: var(--text-h5);
+  font-feature-settings: "tnum";
+}
+
+.cus-net-impact-label {
+  font-size: var(--text-sm);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+
+/* The action bar at the foot of every step of both account wizards. */
+.cus-wizard-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-divider);
+}
+
+/* The `cus-plan-schedule` class LEFT ON 2026-10-11 — the payment-plan schedule is now
+   `PaymentPlanSchedule.tsx`, in Tailwind utilities (B14 rule 21), and
+   `e2e/S24-payment-plan.spec.ts` locates its rows by `[data-plan-schedule]`. */
+
+/* ── The account's notes rail ───────────────────────────────────────────── */
+.cus-notes-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.cus-notes-head h3 {
+  margin: 0;
+}
+
+.cus-note-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cus-note {
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.cus-note:last-child {
+  border-bottom: 0;
+}
+
+/* A pinned note is the one a clerk is meant to read first, so it is drawn
+   first-among-equals rather than merely carrying a pill. */
+.cus-note-pinned {
+  padding-left: var(--space-3);
+  border-left: 2px solid var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 4%, transparent);
+}
+
+.cus-note-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.cus-note-head h4 {
+  margin: 0;
+  font-size: var(--text-base);
+}
+
+.cus-note-body {
+  margin: var(--space-1) 0 0;
+  font-size: var(--text-base);
+  line-height: 1.6;
+  max-width: var(--desc-measure);
+  text-wrap: pretty;
+}
+
+/* ── Importing accounts (S68) ───────────────────────────────────────────── */
+/* Rows the import DEFERRED, and the errors it refused on. Both are lists a
+   person has to work through, so they read as a worked list, not as prose. */
+.cus-import-deferred {
+  margin: var(--space-3) 0 0;
+  padding: var(--space-3) var(--space-4);
+  list-style: none;
+  background: var(--color-surface);
+  border-left: 2px solid var(--color-divider);
+  font-size: var(--text-base);
+  line-height: 1.6;
+}
+
+/* The error table's row-number column is a figure; the rest is prose. No
+   font-size (rule 20) — alignment only. */
+.cus-import-errors td:first-child,
+.cus-import-errors th:first-child {
+  text-align: right;
+  font-feature-settings: "tnum";
+  white-space: nowrap;
+}
+
+/* The one-line roll-up under the import wizard's own heading. */
+.cus-rollup-line {
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+}

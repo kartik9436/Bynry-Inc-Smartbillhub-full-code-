@@ -1,0 +1,61 @@
+{
+  "door": {
+    "path": "/sixrivers/billing/one-time",
+    "rail": "1\nAccount\n2\nServices\n3\nReview\n4\nSend"
+  },
+  "account-controls-interim": {
+    "comboboxes": 1,
+    "textboxes": 0
+  },
+  "account-controls-first": {
+    "comboboxes": 1,
+    "textboxes": 0
+  },
+  "account-controls-final": {
+    "comboboxes": 1,
+    "textboxes": 0
+  },
+  "account-controls-backbill": {
+    "comboboxes": 1,
+    "textboxes": 0
+  },
+  "account-controls-penalty": {
+    "comboboxes": 1,
+    "textboxes": 0
+  },
+  "account-controls-fee": {
+    "comboboxes": 1,
+    "textboxes": 0
+  },
+  "step1-words": {
+    "interim": 51,
+    "first": 55,
+    "final": 52,
+    "backbill": 59,
+    "penalty": 66,
+    "fee": 56
+  },
+  "problems": {
+    "text": "Fix 5 things to continue.\n\nEnter the period.\nEnter the period.\nChoose a reason.\nEnter the bill date.\nEnter days to pay.",
+    "reason_field": 5
+  },
+  "duplicate": "Already billed for this period.\nBL-2609-000001 · 10/01/2026 · by Priya Shah\nOpen that bill",
+  "review-controls": [
+    "Save draft",
+    "Back",
+    "Continue"
+  ],
+  "fee-sent": "✓\nBill BL-2610-000009 sent\nTotal\n$75.00\nDue\n10/22/2026\nDelivery\nEmail · queued\nMeter reads\nLocked\nView bill\nNew one-time bill",
+  "step1-text": {
+    "interim": "Account Find account* ▾ Name, account no. or address. Customer Femi Adeyemi Account AC-2026-00006 Address 1200 Confluence Ave · Unit 6 Plan Six Rivers Residential Status Active Balance $498.78 Cycle Six Rivers monthly Last bill 10/01/2026 Period From* To* Dates Bill date* Days to pay* From the cycle. Change if needed. Due date",
+    "first": "Account Find account* ▾ Name, account no. or address. Customer Femi Adeyemi Account AC-2026-00006 Address 1200 Confluence Ave · Unit 6 Plan Six Rivers Residential Status Active Balance $498.78 Cycle Six Rivers monthly Last bill 10/01/2026 Period Move-in date* From the account. To* Dates Bill date* Days to pay* From the cycle. Change if needed. Due date",
+    "final": "Account Find account* ▾ Name, account no. or address. Customer Femi Adeyemi Account AC-2026-00006 Address 1200 Confluence Ave · Unit 6 Plan Six Rivers Residential Status Active Balance $498.78 Cycle Six Rivers monthly Last bill 10/01/2026 Period From* Move-out date* Dates Bill date* Days to pay* From the cycle. Change if needed. Due date",
+    "backbill": "Account Find account* ▾ Name, account no. or address. Customer Femi Adeyemi Account AC-2026-00006 Address 1200 Confluence Ave · Unit 6 Plan Six Rivers Residential Status Active Balance $498.78 Cycle Six Rivers monthly Last bill 10/01/2026 Period Missed periods * From To Remove Add period 1 period Reason* Dates Bill date* Days to pay* From the cycle. Change if needed. Due date",
+    "penalty": "Account Find account* ▾ Name, account no. or address. Customer Femi Adeyemi Account AC-2026-00006 Address 1200 Confluence Ave · Unit 6 Plan Six Rivers Residential Status Active Balance $498.78 Cycle Six Rivers monthly Last bill 10/01/2026 Period Missed periods * From To Remove Add period 1 period Reason* Charge code Optional. Amount from the code. Dates Bill date* Days to pay* From the cycle. Change if needed. Due date",
+    "fee": "Account Find account* ▾ Name, account no. or address. Customer Femi Adeyemi Account AC-2026-00006 Address 1200 Confluence Ave · Unit 6 Plan Six Rivers Residential Status Active Balance $498.78 Cycle Six Rivers monthly Last bill 10/01/2026 Charge Charge code* Amount comes from the code. Dates Bill date* Days to pay* From the cycle. Change if needed. Due date"
+  },
+  "first-from-clerk-move-in": {
+    "refusal": "",
+    "onStep2": true
+  }
+}

@@ -1,0 +1,597 @@
+<title>Tax Wizard Redesign</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: product app frame — page head, 3-step rail, main column + sticky "what this tax does" summary. SMARTBillHub tokens (07-frontend tokens.css): light-only by design, square corners, 4px spacing scale. */
+:root{
+  --bg:#f3f2f2; --surface:#ffffff; --panel:#eae9e9; --text:#201e1d; --muted:#605d5d; --faint:#9b9797;
+  --line:#d7d3d3; --accent:#ec3013; --accent-ink:#ae1800; --accent-soft:#fff2ef;
+  --ok:#0f6e3a; --ok-soft:#e6f4ec; --warn:#a65d0a; --warn-soft:#fdf0d8; --bad:#a81600; --bad-soft:#fde4df; --info:#1d4ea8; --info-soft:#e6eefb;
+  --font:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --t-xs:11px; --t-sm:12px; --t-base:13px; --t-md:14px; --t-body:15px; --t-h4:20px; --t-h2:32px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:var(--t-body);line-height:1.55;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:20px 48px;display:flex;flex-direction:column;gap:20px}
+h1,h2,h3{font-weight:800;letter-spacing:-.015em;line-height:1.12;margin:0;text-wrap:balance}
+h1{font-size:var(--t-h2)} h2{font-size:var(--t-h4)} h3{font-size:var(--t-md);font-weight:700}
+.kicker{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.num{font-variant-numeric:tabular-nums}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.demo{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 12px;border:1px dashed var(--faint);font-size:var(--t-sm);color:var(--muted)}
+.demo b{color:var(--text)}
+.chipbtn{border:1px solid var(--line);background:var(--surface);padding:4px 10px;cursor:pointer;font-size:var(--t-sm)}
+.chipbtn[aria-pressed="true"]{border-color:var(--text);font-weight:600}
+.head{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:flex-end}
+.crumb{font-size:var(--t-sm);color:var(--muted)}
+.crumb a{color:var(--accent-ink)}
+.rail{display:flex;border:1px solid var(--line);background:var(--surface)}
+.rail button{flex:1;display:flex;align-items:center;gap:10px;padding:12px 16px;border:0;background:transparent;cursor:pointer;text-align:left;border-right:1px solid var(--line);min-width:0}
+.rail button:last-child{border-right:0}
+.rail .n{width:24px;height:24px;display:grid;place-items:center;border:1.5px solid var(--faint);font-size:var(--t-sm);font-weight:700;flex:none}
+.rail button[data-state="current"]{box-shadow:inset 0 -3px 0 var(--accent)}
+.rail button[data-state="current"] .n{background:var(--accent);border-color:var(--accent);color:#fff}
+.rail button[data-state="done"] .n{background:var(--text);border-color:var(--text);color:#fff}
+.rail .lbl{font-size:var(--t-md);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:640px){.rail .lbl{display:none}.rail button{justify-content:center}}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:20px;align-items:start}
+@media (max-width:960px){.grid{grid-template-columns:minmax(0,1fr)}}
+.stack{display:flex;flex-direction:column;gap:20px;min-width:0}
+.panel{background:var(--surface);border:1px solid var(--line);padding:20px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px)}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:720px){.fields{grid-template-columns:minmax(0,1fr)}}
+.span2{grid-column:1/-1}
+.f{display:flex;flex-direction:column;gap:4px;min-width:0}
+.f label,.f .lab{font-size:var(--t-base);font-weight:600}
+.req{color:var(--accent)}
+.f input,.f select{border:1px solid var(--line);background:var(--surface);padding:8px 10px;min-height:38px;width:100%;font-size:var(--t-md)}
+.f .help{font-size:var(--t-sm);color:var(--muted)}
+.f.err input,.f.err select,.f.err .ms-btn{border-color:var(--bad);background:var(--bad-soft)}
+.f .msg{font-size:var(--t-sm);color:var(--bad);font-weight:600}
+.f .wmsg{font-size:var(--t-sm);color:var(--warn);font-weight:600}
+.f.wn input{border-color:var(--warn)}
+.suffix{display:flex;align-items:stretch;border:1px solid var(--line);background:var(--surface)}
+.suffix input{border:0;flex:1;min-width:0}
+.suffix span{display:grid;place-items:center;padding:0 12px;background:var(--bg);border-left:1px solid var(--line);font-weight:700;color:var(--muted)}
+.f.wn .suffix{border-color:var(--warn)}
+.f.err .suffix{border-color:var(--bad);background:var(--bad-soft)}
+.f.err .suffix input{background:transparent}
+/* one dropdown with ticks — services, customer classes */
+.ms{position:relative}
+.ms-btn{width:100%;display:flex;justify-content:space-between;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);padding:8px 10px;min-height:38px;cursor:pointer;text-align:left;font-size:var(--t-md)}
+.ms-btn .val{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ms-btn .caret{color:var(--muted);flex:none}
+.ms-list{position:absolute;top:calc(100% + 2px);left:0;right:0;z-index:5;background:var(--surface);border:1px solid var(--text);box-shadow:0 12px 32px rgba(45,43,43,.22);max-height:300px;overflow:auto}
+.ms-list label{display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px solid var(--line);cursor:pointer;font-size:var(--t-md)}
+.ms-list label:last-child{border-bottom:0}
+.ms-list label.all{font-weight:700;background:var(--bg)}
+.ms-list input{width:16px;height:16px;accent-color:var(--accent)}
+.ms-list .sw{width:10px;height:10px;flex:none}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--bg);padding:2px 8px;font-size:var(--t-sm);font-weight:600}
+.chip i{width:8px;height:8px;display:inline-block}
+.ticks{display:flex;flex-wrap:wrap;gap:12px 24px}
+.ticks label{display:flex;align-items:center;gap:8px;font-size:var(--t-md);font-weight:500;cursor:pointer}
+.ticks input{width:18px;height:18px;accent-color:var(--accent)}
+.reach{display:flex;flex-direction:column;gap:8px;border:1px solid var(--line);background:var(--bg);padding:12px 14px}
+.reach-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.reach b.big{font-size:22px;font-weight:800}
+.tw{overflow-x:auto;border:1px solid var(--line);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:var(--t-base)}
+th{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;font-weight:600;background:var(--bg);padding:8px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.r,th.r{text-align:right}
+tr.tot td{font-weight:700;background:var(--bg)}
+.pill{display:inline-block;font-size:var(--t-xs);font-weight:700;padding:2px 8px;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.p-ok{background:var(--ok-soft);color:var(--ok)} .p-warn{background:var(--warn-soft);color:var(--warn)} .p-off{background:var(--panel);color:var(--muted)} .p-bad{background:var(--bad-soft);color:var(--bad)}
+.note{display:flex;gap:10px;padding:10px 12px;font-size:var(--t-base);align-items:flex-start}
+.note.warn{background:var(--warn-soft);color:var(--warn)} .note.bad{background:var(--bad-soft);color:var(--bad)} .note.info{background:var(--info-soft);color:var(--info)} .note.ok{background:var(--ok-soft);color:var(--ok)}
+.btn{border:1px solid var(--text);background:var(--surface);padding:0 18px;min-height:40px;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.link{border:0;background:none;color:var(--accent-ink);padding:0;min-height:0;text-decoration:underline;font-weight:600}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:16px}
+.actions .right{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.why{font-size:var(--t-sm);color:var(--bad);font-weight:600}
+.sum{display:flex;flex-direction:column;gap:6px;font-size:var(--t-base)}
+.sum .row{display:flex;justify-content:space-between;gap:12px}
+.sum .row span:first-child{color:var(--muted)}
+.sum .row span:last-child{text-align:right;font-weight:600;overflow-wrap:anywhere}
+.bigrate{font-size:30px;font-weight:800;line-height:1.05}
+.hr{border-top:1px solid var(--line)}
+.rev{display:grid;grid-template-columns:180px minmax(0,1fr);gap:0;border:1px solid var(--line)}
+.rev div{padding:9px 12px;border-bottom:1px solid var(--line);font-size:var(--t-md)}
+.rev div:nth-child(odd){color:var(--muted);background:var(--bg)}
+.rev div:nth-last-child(-n+2){border-bottom:0}
+.rev .edit{color:var(--accent-ink);font-size:var(--t-sm);margin-left:8px;cursor:pointer;text-decoration:underline;background:none;border:0;padding:0}
+@media (max-width:560px){.rev{grid-template-columns:minmax(0,1fr)}.rev div:nth-child(odd){border-bottom:0;padding-bottom:0}}
+.done{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.done .check{width:44px;height:44px;background:var(--ok);color:#fff;display:grid;place-items:center;font-size:24px;font-weight:800}
+.fixes h2{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--text);color:var(--surface);padding:10px 16px;z-index:60;max-width:min(560px,calc(100% - 32px));font-size:var(--t-sm)}
+@media (prefers-reduced-motion:no-preference){.panel{animation:in .18s ease-out}@keyframes in{from{opacity:.4;transform:translateY(3px)}to{opacity:1;transform:none}}}
+.tabs{display:flex;gap:24px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.tabs button{border:0;background:none;padding:8px 0;cursor:pointer;font-size:var(--t-md);font-weight:600;color:var(--muted)}
+.tabs button[aria-selected="true"]{color:var(--text);box-shadow:inset 0 -3px 0 var(--accent)}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.toolbar input{border:1px solid var(--line);background:var(--surface);padding:8px 10px;min-height:38px;flex:1;min-width:180px;font-size:var(--t-md)}
+.seg{border:1px solid var(--line);background:var(--surface);padding:6px 12px;font-size:var(--t-sm);cursor:pointer;min-height:38px}
+.seg[aria-pressed="true"]{background:var(--text);color:#fff;border-color:var(--text)}
+.rate{font-weight:800;font-size:var(--t-md);white-space:nowrap}
+.ico{border:1px solid var(--line);background:var(--surface);width:32px;height:32px;cursor:pointer;display:inline-grid;place-items:center;font-size:14px}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:720px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.tile{border:1px solid var(--line);background:var(--surface);padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.tile span{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.tile b{font-size:24px;font-weight:800}
+.tile small{color:var(--muted);font-size:var(--t-sm)}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border:1px solid var(--line)}
+@media (max-width:720px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.fact{padding:10px 12px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);display:flex;flex-direction:column;gap:2px;min-width:0}
+.fact span{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.fact b{font-size:var(--t-md);font-weight:600;overflow-wrap:anywhere}
+.ph{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.lock{font-size:var(--t-sm);color:var(--muted)}
+[hidden]{display:none!important}
+.choice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.choice button{border:1px solid var(--line);background:var(--surface);padding:10px 12px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:2px}
+.choice button[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 3px 0 var(--accent)}
+.choice.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:480px){.choice.three{grid-template-columns:minmax(0,1fr)}}
+.choice button span{font-size:var(--t-sm);color:var(--muted)}
+.hcode{font-size:var(--t-md);font-weight:600;color:var(--muted);letter-spacing:.02em;vertical-align:middle}
+.hfact{font-size:var(--t-md);color:var(--muted);border-left:1px solid var(--line);padding-left:10px}
+.hfact b{color:var(--text);font-weight:700}
+.ro{padding:8px 0;font-size:var(--t-md);font-weight:600}
+.muted{color:var(--muted)}
+.hact{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.morewrap{position:relative}
+.menu{position:absolute;right:0;top:calc(100% + 2px);z-index:20;background:var(--surface);border:1px solid var(--text);box-shadow:0 12px 32px rgba(45,43,43,.22);display:flex;flex-direction:column;min-width:160px}
+.menu button{border:0;border-bottom:1px solid var(--line);background:var(--surface);padding:10px 14px;text-align:left;cursor:pointer;font-size:var(--t-md)}
+.menu button:last-child{border-bottom:0}
+.menu button:hover{background:var(--bg)}
+</style>
+
+<div class="wrap">
+  <div class="demo" role="group" aria-label="Demo controls">
+    <b>Design mock-up · example data</b>
+    <span>Screen:</span>
+    <button class="chipbtn" data-view="list" aria-pressed="false">List</button>
+    <button class="chipbtn" data-view="wiz" aria-pressed="true">New tax</button>
+    <button class="chipbtn" data-view="detail" aria-pressed="false">Details</button>
+    <span class="wizonly">Wizard:</span>
+    <span>Ottumwa Water Works · 4 services switched on.</span>
+    <button class="chipbtn wizonly" data-preset="good" aria-pressed="true">Filled in</button>
+    <button class="chipbtn wizonly" data-preset="typo" aria-pressed="false">Rate typed as 62.5</button>
+    <button class="chipbtn wizonly" data-preset="empty" aria-pressed="false">Empty form</button>
+  </div>
+
+  <div id="listView" hidden></div>
+  <div id="detailView" hidden></div>
+  <div id="wizView" class="stack">
+  <header class="head">
+    <div>
+      <div class="crumb" id="wizCrumb"></div>
+      <h1 id="wizTitle">New tax or fee</h1>
+    </div>
+    <button class="btn" id="draft">Save draft &amp; exit</button>
+  </header>
+
+  <section class="panel" id="editChoice" hidden></section>
+  <nav class="rail" id="rail" aria-label="Steps"></nav>
+
+  <div class="grid">
+    <main class="stack" id="main"></main>
+    <aside class="aside"><div class="panel" id="summary"></div></aside>
+  </div>
+
+  </div>
+  <section class="panel fixes" id="fixes">
+    <h2 id="fixtitle">What this design fixes</h2>
+    <div class="tw"><table>
+      <thead><tr><th>#</th><th>Step</th><th>Today</th><th>In this design</th></tr></thead>
+      <tbody id="fixrows"></tbody>
+    </table></div>
+  </section>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const money=v=>"$"+v.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,",");
+const usDate=iso=>{if(!iso)return "—";const [y,m,d]=iso.split("-");return `${m}/${d}/${y}`};
+const STEPS=["What it is","How much","Filing","Review & save"];
+/* the tenant's ACTIVE services only — 4 of the product's 11 */
+const SERVICES=[["water","Water","#1e6b8f"],["sewer","Sewer","#5a5555"],["trash","Trash","#3a6b3d"],["storm","Storm water","#2f4a7a"]];
+const CLASSES=[["res","Residential"],["com","Commercial"],["ind","Industrial"],["agr","Agricultural"],["ins","Institutional"],["mun","Municipal"],["bld","Builder or developer"],["gov","Government"]];
+const AUTH=[["","Choose an authority"],["state","State"],["county","County"],["city","City"],["district","Special district"],["utility","The utility itself"]];
+const BOUND=[["all","Everywhere this utility serves"],["inside","Inside city limits"],["outside","Outside city limits"],["named","A named place"]];
+const BASIS=[["pct","A percentage of the bill"],["fixed","A fixed amount per bill"],["unit","An amount per unit used"],["meter","An amount per meter"]];
+const DISC=[["full","Tax the full amount"],["after","Tax after discounts"]];
+const GLS=[["","Choose an account"],["2200-01","2200-01 · Tax payable · Local"],["2200-02","2200-02 · Tax payable · State"],["2200-03","2200-03 · Fees payable · City"]];
+const DUE=[["","Choose a due date"],["15n","15th of the next month"],["20n","20th of the next month"],["25n","25th of the next month"],["lastn","Last day of the next month"],["q30","30 days after the quarter ends"],["y31","January 31 of the next year"]];
+const AACCT=[["","Choose an account"],["tx","TX Comptroller · 32-1180455"],["bexar","Bexar County Tax Office · BX-7781"],["city","City of Ottumwa Finance · OTT-0042"]];
+const FREQ=[["monthly","Monthly"],["quarterly","Quarterly"],["yearly","Yearly"]];
+const ROUND=[["half","Standard (half up)"],["down","Always round down"],["up","Always round up"]];
+/* premises counts by boundary: 84 total, 78 inside, 6 outside */
+const PREM={all:84,inside:78,outside:6,named:12};
+const SAMPLE=[["P-00001","101 Silver Creek Rd","Inside","Residential"],["P-00002","103 Willow Bend Dr","Inside","Residential"],["P-00003","105 Cedar Ridge Way","Inside","Commercial"],["P-00004","107 Maple Hollow Ct","Inside","Residential"],["P-00005","2 County Line Rd","Outside","Agricultural"]];
+
+const PRESETS={
+ good:{name:"State sales tax",auth:"state",bound:"inside",place:"",svcAll:false,svcs:["water","sewer","trash"],clsAll:true,cls:[],basis:"pct",rate:"6.25",usage:true,base:true,from:"2026-10-01",to:"",disc:"full",round:"half",code:"TX-STATE",label:"",gl:"2200-02",freq:"monthly",due:"20n",acctno:"tx",allow:"0.5",late:"1.5",mail:"filings@ottumwawater.example"},
+ typo:{name:"State sales tax",auth:"state",bound:"inside",place:"",svcAll:true,svcs:[],clsAll:true,cls:[],basis:"pct",rate:"62.5",usage:true,base:true,from:"2026-10-01",to:"2027-10-31",disc:"full",round:"half",code:"TX-STATE",label:"",gl:"2200-02",freq:"monthly",due:"20n",acctno:"tx",allow:"0.5",late:"1.5",mail:"filings@ottumwawater.example"},
+ empty:{name:"",auth:"",bound:"all",place:"",svcAll:true,svcs:[],clsAll:true,cls:[],basis:"pct",rate:"",usage:true,base:true,from:"",to:"",disc:"full",round:"half",code:"",label:"",gl:"",freq:"monthly",due:"",acctno:"",allow:"",late:"",mail:""}
+};
+let S={mode:"new",step:0,open:null,saved:false,tried:{},reason:"",orig:null,svcText:"",...JSON.parse(JSON.stringify(PRESETS.good))};
+/* ONE form, four variations. Edit opens the same form as New. */
+const FLOWS={
+ new:[["what","What it is"],["how","How much"],["filing","Filing"],["review","Review & save"]],
+ info:[["what","Name"],["filing","Filing"],["review","Review & save"]],
+ change:[["how","New rate"],["review","Review & save"]],
+ correct:[["how","Fix the rate"],["review","Review & save"]]};
+const flow=()=>FLOWS[S.mode];
+const stepKey=()=>flow()[S.step][0];
+const EDITTAX={name:"ann arbor City",auth:"city",bound:"all",place:"",svcAll:false,svcs:[],svcText:"Solar, Battery",clsAll:true,cls:[],basis:"pct",rate:"150",usage:true,base:true,from:"2026-09-01",to:"2027-11-10",disc:"full",round:"half",code:"AA-CITY",label:"",gl:"2200-01",freq:"monthly",due:"20n",acctno:"city",allow:"0.5",late:"1.5",mail:"filings@ottumwawater.example"};
+function loadEdit(mode){const base=JSON.parse(JSON.stringify(EDITTAX));
+  Object.assign(S,base,{mode,step:0,saved:false,tried:{},open:null,reason:"",orig:JSON.parse(JSON.stringify(base))});
+  if(mode==="change"){S.rate="6.25";S.from="2026-11-01";}
+  if(mode==="correct"){S.rate="6.25";S.reason="Rate typed as 150%.";}}
+function loadNew(p){Object.assign(S,JSON.parse(JSON.stringify(PRESETS[p||"good"])),{mode:"new",step:0,saved:false,tried:{},open:null,reason:"",orig:null,svcText:""})}
+const dayBefore=iso=>{const d=new Date(iso+"T12:00:00");d.setDate(d.getDate()-1);return d.toISOString().slice(0,10)};
+
+function svcLabel(){if(S.svcText)return S.svcText;if(S.svcAll)return "All services";const n=SERVICES.filter(s=>S.svcs.includes(s[0])).map(s=>s[1]);return n.length?n.join(", "):"Choose services"}
+function clsLabel(){if(S.clsAll)return "Every customer class";const n=CLASSES.filter(c=>S.cls.includes(c[0])).map(c=>c[1]);return n.length?n.join(", "):"Choose classes"}
+function reachCount(){let n=PREM[S.bound];if(!S.clsAll&&S.cls.length)n=Math.max(1,Math.round(n*S.cls.length/CLASSES.length*1.6));return Math.min(n,PREM[S.bound])}
+function rateNum(){const v=parseFloat(S.rate);return isNaN(v)?null:v}
+function unitWord(){return S.basis==="pct"?"%":"$"}
+function rateText(){const r=rateNum();if(r===null)return "—";
+  return S.basis==="pct"?`${r}% of the bill`:S.basis==="fixed"?`${money(r)} per bill`:S.basis==="unit"?`${money(r)} per unit used`:`${money(r)} per meter`}
+function example(){const usage=40,base=20,r=rateNum()||0;
+  const taxed=(S.usage?usage:0)+(S.base?base:0);
+  let tax=S.basis==="pct"?taxed*r/100:S.basis==="fixed"?r:S.basis==="unit"?12*r:1*r;
+  tax=S.round==="down"?Math.floor(tax*100)/100:S.round==="up"?Math.ceil(tax*100)/100:Math.round(tax*100)/100;
+  return {usage,base,taxed,tax}}
+
+function errors(key){const E={};
+  if(key==="what"&&S.mode==="info"){if(!S.name.trim())E.name="Enter the name on the bill.";return E}
+  if(key==="what"){if(!S.name.trim())E.name="Enter the name on the bill.";if(!S.auth)E.auth="Choose an authority.";
+    if(S.bound==="named"&&!S.place.trim())E.place="Enter the place name.";
+    if(!S.svcAll&&!S.svcs.length)E.svcs="Choose at least one service.";
+    if(!S.clsAll&&!S.cls.length)E.cls="Choose at least one class.";}
+  if(key==="how"){const r=rateNum();if(r===null||r<0)E.rate="Enter the rate.";
+    if(S.basis!=="fixed"&&S.basis!=="meter"&&!S.usage&&!S.base)E.taxed="Tick at least one.";
+    if(S.mode==="correct"){if(!S.reason.trim())E.reason="Enter the reason.";if(S.orig&&r!==null&&String(r)===S.orig.rate)E.rate="Same as today's rate.";return E}
+    if(!S.from)E.from="Enter the start date.";
+    if(S.mode==="change"&&S.from&&S.from<=S.orig.from)E.from=`Must be after ${usDate(S.orig.from)}.`;
+    if(S.to&&S.from&&S.to<S.from)E.to="Ends before it starts.";}
+  if(key==="filing"){if(!S.gl)E.gl="Choose the liability account.";
+    if(S.mail&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(S.mail))E.mail="Enter a valid email.";
+    if(S.allow&&isNaN(parseFloat(S.allow)))E.allow="Enter a number.";if(S.late&&isNaN(parseFloat(S.late)))E.late="Enter a number.";}
+  return E}
+function warns(){const W={};const r=rateNum();if(S.basis==="pct"&&r!==null&&r>20)W.rate=`${r}% is high. Check the rate.`;return W}
+
+function rail(){$("#rail").innerHTML=flow().map(x=>x[1]).map((s,i)=>{const st=S.saved||i<S.step?"done":i===S.step?"current":"todo";
+  return `<button data-go="${i}" data-state="${st}" ${i>S.step&&!S.saved?"disabled":""}><span class="n">${st==="done"?"✓":i+1}</span><span class="lbl">${s}</span></button>`}).join("")}
+
+function f(id,label,html,o={}){return `<div class="f ${o.err?"err":o.warn?"wn":""} ${o.cls||""}"><label for="${id}" class="lab">${label}${o.req?' <span class="req">*</span>':""}</label>${html}${o.err?`<span class="msg">${o.err}</span>`:o.warn?`<span class="wmsg">${o.warn}</span>`:o.help?`<span class="help">${o.help}</span>`:""}</div>`}
+const sel=(id,opts,v)=>`<select id="${id}" data-k="${id.slice(2)}">${opts.map(o=>`<option value="${o[0]}" ${o[0]===v?"selected":""}>${o[1]}</option>`).join("")}</select>`;
+
+function ms(key,label,all,items,chosen,allLabel){
+  const open=S.open===key;
+  return `<div class="ms"><button type="button" class="ms-btn" id="f-${key}" data-ms="${key}" aria-expanded="${open}"><span class="val">${esc(key==="svcs"?svcLabel():clsLabel())}</span><span class="caret">▾</span></button>
+  ${open?`<div class="ms-list" role="listbox" aria-multiselectable="true"><label class="all"><input type="checkbox" data-msall="${key}" ${all?"checked":""}>${allLabel}</label>
+  ${items.map(it=>`<label><input type="checkbox" data-msitem="${key}" value="${it[0]}" ${!all&&chosen.includes(it[0])?"checked":""}>${it[2]?`<i class="sw" style="background:${it[2]}"></i>`:""}${it[1]}</label>`).join("")}</div>`:""}</div>`}
+
+function step1(){const E=S.tried.what?errors("what"):{};
+  const n=reachCount();
+  if(S.mode==="info"){const ro=(k,v)=>`<div class="fact"><span>${k}</span><b>${v}</b></div>`;
+   return `<section class="panel"><h2>Name</h2><div class="fields">
+   ${f("f-name","Name on bill",`<input id="f-name" data-k="name" value="${esc(S.name)}">`,{req:1,err:E.name,help:"Printed on the bill line."})}
+   </div></section>
+   <section class="panel"><div class="ph"><h2>Rate and reach</h2><span class="lock">🔒 Change with a new rate.</span></div>
+   <div class="facts">${ro("Authority",(AUTH.find(a=>a[0]===S.auth)||["","—"])[1])}${ro("Boundary",BOUND.find(b=>b[0]===S.bound)[1])}${ro("Services",svcLabel())}
+    ${ro("Customer classes",clsLabel())}${ro("Rate",rateText())}${ro("Dates",usDate(S.from)+" – "+(S.to?usDate(S.to):"No end"))}</div></section>
+   ${actions(0)}`}
+  return `<section class="panel"><h2>Name and authority</h2><div class="fields">
+   ${f("f-name","Name on bill",`<input id="f-name" data-k="name" value="${esc(S.name)}" placeholder="e.g. State sales tax">`,{req:1,err:E.name,help:"Printed on the bill line."})}
+   ${f("f-auth","Authority",sel("f-auth",AUTH,S.auth),{req:1,err:E.auth})}
+  </div></section>
+  <section class="panel"><h2>Who it reaches</h2><div class="fields">
+   ${f("f-bound","Boundary",sel("f-bound",BOUND,S.bound),{cls:S.bound==="named"?"":"span2"})}
+   ${S.bound==="named"?f("f-place","Place name",`<input id="f-place" data-k="place" value="${esc(S.place)}" placeholder="e.g. Riverside district">`,{req:1,err:E.place,help:"Matched to each premises' recorded place."}):""}
+   ${f("f-svcs","Services",ms("svcs","Services",S.svcAll,SERVICES,S.svcs,"All services"),{err:E.svcs,help:"Only services this utility offers."})}
+   ${f("f-cls","Customer classes",ms("cls","Customer classes",S.clsAll,CLASSES,S.cls,"Every customer class"),{err:E.cls})}
+  </div>
+  <div class="reach"><div class="reach-top"><span><b class="big num">${n}</b> <span class="muted">of ${PREM.all} premises</span></span>
+   <span class="pill ${S.bound==="all"?"p-ok":"p-warn"}">${S.bound==="all"?"Every premises":(PREM.all-n)+" not reached"}</span></div>
+   <div class="tw"><table><thead><tr><th>Premises</th><th>Address</th><th>City limits</th><th>Class</th></tr></thead><tbody>
+   ${SAMPLE.filter(r=>S.bound==="all"||(S.bound==="inside"?r[2]==="Inside":S.bound==="outside"?r[2]==="Outside":true)).slice(0,4).map(r=>`<tr><td class="num">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join("")}
+   </tbody></table></div>
+   <button class="btn link" data-toast="Opens the full list of ${n} premises.">See all ${n}</button>
+  </div></section>
+  ${actions(0)}`}
+
+function step2(){const E=S.tried.how?errors("how"):{};const ed=S.mode!=="new";const W=warns();const pct=S.basis==="pct";
+  const ex=example();
+  return `<section class="panel"><h2>Rate</h2><div class="fields">
+   ${f("f-basis","Charged as",sel("f-basis",BASIS,S.basis),{})}
+   ${f("f-rate","Rate",`<div class="suffix">${pct?"":"<span>$</span>"}<input id="f-rate" data-k="rate" inputmode="decimal" value="${esc(S.rate)}" placeholder="${pct?"6.25":"2.00"}">${pct?"<span>%</span>":""}</div>`,{req:1,err:E.rate,warn:W.rate,help:pct?"Type 6.25 for 6.25%.":"Dollars and cents."})}
+   ${S.basis==="pct"||S.basis==="unit"?`<div class="f span2 ${E.taxed?"err":""}"><span class="lab">What is taxed <span class="req">*</span></span><div class="ticks">
+     <label><input type="checkbox" data-tick="usage" ${S.usage?"checked":""}>Usage charges</label>
+     <label><input type="checkbox" data-tick="base" ${S.base?"checked":""}>Base charges</label></div>${E.taxed?`<span class="msg">${E.taxed}</span>`:""}</div>`:""}
+  </div></section>
+  ${S.mode==="correct"?`<section class="panel"><div class="ph"><h2>Dates</h2><span class="lock">🔒 Same dates as today.</span></div><div class="fields">
+   ${f("f-from","Starts",`<div class="ro num">${usDate(S.from)}</div>`,{})}${f("f-to","Ends",`<div class="ro num">${S.to?usDate(S.to):"No end"}</div>`,{})}</div></section>
+  <section class="panel"><h2>Reason</h2><div class="fields">
+   ${f("f-reason","Why it was wrong",`<input id="f-reason" data-k="reason" value="${esc(S.reason)}" placeholder="e.g. Rate typed as 150%.">`,{req:1,cls:"span2",err:E.reason,help:"Shown in Audit."})}</div></section>`
+  :`<section class="panel"><h2>Dates</h2><div class="fields">
+   ${f("f-from",S.mode==="change"?"New rate starts":"Starts",`<input id="f-from" type="date" data-k="from" value="${S.from}">`,{req:1,err:E.from,help:S.mode==="change"&&S.from?`Today's rate ends ${usDate(dayBefore(S.from))}.`:"Fixed once a bill uses it."})}
+   ${f("f-to","Ends",`<input id="f-to" type="date" data-k="to" value="${S.to}">`,{err:E.to,help:"Leave empty if it has no end."})}
+  </div></section>`}
+  <section class="panel"><h2>Discounts and rounding</h2><div class="fields">
+   ${f("f-disc","Discounts",sel("f-disc",DISC,S.disc),{})}
+   ${f("f-round","Rounding",sel("f-round",ROUND,S.round),{help:"Use what your authority requires."})}
+  </div>
+  <div class="tw"><table><thead><tr><th>Example bill</th><th class="r">Tax full amount</th><th class="r">Tax after discounts</th></tr></thead><tbody>
+   <tr><td>Charges</td><td class="r num">$60.00</td><td class="r num">$60.00</td></tr>
+   <tr><td>Discount</td><td class="r num">—</td><td class="r num">−$5.00</td></tr>
+   <tr><td>Taxed amount</td><td class="r num">$60.00</td><td class="r num">$55.00</td></tr>
+   <tr class="tot"><td>Tax at ${pct&&rateNum()!==null?rateNum()+"%":"6.25%"}</td><td class="r num">${money(60*((pct?rateNum():null)??6.25)/100)}</td><td class="r num">${money(55*((pct?rateNum():null)??6.25)/100)}</td></tr>
+  </tbody></table></div>
+  ${ed?"":`<div><button class="btn link" data-toast="Opens Plans & Rates › Exemptions.">Set exemptions ↗</button></div>`}
+  </section>
+  ${actions(S.step)}`}
+
+function stepFiling(){const E=S.tried.filing?errors("filing"):{};
+  return `<section class="panel"><h2>On the bill</h2><div class="fields">
+   ${f("f-code","Code",`<input id="f-code" data-k="code" value="${esc(S.code)}" placeholder="e.g. TX-STATE">`,{help:"Your own short code."})}
+   ${f("f-label","Bill label",`<input id="f-label" data-k="label" value="${esc(S.label)}" placeholder="${esc(S.name)||"Name on bill"}">`,{help:"Empty shows the name."})}
+  </div></section>
+  <section class="panel"><h2>Filing</h2><div class="fields">
+   ${f("f-gl","Liability account",sel("f-gl",GLS,S.gl),{req:1,err:E.gl,help:"Where collected tax is held."})}
+   ${f("f-freq","Filed",sel("f-freq",FREQ,S.freq),{})}
+   ${f("f-due","Due",sel("f-due",DUE,S.due),{})}
+   ${f("f-acctno","Account with the authority",sel("f-acctno",AACCT,S.acctno),{help:`From Settings › Accounting. <button class="btn link" data-toast="Opens Settings › Accounting › Authority accounts.">Add one</button>`})}
+   ${f("f-allow","Allowance you keep",`<div class="suffix"><input id="f-allow" data-k="allow" inputmode="decimal" value="${esc(S.allow)}" placeholder="0.5"><span>%</span></div>`,{err:E.allow})}
+   ${f("f-late","Late-filing interest",`<div class="suffix"><input id="f-late" data-k="late" inputmode="decimal" value="${esc(S.late)}" placeholder="1.5"><span>% / month</span></div>`,{err:E.late})}
+   ${f("f-mail","Filing reminder to",`<input id="f-mail" data-k="mail" type="email" value="${esc(S.mail)}" placeholder="bookkeeper@example.com">`,{cls:"span2",err:E.mail})}
+  </div></section>
+  ${actions(S.step)}`}
+function step3(){if(S.mode!=="new")return stepReviewEdit();const ex=example();const W=warns();const n=reachCount();
+  if(S.saved) return `<section class="panel done"><div class="check">✓</div><h2>${esc(S.name)} saved</h2><div>${rateText()} · from ${usDate(S.from)} · reaches ${n} premises.</div><div class="actions" style="width:100%"><span></span><div class="right"><button class="btn" data-toast="Opens the tax.">Open tax</button><button class="btn primary" id="again">Add another</button></div></div></section>`;
+  const row=(k,v,go)=>`<div>${k}</div><div>${v}${go!==undefined?`<button class="edit" data-go="${go}">Edit</button>`:""}</div>`;
+  return `${W.rate?`<div class="note warn"><div><b>${W.rate}</b> On a $60.00 bill this adds ${money(ex.tax)}.</div></div>`:""}
+  <section class="panel"><h2>Check before saving</h2><div class="rev">
+   ${row("Name on bill",esc(S.name)||"—",0)}
+   ${row("Authority",(AUTH.find(a=>a[0]===S.auth)||["",""])[1]||"—",0)}
+   ${row("Boundary",BOUND.find(b=>b[0]===S.bound)[1]+(S.bound==="named"?" · "+esc(S.place):""),0)}
+   ${row("Services",svcLabel(),0)}
+   ${row("Customer classes",clsLabel(),0)}
+   ${row("Rate",`<b>${rateText()}</b>`,1)}
+   ${row("What is taxed",[S.usage&&"Usage charges",S.base&&"Base charges"].filter(Boolean).join(", ")||"—",1)}
+   ${row("Starts",usDate(S.from),1)}
+   ${row("Ends",S.to?usDate(S.to):"No end date",1)}
+   ${row("Discounts",DISC.find(d=>d[0]===S.disc)[1],1)}
+   ${row("Rounding",ROUND.find(r=>r[0]===S.round)[1],1)}
+   ${row("Code · bill label",(esc(S.code)||"—")+" · "+(esc(S.label)||esc(S.name)||"—"),2)}
+   ${row("Liability account",(GLS.find(g=>g[0]===S.gl)||["","—"])[1]||"—",2)}
+   ${row("Filed · due",FREQ.find(x=>x[0]===S.freq)[1]+(S.due?" · "+DUE.find(d=>d[0]===S.due)[1]:""),2)}
+   ${row("Account with the authority",(AACCT.find(a=>a[0]===S.acctno)||["","—"])[1]||"—",2)}
+   ${row("Allowance · late interest",(S.allow?S.allow+"%":"—")+" · "+(S.late?S.late+"% / month":"—"),2)}
+   ${row("Filing reminder to",esc(S.mail)||"—",2)}
+  </div></section>
+  <section class="panel"><h2>On an example bill</h2><div class="tw"><table><tbody>
+   <tr><td>Usage charges</td><td class="r num">${money(ex.usage)}</td></tr>
+   <tr><td>Base charges</td><td class="r num">${money(ex.base)}</td></tr>
+   <tr><td>Taxed amount</td><td class="r num">${money(ex.taxed)}</td></tr>
+   <tr class="tot"><td>${esc(S.name)||"Tax"}</td><td class="r num">${money(ex.tax)}</td></tr>
+  </tbody></table></div>
+  <div class="note info"><div>Reaches <b>${n} of ${PREM.all}</b> premises. Charges nobody before ${usDate(S.from)}.</div></div></section>
+  ${actions(3)}`}
+
+function actions(i){const key=flow()[i][0];const E=S.tried[key]?errors(key):{};const k=Object.keys(E).length;const last=i===flow().length-1;
+  const save={new:"Save tax",info:"Save changes",change:"Save new rate",correct:"Save correction"}[S.mode];
+  const cancel=S.mode==="new"?'data-toast="Back to Taxes & fees."':'data-open="t1"';
+  return `<div class="actions"><button class="btn" ${i===0?cancel:`data-go="${i-1}"`}>${i===0?"Cancel":"Back"}</button>
+  <div class="right">${k?`<span class="why">Fix ${k} thing${k>1?"s":""} first.</span>`:""}
+  <button class="btn primary" id="next">${last?save:"Continue"}</button></div></div>`}
+
+function stepReviewEdit(){const o=S.orig;const t=TAXES[0];const r=rateNum();
+  const oldR=parseFloat(o.rate),cur=S.mode==="info"?null:r;
+  if(S.saved){const line={info:"Saved on this version. Logged in Audit.",change:`New rate ${rateText()} from ${usDate(S.from)}.`,correct:`Corrected to ${rateText()}. Same dates.`}[S.mode];
+    return `<section class="panel done"><div class="check">✓</div><h2>${esc(S.name)} saved</h2><div>${line}</div><div class="actions" style="width:100%"><span></span><div class="right"><button class="btn primary" data-open="t1">Back to tax</button></div></div></section>`}
+  const lbl=(arr,v)=>(arr.find(a=>a[0]===v)||["","—"])[1]||"—";
+  const F=[["Name on bill","name",v=>esc(v)||"—"],["Code","code",v=>esc(v)||"—"],["Bill label","label",v=>esc(v)||"Same as name"],["Liability account","gl",v=>lbl(GLS,v)],["Filed","freq",v=>lbl(FREQ,v)],["Due","due",v=>lbl(DUE,v)],["Account with the authority","acctno",v=>lbl(AACCT,v)],["Allowance you keep","allow",v=>v?v+"%":"—"],["Late-filing interest","late",v=>v?v+"% / month":"—"],["Filing reminder to","mail",v=>esc(v)||"—"],
+   ["Charged as","basis",v=>lbl(BASIS,v)],["Rate","rate",v=>v?(S.basis==="pct"?v+"%":money(parseFloat(v))):"—"],["Starts","from",usDate],["Ends","to",v=>v?usDate(v):"No end"],["Discounts","disc",v=>lbl(DISC,v)],["Rounding","round",v=>lbl(ROUND,v)]];
+  const ch=F.filter(x=>String(S[x[1]])!==String(o[x[1]])).filter(x=>!(S.mode==="change"&&x[1]==="from"));
+  const go={name:0,code:1,label:1,gl:1,freq:1,due:1,acctno:1,allow:1,late:1,mail:1}; 
+  const changes=ch.length?`<div class="tw"><table><thead><tr><th>Field</th><th>Before</th><th>After</th><th></th></tr></thead><tbody>
+    ${ch.map(x=>`<tr><td>${x[0]}</td><td class="muted">${x[2](o[x[1]])}</td><td><b>${x[2](S[x[1]])}</b></td><td><button class="btn link" data-go="${S.mode==="info"?go[x[1]]:0}">Edit</button></td></tr>`).join("")}</tbody></table></div>`
+    :`<div class="note info"><div>Nothing changed yet.</div></div>`;
+  const endT=o.to?usDate(o.to):"No end";
+  const rows=S.mode==="info"?`<tr><td>v1 · this version</td><td class="r num">${oldR}%</td><td class="num">${usDate(o.from)} – ${endT}</td><td>Updated in place</td></tr>`
+   :S.mode==="change"?`<tr><td>v1 · today</td><td class="r num">${oldR}%</td><td class="num">${usDate(o.from)} – ${usDate(dayBefore(S.from))}</td><td>Gets an end date</td></tr><tr><td><b>v2 · new</b></td><td class="r num"><b>${rateText().split(" ")[0]}</b></td><td class="num">${usDate(S.from)} – ${S.to?usDate(S.to):"No end"}</td><td>New version</td></tr>`
+   :`<tr><td>v1 · today</td><td class="r num">${oldR}%</td><td class="num">${usDate(o.from)} – ${endT}</td><td>Superseded, kept</td></tr><tr><td><b>v2 · correction</b></td><td class="r num"><b>${rateText().split(" ")[0]}</b></td><td class="num">${usDate(o.from)} – ${endT}</td><td>Replaces v1</td></tr>`;
+  const bill=S.mode==="info"?"":`<section class="panel"><h2>On a $60.00 bill</h2><div class="tw"><table><thead><tr><th></th><th class="r">Before</th><th class="r">After</th></tr></thead><tbody>
+    <tr class="tot"><td>${esc(S.name)}</td><td class="r num">${money(60*oldR/100)}</td><td class="r num">${money(example().tax)}</td></tr></tbody></table></div></section>`;
+  return `<section class="panel"><h2>What changes</h2>${changes}${S.mode==="correct"?`<div class="fields"><div class="f span2"><span class="lab">Reason</span><div class="ro">${esc(S.reason)}</div></div></div>`:""}</section>
+  ${bill}
+  <section class="panel"><h2>How it is saved</h2><div class="tw"><table><thead><tr><th>Version</th><th class="r">Rate</th><th>Dates</th><th>After saving</th></tr></thead><tbody>${rows}</tbody></table></div>
+  ${S.mode==="correct"?`<div class="note warn"><div>Issued bills keep ${oldR}%. Correct those bills separately.</div></div>`:S.mode==="change"?`<div class="note info"><div>Bills before ${usDate(S.from)} keep ${oldR}%.</div></div>`:""}</section>
+  ${actions(S.step)}`}
+
+function summary(){const n=reachCount();const ex=example();const W=warns();
+  $("#summary").innerHTML=`<div class="kicker">This tax</div>
+   <div class="bigrate num">${rateNum()===null?"—":S.basis==="pct"?rateNum()+"%":money(rateNum())}</div>
+   <div class="muted">${S.basis==="pct"?"of the bill":BASIS.find(b=>b[0]===S.basis)[1].replace(/^An? /,"").replace(/^amount /,"")}</div>
+   ${W.rate?`<span class="pill p-warn">Check the rate</span>`:""}
+   <div class="hr"></div>
+   <div class="sum">
+    <div class="row"><span>Name</span><span>${esc(S.name)||"—"}</span></div>
+    <div class="row"><span>Reaches</span><span class="num">${n} premises</span></div>
+    <div class="row"><span>Services</span><span>${svcLabel()}</span></div>
+    <div class="row"><span>Classes</span><span>${S.clsAll?"All":S.cls.length}</span></div>
+    <div class="row"><span>Starts</span><span>${usDate(S.from)}</span></div>
+    <div class="row"><span>Filed</span><span>${FREQ.find(x=>x[0]===S.freq)[1]}</span></div>
+    <div class="row"><span>Account</span><span>${S.gl||"—"}</span></div>
+   </div>
+   <div class="hr"></div>
+   <div class="sum"><div class="row"><span>On a $60.00 bill</span><span class="num">${money(ex.tax)}</span></div></div>
+   <div class="chips">${(S.svcAll?SERVICES:SERVICES.filter(s=>S.svcs.includes(s[0]))).map(s=>`<span class="chip"><i style="background:${s[2]}"></i>${s[1]}</span>`).join("")}</div>`}
+
+const FIXES=[
+ ["1","Services lists all 11 services.","Lists only the 4 this utility offers."],
+ ["1","Services: a text line plus a separate add box.","One dropdown. “All services” is its first tick."],
+ ["1","Customer classes: same two-part control.","One dropdown. “Every customer class” first."],
+ ["1","Class list opens over “Named place”.","Dropdowns open below, inside their own box."],
+ ["1","Red capital headings beside normal labels.","Every field label looks the same."],
+ ["1","“Recorded City limits decide first…” is unclear.","Boundary choices say it plainly. Place name only when chosen."],
+ ["1","“78 of 84 match” and a run-on list of codes.","Big count, what is not reached, a short table, “See all”."],
+ ["2","Rate typed as a fraction: 0.625 is 62.5%.","Typed and shown as a percent, with a % box."],
+ ["2","No warning for a very high rate.","Over 20% warns before Continue and on Review."],
+ ["2","Basis list opens over the Rate box.","Basis and Rate sit side by side."],
+ ["2","Tick boxes jammed together.","Spaced ticks with their own label."],
+ ["2","“Only these two can be taxed.”","Removed. The screen shows the two ticks only."],
+ ["2","Confusing discount example.","A small table: full amount vs after discounts."],
+ ["2","Rounding says “leave blank”, but has no blank.","Three clear choices. Standard is the default."],
+ ["2","Subtitle repeats the heading.","Removed."],
+ ["2","“Exemptions are on the Exemptions tab.” as text.","A link: Set exemptions."],
+ ["3","Review shows the raw “0.625”.","Shows “6.25% of the bill”, with an Edit link per row."],
+ ["3","Dates as 2026-10-01; no example.","10/01/2026, and the tax on an example bill."],
+ ["–","Code, bill label and filing only on the details page.","New step 3, Filing. Asked once at creation, shown on details."],
+ ["–","Due date and authority account typed as free text.","Two dropdowns. Accounts come from Settings › Accounting."]];
+function fixes(){$("#fixrows").innerHTML=FIXES.map((r,i)=>`<tr><td class="num">${i+1}</td><td>Step ${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("")}
+
+const RENDER={what:()=>step1(),how:()=>step2(),filing:()=>stepFiling(),review:()=>step3()};
+const CHOICES=[["info","Name and filing","Saved on this version"],["change","New rate from a date","Makes a new version"],["correct","Fix a mistake","Same dates, right rate"]];
+function head(){const ed=S.mode!=="new";
+  $("#wizCrumb").innerHTML=ed?`<button class="btn link" data-open="t1">← ${esc(S.orig.name)}</button>`:`<a href="#">Plans &amp; Rates</a> › Taxes &amp; fees`;
+  $("#wizTitle").textContent=ed?`Edit ${S.orig.name}`:"New tax or fee";
+  $("#draft").hidden=ed;
+  const c=$("#editChoice");c.hidden=!ed;
+  if(ed)c.innerHTML=`<h2>What to change</h2><div class="choice three">${CHOICES.map(x=>`<button data-mode="${x[0]}" aria-pressed="${S.mode===x[0]}"><b>${x[1]}</b><span>${x[2]}</span></button>`).join("")}</div>`}
+function render(){head();rail();$("#main").innerHTML=RENDER[stepKey()]();summary()}
+function toast(t){const el=$("#toast");el.textContent=t;el.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>el.hidden=true,2200)}
+
+document.addEventListener("click",e=>{const t=e.target.closest("button,[data-toast]");
+  if(!e.target.closest(".ms")&&S.open){S.open=null;render();}
+  if(!t)return;
+  if(t.dataset.preset){loadNew(t.dataset.preset);setView("wiz");
+    document.querySelectorAll("[data-preset]").forEach(b=>b.setAttribute("aria-pressed",b===t));
+    if(t.dataset.preset==="typo")S.step=3;render();return}
+  if(t.dataset.toast){toast(t.dataset.toast);return}
+  if(t.dataset.go!==undefined){S.step=+t.dataset.go;S.saved=false;render();window.scrollTo({top:0,behavior:"smooth"});return}
+  if(t.dataset.ms){S.open=S.open===t.dataset.ms?null:t.dataset.ms;render();return}
+  if(t.id==="draft"){toast("Draft saved.");return}
+  if(t.id==="again"){loadNew("empty");render();return}
+  if(t.id==="next"){const i=S.step,k=stepKey();
+    if(i<flow().length-1){S.tried[k]=true;if(Object.keys(errors(k)).length){render();return}S.step++;render();window.scrollTo({top:0,behavior:"smooth"});return}
+    S.saved=true;render();toast(S.mode==="new"?`${S.name||"Tax"} saved.`:"Saved. Logged in Audit.");}
+});
+document.addEventListener("change",e=>{const el=e.target;
+  if(el.dataset.msall){const k=el.dataset.msall;if(k==="svcs")S.svcAll=el.checked;else S.clsAll=el.checked;render();return}
+  if(el.dataset.msitem){const k=el.dataset.msitem;const arr=k==="svcs"?"svcs":"cls";const all=k==="svcs"?"svcAll":"clsAll";
+    if(S[all]){S[all]=false;S[arr]=[];}
+    S[arr]=el.checked?[...new Set([...S[arr],el.value])]:S[arr].filter(v=>v!==el.value);
+    if(!S[arr].length)S[all]=true;render();return}
+  if(el.dataset.tick){S[el.dataset.tick]=el.checked;render();return}
+  if(el.dataset.k){S[el.dataset.k]=el.value;if(el.tagName==="INPUT"&&el.type!=="date")summary();else render();}
+});
+document.addEventListener("input",e=>{const el=e.target;if(el.dataset.k&&el.tagName==="INPUT"&&el.type!=="date"){S[el.dataset.k]=el.value;summary();
+  if(el.dataset.k==="rate"){const pos=el.selectionStart;render();const n=$("#f-rate");if(n){n.focus();try{n.setSelectionRange(pos,pos)}catch(_){}}}}});
+fixes();render();
+
+/* ───────── LIST + DETAILS ───────── */
+const TAXES=[
+ {id:"t1",code:"AA-CITY",due:"2026-10-20",next:null,ver:"v1",name:"ann arbor City",auth:"City",svcs:["Solar","Battery"],cls:"Every class",rate:150,basis:"pct",from:"2026-09-01",to:"2027-11-10",status:"Active",gl:"2200-01 · Tax payable · Local",prem:47,plans:3,coll:0},
+ {id:"t2",code:"OTT-CITY",due:"2026-10-20",next:null,ver:"v1",name:"City of Ottumwa",auth:"City",svcs:["Solar","Battery"],cls:"Residential",rate:150,basis:"pct",from:"2026-09-01",to:"",status:"Active",gl:"2200-01 · Tax payable · Local",prem:31,plans:2,coll:0},
+ {id:"t3",code:"BX-CNTY",due:"2026-10-20",next:null,ver:"v3",name:"Bexar County",auth:"County",svcs:["All services"],cls:"Every class",rate:2,basis:"pct",from:"2026-01-01",to:"",status:"Active",gl:"2200-01 · Tax payable · Local",prem:84,plans:5,coll:1284.22},
+ {id:"t4",code:"TX-STATE",due:"2026-10-20",next:{rate:"6.5%",from:"2027-01-01"},ver:"v1",name:"TX State Utility Tax",auth:"State",svcs:["All services"],cls:"Commercial, Industrial",rate:6.25,basis:"pct",from:"2026-01-01",to:"2026-12-31",status:"Active",gl:"2200-02 · Tax payable · State",prem:22,plans:2,coll:3015.60},
+ {id:"t5",code:"STORM",due:null,next:null,ver:"v1",name:"Storm water fee",auth:"City",svcs:["Storm water"],cls:"Every class",rate:1.25,basis:"meter",from:"2025-07-01",to:"2026-06-30",status:"Ended",gl:"2200-01 · Tax payable · Local",prem:84,plans:5,coll:0}];
+const V={view:"wiz",q:"",st:"all",sel:"t1",tab:"over",more:false};
+const rtxt=t=>t.basis==="pct"?`${t.rate}%`:`${money(t.rate)} / meter`;
+function listView(){
+  const rows=TAXES.filter(t=>(V.st==="all"||t.status===V.st)&&(!V.q||(t.name+t.auth).toLowerCase().includes(V.q.toLowerCase())));
+  return `<header class="head"><div><div class="crumb">Plans &amp; Rates</div><h1>Plans &amp; Rates</h1><div class="muted">5 plans · 9 rate schedules · 36 charge codes · 6 discounts · ${TAXES.length} taxes &amp; fees</div></div>
+   <div class="actions" style="border:0;padding:0"><button class="btn" data-toast="Opens History.">History</button><button class="btn primary" data-view="wiz">+ New tax or fee</button></div></header>
+  <nav class="tabs" role="tablist">${["Plans","Rate schedules","Charge codes","Discounts","Taxes & fees"].map(x=>`<button role="tab" aria-selected="${x==="Taxes & fees"}">${x}</button>`).join("")}</nav>
+  ${TAXES.some(t=>t.basis==="pct"&&t.rate>20&&t.status==="Active")?`<div class="note warn"><div><b>2 taxes charge over 20%.</b> <button class="btn link" data-lq="150">Show them</button></div></div>`:""}
+  <div class="toolbar"><input id="lq" placeholder="Find a tax or authority" value="${esc(V.q)}">
+   ${["all","Active","Draft","Ended"].map(x=>`<button class="seg" data-st="${x}" aria-pressed="${V.st===x}">${x==="all"?"All":x}</button>`).join("")}
+   <button class="ico" title="Download CSV" aria-label="Download CSV">⤓</button></div>
+  <div class="tw"><table><thead><tr><th>Tax or fee</th><th>Version</th><th>Applies to</th><th class="r">Rate</th><th>From</th><th>To</th><th>GL account</th><th class="r">Premises</th><th>Status</th><th></th></tr></thead><tbody>
+  ${rows.map(t=>`<tr><td><button class="btn link" data-open="${t.id}">${esc(t.name)}</button><div class="muted">${t.auth}</div></td>
+   <td><span class="pill p-off">${t.ver}</span></td>
+   <td><div class="chips">${t.svcs.map(s=>`<span class="chip">${s}</span>`).join("")}</div><div class="muted">${t.cls}</div></td>
+   <td class="r"><span class="rate num">${rtxt(t)}</span>${t.basis==="pct"&&t.rate>20?`<div><span class="pill p-warn">Over 20%</span></div>`:""}</td>
+   <td class="num">${usDate(t.from)}</td><td class="num">${t.to?usDate(t.to):"No end"}</td>
+   <td><b class="num">${t.gl.split(" · ")[0]}</b><div class="muted">${t.gl.split(" · ").slice(1).join(" · ")}</div></td><td class="r num">${t.prem} of 84</td>
+   <td><span class="pill ${t.status==="Active"?"p-ok":"p-off"}">${t.status}</span></td>
+   <td><button class="ico" data-open="${t.id}" title="Open" aria-label="Open">›</button></td></tr>`).join("")||`<tr><td colspan="10" class="muted">No tax matches.</td></tr>`}
+  </tbody></table></div><div class="muted num">${rows.length} of ${TAXES.length}</div>`;}
+const FIL={t1:{code:"AA-CITY",label:"",gl:"2200-01 · Tax payable · Local",freq:"Monthly",due:"20th of the next month",acctno:"City of Ottumwa Finance · OTT-0042",allow:"0.5",late:"1.5",mail:"filings@ottumwawater.example"}};
+const PLANS=[["Residential Standard","Solar, Battery","Residential",412,"09/01/2026"],["Commercial","Solar, Battery","Commercial",37,"09/01/2026"],["Net metering","Solar","Every class",58,"09/15/2026"]];
+const AUDIT=[["09/28/2026 11:05 AM","Vijay Bikkad","Changed the end date","v1 · No end → 11/10/2027","Council approved to 11/10/2027."],["09/20/2026 9:02 AM","Dana Whitfield","Changed filing reminder","— → filings@ottumwawater.example",""],["09/15/2026 4:40 PM","Dana Whitfield","Added to plan","Net metering",""],["09/01/2026 8:00 AM","System","Went live","Draft → Active",""],["08/28/2026 3:12 PM","Vijay Bikkad","Created","Draft · 150% · Solar, Battery",""]];
+function detailView(){const t=TAXES.find(x=>x.id===V.sel);const fl=FIL[t.id]||{code:"",label:"",gl:t.gl,freq:"Monthly",due:"",acctno:"",allow:"",late:"",mail:""};
+  const hist=t.next?[["v2",t.next.rate,usDate(t.next.from)+" – No end","Scheduled"],[t.ver,rtxt(t),usDate(t.from)+" – "+usDate(dayBefore(t.next.from)),t.status]]:t.id==="t3"?[["v3",rtxt(t),"01/01/2026 – No end","Active"],["v2","1.75%","01/01/2025 – 12/31/2025","Ended"],["v1","1.5%","01/01/2024 – 12/31/2024","Ended"]]:[[t.ver,rtxt(t),usDate(t.from)+" – "+(t.to?usDate(t.to):"No end"),t.status]];
+  const fact=(k,v)=>`<div class="fact"><span>${k}</span><b>${v||"—"}</b></div>`;
+  const over=`<div class="tiles"><div class="tile"><span>Rate</span><b class="num">${rtxt(t)}</b><small>${t.basis==="pct"?"of the taxed amount":""}</small></div>
+    <div class="tile"><span>Premises</span><b class="num">${t.prem}</b><small>of 84</small></div><div class="tile"><span>Plans</span><b class="num">${t.plans}</b><small>using it</small></div>
+    <div class="tile"><span>Collected</span><b class="num">${money(t.coll)}</b><small>this month</small></div></div>
+   ${t.basis==="pct"&&t.rate>20?`<div class="note warn"><div><b>${t.rate}% is high.</b> On a $60.00 bill it adds ${money(60*t.rate/100)}. <button class="btn link" data-mode="correct">Fix the rate</button></div></div>`:""}
+   <section class="panel"><h2>Rate and scope</h2>
+    <div class="facts">${fact("Charged as",t.basis==="pct"?"A percentage of the bill":"An amount per meter")}${fact("Rate",rtxt(t))}${fact("What is taxed","Usage and base charges")}
+     ${fact("Services",t.svcs.join(", "))}${fact("Customer classes",t.cls)}${fact("Boundary","Everywhere")}
+     ${fact("Starts",usDate(t.from))}${fact("Ends",t.to?usDate(t.to):"No end")}${fact("Discounts · rounding","Full amount · half up")}</div>
+    <div class="tw"><table><thead><tr><th>Version</th><th class="r">Rate</th><th>Dates</th><th>Status</th></tr></thead><tbody>
+    ${hist.map(h=>`<tr><td>${h[0]}</td><td class="r num"><b>${h[1]}</b></td><td class="num">${h[2]}</td><td><span class="pill ${h[3]==="Active"?"p-ok":"p-off"}">${h[3]}</span></td></tr>`).join("")}</tbody></table></div>
+    <div><button class="btn link" data-dtab="audit">See every change in Audit</button></div></section>
+   <section class="panel"><h2>On the bill and filing</h2>
+    <div class="facts">${fact("Code",fl.code)}${fact("Bill label",fl.label||t.name)}${fact("Liability account",fl.gl)}
+     ${fact("Filed",fl.freq)}${fact("Due",fl.due)}${fact("Account with the authority",fl.acctno)}
+     ${fact("Allowance you keep",fl.allow?fl.allow+"%":"")}${fact("Late-filing interest",fl.late?fl.late+"% / month":"")}${fact("Filing reminder to",fl.mail)}</div></section>`;
+  const plansT=`<section class="panel"><div class="ph"><h2>Plans</h2><button class="btn" data-toast="Opens a plan picker.">+ Add to a plan</button></div><div class="tw"><table><thead><tr><th>Plan</th><th>Services taxed</th><th>Customer classes</th><th class="r">Accounts</th><th>Since</th><th></th></tr></thead><tbody>
+   ${PLANS.map(p=>`<tr><td><button class="btn link" data-toast="Opens ${p[0]}.">${p[0]}</button></td><td>${p[1]}</td><td>${p[2]}</td><td class="r num">${p[3]}</td><td class="num">${p[4]}</td><td><button class="ico" title="Remove from plan" aria-label="Remove from plan" data-toast="Asks to confirm removal.">✕</button></td></tr>`).join("")}
+   <tr class="tot"><td>3 plans</td><td></td><td></td><td class="r num">${PLANS.reduce((a,p)=>a+p[3],0)}</td><td></td><td></td></tr></tbody></table></div></section>`;
+  const auditT=`<section class="panel"><div class="ph"><h2>Audit</h2><button class="ico" title="Download CSV" aria-label="Download CSV">⤓</button></div><div class="tw"><table><thead><tr><th>When</th><th>Who</th><th>What</th><th>Change</th><th>Reason</th></tr></thead><tbody>
+   ${AUDIT.map(a=>`<tr><td class="num">${a[0]}</td><td>${a[1]}</td><td>${a[2]}</td><td>${a[3]}</td><td>${a[4]||"—"}</td></tr>`).join("")}</tbody></table></div></section>`;
+  const more=V.more?`<div class="menu" role="menu"><button role="menuitem" data-toast="Opens a copy in the wizard.">Duplicate</button><button role="menuitem" data-toast="Retire asks for an end date.">Retire</button></div>`:"";
+  return `<header class="head"><div><div class="crumb"><button class="btn link" data-view="list">← Taxes &amp; fees</button></div><h1>${esc(t.name)} <span class="hcode num">${t.code}</span></h1>
+   <div class="toolbar"><span class="pill ${t.status==="Active"?"p-ok":"p-off"}">${t.status}</span><span class="pill p-off">${t.ver}</span>${t.basis==="pct"&&t.rate>20?`<span class="pill p-warn">Over 20%</span>`:""}
+    <span class="muted">${t.auth} · ${usDate(t.from)} – ${t.to?usDate(t.to):"no end"}</span>
+    ${t.due&&t.status==="Active"?`<span class="hfact">Filing due <b class="num">${usDate(t.due)}</b></span>`:""}
+    ${t.next?`<span class="hfact">Next: <b class="num">${t.next.rate} from ${usDate(t.next.from)}</b></span>`:""}</div></div>
+   <div class="hact"><button class="btn primary" data-mode="info">Edit</button>
+    <span class="morewrap"><button class="btn" data-more aria-expanded="${!!V.more}">More ▾</button>${more}</span></div></header>
+  <nav class="tabs" role="tablist">${[["over","Overview"],["plans","Plans · "+t.plans],["audit","Audit"]].map(x=>`<button role="tab" data-dtab="${x[0]}" aria-selected="${V.tab===x[0]}">${x[1]}</button>`).join("")}</nav>
+  ${V.tab==="over"?over:V.tab==="plans"?plansT:auditT}`;}
+const LISTFIX=[["Long paragraph above the table.","Removed. The table speaks for itself."],["Name repeats the authority: “ann arbor City · City”.","Name on one line, authority under it."],["“150.00% of the taxable amount” wraps over two lines.","Rate shown big: 150%. Over 20% gets a pill."],["No warning that two taxes charge 150%.","A banner: 2 taxes charge over 20%."],["No reach in the list.","A “47 of 84” premises column."],["Long GL account text wraps in the list.","GL code in bold, its name small under it."],["One “Dates” cell; no version.","From and To columns, and a Version column."],["Pencil edits a live tax’s rate.","Open goes to details. Rate changes there."]];
+const DETFIX=[["Kicker “TAX · CITY · CITY” repeats itself.","Name, status, authority and dates on one line."],["Header says little: name and status only.","Adds code, version, Over 20%, next filing due, and a scheduled rate change."],["Long sentence under the title.","Removed. Facts sit in their own boxes."],["“Not worked out yet” band with no meaning.","Removed."],["Every section opens with an explanation.","No explanations. Short labels only."],["Rate tile shows the 150% without a warning.","Warning with its effect on a $60.00 bill."],["Four buttons for one job.","One Edit button, top right. It opens the New form, set to what you change."],["Edits happen in a side panel.","No side panel. Edit is the full-page form: name and filing, a new rate from a date, or a fix."],["Filing typed in on details only.","Asked once in the wizard (Filing step), shown read-only here."],["Plans and Audit tabs empty.","Plans: a table with accounts. Audit: who, what, when, why."],["No rate history.","Versions table on Overview. Every change, with its reason, in Audit."],["Rate history tab repeats Overview and Audit.","Removed. Three tabs: Overview, Plans, Audit."],["Filing section: 12 fields and long help.","8 short fields. Percent boxes, not fractions."],["Due and authority account typed by hand.","Both are dropdowns. Accounts come from Settings › Accounting."],["Allowance and penalty typed as fractions.","Typed as percent: 0.5% and 1.5% / month."]];
+const EDITFIX=[["Edit","A side panel for edits.","The same full-page form as New."],["Edit","One form for every kind of edit.","Pick what to change first. The steps follow it."],["Edit","Rate and reach editable on a live tax.","Locked under Name and filing. Changed with a new rate."],["Edit","New rate: old row's end typed by hand.","Old version ends the day before, shown."],["Edit","Fix a mistake with no reason.","Reason required. Shown in Audit."],["Edit","Saving gives no picture of the rows.","Review shows before and after, and each version saved."],["Edit","Issued bills silently keep the wrong rate.","Review says so before you save."]];
+function setView(v){V.view=v;
+  document.querySelectorAll("[data-view]").forEach(b=>b.classList.contains("chipbtn")&&b.setAttribute("aria-pressed",b.dataset.view===v));
+  document.querySelectorAll(".wizonly").forEach(e=>e.hidden=v!=="wiz");
+  $("#wizView").hidden=v!=="wiz";$("#listView").hidden=v!=="list";$("#detailView").hidden=v!=="detail";
+  if(v==="list")$("#listView").innerHTML=listView();if(v==="detail")$("#detailView").innerHTML=detailView();if(v==="wiz")render();
+  const F=v==="wiz"?(S.mode==="new"?FIXES.map(r=>["Step "+r[0],r[1],r[2]]):EDITFIX):(v==="list"?LISTFIX:DETFIX).map(r=>[v==="list"?"List":"Details",r[0],r[1]]);
+  $("#fixtitle").innerHTML=`What this design fixes <span class="kicker">${F.length} issues · ${v==="wiz"?"wizard":v==="list"?"list":"details"}</span>`;
+  $("#fixrows").innerHTML=F.map((r,i)=>`<tr><td class="num">${i+1}</td><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("")}
+document.addEventListener("click",e=>{const t=e.target.closest("button");if(!t)return;
+  if(t.dataset.view){e.stopImmediatePropagation();if(t.dataset.view==="wiz"&&S.mode!=="new")loadNew("good");setView(t.dataset.view);window.scrollTo({top:0});return}
+  if(t.dataset.open){e.stopImmediatePropagation();V.sel=t.dataset.open;V.tab="over";setView("detail");window.scrollTo({top:0});return}
+  if(t.dataset.mode){e.stopImmediatePropagation();V.more=false;loadEdit(t.dataset.mode);setView("wiz");window.scrollTo({top:0});return}
+  if(t.dataset.st){V.st=t.dataset.st;setView("list");return}
+  if(t.dataset.lq){V.q="";V.st="all";$("#listView").innerHTML=listView();return}
+  if(t.dataset.dtab){V.tab=t.dataset.dtab;setView("detail");return}
+  if(t.dataset.more!==undefined){V.more=!V.more;setView("detail");return}
+  if(t.getAttribute("role")==="menuitem"){V.more=false;toast(t.dataset.toast);setView("detail");e.stopImmediatePropagation();return}
+},true);
+document.addEventListener("input",e=>{if(e.target.id==="lq"){V.q=e.target.value;const pos=e.target.selectionStart;$("#listView").innerHTML=listView();const n=$("#lq");n.focus();n.setSelectionRange(pos,pos)}});
+setView("wiz");
+})();
+</script>

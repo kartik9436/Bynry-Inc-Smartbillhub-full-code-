@@ -1,0 +1,240 @@
+{
+  "types": [
+    {
+      "id": "01a106a6-e334-73f7-b7d5-6fdbc6eb2373",
+      "code": "BILLING_ISSUES",
+      "name": "Billing Issues",
+      "parent_name": "Consumer Complaint",
+      "default_priority_id": "01a106a6-e30b-7e55-9c9c-6cab199ee006"
+    },
+    {
+      "id": "01a106a6-e34a-7c67-acf2-fe900f5a73e7",
+      "code": "COMMERCIAL_CONN",
+      "name": "Commercial Connection",
+      "parent_name": "Connection",
+      "default_priority_id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e"
+    },
+    {
+      "id": "01a106a6-e322-7b01-a85b-dc32d79a8249",
+      "code": "CONNECTION",
+      "name": "Connection",
+      "parent_name": null,
+      "default_priority_id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e"
+    },
+    {
+      "id": "01a106a6-e318-7fb9-8f20-93d8b687b408",
+      "code": "COMPLAINT",
+      "name": "Consumer Complaint",
+      "parent_name": null,
+      "default_priority_id": "01a106a6-e30b-7e55-9c9c-6cab199ee006"
+    },
+    {
+      "id": "01a106a6-e32d-7727-9399-b45f4e925d1e",
+      "code": "CONSUMER_SVC",
+      "name": "Consumer Services",
+      "parent_name": null,
+      "default_priority_id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e"
+    },
+    {
+      "id": "01a106a6-e325-7775-8c28-4602b5a13625",
+      "code": "CORRECTIVE",
+      "name": "Corrective Maintenance",
+      "parent_name": null,
+      "default_priority_id": "01a106a6-e30b-7e55-9c9c-6cab199ee006"
+    },
+    {
+      "id": "01a106a6-e34f-7883-9f04-35184071276b",
+      "code": "DISCONNECT_RECONNECT",
+      "name": "Disconnection/Reconnection",
+      "parent_name": "Consumer Services",
+      "default_priority_id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e"
+    },
+    {
+      "id": "01a106a6-e4dc-7467-bf6b-57a85ae3f6a7",
+      "code": "ELECTRICAL_LINE",
+      "name": "Electrical Line",
+      "parent_name": "Corrective Maintenance",
+      "default_priority_id": "01a106a6-e30b-7e55-9c9c-6cab199ee006"
+    },
+    {
+      "id": "01a106a6-e34d-72f9-862e-31a5524c41fd",
+      "code": "INDUSTRIAL_CONN",
+      "name": "Industrial Connection",
+      "parent_name": "Connection",
+      "default_priority_id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e"
+    },
+    {
+      "id": "01a106a6-e328-7ac3-a869-3306f5f0e2a8",
+      "code": "INFRA_DEV",
+      "name": "Infrastructure Development",
+      "parent_name": null,
+      "default_priority_id": "01a106a6-e30f-73f8-9a8d-09fe9046480b"
+    },
+    {
+      "id": "01a106a6-e4d9-7446-bc60-7b68bda04bab",
+      "code": "LEAK_REPAIRS",
+      "name": "Leak Repairs",
+      "parent_name": "Corrective Maintenance",
+      "default_priority_id": "01a106a6-e30b-7e55-9c9c-6cab199ee006"
+    },
+    {
+      "id": "01a106a6-e4ca-7e87-b680-96f943c5815a",
+      "code": "LOW_PRESSURE",
+      "name": "Low Pressure",
+      "parent_name": "Consumer Complaint",
+      "default_priority_id": "01a106a6-e30b-7e55-9c9c-6cab199ee006"
+    },
+    {
+      "id": "01a106a6-e4de-7480-91ba-b11ead272aec",
+      "code": "MAIN_EXTENSION",
+      "name": "Main Extension",
+      "parent_name": "Infrastructure Development",
+      "default_priority_id": "01a106a6-e30f-73f8-9a8d-09fe9046480b"
+    },
+    {
+      "id": "01a106a6-e337-7430-b23e-acbfb899b4d4",
+      "code": "METER_CHANGE",
+      "name": "Meter Change",
+      "parent_name": "Meter Maintenance",
+      "default_priority_id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e"
+    },
+    {
+      "id": "01a106a6-e33a-7f86-a6c0-59161413e22a",
+      "code": "METER_DISPOSE",
+      "name": "Meter Dispose",
+      "parent_name": "Meter Maintenance",
+      "default_priority_id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e"
+    },
+    {
+      "id": "01a106a6-e31c-7a6c-b3cd-4cdf426391a4",
+      "code": "METER_MAINT",
+      "name": "Meter Maintenance",
+      "parent_name": null,
+      "default_priority_id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e"
+    },
+    {
+      "id": "01a106a6-e341-7293-bb05-c545188f6bfe",
+      "code": "METER_REPLACEMENT",
+      "name": "Meter Replacement",
+      "parent_name": "Preventive Maintenance",
+      "default_priority_id": "01a106a6-e30f-73f8-9a8d-09fe9046480b"
+    },
+    {
+      "id": "01a106a6-e4ce-7705-ac94-c02dcd1f38e3",
+      "code": "NO_WATER_SUPPLY",
+      "name": "No Water Supply",
+      "parent_name": "Consumer Complaint",
+      "default_priority_id": "01a106a6-e30a-75ac-90c9-23e5adb25c71"
+    },
+    {
+      "id": "01a106a6-e4ea-7d18-9a42-f583407a7747",
+      "code": "ELEC_OUTAGE",
+      "name": "Outage report",
+      "parent_name": "Consumer Complaint",
+      "default_priority_id": "01a106a6-e30a-75ac-90c9-23e5adb25c71"
+    },
+    {
+      "id": "01a106a6-e31f-779c-9933-cb5d9ec31188",
+      "code": "PREVENTIVE",
+      "name": "Preventive Maintenance",
+      "parent_name": null,
+      "default_priority_id": "01a106a6-e30f-73f8-9a8d-09fe9046480b"
+    },
+    {
+      "id": "01a106a6-e352-7e5f-a72f-3eb0a5532adc",
+      "code": "RE_READ",
+      "name": "Re-read",
+      "parent_name": "Reading",
+      "default_priority_id": "01a106a6-e30f-73f8-9a8d-09fe9046480b"
+    },
+    {
+      "id": "01a106a6-e331-7db7-8654-5f501063caef",
+      "code": "READING",
+      "name": "Reading",
+      "parent_name": null,
+      "default_priority_id": "01a106a6-e30f-73f8-9a8d-09fe9046480b"
+    },
+    {
+      "id": "01a106a6-e347-7337-9fbf-e8d18ae3184a",
+      "code": "RESIDENTIAL_CONN",
+      "name": "Residential Connection",
+      "parent_name": "Connection",
+      "default_priority_id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e"
+    },
+    {
+      "id": "01a106a6-e33d-743a-8f5e-057bf5fd965f",
+      "code": "ROUTINE_INSPECTION",
+      "name": "Routine Inspection",
+      "parent_name": "Preventive Maintenance",
+      "default_priority_id": "01a106a6-e30f-73f8-9a8d-09fe9046480b"
+    },
+    {
+      "id": "01a106a6-e344-7475-b56f-bf161d353402",
+      "code": "NEW_CONN_SURVEY",
+      "name": "Survey for New Connection",
+      "parent_name": "Connection",
+      "default_priority_id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e"
+    },
+    {
+      "id": "01a106a6-e4f0-7c2f-bc27-53697317b5c2",
+      "code": "ELEC_TRANSFORMER",
+      "name": "Transformer fault",
+      "parent_name": "Corrective Maintenance",
+      "default_priority_id": "01a106a6-e30b-7e55-9c9c-6cab199ee006"
+    },
+    {
+      "id": "01a106a6-e4ed-74eb-83b9-f88709bb9d71",
+      "code": "ELEC_VOLTAGE",
+      "name": "Voltage complaint",
+      "parent_name": "Consumer Complaint",
+      "default_priority_id": "01a106a6-e30b-7e55-9c9c-6cab199ee006"
+    },
+    {
+      "id": "01a106a6-e4e2-7e58-b9e2-6cc3cdef4e3d",
+      "code": "WATER_PRESSURE",
+      "name": "Water Pressure",
+      "parent_name": "Water Quality Monitoring",
+      "default_priority_id": "01a106a6-e30b-7e55-9c9c-6cab199ee006"
+    },
+    {
+      "id": "01a106a6-e32a-78b3-a173-fe885b7b6bd5",
+      "code": "WATER_QUALITY",
+      "name": "Water Quality Monitoring",
+      "parent_name": null,
+      "default_priority_id": "01a106a6-e30b-7e55-9c9c-6cab199ee006"
+    },
+    {
+      "id": "01a106a6-e4e6-7901-b48a-66871635c232",
+      "code": "WATER_TRUCK",
+      "name": "Water Truck Services",
+      "parent_name": "Consumer Services",
+      "default_priority_id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e"
+    }
+  ],
+  "priorities": [
+    {
+      "id": "01a106a6-e30a-75ac-90c9-23e5adb25c71",
+      "code": "URGENT",
+      "name": "Urgent",
+      "sla_hours": 4
+    },
+    {
+      "id": "01a106a6-e30b-7e55-9c9c-6cab199ee006",
+      "code": "HIGH",
+      "name": "High",
+      "sla_hours": 8
+    },
+    {
+      "id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e",
+      "code": "NORMAL",
+      "name": "Normal",
+      "sla_hours": 72
+    },
+    {
+      "id": "01a106a6-e30f-73f8-9a8d-09fe9046480b",
+      "code": "LOW",
+      "name": "Low",
+      "sla_hours": 168
+    }
+  ]
+}

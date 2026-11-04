@@ -1,0 +1,11 @@
+# G113 closure-drift baseline.
+#
+# An id here is a row a recent commit ASSERTS is fixed while the row still reads
+# open, and that we have decided not to block on yet. It is a ratchet: the list
+# may only ever shrink. Empty is the healthy state, and it is empty because the
+# 2026-09-05 register-truth audit closed the only occurrence it found
+# (DEF-WRK-4027) rather than baselining it.
+#
+# To retire a line: verify the fault is gone in the CODE, then
+#   10-scripts/close_defect.py --id <ID> --status fixed --fixed-commit <sha>
+# and delete the line. Never delete a line without doing that first.

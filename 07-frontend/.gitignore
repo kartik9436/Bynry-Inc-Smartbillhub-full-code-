@@ -1,0 +1,10 @@
+node_modules/
+dist/
+playwright-report/
+test-results/
+coverage/
+# DEF-113: the durable run receipt, outside Playwright's purged outputDir.
+journey-evidence/
+
+# CR-018 Phase 0 — the throwaway token proof page builds here.
+tailwind-specimen/dist-specimen/

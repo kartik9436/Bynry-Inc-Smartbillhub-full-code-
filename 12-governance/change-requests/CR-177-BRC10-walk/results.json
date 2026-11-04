@@ -1,0 +1,92 @@
+[
+  {
+    "step": "01",
+    "what": "opens on Property with three steps and no How many",
+    "pass": true,
+    "evidence": "← Premises Add a premise Save draft & exit 1 Property 2 Units 3 Review Address Street address* City State ZIP code Check"
+  },
+  {
+    "step": "01",
+    "what": "the This premise card names the address with no double comma",
+    "pass": true,
+    "evidence": ""
+  },
+  {
+    "step": "03",
+    "what": "no service ticked by default",
+    "pass": true,
+    "evidence": "ticked=0"
+  },
+  {
+    "step": "13",
+    "what": "the master account is found",
+    "pass": true,
+    "evidence": ""
+  },
+  {
+    "step": "13",
+    "what": "linked",
+    "pass": true,
+    "evidence": ""
+  },
+  {
+    "step": "14",
+    "what": "not available",
+    "pass": true,
+    "evidence": ""
+  },
+  {
+    "step": "04",
+    "what": "not connected",
+    "pass": true,
+    "evidence": ""
+  },
+  {
+    "step": "08",
+    "what": "the required field is marked and Property stays",
+    "pass": true,
+    "evidence": "aria-invalid=true"
+  },
+  {
+    "step": "07",
+    "what": "the same address is named by number",
+    "pass": true,
+    "evidence": ""
+  },
+  {
+    "step": "09",
+    "what": "the Units step",
+    "pass": true,
+    "evidence": ""
+  },
+  {
+    "step": "11",
+    "what": "review groups, no double comma, outcome line",
+    "pass": true,
+    "evidence": ""
+  },
+  {
+    "step": "06",
+    "what": "no match",
+    "pass": true,
+    "evidence": "← Premises Add a premise Save draft & exit 1 Property 2 Units 3 Review Address Street address* City State ZIP code Check address Checks it against the city map. No match on the city map. Check the str"
+  },
+  {
+    "step": "05",
+    "what": "match, with the Map section",
+    "pass": true,
+    "evidence": ""
+  },
+  {
+    "step": "12",
+    "what": "review shows the parcel and the check date",
+    "pass": true,
+    "evidence": ""
+  },
+  {
+    "step": "all",
+    "what": "every request stayed on the local origin (webfont aside)",
+    "pass": true,
+    "evidence": "outside=0  · webfont requests=10"
+  }
+]

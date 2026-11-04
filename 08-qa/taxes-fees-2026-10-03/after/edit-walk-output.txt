@@ -1,0 +1,35 @@
+signed in as dana@brazosbendutilities.com
+authority: City · liability: 1000 · account: 01a100e7-955e-7d8b-afb9-c778b0f3d609
+staged ids: {"A":"01a10109-5ed6-77d7-95b2-a5096e33d9c4","B":"01a10109-5f59-717c-b18c-762237ed78ff","C":"01a10109-5fb9-717b-840e-4e246e93b65d"}
+
+=== 24-edit-info-1-name.png — Name and filing · Name — rate and reach read, locked
+
+=== 25-edit-info-2-filing.png — Name and filing · Filing — liability locked (Settings › Accounting)
+
+=== 26-edit-info-3-review.png — Review — before → after, v1 updated in place
+
+=== 27-edit-saved.png — saved — Back to tax
+
+=== 28-edit-change-1-rate.png — New rate · 6.25 % from 11/01/2026 — Today's rate ends 10/31/2026
+
+=== 29-edit-change-1-error.png — New rate · 08/01/2026 — Must be after 09/01/2026
+
+=== 30-edit-change-2-review.png — Review — $90.00 → $3.75, v1 ends 10/31/2026, v2 new
+
+=== 30b-edit-change-saved.png — saved — v2 starts 11/01/2026
+
+=== 31-edit-correct-1-fix.png — Fix the rate · dates read, reason given
+
+=== 32-edit-correct-1-error.png — Fix the rate · no reason — Enter the reason.
+
+=== 33-edit-correct-2-review.png — Review — superseded and kept, issued bills keep 150%
+
+=== 33b-edit-correct-saved.png — saved — v2 replaces v1
+
+A versions: [{"id":"01a10109-5ed6-77d7-95b2-a5096e33d9c4","effective_from":"2026-09-01","effective_to":"2027-11-10","rate_display":"150.00%","correction_reason":null,"corrected_by":null,"status":"active","version":1,"amount_display":"150.00%","is_current":true}]
+
+B versions: [{"id":"01a10109-8687-79a7-bba4-033ed97cba1f","effective_from":"2026-11-01","effective_to":"2027-11-10","rate_display":"6.25%","correction_reason":null,"corrected_by":null,"status":"scheduled","version":2,"amount_display":"6.25%","is_current":false},{"id":"01a10109-5f59-717c-b18c-762237ed78ff","effective_from":"2026-09-01","effective_to":"2026-10-31","rate_display":"150.00%","correction_reason":null,"corrected_by":null,"status":"active","version":1,"amount_display":"150.00%","is_current":true}]
+
+C versions: [{"id":"01a10109-9c49-7b89-b0e6-7751172f7d43","effective_from":"2026-09-01","effective_to":"2027-11-10","rate_display":"6.25%","correction_reason":"Rate typed as 150%.","corrected_by":{"id":"01a100e7-387e-7574-a1c7-a8337bac9e44","name":"Dana Whitfield"},"status":"active","version":2,"amount_display":"6.25%","is_current":true},{"id":"01a10109-5fb9-717b-840e-4e246e93b65d","effective_from":"2026-09-01","effective_to":"2027-11-10","rate_display":"150.00%","correction_reason":null,"corrected_by":null,"status":"superseded","version":1,"amount_display":"150.00%","is_current":false}]
+
+A after PATCH: {"id":"01a10109-5ed6-77d7-95b2-a5096e33d9c4","reminder":"tax@ottumwawater.example","version":1}

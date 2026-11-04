@@ -1,0 +1,168 @@
+{
+    "count": 7,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": "01a07409-d8e9-7fa4-aeb3-7f02386fec89",
+            "name": "Asset age rule",
+            "source_module": "assets",
+            "trigger_kind": "asset_past_certification_life",
+            "params": {
+                "asset_type_ids": [
+                    "01a07407-8486-7610-a50e-2ba444a9acc5"
+                ]
+            },
+            "template": {
+                "id": "01a07407-c7d8-71cc-b29a-d773d6b186f3",
+                "name": "Meter exchange \u2014 residential"
+            },
+            "priority": {
+                "id": "01a07407-858c-7e85-889d-71800742f08e",
+                "name": "Normal"
+            },
+            "assignment": {},
+            "notifications": {},
+            "escalation": {},
+            "enabled": true,
+            "this_month": 0
+        },
+        {
+            "id": "01a07409-d8cc-751c-b81d-4e18f370fc00",
+            "name": "Disconnect for non-pay",
+            "source_module": "payments",
+            "trigger_kind": "final_notice_expired_unpaid",
+            "params": {
+                "grace_days": 2
+            },
+            "template": {
+                "id": "01a07407-c7d8-71cc-b29a-d773d6b186f3",
+                "name": "Meter exchange \u2014 residential"
+            },
+            "priority": {
+                "id": "01a07407-858b-7245-921d-7897c4997f5d",
+                "name": "High"
+            },
+            "assignment": {},
+            "notifications": {},
+            "escalation": {},
+            "enabled": true,
+            "this_month": 0
+        },
+        {
+            "id": "01a07409-d8f1-70e0-8e34-a0dccff350fd",
+            "name": "Leak investigation",
+            "source_module": "reads",
+            "trigger_kind": "continuous_flow_alarm",
+            "params": {
+                "consecutive_reads": 3,
+                "minimum_consumption": "0"
+            },
+            "template": {
+                "id": "01a07407-c7d8-71cc-b29a-d773d6b186f3",
+                "name": "Meter exchange \u2014 residential"
+            },
+            "priority": {
+                "id": "01a07407-858b-7245-921d-7897c4997f5d",
+                "name": "High"
+            },
+            "assignment": {},
+            "notifications": {},
+            "escalation": {},
+            "enabled": true,
+            "this_month": 0
+        },
+        {
+            "id": "01a07409-d8e0-7aea-ba45-218d5bc8e40c",
+            "name": "Meter exchange programme",
+            "source_module": "assets",
+            "trigger_kind": "asset_past_certification_life",
+            "params": {
+                "asset_type_ids": [
+                    "01a07407-8488-77d3-b142-eb93bf5126ac"
+                ]
+            },
+            "template": {
+                "id": "01a07407-c7d8-71cc-b29a-d773d6b186f3",
+                "name": "Meter exchange \u2014 residential"
+            },
+            "priority": {
+                "id": "01a07407-858c-7e85-889d-71800742f08e",
+                "name": "Normal"
+            },
+            "assignment": {},
+            "notifications": {},
+            "escalation": {},
+            "enabled": true,
+            "this_month": 0
+        },
+        {
+            "id": "01a07409-d8f9-7045-aae7-4d5e26df141e",
+            "name": "Move-in / move-out",
+            "source_module": "accounts",
+            "trigger_kind": "occupancy_completed",
+            "params": {
+                "within_days": 7
+            },
+            "template": {
+                "id": "01a07407-c7d8-71cc-b29a-d773d6b186f3",
+                "name": "Meter exchange \u2014 residential"
+            },
+            "priority": {
+                "id": "01a07407-858c-7e85-889d-71800742f08e",
+                "name": "Normal"
+            },
+            "assignment": {},
+            "notifications": {},
+            "escalation": {},
+            "enabled": true,
+            "this_month": 0
+        },
+        {
+            "id": "01a07409-d8d6-75aa-a22a-a8e10a6fe4c1",
+            "name": "Read verification",
+            "source_module": "billing",
+            "trigger_kind": "billing_exception_unresolved",
+            "params": {
+                "retryable": false
+            },
+            "template": {
+                "id": "01a07407-c7d8-71cc-b29a-d773d6b186f3",
+                "name": "Meter exchange \u2014 residential"
+            },
+            "priority": {
+                "id": "01a07407-858c-7e85-889d-71800742f08e",
+                "name": "Normal"
+            },
+            "assignment": {},
+            "notifications": {},
+            "escalation": {},
+            "enabled": true,
+            "this_month": 0
+        },
+        {
+            "id": "01a07409-d901-77f1-8243-81c3af2da281",
+            "name": "Backflow test due",
+            "source_module": "assets",
+            "trigger_kind": "asset_past_certification_life",
+            "params": {
+                "asset_type_ids": [
+                    "01a07407-8489-77ce-aeb9-f01153374253"
+                ]
+            },
+            "template": {
+                "id": "01a07407-c7d8-71cc-b29a-d773d6b186f3",
+                "name": "Meter exchange \u2014 residential"
+            },
+            "priority": {
+                "id": "01a07407-858d-79f4-811a-d758f6ffb0db",
+                "name": "Low"
+            },
+            "assignment": {},
+            "notifications": {},
+            "escalation": {},
+            "enabled": false,
+            "this_month": 0
+        }
+    ]
+}

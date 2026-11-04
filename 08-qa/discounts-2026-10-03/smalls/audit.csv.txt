@@ -1,0 +1,12 @@
+When,Who,What,Change,Reason
+2026-10-03T21:32:00.331808+00:00,Dana Whitfield,discount.removed_from_plan,plan: Discount walk · Residential; accounts: AC-2026-00054; available_to: ; enrolments_ended: 1,Walk tariff closes to seniors
+2026-10-03T21:31:46.328521+00:00,Dana Whitfield,discount.enrolment_verified,recertification_due_on: ; verification_status: pending -> recertification_due_on: 2027-10-03; verification_status: verified,
+2026-10-03T21:31:45.318588+00:00,Dana Whitfield,discount.account_enrolled,account: AC-2026-00054; currency: USD; ended_on: ; end_reason: ; enrolled_on: 2026-10-03; verification_status: pending; recertification_due_on: ; lifetime_subsidy_amount: 0,
+2026-10-03T21:31:42.048094+00:00,Dana Whitfield,discount.made_available_on_plan,plan: Discount walk · Residential; available_from: 2026-10-03,Seniors on the walk tariff
+2026-10-03T21:30:38.535039+00:00,Dana Whitfield,discount.removed_from_plan,plan: Discount walk · Residential; accounts: AC-2026-00054; available_to: ; enrolments_ended: 1,Walk tariff closes to seniors
+2026-10-03T21:30:20.924483+00:00,Dana Whitfield,discount.made_available_on_plan,plan: Discount walk · Residential; available_from: 2026-10-03,Seniors on the walk tariff
+2026-10-03T21:23:10.458706+00:00,Dana Whitfield,discount.enrolment_verified,recertification_due_on: ; verification_status: pending -> recertification_due_on: 2027-10-03; verification_status: verified,
+2026-10-03T21:23:09.442423+00:00,Dana Whitfield,discount.account_enrolled,account: AC-2026-00054; currency: USD; ended_on: ; end_reason: ; enrolled_on: 2026-10-03; verification_status: pending; recertification_due_on: ; lifetime_subsidy_amount: 0,
+2026-10-03T20:31:45.379728+00:00,Dana Whitfield,discount.version_self_approved,goes_live_on: ; predecessor_windows_closed: ; self_approved: False; status: pending_approval -> goes_live_on: 2026-08-01; predecessor_windows_closed: 0; self_approved: True; status: active,
+2026-10-03T20:31:45.370142+00:00,Dana Whitfield,discount.version_submitted,status: draft -> status: pending_approval,
+2026-10-03T20:31:45.361212+00:00,Dana Whitfield,discount.created,code: SENIOR; name: Senior discount; type: percentage; plans: 0; value: 15.000000; status: draft; currency: USD; enrolled: 0; applies_to: whole_bill; eligibility: Age 65 or over; verification: annual_recertification; value_display: 15.00%; allowance_unit: ; effective_from: 2026-08-01; funding_source: Rate-payer funded; programme_owner: customer_service,

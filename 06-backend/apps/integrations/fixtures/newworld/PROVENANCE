@@ -1,0 +1,23 @@
+A recorded fixture, and WE are the emitter: this is `apps.integrations.newworld` run on three worked payments, recorded 2026-09-22 by the CR-132-BRC07 New World lane and checked byte-for-byte by tests/test_cr132_newworld_receipts.py. It is evidence of what this code actually produces, not a schema written from their prose — a schema written from prose is a claim.
+
+THE THREE RECEIPTS, AND WHY EACH ONE IS HERE
+
+1 · PMT-2609-0187 — $142.18, ACH, account AC-2026-00036, settling bill INV-2609-00412 in full. ONE distribution: 1200 Accounts receivable, 142.18, DistributionType 2 (Credit). It BALANCES: 142.18 = 142.18. This is the ordinary receipt and it is what this feed carries most of.
+
+2 · PMT-2609-0188 — $200.00 by card, of which $142.18 went against bills and $57.82 was carried as credit. TWO distributions — 1200 Accounts receivable 142.18 and 2400 Customer credit 57.82 — which are our journal entry's two credit legs, unchanged. It BALANCES: 142.18 + 57.82 = 200.00. It is here because it is the case that shows the distributions are the LEGS OF A REAL ENTRY rather than a single number restated.
+
+3 · PMT-2609-0189 — $100.00 across three services, stored as 33.3333 · 33.3333 · 33.3334. Rounded to their two decimals that is 33.33 three times, which is 99.99. **IT IS ONE CENT SHORT AND IT IS SENT ANYWAY, FLAGGED** — PO 2026-09-22, "please send receipt even if it is not balance". Nothing is plugged and no cent is invented; `Receipt.difference` states 0.01 and the response header `X-Receipts-Unbalanced` counts it. It is here because a fixture that only shows the happy case cannot prove the rule the PO actually ruled.
+
+WHAT THIS FIXTURE PROVES BY WHAT IT DOES NOT CONTAIN
+
+* NO CARD DATA. The four `ReceiptPaymentCreditCardNumber`, `…CreditCardType`, `…CreditCardExpirationDate` and `…CreditCardValidationNumber` attributes are present on every payment node and ALWAYS EMPTY (PO 2026-10-21, option A: "Always write all four as `""`"). Receipt 2 is a CARD payment and it carries ReceiptPaymentType 2 (Charge) and four empty card attributes. Populating any of those four would pull cardholder data into a file and destroy the PCI scoping that keeps card data out of this product entirely. G130 fails the build if one of them carries a value in this directory; until 2026-10-21 it failed if a name appeared at all.
+* `DueToDueFromFund` and the distribution-level `ProjectCode1/2/3` are present and EMPTY — ruled empty by the PO on 2026-09-22, never omitted and never zero. An empty optional field is a fact; a plausible value is a lie that reconciles. There are NO project codes on `ReceiptTransactionLevel` since 2026-10-21 (the confirmed template carries them only on the distribution level).
+* `ReceiptNumber` is empty on all three. Theirs is 13 characters and ours is 15 (`PMT-2609-0187`), so ours does not fit; they assign one, and our number travels in `ReceiptDescription` where both sides can look it up. A wrong 13-character number would be worse than an absent one because it looks like an answer.
+
+Re-record it ONLY when the projection changes on purpose, in the same commit, and say so here.
+
+RE-RECORDED 2026-10-02 (CR-088 R.2 item 3), on purpose: `ReceiptCashier` on all three receipts now reads `SMART360 NEXT` instead of `SMARTBILLHUB`. PO, asked whether the cashier name NewWorld receives should change with the product name: "yes". Nothing else in the file moved.
+
+RE-RECORDED 2026-10-21 (DEF-INT-10304), on purpose, and the whole file moved: it is now in New World's CONFIRMED TEMPLATE shape (PO-pasted template, decision log 2026-10-21 "New World / Logos receipt XML: attributes on a `<ROOT>` document; five answers"). The root is `<ROOT>` (was `<Receipts>`); every field is an ATTRIBUTE on its element (was one child element per field); `VoidedFlag` is "0" (was "false"); the three dates are 09/15/2026 (were 2026-09-15); every template attribute is present, "" when empty — so `ReceiptPaymentOtherType=""` now appears on the card receipt, and the four card attributes appear, empty, on all three; the three empty `ProjectCode1/2/3` children at transaction level are gone. The three payments, their amounts, GL accounts, tender types and the one-cent short on receipt 3 are unchanged.
+
+⚠ WHY THE OLD FIXTURE COULD NOT CATCH THIS, AND WHAT NOW DOES. Until this date the fixture was recorded FROM this code and the test compared the code WITH the fixture — so it proved the output was stable, never that it was what New World reads. The shape was wrong for a month and every test was green. The tests now also run `newworld.validate` over this file, and `validate` encodes the template New World gave us rather than anything we produced.

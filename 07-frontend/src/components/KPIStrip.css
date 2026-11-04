@@ -1,0 +1,143 @@
+/* KPIStrip (FE-09) styles — BR-REP-001 / S7-S36 KPI tiles.
+ * Modernist tokens only (B8: no hex literals). Shapes ported from the signed
+ * reference 05-prototype/UtilityBilling.html (.kpi-grid/.kpi rules) — values
+ * only, runtime never ported. */
+
+/* ⚠ **DEF-3481 AGAIN, ONE ELEMENT FURTHER DOWN (PO 2026-09-13, walking the
+   deployed v2.249.2 Accounts list).** The PO's words on 2026-09-03 were
+   *"toolkit is got atatched the Tab line , tehre is no seperations - this is
+   problem on many screens"*. That fix went onto `.page-header-tabs` in
+   `PageHeader.css`, and its own note gives the reason it belongs there: **the
+   gap belongs on THE THING THAT ENDS**, because the tab strip ends the same way
+   whatever follows it.
+
+   **`.kpi-grid` is also a thing that ends, and it declared no margin in either
+   direction** — so on every screen that draws a KPI strip BETWEEN the tabs and
+   the table, the tab fix separated the tabs from the STRIP and the toolbar then
+   welded itself to the strip's bottom border instead. `.table-toolbar` sets
+   `margin-bottom` and no `margin-top`, `.data-table-frame`'s `gap` applies
+   BETWEEN children and not above the first, and every page root that hosts one
+   (`.cus-page`, `.pay-page`, `.met-page`, `.fin-page`) is a plain block with
+   padding. **Declared separation between the strip and whatever follows it:
+   0px.** Measured across `src/`: 20 render sites in 19 files.
+
+   `--space-4` (16px) is B14 rule 39's between-blocks step and is the same value
+   the tab fix used, so the two rhythms match rather than merely both existing.
+
+   **It COLLAPSES rather than doubling** wherever the next element brings its own
+   top margin — `.fin-two-col` at 24px, `.pay-bulk` at 16px, `.rd-allclear` at
+   12px — because adjacent margins in a block container take the larger. ⚠ **One
+   render site is NOT a block container and would therefore ADD:**
+   `runbooks/run/RunWizard.tsx` mounts the strip inside `flex flex-col gap-4`,
+   where a margin stacks on top of the gap. That one opts out at its own call
+   site. The DEF-3481 note checked this same question and found none; there is
+   one now, which is why it is named here rather than left to be discovered.
+
+   B14 rule 21 is untouched: this adds a DECLARATION to a class this stylesheet
+   already owns, not a class. */
+/* ⚠ **THE TRACK MINIMUM IS 240px BECAUSE A MONEY VALUE DID NOT FIT IN 180px
+   (`DEF-LED-6498`, Finance blueprint `P2.1`, 2026-09-24).** At `minmax(180px,
+   1fr)` the tile gave the value **146px** of content width — 180 less the
+   tile's own `20px` gutters — and Brazos Bend's receivable needs **159px** at
+   `--text-metric` (26px, the ruled KPI-value step, OQ-278). So the Finance
+   headline rendered `$23,766…` and **lost its cents**, on a screen whose whole
+   job is to say what the utility is owed.
+
+   240px leaves **200px** of content, which holds `$1,234,567.89` — the largest
+   figure a T5 tenant's receivable can reach — with room to spare. The minimum
+   moves and `1fr` stays, so the strip still divides the row evenly and still
+   reflows to fewer columns on a narrow viewport; nothing about the LAYOUT
+   changes except how early it wraps.
+
+   ⚠ **WIDENING THE TRACK IS HALF THE FIX AND THE ELLIPSIS BELOW IS THE OTHER
+   HALF.** A wider tile with `text-overflow: ellipsis` still eats the cents on
+   the first figure that outgrows it; removing the ellipsis without widening
+   the tile would overlap the neighbouring tile instead. Neither alone is the
+   repair, which is why they landed in one commit. */
+.kpi-grid {
+  display: grid;
+  /* `DEF-WRK-9680` — the track minimum is a CUSTOM PROPERTY with 240px as
+     its default, so every strip above is byte-for-byte unchanged; a strip of
+     COUNTS opts down through `KPIStrip`'s `tiles="count"` (14rem, 224px — on
+     the scale, rule 44). `auto-fit` still wraps a narrow viewport. */
+  grid-template-columns: repeat(auto-fit, minmax(var(--kpi-tile-min, 240px), 1fr));
+  border-top: 2px solid var(--color-divider);
+  border-bottom: 2px solid var(--color-divider);
+  margin-bottom: var(--space-4);
+}
+
+.kpi {
+  padding: var(--space-4) 20px;
+  border-right: 1px solid var(--color-divider);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+  overflow: hidden;
+}
+.kpi:first-child {
+  padding-left: 0;
+}
+.kpi:last-child {
+  border-right: 0;
+}
+
+/* The KPI label — uppercase, tracked out, the kicker register. 10px → the
+   ruled `--text-xs` (11px), which is r10's own kicker size. */
+.kpi .k {
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+}
+
+/* BR-REP-001 basis label inside the tile header. */
+.kpi .kpi-basis {
+  margin-left: var(--space-2);
+  letter-spacing: 0.06em;
+  color: var(--color-neutral-600); /* Group A F-01 (2026-10-23): grey-500 is never text */
+}
+
+.kpi .v {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  /* OQ-278 RULED (decision log 2026-08-19, commit 6a13828) — the KPI VALUE is
+     THE metric role, and the ruled step for it is 26px. This line was 30px, so
+     it is A VISIBLE PIXEL CHANGE on the dashboard and on every KPI strip in the
+     product — one of exactly two in this phase, and the ruling names it: "a
+     screen is not migrated until it matches r10", so this is r10 conformance
+     rather than a rename.
+     The `line-height: 1` below stays because a plain-CSS `var()` reads the SIZE
+     only; the token's 1.1 leading reaches markup through the `text-metric`
+     utility, which nothing writes yet. */
+  font-size: var(--text-metric);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  /* ⚠ **`overflow: hidden` AND `text-overflow: ellipsis` WERE HERE AND ARE
+     GONE (`DEF-LED-6498`, `P2.1`).** They truncated a MONEY value: the Finance
+     headline read `$23,766…` and the cents were not shortened, they were
+     DELETED from what a person could read. CLAUDE.md hard rule 2 puts money at
+     two displayed decimals and an ellipsis silently overrules it.
+
+     **An ellipsis is right for a NAME and wrong for a FIGURE.** A truncated
+     customer name is still recognisably that customer; a truncated amount is a
+     DIFFERENT AMOUNT, and a smaller one, which is the direction that matters on
+     a receivable. Nothing here may clip a number again — if a future figure
+     does not fit, the tile gets wider or the value gets a smaller step, and
+     neither of those loses a digit.
+
+     ⚠ **NOTHING IN THIS REPOSITORY COULD SEE IT, AND THAT IS THE LESSON.** The
+     DOM text was always the full `$23,766.56`; only the PIXELS were short. So
+     every assertion that reads `textContent` passed, and hard-won law 6 says
+     why — no gate here looks at rendered output. `KPIStrip.overflow.dom.test.tsx`
+     is the guard written for exactly this, and it asserts GEOMETRY
+     (`scrollWidth > clientWidth`) because a string assertion structurally
+     cannot fail on this class of bug (law 7). */
+}
+
+.kpi .d {
+  font-size: var(--text-sm);
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}

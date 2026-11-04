@@ -1,0 +1,58 @@
+# G25 — SCREEN-COVERAGE REGISTER. One line per screen A1 declares that NO story
+# claims, with the reason and what closes it.
+#
+#   <screen> <YYYY-MM-DD registered> <reason, and what closes it — min 40 chars>
+#
+# WHY THIS FILE EXISTS. Hard-won law 8 — "every screen needs a story" — has now
+# been broken three times, and each time a screen reached a user unbuilt because
+# it was nobody's to build and nobody's to notice:
+#
+#   DEF-006  S1, the public landing page, half-missing for a week.
+#   DEF-129  S7, the tenant dashboard — THE FIRST SCREEN AFTER EVERY SIGN-IN —
+#            rendering the literal string "SMARTBillHub — W0 scaffold".
+#   DEF-137  S113, step 4 Review of the signup flow, found in review.
+#
+# THE COUNT IS EXACT, NEVER A CEILING (the G16/G20/G23 discipline). A screen that
+# loses its claim must GAIN a line here, which is the moment somebody writes down
+# why. A screen that gains a story must LOSE its line, so the register records the
+# win and cannot keep claiming debt that is paid off. A line for a screen that IS
+# claimed, or that A1 does not declare, is STALE and fails the gate.
+#
+# ⚠ ADDING A LINE IS NOT HOW A FINDING IS CLOSED. The fix is to author the story.
+# A line buys time and writes down the price.
+#
+# Measured 2026-08-16 by the DEF-129 lane against 04-docs/01-spec/01-screen-inventory.md
+# (89 screens, ranges expanded) and every `screens:` frontmatter claim under
+# 04-docs/05-modules/. The same set 04-docs/02-decisions/13a-screen-component-map.md
+# already audits by hand, so the gate and the map cannot answer differently.
+
+# ── Superseded by the S110–S114 onboarding wizard ───────────────────────────
+S4 2026-08-16 The original 3-step setup wizard, superseded by the S110-S114 five-step onboarding flow (A1 addendum). It is BUILT and working as SignupWizard.tsx and driven end to end by journey J1 — the gap is that A1 still declares the old id. Closes when A1 retires or retags S4/S5/S6, which is a screen-inventory edit and a PO call, not a lane's.
+S5 2026-08-16 The original setup wizard step 2, superseded by S111 in the same A1 addendum. Same situation as S4: shipped, working, driven by J1, and declared under an id no story claims. Closes with the same A1 retag.
+
+# ── Settings sub-screens allocated in EP-TEN-07's scope addendum, unauthored ─
+S63 2026-08-16 Settings sub-screen allocated to US-TEN-013..017 in EP-TEN-07's scope addendum and not yet authored as a story with its own frontmatter. Closes when that story is written; 13a has carried the same finding since 2026-08-09.
+S64 2026-08-16 Read-validation config page. Its RULES are built and served (BR-MET-020, the S64 rule page), but no story frontmatter claims the screen id, so the claim and the code disagree. Closes when EP-TEN-07's addendum stories are authored.
+S65 2026-08-16 Settings sub-screen from the same EP-TEN-07 addendum block, unauthored. Closes with the same story batch; carried by 13a since 2026-08-09.
+S69 2026-08-16 Settings rule page from the EP-TEN-07 addendum block. Its rule-page route is served; the screen has no owning story frontmatter. Closes when the story is authored.
+S70 2026-08-16 Collections and notices rules page. Cited by BR-PAY-017 and BR-REP-016 as the tenant cadence config, and served, with no story frontmatter claiming the screen. Closes when the story is authored.
+S71 2026-08-16 Per-authority remitting-basis settings page. Consumed by US-LED-014's S41 work and served, with no story frontmatter claiming the screen id. Closes when the story is authored.
+
+# ── Wave 8 — the Bynry subscription/billing-plan family (B10, OQ-015) ────────
+S108 2026-08-27 Billing plan · Invoices tab. ⚠ THE REASON CHANGED AND THE LINE STAYS. It said "same W8 subscription family and the same sequencing reason"; sequencing is no longer the blocker, because S107 IS BUILT (US-TEN-022, DEF-1092). The blocker is that the ENTITY DOES NOT EXIST: no platform invoice table, no column, no route, nothing that records what Bynry billed a utility and when. S107 states that absence on its own face rather than drawing an empty table, which would read as "you have no invoices". Closes when a platform invoice entity is designed and ruled.
+S109 2026-08-27 Manage payment method modal. ⚠ SAME CORRECTION AS S108 ABOVE. Not sequencing: OQ-015 ruled that v1 takes NO CARD AT ALL, so there is nothing to capture, nothing to store and no column holding it, and BR-TEN-014 creates every subscription with no payment method by design. S107 states that absence beside the invoices one. Closes only if OQ-015 is reversed.
+
+# ── Onboarding wizard steps whose UI is deferred to W8 (EP-TEN-03 §Out) ──────
+S110 2026-08-16 Onboarding step 1. EP-TEN-03 §Out puts the wizard UI in W8 explicitly; the PROVISIONING behind it is US-TEN-001 and built. Closes with the W8 onboarding epic that claims the step screens.
+S112 2026-08-16 Onboarding step 3, plan and setup package. Same EP-TEN-03 §Out deferral, and its figures depend on the OQ-015 subscription ruling. Closes with the W8 onboarding epic.
+
+# ── Template and message designers (A1 r2-r4 additions, S91-S106) ────────────
+# S91-S97, S99, S102, S103 and S106 are cited by the notifications template
+# stories; the six below fall inside A1's RANGED rows (S97-S102 email designers,
+# S103-S106 SMS designers) and no story names them individually.
+S98 2026-08-16 One of the six email designers A1 writes as the single ranged row S97-S102. The notifications template stories cite the range's ends and not this id, so a ticket citing S98 has no owner. Closes when EP-NOT's designer stories enumerate the six ids.
+S99 2026-08-16 Email designer inside the ranged row S97-S102, unnamed by any story frontmatter for the same reason as S98. Closes when the designer stories enumerate the ids.
+S100 2026-08-16 Email designer inside the ranged row S97-S102, unnamed by any story frontmatter for the same reason as S98. Closes when the designer stories enumerate the ids.
+S101 2026-08-16 Email designer inside the ranged row S97-S102, unnamed by any story frontmatter for the same reason as S98. Closes when the designer stories enumerate the ids.
+S104 2026-08-16 SMS designer inside the ranged row S103-S106, unnamed by any story frontmatter. Closes when EP-NOT's designer stories enumerate the four SMS ids.
+S105 2026-08-16 SMS designer inside the ranged row S103-S106, unnamed by any story frontmatter. Closes when EP-NOT's designer stories enumerate the four SMS ids.

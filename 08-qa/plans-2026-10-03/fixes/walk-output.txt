@@ -1,0 +1,58 @@
+PASS 9361 Apt 102 under Vacant reads Vacant — Apt 102 301 Mill Pond Ln E W AC-2026-00042 Vacant 08/01/2026
+PASS 9361 no row under Vacant reads Occupied — 8 rows
+=== 9361-units-vacant.png — Units · Vacant — Apt 102 (closed account AC-2026-00042) reads Vacant
+PASS 9361 Apt 102 not under Occupied — 50 rows
+PASS 9361 no row under Occupied reads Vacant
+=== 9361-units-occupied.png — Units · Occupied
+=== 25-more-open.png — More ▾ open — Duplicate live (image 25)
+=== 9352-duplicate-refused.png — Duplicate · empty name and code refused by name
+  POST http://127.0.0.1:5351/api/brazosbend/plans/01a10390-7893-7357-bd05-0fe958ce95ae/duplicate → 422
+=== 9352-duplicate-code-taken.png — Duplicate · a code in use refused by the server, under the box
+  POST http://127.0.0.1:5351/api/brazosbend/plans/01a10390-7893-7357-bd05-0fe958ce95ae/duplicate → 201
+PASS 9352 the copy opens as a draft — 01a10393-2811-7e49-b95d-4fd97d4c811e
+=== 9352-duplicate-copy-overview.png — The copy — a draft, its own name and code, Units 0
+=== 9352-duplicate-copy-services.png — The copy · Services — the source's schedules as of today
+=== 9352-duplicate-copy-charges.png — The copy · Charges — its charge codes and taxes
+=== 9286-draft-review.png — The copy · Review — the panel's counts beside the sections they count
+  PATCH http://127.0.0.1:5351/api/brazosbend/plans/01a10393-2811-7e49-b95d-4fd97d4c811e → 200
+PASS 9285 the note's class reads by name on reopen — Residential
+=== 9285-draft-details-note.png — Edit (draft) · step 1 — note *Customer class is Residential*, by name
+PASS 9287 the minimum bill box reads 10.00 — 10.00
+=== 9287-draft-billing-minimum.png — Edit (draft) · Billing — Minimum bill 10.00, two places
+PASS 9329 no 'No authority recorded' row
+=== 9329-charges-taxes.png — Change from a date · Charges — Taxes are taxes, one row each
+PASS 9365 What changes reads $12.00 — What changes FIELD BEFORE AFTER Minimum bill None $12.00
+=== 9365-change-review.png — Change from a date · Review — Minimum bill None → $12.00
+  POST http://127.0.0.1:5351/api/brazosbend/plans/01a10390-7a7a-74a5-b7aa-d95b0a048fc3/versions → 201
+saved: ✓ Sample — Commercial saved v2 saved. Not published yet. Back to plan
+PASS 9364 the banner names v2 — v2 not published yet. Starts 01/01/2027. Publish v2
+=== 9364-draft-banner.png — Details · a saved v2 — banner with Publish v2, versions table shows Draft
+PASS 9364 the confirm says v1 ends 12/31/2026 — Publish v2 of Sample — Commercial? ✕ v1 ends 12/31/2026. Cancel Publish v2
+=== 9364-publish-confirm.png — Publish v2 — the consequence: v1 ends 12/31/2026
+  POST http://127.0.0.1:5351/api/brazosbend/plans/01a10390-7a7a-74a5-b7aa-d95b0a048fc3/versions/2/publish → 200
+PASS 9364 the banner is gone
+=== 9364-published.png — Published — v1 to 12/31/2026, v2 from 01/01/2027 scheduled
+=== 9365-correct-review.png — Fix a mistake · Review — What changes
+  POST http://127.0.0.1:5351/api/brazosbend/plans/01a10390-7a7a-74a5-b7aa-d95b0a048fc3/corrections → 200
+  PATCH http://127.0.0.1:5351/api/brazosbend/plans/01a10390-7a7a-74a5-b7aa-d95b0a048fc3 → 200
+PASS 9504 the ambiguous base names a class per code — Several base codes BASE-E · Residential, Municipal BASE-E-COM · Commercial BASE-E-IND · Industrial
+=== 9504-every-class-base.png — An every-class plan — each base code with the class it charges
+PASS 9505 the Review has a Deposit block
+=== 9505-new-account-review-deposit.png — New account · Review — the Deposit block (the step's own answer)
+audit rows: ["▸ 10/03/2026 16:03 Dana Whitfield Edited · v1 Description: Sample plan. Water at a flat rate per kgal, sewer at 40% of the water usage charge, trash at $15.00 per cart with no monthly base. Electric is metered too. → Description: Water and electric for businesses inside the city. —","▸ 10/03/2026 16:03 Dana Whitfield Fixed a mistake · v1 Budget billing: No → Budget billing: Yes Budget billing was ruled on for this plan","▸ 10/03/2026 16:02 Dana Whitfield Published · v2 Starts: 01/01/2027 New minimum bill from council","▸ 10/03/2026 16:02 Dana Whitfield New version · v2 Starts: 01/01/2027 New minimum bill from council","▸ 10/03/2026 15:59 Dana Whitfield Published · v1 Status: Draft → Status: Published —","▸ 10/03/2026 15:59 Dana Whitfield Created Budget billing: No · Charge codes: None · Code: SCW-COM · +12 more —","▸ 10/03/2026 15:59 Dana Whitfield Tax · TX State Utility Tax Edited —","▸ 10/03/2026 15:59 Dana Whitfield Tax · Local · Bexar County Edited —"]
+PASS 9363 the correction row says budget billing — ▸ 10/03/2026 16:03 Dana Whitfield Fixed a mistake · v1 Budget billing: No → Budget billing: Yes Budget billing was ruled on for this plan
+PASS 9360 the same-version edit names v1 — ▸ 10/03/2026 16:03 Dana Whitfield Edited · v1 Description: Sample plan. Water at a flat rate per kgal, sewer at 40% of the water usage charge, trash at $15.00 per cart with no monthly base. Electric is metered too. → Description: Water and electric for businesses inside the city. —
+PASS 9360 a status reads as the pill does — ▸ 10/03/2026 15:59 Dana Whitfield Published · v1 Status: Draft → Status: Published —
+=== 9363-audit.png — Audit — the correction says Budget billing No → Yes; the description edit is v1
+=== 9363-audit-correction-open.png — Audit — the correction row opened: Before · After · Version
+
+17/17 checks PASS
+PASS 9506 a draft plan offers no Publish v1 banner
+=== 9352-duplicate-copy-overview.png — The copy — a draft, its own name and code, Units 0
+PASS 9507 the smallest water size comes first — 5/8 at 1025, 3/4 at 1045, 1 at 1065
+=== 9507-services-sizes-en.png — Services · base charges by meter size, smallest first (en)
+PASS 9508 ja-JP Rate column reads 単価, not 税率
+PASS 9509 ja-JP headings read 電気 / 水, not Electric / Water — ["E\n電気","W\n水"]
+=== 9509-services-ja-JP.png — Services in Japanese — 水 / 電気, 単価, sizes smallest first
+
+3/3 checks PASS

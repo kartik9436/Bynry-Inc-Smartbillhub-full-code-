@@ -1,0 +1,21 @@
+METER_NO,METER_TYPE,SERVICE,READ_METHOD,MULTIPLIER,UNIT_REF,MFR,MODEL,INSTALL_DT,CERT_DUE,WARRANTY_END,SUPPLIER,COST,LEGACY
+E-2001,ami,electric,ami,1,SCW-U-001,Itron Inc,OpenWay Riva,2026-05-04,2027-05-04,2031-05-04,Itron Inc,289.0000,LG-88101
+E-2002,ami,electric,ami,1,SCW-U-002,Itron Inc,OpenWay Riva,2026-05-04,2027-05-04,2031-05-04,Itron Inc,289.0000,LG-88102
+E-2003,amr,electric,amr,1,SCW-U-003,Badger Meter,ORION LTE-M,2026-05-05,2027-05-05,2030-05-05,Badger Meter,244.0000,LG-88103
+E-2004,amr,electric,amr,1,SCW-U-004,Badger Meter,ORION LTE-M,2026-05-05,2027-05-05,2030-05-05,Badger Meter,244.0000,LG-88104
+E-2005,walk_by,electric,walk_by,1,SCW-U-005,Neptune,E-Coder R900i,2026-05-06,2027-05-06,2029-05-06,Neptune,198.0000,LG-88105
+E-2006,ami,electric,ami,200,SCW-U-047,Itron Inc,OpenWay CT,2026-05-07,2027-05-07,2031-05-07,Itron Inc,412.0000,LG-88106
+E-2007,ami,electric,ami,1,,Itron Inc,OpenWay Riva,2026-05-08,2027-05-08,2031-05-08,Itron Inc,289.0000,LG-88107
+E-2008,ami,electric,ami,1,,Itron Inc,OpenWay Riva,2026-05-08,2027-05-08,2031-05-08,Itron Inc,289.0000,LG-88108
+E-2009,ami,electric,ami,1,SCW-U-006,Itron Inc,OpenWay Riva,2026-05-09,2027-05-09,2031-05-09,Itron Inc,289.0000,LG-88109
+E-2009,ami,electric,ami,1,SCW-U-007,Itron Inc,OpenWay Riva,2026-05-09,2027-05-09,2031-05-09,Itron Inc,289.0000,LG-88110
+,ami,electric,ami,1,SCW-U-008,Itron Inc,OpenWay Riva,2026-05-10,2027-05-10,2031-05-10,Itron Inc,289.0000,LG-88111
+E-2011,ami,electric,ami,1,SCW-U-999,Itron Inc,OpenWay Riva,2026-05-11,2027-05-11,2031-05-11,Itron Inc,289.0000,LG-88112
+E-2012,ami,electric,ami,1.5,SCW-U-009,Itron Inc,OpenWay Riva,2026-05-12,2027-05-12,2031-05-12,Itron Inc,289.0000,LG-88113
+E-2013,ami,electric,ami,two,SCW-U-010,Itron Inc,OpenWay Riva,2026-05-12,2027-05-12,2031-05-12,Itron Inc,289.0000,LG-88114
+W-6001,walk_by,water,walk_by,1,SCW-U-011,Neptune,T-10,2026-05-13,2027-05-13,2029-05-13,Neptune,164.0000,LG-88115
+E-2014,ami,electric,ami,1,SCW-U-012,Itron Inc,OpenWay Riva,2026-05-14,2030-01-01,2031-05-14,Itron Inc,289.0000,LG-88116
+E-2015,ami,electric,ami,1,SCW-U-013,Itron Inc,OpenWay Riva,2026-05-14,2026-02-01,2031-05-14,Itron Inc,289.0000,LG-88117
+E-2016,smart,electric,ami,1,SCW-U-014,Itron Inc,OpenWay Riva,2026-05-15,2027-05-15,2031-05-15,Itron Inc,289.0000,LG-88118
+E-2017,ami,electric,ami,1,SCW-U-015,Itron Inc,OpenWay Riva,2026-05-16,2027-05-16,,,,LG-88119
+E-2018,walk_by,water,walk_by,1,,Badger Meter,Recordall 25,2026-05-17,2027-05-17,2030-05-17,Badger Meter,171.0000,LG-88120

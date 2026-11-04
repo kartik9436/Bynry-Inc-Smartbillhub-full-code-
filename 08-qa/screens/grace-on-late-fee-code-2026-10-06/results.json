@@ -1,0 +1,37 @@
+[
+ {
+  "name": "LATE serves its seeded grace",
+  "pass": true,
+  "detail": "{\"days\":5,\"mode\":\"calendar\"}"
+ },
+ {
+  "name": "the save put 10 business days on the code",
+  "pass": true,
+  "detail": "10 business"
+ },
+ {
+  "name": "View details shows 10 business days",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "plan Sample — Commercial shows the code's grace on its details",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "plan Sample — Commercial Edit › Charges shows the code's grace",
+  "pass": true,
+  "detail": "Grace: 10 business days"
+ },
+ {
+  "name": "a plan whose late fee is LATE was walked",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "grace restored",
+  "pass": true,
+  "detail": "5 calendar"
+ }
+]

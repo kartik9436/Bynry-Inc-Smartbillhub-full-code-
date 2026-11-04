@@ -1,0 +1,76 @@
+# G116 baseline — cited test files that DO NOT EXIST.
+#
+# One line per citation: "<the path cited>  <the file citing it>".
+#
+# 65 of 913 cited test paths did not resolve on 2026-09-06, the day this gate
+# was written — one in fourteen. They are excused here so the gate is green
+# from birth rather than switched off, and THIS LIST MAY ONLY EVER SHRINK: a
+# citation not on it fails the merge.
+#
+# Two ways to remove a line, and BOTH are real fixes:
+#   * write the test the header promises, or
+#   * correct the line to name the test that actually covers the file.
+# A header naming a file that does not exist is worse than one naming nothing,
+# because the next lane reads it as "already covered" and writes no case.
+#
+# Grouped by citing file. The Work module's mobile app accounts for nine of
+# these and Work's backend for five, which is the cluster worth taking first.
+
+06-backend/tests/test_br_met_141_register_units.py  06-backend/apps/metering/register_units.py
+06-backend/tests/test_cr059_cs8_transfer.py  06-backend/apps/payments/migrations/0017_cr059_cs8_cs32_cs30_columns.py
+06-backend/tests/test_cr059_cs8_transfer.py  06-backend/apps/payments/transfer.py
+06-backend/tests/test_cr059_cs8_transfer.py  06-backend/apps/payments/transfer_api.py
+06-backend/tests/test_def871_usage_trigger.py  06-backend/apps/metering/management/commands/backfill_monthly_usage.py
+06-backend/tests/test_us_cwp_016_find_account.py  06-backend/apps/portal/api.py
+06-backend/tests/test_us_cwp_016_find_account.py  06-backend/apps/portal/credentials.py
+06-backend/tests/test_us_cwp_018_password.py  06-backend/apps/portal/seams/identity_seam.py
+06-backend/tests/test_us_cwp_020_session.py  06-backend/apps/portal/session.py
+06-backend/tests/test_us_int_008_bank_adapter.py  06-backend/apps/integrations/adapters/bank_lockbox_file.py
+06-backend/tests/test_us_rat_012_demand.py  06-backend/apps/rating/pricing/models/demand.py
+06-backend/tests/test_us_rep_catalog_and_viewer.py  06-backend/apps/reports/queries.py
+06-backend/tests/test_us_wrk_007_types.py  06-backend/apps/work/lookups.py
+06-backend/tests/test_us_wrk_007_types.py  06-backend/apps/work/models.py
+06-backend/tests/test_us_wrk_020_workforce.py  06-backend/apps/work/workforce.py
+06-backend/tests/test_us_wrk_031_edit.py  06-backend/apps/work/edit.py
+06-backend/tests/test_us_wrk_031_edit.py  06-backend/apps/work/seams/notifications_seam.py
+06-backend/tests/test_us_wrk_041_today.py  06-backend/apps/work/mobile.py
+06-backend/tests/test_us_wrk_044_sync.py  06-backend/apps/work/sync.py
+06-backend/tests/test_us_wrk_044_sync.py  06-backend/apps/work/sync_models.py
+07-frontend/src/features/customers/CloseOutPage.test.tsx  07-frontend/src/features/customers/CloseOutPage.tsx
+07-frontend/src/features/metering/QuickReadModal.test.tsx  07-frontend/src/features/metering/QuickReadModal.tsx
+10-scripts/gates/g78_portal_write_points.py  06-backend/apps/portal/write_points.py
+CentresPage.test.tsx  07-frontend/src/portal/components/content.tsx
+RunbookSetupPage.dom.test.tsx  07-frontend/src/features/runbooks/RunbookSetupPage.tsx
+SignIn.test.tsx  07-frontend/src/portal/signin/ForgotPassword.tsx
+SignIn.test.tsx  07-frontend/src/portal/signin/FrontDoor.tsx
+SignIn.test.tsx  07-frontend/src/portal/signin/SignInPages.tsx
+TemplateDetail.dom.test.tsx  07-frontend/src/features/runbooks/library/TemplateDetail.tsx
+TemplateDetail.dom.test.tsx  07-frontend/src/features/runbooks/library/TemplateLibraryPage.tsx
+WaitingOnTab.dom.test.tsx  07-frontend/src/features/customers/wizardParkEndpoints.ts
+dom.test.tsx  07-frontend/src/portal/arrears/ArrearsPages.tsx
+src/api/paginated.test.ts  07-frontend/src/api/paginated.ts
+src/components/Chip.test.tsx  07-frontend/src/components/Chip.tsx
+src/components/ChipMultiSelect.test.tsx  07-frontend/src/components/ChipMultiSelect.tsx
+src/components/SegmentedControl.test.tsx  07-frontend/src/components/SegmentedControl.tsx
+src/components/Switch.test.tsx  07-frontend/src/components/Switch.tsx
+src/features/runbooks/blocks/records.test.tsx  07-frontend/src/features/runbooks/blocks/RecordsBlock.tsx
+src/features/runbooks/home/homeEndpoints.test.ts  07-frontend/src/features/runbooks/home/homeEndpoints.ts
+src/features/tenancy/SettingsPortalHelp.test.tsx  07-frontend/src/features/tenancy/SettingsPortalHelp.tsx
+src/features/tenancy/SettingsPortalHelp.test.tsx  07-frontend/src/portal/components/languageName.ts
+src/features/tenancy/SettingsServiceCentres.test.tsx  07-frontend/src/features/tenancy/serviceCentreWeek.ts
+src/features/work/LabourRatesPage.test.tsx  07-frontend/src/features/work/LabourRatesPage.tsx
+src/features/work/SkillsWizard.test.tsx  07-frontend/src/features/work/SkillsWizard.tsx
+src/features/work/mobile/JobPage.test.tsx  07-frontend/src/features/work/mobile/JobPage.tsx
+src/features/work/mobile/MobileApp.test.tsx  07-frontend/src/features/work/mobile/MobileApp.tsx
+src/features/work/mobile/PhotosPane.dom.test.tsx  07-frontend/src/features/work/mobile/PhotosPane.tsx
+src/features/work/mobile/SignaturePane.dom.test.tsx  07-frontend/src/features/work/mobile/SignaturePane.tsx
+src/features/work/mobile/TodayPage.test.tsx  07-frontend/src/features/work/mobile/TodayPage.tsx
+src/features/work/mobile/TodayPage.test.tsx  07-frontend/src/features/work/mobile/mobileEndpoints.ts
+src/features/work/mobile/compressPhoto.test.ts  07-frontend/src/features/work/mobile/compressPhoto.ts
+src/features/work/mobile/offlineStore.test.ts  07-frontend/src/features/work/mobile/offlineStore.ts
+src/features/work/mobile/serviceWorker.test.ts  07-frontend/src/features/work/mobile/serviceWorker.ts
+src/portal/guest/CentresPage.test.tsx  07-frontend/src/portal/guest/CentresPage.tsx
+src/portal/guest/HelpPage.test.tsx  07-frontend/src/portal/components/content.tsx
+src/portal/guest/HelpPage.test.tsx  07-frontend/src/portal/guest/HelpPage.tsx
+src/portal/guest/QuickService.test.tsx  07-frontend/src/portal/guest/QuickService.tsx
+src/portal/signin/Enrol.test.tsx  07-frontend/src/portal/api/portalClient.ts

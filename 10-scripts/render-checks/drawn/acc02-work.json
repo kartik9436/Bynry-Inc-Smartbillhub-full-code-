@@ -1,0 +1,29 @@
+{
+ "tab": "work",
+ "note": "Transcribed from 04-docs/05-modules/03-customers/blueprint/02-account-detail.md — ACC-T08, the EXTRACTED TEXT, not from looking at the picture, so anybody can re-check it against the source.",
+ "drawn": {
+  "toolbar": "All · Open · Scheduled · Closed · Filter ▾ · ⚲ Search by order number, type or technician · Columns ▾ · ⇩ Export",
+  "footer": "1–4 of 4 · sorted by priority, then due time · Rows per page 50 100 200 ‹ ›",
+  "rules": [
+   "This list is not in date order and the footer has to say so. It is sorted by priority rank, then by due time, and that sort is fixed — there is no column to click.",
+   "Six filters, and a seventh is refused. Search, type, status, priority, technician and area are the whole set.",
+   "The build history is not a second table. The jobs that built this service are work orders like any other and sit in this list — WO-24-1902 is the meter set."
+  ]
+ },
+ "groups": [
+  {
+   "col": "left",
+   "slug": "work-orders",
+   "heading": "WORK ORDERS",
+   "table": [
+    "ORDER #",
+    "TYPE",
+    "PRIORITY",
+    "TECHNICIAN",
+    "DUE",
+    "STATUS",
+    "RAISED BY"
+   ]
+  }
+ ]
+}

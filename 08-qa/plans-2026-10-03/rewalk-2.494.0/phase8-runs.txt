@@ -1,0 +1,46 @@
+  decision asked: 01a105dc-104c-7010-84a6-6d3844a32abf service_not_connected
+  decision asked: 01a105dc-11f2-7dd4-a25e-130b66c4b3cb service_not_connected
+run RUN-0003 2026-12-01..2026-12-31
+BILL PW-RUTH AC-2026-00054 BL-2612-000101 id=01a105de-c6a4-709d-af2b-ea0bb1adab22 · 2026-12-01..2026-12-31 · issued · total 94.35
+   base         water base charge                                qty=None 8.0000
+   base         sewer base charge                                qty=None 9.0000
+   tax          Tax Local · Bexar County                         qty=None 1.8500
+   usage        water usage tier 2 (5-15 kgal)                   qty=3.000000 19.5000
+   usage        water usage tier 1 (0-5 kgal)                    qty=5.000000 20.0000
+   usage        sewer usage — 90.00% of water volume             qty=7.200000 36.0000
+BILL PW-CARL AC-2026-00055 BL-2612-000102 id=01a105de-c6bd-73d7-9975-2c16de153887 · 2026-12-01..2026-12-31 · issued · total 117.94
+   base         water base charge                                qty=None 10.0000
+   base         sewer base charge                                qty=None 11.2500
+   tax          Tax Local · Bexar County                         qty=None 2.3100
+   usage        sewer usage — 90.00% of water volume             qty=7.200000 45.0000
+   usage        water usage tier 1 (0-5 kgal)                    qty=5.000000 25.0000
+   usage        water usage tier 2 (5-15 kgal)                   qty=3.000000 24.3800
+BILL PW-CAFE AC-2026-00056 BL-2612-000103 id=01a105de-c6d6-7666-a8ee-e0a799b1cad1 · 2026-12-01..2026-12-31 · issued · total 103.63
+   base         water base charge                                qty=None 15.0000
+   base         sewer base charge                                qty=None 9.0000
+   tax          Tax Local · Bexar County                         qty=None 2.0300
+   usage        sewer usage — 90.00% of water volume             qty=7.200000 36.0000
+   usage        water usage                                      qty=8.000000 41.6000
+  decision asked: 01a105dc-104c-7010-84a6-6d3844a32abf service_not_connected
+  decision asked: 01a105dc-11f2-7dd4-a25e-130b66c4b3cb service_not_connected
+run RUN-0004 2027-01-01..2027-01-31
+BILL PW-RUTH AC-2026-00054 BL-2701-000104 id=01a105de-d2e2-7256-a0fc-2d1e1fe279d1 · 2027-01-01..2027-01-31 · issued · total 98.38
+   base         sewer base charge                                qty=None 9.0000
+   base         water base charge                                qty=None 8.0000
+   tax          Tax Local · Bexar County                         qty=None 1.9300
+   usage        sewer usage — 90.00% of water volume             qty=7.200000 36.0000
+   usage        water usage tier 2 (5-15 kgal)                   qty=3.000000 21.4500
+   usage        water usage tier 1 (0-5 kgal)                    qty=5.000000 22.0000
+BILL PW-CARL AC-2026-00055 BL-2701-000105 id=01a105de-d2fb-7544-a7d5-da5637d30aea · 2027-01-01..2027-01-31 · issued · total 122.97
+   base         water base charge                                qty=None 10.0000
+   base         sewer base charge                                qty=None 11.2500
+   tax          Tax Local · Bexar County                         qty=None 2.4100
+   usage        sewer usage — 90.00% of water volume             qty=7.200000 45.0000
+   usage        water usage tier 1 (0-5 kgal)                    qty=5.000000 27.5000
+   usage        water usage tier 2 (5-15 kgal)                   qty=3.000000 26.8100
+BILL PW-CAFE AC-2026-00056 BL-2701-000106 id=01a105de-d316-7803-8cdc-8033788dfab3 · 2027-01-01..2027-01-31 · issued · total 103.63
+   base         sewer base charge                                qty=None 9.0000
+   base         water base charge                                qty=None 15.0000
+   tax          Tax Local · Bexar County                         qty=None 2.0300
+   usage        sewer usage — 90.00% of water volume             qty=7.200000 36.0000
+   usage        water usage                                      qty=8.000000 41.6000

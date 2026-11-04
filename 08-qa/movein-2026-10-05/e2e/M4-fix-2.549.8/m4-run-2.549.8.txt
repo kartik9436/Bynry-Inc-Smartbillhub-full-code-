@@ -1,0 +1,151 @@
+
+── M4 · Commercial · Small commercial · company with owners — Electric, Water, Sewer, Trash, Storm water · Tax ID match · card
+  PASS  M4 · Units     · U-00007 is offered as vacant before the move-in
+  PASS  M4 · Units     · step 1 lists Electric
+  PASS  M4 · Units     · step 1 lists Water
+  PASS  M4 · Units     · step 1 lists Sewer
+  PASS  M4 · Units     · step 1 lists Trash
+  PASS  M4 · Units     · step 1 lists Storm water
+  PASS  M4 · Assets    · step 1 asks an opening read for E-M4
+  PASS  M4 · Assets    · step 1 asks an opening read for W-M4
+  PASS  M4 · Accounts  · Search customer ID answers "found"
+  PASS  M4 · Accounts  · the match names Northgate Provisions LLC — Existing customer
+C-00053 · Northgate Provisions LLC
+Name and Tax ID match.
+Not them
+Link customer
+ACCOUNT	ADDRESS	STATE	OUTSTANDING
+AC-2026-00056	6 Aspen Row ·
+  PASS  M4 · Accounts  · the match lists her account AC-2026-00056
+  PASS  M4 · Accounts  · Link makes Northgate Provisions LLC the move-in's customer (Linked)
+  PASS  M4 · Accounts  · co-owner card 1 holds Hal Brennan
+  PASS  M4 · Accounts  · co-owner card 2 holds Priya Nandakumar
+  PASS  M4 · Payments  · Fees total reads $325.00 — $325.00
+  PASS  M4 · Payments  · no fee row is taxed at move-in (no Taxable column, no tax row)
+  NOTE  M4 · Complete warned deposit_carry_forward_unavailable: no deposit was carried forward from an earlier account
+  NOTE  M4 · Complete warned deposit_payment_has_not_cleared: 
+  PASS  M4 · Accounts  · Move-in completed prints no raw server code
+  PASS  M4 · Messages  · Move-in completed counts the queued welcome (not 0 queued) — reads "3 queued"
+  PASS  M4 · Accounts  · Move-in completed names an MVI- number — MVI-26-0007
+2026-10-06 06:31:53,839 INFO apps.billing.resolution_switch ruled path skipped trash for account AC-2026-00057: billed one line per size
+2026-10-06 06:31:53,839 INFO apps.billing.resolution_switch ruled path served R3, R4 for account AC-2026-00057
+  PASS  M4 · Accounts  · one move record MVI-26-0007 exists
+  PASS  M4 · Accounts  · the move record is a move-in
+  PASS  M4 · Accounts  · the move-in is dated as typed
+  PASS  M4 · Accounts  · the account is active
+  PASS  M4 · Accounts  · the account opens on the move-in date
+  PASS  M4 · Accounts  · the account type is the one the clerk picked
+  PASS  M4 · Accounts  · the sub-type is the one the clerk picked
+  PASS  M4 · Accounts  · the account is on the case's unit
+  PASS  M4 · Accounts  · exactly one customer holds the account
+  PASS  M4 · Accounts  · the customer's name is as typed
+  PASS  M4 · Accounts  · the customer is a person/company as picked
+  PASS  M4 · Accounts  · LINKED: the returning customer holds her accounts on file AND this one
+  PASS  M4 · Accounts  · LINKED: no second customer of that name was written
+  PASS  M4 · Accounts  · one agreement per started service
+  PASS  M4 · Accounts  · every agreement starts on the move-in date
+  PASS  M4 · Units     · the unit stores no status or occupancy (it is derived)
+  PASS  M4 · Units     · the unit now has exactly one open account (reads Occupied)
+  PASS  M4 · Assets    · an opening read for each meter the clerk read, and none other
+  PASS  M4 · Assets    · E-M4's opening read is 15100 as typed
+  PASS  M4 · Assets    · E-M4's opening read is in kWh, the meter's own unit
+  PASS  M4 · Assets    · E-M4's opening read is dated the move-in date
+  PASS  M4 · Assets    · E-M4's opening read is committed
+  PASS  M4 · Assets    · W-M4's opening read is 642.0 as typed
+  PASS  M4 · Assets    · W-M4's opening read is in kgal, the meter's own unit
+  PASS  M4 · Assets    · W-M4's opening read is dated the move-in date
+  PASS  M4 · Assets    · W-M4's opening read is committed
+  PASS  M4 · Assets    · the move-in wrote no asset status (meter status is derived) — 0 asset audit rows read since the move
+  PASS  M4 · Payments  · the fee lines are the plan's deposit and connection charge
+  PASS  M4 · Payments  · no tax was charged on any move-in fee (OQ-BIL-12788 (a))
+  PASS  M4 · Payments  · the payments total $325.00
+  PASS  M4 · Payments  · the payments total the fees (paid in full)
+  PASS  M4 · Payments  · every payment carries reference 4417
+  PASS  M4 · Payments  · every payment's tender is card
+  PASS  M4 · Payments  · the deposit is paid as a deposit-purpose payment
+  PASS  M4 · Payments  · every payment wrote audit_log (hard rule 7)
+  PASS  M4 · Accounts  · the move-in wrote audit_log account.moved_in
+  PASS  M4 · Payments  · every journal entry for the account balances DR = CR (hard rule 5) — 0 entries read, 2 payment(s) not journaled yet (PY-261010-0086, PY-261010-0087; a check journals when it clears)
+  PASS  M4 · Billing   · the first-bill preview prices (every started service has what it needs)
+  PASS  M4 · Billing   · the first bill carries the move-in's fee lines
+  PASS  M4 · Billing   · no fee or deposit line on the first bill is taxable
+  PASS  M4 · Billing   · a deposit paid at move-in is not billed again on the first bill
+  PASS  M4 · Billing   · the first bill carries each move-in fee line at its recorded amount
+  PASS  M4 · Billing   · every tax line on the first bill names a tax (3 tax lines read)
+  PASS  M4 · Billing   · the first bill carries TX State Utility Tax
+  PASS  M4 · Billing   · the first bill carries Local · Bexar County
+  PASS  M4 · Billing   · the first bill carries City of Cedar Ford utility tax
+  PASS  M4 · Accounts  · co-owner Hal Brennan is written on the account
+  PASS  M4 · Accounts  · Hal Brennan is an owner/officer, Managing member, 60%, signs yes
+  PASS  M4 · Accounts  · co-owner Priya Nandakumar is written on the account
+  PASS  M4 · Accounts  · Priya Nandakumar is an owner/officer, Member, 40%, signs no
+  PASS  M4 · Route     · every service point of the unit is on a route (5 points)
+  PASS  M4 · Route     · every service point of the unit is on a billing cycle (5 points)
+  PASS  M4 · Route     · the unit holds a place in its route's walk order
+  PASS  M4 · Work      · one work order per field-visit row
+  PASS  M4 · Messages  · the move-in's welcome is queued (3 rows)
+  PASS  M4 · Messages  · a receipt is queued for each payment (6 rows for 2 payments)
+  PASS  M4 · Messages  · no message is marked sent (BR-NOT-013: queued is never sent)
+  NOTE  M4 · first bill · usage · electric usage tier 1 (0-500 kWh) · 55.00
+  NOTE  M4 · first bill · usage · electric usage tier 2 (500-1000 kWh) · 40.50
+  NOTE  M4 · first bill · base · electric base charge · 96.00
+  NOTE  M4 · first bill · usage · storm_water usage · 0.00
+  NOTE  M4 · first bill · base · storm_water base charge · 2.00
+  NOTE  M4 · first bill · usage · trash - 2 × Trash 96-gallon cart · 30.00
+  NOTE  M4 · first bill · usage · water usage · 67.60
+  NOTE  M4 · first bill · base · water base charge · 26.25
+  NOTE  M4 · first bill · usage · sewer usage — 90.00% of water volume · 58.50
+  NOTE  M4 · first bill · base · sewer base charge · 9.00
+  NOTE  M4 · first bill · fee · Connection charge · 25.00
+  NOTE  M4 · first bill · tax · Tax City · 7.70
+  NOTE  M4 · first bill · tax · Tax Local · 7.70
+  NOTE  M4 · first bill · tax · Tax Texas State · 24.05
+  PASS  M4 · Units     · /premises/units/01a10fc1-f728-742b-94c7-702e74463b5e opens (h1 drawn, no error page)
+  PASS  M4 · Units     · the unit reads Occupied
+  PASS  M4 · Units     · the unit names account AC-2026-00057
+  PASS  M4 · Units     · the unit names the account holder (AC-2026-00057 · Northgate Provisions LLC)
+  PASS  M4 · Assets    · /assets/01a10fc1-f887-785c-9ef9-4488dee77a38 opens (h1 drawn, no error page)
+  PASS  M4 · Assets    · E-M4 is on account AC-2026-00057
+  PASS  M4 · Assets    · E-M4 reads Installed (derived, the move-in wrote no status)
+  PASS  M4 · Assets    · E-M4 names the account holder (AC-2026-00057 · Northgate Provisions LLC)
+  PASS  M4 · Assets    · /assets/01a10fc1-f887-785c-9ef9-4488dee77a38?tab=reads opens (h1 drawn, no error page)
+  PASS  M4 · Assets    · E-M4's Reads tab shows the opening read 15100
+  PASS  M4 · Assets    · E-M4's Reads tab shows it in kWh
+  PASS  M4 · Assets    · /assets/01a10fc1-f972-7a9c-906c-d000f10f0219 opens (h1 drawn, no error page)
+  PASS  M4 · Assets    · W-M4 is on account AC-2026-00057
+  PASS  M4 · Assets    · W-M4 reads Installed (derived, the move-in wrote no status)
+  PASS  M4 · Assets    · W-M4 names the account holder (AC-2026-00057 · Northgate Provisions LLC)
+  PASS  M4 · Assets    · /assets/01a10fc1-f972-7a9c-906c-d000f10f0219?tab=reads opens (h1 drawn, no error page)
+  PASS  M4 · Assets    · W-M4's Reads tab shows the opening read 642
+  PASS  M4 · Assets    · W-M4's Reads tab shows it in kgal
+  PASS  M4 · Accounts  · /accounts/01a10fe9-48a2-7b42-94c1-70b5e496d4d5 opens (h1 drawn, no error page)
+  PASS  M4 · Accounts  · the account shows Northgate Provisions LLC
+  PASS  M4 · Accounts  · the account shows Commercial
+  PASS  M4 · Accounts  · the account lists Electric
+  PASS  M4 · Accounts  · the account lists Sewer
+  PASS  M4 · Accounts  · the account lists Storm water
+  PASS  M4 · Accounts  · the account lists Trash
+  PASS  M4 · Accounts  · the account lists Water
+  PASS  M4 · Accounts  · the account's title is the account holder Northgate Provisions LLC — title reads "Northgate Provisions LLC"
+  PASS  M4 · Payments  · /accounts/01a10fe9-48a2-7b42-94c1-70b5e496d4d5?tab=payments opens (h1 drawn, no error page)
+  PASS  M4 · Payments  · payment PY-261010-0086 ($300.00) is listed
+  PASS  M4 · Payments  · payment PY-261010-0087 ($25.00) is listed
+  PASS  M4 · Billing   · /moves/MVI-26-0007?tab=billing opens (h1 drawn, no error page)
+  PASS  M4 · Billing   · the move's Billing tab lists DEPOSIT
+  PASS  M4 · Billing   · the move's Billing tab lists CONN
+  PASS  M4 · Billing   · the fees total $325.00
+  PASS  M4 · Billing   · each payment is dated the day the clerk typed (10/10/2026)
+  PASS  M4 · Payments  · a deposit paid in full reads as taken, nothing still to collect — STILL TO COLLECT
+$0.00
+  PASS  M4 · Route     · /reads/routes/01a10fc2-0463-78e1-a406-f346903bb7f0 opens (h1 drawn, no error page)
+  PASS  M4 · Route     · route RT-006 is the unit's (Matrix walk)
+  PASS  M4 · Messages  · /moves/MVI-26-0007?tab=messages opens (h1 drawn, no error page)
+  PASS  M4 · Messages  · the move's Messages tab lists the welcome
+  PASS  M4 · Accounts  · /moves/MVI-26-0007 opens (h1 drawn, no error page)
+  PASS  M4 · Accounts  · the move-in record reads MVI-26-0007
+  PASS  M4 · Accounts  · the move-in record names AC-2026-00057
+  PASS  M4 · Assets    · the move-in record no longer reads 'Waiting on a read' (every meter read)
+
+── summary
+  M4: 120 PASS · 0 FAIL
+ALL PASS

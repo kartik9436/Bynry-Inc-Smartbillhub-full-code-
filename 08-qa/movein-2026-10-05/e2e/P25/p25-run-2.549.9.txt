@@ -1,0 +1,147 @@
+
+── P25 · P4.25 · a copy of M2, then Change move-in date 10/10/2026 → 10/15/2026
+  PASS  P25 · Units     · U-00005 is offered as vacant before the move-in
+  PASS  P25 · Units     · step 1 lists Water
+  PASS  P25 · Units     · step 1 lists Sewer
+  PASS  P25 · Assets    · step 1 asks an opening read for W-M2
+  PASS  P25 · Work      · the Work order list offers "Opening read"
+  PASS  P25 · Accounts  · Search customer ID answers "found"
+  PASS  P25 · Accounts  · the match names Rosa Delgado — Existing customer
+C-00052 · Rosa Delgado
+Name, date of birth, SSN, and phone match.
+Not them
+Link customer
+ACCOUNT	ADDRESS	STATE	OUTSTANDING
+AC-2026-00054	2 Asp
+  PASS  P25 · Accounts  · the match lists her account AC-2026-00054
+  PASS  P25 · Accounts  · the match lists her account AC-2026-00055
+  PASS  P25 · Accounts  · the match reads what she owes, $84.20 — $50.00 $34.20 $84.20
+  PASS  P25 · Accounts  · Link makes Rosa Delgado the move-in's customer (Linked)
+  PASS  P25 · Accounts  · co-owner card 1 holds Luis Delgado
+  PASS  P25 · Payments  · Fees total reads $175.00 — $175.00
+  PASS  P25 · Payments  · no fee row is taxed at move-in (no Taxable column, no tax row)
+  PASS  P25 · Payments  · step 3 says $175.00 goes on the first bill — $175.00 goes on the first bill.
+  NOTE  P25 · Complete warned deposit_carry_forward_unavailable: no deposit was carried forward from an earlier account
+  PASS  P25 · Accounts  · Move-in completed prints no raw server code
+  PASS  P25 · Messages  · Move-in completed counts the queued welcome (not 0 queued) — reads "3 queued"
+  PASS  P25 · Accounts  · Move-in completed names an MVI- number — MVI-26-0007
+2026-10-06 06:41:20,513 INFO apps.billing.resolution_switch ruled path served R3, R4 for account AC-2026-00057
+  PASS  P25 · Accounts  · one move record MVI-26-0007 exists
+  PASS  P25 · Accounts  · the move record is a move-in
+  PASS  P25 · Accounts  · the move-in is dated as typed
+  PASS  P25 · Accounts  · the account is active
+  PASS  P25 · Accounts  · the account opens on the move-in date
+  PASS  P25 · Accounts  · the account type is the one the clerk picked
+  PASS  P25 · Accounts  · the sub-type is the one the clerk picked
+  PASS  P25 · Accounts  · the account is on the case's unit
+  PASS  P25 · Accounts  · exactly one customer holds the account
+  PASS  P25 · Accounts  · the customer's name is as typed
+  PASS  P25 · Accounts  · the customer is a person/company as picked
+  PASS  P25 · Accounts  · LINKED: the returning customer holds her accounts on file AND this one
+  PASS  P25 · Accounts  · LINKED: no second customer of that name was written
+  PASS  P25 · Accounts  · one agreement per started service
+  PASS  P25 · Accounts  · every agreement starts on the move-in date
+  PASS  P25 · Units     · the unit stores no status or occupancy (it is derived)
+  PASS  P25 · Units     · the unit now has exactly one open account (reads Occupied)
+  PASS  P25 · Assets    · an opening read for each meter the clerk read, and none other
+  PASS  P25 · Assets    · W-M2's opening read is 121.5 as typed
+  PASS  P25 · Assets    · W-M2's opening read is in kgal, the meter's own unit
+  PASS  P25 · Assets    · W-M2's opening read is dated the move-in date
+  PASS  P25 · Assets    · W-M2's opening read is committed
+  PASS  P25 · Assets    · the move-in wrote no asset status (meter status is derived) — 0 asset audit rows read since the move
+  PASS  P25 · Payments  · the fee lines are the plan's deposit and connection charge
+  PASS  P25 · Payments  · no tax was charged on any move-in fee (OQ-BIL-12788 (a))
+  PASS  P25 · Payments  · Add to bill: no payment was recorded
+  PASS  P25 · Payments  · every payment wrote audit_log (hard rule 7)
+  PASS  P25 · Accounts  · the move-in wrote audit_log account.moved_in
+  PASS  P25 · Payments  · every journal entry for the account balances DR = CR (hard rule 5) — 0 entries read, 0 payment(s) not journaled yet (none; a check journals when it clears)
+  PASS  P25 · Billing   · the first-bill preview prices (every started service has what it needs)
+  PASS  P25 · Billing   · the first bill carries the move-in's fee lines
+  PASS  P25 · Billing   · no fee or deposit line on the first bill is taxable
+  PASS  P25 · Billing   · the deposit NOT taken at move-in is on the first bill ($150.00)
+  PASS  P25 · Billing   · the first bill carries each move-in fee line at its recorded amount
+  PASS  P25 · Accounts  · co-owner Luis Delgado is written on the account
+  PASS  P25 · Accounts  · Luis Delgado is a co_owner
+  PASS  P25 · Accounts  · Luis Delgado's relationship is spouse
+  PASS  P25 · Accounts  · Luis Delgado's date of birth is as typed
+  PASS  P25 · Accounts  · Luis Delgado is responsible for bills as ticked
+  PASS  P25 · Assets    · BF-M2 still stands under W-M2 (the move-in moved no equipment)
+  PASS  P25 · Assets    · BF-M2 (not a read device) carries no opening read
+  PASS  P25 · Route     · every service point of the unit is on a route (2 points)
+  PASS  P25 · Route     · every service point of the unit is on a billing cycle (2 points)
+  PASS  P25 · Route     · the unit holds a place in its route's walk order
+  PASS  P25 · Work      · one work order per field-visit row
+  PASS  P25 · Work      · WO-0053 is raised from the move-in
+  PASS  P25 · Work      · WO-0053 carries the template Opening read
+  PASS  P25 · Work      · WO-0053 is for meter W-M2
+  PASS  P25 · Work      · WO-0053 is due on the move-in date
+  PASS  P25 · Work      · WO-0053's window is the one picked (utility time)
+  PASS  P25 · Work      · WO-0053 is assigned to a technician
+  PASS  P25 · Work      · WO-0053 carries no labour yet (labour comes from arrived/finished times)
+  PASS  P25 · Messages  · the move-in's welcome is queued (3 rows)
+  PASS  P25 · Messages  · a receipt is queued for each payment (0 rows for 0 payments)
+  PASS  P25 · Messages  · no message is marked sent (BR-NOT-013: queued is never sent)
+  NOTE  P25 · first bill · usage · water usage tier 1 (0-5 kgal) · 19.08
+  NOTE  P25 · first bill · base · water base charge · 15.00
+  NOTE  P25 · first bill · usage · sewer usage — 90.00% of water volume · 13.50
+  NOTE  P25 · first bill · base · sewer base charge · 9.00
+  NOTE  P25 · first bill · deposit · Security deposit · 150.00
+  NOTE  P25 · first bill · fee · Connection charge · 25.00
+  NOTE  P25 · first bill · tax · Tax Local · 1.13
+  PASS  P25 · Units     · /premises/units/01a10fa7-9a2a-7666-9121-8ce7f02f4c8d opens (h1 drawn, no error page)
+  PASS  P25 · Units     · the unit reads Occupied
+  PASS  P25 · Units     · the unit names account AC-2026-00057
+  PASS  P25 · Units     · the unit names the account holder (AC-2026-00057 · Rosa Delgado)
+  PASS  P25 · Assets    · /assets/01a10fa7-9a69-77f0-874a-23455344bcfe opens (h1 drawn, no error page)
+  PASS  P25 · Assets    · W-M2 is on account AC-2026-00057
+  PASS  P25 · Assets    · W-M2 reads Installed (derived, the move-in wrote no status)
+  PASS  P25 · Assets    · W-M2 names the account holder (AC-2026-00057 · Rosa Delgado)
+  PASS  P25 · Assets    · /assets/01a10fa7-9a69-77f0-874a-23455344bcfe?tab=reads opens (h1 drawn, no error page)
+  PASS  P25 · Assets    · W-M2's Reads tab shows the opening read 121.5
+  PASS  P25 · Assets    · W-M2's Reads tab shows it in kgal
+  PASS  P25 · Accounts  · /accounts/01a10ff1-ec34-705e-ac3a-4a826f9e9dfa opens (h1 drawn, no error page)
+  PASS  P25 · Accounts  · the account shows Rosa Delgado
+  PASS  P25 · Accounts  · the account shows Residential
+  PASS  P25 · Accounts  · the account lists Sewer
+  PASS  P25 · Accounts  · the account lists Water
+  PASS  P25 · Accounts  · the account's title is the account holder Rosa Delgado — title reads "Rosa Delgado"
+  PASS  P25 · Payments  · /accounts/01a10ff1-ec34-705e-ac3a-4a826f9e9dfa?tab=payments opens (h1 drawn, no error page)
+  PASS  P25 · Billing   · /moves/MVI-26-0007?tab=billing opens (h1 drawn, no error page)
+  PASS  P25 · Billing   · the move's Billing tab lists DEPOSIT
+  PASS  P25 · Billing   · the move's Billing tab lists CONN
+  PASS  P25 · Billing   · the fees total $175.00
+  PASS  P25 · Route     · /reads/routes/01a10fa7-9f96-787a-bdc5-f52bcea11365 opens (h1 drawn, no error page)
+  PASS  P25 · Route     · route RT-006 is the unit's (Matrix walk)
+  PASS  P25 · Work      · /work/orders/WO-0053 opens (h1 drawn, no error page)
+  PASS  P25 · Work      · WO-0053 shows its template's type Re-read
+  PASS  P25 · Work      · WO-0053 names the account AC-2026-00057
+  PASS  P25 · Work      · WO-0053 names the meter W-M2
+  PASS  P25 · Work      · WO-0053 is on the technician's day (10/10/2026)
+  PASS  P25 · Messages  · /moves/MVI-26-0007?tab=messages opens (h1 drawn, no error page)
+  PASS  P25 · Messages  · the move's Messages tab lists the welcome
+  PASS  P25 · Accounts  · /moves/MVI-26-0007 opens (h1 drawn, no error page)
+  PASS  P25 · Accounts  · the move-in record reads MVI-26-0007
+  PASS  P25 · Accounts  · the move-in record names AC-2026-00057
+  PASS  P25 · Assets    · the move-in record reads 'Waiting on a read' (SW-M2 left unread)
+  PASS  P25 · Accounts  · /moves/MVI-26-0007?tab=account opens (h1 drawn, no error page)
+  PASS  P25 · Accounts  · the move's Account tab names the co-owner Luis Delgado
+  PASS  P25 · Accounts  · the move's Account tab names the customer Rosa Delgado
+  PASS  P25 · Assets    · /assets/01a10fa7-9ad3-7ff2-a55e-2ff14f9cf6aa opens (h1 drawn, no error page)
+  PASS  P25 · Assets    · BF-M2 names the meter it stands under (W-M2)
+  PASS  P25 · Payments  · Add to bill: the move's Billing tab reads Still to collect $150.00 (deposit not taken) — STILL TO COLLECT
+$150.00
+  FAIL  P25 · Accounts  · the details view reads the new move-in date 10/15/2026 — [DEF-CUS-9790] 10/10/2026 10/10/2026 10/10/2026 10/06/2026
+  FAIL  P25 · Accounts  · after a reload the details view reads the new move-in date 10/15/2026 — [DEF-CUS-9790] chip "Waiting on a read Moved in 10/10/2026 300 Willow Court · U-00005 · Apt 2B" · dates on screen: 10/10/2026 10/10/2026 10/10/2026 10/06/2026
+  FAIL  P25 · Accounts  · the Move-ins list dates MVI-26-0007 10/15/2026 — [DEF-CUS-9790] 
+2026-10-06 06:42:14,139 INFO apps.billing.resolution_switch ruled path served R3, R4 for account AC-2026-00057
+  PASS  P25 · Accounts  · DATE: the account now opens on 2026-10-15
+  PASS  P25 · Accounts  · DATE: every agreement now starts on 2026-10-15 (2 agreements)
+  PASS  P25 · Accounts  · DATE: the move record keeps the date it was made with (never updated)
+  PASS  P25 · Accounts  · DATE: the change wrote audit_log on the account
+  PASS  P25 · Billing   · DATE: the first bill's prorated base charges move with the date (from 2026-10-10: $24.00; from 2026-10-15: $20.13)
+  PASS  P25 · Accounts  · /accounts/01a10ff1-ec34-705e-ac3a-4a826f9e9dfa opens (h1 drawn, no error page)
+  PASS  P25 · Accounts  · the account reads opened 10/15/2026
+
+── summary
+  P25: 121 PASS · 3 FAIL
+3 FAIL

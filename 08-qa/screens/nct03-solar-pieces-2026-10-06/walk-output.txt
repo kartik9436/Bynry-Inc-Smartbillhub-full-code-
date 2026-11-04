@@ -1,0 +1,47 @@
+        template: ST-0020 Solar installation v1
+  PASS  Kyle Mark's application saved — 200 {"token":"23b3cb91-41a9-4165-9440-ff1e510ea4ca","address_as_given":"9865 Sunline Way","address_unit_as_given":null,"address_city_as_given":"Austin","address_postal_code_as_given":"78701","service_addr
+  PASS  Kyle Mark's application sent — 200 {"reference":"SR-26-0016","request_id":"01a111f6-b6ef-74b8-ae97-091fcf3a2bb3","consent_recorded":false,"idempotent_replay":false}
+  PASS  Approve opens New Connect on the raised build — http://127.0.0.1:5848/brazosbend/connections/new?build=01a111f6-cb9b-78bc-bad4-b78b095eb193
+        premise type: Single-family
+        plan: Residential Standard
+      shot 08-qa/screens/nct03-solar-pieces-2026-10-06/2-step2.png
+      shot 08-qa/screens/nct03-solar-pieces-2026-10-06/3-step3-added-row.png
+        empty service box: 2
+        empty service box: 2
+  PASS  two extra panels are SUB-ROWS of the Solar row — 2 nested
+  PASS  they read ↳ Panel 2 and ↳ Panel 3 with their sizes — ↳ Panel 2 · Solar panel 10 kW | ↳ Panel 3 · Solar panel 10 kW
+  PASS  the Solar row reads 3 panels · 21 kW — 3 panels · 21 kW
+  PASS  Panel 2's Work order shows the Solar row's job, greyed — Solar installation
+  PASS  Panel 2 says Same as Solar row
+  PASS  Panel 2's Completes is the Solar row's tick, greyed
+  PASS  Panel 2's Occupancy shows the unit's, greyed — Vacant
+  PASS  Panel 3's Work order shows the Solar row's job, greyed — Solar installation
+  PASS  Panel 3 says Same as Solar row
+  PASS  Panel 3's Completes is the Solar row's tick, greyed
+  PASS  Panel 3's Occupancy shows the unit's, greyed — Vacant
+      shot 08-qa/screens/nct03-solar-pieces-2026-10-06/3-step3-solar-sub-rows.png
+  PASS  ✕ on the Solar row asks first — Remove Solar from 1? ✕ Removes 3 panels · 21 kW too. Cancel Remove all ✓
+      shot 08-qa/screens/nct03-solar-pieces-2026-10-06/3-step3-remove-asks.png
+  PASS  Cancel keeps all three panels
+  PASS  Review lists three panel assets: 1 kW, 10 kW, 10 kW on Unit 1 — PV / solar · Solar panel 1 kW · 1 | PV / solar · Solar panel 10 kW · 1 | PV / solar · Solar panel 10 kW · 1
+      shot 08-qa/screens/nct03-solar-pieces-2026-10-06/5-review-assets.png
+        review button: Create connection ✓
+      shot 08-qa/screens/nct03-solar-pieces-2026-10-06/5-after-create.png
+  PASS  the build holds three solar assets on Unit 1 — [["PV-00018","SOL-P1","inventory"],["PV-00019","SOL-P10","inventory"],["PV-00020","SOL-P10","inventory"]]
+  PASS  all three are In stock until the job is done
+  PASS  the Units tab lists each asset number with its size — PV-00018 · Solar panel 1 kW · Inventory | PV-00019 · Solar panel 10 kW · Inventory | PV-00020 · Solar panel 10 kW · Inventory
+      shot 08-qa/screens/nct03-solar-pieces-2026-10-06/6-build-units-before.png
+  PASS  ONE work order for Unit 1's solar — ["WO-0062"]
+        technician: d.ortiz@sample.test
+        technician signs in on the field app: 201
+        assign WO-0062: 200 {"assignment_id":"01a111f7-6c21-79ea-b35a-914a19698e7a","order_no":"WO-0062","act":"assign","dispatch_state":"scheduled","technician":{"kind":"person","name":"D
+        technician takes WO-0062: 200 {"order_id":"01a111f7-3265-7fd2-8d91-d9af598f211d","order_no":"WO-0062","technician_acceptance":{"state":"accepted","at"
+  PASS  the technician completes WO-0062 on the field app — 200 {"work_order_id":"01a111f7-3265-7fd2-8d91-d9af598f211d","accepted":1,"duplicate":0,"refused":0,"held_for_review":0,"acknowledged":["531777fa-dc08-48f2-b0dc-6ad15cf71565"],"items":[{"key":"531777fa-dc08-48f2-b0dc-6ad15cf71565","kind":"close","seq":1,"result":"accepted","ack":true,"detail":{"id":"
+  PASS  the office accepts WO-0062 — 200 {"id":"01a111f7-3265-7fd2-8d91-d9af598f211d","accepted_at":"2026-10-06T16:06:30.526386+00:00","connection_state":"requested","service_request":null,"communication":{"id":"01a111f7-3265-7fd2-8d91-d9af5
+        solar row ready=true open=[{"id":"01a111f7-3281-747b-9c44-f7f93d7d123d","order_no":"WO-0063","type":"Site inspection & mark-out","state":"planned","outcome":null,"is_gate":false,"unit_label":null,"service":"water"},{"id":"01a1
+  PASS  Unit 1's Solar is activated — 200 {"id":"01a111f6-cb9b-78bc-bad4-b78b095eb193","connection_no":"CON-26-0135","connection_state":"partly_activated","activated":[{"id":"01a111f7-3157-7d3e-ae97-974b4ed2f87d","unit_label":"1","service":"solar"}],"already_activated":[],"assets_installed":[{"id":"01a111f7-3180-7009-b5a6-56994939bc44",
+  PASS  all THREE panels are Installed, dated — [["PV-00018","active","2026-10-06"],["PV-00019","active","2026-10-06"],["PV-00020","active","2026-10-06"]]
+  PASS  the Units tab reads Installed on all three — PV-00018 · Solar panel 1 kW · Installed | PV-00019 · Solar panel 10 kW · Installed | PV-00020 · Solar panel 10 kW · Installed
+      shot 08-qa/screens/nct03-solar-pieces-2026-10-06/7-build-units-installed.png
+
+ALL PASS

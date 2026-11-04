@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CR-018 Phase 0 — Tailwind theme vs tokens.css</title>
+    <!-- The same Archivo request tokens.css:22 makes. Carried forward, NOT
+         chosen — OQ-272. Nothing here re-ratifies it. If the network blocks it
+         the page renders in system-ui and every assertion below still holds:
+         they compare computed values, not glyphs. -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=swap" />
+    <link rel="stylesheet" href="./specimen.css" />
+  </head>
+  <body class="bg-bg text-text font-body text-body">
+    <div id="app"></div>
+    <script type="module" src="./specimen.js"></script>
+  </body>
+</html>

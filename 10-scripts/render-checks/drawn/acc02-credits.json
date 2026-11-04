@@ -1,0 +1,20 @@
+{
+ "tab": "credits",
+ "note": "ACC-T04, transcribed from 04-docs/05-modules/03-customers/blueprint/02-account-detail.md lines 691–772 — the EXTRACTED TEXT, not from looking at the picture. The drawing is ONE group filling the width: a toolbar (All · Applied · Open, Filter, search, Columns, Export), then two credit notes over six columns, each still sitting beside the bill it corrected, then the pagination footer. An opened row shows Original bill · Credited · Replacement bill · Reason given to the customer · Raised by.",
+ "groups": [
+  {
+   "col": "left",
+   "slug": "credits",
+   "heading": "CREDITS",
+   "table": [
+    "CREDIT NOTE #",
+    "ISSUED",
+    "REASON",
+    "AGAINST BILL",
+    "AMOUNT",
+    "STATUS"
+   ],
+   "note": "The column heads ARE asserted here, unlike Bills and Payments, because this tab draws them over a single spanning cell when there is nothing to list — this repository's own pattern for a list whose rows have not arrived. STATUS is drawn and nothing holds it: `billing.CreditNote` has no status column at all, so the cell states the absence rather than deriving `Applied` from *has a bill*, which would be this screen inventing a word another module owns."
+  }
+ ]
+}

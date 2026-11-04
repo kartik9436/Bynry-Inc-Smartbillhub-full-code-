@@ -1,0 +1,21 @@
+name: Bug report
+description: Something behaves differently from the spec
+labels: [bug]
+body:
+  - type: input
+    id: screen
+    attributes: { label: Screen ID (S#), placeholder: "S31.3" }
+  - type: textarea
+    id: expected
+    attributes: { label: Expected (cite spec/rule ID) }
+    validations: { required: true }
+  - type: textarea
+    id: actual
+    attributes: { label: Actual behaviour + steps }
+    validations: { required: true }
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options: ["S1 — money/isolation defect", "S2 — blocks a flow", "S3 — degraded", "S4 — cosmetic"]
+    validations: { required: true }

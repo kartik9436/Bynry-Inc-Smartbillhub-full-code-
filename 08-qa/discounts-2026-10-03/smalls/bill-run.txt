@@ -1,0 +1,31 @@
+run RUN-0005 2026-11-16..2026-12-15
+BILL DW-SENIOR AC-2026-00054 BL-2612-000115 · 2026-11-16..2026-12-15 · issued · before 60.00 · discounts -9.00 · total 51.00
+   base       water base charge                            qty=None 8.0000
+   discount   Senior discount                              qty=None -9.0000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+BILL DW-CAP AC-2026-00055 BL-2612-000116 · 2026-11-16..2026-12-15 · issued · before 60.00 · discounts 0.00 · total 60.00
+   base       water base charge                            qty=None 8.0000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+BILL DW-MEDIC AC-2026-00056 BL-2612-000117 · 2026-11-16..2026-12-15 · issued · before 60.00 · discounts 0.00 · total 60.00
+   base       water base charge                            qty=None 8.0000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+BILL DW-PLAIN AC-2026-00057 BL-2612-000118 · 2026-11-16..2026-12-15 · issued · before 60.00 · discounts 0.00 · total 60.00
+   base       water base charge                            qty=None 8.0000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+BILL DW-OFF AC-2026-00058 BL-2612-000119 · 2026-11-16..2026-12-15 · issued · before 60.00 · discounts 0.00 · total 60.00
+   base       water base charge                            qty=None 8.0000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+BILL DW-CITY AC-2026-00059 BL-2612-000120 · 2026-11-16..2026-12-15 · issued · before 52.00 · discounts 0.00 · total 52.00
+   base       water base charge                            qty=None 0.0000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+BILL DW-GARDEN AC-2026-00060 BL-2612-000121 · 2026-11-16..2026-12-15 · issued · before 60.00 · discounts 0.00 · total 60.00
+   base       water base charge                            qty=None 8.0000
+   usage      water usage tier 2 (10+ kgal)                qty=2.000000 10.0000
+   usage      water usage tier 1 (0-10 kgal)               qty=10.000000 42.0000
+GRANTS discount_grants rows: 0

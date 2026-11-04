@@ -1,0 +1,48 @@
+# G27 BASELINE — keys a component asks for that no catalogue defines.
+#
+# ⚠ THIS FILE IS EMPTY ON PURPOSE, AND IT SHOULD STAY THAT WAY.
+#
+# Added 2026-08-24 (DEF-662), and the reason is worth reading before you put a
+# line in it. G27 caught the Usage tab's twenty-two missing keys perfectly — it
+# named the file and the count. What failed is what happened to that finding:
+# the gate was red at 300 keys across 6 components, ALL SIX SHIPPED THAT DAY,
+# and the red was reported as "pre-existing (catalogue)" and set aside.
+#
+# It became furniture because it was all-or-nothing. A gate that answers only
+# "clean or not" stops carrying information the moment it is not clean, and
+# every new violation then hides inside the same red. That is DEF-612's shape —
+# a check that went red on purpose stayed red, unread, for the very thing it
+# was watching for — reproduced at gate level.
+#
+# So G27 now answers a second question: IS THIS WORSE THAN IT WAS. Anything
+# listed here is a known, accepted miss and is reported separately; anything NOT
+# listed fails the gate on its own, however long the known list is.
+#
+# ⚠ THE PROTOCOL HOLE THAT CAUSED IT IS NOT CLOSED BY THIS FILE. A parallel
+# lane may not write the shared catalogues, so a lane shipping a screen turns
+# G27 red BY CONSTRUCTION and cannot turn it green — the red is guaranteed and
+# excusable at the same time, which is precisely when a signal gets ignored.
+# The real fix is a handover the gate can read, so it can tell "keys written
+# and awaiting merge" from "keys nobody wrote". That is not built. Until it is,
+# an orchestrator merging lane keys is the only thing standing here.
+#
+# ⚠ ADDING A LINE IS AN ADMISSION THAT A USER SEES A RAW DOTTED KEY ON SCREEN.
+# It is not a to-do marker. One line = one screen printing its own source code
+# at somebody. The list may FALL and must never RISE without a defect row
+# saying why.
+#
+# Format: one key per line. Blank lines and #-comments ignored.
+
+# DEF-1611 (2026-08-27) — DEF-161's screen half. Both call sites pass a
+# `defaultValue`, so a user reads 'Not metered' in English and never a dotted
+# key; what is missing is the TRANSLATION, in eleven catalogues held by the
+# BR-SHL-251 lanes at the moment this shipped. G15 key parity is green at equal
+# counts across all eleven, so writing en.json alone would break it. Delete
+# these two lines in the commit that lands the keys.
+# EMPTIED 2026-08-28. Both entries now RESOLVE, and the gate said so itself:
+# "2 baselined key(s) now resolve and should be DELETED from the baseline".
+# This file lists keys that render RAW to a user — absent AND with no fallback at
+# the call site. That count is now ZERO, which is why it is a hard zero and not a
+# number: a new bare key with no catalogue entry fails on its own, immediately.
+# Absent keys that DO carry a fallback are coverage debt and are counted by
+# COVERAGE_BASELINE in the gate instead (DEF-1788).

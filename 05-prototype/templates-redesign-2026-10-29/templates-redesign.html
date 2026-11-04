@@ -1,0 +1,473 @@
+<title>Templates Redesign</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: product frame; list view → template workspace (editor left, live preview right). Tokens copied from the product kit. */
+:root{
+  --bg:#f3f2f2; --surface:#ffffff; --panel:#eae9e9; --text:#201e1d; --muted:#605d5d; --faint:#9b9797; --line:#d7d3d3;
+  --accent:#ec3013; --accent-ink:#ae1800; --accent-soft:#fff2ef;
+  --ok:#0f6e3a; --ok-soft:#e6f4ec; --warn:#a65d0a; --warn-soft:#fdf0d8; --bad:#a81600; --bad-soft:#fde4df; --info:#1d4ea8; --info-soft:#e6eefb;
+  --side:#1f1d1c; --side-ink:#e9e6e5; --scrim:rgba(20,18,17,.45); --mail:#ffffff; --phone:#1f1d1c;
+  --brand:#0b4f8a;
+  --font:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  --t-xs:11px; --t-sm:12px; --t-base:13px; --t-md:14px; --t-body:15px; --t-h4:20px; --t-h2:32px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#171615; --surface:#211f1e; --panel:#2b2928; --text:#efecea; --muted:#b3aeac; --faint:#7d7877; --line:#3a3736;
+  --accent:#ff5a3d; --accent-ink:#ff8a73; --accent-soft:#3a1e19;
+  --ok:#5fcf8d; --ok-soft:#183325; --warn:#f0b25c; --warn-soft:#3a2b14; --bad:#ff8a73; --bad-soft:#3d1c16; --info:#8fb3ff; --info-soft:#1a2740;
+  --side:#0f0e0e; --side-ink:#e9e6e5; --scrim:rgba(0,0,0,.6); --mail:#f7f6f6; --phone:#000; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#171615; --surface:#211f1e; --panel:#2b2928; --text:#efecea; --muted:#b3aeac; --faint:#7d7877; --line:#3a3736;
+  --accent:#ff5a3d; --accent-ink:#ff8a73; --accent-soft:#3a1e19;
+  --ok:#5fcf8d; --ok-soft:#183325; --warn:#f0b25c; --warn-soft:#3a2b14; --bad:#ff8a73; --bad-soft:#3d1c16; --info:#8fb3ff; --info-soft:#1a2740;
+  --side:#0f0e0e; --side-ink:#e9e6e5; --scrim:rgba(0,0,0,.6); --mail:#f7f6f6; --phone:#000; color-scheme:dark }
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:var(--t-md);line-height:1.45}
+.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px;max-width:1360px;margin:0 auto;display:grid;gap:24px}
+.note-top{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;justify-content:space-between}
+.note-top h1{font-size:var(--t-h4);margin:0}
+.note-top p{margin:0;color:var(--muted);font-size:var(--t-base)}
+.frame{display:grid;grid-template-columns:224px minmax(0,1fr);border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--bg)}
+.side{background:var(--side);color:var(--side-ink);padding:16px 12px;display:flex;flex-direction:column;gap:4px;font-size:var(--t-base)}
+.brand{font-weight:800;font-size:var(--t-body);padding:4px 8px 14px}.brand b{color:var(--accent)}
+.side a{color:var(--side-ink);text-decoration:none;padding:8px;border-radius:4px;opacity:.85}
+.side a.on{background:var(--accent);opacity:1;font-weight:600;color:#fff}
+.main{min-width:0;padding:24px;display:grid;gap:18px;align-content:start}
+.crumb{font-size:var(--t-sm);color:var(--muted)}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);overflow-x:auto}
+.tabs span{padding:10px 14px;font-weight:600;color:var(--muted);white-space:nowrap;border-bottom:2px solid transparent}
+.tabs span.on{color:var(--accent);border-color:var(--accent)}
+.head{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;justify-content:space-between}
+.head h2{font-size:var(--t-h2);line-height:1.1;margin:0;font-weight:700;text-wrap:balance}
+.head p{margin:6px 0 0;color:var(--muted);font-size:var(--t-base)}
+.eyebrow{font-size:var(--t-xs);letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);font-weight:700}
+.btn{font:inherit;font-weight:600;font-size:var(--t-md);border-radius:4px;padding:9px 16px;border:1px solid var(--line);background:var(--surface);color:var(--text);cursor:pointer;white-space:nowrap}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.sm{padding:6px 12px;font-size:var(--t-base)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn:focus-visible,.chip:focus-visible,.icon:focus-visible,.ia:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible,.ph:focus-visible,.trow:focus-visible,.seg button:focus-visible{outline:2px solid var(--info);outline-offset:2px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:inherit;font-size:var(--t-base);font-weight:600;border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:999px;padding:5px 12px;cursor:pointer;font-variant-numeric:tabular-nums}
+.chip.on{background:var(--text);color:var(--bg);border-color:var(--text)}
+.toolbar{background:var(--panel);border-radius:4px;padding:14px;display:grid;grid-template-columns:2fr repeat(3,minmax(140px,1fr));gap:12px}
+.field{display:grid;gap:4px;min-width:0}
+.field label,.lbl{font-size:var(--t-sm);color:var(--muted);font-weight:500}
+input,select,textarea{font:inherit;font-size:var(--t-md);padding:8px 10px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--text);width:100%;min-width:0}
+input[readonly],textarea[readonly]{background:var(--panel)}
+textarea{font-family:var(--mono);font-size:var(--t-base);line-height:1.6;resize:vertical}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:4px;min-width:0}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:var(--t-base);min-width:980px}
+th{text-align:left;font-size:var(--t-xs);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;padding:10px 16px;border-bottom:1px solid var(--line)}
+td{padding:11px 16px;border-bottom:1px solid var(--line);vertical-align:middle}
+.trow:hover td{background:var(--panel)}
+.tname{font-weight:600;color:var(--text);background:none;border:0;font:inherit;padding:0;cursor:pointer;text-align:left}
+.sub{font-size:var(--t-sm);color:var(--muted)}
+.pill{display:inline-block;font-size:var(--t-xs);font-weight:700;padding:3px 8px;border-radius:3px;white-space:nowrap}
+.p-ok{background:var(--ok-soft);color:var(--ok)}.p-warn{background:var(--warn-soft);color:var(--warn)}.p-info{background:var(--info-soft);color:var(--info)}.p-off{background:var(--panel);color:var(--muted)}.p-bad{background:var(--bad-soft);color:var(--bad)}
+.ch{display:inline-flex;gap:4px;flex-wrap:wrap}
+.acts-cell{display:flex;gap:2px}
+.ia{width:32px;height:32px;display:inline-grid;place-items:center;border:0;background:transparent;border-radius:4px;color:var(--accent);cursor:pointer}
+.ia:hover{background:var(--accent-soft)}
+.ia svg{width:16px;height:16px}
+.foot{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;font-size:var(--t-sm);color:var(--muted);flex-wrap:wrap;gap:8px}
+.back{font:inherit;background:none;border:0;color:var(--accent-ink);font-weight:600;cursor:pointer;padding:0;justify-self:start}
+.statusbar{display:grid;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:12px 16px}
+.st{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:var(--t-base)}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.actions .sep{width:1px;background:var(--line);margin:0 4px}
+.variants{display:flex;flex-wrap:wrap;gap:12px;align-items:end}
+.variants .field{min-width:170px}
+.langrule{font-size:var(--t-base);color:var(--muted)}
+.ws{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+.pane{display:grid;gap:12px;padding:16px}
+.pane h3{margin:0;font-size:var(--t-body)}
+.pane-head{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.seg button{font:inherit;font-size:var(--t-base);font-weight:600;padding:6px 12px;border:0;background:var(--surface);color:var(--muted);cursor:pointer}
+.seg button.on{background:var(--text);color:var(--bg)}
+.rt{display:flex;flex-wrap:wrap;gap:4px;padding:6px;border:1px solid var(--line);border-bottom:0;border-radius:4px 4px 0 0;background:var(--panel)}
+.rt button{font:inherit;font-size:var(--t-sm);font-weight:600;padding:4px 10px;border:1px solid var(--line);border-radius:3px;background:var(--surface);color:var(--text);cursor:pointer}
+.rt + textarea{border-radius:0 0 4px 4px}
+.hint{font-size:var(--t-sm);color:var(--muted)}
+.counter{font-size:var(--t-sm);color:var(--muted);font-variant-numeric:tabular-nums;text-align:right}
+.preview-scroll{max-height:620px;overflow:auto;background:var(--panel);border-radius:4px;padding:16px;overscroll-behavior:contain}
+.mail{background:var(--mail);color:#201e1d;max-width:600px;margin:0 auto;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.12);overflow:hidden}
+.mail .env{padding:10px 16px;border-bottom:1px solid #e3e0e0;font-size:var(--t-sm);color:#605d5d;display:grid;gap:2px;background:#fafafa}
+.mail .env b{color:#201e1d;font-size:var(--t-md)}
+.mail .bh{background:var(--brand);padding:14px 20px;display:flex;align-items:center;gap:10px}
+.mail .bh a{display:inline-flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:700}
+.logo{width:34px;height:34px;border-radius:6px;background:#fff;display:grid;place-items:center}
+.mail .mb{padding:22px 20px;font-size:var(--t-md);line-height:1.6;color:#201e1d}
+.mail .mb p{margin:0 0 12px}.mail .mb ul{margin:0 0 12px;padding-left:20px}
+.mail .mb a{color:var(--brand)}
+.cta{display:inline-block;background:var(--brand);color:#fff!important;text-decoration:none;font-weight:700;padding:10px 18px;border-radius:4px;margin:4px 0 12px}
+.mail .mf{padding:14px 20px;border-top:1px solid #e3e0e0;font-size:var(--t-xs);color:#605d5d;display:grid;gap:4px}
+.plain{white-space:pre-wrap;font-family:var(--mono);font-size:var(--t-base)}
+.phone{width:280px;max-width:100%;margin:0 auto;background:var(--phone);border-radius:28px;padding:14px}
+.phone .scr{background:#fff;border-radius:18px;min-height:380px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.phone .from{font-size:var(--t-xs);color:#605d5d;text-align:center}
+.bub{background:#e9e9eb;color:#201e1d;border-radius:16px;padding:10px 12px;font-size:var(--t-base);line-height:1.45;white-space:pre-wrap;max-width:90%;word-break:break-word}
+.badtok{background:var(--bad-soft);color:var(--bad);border-radius:3px;padding:0 3px;font-family:var(--mono)}
+.notice{font-size:var(--t-base);padding:10px 12px;border-radius:4px;background:var(--info-soft);color:var(--info)}
+.notice.warn{background:var(--warn-soft);color:var(--warn)}.notice.bad{background:var(--bad-soft);color:var(--bad)}
+.notices{display:grid;gap:8px}
+.phs{display:grid;gap:6px;max-height:300px;overflow:auto}
+.ph{font:inherit;text-align:left;border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:4px;padding:8px 10px;cursor:pointer;display:grid;gap:2px}
+.ph:hover{border-color:var(--info)}
+.ph .n{font-weight:600}.ph .k{font-family:var(--mono);font-size:var(--t-sm);color:var(--info)}
+.ph .d{font-size:var(--t-sm);color:var(--muted)}
+.branding{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font-size:var(--t-sm);color:var(--muted)}
+.swatch{display:inline-block;width:12px;height:12px;border-radius:2px;background:var(--brand);vertical-align:-1px}
+.scrim{position:fixed;inset:0;background:var(--scrim);display:grid;place-items:center;padding:16px;z-index:20}
+.dlg{background:var(--surface);color:var(--text);border-radius:6px;width:min(560px,100%);max-height:calc(100% - 32px);overflow:auto;display:grid}
+.dlg.wide{width:min(980px,100%)}
+.dlg header{padding:18px 20px 6px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.dlg header h4{margin:0;font-size:var(--t-h4)}
+.dlg .body{padding:8px 20px 4px;display:grid;gap:12px}
+.dlg footer{display:flex;justify-content:flex-end;gap:8px;padding:16px 20px;border-top:1px solid var(--line);margin-top:12px}
+.icon{font:inherit;background:none;border:0;color:var(--muted);cursor:pointer;font-size:20px;line-height:1;padding:4px 8px;border-radius:4px}
+.toast{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));background:var(--text);color:var(--bg);padding:10px 14px;border-radius:4px;font-weight:600;z-index:30}
+.review h2{font-size:var(--t-h4);margin:0 0 10px}
+.review table{min-width:680px}.review td{vertical-align:top}
+@media (max-width:1100px){.ws{grid-template-columns:1fr}}
+@media (max-width:760px){.frame{grid-template-columns:1fr}.side{display:none}.main{padding:16px}.head h2{font-size:26px}.toolbar{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+<div class="wrap">
+  <div class="note-top">
+    <h1>Templates, redesigned</h1>
+    <p>Design mock-up · example data from Springfield Water Utility · USD</p>
+  </div>
+
+  <div class="frame">
+    <nav class="side" aria-label="Main">
+      <div class="brand">SMART360 <b>Next</b></div>
+      <a href="#">Dashboard</a><a href="#">Plans &amp; Rates</a><a href="#">Premises</a><a href="#">Assets</a><a href="#">Accounts</a><a href="#">Reads</a><a href="#">Billing</a><a href="#">Payments</a><a href="#">Work</a><a href="#">Finance</a><a href="#">Reports</a><a class="on" href="#">Settings</a>
+    </nav>
+
+    <main class="main">
+      <div class="crumb">Settings › Configure</div>
+      <div class="tabs"><span>Reference data</span><span>Routes &amp; Cycles</span><span>Numbering</span><span class="on">Templates</span><span>Notifications</span><span>Customer portal</span></div>
+
+      <section id="listView" style="display:grid;gap:16px">
+        <div class="head"><div><h2>Templates</h2><p>What your emails, texts and letters say.</p></div></div>
+        <div class="chips" id="chanChips" aria-label="Channel"></div>
+        <div class="toolbar">
+          <div class="field"><label for="q">Search</label><input id="q" placeholder="Template name or wording"></div>
+          <div class="field"><label for="fCat">Category</label><select id="fCat"></select></div>
+          <div class="field"><label for="fLang">Language</label><select id="fLang"><option value="">All languages</option><option value="en">English</option><option value="es">Español</option></select></div>
+          <div class="field"><label for="fStat">Status</label><select id="fStat"><option value="">All statuses</option><option>Published</option><option>Draft waiting</option><option>Not written</option></select></div>
+        </div>
+        <section class="card">
+          <div class="scroll"><table>
+            <thead><tr><th>Template</th><th>Channels</th><th>Category</th><th>Languages</th><th>Variants</th><th>Status</th><th>Last edited</th><th>Actions</th></tr></thead>
+            <tbody id="rows"></tbody>
+          </table></div>
+          <div class="foot"><span id="countLine"></span><span>Rows per page 50</span></div>
+        </section>
+      </section>
+
+      <section id="wsView" hidden style="display:grid;gap:16px">
+        <button class="back" type="button" id="backBtn">← Templates</button>
+        <div class="head"><div><div class="eyebrow" id="wsCat"></div><h2 id="wsName"></h2><p id="wsUse"></p></div></div>
+
+        <div class="variants">
+          <div class="field"><label for="vChan">Channel</label><select id="vChan"></select></div>
+          <div class="field"><label for="vLang">Language</label><select id="vLang"></select></div>
+          <div class="field"><label for="vGroup">Customers</label><select id="vGroup"></select></div>
+        </div>
+        <div class="langrule" id="langRule"></div>
+
+        <div class="statusbar">
+          <div class="st" id="stLine"></div>
+          <div class="actions" id="actionBar">
+            <button class="btn" type="button" id="viewBtn">View</button>
+            <button class="btn" type="button" id="editBtn">Edit wording</button>
+            <button class="btn" type="button" id="dupBtn">Duplicate as variant</button>
+            <button class="btn" type="button" id="newVarBtn">+ New variant</button>
+            <span class="sep" aria-hidden="true"></span>
+            <button class="btn" type="button" id="histBtn">History</button>
+            <button class="btn" type="button" id="testBtn">Send test</button>
+            <button class="btn" type="button" id="saveBtn">Save draft</button>
+            <button class="btn primary" type="button" id="pubBtn">Publish</button>
+          </div>
+        </div>
+        <div class="notices" id="wsNotice"></div>
+
+        <div class="ws">
+          <section class="card pane" aria-labelledby="edTitle">
+            <div class="pane-head"><h3 id="edTitle">Wording</h3>
+              <div class="actions"><div class="seg" id="fmtSeg" aria-label="Format"><button type="button" class="on" data-f="rich">Rich</button><button type="button" data-f="plain">Plain text</button></div>
+              <button class="btn sm" type="button" id="phBtn">+ Insert placeholder</button></div>
+            </div>
+            <div class="field" id="subjField"><label for="subj">Subject</label><input id="subj"></div>
+            <div class="field"><label for="body">Message</label>
+              <div class="rt" id="rtBar" aria-label="Formatting"><button type="button" data-rt="bold">Bold</button><button type="button" data-rt="link">Link</button><button type="button" data-rt="button">Button</button><button type="button" data-rt="list">List</button></div>
+              <textarea id="body" rows="15"></textarea><div class="counter" id="counter"></div></div>
+            <div id="phPanel" hidden class="card pane" style="background:var(--panel)">
+              <div class="pane-head"><strong>Placeholders</strong><button class="icon" type="button" id="phClose" aria-label="Close placeholders">×</button></div>
+              <input id="phQ" placeholder="Search placeholders" aria-label="Search placeholders">
+              <div class="phs" id="phList"></div>
+              <span class="hint">Click one to insert it at the cursor. Links go in as a button.</span>
+            </div>
+          </section>
+
+          <section class="card pane" aria-labelledby="pvTitle">
+            <div class="pane-head"><h3 id="pvTitle">Preview</h3>
+              <div class="actions"><div class="seg" id="sampleSeg"><button type="button" class="on" data-s="0">Pat Rivera</button><button type="button" data-s="1">Lin Chen</button></div><button class="btn sm" type="button" id="bigBtn">Expand</button></div>
+            </div>
+            <div class="branding" id="brandLine"><span><span class="swatch"></span> Springfield blue</span><span>Logo links to springfieldwater.gov</span><a href="#" id="brandEdit">Edit in Settings › Company › Branding ›</a></div>
+            <div class="preview-scroll" id="pv" tabindex="0" aria-label="Preview"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <section class="review card" style="padding:16px">
+    <h2>What this design fixes</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>#</th><th>Problem</th><th>In this design</th></tr></thead>
+      <tbody>
+        <tr><td>D1</td><td>No "+ New variant"</td><td>"+ New variant": channel, language (the utility's only), customers (all, residential, commercial, low-income), start from the published wording or blank</td></tr>
+        <tr><td>D2</td><td>No Actions column</td><td>Every list row: View · Edit wording · Duplicate as variant</td></tr>
+        <tr><td>D3</td><td>No rollback</td><td>History: any earlier published version can be made live again; legal notices send it for approval</td></tr>
+        <tr><td>D4</td><td>Earlier actions removed</td><td>One action bar keeps View, Edit wording, Duplicate as variant and adds + New variant, History, Send test, Save draft, Publish</td></tr>
+        <tr><td>D5</td><td>No rich email, logo or logo link</td><td>Rich / Plain text format; bold, link, button, list; branded header whose logo links to the address set once in Settings › Company › Branding</td></tr>
+        <tr><td>D6</td><td>Links not clickable</td><td>Link placeholders go in as buttons ("Pay now"); a bare link placeholder in rich text is flagged; the plain-text version prints the full address</td></tr>
+        <tr><td>D7</td><td>Language when sending</td><td>The template states the rule and how many customers prefer each language; the sending check is a separate server review</td></tr>
+        <tr><td>A1–A4</td><td>PO rulings</td><td>Approval for legal notices only · allowed placeholders only · variant = channel × language × customers · the utility's languages only</td></tr>
+        <tr><td>Earlier</td><td>T1–T10, X1–X4</td><td>Channel filters, language picker, one action bar, side-by-side editor and preview, phone frame for texts, placeholder picker, names not ids, test the draft</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+</div>
+
+<div class="scrim" id="dlgWrap" hidden>
+  <div class="dlg" id="dlg" role="dialog" aria-modal="true" aria-labelledby="dlgTitle">
+    <header><h4 id="dlgTitle"></h4><button class="icon" type="button" id="dlgX" aria-label="Close">×</button></header>
+    <div class="body" id="dlgBody"></div>
+    <footer id="dlgFoot"></footer>
+  </div>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const BRAND={url:"https://springfieldwater.gov",name:"Springfield Water Utility"};
+const PH={
+ customer_name:["Customer name","The account holder's name, from Accounts","Pat Rivera","Lin Chen"],
+ first_name:["First name","First word of the account holder's name","Pat","Lin"],
+ account_no:["Account number","The account's number, from Accounts","AC-004211","AC-007830"],
+ service_address:["Service address","The premises address, from Premises","412 Maple St, Springfield","88 Harbor Rd, Unit 4, Springfield"],
+ amount_due:["Amount due","Total due on the latest bill, from Billing","$84.20","$1,212.55"],
+ due_date:["Due date","Due date of the latest bill, from Billing","Nov 15, 2026","Nov 18, 2026"],
+ days_past_due:["Days past due","Days since the due date, from Payments","3","3"],
+ pay_link:["Pay link","The customer portal pay page for this account","https://springfield.bynry.com/pay/AC-004211","https://springfield.bynry.com/pay/AC-007830",true],
+ bill_link:["Bill link","This bill as a PDF in the customer portal","https://springfield.bynry.com/bills/B-118204","https://springfield.bynry.com/bills/B-118377",true],
+ portal_link:["Portal link","The customer portal sign-in page","https://springfield.bynry.com","https://springfield.bynry.com",true],
+ support_phone:["Support phone","Your phone number, from Settings › Company","(217) 555-0142","(217) 555-0142"],
+ utility_name:["Utility name","Your name, from Settings › Company","Springfield Water Utility","Springfield Water Utility"],
+ message_body:["Message","What the clerk typed on the account screen","Your meter will be replaced next week.","We received your request."]
+};
+const LANG={en:"English",es:"Español"};
+const PREFER={en:9120,es:312};
+const GROUPS=["All customers","Residential","Commercial","Low-income programme"];
+const CH={email:"Email",sms:"Text",inapp:"In-app",letter:"Letter"};
+const T=[
+ {id:1,name:"A message from the billing team",cat:"Account lifecycle",use:"What a clerk writes to a customer from the account screen.",legal:false,edited:"Oct 12 · Gaurav",
+  v:[{ch:"email",lang:"en",grp:"All customers",st:"pub",ver:2,s:"A message from {utility_name}",b:"Hello {first_name},\n\n{message_body}\n\nAccount {account_no} · {service_address}\n\nQuestions? Call {support_phone}."}]},
+ {id:2,name:"Bill ready",cat:"Billing",use:"Sent when a bill is issued.",legal:false,edited:"Oct 29 · Gaurav",
+  v:[{ch:"email",lang:"en",grp:"All customers",st:"draft",ver:4,s:"Your {utility_name} bill is ready",b:"Hello {first_name},\n\nYour bill for account **{account_no}** is ready.\n\n- Amount due: **{amount_due}**\n- Due date: {due_date}\n\n[[Pay now|{pay_link}]]\n\n[View your bill]({bill_link})\n\nQuestions? Call {support_phone}."},
+     {ch:"email",lang:"es",grp:"All customers",st:"pub",ver:2,s:"Su factura de {utility_name} está lista",b:"Hola {first_name}:\n\nSu factura de la cuenta **{account_no}** está lista.\n\n- Monto: **{amount_due}**\n- Vence: {due_date}\n\n[[Pagar ahora|{pay_link}]]\n\n¿Preguntas? Llame al {support_phone}."},
+     {ch:"email",lang:"en",grp:"Commercial",st:"pub",ver:1,s:"Invoice ready · account {account_no}",b:"Hello {customer_name},\n\nYour invoice for **{account_no}** is ready.\n\n- Amount due: **{amount_due}**\n- Due date: {due_date}\n\n[[Pay now|{pay_link}]]\n\nAccounts payable questions: {support_phone}."},
+     {ch:"sms",lang:"en",grp:"All customers",st:"pub",ver:3,s:"",b:"{utility_name}: your bill of {amount_due} is due {due_date}. Pay: {pay_link}"}]},
+ {id:3,name:"Past-due reminder",cat:"Collections",use:"Sent 3 days after the due date.",legal:false,edited:"Platform default",
+  v:[{ch:"email",lang:"en",grp:"All customers",st:"pub",ver:1,s:"Your payment is {days_past_due} days late",b:"Hello {first_name},\n\nWe haven't received **{amount_due}** for account {account_no}, due {due_date}.\n\n[[Pay now|{pay_link}]]\n\nIf you've already paid, thank you.\nNeed help? Call {support_phone}."},
+     {ch:"sms",lang:"en",grp:"All customers",st:"pub",ver:1,s:"",b:"{utility_name}: {amount_due} was due {due_date}. Pay: {pay_link} or call {support_phone}."}]},
+ {id:4,name:"Disconnect notice · 10 day",cat:"Collections",use:"The regulated notice before a disconnection.",legal:true,edited:"Platform default",
+  v:[{ch:"email",lang:"en",grp:"All customers",st:"pub",ver:2,s:"Disconnection notice for {service_address}",b:"{customer_name},\n\nService at {service_address} will be disconnected unless **{amount_due}** is paid within 10 days.\n\n[[Pay now|{pay_link}]]\n\nCall {support_phone} to set up a payment plan."},
+     {ch:"letter",lang:"en",grp:"All customers",st:"pub",ver:2,s:"",b:"NOTICE OF INTENT TO DISCONNECT\n\n{customer_name}\n{service_address}\nAccount {account_no}\n\nService will be disconnected unless {amount_due} is paid within 10 days.\n\nPay at {pay_link} or call {support_phone}."}]},
+ {id:5,name:"Appointment scheduled",cat:"Service & field",use:"Sent when a visit gets a date.",legal:false,edited:"Platform default",
+  v:[{ch:"email",lang:"en",grp:"All customers",st:"pub",ver:1,s:"Your visit is booked",b:"Hello {first_name},\n\nWe'll visit **{service_address}**.\n\nPlease give our technician clear access to the meter.\n\nTo change it, call {support_phone}."},
+     {ch:"sms",lang:"en",grp:"All customers",st:"pub",ver:1,s:"",b:"{utility_name}: your visit at {service_address} is booked. Call {support_phone} to change it."}]},
+ {id:6,name:"Bulk action summary",cat:"Billing",use:"Told to the staff member who ran a bulk action.",legal:false,edited:"Platform default",
+  v:[{ch:"inapp",lang:"en",grp:"All customers",st:"pub",ver:1,s:"",b:"{message_body}"}]}
+];
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let chan="",cur=null,curV=null,sample=0,fmt="rich",editing=false;
+const ICON={view:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z"/><circle cx="12" cy="12" r="3"/></svg>',
+ edit:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>',
+ dup:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>'};
+const chans=t=>[...new Set(t.v.map(v=>v.ch))];
+function statusOf(t){return t.v.some(v=>v.st==="draft")?["Draft waiting","p-warn"]:["Published","p-ok"]}
+function renderChips(){const all=[["","All",T.length],...Object.keys(CH).map(c=>[c,CH[c],T.filter(t=>chans(t).includes(c)).length])];
+ $("chanChips").innerHTML=all.map(([k,l,n])=>`<button type="button" class="chip ${chan===k?"on":""}" data-c="${k}">${l} · ${n}</button>`).join("")}
+function renderList(){
+ renderChips();
+ const keep=$("fCat").value;
+ $("fCat").innerHTML='<option value="">All categories</option>'+[...new Set(T.map(t=>t.cat))].map(c=>`<option ${keep===c?"selected":""}>${esc(c)}</option>`).join("");
+ const q=$("q").value.toLowerCase(),c=$("fCat").value,l=$("fLang").value,s=$("fStat").value;
+ const list=T.filter(t=>(!chan||chans(t).includes(chan))&&(!c||t.cat===c)&&(!l||t.v.some(v=>v.lang===l))&&(!s||(s==="Not written"?!t.v.some(v=>v.lang==="es"):statusOf(t)[0]===s))&&(!q||(t.name+" "+t.v.map(v=>v.s+" "+v.b).join(" ")).toLowerCase().includes(q)));
+ $("rows").innerHTML=list.map(t=>{const[st,cl]=statusOf(t);
+  const langs=Object.keys(LANG).map(k=>t.v.some(v=>v.lang===k)?`<span class="pill p-info">${LANG[k]}</span>`:`<span class="pill p-off">${LANG[k]} · not written</span>`).join(" ");
+  return `<tr class="trow"><td><button type="button" class="tname" data-open="${t.id}">${esc(t.name)}</button><div class="sub">${esc(t.use)}</div></td>
+  <td><span class="ch">${chans(t).map(c=>`<span class="pill p-off">${CH[c]}</span>`).join("")}</span></td><td>${esc(t.cat)}</td><td>${langs}</td><td style="font-variant-numeric:tabular-nums">${t.v.length}</td>
+  <td><span class="pill ${cl}">${st}</span>${t.legal?' <span class="pill p-bad">Needs approval</span>':""}</td><td class="sub">${esc(t.edited)}</td>
+  <td><div class="acts-cell"><button class="ia" type="button" data-row="view" data-id="${t.id}" title="View" aria-label="View ${esc(t.name)}">${ICON.view}</button><button class="ia" type="button" data-row="edit" data-id="${t.id}" title="Edit wording" aria-label="Edit wording of ${esc(t.name)}">${ICON.edit}</button><button class="ia" type="button" data-row="dup" data-id="${t.id}" title="Duplicate as variant" aria-label="Duplicate ${esc(t.name)} as a variant">${ICON.dup}</button></div></td></tr>`}).join("")||'<tr><td colspan="8" class="sub" style="text-align:center;padding:28px">No templates match. Clear a filter.</td></tr>';
+ $("countLine").textContent=`${list.length} of ${T.length} templates`;
+}
+/* Rendering: the stored wording is escaped first, then a small safe markup becomes HTML. No raw HTML from the wording ever reaches the page. */
+function val(k){return PH[k]?PH[k][2+sample]:null}
+function subst(text,mode){return text.replace(/\{(\w+)\}/g,(m,k)=>PH[k]?(mode==="html"?esc(val(k)):val(k)):(mode==="html"?`<span class="badtok">{${esc(k)}}</span>`:m))}
+function richHTML(src){
+ const lines=esc(src).split("\n");let out="",list=false,para=[];
+ const flush=()=>{if(para.length){out+=`<p>${para.join("<br>")}</p>`;para=[]}};
+ for(const ln of lines){
+  if(/^- /.test(ln)){flush();if(!list){out+="<ul>";list=true}out+=`<li>${inline(ln.slice(2))}</li>`;continue}
+  if(list){out+="</ul>";list=false}
+  if(!ln.trim()){flush();continue}
+  para.push(inline(ln));
+ }
+ flush();if(list)out+="</ul>";return out;
+}
+function link(raw){const u=raw.replace(/\{(\w+)\}/g,(m,k)=>PH[k]?val(k):"#");return /^https?:\/\//.test(u)?esc(u):"#"}
+function inline(s){
+ return s.replace(/\[\[([^|\]]+)\|([^\]]+)\]\]/g,(m,l,u)=>`<a class="cta" href="${link(u)}" target="_blank" rel="noopener">${l}</a>`)
+  .replace(/\[([^\]]+)\]\(([^)]+)\)/g,(m,l,u)=>`<a href="${link(u)}" target="_blank" rel="noopener">${l}</a>`)
+  .replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>")
+  .replace(/\{(\w+)\}/g,(m,k)=>PH[k]?esc(val(k)):`<span class="badtok">{${k}}</span>`);
+}
+function plainText(src){return subst(src.replace(/\[\[([^|\]]+)\|([^\]]+)\]\]/g,"$1: $2").replace(/\[([^\]]+)\]\(([^)]+)\)/g,"$1: $2").replace(/\*\*([^*]+)\*\*/g,"$1"),"text")}
+function unknown(){return [...($("subj").value+$("body").value).matchAll(/\{(\w+)\}/g)].map(m=>m[1]).filter(k=>!PH[k])}
+function bareLinks(){if(fmt!=="rich"||curV.ch!=="email")return[];const b=$("body").value.replace(/\[\[[^\]]+\]\]/g,"").replace(/\[[^\]]+\]\([^)]+\)/g,"");return [...b.matchAll(/\{(\w+)\}/g)].map(m=>m[1]).filter(k=>PH[k]&&PH[k][4])}
+function renderPreview(target){
+ const s=$("subj").value,b=$("body").value,box=target||$("pv"),ch=curV.ch;
+ $("brandLine").hidden=ch!=="email";
+ if(ch==="sms")box.innerHTML=`<div class="phone"><div class="scr"><div class="from">${esc(BRAND.name)}</div><div class="bub">${esc(plainText(b))}</div></div></div>`;
+ else if(ch==="inapp")box.innerHTML=`<div class="mail"><div class="mb">${richHTML(b)}</div><div class="mf">Only staff see this, inside SMART360 Next.</div></div>`;
+ else if(ch==="letter")box.innerHTML=`<div class="mail" style="max-width:640px"><div class="mb plain" style="font-family:Georgia,serif">${esc(plainText(b))}</div></div>`;
+ else box.innerHTML=`<div class="mail"><div class="env"><span>From ${esc(BRAND.name)} · To ${esc(PH.customer_name[2+sample])}</span><b>${esc(plainText(s))}</b></div>
+   <div class="bh"><a href="${BRAND.url}" target="_blank" rel="noopener" title="Opens ${BRAND.url}"><span class="logo" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0b4f8a"><path d="M12 2s7 8 7 13a7 7 0 0 1-14 0c0-5 7-13 7-13Z"/></svg></span>${esc(BRAND.name)}</a></div>
+   <div class="mb">${fmt==="rich"?richHTML(b):`<div class="plain">${esc(plainText(b))}</div>`}</div>
+   <div class="mf"><span>${esc(BRAND.name)} · 300 Monroe St, Springfield, IL 62701</span><span>You receive this because you have an account with us. <a href="#">Email preferences</a></span></div></div>`;
+ const n=plainText(b).length;$("counter").textContent=ch==="sms"?`${n} characters · ${Math.max(1,Math.ceil(n/153))} text${n>160?"s":""}`:`${n} characters`;
+ const bad=unknown(),bare=bareLinks();let html="";
+ if(bad.length)html+=`<div class="notice bad">${bad.map(k=>"{"+esc(k)+"}").join(", ")} can't be filled. Pick from the placeholder list.</div>`;
+ if(bare.length)html+=`<div class="notice warn">${bare.map(k=>"{"+esc(k)+"}").join(", ")} is a link. Make it a button or link.</div>`;
+ $("wsNotice").innerHTML=html;
+ $("saveBtn").disabled=$("pubBtn").disabled=!editing||bad.length>0;
+}
+function variantsFor(f){return cur.v.filter(v=>(!f.ch||v.ch===f.ch)&&(!f.lang||v.lang===f.lang))}
+function fillPickers(){
+ const ch=curV.ch,lang=curV.lang;
+ $("vChan").innerHTML=chans(cur).map(c=>`<option value="${c}" ${c===ch?"selected":""}>${CH[c]}</option>`).join("");
+ $("vLang").innerHTML=Object.keys(LANG).map(k=>{const has=cur.v.some(v=>v.ch===ch&&v.lang===k);return `<option value="${k}" ${k===lang?"selected":""}>${LANG[k]}${has?"":" · not written yet"}</option>`}).join("");
+ const grps=[...new Set(cur.v.filter(v=>v.ch===ch&&v.lang===lang).map(v=>v.grp))];
+ $("vGroup").innerHTML=grps.map(g=>`<option ${g===curV.grp?"selected":""}>${esc(g)}</option>`).join("");
+ $("langRule").innerHTML=`Sent in each customer's preferred language (Account › Preferred language). Not written yet → sent in English. <span class="pill p-info">${LANG[lang]} · ${PREFER[lang].toLocaleString()} customers</span>`;
+}
+function renderStatus(){
+ let line;
+ if(curV.st==="draft")line=`<span class="pill p-warn">Draft v${curV.ver}</span><span>${curV.ver>1?`Published v${curV.ver-1} goes out now.`:"Not published yet. Nothing goes out."}</span>`;
+ else line=`<span class="pill p-ok">Published v${curV.ver}${curV.restored?" (restored)":""}</span><span>This is what customers get now.</span>`;
+ line+=` <span class="pill p-off">${CH[curV.ch]} · ${LANG[curV.lang]} · ${esc(curV.grp)}</span>`;
+ if(cur.legal)line+=` <span class="pill p-bad">Needs approval</span>`;
+ line+=editing?` <span class="pill p-info">Editing</span>`:` <span class="pill p-off">Viewing</span>`;
+ $("stLine").innerHTML=line;
+ $("pubBtn").textContent=cur.legal?"Send for approval":"Publish";
+ $("viewBtn").disabled=!editing;$("editBtn").disabled=editing;
+ $("subj").readOnly=$("body").readOnly=!editing;
+ document.querySelectorAll("#rtBar button,#phBtn").forEach(b=>b.disabled=!editing||(b.id!=="phBtn"&&fmt!=="rich"));
+ $("rtBar").hidden=!(curV.ch==="email"&&fmt==="rich");
+ $("fmtSeg").hidden=curV.ch!=="email";
+}
+function openT(id,mode){cur=T.find(t=>t.id===id);curV=cur.v[0];editing=mode==="edit";
+ $("wsCat").textContent="Template · "+cur.cat;$("wsName").textContent=cur.name;$("wsUse").textContent=cur.use+" · Last edited "+cur.edited;
+ load();$("listView").hidden=true;$("wsView").hidden=false;window.scrollTo(0,0);
+ if(mode==="dup")newVariant(true);}
+function load(){fillPickers();$("subj").value=curV.s;$("body").value=curV.b;$("subjField").hidden=curV.ch!=="email";renderStatus();renderPreview();}
+function pick(){const ch=$("vChan").value,lang=$("vLang").value,grp=$("vGroup").value;
+ let v=cur.v.find(x=>x.ch===ch&&x.lang===lang&&x.grp===grp)||cur.v.find(x=>x.ch===ch&&x.lang===lang);
+ if(!v){const base=cur.v.find(x=>x.ch===ch&&x.lang==="en")||cur.v.find(x=>x.ch===ch);
+  dialog(`Start ${LANG[lang]} wording?`,`<p style="margin:0">Copy the ${LANG[base.lang]} wording to start. Translate it, then publish.</p>`,[["Not now","",()=>{closeDlg();fillPickers()}],["Start from "+LANG[base.lang],"primary",()=>{v={...base,lang,grp:"All customers",st:"draft",ver:1};cur.v.push(v);curV=v;editing=true;closeDlg();load();toast("Draft started")}]]);return}
+ curV=v;load();}
+function newVariant(dup){
+ const opt=(arr,sel)=>arr.map(([v,l])=>`<option value="${v}" ${v===sel?"selected":""}>${esc(l)}</option>`).join("");
+ dialog(dup?"Duplicate as variant":"New variant",`
+  <div class="field"><label for="nvCh">Channel</label><select id="nvCh">${opt(Object.entries(CH).filter(([k])=>chans(cur).includes(k)||k==="email"||k==="sms"),curV.ch)}</select></div>
+  <div class="field"><label for="nvLang">Language</label><select id="nvLang">${opt(Object.entries(LANG),curV.lang)}</select></div>
+  <div class="field"><label for="nvGrp">Customers</label><select id="nvGrp">${opt(GROUPS.map(g=>[g,g]),dup?"Commercial":"Residential")}</select></div>
+  <div class="field"><label for="nvFrom">Start from</label><select id="nvFrom">${opt([["cur",dup?`This variant (v${curV.ver})`:"The published wording"],["blank","Blank"]],"cur")}</select></div>
+  <span class="hint">Only your utility's languages are offered.</span>`,
+  [["Cancel",""],["Create draft","primary",()=>{const ch=$("nvCh").value,lang=$("nvLang").value,grp=$("nvGrp").value,from=$("nvFrom").value;
+    if(cur.v.some(v=>v.ch===ch&&v.lang===lang&&v.grp===grp))return toast("That variant already exists.");
+    const src=cur.v.find(v=>v.ch===ch&&v.lang===lang)||curV;
+    const v={ch,lang,grp,st:"draft",ver:1,s:from==="blank"?"":src.s,b:from==="blank"?"":src.b};cur.v.push(v);curV=v;editing=true;closeDlg();load();toast(`Draft variant created: ${CH[ch]} · ${LANG[lang]} · ${grp}`)}]]);
+}
+function phList(){const q=$("phQ").value.toLowerCase();
+ $("phList").innerHTML=Object.entries(PH).filter(([k,v])=>!q||(k+v[0]+v[1]).toLowerCase().includes(q)).map(([k,v])=>`<button type="button" class="ph" data-k="${k}"><span class="n">${esc(v[0])} <span class="k">{${k}}</span>${v[4]?' <span class="pill p-info">link</span>':""}</span><span class="d">${esc(v[1])} · e.g. ${esc(v[2])}</span></button>`).join("")}
+let lastFocus="body";
+["subj","body"].forEach(id=>$(id).addEventListener("focus",()=>lastFocus=id));
+function insertAt(text){const el=$(lastFocus==="subj"&&curV.ch==="email"?"subj":"body");const a=el.selectionStart??el.value.length,b=el.selectionEnd??a;
+ el.value=el.value.slice(0,a)+text+el.value.slice(b);el.focus();el.selectionStart=el.selectionEnd=a+text.length;changed();}
+function insertPH(k){if(PH[k][4]&&fmt==="rich"&&curV.ch==="email"&&lastFocus!=="subj")insertAt(`[[${k==="bill_link"?"View bill":k==="portal_link"?"Sign in":"Pay now"}|{${k}}]]`);else insertAt("{"+k+"}")}
+function rt(kind){const el=$("body"),a=el.selectionStart,b=el.selectionEnd,sel=el.value.slice(a,b)||"text";
+ const map={bold:`**${sel}**`,link:`[${sel}]({portal_link})`,button:`[[${sel==="text"?"Pay now":sel}|{pay_link}]]`,list:`\n- ${sel}`};insertAt(map[kind]);}
+function changed(){if(curV.st==="pub"){curV.st="draft";curV.ver++;renderStatus()}renderPreview()}
+function toast(m){const t=$("toast");t.textContent=m;t.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(()=>t.hidden=true,2400)}
+function dialog(title,html,buttons,wide){$("dlgTitle").textContent=title;$("dlgBody").innerHTML=html;$("dlg").className="dlg"+(wide?" wide":"");
+ $("dlgFoot").innerHTML="";buttons.forEach(([l,c,fn])=>{const b=document.createElement("button");b.type="button";b.className="btn "+c;b.textContent=l;b.onclick=fn||closeDlg;$("dlgFoot").appendChild(b)});$("dlgWrap").hidden=false;const f=$("dlgBody").querySelector("select,input");if(f)f.focus()}
+function closeDlg(){$("dlgWrap").hidden=true}
+function history(){
+ const live=curV.st==="pub"?curV.ver:curV.ver-1;
+ const rows=[];for(let n=Math.max(curV.ver,1);n>=1;n--){
+  let st=n===curV.ver&&curV.st==="draft"?"Draft":n===live?"Published · goes out now":"Published before";
+  rows.push([n,st,n===curV.ver?"Oct 29 · Gaurav":n===1?"Platform default":"Oct "+(10+n)+" · Gaurav"]);}
+ dialog("History",`<div class="scroll"><table style="min-width:560px"><thead><tr><th>Version</th><th>Status</th><th>Saved</th><th>Actions</th></tr></thead><tbody>${rows.map(r=>`<tr><td>v${r[0]}</td><td>${esc(r[1])}</td><td class="sub">${esc(r[2])}</td><td><div class="actions"><button type="button" class="btn sm" data-hv="${r[0]}">Preview</button>${r[1]==="Published before"?`<button type="button" class="btn sm" data-live="${r[0]}">${cur.legal?"Send for approval":"Make live again"}</button>`:""}</div></td></tr>`).join("")}</tbody></table></div><div id="hv"></div>`,[["Close",""]],true);
+ $("dlgBody").addEventListener("click",ev=>{
+  const p=ev.target.closest("[data-hv]");if(p){const hv=$("hv");hv.className="preview-scroll";renderPreview(hv);hv.insertAdjacentHTML("afterbegin",`<strong style="display:block;margin-bottom:10px">v${p.dataset.hv}</strong>`)}
+  const l=ev.target.closest("[data-live]");if(l){const n=+l.dataset.live;
+   if(cur.legal){closeDlg();toast(`v${n} sent for approval`);return}
+   dialog(`Make v${n} live again?`,`<p style="margin:0">v${n} goes out from now. v${live} stays in history.</p>`,[["Cancel",""],["Make live again","primary",()=>{curV.st="pub";curV.ver=n;curV.restored=true;editing=false;closeDlg();load();toast(`v${n} is live again`)}]]);}
+ });
+}
+document.addEventListener("click",e=>{
+ const c=e.target.closest("[data-c]");if(c){chan=c.dataset.c;renderList()}
+ const o=e.target.closest("[data-open]");if(o)openT(+o.dataset.open,"view");
+ const r=e.target.closest("[data-row]");if(r)openT(+r.dataset.id,r.dataset.row);
+ const p=e.target.closest(".ph");if(p)insertPH(p.dataset.k);
+ const s=e.target.closest("[data-s]");if(s){sample=+s.dataset.s;document.querySelectorAll("#sampleSeg button").forEach(b=>b.classList.toggle("on",b===s));renderPreview()}
+ const f=e.target.closest("[data-f]");if(f){fmt=f.dataset.f;document.querySelectorAll("#fmtSeg button").forEach(b=>b.classList.toggle("on",b===f));renderStatus();renderPreview()}
+ const k=e.target.closest("[data-rt]");if(k)rt(k.dataset.rt);
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("dlgWrap").hidden)closeDlg()});
+["q","fCat","fLang","fStat"].forEach(id=>$(id).addEventListener(id==="q"?"input":"change",renderList));
+$("backBtn").onclick=()=>{$("wsView").hidden=true;$("listView").hidden=false;renderList()};
+$("vChan").onchange=()=>{const ch=$("vChan").value;curV=cur.v.find(v=>v.ch===ch&&v.lang===curV.lang)||cur.v.find(v=>v.ch===ch);load()};
+$("vLang").onchange=pick;$("vGroup").onchange=pick;
+["subj","body"].forEach(id=>$(id).addEventListener("input",changed));
+$("viewBtn").onclick=()=>{editing=false;renderStatus();renderPreview()};
+$("editBtn").onclick=()=>{editing=true;renderStatus();renderPreview();$("body").focus()};
+$("dupBtn").onclick=()=>newVariant(true);
+$("newVarBtn").onclick=()=>newVariant(false);
+$("histBtn").onclick=history;
+$("brandEdit").onclick=e=>{e.preventDefault();toast("Opens Settings › Company › Branding")};
+$("saveBtn").onclick=()=>{curV.s=$("subj").value;curV.b=$("body").value;if(curV.st==="pub"){curV.st="draft";curV.ver++}cur.edited="Oct 29 · Gaurav";renderStatus();toast(`Draft v${curV.ver} saved`)};
+$("pubBtn").onclick=()=>{
+ if(cur.legal){dialog("Send for approval?",`<p style="margin:0">A System Admin approves legal notices before they go out. The published version keeps going out until then.</p>`,[["Cancel",""],["Send for approval","primary",()=>{closeDlg();toast("Sent for approval")}]]);return}
+ dialog(`Publish v${curV.ver}?`,`<p style="margin:0">New messages use this wording from now on. Messages already sent don't change.</p>`,[["Cancel",""],["Publish","primary",()=>{curV.s=$("subj").value;curV.b=$("body").value;curV.st="pub";curV.restored=false;editing=false;closeDlg();renderStatus();renderPreview();toast("Published")}]]);
+};
+$("testBtn").onclick=()=>dialog("Send a test",`<div class="field"><label for="tTo">${curV.ch==="sms"?"Mobile number":"Email address"}</label><input id="tTo" value="${curV.ch==="sms"?"(217) 555-0199":"gaurav@springfieldwater.gov"}"></div><p class="hint" style="margin:0">Sends the wording on screen now, with sample data.</p>`,[["Cancel",""],["Send test","primary",()=>{closeDlg();toast("Test sent")}]]);
+$("bigBtn").onclick=()=>{dialog("Preview",`<div class="preview-scroll" id="bigPv" style="max-height:70vh"></div>`,[["Close",""]],true);renderPreview($("bigPv"))};
+$("phBtn").onclick=()=>{$("phPanel").hidden=!$("phPanel").hidden;phList();if(!$("phPanel").hidden)$("phQ").focus()};
+$("phClose").onclick=()=>$("phPanel").hidden=true;
+$("phQ").oninput=phList;
+$("dlgX").onclick=closeDlg;$("dlgWrap").addEventListener("click",e=>{if(e.target.id==="dlgWrap")closeDlg()});
+renderList();
+</script>

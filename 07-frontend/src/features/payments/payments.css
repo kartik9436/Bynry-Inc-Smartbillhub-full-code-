@@ -1,0 +1,583 @@
+/* Payments (S33 Record payments · the S22/S35 Record modal) — tokens only
+ * (B8: no hex literals here). The page rhythm deliberately matches Billing,
+ * Accounts and Premises so the app reads as one product; everything below is
+ * what those surfaces do not already own. Panels, fact lists and links are
+ * metering's shared skins (`.met-panel` / `.met-facts` / `.met-link`) and the
+ * honesty cells are the customers lane's (`.cus-awaits`) — a second copy of
+ * either is the drift US-SHL-020 exists to remove. */
+
+.pay-page {
+  padding: var(--space-6) var(--space-4) var(--space-8);
+}
+
+/* ── The header totals ("2 payments · $292.87 in this view"). LABEL·VALUE
+ * pairs, not a sentence: the money value is a MoneyCell, and a translated
+ * fragment either side of a component is the concatenated sentence B8 forbids
+ * — it also breaks in German and Hindi word order. ───────────────────────── */
+.pay-rollup {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-1);
+  flex-wrap: wrap;
+}
+
+.pay-rollup-item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-1);
+}
+
+.pay-rollup-item + .pay-rollup-item::before {
+  content: "·";
+  margin-right: var(--space-1);
+  color: color-mix(in srgb, var(--color-text) 40%, transparent);
+}
+
+.pay-rollup-label {
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+}
+
+.pay-rollup-value {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-feature-settings: "tnum";
+}
+
+/* Identifiers — the PMT- number, a confirmation number, a bill number. Tabular
+ * numerals so a column of them aligns. */
+.pay-id {
+  font-feature-settings: "tnum";
+}
+
+/* The prototype's "Applied to" cell lists every bill the payment met. Stacked
+ * rather than comma-joined: a comma between two translated fragments is the
+ * concatenation B8 forbids, and a payment settling four bills would otherwise
+ * make the row unreadable. */
+.pay-applied {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pay-applied-item {
+  font-feature-settings: "tnum";
+  font-size: var(--text-sm);
+}
+
+/* ── The result panel: what the payment PAID (US-PAY-001 §5) ─────────────── */
+.pay-result {
+  border: 1px solid var(--color-divider);
+  border-top: 2px solid var(--color-accent);
+  background: var(--color-surface);
+  padding: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.pay-result-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.pay-result-head h3 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: var(--text-h5);
+}
+
+.pay-result-head .btn {
+  margin-left: auto;
+}
+
+.pay-result-allocations {
+  list-style: none;
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.pay-result-allocations li {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+/* A payment that met no bill is a REAL outcome — a carried credit, or money
+ * that has not cleared. Said in words, never left as an empty list. */
+.pay-result-none,
+.pay-result-ledger {
+  margin: var(--space-3) 0 0;
+  font-size: var(--text-base);
+  color: color-mix(in srgb, var(--color-text) 75%, transparent);
+}
+
+/* What did NOT happen, from the server's own codes: no receipt was queued, the
+ * account's cached balance was not updated. Quieter than the figures, and never
+ * hidden — a clerk who expects a receipt to go out needs to read this. */
+.pay-result-problems {
+  list-style: disc;
+  margin: var(--space-2) 0 0;
+  padding-left: var(--space-4);
+  font-size: var(--text-sm);
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+}
+
+.pay-form-note {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+}
+
+.pay-awaiting-grid {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  /* DEF-345 — was a mobile-first `min-width: 900px` override; the
+   * multi-column value is the BASE now and the narrow case is the media
+   * query, because OQ-274 ratifies desktop-first. Renders identically at
+   * every width. */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* ⚠ 899.98px, NOT 900px. `min-width: 900` applied AT 900; its exact
+ * complement is everything below 900, and `max-width: 900px` would apply AT
+ * 900 too — both rules live at that one width and the later wins by accident. */
+@media (max-width: 899.98px) {
+  .pay-awaiting-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ══ S32 Summary · S34 Outstandings ══════════════════════════════════════ */
+
+/* The prototype's `.toolbar` strip: the as-of date and the S34 filters. The
+ * as-of field is deliberately AS PROMINENT as a filter — BR-TEN-043 makes the
+ * business day an input to these read-models, not an assumption. */
+.pay-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: flex-end;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  border-top: 2px solid var(--color-divider);
+  margin-bottom: var(--space-4);
+}
+
+/* ⚠ `max-width` ADDED 2026-09-03 (PO, walking S34): *"Date picker sie is too
+ * long and hence Post coming back - went on second line"*. The toolbar is a
+ * wrap-flex and `.input` is `width: 100%`, so each field's flex BASE size came
+ * from its content — and a native `<input type="date">` reports a large
+ * max-content width (browsers size it for the spinner, the calendar button and
+ * the widest locale rendering of the value). One field then ate the row and the
+ * third filter wrapped under it.
+ *
+ * `flex: 1 1 <basis>` with a cap makes all three toolbar fields the same size
+ * and lets three of them sit on one row at desktop width, which is what the PO
+ * was looking at. `min-width` is kept — below it the row wraps on purpose
+ * rather than squeezing a date field to unusability. */
+.pay-toolbar .field {
+  margin: 0;
+  flex: 1 1 200px;
+  min-width: 200px;
+  max-width: 240px;
+}
+
+/* "184 accounts owe $184,320 total. Sorted by balance (high → low)." — as
+ * LABEL·VALUE pairs, for the reason `.pay-rollup` already gives. */
+.pay-outstandings-lead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: baseline;
+  margin: 0 0 var(--space-4);
+  font-size: var(--text-base);
+}
+
+/* The prototype's inverted bulk bar. Appears only when rows are selected —
+ * a toolbar over an empty selection offers actions on nothing. */
+.pay-bulk {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  margin: var(--space-4) 0;
+  background: var(--color-text);
+  color: var(--color-bg);
+  border-top: 2px solid var(--color-accent);
+}
+
+.pay-bulk-count {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-300);
+}
+
+.pay-bulk-total {
+  font-size: var(--text-sm);
+  margin-right: var(--space-2);
+}
+
+.pay-outstandings-table {
+  width: 100%;
+}
+
+/* Tabular numerals, right-aligned — a column of balances a clerk scans. */
+.pay-num {
+  text-align: right;
+  font-feature-settings: "tnum";
+}
+
+.pay-balance {
+  font-family: var(--font-heading);
+  font-weight: 800;
+}
+
+/* ── `problems[]`: what the server refuses to guess at, with its rule ────── */
+.pay-problems {
+  border: 1px solid var(--color-divider);
+  background: var(--color-surface);
+  padding: var(--space-3) var(--space-4);
+  margin-top: var(--space-4);
+}
+
+/* ⚠ `> summary`, NOT `h3` (B14 rule 32, PO 2026-09-03). The panel is a
+ * `<details>` CLOSED by default now — the PO read "What is missing · Finance
+ * owns this formula… · Medical protections cannot be shown here…" on the
+ * Summary and on Outstandings and asked *"why we are shoiwng this"*. The
+ * heading moved from an `<h3>` to the disclosure's own `<summary>`, so its type
+ * treatment has to move with it or the panel loses its label. Same three
+ * declarations, one selector along.
+ *
+ * NO NEW CLASS: `G31` reports the stylesheets AT rule 21's ceiling of 470, and
+ * a disclosure that reuses the class its own panel already has needs none. */
+.pay-problems > summary {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-base);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.pay-problems ul {
+  list-style: disc;
+  margin: 0;
+  padding-left: var(--space-4);
+  font-size: var(--text-sm);
+  color: color-mix(in srgb, var(--color-text) 70%, transparent);
+}
+
+/* A `<summary>` is click- and keyboard-operable in every browser and gets the
+ * DEFAULT cursor in most of them, which reads as "not a control" on a screen a
+ * clerk is scanning. Element-scoped under this page's own root, so it reaches
+ * the Record modal (rendered inside `.pay-page`) without leaking into anyone
+ * else's stylesheet — and it adds no class name to the ceiling. */
+.pay-page summary {
+  cursor: pointer;
+}
+
+/* One line per account in the write-off modal, its result panel and the
+ * collections-run result. */
+.pay-writeoff-rows,
+.pay-failed-rows {
+  list-style: none;
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-size: var(--text-base);
+}
+
+.pay-writeoff-rows li,
+.pay-failed-rows li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* ── S32 ─────────────────────────────────────────────────────────────────── */
+.pay-summary-grid {
+  display: grid;
+  gap: var(--space-4);
+  /* DEF-345 — was a mobile-first `min-width: 900px` override; the
+   * multi-column value is the BASE now and the narrow case is the media
+   * query, because OQ-274 ratifies desktop-first. Renders identically at
+   * every width. */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+}
+
+@media (max-width: 899.98px) {
+  .pay-summary-grid {
+    grid-template-columns: 1fr;
+    /* ⚠ `align-items: start` lived ONLY inside the old `min-width: 900px`
+     * branch, so below 900 it was never set and the default `stretch` applied.
+     * Moving it to the base without this reset would silently change item
+     * heights on narrow viewports — a behaviour change smuggled inside a
+     * refactor that claims to move no pixels. Caught by reading the two blocks
+     * side by side, not by any check. */
+    align-items: stretch;
+  }
+}
+
+/* ⚠ `.pay-chips`, `.pay-chip` AND `.pay-chip-value` LEFT ON 2026-09-23
+ * (`DEF-PAY-6335`). They drew S32's two needs-attention counters, and the
+ * comment that stood here said the strip lived inside `.pay-toolbar` "on the
+ * same row as the date" — true when it was written for the PO's FIRST report
+ * of this band (2026-09-03: *"why these are in two differnt lines - again
+ * layout issue"*), and false by the time they reported it again on 2026-09-23:
+ * *"these detailsa re not aligned on ui - Figures for*"*.
+ *
+ * It ended with a guarantee — *"`align-items: flex-end` lines the chips up with
+ * the bottom of the date input rather than its label"* — that stopped being
+ * true the moment the field grew a help sentence and an IS-8 format echo under
+ * its input. Flex-end aligns to the bottom of ALL FOUR lines, so the chips sat
+ * 46px below the input they were supposed to share a row with. Hard-won law 1:
+ * a comment claiming a guarantee is not the guarantee.
+ *
+ * The band is `features/payments/summaryFiguresBar.tsx` now — a component (B14
+ * rule 43) in Tailwind utilities (rule 21), which is why nothing replaces these
+ * three rules here. It carries the reasoning.
+ *
+ * ⚠ `.pay-chip-label` STAYS, AND IT IS NOT AN OVERSIGHT: it is drawn standalone
+ * by `ReconciliationStatementPage.tsx`, on the residual line that names money
+ * nobody has explained. Deleting a class because its ORIGINAL caller left is
+ * `DEF-CUS-3653`'s shape from the other side — grep for the consumers first,
+ * because an absence is invisible to every check this repo has. */
+.pay-chip-label {
+  font-size: var(--text-sm);
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+}
+
+/* ⚠ `.pay-today` LEFT ON 2026-08-20 (CR-018 Phase 4b-2). Its one declaration —
+   the prototype's accent rule above the "Today" figure — is
+   `border-t-2 border-t-accent` on the `<Panel>` now.
+
+   It had to move rather than sit alongside: a feature class and a Panel utility
+   both land UNLAYERED in the built sheet, so which of them sets the panel's
+   border came down to source order, and the utility was later. That is the trap
+   `buttonKit.ts` documents for variants, one level up at a container. Two
+   utilities filling `border-width` and `border-top-width` are different
+   properties and compose correctly. */
+
+.pay-today-amount {
+  margin: var(--space-1) 0 var(--space-2);
+  font-family: var(--font-heading);
+  font-weight: 800;
+  /* OQ-278 RULED (decision log 2026-08-19, commit 6a13828) — 40px -> 32px, the
+     second and last visible pixel change in this phase.
+     ⚠ IT IS NOT --text-h1, WHICH IS ALSO 40px, AND THAT IS THE INTERESTING BIT.
+     The design answer read this size as r10's wizard-title h1 and filed it in
+     the HEADING scale. True of r10; false of us. Ours is a money figure at
+     `font-weight: 800` with no heading element in sight, so by that answer's
+     own logic it is a METRIC — and filing a KPI in the title scale is the exact
+     mistake the metric tier exists to stop. --text-metric-lg is also what r10
+     does with its largest metric. */
+  font-size: var(--text-metric-lg);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-accent);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   S37 · S38 · S39 · S40 and the collections board (payments SURFACE lane,
+   2026-08-16). Layout only — the prototype's own shapes, no runtime ported.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* A STATED ABSENCE. It is prose where a figure would be, so it must NOT
+   inherit the figure's weight: the first render of S39 put "Pending — the
+   bank has not shown this yet" into the KPI tile's 32px value font, and the
+   sentence dominated a screen whose only real number is $471.39. Found by
+   looking at the rendered page (hard-won law 6), which is the only thing that
+   could have found it. */
+.pay-absent {
+  font-size: var(--text-base);
+  font-weight: 400;
+  font-family: var(--font-body);
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: color-mix(in srgb, var(--color-text) 62%, transparent);
+}
+
+/* Inside a KPI tile the value slot is 32px/800 by default; an absence keeps
+   its own size rather than being blown up to match a number it is replacing. */
+.kpi .v .pay-absent {
+  display: inline-block;
+  font-size: var(--text-base);
+  max-width: 32ch;
+}
+
+.pay-sub {
+  display: block;
+  font-size: var(--text-xs);
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+
+.pay-table-scroll {
+  overflow-x: auto;
+}
+
+/* A row a person has to work. The prototype tints exactly these (S37's three
+   unmatched deposits, S38's three flagged lines). */
+.pay-row-attention {
+  background: color-mix(in srgb, var(--color-accent) 6%, transparent);
+}
+
+.pay-attention {
+  padding: var(--space-3);
+  margin-bottom: var(--space-4);
+  background: color-mix(in srgb, var(--color-accent) 6%, transparent);
+  border-top: 2px solid var(--color-accent);
+}
+
+.pay-attention p {
+  margin: var(--space-1) 0 0;
+  font-size: var(--text-base);
+  line-height: 1.7;
+}
+
+/* The reconciliation trail. `grid` rather than a bare list because the first
+   render ran the timestamp straight into the label — "2026-08-08T17:00:00+00:00Batch
+   created" — which is unreadable and, again, was visible only on the page. */
+.pay-trail {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.pay-trail li {
+  display: grid;
+  grid-template-columns: minmax(0, 20ch) 1fr;
+  gap: var(--space-3);
+  align-items: baseline;
+  font-size: var(--text-base);
+}
+
+.pay-trail-when {
+  font-feature-settings: "tnum";
+  font-size: var(--text-xs);
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+
+.pay-trail-what {
+  font-weight: 600;
+}
+
+/* S40's three tiles, as one fact line above the form. */
+.pay-resolve-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  padding: var(--space-3) 0;
+  font-size: var(--text-base);
+}
+
+/* The early tie-out, when it ties. Never green-as-permission: the server's
+   check is the real one and this only saves a round trip. */
+.pay-ties {
+  font-size: var(--text-base);
+  color: var(--color-accent-700);
+}
+
+.pay-pair-list {
+  margin: var(--space-2) 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.pay-inline-field {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-base);
+}
+
+.pay-inline-field .input {
+  width: auto;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   DEF-327 — THE pay-* CLASSES THE PAYMENT SCREENS ASK FOR AND NOTHING DECLARED
+   ══════════════════════════════════════════════════════════════════════════
+   Five `pay-*` names plus TWO UNPREFIXED GLOBALS, and the two globals are the
+   interesting half.
+
+   ⚠ `.two-col` AND `.see` ARE RENAMED IN THE MARKUP, NOT DECLARED HERE. DEF-244
+   set the precedent in `SettingsPage.css` and its wording is the rule: `.badge`
+   and `.preview-strip` "are NOT declared under those names: they are
+   unprefixed globals, and claiming `.badge` app-wide from a settings
+   stylesheet would style anything that ever uses the word." Exactly so here —
+   and `.two-col` is the sharper case, because THREE lanes already namespace
+   this same shape (`.bil-two-col`, `.cus-two-col`, `.fin-two-col`) and a
+   fourth lane spelling it `.two-col` would have claimed the generic name for
+   the deposit batch screen alone. They are now `.pay-two-col` and `.pay-see`. */
+
+/* The deposit batch's two columns — the members table beside the bank-side
+   and trail panels. The same 3fr/2fr rhythm the other three lanes use, so the
+   product reads as one product; collapses on a narrow viewport. */
+.pay-two-col {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .pay-two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* The "what this panel is showing you" note beside a panel heading — it sits
+   in `.fin-panel-head` next to an `<h3>` and must read as an aside, not as a
+   second heading. */
+.pay-see {
+  font-size: var(--text-sm);
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+
+/* ── S39 returned mail (US-PAY-016) ─────────────────────────────────────── */
+.pay-returned-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* The outcome of a returned-mail action, announced (`role="status"`). It is a
+   result, so it is drawn as one — not as another panel in the stack. */
+.pay-returned-outcome {
+  border-top: 2px solid var(--color-accent);
+}
+
+/* What the server REFUSED, with its reasons. */
+.pay-returned-refused {
+  margin: var(--space-2) 0 0;
+  padding: var(--space-3) var(--space-4);
+  list-style: none;
+  background: var(--color-surface);
+  border-left: 2px solid var(--color-accent);
+  font-size: var(--text-base);
+  line-height: 1.6;
+}
+
+/* ── Tab wrappers. `.pay-outstandings-lead` and `.pay-outstandings-table` were
+   declared and the element HOLDING them was not, so the tab had no rhythm of
+   its own; same for the summary tab and its grid. ───────────────────────── */
+.pay-outstandings,
+.pay-summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}

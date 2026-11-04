@@ -1,0 +1,55 @@
+run RUN-0003 2026-12-01..2026-12-31
+BILL PW-RUTH AC-2026-00054 BL-2612-000101 id=01a103f5-a078-73e9-9a93-95ccbb99a414 · 2026-12-01..2026-12-31 · issued · total 94.35
+   base         water base charge                                qty=None 8.0000
+   base         sewer base charge                                qty=None 9.0000
+   tax          Tax Local · Bexar County                         qty=None 1.8500
+   usage        water usage tier 1 (0-5 kgal)                    qty=5.000000 20.0000
+   usage        water usage tier 2 (5-15 kgal)                   qty=3.000000 19.5000
+   usage        sewer usage — 90.00% of water volume             qty=7.200000 36.0000
+BILL PW-CARL AC-2026-00055 BL-2612-000102 id=01a103f5-a095-753b-a7b3-5147823e155e · 2026-12-01..2026-12-31 · issued · total 117.94
+   base         water base charge                                qty=None 10.0000
+   base         sewer base charge                                qty=None 11.2500
+   tax          Tax Local · Bexar County                         qty=None 2.3100
+   usage        water usage tier 1 (0-5 kgal)                    qty=5.000000 25.0000
+   usage        water usage tier 2 (5-15 kgal)                   qty=3.000000 24.3800
+   usage        sewer usage — 90.00% of water volume             qty=7.200000 45.0000
+BILL PW-CAFE AC-2026-00056 BL-2612-000103 id=01a103f5-a0ad-7502-a9cc-a18f459468b1 · 2026-12-01..2026-12-31 · issued · total 103.63
+   base         water base charge                                qty=None 15.0000
+   base         sewer base charge                                qty=None 9.0000
+   tax          Tax Local · Bexar County                         qty=None 2.0300
+   usage        water usage                                      qty=8.000000 41.6000
+   usage        sewer usage — 90.00% of water volume             qty=7.200000 36.0000
+  BLOCKED: {'account_id': '01a103dc-bab3-7c05-8f5f-b891c996b0d7', 'account_no': 'AC-2026-00054', 'reason': 'ruled_path_refused', 'detail': "R3: connection size 'W-58' has no row on the rate schedule version 01a103df-2e3e-7435-8bc1-ac80d35fd1dd pricing 'water'. The bill refuses rather than charging $
+  BLOCKED: {'account_id': '01a103dc-bc5a-768b-ad0e-ed7337185898', 'account_no': 'AC-2026-00055', 'reason': 'ruled_path_refused', 'detail': "R3: connection size 'W-58' has no row on the rate schedule version 01a103df-2e3e-7435-8bc1-ac80d35fd1dd pricing 'water'. The bill refuses rather than charging $
+run RUN-0004 2027-01-01..2027-01-31
+BILL PW-CAFE AC-2026-00056 BL-2701-000104 id=01a103f5-ac21-7cef-8866-98fb88387237 · 2027-01-01..2027-01-31 · issued · total 103.63
+   base         sewer base charge                                qty=None 9.0000
+   base         water base charge                                qty=None 15.0000
+   tax          Tax Local · Bexar County                         qty=None 2.0300
+   usage        water usage                                      qty=8.000000 41.6000
+   usage        sewer usage — 90.00% of water volume             qty=7.200000 36.0000
+    run(sys.argv[2], sys.argv[3])
+    bill_run = runs.create_run(
+               ^^^^^^^^^^^^^^^^
+    raise DuplicateRun(existing)
+run RUN-0005 2027-01-01..2027-01-31
+BILL PW-RUTH AC-2026-00054 BL-2701-000105 id=01a103f6-ecec-7c4a-abd7-2f2068e6e50d · 2027-01-01..2027-01-31 · issued · total 98.38
+   base         water base charge                                qty=None 8.0000
+   base         sewer base charge                                qty=None 9.0000
+   tax          Tax Local · Bexar County                         qty=None 1.9300
+   usage        sewer usage — 90.00% of water volume             qty=7.200000 36.0000
+   usage        water usage tier 2 (5-15 kgal)                   qty=3.000000 21.4500
+   usage        water usage tier 1 (0-5 kgal)                    qty=5.000000 22.0000
+BILL PW-CARL AC-2026-00055 BL-2701-000106 id=01a103f6-ed09-746d-ba8a-81e11865a659 · 2027-01-01..2027-01-31 · issued · total 122.97
+   base         water base charge                                qty=None 10.0000
+   base         sewer base charge                                qty=None 11.2500
+   tax          Tax Local · Bexar County                         qty=None 2.4100
+   usage        sewer usage — 90.00% of water volume             qty=7.200000 45.0000
+   usage        water usage tier 1 (0-5 kgal)                    qty=5.000000 27.5000
+   usage        water usage tier 2 (5-15 kgal)                   qty=3.000000 26.8100
+BILL PW-CAFE AC-2026-00056 BL-2701-000104 id=01a103f5-ac21-7cef-8866-98fb88387237 · 2027-01-01..2027-01-31 · issued · total 103.63
+   base         sewer base charge                                qty=None 9.0000
+   base         water base charge                                qty=None 15.0000
+   tax          Tax Local · Bexar County                         qty=None 2.0300
+   usage        water usage                                      qty=8.000000 41.6000
+   usage        sewer usage — 90.00% of water volume             qty=7.200000 36.0000

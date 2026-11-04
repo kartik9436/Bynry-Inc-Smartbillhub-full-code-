@@ -1,0 +1,170 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+# Node
+node_modules/
+dist/
+# Env & secrets
+# Matches at every level, so the per-service overrides 06-backend/.env and
+# 07-frontend/.env are ignored too. Their committed companions —
+# 06-backend/.env.example and 07-frontend/.env.example — are NOT ignored: they
+# are the defaults docker-compose.yml loads, and they carry no real secret.
+.env
+.env.local
+*.pem
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+# Test artifacts
+# `qa/e2e/…` is the PRE-RENAME path and has matched nothing since the numbered
+# rename (the same stale-path family as ci-frontend.yml's `frontend` working
+# directory). It mattered from 2026-08-11, when Playwright started actually
+# RUNNING: every run writes 07-frontend/test-results/ and, on failure,
+# 07-frontend/playwright-report/, and neither was ignored. The dead lines are
+# kept for one commit's readability and should go with the next sweep.
+qa/e2e/test-results/
+qa/e2e/playwright-report/
+07-frontend/test-results/
+07-frontend/playwright-report/
+# The DURABLE journey run receipt (DEF-113, 2026-08-15). It is deliberately NOT
+# under test-results/: that directory is Playwright's `outputDir` and Playwright
+# PURGES it at the start of every run, so with several journey lanes in one tree
+# a genuine receipt vanished within nine seconds of the run that produced it and
+# two wave-close runs reported "no run receipt" while a real one had existed.
+# Still a run artifact, still never committed — one immutable shard per run under
+# runs/, plus the merged view folded from them.
+07-frontend/journey-evidence/
+coverage/
+htmlcov/
+
+# Job artifacts (BE-07 export files; retention swept per BR-REP-018)
+06-backend/var/
+
+# Throwaway browser probes. The E2E lane writes these to poke a running app by
+# hand — hardcoded executable paths, a fixture login, no Trace header, deleted
+# the moment they have answered their question. They are working notes, not
+# tests: a real journey lives in 07-frontend/e2e/ with its own header and is
+# asserted against a FROZEN figure (PO ruling 2026-08-11, "prove against human
+# clicking"). Ignored so a scratch file cannot drift into being treated as one.
+07-frontend/probe*.mjs
+
+# Agent worktrees — isolated CHECKOUTS of this repo, never source.
+# Created when a lane needs its own copy because several lanes share one
+# working tree (CLAUDE.md law 11: five commits crossed lanes on 2026-08-16,
+# one of them deleting a shipped money fix). Committing a worktree would
+# commit the repository inside itself.
+.claude/worktrees/
+
+# A lane's scratch while it drives a browser in the SHARED tree — server logs,
+# a boot script, a throwaway probe. Appeared untracked on 2026-09-05 when the
+# Work walkthrough booted a stack here rather than in a worktree. It is working
+# residue, not source: committing it would put one lane's `backend.log` in every
+# other lane's checkout, and the next run overwrites it anyway.
+.claude/tmp/
+
+# Build output from `pip install -e .` — generated, never source. It appeared
+# untracked on 2026-08-16 when three lanes each built a py3.12 venv to run
+# targeted backend tests. Committing it would put a generated file in the repo,
+# which hard-won law 5 exists to prevent ("one generated file, committed once" —
+# and this one should be committed ZERO times).
+*.egg-info/
+
+# The CR-028 lane's py3.12 test venv (the system python is 3.11, the backend
+# requires >=3.12). Same law as *.egg-info above: a toolchain, never source.
+.venv-ci/
+
+# Vite's dep-optimizer cache. It appeared untracked on 2026-08-21 when a dev
+# server was launched with its cwd in 06-backend during the browser walkthrough
+# (DEF-528..533's harness) — same law-5 posture as *.egg-info: generated, never
+# source, committed zero times.
+.vite/
+
+# Redis snapshot written wherever a redis-server is started from (a test-suite
+# side effect, never repo material) — found untracked in 06-backend/ 2026-08-22.
+dump.rdb
+
+# Lane scratch, written INSIDE the shared checkout (found 2026-08-27 with 37
+# entries: gate logs, a private GIT_INDEX_FILE per commit-tree run, a CSV
+# working copy). None of it is repo material and all of it is one broad
+# pathspec away from being committed by a lane that meant something else —
+# which is CLAUDE.md law 11's mechanism with the safety off. The scratchpad the
+# session is given lives outside the repo; this covers the one lanes keep
+# creating in it anyway.
+/scratchpad/
+
+# ⚠ A FILENAME, NOT A PATTERN. `[&>.field]:sm:grid-rows-subgrid` is a Tailwind
+# arbitrary-variant selector, and unquoted in a shell it is a GLOB — so a lane
+# that pasted one into a command left bash's own error text redirected into a
+# 35-byte file named after the fragment, in the repo root. Ignored rather than
+# deleted, because deleting another lane's untracked file in a shared checkout
+# is the thing DEF-934 was filed for. Quote the selector.
+.field]:sm:grid-rows-subgrid
+
+# ⚠ TWO MORE FILENAMES, NOT PATTERNS — same rule as the line above, same reason
+# (DEF-934: deleting another lane's untracked file in a shared checkout is worse
+# than leaving it). Both were sitting in the tree on 2026-08-28.
+#
+# `a.out` is 416 bytes of stray relocatable ELF, not even executable — a
+# compiler invoked with no `-o` in the repo root.
+a.out
+
+# `test_RED_tmp.py` is the law-7 RED scaffold, and it is the one artefact of that
+# law that MUST NOT be committed. Proving a guard red means running the real test
+# against a pre-fix copy of the file it guards, so the scaffold is the permanent
+# test with one line repointed at a copy under the session's own scratchpad — a
+# path that exists on nobody else's machine. Committed, it is a test that fails
+# for everyone but its author. The measured instance was byte-identical to
+# `10-scripts/tests/test_def1182_reserved_blocks.py` apart from that single line.
+10-scripts/tests/test_RED_tmp.py
+
+# ⚠ THE BROWSER WALKTHROUGH'S OUTPUT, AND IT IS EVIDENCE RATHER THAN SOURCE.
+# `10-scripts/cwp_portal_walkthrough.mjs` writes one full-page PNG per portal
+# screen — ~800 KB a run, regenerated from scratch every time and meaningless
+# once the build moves. The SCRIPT is committed and the pictures are not: what
+# the next lane needs is the ability to take them again, against its own tree.
+07-frontend/shots/
+
+# ⚠ `SCRATCH/` — THE BILLING LANES' PROOF SHOTS, AND THE SAME CALL AS
+# `07-frontend/shots/` TWENTY LINES UP. Four journey lanes wrote 33 full-page
+# PNGs here on 2026-09-14 (4.1 MB) driving the bill run, the one-time bill, fix
+# a bill and budget bills at 1440 and 1280. They are EVIDENCE rather than
+# SOURCE: each is true of one build and meaningless once the screen moves, and
+# nothing reads them back. The WALKTHROUGH SCRIPTS are committed —
+# `10-scripts/cr101_fix_a_bill_walkthrough.mjs` and its siblings — so the next
+# lane can take its own against its own tree, which is the thing that actually
+# transfers. The conformance records cite these paths as where a shot WAS
+# taken, not as a file the repo carries.
+# ⚠ IT WAS ALREADY BEING TREATED THIS WAY AND NOBODY HAD SAID SO: zero files
+# under `SCRATCH/` have ever been committed on this branch. Declaring it here
+# turns a habit into a rule, and stops the working tree reading dirty for every
+# lane that proves its work by looking at it.
+SCRATCH/
+
+# The move-out scenario suite's stderr log, written on EVERY run by
+# `10-scripts/move_out_scenarios.sh:89` (`MOVE_OUT_STDERR`, defaulting to
+# `06-backend/.move-out-scenarios-stderr.log`). It is 388 KB after one run of
+# the 27 rows, and the suite is committed precisely so the next lane runs it
+# against its own tree -- which means every lane that does produces this file
+# and finds the working tree reading dirty. Same reasoning as `SCRATCH/`
+# above: EVIDENCE of one run, true of one build, read back by nothing. The
+# runner and the journey are the things that transfer.
+.move-out-scenarios-stderr.log
+# ...and its REPORT, written beside the log on every run by the same script.
+# It was missed when the block above was written and the transfer block below,
+# written later, ignores BOTH of its suite's files -- which is the asymmetry
+# that left a lane's working tree reading dirty after an honest re-run.
+.move-out-scenarios-report.txt
+
+# The transfer scenario suite's two scratch files, written on EVERY run by
+# `10-scripts/transfer_scenarios.sh`. Same reasoning as the move-out suite's
+# stderr log above and `SCRATCH/` before it: the suite is committed precisely
+# so the next lane runs it against its own tree, so every lane that does
+# produces these and finds the working tree reading dirty. Evidence of one run,
+# true of one build, read back by nothing -- the runner and the journey are
+# what transfer.
+.transfer-scenarios-report.txt
+.transfer-scenarios-stderr.log

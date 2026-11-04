@@ -1,0 +1,118 @@
+
+── M2 · Residential · Multi-family · person + co-owner — Water (meter + irrigation sub-meter + backflow), Sewer · returning customer linked · add to bill
+  PASS  M2 · Units     · U-00005 is offered as vacant before the move-in
+  PASS  M2 · Units     · step 1 lists Water
+  PASS  M2 · Units     · step 1 lists Sewer
+  PASS  M2 · Assets    · step 1 asks an opening read for W-M2
+  PASS  M2 · Assets    · step 1 asks an opening read for SW-M2
+  PASS  M2 · Accounts  · Search customer ID answers "found"
+  PASS  M2 · Accounts  · the match names Rosa Delgado — Existing customer
+C-00052 · Rosa Delgado
+Name, date of birth, SSN, and phone match.
+Not them
+Link customer
+ACCOUNT	ADDRESS	STATE	OUTSTANDING
+AC-2026-00054	2 Asp
+  PASS  M2 · Accounts  · the match lists her account AC-2026-00054
+  PASS  M2 · Accounts  · the match lists her account AC-2026-00055
+  PASS  M2 · Accounts  · the match reads what she owes, $84.20 — $50.00 $34.20 $84.20
+  PASS  M2 · Accounts  · Link makes Rosa Delgado the move-in's customer (Linked)
+  PASS  M2 · Accounts  · co-owner card 1 holds Luis Delgado
+  PASS  M2 · Payments  · Fees total reads $175.00 — $175.00
+  PASS  M2 · Payments  · no fee row is taxed at move-in (no Taxable column, no tax row)
+  PASS  M2 · Payments  · step 3 says $175.00 goes on the first bill — $175.00 goes on the first bill.
+  PASS  M2 · Accounts  · Move-in completed prints no raw server code
+  PASS  M2 · Messages  · Move-in completed counts the queued welcome (not 0 queued) — reads "2 queued"
+  PASS  M2 · Accounts  · Move-in completed names an MVI- number — MVI-26-0007
+  PASS  M2 · Accounts  · one move record MVI-26-0007 exists
+  PASS  M2 · Accounts  · the move record is a move-in
+  PASS  M2 · Accounts  · the move-in is dated as typed
+  PASS  M2 · Accounts  · the account is active
+  PASS  M2 · Accounts  · the account opens on the move-in date
+  PASS  M2 · Accounts  · the account type is the one the clerk picked
+  PASS  M2 · Accounts  · the sub-type is the one the clerk picked
+  PASS  M2 · Accounts  · the account is on the case's unit
+  PASS  M2 · Accounts  · exactly one customer holds the account
+  PASS  M2 · Accounts  · the customer's name is as typed
+  PASS  M2 · Accounts  · the customer is a person/company as picked
+  PASS  M2 · Accounts  · LINKED: the returning customer holds her accounts on file AND this one
+  PASS  M2 · Accounts  · LINKED: no second customer of that name was written
+  PASS  M2 · Accounts  · one agreement per started service
+  PASS  M2 · Accounts  · every agreement starts on the move-in date
+  PASS  M2 · Units     · the unit stores no status or occupancy (it is derived)
+  PASS  M2 · Units     · the unit now has exactly one open account (reads Occupied)
+  PASS  M2 · Assets    · an opening read for each meter the clerk read, and none other
+  PASS  M2 · Assets    · W-M2's opening read is 121.5 as typed
+  PASS  M2 · Assets    · W-M2's opening read is in kgal, the meter's own unit
+  PASS  M2 · Assets    · W-M2's opening read is dated the move-in date
+  PASS  M2 · Assets    · W-M2's opening read is committed
+  PASS  M2 · Assets    · SW-M2's opening read is 42.0 as typed
+  PASS  M2 · Assets    · SW-M2's opening read is in kgal, the meter's own unit
+  PASS  M2 · Assets    · SW-M2's opening read is dated the move-in date
+  PASS  M2 · Assets    · SW-M2's opening read is committed
+  PASS  M2 · Assets    · the move-in wrote no asset status (meter status is derived) — 0 asset audit rows read since the move
+  PASS  M2 · Payments  · the fee lines are the plan's deposit and connection charge
+  PASS  M2 · Payments  · no tax was charged on any move-in fee (OQ-BIL-12788 (a))
+  PASS  M2 · Payments  · Add to bill: no payment was recorded
+  PASS  M2 · Payments  · every payment wrote audit_log (hard rule 7)
+  PASS  M2 · Accounts  · the move-in wrote audit_log account.moved_in
+  PASS  M2 · Payments  · every journal entry for the account balances DR = CR (hard rule 5) — 0 entries read, 0 payment(s) not journaled yet (none; a check journals when it clears)
+  FAIL  M2 · Billing   · the first-bill preview answers — [DEF-MET-9773] This connection's size is not recorded. Record the connection's size.
+  PASS  M2 · Accounts  · co-owner Luis Delgado is written on the account
+  PASS  M2 · Accounts  · Luis Delgado is a co_owner
+  PASS  M2 · Accounts  · Luis Delgado's relationship is spouse
+  PASS  M2 · Accounts  · Luis Delgado's date of birth is as typed
+  PASS  M2 · Accounts  · Luis Delgado is responsible for bills as ticked
+  PASS  M2 · Assets    · BF-M2 still stands under W-M2 (the move-in moved no equipment)
+  PASS  M2 · Assets    · BF-M2 (not a read device) carries no opening read
+  PASS  M2 · Route     · every service point of the unit is on a route (2 points)
+  PASS  M2 · Route     · every service point of the unit is on a billing cycle (2 points)
+  PASS  M2 · Route     · the unit holds a place in its route's walk order
+  PASS  M2 · Work      · one work order per field-visit row
+  PASS  M2 · Messages  · the move-in's welcome is queued (2 rows)
+  PASS  M2 · Messages  · a receipt is queued for each payment (0 rows for 0 payments)
+  PASS  M2 · Messages  · no message is marked sent (BR-NOT-013: queued is never sent)
+  PASS  M2 · Units     · /premises/units/01a10dc4-815f-7a04-bca8-bb4b01acd21b opens (h1 drawn, no error page)
+  PASS  M2 · Units     · the unit reads Occupied
+  PASS  M2 · Units     · the unit names account AC-2026-00057
+  PASS  M2 · Assets    · /assets/01a10dc4-819d-7a51-9f1c-b407a2126d18 opens (h1 drawn, no error page)
+  PASS  M2 · Assets    · W-M2 is on account AC-2026-00057
+  PASS  M2 · Assets    · W-M2 reads Installed (derived, the move-in wrote no status)
+  PASS  M2 · Assets    · /assets/01a10dc4-819d-7a51-9f1c-b407a2126d18?tab=reads opens (h1 drawn, no error page)
+  PASS  M2 · Assets    · W-M2's Reads tab shows the opening read 121.5
+  PASS  M2 · Assets    · W-M2's Reads tab shows it in kgal
+  PASS  M2 · Assets    · /assets/01a10dc4-81ce-72a7-8b13-4666aeb7a386 opens (h1 drawn, no error page)
+  PASS  M2 · Assets    · SW-M2 is on account AC-2026-00057
+  PASS  M2 · Assets    · SW-M2 reads Installed (derived, the move-in wrote no status)
+  PASS  M2 · Assets    · /assets/01a10dc4-81ce-72a7-8b13-4666aeb7a386?tab=reads opens (h1 drawn, no error page)
+  PASS  M2 · Assets    · SW-M2's Reads tab shows the opening read 42
+  PASS  M2 · Assets    · SW-M2's Reads tab shows it in kgal
+  PASS  M2 · Accounts  · /accounts/01a10dce-a5ce-778c-b59b-18ad62f0c811 opens (h1 drawn, no error page)
+  PASS  M2 · Accounts  · the account shows Rosa Delgado
+  PASS  M2 · Accounts  · the account shows Residential
+  PASS  M2 · Accounts  · the account lists Sewer
+  PASS  M2 · Accounts  · the account lists Water
+  PASS  M2 · Payments  · /accounts/01a10dce-a5ce-778c-b59b-18ad62f0c811?tab=payments opens (h1 drawn, no error page)
+  PASS  M2 · Billing   · /moves/MVI-26-0007?tab=billing opens (h1 drawn, no error page)
+  PASS  M2 · Billing   · the move's Billing tab lists DEPOSIT
+  PASS  M2 · Billing   · the move's Billing tab lists CONN
+  PASS  M2 · Billing   · the fees total $175.00
+  PASS  M2 · Route     · /reads/routes/01a10dc4-8640-7a1d-9559-1e2ae58c2281 opens (h1 drawn, no error page)
+  PASS  M2 · Route     · route RT-006 is the unit's (Matrix walk)
+  PASS  M2 · Messages  · /moves/MVI-26-0007?tab=messages opens (h1 drawn, no error page)
+  PASS  M2 · Messages  · the move's Messages tab lists the welcome
+  PASS  M2 · Accounts  · /moves/MVI-26-0007 opens (h1 drawn, no error page)
+  PASS  M2 · Accounts  · the move-in record reads MVI-26-0007
+  PASS  M2 · Accounts  · the move-in record names AC-2026-00057
+  PASS  M2 · Assets    · the move-in record no longer reads 'Waiting on a read' (every meter read)
+  PASS  M2 · Accounts  · /moves/MVI-26-0007?tab=account opens (h1 drawn, no error page)
+  PASS  M2 · Accounts  · the move's Account tab names the co-owner Luis Delgado
+  PASS  M2 · Accounts  · the move's Account tab names the customer Rosa Delgado
+  PASS  M2 · Assets    · /assets/01a10dc4-820a-7584-ba8a-fa5de57e691e opens (h1 drawn, no error page)
+  PASS  M2 · Assets    · BF-M2 names the meter it stands under (W-M2)
+  PASS  M2 · Payments  · Add to bill: the move's Billing tab reads Still to collect $150.00 (deposit not taken) — STILL TO COLLECT
+$150.00
+
+── summary
+  M2: 104 PASS · 1 FAIL
+1 FAIL

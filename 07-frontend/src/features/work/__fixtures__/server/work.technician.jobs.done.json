@@ -1,0 +1,67 @@
+{
+  "count": 1,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": "01a10793-ba1d-713d-95ae-4445869ec55e",
+      "order_no": "WO-0040",
+      "type": "Meter set",
+      "premise": {
+        "id": "01a10791-4c80-7308-8fbc-bcf20e8c8208",
+        "premise_no": "P-00058",
+        "address": "3450 Oak Ridge Dr"
+      },
+      "service": "water",
+      "state": "completed",
+      "outcome": "passed",
+      "mode": "our_crew",
+      "is_gate": true,
+      "connection": null,
+      "account": null,
+      "raised_at": "2026-10-04T15:41:24.381599+00:00",
+      "priority": {
+        "id": "01a10790-de53-71b1-a773-36dfa20fee81",
+        "code": "NORMAL",
+        "name": "Normal",
+        "colour": "info",
+        "rank": 3
+      },
+      "technician": {
+        "kind": "person",
+        "name": "D. Ortiz",
+        "slug": "d-ortiz"
+      },
+      "due_at": "2026-10-07T15:41:24.375134+00:00",
+      "window_start": null,
+      "window_end": null,
+      "dispatch_state": "complete",
+      "completed_at": "2026-10-04T15:41:25.898547+00:00",
+      "source": "dispatcher",
+      "source_ref": null,
+      "area": {
+        "id": "01a10790-dd1c-7826-97f3-62609265e963",
+        "code": "IND",
+        "name": "Industrial corridor"
+      },
+      "technician_acceptance": {
+        "state": "pending",
+        "at": null,
+        "reason": null
+      },
+      "hold": null,
+      "accepted": {
+        "by": {
+          "name": "Dana Whitfield"
+        },
+        "at": "2026-10-04T15:41:25.915924+00:00"
+      },
+      "sla": {
+        "due_at": "2026-10-07T15:41:24.375134+00:00",
+        "target": "priority",
+        "at_risk": false
+      },
+      "still_holds": true
+    }
+  ]
+}

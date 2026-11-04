@@ -1,0 +1,66 @@
+{
+  "base": "http://127.0.0.1:5235",
+  "api": "http://127.0.0.1:8103",
+  "findings": [
+    {
+      "surface": "Settings › Company › Brand",
+      "shows": "the logo (240x96)",
+      "detail": "http://127.0.0.1:8103/api/brazosbend/settings/company/logo/file?v=01a10b80-3fe6-7d94-b260-653c4351b391"
+    },
+    {
+      "surface": "App header",
+      "shows": "the logo (240x96)",
+      "detail": "http://127.0.0.1:8103/api/brazosbend/settings/company/logo/file?v=01a10b80-3fe6-7d94-b260-653c4351b391"
+    },
+    {
+      "surface": "Bill layout (screen)",
+      "shows": "no logo drawn on the chooser",
+      "detail": "http://127.0.0.1:8103/api/brazosbend/bill-templates/layouts/standard-letter-v1/preview.pdf"
+    },
+    {
+      "surface": "Customer portal settings",
+      "shows": "the logo (240x96)",
+      "detail": "http://127.0.0.1:8103/api/brazosbend/settings/company/logo/file?v=01a10b80-3fe6-7d94-b260-653c4351b391"
+    },
+    {
+      "surface": "Customer portal",
+      "shows": "the logo (240x96)",
+      "detail": "http://127.0.0.1:8103/api/brazosbend/settings/company/logo/file?v=01a10b80-3fe6-7d94-b260-653c4351b391"
+    },
+    {
+      "surface": "Generated bill (PDF)",
+      "shows": "1 embedded image(s)",
+      "detail": "HTTP 200 13736 bytes"
+    }
+  ],
+  "logoRequests": [
+    {
+      "url": "http://127.0.0.1:8103/api/brazosbend/settings/company/logo/file?v=01a10b80-3fe6-7d94-b260-653c4351b391",
+      "status": 200,
+      "type": "image/png",
+      "etag": "\"01a10b80-3fe6-7d94-b260-653c4351b391\"",
+      "cache": "private, max-age=0, must-revalidate"
+    },
+    {
+      "url": "http://127.0.0.1:8103/api/brazosbend/settings/company/logo/file?v=01a10b80-3fe6-7d94-b260-653c4351b391",
+      "status": 304,
+      "type": "",
+      "etag": "\"01a10b80-3fe6-7d94-b260-653c4351b391\"",
+      "cache": "private, max-age=0, must-revalidate"
+    },
+    {
+      "url": "http://127.0.0.1:8103/api/brazosbend/settings/company/logo/file?v=01a10b80-3fe6-7d94-b260-653c4351b391",
+      "status": 304,
+      "type": "",
+      "etag": "\"01a10b80-3fe6-7d94-b260-653c4351b391\"",
+      "cache": "private, max-age=0, must-revalidate"
+    },
+    {
+      "url": "http://127.0.0.1:8103/api/brazosbend/settings/company/logo/file?v=01a10b80-3fe6-7d94-b260-653c4351b391",
+      "status": 200,
+      "type": "image/png",
+      "etag": "\"01a10b80-3fe6-7d94-b260-653c4351b391\"",
+      "cache": "private, max-age=0, must-revalidate"
+    }
+  ]
+}

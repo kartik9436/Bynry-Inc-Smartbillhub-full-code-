@@ -1,0 +1,96 @@
+# G52 baseline — the ROLE-GATED ACTIONS that reach no route, BY NAME.
+#
+# Measured at the tip on 2026-08-28, the day the gate landed: 229 role-gated
+# actions declared across 31 backend files in 10 modules, 200 reachable from a
+# route a person can get to, and 29 not. That was 1,838 lines of built, tested,
+# role-gated write behind no door, in 7 files across 5 modules.
+#
+# ── 2026-08-28, LATER THE SAME DAY: TWENTY OF THE TWENTY-NINE NOW HAVE DOORS ──
+# Lane DOORS closed DEF-2030 (the disconnect ladder, 11 actions), DEF-2031 (the
+# transfer wizard, 7) and DEF-2032 (approve_refund + void_refund). **29 → 9.**
+# Their lines are DELETED below rather than commented out, which is this file's
+# own instruction and the whole point of a named set: the list cannot outlive
+# the defect it records.
+#   * apps/customers/transfer_disconnect_api.py — TRF-02's one orchestrated
+#     door plus DSC-02's eleven ladder acts. The two wizards got OPPOSITE
+#     answers to the same design question and the decision log says why.
+#   * apps/payments/refunds_api.py — the approval queue and the two Admin acts.
+# **G52 FOUND A REAL BUG IN THAT LANE'S OWN CODE while it was being written:**
+# `record_protection` was documented as mounted and was missing from
+# `urlpatterns`, because two views had been given one path and Django can only
+# reach the first. The gate reported it as still unreached and it was.
+#
+# A NAMED SET, NEVER A COUNT (the G48/G49 ruling, decision log 2026-08-27):
+#   * a THIRTIETH action fails at its own name instead of hiding inside a number;
+#   * an action here that GAINS a door turns this gate RED as stale until its
+#     line is deleted, so the list cannot outlive the defect it records (DEF-490).
+#
+# WHY A BASELINE AT ALL, rather than a hard zero: no lane in flight is opening
+# these doors, and a gate that is red from birth earns a `# noqa` instead of a
+# fix (G44's own words). Baseline at what was actually found, name the offenders,
+# and let it fall — decision log 2026-08-27, "WHY SOME GATE FAMILIES BREACH".
+#
+# One `module:function` per line. `#` comments and blank lines ignored.
+# DELETING A LINE IS THE FIX BEING RECORDED. Adding one is not: a new entry needs
+# a defect row saying why the action shipped without a door.
+
+# ── CLOSED 2026-08-28 · apps/customers/disconnects.py (11) + transfers.py (7) ─
+# The whole disconnect ladder and every step of the transfer wizard. Both files
+# now reach routes through `apps/customers/transfer_disconnect_api.py`, included
+# by `config/urls.py`. DEF-2030 · DEF-2031.
+# `transfers:review` was never listed here and is still a FALSE NEGATIVE the
+# gate accepts — the string "review" occurs in reachable code as a dashboard
+# region key, and the string clause cannot tell that from a call.
+
+# ── apps/rating/discount_services.py · 6 actions · 234 lines · DEF-478 ────────
+# DEF-478 verbatim: "six more discount write services reach no route". Five of
+# the six it named are still here; `enrol_account` is NOT, because a door was
+# opened for it after that row was filed — `customers/discounts.py` reaches it
+# through `seams.resolve("rating", "enrol_account", kind="discount_services")`.
+# `suspend_discount_for_funding` is here and was not in DEF-478's list.
+# apps/rating is where G27 scores 32 routes and calls the module healthy.
+apps.rating.discount_services:attach_discount_to_plan
+apps.rating.discount_services:end_enrolment
+apps.rating.discount_services:record_grant
+apps.rating.discount_services:retire_discount
+apps.rating.discount_services:suspend_discount_for_funding
+apps.rating.discount_services:verify_enrolment
+
+# ── CLOSED 2026-08-28 · apps/payments/refunds.py (2) ──────────────────────────
+# Money OUT. Both now reach routes through `apps/payments/refunds_api.py`, which
+# also mounts `GET /refunds` — without it the two writes were unreachable by
+# construction, because no route in this product listed a refund id. DEF-2032.
+# ⚠ ~~`issue_refund` and `clear_refund` carry NO role gate, so this gate never saw
+# them, and they are equally doorless. Not a G52 finding; REPORTED by that lane.~~
+# **CLOSED 2026-09-01 (CR-059 CS-6, task 17). BOTH HALVES — the gates AND the
+# doors.** `issue_refund` is now `@require_role(SYSTEM_ADMIN)` and `clear_refund`
+# `@require_role(SYSTEM_ADMIN, EXECUTIVE)` (`BR-PAY-1071`), and both are reached
+# from `apps/payments/refunds_api.py` along with `POST /accounts/{id}/refunds`,
+# without which nothing but the demo seeder could raise a refund at all.
+#
+# ⚠ **AND THE SENTENCE ABOVE NAMES THIS GATE'S OWN BLIND SPOT, WHICH IS WORTH
+# KEEPING IN VIEW: the universe here IS the set of `@require_role` declarations,
+# so a money-out function with NO gate is invisible to the check written to find
+# doorless money-out functions.** `issue_refund` posts DR 2400 Customer credit /
+# CR 1000 Cash and accepted any caller, `actor=None` included, for three weeks
+# inside a module this gate reported healthy. The previous lane saw it and said
+# so; nothing mechanical could. `DEF-3031`.
+#
+# ── ALSO 2026-09-01 · apps/payments/reversal.py (CR-059 CS-5, task 15) ────────
+# `reverse_payment` gained `@require_role(SYSTEM_ADMIN)` (`BR-PAY-1070`) and so
+# enters this gate's universe for the first time. It is REACHABLE the same day,
+# through `apps/payments/reversal_api.py`, so it is deliberately NOT listed
+# below: a new declaration that arrives with its door is not a finding.
+
+# ── three singletons · 174 lines ───────────────────────────────────────────────────────────
+# metering/read_windows.py:136 close_read_window (120 lines) — `metering/api.py`
+#   imports the module and calls only `read_window_history`; the window can be
+#   read and never closed.
+# notifications/template_service.py:548 delete_version (39 lines) —
+#   `templates_api.py` mounts archive, publish, save_draft, pin_count; delete is
+#   named in its prose and in no route.
+# customers/service_request_service.py:1748 save_and_exit (15 lines) — the
+#   six-step capture's exit; referenced by nothing outside its own definition.
+apps.customers.service_request_service:save_and_exit
+apps.metering.read_windows:close_read_window
+apps.notifications.template_service:delete_version

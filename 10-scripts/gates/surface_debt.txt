@@ -1,0 +1,312 @@
+# G23 surface-debt register — the count DEF-112 says was never done.
+#
+# One line per module that owns a story with CODE and no way for a human to
+# reach it: `<module> <exact count> <reason>`. A module at zero needs no line.
+#
+# THE COUNT IS EXACT, not a ceiling. A ceiling is a number nobody has to look at
+# again, and "nobody looked" is the whole defect: `apps/ledger/close.py` and
+# `apps/ledger/exports.py` shipped complete, unit-tested and G7-guarded with
+# `D=deferred(the S42 close endpoints are the API half) E=deferred(no-frontend-half)`
+# in their own trailers, 2,400 tests passed over them, and the month-close
+# journey booted a browser and went red at step 1 on the absence of anything to
+# click. Every lane was honest; nothing added the honest notes up.
+#
+# So: adding a deferral RAISES a number here, which is the moment somebody reads
+# the sentence beside it. Building a surface LOWERS it, so the file records the
+# win and cannot keep claiming debt that is paid off. Either way the edit is a
+# reviewable diff, and G23 fails when the file and the tree disagree.
+#
+# Editing this file is a process event, like human_owned.txt: the number is the
+# module's public admission of what a user cannot reach.
+#
+# ⚠ A NUMBER HERE IS NOT A BACKLOG SIZE, AND 2026-08-16 IS WHEN THAT STARTED TO
+# MATTER. This count answers ONE question — "how many stories have code a human
+# cannot reach?" — and it stays true even for work a RULING has moved out of the
+# release, and even for a story that will never have a screen of its own. Two
+# worked cases now sit in this file: `notifications` carries two stories the
+# Product Owner ruled into R3, and `rating` carries four that are built and are
+# service-only by design. Lowering either number to express that would make this
+# file disagree with the tree, which is the one thing G23 exists to catch.
+# **The number is the tree; the SENTENCE is the plan.** Read both, and when they
+# seem to conflict, the sentence is where the judgement lives.
+#
+# ⚠ THE HEADLINE NOW REPORTS **DISTINCT STORIES**, AND NO WORK VANISHED WHEN IT
+# STARTED TO (changed 2026-08-16 by the billing-9 lane — read this before
+# comparing today's total against yesterday's).
+# **What changed:** G23's PASS line used to add the per-module counts together.
+# **What did NOT change:** the per-module numbers below, and the per-module
+# equality the gate enforces. Both are untouched, and must be — each line is
+# that module's own admission of what its users cannot reach, and a story cited
+# from five modules genuinely is unreachable in all five. `assets` could not
+# point at `billing` and call its own line paid.
+# **Why the sum was misleading anyway:** US-BIL-028's custom-field snapshot was
+# cited from assets, billing, customers, metering AND tenancy, so ONE story
+# contributed FIVE to the headline. On the day it was built, two lines here were
+# deleted outright and three fell by one — a drop of five in the total for one
+# story's work. Read as a sum, that looks like five stories evaporating; read as
+# distinct stories, it is exactly what it was. The gate now prints both figures
+# and says which is which, so nobody has to reconstruct the difference.
+# **What it does NOT weaken:** a module still cannot under-declare by a single
+# story. The equality is per-module and is checked before anything is summed.
+#
+#
+# ⚠ **THE `billing` LINE IS GONE, AND 2026-08-16 IS WHEN IT WENT — read this
+# before concluding a module was dropped.** It read `billing 5` this morning
+# (9 earlier today, 17 yesterday) and every one of the five was the same shape:
+# US-BIL-010 first bill, US-BIL-011 final bill, US-BIL-012 the ad-hoc single
+# bill, US-BIL-013 the back-bill and US-BIL-014 the penalty/theft bill. All five
+# ENGINES had shipped complete and tested — `first_bill.py`, `final_bill.py`,
+# `single.py`, `backbill.py`, `penalty.py`, 3,287 lines of them — and were
+# reachable from nothing but their own test files. Hard-won law 2, five times
+# over, in the module that decides what a customer owes.
+#
+# **What closed them, and it was one block rather than five patches:**
+# `POST /billing/one-time/preview` and `POST /billing/one-time` (one door, five
+# engines, the kind in the body), `apps/billing/one_time.py` routing the kind to
+# its engine, and S30's One-time bill tab wired into `BillsListPage` — where it
+# had been rendering an "arrives with" placeholder.
+#
+# **Two SCHEMA gaps `single.py`'s own trailer had reported were closed with it,
+# because nothing else could have been:** `bill_runs.cycle_id` was NOT NULL, so
+# an ad-hoc run had no lawful row and every one of the five engines REQUIRES a
+# `bill_run`; and r10 #7's single-account SCOPE had no column. Migration 0021
+# makes the cycle nullable, adds `scope_account_id`, and adds
+# `ck_bill_runs_has_a_scope` so that "no cycle" can never come to mean "scoped
+# to nobody".
+#
+# ⚠ **THIS PARAGRAPH SAID A ONE-TIME BILL COULD NOT BE ISSUED, AND NAMED OQ-241
+# AND OQ-242 AS OPEN QUESTIONS, FROM 2026-08-16 UNTIL 2026-09-15 — `DEF-GOV-5320`.
+# BOTH CLOSED ON 2026-08-23 AND THIS FILE WAS NEVER AMENDED.** It read: *"A
+# one-time bill DRAFTS and cannot yet be ISSUED … OQ-241 asks the Product Owner
+# where a cycle-less bill's due-days come from, and OQ-242 asks what B4.3's
+# proration denominator is."* `one_time.py` deleted its own matching notice with
+# its reason on the day of the ruling and its lifecycle trailer records both
+# closures; this sentence is the surface nobody walked, which is the exact
+# failure r11 step 0 is written for — a stale line here sends a lane at work
+# already shipped.
+#
+# **WHERE THE TWO ACTUALLY STAND.** `OQ-241` is **RULED** (CR-029 D8③, PO
+# 2026-08-23, verbatim: *"what due date a cycle-less one-time bill gets - it will
+# be capture at the time of bulk billing - not here"*): the RUN carries
+# `bill_date` and `due_days` and `issue._due_terms_for` resolves run-then-cycle,
+# so a one-time bill issues on the terms the clerk captured. ⚠ **AND IT WAS
+# ACCIDENTALLY TRUE THROUGH THE ROUTE UNTIL 2026-09-15 ANYWAY, FOR A DIFFERENT
+# REASON — `DEF-BIL-5311`**: `api._one_time_request` never read `due_days` off
+# the request body, so every bill the screen made drafted with no terms and
+# `derive_due_date` refused it. Fixed with the `fee` kind (`CR-108` wave 1).
+# `OQ-242` is **WITHDRAWN**, not answered (CR-029 D8④, PO *"this is not
+# required"*): a partial one-time window charges a FULL period's base charge —
+# $13.49 on WE-6's own figures — and that is now the product's ANSWER rather than
+# a pending question, so no proration rule may be added without a new ruling.
+# ⚠ **AND ON 2026-09-20 THERE WAS ONE, FOR THE FINAL BILL AND FOR NOTHING ELSE
+# (PO, verbatim: *"okay we have to buld it there will ebe code to reuse"*).** A
+# closing account is on a real billing cycle, so its base charge is now prorated
+# over that cycle's own calendar length: on the account the PO was shown, a
+# 12-day closing window on a 30-day cycle moved from **$18.50** to **$7.40**,
+# **$11.10** off the last bill anybody will ever read. B4.3 ❄️ already carried
+# the term — GT-3 states it as *"Base proration 15/30 × 30.50 = 15.25"* — so no
+# frozen figure moved and no re-sign was owed; only the computation was missing.
+# **The sentence above still stands for the cycle-less kinds**, which is what
+# `OQ-242` answered: an interim, catch-up, penalty or fee bill has no cycle to
+# read a denominator from and still charges its base whole. The scoping is not a
+# `kind ==` test — `final_bill.prepare_final_bill` is the only function that
+# reads the cycle, and the only bill that reaches it is the final one.
+# Amended HERE in the commit that built it, because this is the file
+# `DEF-GOV-5320` rotted for a month by being amended nowhere.
+# Neither was ever a missing SURFACE, which is the only question this file
+# answers; both are still stated on the screen in a clerk's words before they
+# draft, and both are still asserted by `test_us_bil_012_one_time.py`.
+# ⚠ **AND `reports` STAYS AT ZERO AFTER THE REPORT CENTRE LANDED — 2026-08-16,
+# reports lane. Read this before concluding the module is unbuilt.** The count
+# answers ONE question, "how many stories have CODE a human cannot reach", and
+# the six reports stories that now have code all have routes:
+#   US-REP-001 S44 library `/reports` · US-REP-002 S46 viewer `/reports/:key` ·
+#   US-REP-003 CSV via `POST /exports` · US-REP-005 AR ageing · US-REP-006
+#   billing register + revenue by service & rate · US-REP-007 payments by method.
+# THE OTHER THIRTEEN HAVE NO CODE AT ALL and therefore no debt to declare here —
+# they are unstarted, not unreachable, and this file has never counted those.
+# Named so nobody has to grep for them: US-REP-008 (the operations set),
+# US-REP-009 (the six audit-added reports), US-REP-010..012 (the builder),
+# US-REP-013..015 (schedules and their email), US-REP-016..018 (the S7/S32 KPI
+# and chip conformance layer — US-REP-019's dashboard is separate and IS built).
+#
+# ⚠ **US-REP-013, US-REP-014 AND US-REP-015 LEFT THE *NO CODE AT ALL* LIST ON
+# 2026-09-26/27 (`CR-142-BRC07` Phase 4, lanes REP-P4 and REP-P4-REST) AND THE
+# LINE ABOVE IS LEFT VERBATIM RATHER THAN EDITED, because the rest of it is
+# still exactly true.** All three now have code: `report_schedules` and its five
+# routes, the sweep and its beat entry, screens `2·3` and `4·1`, and — since
+# `P4.10` — one `outbound_messages` row per finished run, carrying a LINK.
+#
+# ⚠ **AND THE HONEST STATEMENT IS NOT *REACHABLE*, WHICH IS WHY IT IS WRITTEN
+# HERE RATHER THAN QUIETLY LEFT OUT.** This file's own test is *can a person
+# reach the CAPABILITY*. Today they cannot START one: `ScheduleReportDialog`
+# — screen `2·3`, the only way to create a schedule — is built, tested, and
+# **mounted by nothing in the product** (`DEF-REP-6913`, reproduced in a
+# browser at 1440: 39 controls on the report screen, 0 of them naming
+# *Schedule*). Its door belongs on `2·1`, whose file is held by another lane.
+#
+# **THE NUMBER IS NOT MOVED, AND THE REASON IS THIS FILE'S OWN RULE.** G23
+# measures the **Lifecycle trailer marks** of the files citing a story, and
+# every one of those files carries a built mark — correctly, because each half
+# IS built. Declaring `reports 3` here would make this file disagree with the
+# tree, which is the one thing G23 exists to catch, and it is the same case the
+# `rating` line below records at length. **The number is the tree; the SENTENCE
+# is the plan** — so the sentence is written and the count waits for the door.
+# Closing `DEF-REP-6913` is what makes it moot.
+#
+# ⚠ **US-REP-004 LEFT THAT LIST ON 2026-09-27 (`CR-142-BRC07` Phase 3, lane
+# REP-P3), AND THE SENTENCE IT LEFT WAS WRONG RATHER THAN MERELY STALE.** It
+# read *"run history, needs the `report_runs` table B2 has not anchored"* — and
+# the run history needed no such table. **The JOB record IS the run record**,
+# which `apps/reports/exports.py` had said in its own prose since 2026-08-16:
+# *"`report_runs` has no B2 anchoring … the job record IS the run record today
+# — `GET /jobs/{id}` carries who asked, what for and the artifact — and the
+# 3-day retention IS the kernel's `ARTIFACT_RETENTION_DAYS`."* So a story was
+# listed for three weeks as blocked on a table its own module had already
+# explained it did not need. It is built and reachable: `GET /reports/history`
+# over `jobs`, screens `5·1` and `5·2` at `/{tenant}/reports/history`, with a
+# tab strip on the catalogue as its door.
+#
+# ⚠ **THE COUNT DOES NOT MOVE AND BOTH FACTS ARE TRUE.** `reports` has been at
+# ZERO since 2026-08-16 and stays there: this file counts stories whose CODE a
+# human cannot reach, and US-REP-004 was never in that count — it had no code
+# at all. What changed is the SENTENCE, which is the half a gate cannot read.
+#
+# **THIRTEEN OF THE TWENTY-THREE S44 CARDS SHIP `available: false` WITH A REASON**
+# (measured 2026-08-16, not transcribed — this lane's own prose said 11-of-18
+# first, a count taken from A14's card list before BR-REP-007's six additions
+# and the two route-out cards joined it), so
+# the gap is visible to a USER as well as countable here, which is the posture
+# the deleted `reports 1` sentence was arguing for.
+#
+# ⚠ **THE `reports` LINE IS GONE, AND 2026-08-16 IS WHEN IT WENT — read this
+# before concluding a module was dropped.** It read `reports 1` and its whole
+# content was US-LED-002's premises/unit dimension, with an instruction
+# attached: *"⚠ DO NOT BUILD A SCREEN OVER IT: a page drawn over an absent
+# dimension renders a CONFIDENT EMPTY REPORT, which is worse than the honest
+# refusal shipping today. The fix is the dimension itself, in the posting
+# service, and a surface only after it."*
+#
+# **The instruction was followed in that order.** `apps/ledger/dimension_seam.py`
+# resolves BR-LED-001's account → unit → premises chain across the two module
+# boundaries the ledger may not step over, `apps/ledger/posting._stamped`
+# consumes it at posting time for all seventeen source events, and only THEN
+# did `reporting.by_premises_summary` stop refusing and become the group-by
+# US-LED-010 §5 describes. No screen was drawn: **S60 was already built and
+# already wired**, rendering the refusal, and its own trailer said the table
+# *"renders the day the dimension lands"*. It landed; the table renders 500
+# Main St **247.87** · Oak Grove **16.42** · Marina Bay **289.40**, footing to
+# the same **553.69** the refusal used to quantify.
+#
+# **WHAT THE REMOVAL DOES NOT CLAIM.** Journal lines posted BEFORE 2026-08-16
+# carry `premises_id = NULL` for ever — a posted line is immutable (hard rule 4)
+# and no lawful UPDATE could backfill one. So a report over an older period
+# still answers `available: false`, and the gap sentence it renders was
+# REWRITTEN to say that instead of the sentence it used to carry (*"every
+# journal line in the product carries premises_id = NULL"*), which stopped
+# being true the moment this shipped.
+#
+# Counts measured 2026-08-15 by the DEF-112 lane, after S41, S42, S43 and S56
+# landed. Re-measured 2026-08-16 by the surface-debt tails lane after S73/S74
+# and the export-drift warning landed (which is why `ledger` reads 2 and not 7).
+
+# ⚠ **THE `audit` LINE IS GONE, AND 2026-08-16 IS WHEN IT WENT.** It read
+# `audit 1` and its sentence — corrected earlier the same day, because the
+# version before it named the WRONG FEATURE — was: *"US-MET-020 is the
+# AUTO-ARCHIVAL job (2-year hot window to cold storage, 7-year retention). Its
+# `archive_job_runs` ledger appears in `apps/audit/migrations/0004_archive_job_
+# runs.py`, in `apps/audit/management/commands/archive_partitions.py` and in
+# `core/archival.py`, and in no `api.py` anywhere: no selector, no endpoint, no
+# viewer, so an operator cannot see whether retention has ever run."*
+# VERIFIED against the code before building, and it was exactly true.
+#
+# **WHAT CLOSED IT:** `apps/audit/selectors.archive_status` +
+# `archive_run_list`, `GET /retention/runs` in `apps/audit/api.py`, and
+# `07-frontend/src/features/audit/RetentionRunsPage.tsx` at
+# `/{tenant}/audit-log/retention` — reached from a control on S61, because a
+# page nothing links to is the same defect one layer along.
+#
+# **FOUR THINGS THE SURFACE SAYS THAT MATTER MORE THAN THE TABLE IT DRAWS.**
+# (1) "NEVER RUN" IS A FINDING, NOT A BLANK — the server answers
+# `has_ever_run: false` WITH a reason and the screen prints it; an empty table
+# would look like a screen that had not loaded. (2) **"ARCHIVED" DOES NOT YET
+# MEAN OFF-SITE** and the screen says so: nothing in this repo registers a
+# cold-store shipper, so every run records `shipped: false` / `shipper_absent`,
+# and archived means DETACHED + MANIFESTED + STILL QUERYABLE under RLS. Without
+# that line an operator could tell an auditor the data had left the building
+# (hard-won law 1, in the most expensive place to be wrong). (3) **IT CREATES NO
+# MANUAL PATH.** BR-MET-055 and BR-AUD-012 both say "never manual";
+# `core.archival.run_archival` still refuses any caller without the scheduler
+# token, the view defines a `get` and nothing else so every write verb 405s
+# structurally, and the screen EXPLAINS the missing button rather than leaving
+# somebody to file a defect about it. (4) row counts are shown PER PARTITION and
+# never summed — a headline total implies a denominator this product cannot
+# state.
+#
+# **THE ONE RISK THIS TABLE CARRIES AND HOW IT IS HANDLED:** `archive_job_runs`
+# has NO `tenant_id` and NO RLS POLICY (a partition is shared, so a run belongs
+# to no tenant), which makes it the one table where RLS cannot catch a leak.
+# Each archived entry's payload holds the tenant ids whose rows were in the
+# partition; `selectors._archive_entry` REDACTS that list to a single boolean —
+# were MINE? — and the list never leaves the module. Asserted by
+# `test_us_met_020_tc7__the_run_record_NEVER_leaks_the_other_tenants_in_a_partition`.
+billing 1 NEW 2026-09-30 (the final bulk-run lane, G23 red). US-BIL-029 — the seven-stage bill-run pipeline — lost the only file that cited it with a reached surface when the old six-step `BillRunWizard` was deleted for the four-step bulk run (build plan F2). THE CAPABILITY IS STILL REACHED: Calculate on Billing > Bills > Run prices every ready account through `runs.calculate_run`, which runs stages 1-6, and Sign off shows the drafts they made. What is missing is the CITATION: every file whose Trace names US-BIL-029 (`apps/billing/stages/**`, `contracts.py`, `documents.py`, the rating stages) carries `D=deferred E=deferred`, correctly — none of them serves a route. WHAT WOULD CLOSE THIS LINE: name US-BIL-029 on the Trace of `apps/billing/runs.py` (the file that runs the stages and already carries D✔ E✔), which is a 🔒 file and a trace edit its review owns; not taken here.
+customers 1 NEW 2026-09-03 (CR-059 CS-20, task 30). US-CUS-023 §7 — BR-CUS-057's DEPOSIT-INTEREST ACCRUAL — has code and no way for a person to reach it. `apps/customers/deposit_interest.py` computes what a customer's own deposit has earned and publishes it as `selectors.deposit_interest_accrued(account_id, as_of)`; ❄️ GT-61's $150 at 2.0% for 89 months reproduces to $22.25 and WE-7's 14 months to $3.50, both asserted as transcribed literals. **THIS DEBT IS THIS LANE'S OWN AND WAS CREATED THIS MORNING**, which is the case this file exists to make visible rather than the case it exists to blame: the engine landed, its screens are CR-059 task 34, and task 34 is not started. **WHAT IT ALREADY UNBLOCKS, and it is not nothing:** `move_out_settlement` and `apps/billing/final_bill.deposit_credit_for` have both resolved that name for weeks, both got None, and both fail CLOSED — so an account holding a deposit could not be CLOSED by anybody, which at a utility that takes deposits is every residential account. ⚠ **THAT REFUSAL WAS NOT GONE AND THIS SENTENCE SAID IT WAS FOR A DAY — `DEF-CWP-3842`, corrected 2026-09-04 by the lane that built the customer-facing final bill.** It read *"that refusal is gone and the money is worked out correctly"*. The ENGINE answers; its only caller never asked it a question it could answer. `billing.final_bill.settle_account` called `deposit_credit_for(account_id)` with no `as_of`, `deposit_interest_accrued` answers `None` when no day is stated (deliberately — G6 keeps a wall clock out of a money path), and so **every deposit-holding account still refused to settle**, printing a sentence blaming an unreadable accrual. Fixed by `settle_final_bill` passing `as_of=invoice.period_end`, the move-out day, read off the bill and not off a clock. **The count does not move**: this file answers one question — how many stories have code a human cannot reach — and CR-059 task 34's three staff screens are still what would close this line. The lesson is the file's own: a sentence that describes an ENGINE is not a sentence about the PRODUCT, and only a caller proves the difference. The corrected claim: the refusal is gone **from the final-bill path**, `apps/billing/one_time.py` still calls it the old way, and the money is worked out correctly; what a clerk cannot do is SEE the figure. **WHAT WOULD CLOSE THIS LINE:** CR-059 task 34 — S21's *held 150.00 · interest 3.50 · owed back 153.50* line, S20's move-out settlement showing principal and interest separately, and S66's rate field gaining the effect it describes. Until then the number is 1 and the trailer in `deposit_interest.py` says `D=deferred(CR-059 task 34 owns P9) E=deferred(same)`, which is what this gate reads. **IT IS NOT PARKED IN `seam_known_gaps.txt` ANY MORE, DELIBERATELY:** that park was removed the same day on G20's instruction, because the seam RESOLVES now — a park for a working read is an allowlist entry, and the surface debt is a different fact from a missing seam.
+ledger 1 WAS 2 UNTIL 2026-09-25, AND THE CORRECTION IS US-LED-001 ONLY. G23 was red: "ledger: surface_debt.txt declares 2 unreachable stor(ies) and there are 1 - FEWER than declared (US-LED-003)." The gate measures Lifecycle trailer marks, and US-LED-001 now has a file marking D-tick: apps/payments/counter_receipts.py and counter_receipt_models.py (the counter-receipt read, CR-135/CR-136 P2, on the branch by 2026-09-23) and apps/customers/payments_seam.py. This file answers ONE question - how many stories have CODE a human cannot reach - and a story ANY file reaches is reached, whichever module that file sits in. **US-LED-003 IS THE ONE THAT REMAINS AND ITS REASON IS UNCHANGED:** it is the posting service's consuming side, every screen that shows its RESULT exists (S56 renders a reversal's linkage BOTH ways and the reverse-and-repost click is on it), and the contracts themselves are a service-layer boundary with nothing of their own to draw. The reversal pairs post today. **NOTHING WAS BUILT FOR THIS EDIT AND NOTHING IS CLAIMED TO HAVE BEEN** - the tree moved and the number did not, which is the drift G23 exists to catch, in the direction that over-states debt rather than hides it. The rating line below records the mirror-image error and its ruling: the number is the tree; the SENTENCE is the plan. THE ORIGINAL LINE FOLLOWS, VERBATIM. Was 7. FIVE came off on 2026-08-16 when the CAPTURED PAYABLE side got its first HTTP surface and its first screen: US-LED-018 (capture — date · service · supplier FREE TEXT · amount · OPTIONAL volume · GL account · period), US-LED-019 (the register: list, search, the volume-captured filter that finds exactly the purchases suppressing a percentage, void with a reason, and the AFTER-CLOSE correction the PO ruled lawful that same day), US-LED-020 (S74 bought vs billed — 1,000,000 gal bought against 910,000 billed = 9.00%, on the SERVICE-PERIOD basis the PO ruled, with every uncomputable cell stating its reason and never a zero) and US-LED-021 (the export's cost section, whose OQ-200 label stopped calling a ruled question open). US-LED-004's tie-out is the fifth and is now reached through the finance read surface. THREE RULINGS WERE IMPLEMENTED RATHER THAN STUBBED, because all three closed on 2026-08-16 and G8 was already RED on the stale stubs: OQ-200 (a capture posts NOTHING to the books in R2 — the screen prints the reason, because a screen implying the books moved is a defect), OQ-202 (the billed denominator is the SERVICE period) and OQ-203 (a captured invoice MAY be corrected after its period closes, with a reason and an audit row — and S42 now NAMES the exported batch that no longer matches, quoting both figures with their currency, which is the condition the PO attached to that permission). STILL UNREACHABLE, each for its own reason: US-LED-001 the source-event posting CONTRACTS and US-LED-003 reversal pairs are the posting service's consuming side — every screen that shows their RESULT exists, and the contracts themselves are a service-layer boundary with nothing of their own to draw. TWO QUESTIONS REMAIN OPEN AND ARE STUBBED, NOT ANSWERED: OQ-201, the purchase-unit vocabulary (gas bought in MMBtu against gas billed in ccf produces NO figure, by name, and the capture form deliberately offers no unit picker because a picker would BE the vocabulary), and OQ-204, where the reconciliation lives (its CSV/PDF download raises NotImplementedError and the control renders disabled with that reason). OQ-227 was MINTED by this lane: re-dating a purchase inside a closed period is a MOVE between two months' reconciliations, not a correction, and is refused by name. S36, S41, S42, S43, S56, S57, S59, S60, S73 and S74 ARE reachable and are not in this count. ⚠ **RE-VERIFIED AGAINST THE CODE 2026-08-16 by the US-LED-002/004 lane, and TWO OF ITS CLAIMS NEEDED CORRECTING.** (1) *"US-LED-004's tie-out is the fifth and is now reached through the finance read surface"* was the weakest sentence in this line: the finance read surface published the AR CONTROL TOTAL and compared it against nothing, and `reporting.revenue_and_ar` said so in its own payload — `tie_out: {ar_control: 152.32, computed_by: "US-LED-004 (not built)"}`. A control total is not a tie-out. **It is built now:** `apps/ledger/tie_out.py` computes BR-LED-007's three comparisons, `GET /finance/tie-outs` serves them, and the S36 panel that used to print *"nothing has compared this"* now prints AR **152.32 = 152.32**, deposits **0.00 = 0.00**, tax **47.38 = 47.38** — or, on LE-7's fault, **0.00 against 153.50, difference -153.50, Release blocked**, with no dismiss control anywhere on the page. (2) US-LED-002 came OFF the reports line the same day (see the header note) and is not in this count either: the posting service stamps the chain, so the ledger's own by-premises read, its ERP extract and S60 all carry it. **THE TWO THAT REMAIN ARE STILL US-LED-001 AND US-LED-003, and the reason is unchanged and was checked rather than inherited:** they are the posting service's consuming side, every screen that shows their RESULT exists (S56 renders a reversal's linkage BOTH ways — `reversal_of_entry_id` and `reversed_by_entry_id` — and the reverse-and-repost click is on it), and the contracts themselves are a service-layer boundary with nothing of their own to draw. **WHAT THE RE-VERIFICATION DID FIND is a stale ABSENCE claim rather than a missing surface, and it is now corrected in `apps/ledger/posting.py`'s own docstring (hard-won law 1):** that file said *"apps/payments/models.py is three lines and defines no tables"* — it is **736 lines and eighteen tables**, and every payments row of the contract table has been posting for days. Measured on 2026-08-16, **THIRTEEN of the seventeen contract rows post** and **FOUR do not**: the opening-balance cutover batch (`account_opening_buckets` unbuilt, US-CUS-021 owns it), the first-bill deposit LINE, the deposit APPLICATION at final bill and the deposit INTEREST accrual — the last three all computed by `apps/billing/final_bill.py` and booked by nothing. Those three are not a missing SURFACE, which is the only question this file answers; they are a missing WRITER, and the US-LED-004 tie-out panel is the thing that will now report them to a utility that takes a deposit. ⚠ **ALL FOUR MISSING WRITERS ARE WRITTEN AS OF 2026-08-16 (US-LED-001 four-unposted-events lane), THE COUNT IS UNCHANGED AT 2, AND BOTH FACTS ARE TRUE — read this before concluding either that nothing happened or that the story is closed.** **WHAT WAS BUILT:** `apps/ledger/opening_balances.py` (the cutover batch — the composition had lived INSIDE `tests/golden/test_gt16_opening_journal_entry.py`, so the ❄️ frozen test asserted its own arithmetic; that file now drives the module and GT-16 still reads DR AR **267.30** / CR opening clearing **267.30** dated 2026-08-31, golden 33 PASS/0 FAIL) · `apps/ledger/deposit_legs.py` + `apps/billing/posting_seam.emit_final_bill_deposit_legs` (the interest accrual DR 6950 **3.50** / CR 2300 **3.50** and the application DR 2300 **153.50** / CR 1200 **153.50**, emitted inside the final bill's own issue transaction, closing LE-1 §7's deposit liability to **0.00** = 150.00 + 3.50 − 153.50) · and the first-bill deposit LINE, which turned out to be a GL STAMP rather than a posting gap and is **DEF-181**: the line arrived as a `fee`, `issue._gl_account_for` refuses a fee for want of a charge code, and **no first bill carrying a deposit could issue at all** — it now stamps the `deposit_liability` designation, so the $150.00 lands in 2300 and not in revenue. **WHY THE COUNT STAYS 2.** This file answers ONE question — how many stories have CODE a human cannot reach — and the answer for US-LED-001 and US-LED-003 has not moved: their surface is still the ledger's posting screens (S56 renders the entries and a reversal's linkage BOTH ways; S36's tie-out compares them), and the contracts are still a service-layer boundary with nothing of their own to draw. Lowering the number would need the `D✔ E✔` trailer marks the gate actually reads, and it would over-claim besides: **thirteen of the seventeen rows are still the only ones a RUNNING product can reach**, and each of the four now carries a NAMED blocker instead of an absence — no cutover importer (`account_opening_buckets` unbuilt), a first bill and a final bill both produced ONLY through `POST /billing/one-time`, which drafts and cannot issue while **OQ-241** is open, and a closure holding a deposit additionally refused because `apps.customers.selectors.deposit_interest_accrued` is published by nothing (US-CUS-023 §7 — PARKED in `seam_known_gaps.txt` with its unpark condition, because applying the principal alone would keep WE-7's **$3.50** of the customer's money on a bill that foots). **US-LED-003 WAS RE-CHECKED RATHER THAN INHERITED AND NEEDED NO WORK:** the reversal pairs post today — NSF and payment void through `apps/payments/ledger_seam.reverse_payment_entry` / `reverse_refund_entry`, the credit-note-plus-rebill correction through `apps/billing/corrections.py`, the accrual auto-reversal through `apps/ledger/manual_je.py`, all of them over `posting.reverse_entry`, which copies the original's stamps and links `reversal_of` both ways. **ONE QUESTION WAS MINTED: OQ-248** — when a closing customer's deposit is worth MORE than they owe (WE-7 Case A: **153.50** against **142.30**) the signed row would leave their AR at **−11.20** and the signed refund row pays out of 2400, which they do not hold; that case is REFUSED by name with both figures, never chosen.
+# ⚠ THE `metering` LINE IS GONE, AND 2026-08-16 IS WHEN IT WENT — read this
+# before concluding the module was dropped. It read `metering 1` this morning
+# (2 earlier today) and the one story left was US-AST-011's NET-METERING
+# IMPORT/EXPORT READ PAIR. That sentence was accurate and had been for days:
+# `apps/metering/validation.py` REFUSED an export record on a flat meter,
+# `models.py` carried the channel, `services._ensure_export_records` wrote a
+# flagged 0-value record when a net cycle arrived without one — and a clerk
+# looking at a solar account saw two unrelated rows in a list sorted by date.
+# The rule was enforced and invisible, which is the whole of the story it
+# belongs to (US-AST-012 TC-1: "the S29 drawer shows each record's type + a
+# link to its paired record").
+#
+# **WHAT CLOSED IT:** `selectors.net_meter_pair` serves both channels of one
+# cycle as ONE payload, `GET /reads/{id}` carries it as `net_pair`, and
+# `07-frontend/src/features/metering/NetMeterPair.tsx` draws them side by side
+# inside the S29 drawer — 684.000000 kWh delivered against 120.000000 kWh fed
+# back, each with its own unit.
+#
+# **WHAT ITS REMOVAL DOES NOT CLAIM, and this is the part to read.** The two
+# figures are NEVER netted and no money appears anywhere near them: 684 − 120 =
+# 564 is the net-metering CREDIT computation, it lives in rating's EP-RAT-06,
+# it is gated by **OQ-001**, and R2 bills solar and battery as capacity
+# charges. The panel says so on its face rather than leaving a reader to assume
+# a credit is coming, and `NetMeterPair.test.tsx` asserts the string "564"
+# appears nowhere — so the day somebody starts doing rating's arithmetic on
+# this screen, a test goes red. A FLAT meter draws NOTHING here (BR-AST-010) and
+# a net cycle with no export reading says so in words: "Export: 0" would be a
+# measurement of a register nobody read. **US-AST-012 TC-2's S50 asset Reads tab does
+# NOT show the pair, and the reason is one story further back:** S50 HAS a
+# Reads tab (`AssetDetailPage`'s `ASSET_DETAIL_TABS` declares it) and it
+# renders an `ArrivesWith` placeholder, because US-AST-005's
+# `GET /assets/{id}/reads` is not served and an empty table there would claim
+# *this asset has no reads*. There is no per-asset read LIST for a pair panel
+# to sit in yet. That is REPORTED
+# rather than counted, because the capability is reachable through S25/S29,
+# which is what this file measures.
+# ⚠ AMENDED 2026-08-22 (CR-028 AST-W2, coordinating lane): EVERY CLAIM ABOVE
+# ABOUT THE READS TAB IS NOW HISTORY — `GET /assets/{id}/reads` IS SERVED
+# (DEF-475 fixed), the placeholder is deleted, and S50's Reads tab renders the
+# net pair folded one-row-per-date with a 0-kWh export surviving. The count
+# never moved because this block was always comment, not a counted line; the
+# paragraph stays as the record of WHY the tab waited.
+notifications 2 ⚠ **THE FIRST SENTENCE OF THIS LINE STOPPED BEING TRUE ON 2026-08-17 AND THE NUMBER DOES NOT MOVE — READ BOTH (CR-009 in-app lane).** It says *"R2 has NO dispatcher and NO provider integration on any channel, so US-NOT-002 (the dispatcher) and US-NOT-003 (the provider seam) are OUT OF THIS RELEASE BY DECISION"*. **The dispatcher RUNS and one channel HAS a provider.** The PO ruled *"can you build the in-app?"* — because in-app *"does not require any integration and it is proof that notification is working"* — so `in_app` is a fourth channel (BR-NOT-019) whose adapter is this application, `channel_route` answers `dispatchable: True` for it, and `manage.py dispatch_outbound` printed **`dispatched: yes · sent 1`** on a booted stack for the first time in this product's history. A staff member's bell shows the count and the message reads *"Billing run finished. 1204 processed · 3 failed 08/17/2026"*, verified in Chromium. **WHY THE COUNT IS STILL 2, and this is the file's own rule (`The number is the tree; the SENTENCE is the plan`):** G23 measures the Lifecycle trailer marks of the files citing a story, `apps/notifications/dispatcher.py` and `provider_seam.py` still carry `E=deferred`, and they are CORRECT to — neither story has a screen of its own, and the surface a person reaches is the S8 dispatch home and now the shell bell. Lowering it here would make this file disagree with the tree, which is the one thing G23 exists to catch; changing those two trailers is the dispatcher lane's call, not this lane's, and it is REPORTED rather than taken. **What is still exactly true:** print, email and SMS have NO adapter, none is coming in this release, and BR-NOT-013 is narrowed rather than reversed — `delivered` and `bounced` remain unwritable by anything in this repo, in-app included. **The new story adds NO debt:** US-NOT-018 shipped both halves — three routes and the bell in the shell — which is why this number did not go up either. The original line follows, verbatim. WAS 8. SIX CAME OFF 2026-08-16 (surface-debt tails lane) and the TWO THAT REMAIN ARE THE R3-BY-RULING PAIR — they stay counted because they have code and no route, which is the only question this file answers. PO re-confirmed 2026-08-16, verbatim: *"I already confirm it before it Queue them"*: R2 has NO dispatcher and NO provider integration on any channel, so US-NOT-002 (the dispatcher) and US-NOT-003 (the provider seam) are OUT OF THIS RELEASE BY DECISION rather than gaps to close. WHAT LANDED, all of it on the S8 Notifications tab and all of it CONFIGURING A QUEUE: US-NOT-004 the dispatch config (`GET|PATCH /notification-settings` — batch size, the quiet-hours window and the two channel flags, System-Admin gated and audited; the card states on its face that nothing is sent in this release, so a switch that looks live cannot be read as one); US-NOT-010 the tone→tier mapping (`GET /notice-tones` — BR-NOT-008 made visible: picking **Firm** does not send a firmer reminder, it sends the 10-day REGULATED disconnect notice, and **Final** sends the 48-hour CERTIFIED letter at real postage; the day numbers are the TENANT's or are absent with their reason, never BR-REP-016's 7/14/30 seeds); US-NOT-005 / US-NOT-006 / US-NOT-016 the template read (`GET /notification-templates` — which body each class renders from, its merge-variable whitelist, the custom-field token SHAPE (never a live field list, BR-NOT-012), and per class the REASON when there is none). ⚠ THAT READ REPORTED A LIVE GAP AND THE GAP IS NOW HALF CLOSED, WHICH IS THE PRECISE STATEMENT AND THE ONLY HONEST ONE (DEF-163, amended 2026-08-16 by the notice-template seeding lane). **The machinery is fixed:** provisioning seeds notice templates through `apps.tenancy.seams.seed_notice_templates`, the shape `seed_bill_templates` uses, and `manage.py seed_demo --tenant <subdomain>` is the repair door for the tenants that already exist — proved on one, on live PostgreSQL, not only on a fresh tenant. **What a utility can send today:** the friendly past-due REMINDER (`dunning`) and the payment RECEIPT, both bodies quoted verbatim from A13 and asserted against that spec file so a reword goes RED. **What it still cannot send, and this is a REFUSAL rather than debt:** no disconnection notice at any tier (OQ-243 — A19 §2 writes three tier bodies and a template variant holds ONE, and A19 r8's regulatory rights footer is written in no signed document) and no payment-plan agreement (OQ-244 — the instalment schedule is a repeating block no token can express). The email, SMS, remaining contract and plan-notice classes stay OQ-206/OQ-207. Every absence is served per class by `GET /notification-templates` as `body_unavailable` and drawn on the S8 card with its OQ id, so the gap is countable rather than noticeable. G26 can see this class now: clause (d) gained the *no published … resolves* family AND was changed to match the JOINED raise text, which is what actually hid it. US-NOT-015 came off by CORRECTION, not by building: `delivery_ops.py` carried `D=deferred E=deferred` over `queue_health` and `deferred_backlog`, which `GET /outbound/summary` has served and the S8 tab has drawn since 2026-08-16 morning (hard-won law 1). ⚠ **THE LAST CLAUSE OF THIS SENTENCE WAS TRUE FOR ONE DAY AND IS NOW FALSE — AMENDED 2026-08-17 BY THE CR-007 SET-09/10 LANE, AND THE COUNT DOES NOT MOVE.** It read *"The S91–S96 DESIGNER stays CUT (PO 2026-08-16) and nothing here is writable."* **The first half is still exactly true** — S91–S96 are billing's BILL-LAYOUT designer, they are cut, and no canvas or block palette exists anywhere. **The second half is not:** CR-007 shipped SET-09 (the catalog of all 36 template classes, with search, the five category chips, the column selector and standard pagination) and SET-10 (variant switcher, live preview through the real renderer, merge-fields panel with insert-on-click, editing, publish, deactivate, version history and restore), all System-Admin-gated and audited, at Settings → Configure → Templates. **`template_service`'s draft→publish→archive lifecycle had been complete and unmounted since 2026-08-15**, so this was eight routes and two screens over a finished engine rather than new machinery. **The count stays 2 and must**, because it answers one question — how many stories have code a human cannot reach — and the two are still US-NOT-002 (the dispatcher) and US-NOT-003 (the provider seam), both OUT OF THIS RELEASE BY PO RULING. Neither is touched by CR-007, which adds no dispatch path of any kind: there is still no send endpoint anywhere in this module and A11 r2 §4 makes minting one a gate failure. **What a System Admin can now change and could not on 2026-08-16:** the wording of the past-due reminder and the payment receipt — the two classes with a platform body. **What they still cannot:** anything else, and every one of those refuses BY NAME with its open question rather than accepting a body nothing can validate — the three disconnect tiers on OQ-250 (BR-NOT-014 gave them three slots, all empty, because the regulatory rights footer's five sentences are written in no signed document), CR-007's fourteen new classes on OQ-251, and the email, SMS, contract and plan-notice classes on OQ-206/OQ-207. **DEF-190 is the honest remainder and is filed rather than hidden:** the three slots exist and `notices.generate_disconnect_notice` still resolves the single legacy class at every tier, which is invisible today only because no tier has a body.
+# ── RETIRED 2026-09-25 · payments ──────────────────────────────────────────
+# G23 was red: "payments: surface_debt.txt still claims 1 unreachable stor(ies)
+# and there are none. The debt is paid - delete the line so the file keeps
+# stating the truth."
+# The 1 was US-LED-001, cited from apps/payments/ledger_seam.py, which is a SEAM
+# (D=deferred E=deferred) whose surface is the ledger's posting screens. Two
+# payments files now mark that story D-tick - apps/payments/counter_receipts.py
+# and counter_receipt_models.py, the counter-receipt read from CR-135/CR-136 P2 -
+# so the story is REACHED and payments owns no unreachable story at all.
+# A module at zero needs no line, which is this file's own rule, so the line is
+# DELETED rather than set to 0: the header keeps this file to the modules that
+# owe something. Nothing was built for this edit; the tree moved and the number
+# did not, which is exactly the drift G23 exists to catch.
+rating 4 CLOSED 2026-08-16 and the count is a CORRECTION, not a build. US-RAT-012..015 are the PRICING ENGINE (usage pricing incl. TOU and %-of-water, totals, capacity lines, the rule-type plugins). All four landed today and are priced through the bill run. They sat on this list because none has a screen OF ITS OWN and none ever will - the engine is a pure service. VERIFIED BEFORE LOWERING, not asserted: RateScheduleWizard.tsx offers editors for all six models (flat, tiered, time_of_use, percent_of_service, capacity, demand) and App.tsx routes it at plans-rates/rates/new and /:tariffId, so a utility can configure a TOU tariff, run a bill and read the priced lines - which is what reachable MEANS. Counting an engine as unreachable because it has no screen of its own overstates the debt and is the same right-count-wrong-shape fault four sentences in this file already carried. THE TEST THIS FILE SHOULD APPLY, stated here because it was not before: can a person reach the CAPABILITY - not does this story own a screen. A story whose surface is legitimately another story's screen is reachable. STILL REFUSED and visible on S11: the `seasonal` structure the wizard offers is the one model the engine does not implement (OQ-234), and the screen says so rather than accepting a configuration nothing can price. [⚠ AMENDED 2026-10-01 by the season-split lane: NO LONGER TRUE — OQ-234 was CLOSED 2026-09-07 and `seasonal` is now priced (DEF-RAT-8832; a season-crossing period splits by calendar days, GT-34 engine-verified), and the screen's not-billable notice is deleted. The count above is not moved by this amendment.] ⚠ **THE COUNT IS PUT BACK TO 4 BY THE surface-debt tails lane, 2026-08-16, AND EVERY WORD ABOVE IS THE RATING LANE'S OWN AND IS LEFT VERBATIM.** Lowering it to 0 made **G23 FAIL** — *"rating: surface_debt.txt declares 0 unreachable stor(ies) and there are 4 — MORE than declared"* — because the gate measures the **Lifecycle trailer marks** of the files citing a story, and `apps/rating/pricing/**` still carries `D=deferred E=deferred` on all four. This file's own header names this exact case and rules on it: *"`rating` carries four that are built and are service-only by design. Lowering either number to express that would make this file disagree with the tree, which is the one thing G23 exists to catch. **The number is the tree; the SENTENCE is the plan.**"* So the SENTENCE — the argument that reachability means *can a person reach the capability* — stands and is worth reading; the NUMBER goes back to what the tree says. **TWO WAYS TO MAKE 0 TRUE, both the rating lane's to take:** mark the four stories' trailers `D✔ E✔` in the files that cite them, naming S11 and the bill run as the surface (which is that lane's claim, made checkable) — or put the DEFINITION change to the PO, since changing what this file counts is a process event like editing `human_owned.txt`. Neither is a correction a lane that has not read those engines may make, so the count is restored and the disagreement is REPORTED rather than smoothed.

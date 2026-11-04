@@ -1,0 +1,60 @@
+Brazos Bend Utilities                                                            UTILITY BILL
+9410 FM 1093 Rd, Katy, TX 77494                                                  Bill BL-2610-000252
++1 (281) 555-0164 · help@brazosbendutilities.com
+
+
+Account                      AC-2026-00058
+Customer                     Hal Brenner
+Service address              I4 Sunfield Way, Katy, TX 77494
+Unit                         CAP0-MUNI Unit 1
+Mailing address              I4 Sunfield Way, Katy, TX
+Bill #                       BL-2610-000252
+Cycle                        Solar walk — monthly
+Bill date                    2026-10-01
+Due date                     2026-10-22
+Service period               2026-09-01 – 2026-09-30
+Days                         30
+
+SERVICES THIS PERIOD
+
+Solar                        read
+
+CHARGES THIS PERIOD
+
+
+Solar
+Description                                                       Usage   Rate             Amount
+solar usage tier 1 (0+ kW)                                        6 kW    4.00          24.00 USD
+solar base charge                                                    —      —           10.00 USD
+Taxes
+Description                                                       Usage   Rate             Amount
+Tax Solar walk 4% tax                                                —    0.04           1.36 USD
+Previous balance                                                                         0.00 USD
+Payments & credits                                                                       0.00 USD
+Current charges                                                                         35.36 USD
+
+Total due                                                                            35.36 USD
+
+MESSAGES
+
+Message                      —
+Ways to pay                  —
+
+
+
+
+TEAR OFF AND RETURN WITH PAYMENT
+
+Account                      AC-2026-00058
+Customer                     Hal Brenner
+Bill #                       BL-2610-000252
+Amount due                   35.36 USD
+Due date                     2026-10-22
+
+
+
+
+Scan                         AC-2026-00058$BL-2610-000252$3536X
+
+Bill BL-2610-000252                                                                      Page 1 of 1
+

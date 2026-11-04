@@ -1,0 +1,28 @@
+PASS · 1440 · summary strip — MBSP · v1 · Published · In force · Account type · Minimum bill · Covers
+PASS · 1440 · code MBSP and covers 2 of 2
+PASS · 1440 · Battery warning, and only that one — Battery: its rate schedule names no base code.
+PASS · 1440 · Base charges + Usage rates open
+PASS · 1440 · five parts closed
+PASS · 1440 · Battery base Not chosen
+PASS · 1440 · BASE-SOL linked
+PASS · 1440 · unit price to four places
+PASS · 1440 · no not-zero sentence
+PASS · 1440 · footer names Residential
+PASS · 1440 · every link opens a new tab — 5 links
+PASS · 1440 · no horizontal page scroll
+PASS · 1440 · Taxes opens
+PASS · 1440 · another plan refreshes the block — now SCW-COM
+PASS · 390 · summary strip — MBSP · v1 · Published · In force · Account type · Minimum bill · Covers
+PASS · 390 · code MBSP and covers 2 of 2
+PASS · 390 · Battery warning, and only that one — Battery: its rate schedule names no base code.
+PASS · 390 · Base charges + Usage rates open
+PASS · 390 · five parts closed
+PASS · 390 · Battery base Not chosen
+PASS · 390 · BASE-SOL linked
+PASS · 390 · unit price to four places
+PASS · 390 · no not-zero sentence
+PASS · 390 · footer names Residential
+PASS · 390 · every link opens a new tab — 5 links
+PASS · 390 · no horizontal page scroll
+PASS · 390 · Taxes opens
+PASS · 390 · another plan refreshes the block — now SCW-COM

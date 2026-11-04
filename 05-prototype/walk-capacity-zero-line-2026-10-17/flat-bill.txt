@@ -1,0 +1,63 @@
+Brazos Bend Utilities                                                          UTILITY BILL
+9410 FM 1093 Rd, Katy, TX 77494                                                Bill BL-2610-000251
++1 (281) 555-0164 · help@brazosbendutilities.com
+
+
+Account                    AC-2026-00057
+Customer                   Rosa Delgado
+Service address            T4 Sunfield Way, Katy, TX 77494
+Unit                       CAP0-FLAT Unit 1
+Mailing address            T4 Sunfield Way, Katy, TX
+Bill #                     BL-2610-000251
+Cycle                      Solar walk — monthly
+Bill date                  2026-10-01
+Due date                   2026-10-22
+Service period             2026-09-01 – 2026-09-30
+Days                       30
+
+SERVICES THIS PERIOD
+
+Battery                    read
+Solar                      read
+
+CHARGES THIS PERIOD
+
+
+Battery
+Description                                                     Usage   Rate             Amount
+battery base charge                                                —      —           25.00 USD
+Solar
+Description                                                     Usage   Rate             Amount
+solar base charge                                                  —      —           25.00 USD
+Taxes
+Description                                                     Usage   Rate             Amount
+Tax Solar walk 4% tax                                              —    0.04           2.00 USD
+Previous balance                                                                       0.00 USD
+Payments & credits                                                                     0.00 USD
+Current charges                                                                       52.00 USD
+
+Total due                                                                          52.00 USD
+
+MESSAGES
+
+Message                    —
+Ways to pay                —
+
+
+
+
+TEAR OFF AND RETURN WITH PAYMENT
+
+Account                    AC-2026-00057
+Customer                   Rosa Delgado
+Bill #                     BL-2610-000251
+Amount due                 52.00 USD
+Due date                   2026-10-22
+
+
+
+
+Scan                       AC-2026-00057$BL-2610-000251$5200L
+
+Bill BL-2610-000251                                                                    Page 1 of 1
+

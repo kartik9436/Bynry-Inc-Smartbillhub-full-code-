@@ -1,0 +1,146 @@
+name: ci-backend
+on:
+  push: { paths: ["06-backend/**", ".github/workflows/ci-backend.yml"] }
+  pull_request: { paths: ["06-backend/**"] }
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    # DEF-064 — THE SUITE RUNS ON SQLITE, SO A MIGRATION THAT CANNOT APPLY TO
+    # POSTGRES USED TO PASS EVERYTHING. One stray `%` in a trigger's SQL shipped
+    # a product that could not migrate ANY real database, and 19 gates plus
+    # 1,773 tests passed over it: Django hands migration SQL to the driver with
+    # an EMPTY PARAMS TUPLE, so the driver attempts interpolation and dies with
+    # `incomplete placeholder: '%'` — a failure sqlite's backend never sees.
+    #
+    # Nothing in CI had ever applied a migration to a real database.
+    # `migration-guard.yml` only blocks EDITS to committed migrations and never
+    # executes one. The only workflow that booted Postgres was `qa.yml`, built
+    # the same day for an unrelated reason — so the guard against a broken
+    # deployment was luck.
+    #
+    # Added on the PO's instruction of 2026-08-11. It is deliberately the FIRST
+    # thing after install: a migration defect should fail in seconds, in the
+    # backend job, not minutes later in the browser job.
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: smartbillhub
+          POSTGRES_PASSWORD: smartbillhub
+          POSTGRES_DB: sbh_ci
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready --health-interval 10s
+          --health-timeout 5s --health-retries 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Install
+        working-directory: 06-backend
+        run: pip install -e ".[dev]"
+      # The check DEF-064 asked for: apply EVERY migration to a real Postgres,
+      # on an empty database, the way a first deployment does. `--no-input` so a
+      # prompt cannot hang the job; the settings module is the one that reads
+      # DATABASE_URL. A failure here names the migration and the SQL.
+      - name: Migrate a real Postgres (DEF-064)
+        working-directory: 06-backend
+        env:
+          DJANGO_SETTINGS_MODULE: config.settings.local
+          DATABASE_URL: postgres://smartbillhub:smartbillhub@localhost:5432/sbh_ci
+        run: |
+          python manage.py migrate --no-input || {
+            echo "::error::A migration failed against PostgreSQL. The test suite"
+            echo "runs on SQLite and cannot see this class of defect — see DEF-064,"
+            echo "where one un-doubled '%' in trigger SQL shipped a product that"
+            echo "could not migrate any real database. Fix the migration; do not"
+            echo "skip this step."
+            exit 1
+          }
+
+      - name: Lint
+        working-directory: 06-backend
+        run: ruff check .
+      # DEF-641 — THE STEP ABOVE HAS A `working-directory` AND THAT IS THE WHOLE
+      # BUG. `ruff check .` from `06-backend` has never read a line of `08-qa/`,
+      # so the e2e stack — which is ordinary Python, imports the Django app and
+      # writes to a real database — has been the only unlinted code in the repo.
+      # What hid there: `seed_e2e_fixture._tou_electric_reads` named
+      # `metering_services` with no import in scope, a guaranteed `NameError` on
+      # every seeding run, and it survived weeks of green CI. Pointed at the
+      # file, ruff names it in one second as F821.
+      #
+      # Scoped to `08-qa/` deliberately and NOT widened to `10-scripts/` in the
+      # same step: that directory carries 36 findings today (all style — one
+      # unused import, one unused local, the rest semicolons and ambiguous
+      # names), zero of them runtime bugs. Widening now would either fail this
+      # job on pre-existing drift or need 36 unrelated edits inside a defect
+      # fix. It is its own piece of work, and the count is written here so the
+      # next lane knows the size of it rather than rediscovering it.
+      #
+      # NO `black --check` for `08-qa/` either, and for the same honesty: both
+      # seed fixtures are ALREADY unformatted at HEAD — verified against
+      # `git show HEAD:<path>` before this step was added, so the drift predates
+      # DEF-641 and reformatting them is not part of fixing a NameError.
+      - name: Lint the e2e stack (DEF-641)
+        run: ruff check --config 06-backend/pyproject.toml 08-qa/
+      # DEF-024: `black` has been a declared dev dependency and `[tool.black]`
+      # has set line-length since the backend existed, and NOTHING ever ran it —
+      # so 36 files drifted out of format with no check able to notice. Formatting
+      # is not enforced by `ruff check`: the pinned select (E4,E7,E9,F) contains
+      # no formatting rule, and ruff's own formatter is not configured here.
+      - name: Format
+        working-directory: 06-backend
+        run: black --check .
+      - name: Unit + golden + isolation
+        working-directory: 06-backend
+        run: pytest -q
+
+      # CR-069 wave A (2026-09-03), CLAUDE.md hard-won law 14: the step above
+      # runs on in-memory SQLite (config/settings/test.py ignores DATABASE_URL),
+      # which has no aborted-transaction state, no RLS, no partitions and no
+      # triggers — so every PostgreSQL-only proof in this repo SKIPS there. The
+      # seven-and-counting `tests/test_*_pg.py` files each carry
+      # `requires_postgres` for exactly that reason, and until this step NO
+      # workflow ran them under PostgreSQL settings: a savepoint that was
+      # silently wrong on the real database passed CI green (DEF-2444). This
+      # runs them against the postgres:16 service the migrate step already
+      # boots, under the settings module that reads DATABASE_URL. A failure
+      # here is a defect the SQLite suite cannot see; do not skip this step.
+      - name: PostgreSQL-only proofs (law 14)
+        working-directory: 06-backend
+        env:
+          DJANGO_SETTINGS_MODULE: config.settings.local
+          DATABASE_URL: postgres://smartbillhub:smartbillhub@localhost:5432/sbh_ci
+          JOBS_EAGER: "false"
+        run: |
+          pytest -q -rs tests/test_*_pg.py || {
+            echo "::error::A PostgreSQL-only proof failed. These cases skip on the SQLite"
+            echo "suite by design (hard-won law 14) and this step is the only place they"
+            echo "run in CI. Read the failure on the real database; do not skip this step."
+            exit 1
+          }
+
+      # A11 Addendum r2 CI-DIFF CLAUSE — the step SPECTACULAR_SETTINGS and
+      # export_openapi.py have both described since 2026-08-09 and nothing ever
+      # ran. Without it the "ANY drift fails the build" promise in those two
+      # docstrings was false, and the snapshot it diffs against did not exist.
+      #
+      # Re-export and compare against the committed snapshot. The export is
+      # byte-identical under local/test/production settings (verified), so the
+      # choice below cannot make the diff settings-dependent; test is named
+      # because it is the one module that needs no secrets.
+      - name: OpenAPI contract diff
+        working-directory: 06-backend
+        env:
+          DJANGO_SETTINGS_MODULE: config.settings.test
+        run: |
+          python manage.py export_openapi
+          git diff --exit-code -- openapi/schema.json || {
+            echo "::error::The API changed shape but openapi/schema.json was not updated."
+            echo "The contract of record is A11 + 11b (A11 Addendum r2): update the"
+            echo "contract docs and the FI-01 client in THIS review, then run"
+            echo "  cd 06-backend && python manage.py export_openapi"
+            echo "and commit the result. The diff above is what changed."
+            exit 1
+          }

@@ -1,0 +1,127 @@
+
+── M5 · Commercial · Institutional & non-profit (church) — Water, Sewer, Fire (one 6" + two 2" lines) · tax exempt with certificate · Fire $84.00 on one line
+  PASS  M5 · Units     · U-00008 is offered as vacant before the move-in
+  PASS  M5 · Units     · step 1 lists Water
+  PASS  M5 · Units     · step 1 lists Sewer
+  PASS  M5 · Units     · step 1 lists Fire
+  PASS  M5 · Assets    · step 1 asks an opening read for W-M5
+  PASS  M5 · Accounts  · Search customer ID answers "new"
+  PASS  M5 · Accounts  · no match block is drawn for a new person
+  PASS  M5 · Payments  · Fees total reads $325.00 — $325.00
+  PASS  M5 · Payments  · no fee row is taxed at move-in (no Taxable column, no tax row)
+  PASS  M5 · Billing   · step 3 offers Tax exempt to the billing clerk
+  PASS  M5 · Billing   · the exemption list offers "Religious organisation"
+  PASS  M5 · Billing   · the certificate PDF is chosen on step 3
+  NOTE  M5 · Complete warned deposit_carry_forward_unavailable: no deposit was carried forward from an earlier account
+  NOTE  M5 · Complete warned deposit_payment_has_not_cleared: 
+  PASS  M5 · Accounts  · Move-in completed prints no raw server code
+  PASS  M5 · Messages  · Move-in completed counts the queued welcome (not 0 queued) — reads "3 queued"
+  PASS  M5 · Accounts  · Move-in completed names an MVI- number — MVI-26-0008
+2026-10-06 06:24:50,573 INFO apps.billing.resolution_switch ruled path skipped fire for account AC-2026-00058: billed one line per size
+2026-10-06 06:24:50,573 INFO apps.billing.resolution_switch ruled path skipped fire for account AC-2026-00058: billed one line per size
+2026-10-06 06:24:50,573 INFO apps.billing.resolution_switch ruled path served R3, R4 for account AC-2026-00058
+  PASS  M5 · Accounts  · one move record MVI-26-0008 exists
+  PASS  M5 · Accounts  · the move record is a move-in
+  PASS  M5 · Accounts  · the move-in is dated as typed
+  PASS  M5 · Accounts  · the account is active
+  PASS  M5 · Accounts  · the account opens on the move-in date
+  PASS  M5 · Accounts  · the account type is the one the clerk picked
+  PASS  M5 · Accounts  · the sub-type is the one the clerk picked
+  PASS  M5 · Accounts  · the account is on the case's unit
+  PASS  M5 · Accounts  · exactly one customer holds the account
+  PASS  M5 · Accounts  · the customer's name is as typed
+  PASS  M5 · Accounts  · the customer is a person/company as picked
+  PASS  M5 · Accounts  · a NEW customer holds this one account only (nothing was linked)
+  PASS  M5 · Accounts  · one agreement per started service
+  PASS  M5 · Accounts  · every agreement starts on the move-in date
+  PASS  M5 · Units     · the unit stores no status or occupancy (it is derived)
+  PASS  M5 · Units     · the unit now has exactly one open account (reads Occupied)
+  PASS  M5 · Assets    · an opening read for each meter the clerk read, and none other
+  PASS  M5 · Assets    · W-M5's opening read is 89.5 as typed
+  PASS  M5 · Assets    · W-M5's opening read is in kgal, the meter's own unit
+  PASS  M5 · Assets    · W-M5's opening read is dated the move-in date
+  PASS  M5 · Assets    · W-M5's opening read is committed
+  PASS  M5 · Assets    · the move-in wrote no asset status (meter status is derived) — 0 asset audit rows read since the move
+  PASS  M5 · Payments  · the fee lines are the plan's deposit and connection charge
+  PASS  M5 · Payments  · no tax was charged on any move-in fee (OQ-BIL-12788 (a))
+  PASS  M5 · Payments  · the payments total $325.00
+  PASS  M5 · Payments  · the payments total the fees (paid in full)
+  PASS  M5 · Payments  · every payment carries check number 1187
+  PASS  M5 · Payments  · every payment's tender is check
+  PASS  M5 · Payments  · the deposit is paid as a deposit-purpose payment
+  PASS  M5 · Payments  · every payment wrote audit_log (hard rule 7)
+  PASS  M5 · Accounts  · the move-in wrote audit_log account.moved_in
+  PASS  M5 · Payments  · every journal entry for the account balances DR = CR (hard rule 5) — 0 entries read, 2 payment(s) not journaled yet (PY-261010-0088, PY-261010-0089; a check journals when it clears)
+  PASS  M5 · Billing   · the first-bill preview prices (every started service has what it needs)
+  PASS  M5 · Billing   · the first bill carries the move-in's fee lines
+  PASS  M5 · Billing   · no fee or deposit line on the first bill is taxable
+  PASS  M5 · Billing   · a deposit paid at move-in is not billed again on the first bill
+  PASS  M5 · Billing   · the first bill carries each move-in fee line at its recorded amount
+  PASS  M5 · Billing   · fire is ONE bill line (one line per service, PO 'per service')
+  PASS  M5 · Billing   · the fire line is $84.00 ($60.00 + 2 × $12.00)
+  PASS  M5 · Billing   · every tax line on the first bill names a tax (2 tax lines read)
+  PASS  M5 · Billing   · the first bill carries NO City of Cedar Ford utility tax (its certificate removes it)
+  PASS  M5 · Billing   · the first bill STILL carries TX State Utility Tax (an exemption removes only its own tax)
+  PASS  M5 · Billing   · the first bill STILL carries Local · Bexar County (an exemption removes only its own tax)
+  PASS  M5 · Billing   · one exemption certificate is recorded on the account (by the billing clerk)
+  PASS  M5 · Billing   · the certificate is RELIGIOUS for the City of Cedar Ford utility tax
+  PASS  M5 · Billing   · the certificate number, issued and expiry dates are as typed
+  PASS  M5 · Billing   · the account's blanket tax-exempt flag is NOT set (ruling (A): only the named tax)
+  PASS  M5 · Billing   · the certificate religious-exemption-certificate.pdf is filed on the account, in its KYC folder
+  PASS  M5 · Route     · every service point of the unit is on a route (3 points)
+  PASS  M5 · Route     · every service point of the unit is on a billing cycle (3 points)
+  PASS  M5 · Route     · the unit holds a place in its route's walk order
+  PASS  M5 · Work      · one work order per field-visit row
+  PASS  M5 · Messages  · the move-in's welcome is queued (3 rows)
+  PASS  M5 · Messages  · a receipt is queued for each payment (6 rows for 2 payments)
+  PASS  M5 · Messages  · no message is marked sent (BR-NOT-013: queued is never sent)
+  NOTE  M5 · first bill · usage · fire - 2 × Fire line 2", 1 × Fire line 6" · 84.00
+  NOTE  M5 · first bill · usage · water usage · 28.60
+  NOTE  M5 · first bill · base · water base charge · 63.75
+  NOTE  M5 · first bill · usage · sewer usage — 90.00% of water volume · 24.75
+  NOTE  M5 · first bill · base · sewer base charge · 9.00
+  NOTE  M5 · first bill · fee · Connection charge · 25.00
+  NOTE  M5 · first bill · tax · Tax Local · 4.20
+  NOTE  M5 · first bill · tax · Tax Texas State · 13.13
+  PASS  M5 · Units     · /premises/units/01a10fe0-73fe-7569-a820-b5b8aca39534 opens (h1 drawn, no error page)
+  PASS  M5 · Units     · the unit reads Occupied
+  PASS  M5 · Units     · the unit names account AC-2026-00058
+  FAIL  M5 · Units     · the unit names the account holder (AC-2026-00058 · Grace Fellowship of Cedar Ford) — "AC-2026-00058 · Grace Fellowship of Cedar Ford" not on /premises/units/01a10fe0-73fe-7569-a820-b5b8aca39534
+  PASS  M5 · Assets    · /assets/01a10fe0-748d-7682-9883-55015f5f229d opens (h1 drawn, no error page)
+  PASS  M5 · Assets    · W-M5 is on account AC-2026-00058
+  PASS  M5 · Assets    · W-M5 reads Installed (derived, the move-in wrote no status)
+  FAIL  M5 · Assets    · W-M5 names the account holder (AC-2026-00058 · Grace Fellowship of Cedar Ford) — "AC-2026-00058 · Grace Fellowship of Cedar Ford" not on /assets/01a10fe0-748d-7682-9883-55015f5f229d
+  PASS  M5 · Assets    · /assets/01a10fe0-748d-7682-9883-55015f5f229d?tab=reads opens (h1 drawn, no error page)
+  PASS  M5 · Assets    · W-M5's Reads tab shows the opening read 89.5
+  PASS  M5 · Assets    · W-M5's Reads tab shows it in kgal
+  PASS  M5 · Accounts  · /accounts/01a10fe2-d2e0-7508-8d5f-3645521ff1a3 opens (h1 drawn, no error page)
+  PASS  M5 · Accounts  · the account shows Grace Fellowship of Cedar Ford
+  PASS  M5 · Accounts  · the account shows Commercial
+  PASS  M5 · Accounts  · the account lists Fire
+  PASS  M5 · Accounts  · the account lists Sewer
+  PASS  M5 · Accounts  · the account lists Water
+  FAIL  M5 · Accounts  · the account's title is the account holder Grace Fellowship of Cedar Ford — [DEF-CUS-9776] title reads "Ruth Okafor"
+  PASS  M5 · Payments  · /accounts/01a10fe2-d2e0-7508-8d5f-3645521ff1a3?tab=payments opens (h1 drawn, no error page)
+  PASS  M5 · Payments  · payment PY-261010-0088 ($300.00) is listed
+  PASS  M5 · Payments  · payment PY-261010-0089 ($25.00) is listed
+  PASS  M5 · Billing   · /moves/MVI-26-0008?tab=billing opens (h1 drawn, no error page)
+  PASS  M5 · Billing   · the move's Billing tab lists DEPOSIT
+  PASS  M5 · Billing   · the move's Billing tab lists CONN
+  PASS  M5 · Billing   · the fees total $325.00
+  PASS  M5 · Billing   · each payment is dated the day the clerk typed (10/10/2026)
+  PASS  M5 · Payments  · a deposit paid in full reads as taken, nothing still to collect — STILL TO COLLECT
+$0.00
+  PASS  M5 · Route     · /reads/routes/01a10fe0-79a8-7b0e-8740-9d973cdbfb13 opens (h1 drawn, no error page)
+  PASS  M5 · Route     · route RT-006 is the unit's (Matrix walk)
+  PASS  M5 · Messages  · /moves/MVI-26-0008?tab=messages opens (h1 drawn, no error page)
+  PASS  M5 · Messages  · the move's Messages tab lists the welcome
+  PASS  M5 · Accounts  · /moves/MVI-26-0008 opens (h1 drawn, no error page)
+  PASS  M5 · Accounts  · the move-in record reads MVI-26-0008
+  PASS  M5 · Accounts  · the move-in record names AC-2026-00058
+  PASS  M5 · Assets    · the move-in record no longer reads 'Waiting on a read' (every meter read)
+  FAIL  M5 · Accounts  · the account shows exemption certificate CF-REL-2026-0412 — [DEF-CUS-9774] 
+  FAIL  M5 · Billing   · the move's Billing tab names exemption certificate CF-REL-2026-0412 — [DEF-CUS-9775] Tax Taxed
+
+── summary
+  M5: 102 PASS · 5 FAIL
+5 FAIL

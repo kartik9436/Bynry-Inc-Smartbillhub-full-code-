@@ -1,0 +1,574 @@
+/* FormModal (FE-05) styles — US-SHL-009 / A18 §5 · IS-1 · A12.
+ * Modernist tokens only (B8: no hex literals — every color is a token from
+ * src/styles/tokens.css). Two A12 blocks live here as their ONE app-side
+ * definition (StateFrame.css precedent — later packets compose these classes,
+ * never redefine them):
+ *   1. the modal shell (fixed overlay + card + header/body/footer), ported
+ *      from the signed reference 05-prototype/UtilityBilling.html settings
+ *      modals — FE-04 ConfirmDialog composes these classes;
+ *   2. the form field kit (.field/.input/.seg/.radio), ported from
+ *      05-prototype/styles.css. Runtime is never ported (CLAUDE.md law). */
+
+/* ── The modal shell (A12 "modal shell", ported) ────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  background: color-mix(in srgb, var(--color-text) 45%, transparent);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 32px 20px;
+  overflow-y: auto;
+}
+.modal-card {
+  width: 560px;
+  max-width: 100%;
+  background: var(--color-bg);
+  box-shadow: var(--shadow-lg);
+}
+.modal-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 20px 24px;
+  border-bottom: 2px solid var(--color-divider);
+}
+/* The modal's kicker, and at 10px it was the ONE kicker in the product that
+   did not match r10's 11px. `--text-xs` IS that size, so this re-point makes
+   the modal head agree with every PageHeader kicker (DEF-308's rule, one tier
+   further in). */
+.modal-kicker {
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent-text); /* Group A decision 2 (2026-10-23) */
+}
+.modal-title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  /* OQ-279 RULED (decision log 2026-08-20, commit 5dbf2d7) — ABSORBED, and
+     THE PIXEL MOVED: 22 → 25. The old line pointed a TITLE at
+     `--text-metric-sm`, a METRIC name, because 22px had no heading name; the
+     ruling is that three sites is not a role, 22px sits 3px from h3 and 2px
+     from h4, and that difference is a leftover rather than meaning.
+     WHY h3 AND NOT h4: the ruling gives h4 (20px) only where the panel already
+     contains an `h3`. Measured in the browser at 1440x900 — the modal card
+     holds ONE heading, this one; the h1/32 and h2/24 in the same census are the
+     page BEHIND the scrim, in a different subtree. So the modal title is the
+     largest type in its panel and takes the larger step.
+     ⚠ Do NOT point this back at a metric key: `--text-metric-sm` is now locked
+     "KPI values only — never a heading" in tokens.css, because the breakpoint
+     scale OQ-274 ratified steps the KPI 30 → 26 → 22 and a heading resolving
+     through a metric key would move with it, silently, with no failing test. */
+  font-size: var(--text-h3);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-heading);
+}
+.modal-close {
+  margin-left: auto;
+}
+/* Ported .btn variant — the rest of .btn lives in StateFrame.css (composed). */
+.btn-icon {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+}
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  /* ⚠ **FIELD -> FIELD IS 20px, AND THIS WAS 14px** (`DEF-SHL-4921`, B14 rule
+     39 as amended 2026-09-12). Rule 39 forbids 14 BY NAME — *"NO AD-HOC 3 / 7 /
+     9 / 14 ANYWHERE"* — and its field anatomy ratifies label -> input 5px,
+     input -> helper 6px, field -> field 20px, a ratio of ~1:1:4.
+     The rule stated 16px in its SCALE and 20px in its ANATOMY; put to the PO as
+     a contradiction inside one rule and ruled, verbatim: *"a) 20 everywhere —
+     the anatomy wins"*, because the PO gave the clause as a RATIO and 16
+     collapses it to 1:1:3.2. So the scale's 16px step governs blocks and
+     sections, never two fields. */
+  gap: var(--space-5);
+  padding: 24px;
+}
+.modal-foot {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: flex-end;
+  padding: 14px 24px;
+  border-top: 2px solid var(--color-divider);
+}
+
+/* ── The field kit (A12 forms, ported from 05-prototype/styles.css) ─────── */
+
+/* ⚠ **FIELD -> FIELD IS 20px, AND IN A PANEL IT WAS ZERO** (`DEF-CUS-5098`,
+   B14 rule 39 as amended 2026-09-12 — *"a) 20 everywhere — the anatomy
+   wins"*). The rule's other two figures are already here, five lines down
+   (`label -> input 5px`) and in `FormModal.tsx`'s six kit sites
+   (`input -> helper 6px`, written `mt-1.5`); this is the third, and it belongs
+   in the same place for the same reason.
+
+   PO 2026-09-11, on why: *"have a proper padding for each component on the
+   screen. these padding should be universally fit for the product… the
+   components are too much close"*.
+
+   ⚠ **MEASURED IN CHROMIUM AT 1280 AND 1440, BEFORE AND AFTER.** A run of
+   `.field`s dropped straight into a `Panel` is `display: block` with
+   `gap: normal`, so the fields TOUCH: the new account wizard's step 1 reported
+   **eight adjacent pairs at 0px** (one at -0.01px) and the new connect
+   wizard's step 1 reported **12px** on four. **Zero of twelve adjacent pairs
+   across the five starting-service wizards were at 20px** — the same shape
+   `CR-092` step 1 measured as *"zero of eleven"* on the asset screens.
+
+   ⚠ **`[data-panel] >` IS THE WHOLE SAFETY OF THIS RULE, NOT DECORATION.** It
+   matches ONLY a field that is a DIRECT child of a `Panel`, which is always
+   `display: block` and therefore supplies no gap of its own. Where a container
+   already supplies the rhythm as a flex or grid `gap` — `.modal-body`
+   (`var(--space-5)`), `FormModal.tsx`'s `FieldStack`, `serviceRequestShared`'s
+   `FieldGrid` — the field is a child of THAT, not of the panel, so this margin
+   cannot reach it. A bare `.field + .field` would have ADDED to every one of
+   those gaps and taken every dialog in the product to 40px.
+
+   ⚠ **AND `+` MEANS *THE NEXT FIELD*, WHICH IS THE ONLY DISTANCE RULE 39
+   GOVERNS.** A field followed by an `<h4>` subhead, a `RefusalStrip` or a
+   `<Note>` is untouched — three cases that occur inside the very panel this
+   was written for — because 20px between a field and a new section heading is
+   `--space-6`'s job and not this figure's.
+
+   It is a RULE on two selectors this stylesheet already declares, not a new
+   class name, so B14 rule 21 is not in play: the two wizards that needed it
+   (`NewAccountWizard.tsx`, `MoveInWizard.tsx`) are absent from
+   `src/styles/route-b-migrated.txt` and add no class of their own. */
+[data-panel] > .field + .field {
+  margin-top: var(--space-5);
+}
+
+.field > label {
+  display: block;
+  font-size: var(--text-sm);
+  margin-bottom: 5px;
+  color: color-mix(in srgb, var(--color-text) 70%, transparent);
+}
+/* BR-SHL-017: required marking — convention PROPOSED (not in the prototype);
+ * accent asterisk until design ratifies. aria-required carries it to AT. */
+.field-required {
+  color: var(--color-accent-text); /* Group A decision 2 (2026-10-23) */
+  margin-left: 2px;
+}
+/* ⚠ **THE 5px BOTTOM MARGIN HERE IS NOT THE FIELD HELPER'S SPACING, AND MUST
+   NOT BE "TIDIED" INTO ONE** (`DEF-SHL-4921`). `.field-help` carries TWO roles:
+   the kit's field helper — six sites, in `FormModal.tsx`'s five variants and
+   `CustomFields.tsx` — and a STANDALONE muted note, ~38 sites across 21 feature
+   files (`RateScheduleWizard`'s season and TOU notes, `paymentsShared`'s
+   `<summary>`, the reports parameter hints). Only the first has an input above
+   it. So the helper's ratified `input -> helper 6px` (B14 rule 39) is written
+   on the six kit sites as `mt-1.5 mb-0` — Tailwind's own multiplier, 1.5 x 4px
+   — and this shorthand is left exactly as it was so none of the other 38 move.
+   Changing it here instead would silently re-space a fifth of the product. */
+.field-help {
+  margin: 0 0 5px;
+  font-size: var(--text-sm);
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+.input {
+  width: 100%;
+  min-height: 36px;
+  padding: 6px 10px;
+  font: inherit;
+  font-size: var(--text-md);
+  color: var(--color-text);
+  caret-color: var(--color-accent);
+  background: var(--color-field-fill); /* Group A decision 6 (2026-10-23) */
+  border: 1px solid var(--color-field-border); /* Group A F-09 (2026-10-23) */
+  border-radius: var(--radius-md);
+}
+.input:hover {
+  border-color: color-mix(in srgb, var(--color-text) 45%, transparent);
+}
+.input:focus-visible {
+  border-color: var(--color-accent);
+  outline-offset: 0;
+}
+textarea.input {
+  min-height: 90px;
+  resize: vertical;
+}
+
+/* ── SELECTS — DEF-302 ────────────────────────────────────────────────────
+ * `.input` styles a background, a border and a radius, and a NATIVE `<select>`
+ * ignores most of it: the browser keeps drawing its own control — the grey
+ * gradient body and the platform arrow — ON TOP of the background this rule
+ * sets. So every dropdown in the product rendered as an OS widget inside a
+ * designed form, and the PO reported it from the deployed build at v2.22.0.
+ *
+ * There was a `textarea.input` rule and no `select.input` rule. The design
+ * system styled two of the three form controls and nobody noticed the third,
+ * because a select still looks like a select — it is not broken, it is
+ * FOREIGN, and that reads as "fine" in a screenshot and wrong on a screen.
+ * 36 selects across 18 files, every one of them.
+ *
+ * `appearance: none` is what stops the native paint. The arrow is then ours to
+ * draw, and it is drawn with two gradients rather than an SVG data URI so it
+ * can use `currentColor` — a data URI cannot inherit the text colour, so it
+ * would need one hard-coded hex per theme and would be invisible in the other
+ * one. This is the same trap as a colour declared only inside a media query. */
+select.input {
+  appearance: none;
+  -webkit-appearance: none;
+  /* Room for the arrow, so a long option never runs underneath it. */
+  padding-right: 30px;
+  background-image:
+    linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(-45deg, currentColor 50%, transparent 50%);
+  background-position:
+    calc(100% - 16px) calc(50% + 1px),
+    calc(100% - 11px) calc(50% + 1px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+/* Firefox draws a focus ring inside the control that survives `appearance`. */
+select.input:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 var(--color-text);
+}
+/* A disabled select must read as disabled rather than merely unclickable —
+ * `appearance: none` removes the browser's own greying with everything else. */
+select.input:disabled {
+  color: color-mix(in srgb, var(--color-text) 45%, transparent);
+  background-color: color-mix(in srgb, var(--color-text) 4%, var(--color-surface));
+  cursor: not-allowed;
+}
+/* A12: money/quantity inputs — tabular numerals (matches DataTable .cell-num).
+ * The value stays a raw decimal STRING; the server owns parsing (rule 2). */
+.input-num {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+/* The invalid border itself is StateFrame's .input-invalid (A18 §5) — composed,
+ * not redefined here. */
+
+/* PasswordField: the input and its show/hide toggle sit on one row. The toggle
+ * is a real .btn (StateFrame's, composed) — never a bare icon glyph. */
+.password-field {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-2);
+}
+.password-toggle {
+  flex: none;
+  font-size: var(--text-sm);
+}
+
+.radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: var(--text-md);
+}
+.radio input,
+.seg-opt input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.radio .dot {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-divider);
+}
+.radio:hover .dot {
+  border-color: var(--color-accent);
+}
+.radio input:checked + .dot {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  box-shadow: inset 0 0 0 4px var(--color-bg);
+}
+.radio input:focus-visible + .dot {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+.seg {
+  display: inline-flex;
+  overflow: hidden;
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-md);
+}
+/* B14 rule 5 (CR-016 / DEF-311) — every segment renders as a real <button>
+   here, so 13px was a third button size on every screen carrying a segmented
+   filter. r10's own `.seg-opt` says 13px; rule 5 is the ratified law and 12px
+   is its small tier, which is what a compact segmented control wants anyway.
+   Recorded as a divergence in 12-governance/02-decision-log.md. */
+.seg-opt {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.seg-opt + .seg-opt {
+  border-left: 1px solid var(--color-divider);
+}
+/* ⚠ TWO SHAPES, AND ONLY ONE OF THEM WORKED UNTIL 2026-08-24 (DEF-642).
+   The comment above says "every segment renders as a real <button> here", and
+   the selected state was written ONLY as `:has(input:checked)` — which needs
+   r10's `<label><input type="radio">` markup. A <button> has no input inside
+   it, so `.seg-opt.active`, which is what `BudgetBillsTab.tsx` and
+   `PendingQueuePage.tsx` actually write, matched NOTHING: both screens drew
+   three identical chips with no visible selection, on a control whose entire
+   job is to show which filter is on.
+   Nothing could catch it. The class was present in the DOM, so every test
+   asserting `toContain("active")` passed; no gate in this repo reads rendered
+   output (hard-won law 6), and it was found by looking at a screenshot.
+   `.active` and `.seg-opt` are both already-declared names, so grouping them
+   here adds NO new class and does not move G31's ceiling. */
+.seg-opt:has(input:checked),
+.seg-opt.active {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+.seg-opt:not(:has(input:checked)):not(.active):hover {
+  background: color-mix(in srgb, var(--color-text) 7%, transparent);
+}
+.seg-opt:has(input:focus-visible),
+.seg-opt.active:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -2px;
+}
+
+/* Rule 3: consumption quantity + its unit control, side by side. */
+.quantity-unit {
+  display: flex;
+  gap: var(--space-2);
+}
+.quantity-unit-select {
+  width: auto;
+  min-width: 96px;
+  flex: none;
+}
+
+/* ── BR-SHL-033 additions: date picker + searchable long-list select ────── */
+
+/* IS-8: the native date input displays in the BROWSER locale — the tenant
+ * Regional format renders under it via the ONE formatDate path (DateCell). */
+.field-date-display {
+  margin: 4px 0 0;
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+
+/* The type-ahead select: input + anchored listbox (ARIA combobox pattern). */
+.search-select {
+  position: relative;
+}
+.search-select-list {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  right: 0;
+  z-index: 80; /* above sibling fields; the modal overlay itself sits at 70 */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 240px;
+  overflow-y: auto;
+  background: var(--color-bg);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+}
+.search-select-opt {
+  padding: 8px 10px;
+  font-size: var(--text-md);
+  cursor: pointer;
+}
+.search-select-opt:hover {
+  background: color-mix(in srgb, var(--color-text) 7%, transparent);
+}
+.search-select-opt[aria-selected="true"] {
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+}
+/* The keyboard-active option (aria-activedescendant target). */
+.search-select-opt.active {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -2px;
+}
+.search-select-empty {
+  padding: 8px 10px;
+  font-size: var(--text-base);
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+
+/* Envelope-level (non-field) server error — 13px danger, above the summary. */
+.form-message {
+  margin: 0;
+  font-size: var(--text-base);
+  color: var(--color-danger-700);
+}
+
+
+/* ── BARE FORM CONTROLS — DEF-303 ─────────────────────────────────────────
+ * `.input` is the design system's form control and it only reaches a control
+ * that ASKS for it. 46 controls across the feature screens carry no className
+ * at all, so they render as OS widgets inside a designed page — the shape the
+ * PO reported from the deployed build at v2.22.0.
+ *
+ * Styling the ELEMENTS as well as the class is deliberate. The alternative is
+ * to add `className="input"` at 46 call sites, which fixes today and not
+ * tomorrow: the 47th control will be written without it, and nothing will
+ * notice, because an unstyled select still looks like a select. A design
+ * system that only works when remembered is a convention, not a system.
+ *
+ * Scoped to `.fin-page` and `.met-panel` — the app's content containers — so
+ * the shell's own search box and any component with its own deliberate control
+ * styling are untouched. Values are IDENTICAL to `.input`'s, so a control that
+ * carries the class and one that does not now render the same and neither wins
+ * a specificity fight with the other. */
+/* ⚠ SCOPE WIDENED 2026-08-19 — DEF-309. The first version of this rule scoped
+ * to `.fin-page` and `.met-panel`, and a computed-style measurement across 24
+ * screens found 26 selects STILL rendering native. The shared `DataTable`
+ * pager and `FilterBar` emit `<select>` with no class and sit in NEITHER
+ * container, and the Settings screens use `settings-*` classes, so the fix
+ * reached none of them — including the template screen the PO photographed.
+ *
+ * `<main className="view">` wraps every screen inside the shell and excludes
+ * the shell's own header search, which is the scope this always wanted. Kept
+ * `.fin-page`/`.met-panel` as well for anything rendered outside the shell.
+ *
+ * The lesson is the measurement, not the selector: the first fix was verified
+ * by reading the CSS and looked complete. Only injecting a control into four
+ * live containers on a real page showed that outside these scopes an unclassed
+ * input still computes to `2px inset rgb(118,118,118)` — the OS widget. */
+/* ⚠ `.fin-page` AND `.met-panel` LEFT THESE FOUR SELECTOR GROUPS ON 2026-08-20
+ * (CR-018 Phase 4b), and the deletion is a MEASUREMENT, not a tidy-up.
+ *
+ * The comment above says what those two scopes were: `.view` is *"the scope
+ * this always wanted"* and the other two were *"kept as well for anything
+ * rendered outside the shell"* — belt and braces, not `.met-panel`'s styling.
+ * Every `.met-panel` (46 components) and every `.fin-page` (14) is a routed
+ * feature screen under the shell's `<Outlet/>`, and this repo contains no
+ * `createPortal`, so all of them are inside `main.view` and those twelve
+ * selector lines styled nothing `.view` was not already styling.
+ *
+ * ⚠ AND THAT PARAGRAPH IS EXACTLY THE REASONING THE COMMENT ABOVE RECORDS AS
+ * HAVING FAILED — *"the first fix was verified by reading the CSS and looked
+ * complete"*. So it was measured in a browser instead:
+ * `e2e/CR-018-phase4b-scope-census.spec.ts` walked 15 screens, found **42
+ * panels and 172 controls**, and asserted that **not one panel sits outside
+ * `.view`** — with the PANEL COUNT asserted too, because "no panel is outside"
+ * is trivially true on a screen with no panels. Then the same census was taken
+ * again after this deletion and diffed: every control identical.
+ *
+ * What it unlocks: `.met-panel` is no longer a styling SCOPE reaching into a
+ * different stylesheet, it is a four-declaration leaf class, and Route B can
+ * take it like any other. */
+.view input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+.view select,
+.view textarea {
+  min-height: 36px;
+  padding: 6px 10px;
+  font: inherit;
+  font-size: var(--text-md);
+  color: var(--color-text);
+  caret-color: var(--color-accent);
+  background-color: var(--color-field-fill); /* Group A decision 6 (2026-10-23) */
+  border: 1px solid var(--color-field-border); /* Group A F-09 (2026-10-23) */
+  border-radius: var(--radius-md);
+}
+/* ⚠ **`DEF-MET-4959` — THE REACH OF THIS RULE IS ITSELF A FINDING.** It is a
+ * DESCENDANT selector and `.view` is `<main>`, so it outranks any single-class
+ * Tailwind utility a component writes: the Assets map declared `min-h-8`,
+ * `px-2 py-1` and `text-sm` on its four selects and rendered 36px, 6px/30px/
+ * 6px/10px and 14px — none of its own numbers applied, and nothing could see
+ * that. Those inert utilities are gone. What is NOT fixed: every `<select>` in
+ * the product still gets its appearance and its chevron from an ancestor it
+ * never asks for, so renaming this wrapper restyles all of them silently. That
+ * is a kit-wide question and the row says so. */
+.view select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 30px;
+  background-image:
+    linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(-45deg, currentColor 50%, transparent 50%);
+  background-position:
+    calc(100% - 16px) calc(50% + 1px),
+    calc(100% - 11px) calc(50% + 1px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+/* A <label> is `display: inline` by default, so a label that WRAPS its control
+ * — `<label>Body<textarea/></label>` — puts its text on the control's last
+ * baseline. On a 12-row textarea that drops the word "Body" to the bottom-left
+ * corner, level with the box's bottom edge, which is what the PO photographed.
+ * Two components do this and both are template editing.
+ *
+ * ⚠ **AND `.view` IS `<main>` — THIS RULE GOVERNS THE WHOLE PRODUCT** (DEF-783,
+ * 2026-08-26). `AppShell.tsx` renders `<main className="view">`, so a selector
+ * written for two template textareas reached EVERY wrapping label in the app,
+ * and `flex-direction: column` is exactly wrong for the two controls that
+ * belong BESIDE their words: a checkbox and a radio. Measured in Chromium on
+ * PRM-01U: every row of the ▦ column chooser and every option of the
+ * `+ Filter ▾` panel rendered as a centred box with its label UNDER it, 37px
+ * and 41px tall, `flex-direction: column`, over markup that says
+ * `flex items-center gap-2`.
+ *
+ * **THAT IS A REGRESSION OF A DEFECT THE PO ALREADY REPORTED ONCE** — DEF-440,
+ * verbatim: *"its square, 1 column in 1 row and arrows; in your UI it is
+ * disturbed"*. DataTable's fix for it is intact in the markup and was being
+ * overridden here, which is why no test saw it: `routeBUtilities.test.ts` asks
+ * Tailwind whether `flex` compiles (it does) and nothing in this repo asks a
+ * browser which rule WON.
+ *
+ * The exclusion is the narrowest thing that can be true: a label wrapping a
+ * text/number/date input, a select or a textarea still stacks — that is the
+ * defect this rule was written for and it is untouched. */
+.view label:has(> input:not([type="checkbox"]):not([type="radio"])),
+.view label:has(> select),
+.view label:has(> textarea) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: var(--text-base);
+  color: color-mix(in srgb, var(--color-text) 70%, transparent);
+}
+
+/* ── DATE INPUTS ARE TALLER THAN EVERY OTHER CONTROL — DEF-313 ─────────────
+ * `.input` gives one height (`min-height: 36px`) and a `<input type="date">`
+ * renders 38px anyway: Chromium lays out the date field as inline segments
+ * plus a calendar indicator, and that content box is taller than 36 − 12px of
+ * padding, so `min-height` never binds. Measured on /payments,
+ * /payments/outstandings and /reports/account-ledger — a two-pixel step that
+ * no source check can see and that puts a filter row's controls off each
+ * other's baseline.
+ *
+ * `height` rather than `min-height` because `min-height` is exactly what the
+ * content already beats. With `box-sizing: border-box` (global.css) the box is
+ * 36px including its border, which is the same 36px every other control is. */
+.input[type="date"],
+.view input[type="date"] {
+  height: 36px;
+}
+
+/* ── DEF-327 · `.field-label` — the kit had `.field-required`, `.field-help`,
+ * `.field-error` and `.field-date-display` and no rule for the LABEL itself,
+ * so a form built from the kit drew its labels at body copy while its help
+ * text drew at 12px. Declared here, with the rest of the field kit, so the
+ * next form inherits one instead of inventing an eighth. ────────────────── */
+.field-label {
+  display: block;
+  margin-bottom: var(--space-1);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: color-mix(in srgb, var(--color-text) 70%, transparent);
+}

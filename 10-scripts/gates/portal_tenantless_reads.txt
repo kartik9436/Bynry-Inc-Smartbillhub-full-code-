@@ -1,0 +1,21 @@
+# G96 · portal reads that name no tenant — THE LIST MAY ONLY SHRINK
+#
+# ⚠ **EMPTY, AND THAT IS THE POINT OF KEEPING THE FILE.**
+#
+# Fifteen chains were found on 2026-09-04 (`DEF-CWP-3775`): portal reads over
+# another module's table that named only the account set and leaned on RLS
+# `FORCE` for the tenant. `BR-CWP-010` requires both halves IN THE QUERY, and
+# hard-won law 14 is why it matters — the suite runs on in-memory SQLite, which
+# has no row-level security, so a read that omits the tenant passes every test
+# in this repository, forever, indistinguishably from one that does not.
+#
+# Ten were fixed within the hour. Five sat here for a few hours only because
+# two build lanes were editing those two files at the time, and law 11's
+# mechanism two — a whole-file commit silently reverting a sibling — is a worse
+# outcome than a scoped read landing late. Each owning lane's rows were closed
+# as it finished: payments' two, then customers' three. **The list has only
+# ever shrunk.**
+#
+# It is kept rather than deleted so the next lane that needs to hand one over
+# finds the mechanism, the wording and the discipline already here — and so
+# that adding a row is visibly an exception with a name on it, not a habit.

@@ -1,0 +1,42 @@
+{
+  "count": 7,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": "01a106a7-12f2-77be-b1d3-52c016d9a2f3",
+      "name": "Avery Cole",
+      "email": "avery.cole@sample.test"
+    },
+    {
+      "id": "01a106a7-1454-7a97-bd6f-4dc568038a1b",
+      "name": "D. Ortiz",
+      "email": "d.ortiz@sample.test"
+    },
+    {
+      "id": "01a106a6-df9f-772d-9fa6-ec19cc03577c",
+      "name": "Dana Whitfield",
+      "email": "dana@brazosbendutilities.com"
+    },
+    {
+      "id": "01a106a7-1848-73f0-8bcd-52804836a7da",
+      "name": "J. Okoro",
+      "email": "j.okoro@sample.test"
+    },
+    {
+      "id": "01a106a7-16e2-78c7-b1ce-d5807b630b17",
+      "name": "M. Chen",
+      "email": "m.chen@sample.test"
+    },
+    {
+      "id": "01a106a7-158d-725b-a53d-bd7e93e46730",
+      "name": "R. Patel",
+      "email": "r.patel@sample.test"
+    },
+    {
+      "id": "01a106a7-1197-7af2-952e-aed6594cc3c3",
+      "name": "Sam Reyes",
+      "email": "sam.reyes@sample.test"
+    }
+  ]
+}

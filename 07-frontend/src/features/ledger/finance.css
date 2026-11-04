@@ -1,0 +1,367 @@
+/* Finance (S36 Revenue & AR) and the two ledger report viewers (S59 · S60).
+ * Tokens only (B8: no hex literals). Panels, tables, links and muted text are
+ * metering's shared skins (`.met-panel` / `.met-table` / `.met-link` /
+ * `.met-muted`), the KPI row is FE-09 `KPIStrip` and the "arrives with" note is
+ * `.settings-arrives` — a second copy of any of them is the drift US-SHL-020
+ * exists to remove. Everything below is only what those do not already own:
+ * the prototype's two-column Finance body, the LABEL·VALUE fact rows its side
+ * panels are made of, and the one thing this lane invented, which is how an
+ * ABSENT figure looks. */
+
+.fin-page {
+  padding: var(--space-6) var(--space-4) var(--space-8);
+}
+
+/* ── The prototype's `.two-col` Finance body (line 3737): the revenue table and
+ * the 12-month chart on the left, the aging and adjustments panels on the
+ * right. Collapses to one column below the breakpoint rather than scrolling
+ * sideways. ──────────────────────────────────────────────────────────────── */
+.fin-two-col {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: var(--space-4);
+  /* DEF-312 — was `var(--space-5)`; r10's scale is 1/2/3/4/6/8 and has no
+     step 5, so this margin was invalid and never applied. 24px is the next
+     declared step. */
+  margin-top: var(--space-6);
+}
+
+@media (max-width: 900px) {
+  .fin-two-col {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* A panel head with a trailing link, the prototype's `.panel > .h` + `.see`. */
+.fin-panel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+.fin-panel-head h3 {
+  font-size: var(--text-h5);
+  margin: 0;
+}
+
+/* ── LABEL · VALUE fact rows (the aging, adjustments, cash and tie-out panels).
+ * The label and the value are separate nodes because the value is a MoneyCell —
+ * a translated fragment either side of a component is a concatenated sentence
+ * (B8) and it breaks in German and Hindi word order. ─────────────────────── */
+.fin-fact {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-1) 0;
+  font-size: var(--text-base);
+}
+
+.fin-fact-label {
+  color: color-mix(in srgb, var(--color-text) 70%, transparent);
+}
+
+.fin-fact-value {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.fin-fact-strong {
+  border-top: 1px solid var(--color-divider);
+  margin-top: var(--space-2);
+  padding-top: var(--space-2);
+  font-weight: var(--font-heading-weight);
+}
+
+.fin-fact-strong .fin-fact-label {
+  color: var(--color-text);
+  font-family: var(--font-heading);
+}
+
+/* ── AN ABSENT FIGURE. The most important rule in this file: a figure the books
+ * would not state must not be able to LOOK like a figure. It is set in the body
+ * face at body size, muted, and it always carries its reason — where a real KPI
+ * value is 30px heading type (`.kpi .v`). A finance officer glancing at the
+ * strip can tell the two apart without reading a word. ────────────────────── */
+.fin-absent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.fin-absent-value {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--text-body);
+  letter-spacing: 0;
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+}
+
+.fin-absent-reason {
+  font-size: var(--text-xs);
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+  white-space: normal;
+}
+
+.fin-absent-panel .fin-absent-reason {
+  font-size: var(--text-sm);
+  margin: 0 0 var(--space-2);
+}
+
+/* ── The report viewers (S59 · S60): the A14 parameter bar, ported as layout
+ * from the prototype's own (line 4251) — a strip of fields above the result
+ * table with the run and download controls at its right. ──────────────────── */
+.fin-params {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  align-items: flex-end;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  border-top: 2px solid var(--color-divider);
+  margin-bottom: var(--space-4);
+}
+
+.fin-params .field {
+  margin: 0;
+}
+
+.fin-params-actions {
+  display: flex;
+  gap: var(--space-2);
+  align-items: flex-end;
+  margin-left: auto;
+}
+
+.fin-params-note {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: var(--text-xs);
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+
+/* Right-aligned money/number columns in the plain report tables (`.met-table`
+ * is left-aligned by default — a money column that is not right-aligned cannot
+ * be scanned down). */
+.fin-num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.fin-total-row td {
+  border-top: 2px solid var(--color-divider);
+  font-weight: var(--font-heading-weight);
+}
+
+.fin-total-row .fin-fact-label,
+.fin-total-row td:first-child {
+  font-family: var(--font-heading);
+}
+
+/* The opening-balance row of the S59 ledger: a real row, visually set apart,
+ * because it is the only row that is not a movement in the window. */
+.fin-opening-row td {
+  background: var(--color-surface);
+}
+
+/* A Type cell whose source the BR-REP-008 vocabulary has no word for. Shown
+ * rather than bucketed under a familiar word — *nothing invisible*. */
+.fin-unmapped {
+  color: var(--color-danger-700);
+}
+
+.fin-notes {
+  /* DEF-312 — was `var(--space-5)`; r10's scale is 1/2/3/4/6/8 and has no
+     step 5, so this margin was invalid and never applied. 24px is the next
+     declared step. */
+  margin-top: var(--space-6);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-3);
+}
+
+/* The page-head roll-up: "August 2026 · Open · Hand off to your bookkeeper by
+ * Sep 3". Separate nodes rather than one interpolated sentence, because the
+ * close-by date is a `DateCell` and a translated fragment either side of a
+ * component is the concatenated sentence B8 forbids. */
+.fin-rollup {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-1);
+  flex-wrap: wrap;
+}
+
+.fin-rollup-item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-1);
+}
+
+.fin-rollup-item + .fin-rollup-item::before {
+  content: "·";
+  margin-right: var(--space-1);
+  color: color-mix(in srgb, var(--color-text) 40%, transparent);
+}
+
+.fin-gap-list {
+  margin: 0;
+  padding-left: var(--space-4);
+  display: grid;
+  gap: var(--space-2);
+}
+
+/* ── DEF-112 — the four Finance tabs that had no screen (S41 · S42 · S43 · S56)
+ *
+ * Layout only. Every colour is a token (A12) and nothing here encodes meaning:
+ * a checklist item's state is a `StatusPill` tone, not a class on this list, so
+ * a reader who cannot see colour still reads the word. */
+
+/* A period-bar field. `.fin-params` is a flex row; a field inside it is a
+ * label stacked over its control so the two never wrap apart. */
+.fin-params-field {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  /* DEF-312 — was `var(--font-size-sm)`, declared nowhere and with no
+     fallback, so the field label rendered at body size. */
+  font-size: var(--text-base);
+}
+
+/* BR-LED-006's five close items. A grid rather than a bullet list: the pill,
+ * the label and the "unknown" reason each need their own column so a long
+ * reason wraps under itself instead of pushing the pill out of line. */
+.fin-checklist {
+  list-style: none;
+  margin: var(--space-2) 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.fin-checklist-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.fin-checklist-label {
+  font-weight: 600;
+}
+
+.fin-checklist-item .fin-absent-reason {
+  grid-column: 2;
+}
+
+/* The journal row's state cell: a status pill plus whichever of the reversal
+ * links and the unbalanced-draft warning apply. */
+.fin-journal-state {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-1);
+  flex-wrap: wrap;
+}
+
+/* BR-LED-039's payable side. Separated by a rule from the balanced footer
+ * above it, because the whole point is that its total is NOT in that footer. */
+.fin-cost-section {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-divider);
+}
+
+/* An export batch's content hash — the only fixed-width text on these screens.
+ * Truncated in the markup, never here: a CSS ellipsis over a hash would let a
+ * reader believe they had compared two that differ past the cut. */
+.fin-hash {
+  /* DEF-312 — `--font-mono` and `--font-size-xs` are both undeclared; the
+     first shipped its fallback and the second was invalid. */
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: var(--text-xs);
+}
+
+/* US-LED-005 — the S56 chart row's three actions, on one line, with the
+   BR-SHL-025 refusal underneath them rather than trailing after the third
+   link. Found by looking at the rendered page in a browser (law 6): the
+   inline span ran the three links and the sentence together into one
+   unreadable block. */
+/* ⚠ .settings-row-actions / .rating-row-actions / .fin-row-actions WERE HERE
+   AND ARE GONE (2026-08-20), with .ast-row-actions and .met-row-actions. Five
+   containers declared the same flex row with three different gaps, and the
+   `.settings-row-actions .btn { padding: 2px 6px }` under this one was half of
+   DEF-342 — a PARENT selector re-styling a button, which Route B cannot express
+   and which nothing had ever compared against its four siblings.
+   `components/RowActions.tsx` is the one that remains. */
+
+.fin-je-table td .input {
+  height: 30px;
+}
+.fin-je-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.fin-je-balance {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ── US-LED-004: the subledger tie-out panel (BR-LED-007) ─────────────────
+   The verdict is carried by the WORD in `.fin-tieout-state`, never by colour
+   alone: BR-LED-007 makes drift a release blocker, and a release blocker that
+   only a sighted user on a good monitor can see is not one. Colour is the
+   second signal, not the first. */
+.fin-tieout-table th[scope="row"] {
+  text-align: left;
+  font-weight: 600;
+}
+.fin-tieout-state {
+  display: block;
+  font-weight: 400;
+  font-size: var(--text-sm);
+  color: var(--color-neutral-600);
+}
+.fin-tieout-drifting .fin-tieout-state,
+.fin-tieout-unverifiable .fin-tieout-state {
+  color: var(--color-danger-700);
+  font-weight: 600;
+}
+.fin-tieout-drifting,
+.fin-tieout-unverifiable {
+  background: var(--color-danger-100);
+}
+.fin-tieout-blocker {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-2);
+  border-radius: 4px;
+  background: var(--color-danger-500);
+  color: #fff;
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+.fin-tieout-ok {
+  font-size: var(--text-sm);
+  color: var(--color-neutral-600);
+}
+
+/* ── DEF-327 · the finance-table modifier. `.fin-num` (a figure cell) and
+ * `.fin-tieout-table th[scope="row"]` (a band label) were declared and the
+ * modifier they hang off was not. It carries only what a finance table adds
+ * to `.met-table`: room beneath it, and figures that never wrap. No
+ * font-size — B14 rule 20 holds table type at one size product-wide. ───── */
+.fin-table {
+  margin-bottom: var(--space-4);
+}
+
+.fin-table td.fin-num,
+.fin-table th.fin-num {
+  white-space: nowrap;
+}

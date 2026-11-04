@@ -1,0 +1,30 @@
+{
+  "count": 1,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "job_type": "Meter set",
+      "volume": 1,
+      "closed": 1,
+      "on_time": 1,
+      "on_time_of": 1,
+      "first_visit_pct": "100.0",
+      "vs_estimate_pct": "133.3",
+      "vs_estimate_minutes": 60
+    }
+  ],
+  "period": "",
+  "technician": {
+    "name": "D. Ortiz",
+    "slug": "d-ortiz"
+  },
+  "tiles": {
+    "closed": 1,
+    "on_time": 1,
+    "on_time_of": 1,
+    "first_visit_pct": "100.0",
+    "vs_estimate_pct": "133.3",
+    "vs_estimate_minutes": 60
+  }
+}

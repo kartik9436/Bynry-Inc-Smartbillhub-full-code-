@@ -1,0 +1,9 @@
+{
+  "field.signIn.noServer": "No server set. Ask the office.",
+  "field.update.fromStore": "Update it from your app store.",
+  "field.update.needs": "Needs version {{minimum}} or newer.",
+  "field.update.openStore": "Open the store",
+  "field.update.title": "Update the app",
+  "field.update.tooOld": "This version is no longer supported.",
+  "field.update.workKept": "Your unsent work is kept."
+}

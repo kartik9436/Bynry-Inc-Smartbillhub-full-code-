@@ -1,0 +1,1172 @@
+[
+  {
+    "phase": "2",
+    "what": "step 1 empty: name, code and classes each named on the box",
+    "pass": true,
+    "evidence": "[\"plan-name-error:Enter the plan name.\",\"plan-code-error:Enter a code.\",\"alert:Fix 2 things first.\",\"alert:This step isn't finished. Fill in what's marked above, then press Continue again.\"]"
+  },
+  {
+    "phase": "1",
+    "what": "classes dropdown: Every customer class first, then the utility's 8 classes",
+    "pass": true,
+    "evidence": "[\"Every customer class\",\"Agricultural\",\"Builder or developer\",\"Commercial\",\"Government\",\"Industrial\",\"Institutional\",\"Municipal\",\"Residential\",\"Proof of hardship or assistance\",\"At least 25 kW of demand\",\"Owner-occupied premises\"]"
+  },
+  {
+    "phase": "2",
+    "what": "nothing typed on step 1 is lost after the refusal",
+    "pass": true,
+    "evidence": "Plan walk · Residential|PW-RES"
+  },
+  {
+    "phase": "1",
+    "what": "only Utility A's services are offered (its five: electric, water, sewer, trash, fire)",
+    "pass": true,
+    "evidence": "[\"Choose a service\",\"Electric\",\"Water\",\"Sewer\",\"Trash\",\"Fire\"]"
+  },
+  {
+    "phase": "1",
+    "what": "step 2 rows show the schedule's version and from-date",
+    "pass": true,
+    "evidence": "V1 from 08/01/2026 Several base codes BASE-W, BASE-W-COM $15.00 ✕ + Add servic"
+  },
+  {
+    "phase": "1",
+    "what": "step 2 shows the monthly base total under the table",
+    "pass": true,
+    "evidence": "Monthly base charges $17.00 Switch more services on ↗ Outside city limits Outsid"
+  },
+  {
+    "phase": "2",
+    "what": "step 2 empty row: refused on its own box",
+    "pass": true,
+    "evidence": "ase charges — Switch more services on ↗ Choose a service in each row. Outside city limits"
+  },
+  {
+    "phase": "2",
+    "what": "nothing typed on step 2 is lost (three rows kept, surcharge 25)",
+    "pass": true,
+    "evidence": "25"
+  },
+  {
+    "phase": "2",
+    "what": "\"All added.\" when no service is left, + Add disabled",
+    "pass": true,
+    "evidence": "V1 from 01/01/2000 None ✕ + Add service All added. Monthly b"
+  },
+  {
+    "phase": "1",
+    "what": "after × the services are water, sewer, trash",
+    "pass": true,
+    "evidence": ""
+  },
+  {
+    "phase": "2",
+    "what": "taxes: \"All added.\" once both of the utility's taxes are in",
+    "pass": true,
+    "evidence": ""
+  },
+  {
+    "phase": "2",
+    "what": "step 3 empty charge-code row refused by name",
+    "pass": true,
+    "evidence": "[\"alert:Fix 1 thing first.\",\"alert:This step isn't finished. Fill in what's marked above, then press Continue again.\"]"
+  },
+  {
+    "phase": "2",
+    "what": "step 4 empty deposit row refused by name",
+    "pass": true,
+    "evidence": "[\"alert:Fix 1 thing first.\",\"alert:This step isn't finished. Fill in what's marked above, then press Continue again.\"]"
+  },
+  {
+    "phase": "2",
+    "what": "nothing typed on step 4 is lost (minimum 10, two discounts)",
+    "pass": true,
+    "evidence": "10"
+  },
+  {
+    "phase": "1",
+    "what": "Residential: exactly one database row, published, v1 from 11/01/2026",
+    "pass": true,
+    "evidence": "[[\"01a103d0-bb45-7f0e-bd2a-dcb0049a3f5c\",\"published\",\"1\",\"2026-11-01\",\"\",\"1\"]]"
+  },
+  {
+    "phase": "2",
+    "what": "nothing was stored by the abandoned form",
+    "pass": true,
+    "evidence": "[]"
+  },
+  {
+    "phase": "1",
+    "what": "draft saved half way: one database row, status draft",
+    "pass": true,
+    "evidence": "[[\"01a103d1-434e-7543-a5b1-c14a6b22f77c\",\"draft\",\"1\",\"\",\"\",\"1\"]]"
+  },
+  {
+    "phase": "1",
+    "what": "the draft reopens with everything typed (name, code, the water row)",
+    "pass": true,
+    "evidence": "Plan walk · Municipal|PW-MUNI services=1"
+  },
+  {
+    "phase": "1",
+    "what": "Save as draft: still ONE row, still a draft",
+    "pass": true,
+    "evidence": "[[\"01a103d1-434e-7543-a5b1-c14a6b22f77c\",\"draft\",\"1\",\"2026-11-01\",\"\",\"1\"]]"
+  },
+  {
+    "phase": "1",
+    "what": "the finished draft: still ONE row, now published v1 from 11/01/2026",
+    "pass": true,
+    "evidence": "[[\"01a103d1-434e-7543-a5b1-c14a6b22f77c\",\"published\",\"1\",\"2026-11-01\",\"\",\"1\"]]"
+  },
+  {
+    "phase": "1",
+    "what": "Commercial: the late fee row reads \"by customer class\" as drawn (image 13)",
+    "pass": true,
+    "evidence": "re-read from com-3-charges.png: LATE-CL · Late fee by class | by customer class | Penalty | After the due date. The first run looked for per-class figures step 3 does not draw (the walk's own pattern); the figures are checked on Review in phase 3"
+  },
+  {
+    "phase": "1",
+    "what": "Commercial: the deposit row reads Priced by Class, Residential $150.00 · Commercial $300.00",
+    "pass": true,
+    "evidence": "DEPOSIT PRICED BY AMOUNTS GL Choose a deposit DEP-SIZE · Security deposit by meter size DEPOSIT · Security deposit V1 from 08/01/2026 Customer class Commercial $300.00 Residential $150.00 — ✕ + Add deposit D"
+  },
+  {
+    "phase": "1",
+    "what": "Commercial: exactly one database row, published v1 from 11/01/2026",
+    "pass": true,
+    "evidence": "[[\"01a103d8-f5e7-7f38-a2b3-80940fd3fd5a\",\"published\",\"1\",\"2026-11-01\",\"\",\"1\"]]"
+  },
+  {
+    "phase": "3",
+    "what": "Fire Review: six line sizes, priced per line per month (counted)",
+    "pass": true,
+    "evidence": "[\"2\\\" \",\"4\\\" \",\"6\\\" \",\"8\\\" \",\"10\\\" \",\"12\\\" \"]"
+  },
+  {
+    "phase": "1",
+    "what": "Fire saved as a draft from the New form: one row, draft",
+    "pass": true,
+    "evidence": "[[\"01a103d9-1bac-7c1f-a550-2bf6e430e5bf\",\"draft\",\"1\",\"2026-11-01\",\"\",\"1\"]]"
+  },
+  {
+    "phase": "1",
+    "what": "Fire: exactly one database row, published v1",
+    "pass": true,
+    "evidence": "[[\"01a103d9-1bac-7c1f-a550-2bf6e430e5bf\",\"published\",\"1\",\"2026-11-01\",\"\",\"1\"]]"
+  },
+  {
+    "phase": "1",
+    "what": "list row PW-RES shows version, from and to",
+    "pass": true,
+    "evidence": "[\"Plan walk · ResidentialPW-RES · Residential\",\"V1\",\"WST\",\"3\",\"$17.00\",\"0\",\"11/01/2026\",\"No end\",\"Published\",\"\"]"
+  },
+  {
+    "phase": "1",
+    "what": "list row PW-COM shows version, from and to",
+    "pass": true,
+    "evidence": "[\"Plan walk · CommercialPW-COM · Commercial\",\"V1\",\"WS\",\"2\",\"$24.00\",\"0\",\"11/01/2026\",\"No end\",\"Published\",\"\"]"
+  },
+  {
+    "phase": "1",
+    "what": "list row PW-FIRE shows version, from and to",
+    "pass": true,
+    "evidence": "[\"Plan walk · FirePW-FIRE · Commercial, Industrial\",\"V1\",\"F\",\"1\",\"$0.00\",\"0\",\"11/01/2026\",\"No end\",\"Published\",\"\"]"
+  },
+  {
+    "phase": "1",
+    "what": "list row PW-MUNI shows version, from and to",
+    "pass": true,
+    "evidence": "[\"Plan walk · MunicipalPW-MUNI · Municipal, Government\",\"V1\",\"W\",\"1\",\"—\",\"0\",\"11/01/2026\",\"No end\",\"Published\",\"\"]"
+  },
+  {
+    "phase": "list",
+    "what": "search goes to the server (q= in the address)",
+    "pass": true,
+    "evidence": "http://127.0.0.1:5381/brazosbend/plans-rates?q=water&sort=name&dir=asc"
+  },
+  {
+    "phase": "list",
+    "what": "a search with no results says so",
+    "pass": true,
+    "evidence": "Plans & Rates 10 plans · 12 rate schedules · 37 charge codes · 6 discounts · 2 taxes & fees · effective 10/01/2026 History + New plan Plans Rate schedules Charge codes Discounts Taxes & fees ✕ All + F"
+  },
+  {
+    "phase": "3",
+    "what": "Residential Review: the three services with their schedules",
+    "pass": true,
+    "evidence": "Residential Water — Inclining tiers V1 from 08/01/2026 Base charges BASE-W · Water base service — residential V1 from 01/01/2000 Outside city +25% BASE CHARGES "
+  },
+  {
+    "phase": "3",
+    "what": "Residential Review: outside-city surcharge 25 %",
+    "pass": true,
+    "evidence": "25%"
+  },
+  {
+    "phase": "3",
+    "what": "Residential Review: charge codes LATE and RECON",
+    "pass": true,
+    "evidence": "LATE · Late payment fee V1 Percentage Everyone 1.50% · min $5.00 4200 · Late-fee revenue After the due date RECON"
+  },
+  {
+    "phase": "3",
+    "what": "Residential Review: both taxes",
+    "pass": true,
+    "evidence": "TX State Utility Tax V1 Texas Comptroller of Public Accounts 6.25% Usage and base charges 2200-02 · Tax payable — TX State Utility Tax Local · Bexar County V1 B"
+  },
+  {
+    "phase": "3",
+    "what": "Residential Review: deposit DEP-SIZE by size, 5/8\" $150.00 and 2\" $600.00",
+    "pass": true,
+    "evidence": "DEP-SIZE · Security deposit by meter size V1 from 08/01/2026 Size Water 5/8\" Water 2\" $150.00 $600.00"
+  },
+  {
+    "phase": "3",
+    "what": "Residential Review: discounts Senior (from 11/01/2026) and Autopay (until 10/31/2027)",
+    "pass": true,
+    "evidence": "Senior discount V1 from 08/01/2026 15.00% 11/01/2026 No end 4760 · Customer discounts (contra-revenue) 0 AUTOPAY · Autopay discount V1 from 08/01/2026 0.50% 11/"
+  },
+  {
+    "phase": "3",
+    "what": "Residential Review: minimum bill $10.00",
+    "pass": true,
+    "evidence": "$10.00"
+  },
+  {
+    "phase": "3",
+    "what": "Residential Review: a version pill and a from-date on the referenced items",
+    "pass": true,
+    "evidence": "V1 from 08/01/2026"
+  },
+  {
+    "phase": "3",
+    "what": "Residential Review: starts 11/01/2026",
+    "pass": true,
+    "evidence": "11/01/2026"
+  },
+  {
+    "phase": "3",
+    "what": "Commercial Review: LATE-CL by class (1.50 % / 2.00 %), DEPOSIT by class ($150.00 / $300.00), minimum $25.00",
+    "pass": true,
+    "evidence": "LATE-CL · Late fee by class V1 from 08/01/2026 Customer class Commercial Residential 2.00% · min $10.00 1.50% · min $5.00 — Aft"
+  },
+  {
+    "phase": "4",
+    "what": "six tabs in the drawn order",
+    "pass": true,
+    "evidence": "Overview|Services3|Charges|Billing|Units0|Audit"
+  },
+  {
+    "phase": "4",
+    "what": "a tile opens its tab (the Taxes tile → Charges, tab in the address)",
+    "pass": true,
+    "evidence": "[\"units\",\"services\",\"services\",\"charges\"] → http://127.0.0.1:5381/brazosbend/plans-rates/plans/01a103d0-bb45-7f0e-bd2a-dcb0049a3f5c?tab=charges"
+  },
+  {
+    "phase": "4",
+    "what": "Overview shows intended-for and the class",
+    "pass": true,
+    "evidence": " for homes in Brazos Bend. Intended for Owner-occupied premises Notes Customer class is Reside"
+  },
+  {
+    "phase": "4",
+    "what": "→ moves to the next tab (Charges) and the address follows",
+    "pass": true,
+    "evidence": "http://127.0.0.1:5381/brazosbend/plans-rates/plans/01a103d0-bb45-7f0e-bd2a-dcb0049a3f5c?tab=charges"
+  },
+  {
+    "phase": "4",
+    "what": "← moves back (Services)",
+    "pass": true,
+    "evidence": "http://127.0.0.1:5381/brazosbend/plans-rates/plans/01a103d0-bb45-7f0e-bd2a-dcb0049a3f5c?tab=services"
+  },
+  {
+    "phase": "4",
+    "what": "More ▾ offers Duplicate (enabled since 2.489.0) and Retire",
+    "pass": true,
+    "evidence": "More ▾ Duplicate Retire"
+  },
+  {
+    "phase": "4",
+    "what": "each service folds to one line",
+    "pass": true,
+    "evidence": "3"
+  },
+  {
+    "phase": "4",
+    "what": "names are links (schedules, codes)",
+    "pass": true,
+    "evidence": "[[\"Residential Water — Inclining tiers\",\"/brazosbend/plans-rates/rates/01a103bb-9ca5-71df-8cb7-a089c76d69da\"],[\"BASE-W\",\"/brazosbend/plans-rates/charge-codes/01a103bb-9b01-7988-80e6-259003aeaed4\"],[\"Sample — Sewer (% of water)\",\"/brazosbend/plans-rates/rates/01a103bc-6cd3-7e7a-852b-6d6164dae7db\"],[\"BASE-S\",\"/brazosbend/plans-rates/charge-codes/01a103bc-6950-7bf5-8ef0-776c9df1ea1e\"],[\"Sample — Trash (monthly, not measured)\",\"/brazosbend/plans-rates/rates/01a103bc-6d3f-7999-a4fe-9567edb00cce\"],[\"BASE-T\",\"/brazosbend/plans-rates/charge-codes/01a103bc-697d-72b7-80cf-ad7610d88c95\"]]"
+  },
+  {
+    "phase": "4",
+    "what": "the schedule's link opens that rate schedule",
+    "pass": true,
+    "evidence": "/brazosbend/plans-rates/rates/01a103bb-9ca5-71df-8cb7-a089c76d69da → http://127.0.0.1:5381/brazosbend/plans-rates/rates/01a103bb-9ca5-71df-8cb7-a089c76d69da"
+  },
+  {
+    "phase": "4",
+    "what": "Expand all opens every service",
+    "pass": true,
+    "evidence": ""
+  },
+  {
+    "phase": "4",
+    "what": "Collapse all folds them again",
+    "pass": true,
+    "evidence": ""
+  },
+  {
+    "phase": "4",
+    "what": "Services tab matches Review: water schedule",
+    "pass": true,
+    "evidence": "Residential Water — Inclining tiers"
+  },
+  {
+    "phase": "4",
+    "what": "Services tab matches Review: surcharge 25 %",
+    "pass": true,
+    "evidence": "25.00%"
+  },
+  {
+    "phase": "4",
+    "what": "Charges tab matches Review: LATE",
+    "pass": true,
+    "evidence": "LATE"
+  },
+  {
+    "phase": "4",
+    "what": "Charges tab matches Review: RECON",
+    "pass": true,
+    "evidence": "RECON"
+  },
+  {
+    "phase": "4",
+    "what": "Charges tab matches Review: TX State",
+    "pass": true,
+    "evidence": "TX State Utility Tax"
+  },
+  {
+    "phase": "4",
+    "what": "Charges tab matches Review: Bexar",
+    "pass": true,
+    "evidence": "Bexar"
+  },
+  {
+    "phase": "4",
+    "what": "Billing tab matches Review: DEP-SIZE $150.00/$600.00",
+    "pass": true,
+    "evidence": "DEP-SIZE · Security deposit by meter size V1 from 08/01/2026 Size Water 5/8\" Water 2\" $150.00 $600.00"
+  },
+  {
+    "phase": "4",
+    "what": "Billing tab matches Review: Senior",
+    "pass": true,
+    "evidence": "Senior"
+  },
+  {
+    "phase": "4",
+    "what": "Billing tab matches Review: Autopay",
+    "pass": true,
+    "evidence": "Autopay"
+  },
+  {
+    "phase": "4",
+    "what": "Billing tab matches Review: minimum $10.00",
+    "pass": true,
+    "evidence": "$10.00"
+  },
+  {
+    "phase": "4",
+    "what": "a section's Edit opens that step (?change=change&step=2, Charges)",
+    "pass": true,
+    "evidence": "http://127.0.0.1:5381/brazosbend/plans-rates/plans/01a103d0-bb45-7f0e-bd2a-dcb0049a3f5c/edit?change=change&step=2"
+  },
+  {
+    "phase": "4",
+    "what": "Units lists the plan's 3 units, with links, no Move and no selection column",
+    "pass": true,
+    "evidence": "rows=3"
+  },
+  {
+    "phase": "4",
+    "what": "Units search reaches the server and narrows to one",
+    "pass": true,
+    "evidence": "http://127.0.0.1:5381/brazosbend/plans-rates/plans/01a103d0-bb45-7f0e-bd2a-dcb0049a3f5c?tab=units&u.q=11+Pecan&u.sort=premises&u.dir=asc"
+  },
+  {
+    "phase": "4",
+    "what": "Vacant shows the one unit with no account",
+    "pass": true,
+    "evidence": "Units All Occupied Vacant UNIT PREMISES SERVICES ACCOUNT OCCUPANCY ON THIS PLAN SINCE Main 15 Pecan Walk Way W S — Vacant 11/01/2026 1–1 of 1 Rows per page 50 100 200 500 1000 ‹ ›"
+  },
+  {
+    "phase": "4",
+    "what": "Units CSV carries the whole filtered set (3 rows + header)",
+    "pass": true,
+    "evidence": "Unit,Premises,City,Services,Account,Customer,Occupancy,On this plan since\r\nMain,11 Pecan Walk Way,Katy,water sewer,AC-2026-00054,Ruth Alvarez,Occupied,11/01/2026\r\nMain,13 Pecan Walk Way,Katy,water sewer,AC-2026-00055,Carl Jensen,Occupied,11/01/2026\r\nMain,15 Pecan Walk Way,Katy,water sewer,,,Vacant,1"
+  },
+  {
+    "phase": "5",
+    "what": "the API serves both upcoming items: the plan's v1 (11/01/2026) and the water schedule's v2 (01/01/2027)",
+    "pass": true,
+    "evidence": "[{\"kind\":\"plan\",\"code\":\"PW-RES\",\"name\":\"Plan walk · Residential\",\"version\":1,\"effective_from\":\"2026-11-01\"},{\"kind\":\"schedule\",\"code\":\"\",\"name\":\"Residential Water — Inclining tiers\",\"version\":2,\"effective_from\":\"2027-01-01\"}]"
+  },
+  {
+    "phase": "5",
+    "what": "a banner names the water schedule's new version from 01/01/2027 with its new rates (DEF-RAT-9515: one line per upcoming item)",
+    "pass": true,
+    "evidence": "[\"This plan's v1 starts 11/01/2026.See it\",\"Water rate schedule v2 starts 01/01/2027.Usage charges $4.40 · $7.15 · $8.80 per kgal.See it\"]"
+  },
+  {
+    "phase": "5",
+    "what": "the API: as of today the old rates, as of 01/15/2027 the new",
+    "pass": true,
+    "evidence": "[\"$4.00 per kgal\",\"$6.50 per kgal\",\"$8.00 per kgal\"] → [\"$4.40 per kgal\",\"$7.15 per kgal\",\"$8.80 per kgal\"]"
+  },
+  {
+    "phase": "5",
+    "what": "on screen: Priced as of 01/15/2027 shows the new rates, today the old",
+    "pass": true,
+    "evidence": "$8.80 per kgal $4.00 per kgal $6.50 per kgal $8.00 per kgal $5.00 per kgal → $4.40 per kgal $7.15 per kgal $8.80 per kgal $5.00 per kgal"
+  },
+  {
+    "phase": "6",
+    "what": "Name and details: same row, same version",
+    "pass": true,
+    "evidence": "[[\"01a103d0-bb45-7f0e-bd2a-dcb0049a3f5c\",\"published\",\"1\",\"2026-11-01\",\"\",\"1\"]]"
+  },
+  {
+    "phase": "6",
+    "what": "Change from a date Review: v1 ends 12/31/2026, v2 from 01/01/2027, units move",
+    "pass": true,
+    "evidence": "How it is saved VERSION DATES AFTER SAVING v1 · today 11/01/2026 – 12/31/2026 Gets an end date v2 · new 01/01/2027 – No end New version 3 units move to v2 on 01/01/2027. Back Save new version Publish new version THIS PLAN $17.00 monthly base charges W S T Name Plan walk · Residential Code PW-RES Classes Residentia"
+  },
+  {
+    "phase": "6",
+    "what": "Change from a date: v1 ends 12/31/2026, v2 starts 01/01/2027 at $12.00, nothing deleted, same plan row",
+    "pass": true,
+    "evidence": "[[\"1\",\"published\",\"2026-11-01\",\"2026-12-31\",\"10.000000\",\"f\"],[\"2\",\"published\",\"2027-01-01\",\"\",\"12.000000\",\"f\"],[\"2\",\"published\",\"2027-01-01\",\"\",\"12.000000\",\"t\"]]"
+  },
+  {
+    "phase": "6",
+    "what": "Fix a mistake: v1 corrected with the SAME dates (11/01/2026–12/31/2026), the old v1 row kept",
+    "pass": true,
+    "evidence": "[[\"1\",\"published\",\"2026-11-01\",\"2026-12-31\",\"f\",\"f\"],[\"1\",\"published\",\"2026-11-01\",\"2026-12-31\",\"t\",\"t\"],[\"2\",\"published\",\"2027-01-01\",\"\",\"f\",\"f\"],[\"2\",\"published\",\"2027-01-01\",\"\",\"t\",\"t\"]]"
+  },
+  {
+    "phase": "6",
+    "what": "Audit lists the edit, the new version (and its publish) and the correction",
+    "pass": true,
+    "evidence": "Audit All Plan changes Changes underneath From To ▸ WHEN WHO WHAT CHANGE REASON ▸ 10/03/2026 17:36 Dana Whitfield Fixed a mistake · v1 Budget billing: No → Budget billing: Yes Budget billing was always offered on this plan ▸ 10/03/2026 17:31 Dana Whitfield Fixed a mistake · v2 Budget billing: No → Budget billing: Yes Budget billing was always offered on this plan ▸ 10/03/2026 17:31 Dana Whitfield Published · v2 Starts: 01/01/2027 Minimum bill rises with the new year ▸ 10/03/2026 17:31 Dana Whitfield New version · v2 Starts: 01/01/2027 Minimum bill rises with the new year ▸ 10/03/2026 17:31 Dan"
+  },
+  {
+    "phase": "6",
+    "what": "Changes underneath lists the water schedule's new version",
+    "pass": true,
+    "evidence": "Audit All Plan changes Changes underneath From To ▸ WHEN WHO WHAT CHANGE REASON ▸ 10/03/2026 17:25 Dana Whitfield Rate schedule · Residential Water — Inclining tiers New version Water rates rise with the new year (plans walk) ▸ 10/03/2026 17:09 Dana Whitfield Discount · AUTOPAY · Autopay discount Ed"
+  },
+  {
+    "phase": "6",
+    "what": "an Audit row opens to before → after (the description)",
+    "pass": true,
+    "evidence": "Before Description: Water, sewer and trash for homes in Brazos Bend. After Description: Water, sewer and trash for homes in Brazos Bend and its farms. Version Plan v1 from 11/01/2026"
+  },
+  {
+    "phase": "6",
+    "what": "Save new version files v2 as a draft (v1 still published)",
+    "pass": true,
+    "evidence": "[[\"1\",\"published\"],[\"2\",\"draft\"]]"
+  },
+  {
+    "phase": "6",
+    "what": "Publish v2 (saved): v1 ends 12/31/2026, v2 published from 01/01/2027",
+    "pass": true,
+    "evidence": "Publish v2 of Plan walk · Commercial? ✕ v1 ends 12/31/2026. Cancel Publish v2 [[\"1\",\"published\",\"2026-11-01\",\"2026-12-31\"],[\"2\",\"published\",\"2027-01-01\",\"\"]]"
+  },
+  {
+    "phase": "6",
+    "what": "DEF-RAT-9510: publishing a DRAFT plan's v1 through the version door is refused by name, nothing moves",
+    "pass": true,
+    "evidence": "201 → 409 {\"code\":\"BIZ-STATE\",\"message_key\":\"rating.plans.version_of_draft\",\"params\":{\"name\":\"Plan walk · Probe draft\"},\"field_errors\":[],\"br_ref\":\"BR-RAT-1066\",\"trace_id\":\"81db36bb69544bd9b033e10db9d81e98\"} [[\"01a103ee-1675-785a-a0cc-42a07403eb7b\",\"draft\",\"1\",\"2026-12-01\",\"\",\"1\"]] (muni 01a103d1-434e-7543-a5b1-c14a6b22f77c)"
+  },
+  {
+    "phase": "dup",
+    "what": "Duplicate makes ONE new draft row and leaves the source untouched",
+    "pass": true,
+    "evidence": "[[\"01a103ee-2e02-7063-b219-7a7f55e50911\",\"draft\",\"1\",\"\",\"\",\"1\"]] [[\"01a103d0-bb45-7f0e-bd2a-dcb0049a3f5c\",\"published\",\"2\",\"2026-11-01\",\"\",\"4\"]]"
+  },
+  {
+    "phase": "dup",
+    "what": "the copy offers the source's services today (sewer, trash, water) and no units",
+    "pass": true,
+    "evidence": "sewer,trash,water units=undefined"
+  },
+  {
+    "phase": "dup",
+    "what": "DEF-RAT-9506 holds: the draft copy offers no \"Publish v1\" banner",
+    "pass": true,
+    "evidence": ""
+  },
+  {
+    "phase": "8",
+    "what": "dec-ruth: total $94.35, water tier 1 $20.00, tier 2 $19.50 — on screen, in the API and in the database",
+    "pass": true,
+    "evidence": "screen true,true,true api 94.350000 db 94.350000"
+  },
+  {
+    "phase": "8",
+    "what": "dec-ruth: one base line per service (2), no deposit line",
+    "pass": true,
+    "evidence": "[[\"tax\",\"1.850000\"],[\"usage\",\"20.000000\"],[\"usage\",\"19.500000\"],[\"base\",\"8.000000\"],[\"usage\",\"36.000000\"],[\"base\",\"9.000000\"]]"
+  },
+  {
+    "phase": "8",
+    "what": "jan-ruth: total $98.38, water tier 1 $22.00, tier 2 $21.45 — on screen, in the API and in the database",
+    "pass": true,
+    "evidence": "screen true,true,true api 98.380000 db 98.380000"
+  },
+  {
+    "phase": "8",
+    "what": "jan-ruth: one base line per service (2), no deposit line",
+    "pass": true,
+    "evidence": "[[\"tax\",\"1.930000\"],[\"usage\",\"22.000000\"],[\"usage\",\"21.450000\"],[\"base\",\"8.000000\"],[\"usage\",\"36.000000\"],[\"base\",\"9.000000\"]]"
+  },
+  {
+    "phase": "8",
+    "what": "dec-carl: total $117.94, water tier 1 $25.00, tier 2 $24.38 — on screen, in the API and in the database",
+    "pass": true,
+    "evidence": "screen true,true,true api 117.940000 db 117.940000"
+  },
+  {
+    "phase": "8",
+    "what": "dec-carl: one base line per service (2), no deposit line",
+    "pass": true,
+    "evidence": "[[\"usage\",\"25.000000\"],[\"usage\",\"24.380000\"],[\"base\",\"10.000000\"],[\"usage\",\"45.000000\"],[\"base\",\"11.250000\"],[\"tax\",\"2.310000\"]]"
+  },
+  {
+    "phase": "8",
+    "what": "jan-carl: total $122.97, water tier 1 $27.50, tier 2 $26.81 — on screen, in the API and in the database",
+    "pass": true,
+    "evidence": "screen true,true,true api 122.970000 db 122.970000"
+  },
+  {
+    "phase": "8",
+    "what": "jan-carl: one base line per service (2), no deposit line",
+    "pass": true,
+    "evidence": "[[\"tax\",\"2.410000\"],[\"usage\",\"27.500000\"],[\"usage\",\"26.810000\"],[\"base\",\"10.000000\"],[\"usage\",\"45.000000\"],[\"base\",\"11.250000\"]]"
+  },
+  {
+    "phase": "8",
+    "what": "the deposit is assessed ONCE ($150.00 each) and billed on neither month",
+    "pass": true,
+    "evidence": "[[\"AC-2026-00054\",\"150.0000\"],[\"AC-2026-00055\",\"150.0000\"]]"
+  },
+  {
+    "phase": "9",
+    "what": "Utility B's Plans list shows none of A's plans",
+    "pass": true,
+    "evidence": "Plans & Rates 0 plans · 0 rate schedules · 23 charge codes · 0 discounts · 0 taxes & fees History + New plan Plans Rate schedules Charge codes Discounts Taxes & fees No plans yet A plan bundles a rate schedule and a base charge for each service, and is what staff assign to an account. + New plan"
+  },
+  {
+    "phase": "9",
+    "what": "Utility B's API list finds none of A's plans",
+    "pass": true,
+    "evidence": "200 {\"count\":0,\"next\":null,\"previous\":null,\"results\":[],\"rollup\":{\"plans\":0,\"rate_schedules\":0,\"charge_codes\":23,\"discounts\":0,\"taxes\":0,\"contracts\":null,\"effective_from\":null}}"
+  },
+  {
+    "phase": "9",
+    "what": "A's plan by its id from B: 404 on read, units, audit and on a write",
+    "pass": true,
+    "evidence": "[404,404,404,404]"
+  },
+  {
+    "phase": "9",
+    "what": "B's New plan form offers none of A's schedules, codes or taxes",
+    "pass": true,
+    "evidence": "200 null"
+  },
+  {
+    "phase": "9",
+    "what": "A's plan address in B's browser shows nothing of A's",
+    "pass": true,
+    "evidence": "Failed This plan could not be loaded We could not find that. It may have been removed, or the address may be wrong. Retry Download error report Cancel"
+  },
+  {
+    "phase": "9",
+    "what": "A's plan unchanged by B's write",
+    "pass": true,
+    "evidence": "Water, sewer and trash for homes in Brazos Bend and its farms."
+  },
+  {
+    "phase": "9",
+    "what": "RLS: no tenant → 0 plans; as Utility B → 0 of A's plans and versions; as A → A's walk plans",
+    "pass": true,
+    "evidence": "none:0 B:0:0 Bv:0 A:5"
+  },
+  {
+    "phase": "9",
+    "what": "de list: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "de new-1: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "de detail-overview: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "de detail-services: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "de detail-charges: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "de detail-billing: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "de detail-units: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "de detail-audit: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "de edit-change: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "es list: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "es new-1: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "es detail-overview: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "es detail-services: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "es detail-charges: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "es detail-billing: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "es detail-units: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "es detail-audit: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "es edit-change: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "es-MX list: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "es-MX new-1: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "es-MX detail-overview: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "es-MX detail-services: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "es-MX detail-charges: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "es-MX detail-billing: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "es-MX detail-units: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "es-MX detail-audit: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "es-MX edit-change: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "fr-FR list: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "fr-FR new-1: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "fr-FR detail-overview: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "fr-FR detail-services: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "fr-FR detail-charges: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "fr-FR detail-billing: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "fr-FR detail-units: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "fr-FR detail-audit: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "fr-FR edit-change: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "hi list: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "hi new-1: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "hi detail-overview: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "hi detail-services: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "hi detail-charges: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "hi detail-billing: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "hi detail-units: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "hi detail-audit: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "hi edit-change: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "id-ID list: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "id-ID new-1: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "id-ID detail-overview: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "id-ID detail-services: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "id-ID detail-charges: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "id-ID detail-billing: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "id-ID detail-units: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "id-ID detail-audit: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "id-ID edit-change: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "it-IT list: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "it-IT new-1: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "it-IT detail-overview: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "it-IT detail-services: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "it-IT detail-charges: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "it-IT detail-billing: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "it-IT detail-units: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "it-IT detail-audit: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "it-IT edit-change: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "ja-JP list: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "ja-JP new-1: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "ja-JP detail-overview: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "ja-JP detail-services: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "ja-JP detail-charges: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "ja-JP detail-billing: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "ja-JP detail-units: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "ja-JP detail-audit: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "ja-JP edit-change: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "ko-KR list: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "ko-KR new-1: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "ko-KR detail-overview: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "ko-KR detail-services: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "ko-KR detail-charges: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "ko-KR detail-billing: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "ko-KR detail-units: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "ko-KR detail-audit: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "ko-KR edit-change: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "pt-BR list: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "pt-BR new-1: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "pt-BR detail-overview: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "pt-BR detail-services: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "pt-BR detail-charges: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "pt-BR detail-billing: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "pt-BR detail-units: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "pt-BR detail-audit: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "9",
+    "what": "pt-BR edit-change: no English left, no sideways scroll",
+    "pass": true,
+    "evidence": "english=[] overflow=0"
+  },
+  {
+    "phase": "2",
+    "what": "the abandoned form stored nothing (PW-RES-X)",
+    "pass": true,
+    "evidence": "[]"
+  },
+  {
+    "phase": "7",
+    "what": "PW-RES: billing is handed ONE plan version on 12/31/2026 and ONE on 01/01/2027 (rating.plan_versioning.version_on + R1 candidates; cr167_planwalk_world.py lookup)",
+    "pass": true,
+    "evidence": "LOOKUP PW-RES 2026-12-31 version_on=v1 candidates=1 ['v1 2026-11-01..2026-12-31'] minimum=10.000000 | LOOKUP PW-RES 2027-01-01 version_on=v2 candidates=1 ['v2 2027-01-01..None'] minimum=12.000000"
+  },
+  {
+    "phase": "7",
+    "what": "PW-COM: billing is handed ONE plan version on 12/31/2026 and ONE on 01/01/2027 (rating.plan_versioning.version_on + R1 candidates; cr167_planwalk_world.py lookup)",
+    "pass": true,
+    "evidence": "LOOKUP PW-COM 2026-12-31 version_on=v1 candidates=1 ['v1 2026-11-01..2026-12-31'] minimum=25.000000 | LOOKUP PW-COM 2027-01-01 version_on=v2 candidates=1 ['v2 2027-01-01..None'] minimum=30.000000"
+  },
+  {
+    "phase": "7",
+    "what": "PW-FIRE: billing is handed ONE plan version on 12/31/2026 and ONE on 01/01/2027 (rating.plan_versioning.version_on + R1 candidates; cr167_planwalk_world.py lookup)",
+    "pass": true,
+    "evidence": "LOOKUP PW-FIRE 2026-12-31 version_on=v1 candidates=1 ['v1 2026-11-01..None'] minimum=None | LOOKUP PW-FIRE 2027-01-01 version_on=v1 candidates=1 ['v1 2026-11-01..None'] minimum=None"
+  }
+]

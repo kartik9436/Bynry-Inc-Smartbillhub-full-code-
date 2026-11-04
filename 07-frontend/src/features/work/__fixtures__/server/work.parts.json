@@ -1,0 +1,132 @@
+{
+  "count": 10,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": "01a106a9-8cec-7699-abf9-3f8b2afc58d1",
+      "part_no": "CPL-58B",
+      "name": "Brass coupling 5/8\"",
+      "category": {
+        "id": "01a106a6-e372-79d3-ac4a-95b88b11c9cd",
+        "name": "Fittings"
+      },
+      "unit_of_measure": "each",
+      "unit_cost": "6.4000",
+      "active": true
+    },
+    {
+      "id": "01a106a9-8cdc-7207-9789-41fe1c65e7f0",
+      "part_no": "GSK-58",
+      "name": "Meter gasket 5/8\"",
+      "category": {
+        "id": "01a106a6-e371-7289-9e78-0aa3f47d4cb6",
+        "name": "Consumables"
+      },
+      "unit_of_measure": "each",
+      "unit_cost": "1.8500",
+      "active": true
+    },
+    {
+      "id": "01a106a9-8cd6-7039-b164-7eb4f46a0a61",
+      "part_no": "MTR-E1P",
+      "name": "Electric meter single-phase",
+      "category": {
+        "id": "01a106a6-e370-75c2-a799-dabadff03dc0",
+        "name": "Meters"
+      },
+      "unit_of_measure": "each",
+      "unit_cost": "78.5000",
+      "active": true
+    },
+    {
+      "id": "01a106a9-8cd0-7c9e-a26d-01c1c293da17",
+      "part_no": "MTR-W100",
+      "name": "Water meter 1\" positive displacement",
+      "category": {
+        "id": "01a106a6-e370-75c2-a799-dabadff03dc0",
+        "name": "Meters"
+      },
+      "unit_of_measure": "each",
+      "unit_cost": "142.0000",
+      "active": true
+    },
+    {
+      "id": "01a106a9-8cc9-7d86-b426-ef4f76ef1a64",
+      "part_no": "MTR-W58",
+      "name": "Water meter 5/8\" positive displacement",
+      "category": {
+        "id": "01a106a6-e370-75c2-a799-dabadff03dc0",
+        "name": "Meters"
+      },
+      "unit_of_measure": "each",
+      "unit_cost": "92.4000",
+      "active": true
+    },
+    {
+      "id": "01a106a9-8cf7-7ee2-821e-f7654c9771fe",
+      "part_no": "PIPE-CU34",
+      "name": "Copper service pipe 3/4\"",
+      "category": {
+        "id": "01a106a6-e372-79d3-ac4a-95b88b11c9cd",
+        "name": "Fittings"
+      },
+      "unit_of_measure": "ft",
+      "unit_cost": "3.1500",
+      "active": true
+    },
+    {
+      "id": "01a106a9-8ce1-71a2-918b-ef3e0855c775",
+      "part_no": "SEAL-WIRE",
+      "name": "Meter seal, wire and tag",
+      "category": {
+        "id": "01a106a6-e371-7289-9e78-0aa3f47d4cb6",
+        "name": "Consumables"
+      },
+      "unit_of_measure": "each",
+      "unit_cost": "0.7500",
+      "active": true
+    },
+    {
+      "id": "01a106a9-8ce7-7c47-9892-2c3563bae995",
+      "part_no": "TAPE-PTFE",
+      "name": "PTFE thread tape",
+      "category": {
+        "id": "01a106a6-e371-7289-9e78-0aa3f47d4cb6",
+        "name": "Consumables"
+      },
+      "unit_of_measure": "roll",
+      "unit_cost": "2.2000",
+      "active": true
+    },
+    {
+      "id": "01a106a9-8cfd-7445-8eb2-c3700a634a18",
+      "part_no": "TST-BF",
+      "name": "Backflow test kit calibration",
+      "category": {
+        "id": "01a106a6-e374-74af-a7a6-3d6110b53d44",
+        "name": "Test equipment"
+      },
+      "unit_of_measure": "each",
+      "unit_cost": "48.0000",
+      "active": true
+    },
+    {
+      "id": "01a106a9-8cf2-712f-a03d-3669ce4f280b",
+      "part_no": "VLV-CS58",
+      "name": "Curb stop valve 5/8\"",
+      "category": {
+        "id": "01a106a6-e372-79d3-ac4a-95b88b11c9cd",
+        "name": "Fittings"
+      },
+      "unit_of_measure": "each",
+      "unit_cost": "24.9000",
+      "active": true
+    }
+  ],
+  "units": [
+    "each",
+    "ft",
+    "roll"
+  ]
+}

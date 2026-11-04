@@ -1,0 +1,317 @@
+{
+  "count": 7,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": "01a10793-cd5c-7476-918b-9183424d3641",
+      "name": "Asset age rule",
+      "source_module": "assets",
+      "trigger_kind": "asset_past_certification_life",
+      "params": {
+        "asset_type_ids": [
+          "01a10790-dce3-7639-902d-244ddbf4b819"
+        ]
+      },
+      "triggers": [
+        {
+          "seq": 1,
+          "kind": "asset_age_rule",
+          "params": {
+            "asset_type_ids": [
+              "01a10790-dce3-7639-902d-244ddbf4b819"
+            ]
+          },
+          "module": "assets",
+          "moment": "overnight"
+        }
+      ],
+      "template": {
+        "id": "01a10791-4efd-78e5-ad71-03c7a1e1e2e7",
+        "name": "Meter exchange — residential"
+      },
+      "priority": {
+        "id": "01a10790-de53-71b1-a773-36dfa20fee81",
+        "name": "Normal"
+      },
+      "assignment": {},
+      "assign_to": {
+        "kind": "nobody",
+        "id": null
+      },
+      "notifications": [],
+      "escalation": {},
+      "escalations": [],
+      "enabled": true,
+      "incomplete": [],
+      "this_month": 3,
+      "jobs_raised": 3,
+      "last_fired_at": "2026-10-04T18:00:48.936575+00:00"
+    },
+    {
+      "id": "01a10793-cd35-7ad8-b906-672620128425",
+      "name": "Disconnect for non-pay",
+      "source_module": "payments",
+      "trigger_kind": "final_notice_expired_unpaid",
+      "params": {
+        "grace_days": 2
+      },
+      "triggers": [
+        {
+          "seq": 1,
+          "kind": "dunning_auto",
+          "params": {
+            "grace_days": 2
+          },
+          "module": "payments",
+          "moment": "overnight"
+        }
+      ],
+      "template": {
+        "id": "01a10791-4efd-78e5-ad71-03c7a1e1e2e7",
+        "name": "Meter exchange — residential"
+      },
+      "priority": {
+        "id": "01a10790-de52-768b-ac98-e29d26d85efb",
+        "name": "High"
+      },
+      "assignment": {},
+      "assign_to": {
+        "kind": "nobody",
+        "id": null
+      },
+      "notifications": [],
+      "escalation": {},
+      "escalations": [],
+      "enabled": true,
+      "incomplete": [],
+      "this_month": 0,
+      "jobs_raised": 0,
+      "last_fired_at": null
+    },
+    {
+      "id": "01a10793-cd68-78f0-96bd-40c23935e932",
+      "name": "Leak investigation",
+      "source_module": "reads",
+      "trigger_kind": "continuous_flow_alarm",
+      "params": {
+        "consecutive_reads": 3,
+        "minimum_consumption": "0"
+      },
+      "triggers": [
+        {
+          "seq": 1,
+          "kind": "high_usage_alert",
+          "params": {
+            "consecutive_reads": 3,
+            "minimum_consumption": "0"
+          },
+          "module": "reads",
+          "moment": "overnight"
+        }
+      ],
+      "template": {
+        "id": "01a10791-4efd-78e5-ad71-03c7a1e1e2e7",
+        "name": "Meter exchange — residential"
+      },
+      "priority": {
+        "id": "01a10790-de52-768b-ac98-e29d26d85efb",
+        "name": "High"
+      },
+      "assignment": {},
+      "assign_to": {
+        "kind": "nobody",
+        "id": null
+      },
+      "notifications": [],
+      "escalation": {},
+      "escalations": [],
+      "enabled": true,
+      "incomplete": [
+        {
+          "seq": 1,
+          "param": "service"
+        },
+        {
+          "seq": 1,
+          "param": "unit"
+        }
+      ],
+      "this_month": 0,
+      "jobs_raised": 0,
+      "last_fired_at": null
+    },
+    {
+      "id": "01a10793-cd4f-7a52-83d2-b86332296fea",
+      "name": "Meter exchange programme",
+      "source_module": "assets",
+      "trigger_kind": "asset_past_certification_life",
+      "params": {
+        "asset_type_ids": [
+          "01a10790-dce6-72eb-9505-4d753fee749a"
+        ]
+      },
+      "triggers": [
+        {
+          "seq": 1,
+          "kind": "asset_age_rule",
+          "params": {
+            "asset_type_ids": [
+              "01a10790-dce6-72eb-9505-4d753fee749a"
+            ]
+          },
+          "module": "assets",
+          "moment": "overnight"
+        }
+      ],
+      "template": {
+        "id": "01a10791-4efd-78e5-ad71-03c7a1e1e2e7",
+        "name": "Meter exchange — residential"
+      },
+      "priority": {
+        "id": "01a10790-de53-71b1-a773-36dfa20fee81",
+        "name": "Normal"
+      },
+      "assignment": {},
+      "assign_to": {
+        "kind": "nobody",
+        "id": null
+      },
+      "notifications": [],
+      "escalation": {},
+      "escalations": [],
+      "enabled": true,
+      "incomplete": [],
+      "this_month": 0,
+      "jobs_raised": 0,
+      "last_fired_at": null
+    },
+    {
+      "id": "01a10793-cd75-75d5-a221-0824e87a0737",
+      "name": "Move-in / move-out",
+      "source_module": "accounts",
+      "trigger_kind": "occupancy_completed",
+      "params": {
+        "within_days": 7
+      },
+      "triggers": [
+        {
+          "seq": 1,
+          "kind": "move_in",
+          "params": {
+            "within_days": 7
+          },
+          "module": "accounts",
+          "moment": "screen"
+        }
+      ],
+      "template": {
+        "id": "01a10791-4efd-78e5-ad71-03c7a1e1e2e7",
+        "name": "Meter exchange — residential"
+      },
+      "priority": {
+        "id": "01a10790-de53-71b1-a773-36dfa20fee81",
+        "name": "Normal"
+      },
+      "assignment": {},
+      "assign_to": {
+        "kind": "nobody",
+        "id": null
+      },
+      "notifications": [],
+      "escalation": {},
+      "escalations": [],
+      "enabled": true,
+      "incomplete": [],
+      "this_month": 0,
+      "jobs_raised": 0,
+      "last_fired_at": null
+    },
+    {
+      "id": "01a10793-cd42-78e9-9307-a1e530c30f7b",
+      "name": "Read verification",
+      "source_module": "billing",
+      "trigger_kind": "billing_exception_unresolved",
+      "params": {
+        "retryable": false
+      },
+      "triggers": [
+        {
+          "seq": 1,
+          "kind": "billing_exception",
+          "params": {
+            "retryable": false
+          },
+          "module": "billing",
+          "moment": "overnight"
+        }
+      ],
+      "template": {
+        "id": "01a10791-4efd-78e5-ad71-03c7a1e1e2e7",
+        "name": "Meter exchange — residential"
+      },
+      "priority": {
+        "id": "01a10790-de53-71b1-a773-36dfa20fee81",
+        "name": "Normal"
+      },
+      "assignment": {},
+      "assign_to": {
+        "kind": "nobody",
+        "id": null
+      },
+      "notifications": [],
+      "escalation": {},
+      "escalations": [],
+      "enabled": true,
+      "incomplete": [],
+      "this_month": 0,
+      "jobs_raised": 0,
+      "last_fired_at": null
+    },
+    {
+      "id": "01a10793-cd82-7f36-8ccd-7b9e0739c859",
+      "name": "Backflow test due",
+      "source_module": "assets",
+      "trigger_kind": "asset_past_certification_life",
+      "params": {
+        "asset_type_ids": [
+          "01a10790-dce7-7222-a5e8-d7dbe2f2df2d"
+        ]
+      },
+      "triggers": [
+        {
+          "seq": 1,
+          "kind": "asset_age_rule",
+          "params": {
+            "asset_type_ids": [
+              "01a10790-dce7-7222-a5e8-d7dbe2f2df2d"
+            ]
+          },
+          "module": "assets",
+          "moment": "overnight"
+        }
+      ],
+      "template": {
+        "id": "01a10791-4efd-78e5-ad71-03c7a1e1e2e7",
+        "name": "Meter exchange — residential"
+      },
+      "priority": {
+        "id": "01a10790-de54-7b6b-b1af-a2680084c943",
+        "name": "Low"
+      },
+      "assignment": {},
+      "assign_to": {
+        "kind": "nobody",
+        "id": null
+      },
+      "notifications": [],
+      "escalation": {},
+      "escalations": [],
+      "enabled": false,
+      "incomplete": [],
+      "this_month": 0,
+      "jobs_raised": 0,
+      "last_fired_at": null
+    }
+  ]
+}

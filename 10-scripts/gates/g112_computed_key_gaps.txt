@@ -1,0 +1,61 @@
+# G112 PARK FILE — computed key families that name nothing in `en.json` and
+# were already live on the day the gate was written (2026-09-05).
+#
+# ⚠ **IT IS EMPTY, AND EMPTY IS ITS HEALTHY STATE.** It held THREE entries on
+# 2026-09-05 and holds none from 2026-09-08. Do not read the emptiness as
+# "nothing to park": read it as the gate having nothing to excuse. A new line
+# here is a process event, not housekeeping — see the three properties below.
+#
+# ONE LINE PER PREFIX:   <the static prefix> :: <the defect row that owns it>
+#
+# NOT AN ALLOWLIST, and the three properties are what keep it from becoming one
+# (the same discipline `i18n_known_gaps.txt` and `g33_refusal_copy_baseline.txt`
+# are held to):
+#
+#   NARROW    keyed on the EXACT prefix. `work.order.tab.` does not cover
+#             `work.order.tabs.`. The list cannot cover the next one like it.
+#   LOUD      the count is printed in G112's one-line detail on EVERY run, in
+#             the table `run_gates.py` prints. It is never hidden.
+#   EXPIRING  an entry that no longer reproduces is STALE and FAILS the gate,
+#             so the line must be deleted in the same diff as the copy that
+#             fixes it. And the defect row it cites must EXIST and be OPEN — a
+#             fixed row cannot license an open gap.
+#
+# ⚠ **WHY THE THREE WERE PARKED RATHER THAN FIXED BY THE GATE'S OWN LANE**, kept
+# because it is still the right answer for the next entry. The fix for each is
+# COPY, and it is copy in ELEVEN catalogues rather than one: G15 checks PARITY,
+# so adding the leaves to `en.json` alone turns G15 red on ten counts of
+# "missing", and pasting the English string into the other ten turns it red a
+# different way. B14 rule 35 says a catalogue is written in its own language and
+# not mechanically translated from English (PO, 2026-09-03: *"it sound like
+# local person language and not mechanical translations of English"*). So the
+# copy belongs to the module that owns each screen, and the gate's own lane
+# could not honestly invent it in ten languages it cannot check.
+#
+# ⚠ **HOW THE THREE ACTUALLY LEFT, BECAUSE ONLY ONE OF THEM WENT THE WAY THIS
+# FILE PREDICTED — and that is the finding worth keeping.**
+#
+#   `customers.account.usage.absent.`  (2026-09-07, `DEF-CUS-4623`) — COPY, as
+#             predicted. SEVEN reason codes, not the one the PO happened to
+#             photograph, found by reading the server that MINTS them.
+#
+#   `billing.budget.filter.`  (2026-09-08, `DEF-FE-4058`) — COPY, as predicted.
+#             TWO values, `enrolled` and `off_budget`, and they are not a guess:
+#             `apps/billing/budget.py` declares `STATUSES` and the list endpoint
+#             SERVES it back as `statuses` on every response.
+#
+#   `finance.arrives.`  (2026-09-08, `DEF-LED-4638`) — **NOT COPY. THE CALL SITE
+#             WAS DEAD AND WRITING A SENTENCE WOULD HAVE HIDDEN A DEAD SCREEN.**
+#             `RevenueArPage` derived its active tab from `useParams().tab`, and
+#             CR-060 T10 had moved it to the STATIC route `/finance/revenue`
+#             months after that line was written. So the param was always
+#             undefined, `financeTabFrom` returned its fallback `gl`, and the
+#             whole of S36 was replaced by an arrives-with panel headed *General
+#             ledger* printing `finance.arrives.gl`. Eleven sentences would have
+#             turned a visibly broken screen into an invisibly broken one, with
+#             this gate green over it.
+#             **THE LESSON, AND IT IS THE ONE TO CARRY TO THE NEXT ENTRY: a raw
+#             key is a SYMPTOM, and this file's own framing — "the fix for each
+#             is COPY" — is a diagnosis made before anyone looked.** Read what
+#             mints the variable before you write a word of copy; one prefix in
+#             three was not a copy gap at all.

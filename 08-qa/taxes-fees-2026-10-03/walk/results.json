@@ -1,0 +1,555 @@
+[
+  {
+    "phase": 0,
+    "step": 1,
+    "what": "water, sewer, storm water and trash are on",
+    "pass": true,
+    "evidence": "on: electric, water, sewer, trash, storm_water"
+  },
+  {
+    "phase": 0,
+    "step": 1,
+    "what": "three authority accounts in Settings \u203a Accounting",
+    "pass": true,
+    "evidence": "listed on the Authorities sub-tab"
+  },
+  {
+    "phase": 0,
+    "step": 2,
+    "what": "plans carry real accounts",
+    "pass": true,
+    "evidence": "Industrial: 0 \u00b7 Residential Standard: 0 \u00b7 Sample \u2014 Commercial: 2 \u00b7 Sample \u2014 Industrial: 1 \u00b7 Sample \u2014 Residential: 67 \u00b7 Small Commercial: 0 \u00b7 Tax walk \u00b7 Commercial water: 1"
+  },
+  {
+    "phase": 0,
+    "step": 3,
+    "what": "Utility B exists with no taxes",
+    "pass": true,
+    "evidence": "riverbend taxes: 0"
+  },
+  {
+    "phase": 2,
+    "step": 1,
+    "what": "each missing box says what is wrong",
+    "pass": true,
+    "evidence": "[\"Enter the name on the bill.\",\"Choose an authority.\"]"
+  },
+  {
+    "phase": 2,
+    "step": 1,
+    "what": "nothing typed is lost",
+    "pass": true,
+    "evidence": "Typed then refused"
+  },
+  {
+    "phase": 2,
+    "step": 3,
+    "what": "Every customer class first, then the 8 classes",
+    "pass": true,
+    "evidence": "[\"Every customer class\",\"Residential\",\"Commercial\",\"Industrial\",\"Agricultural\",\"Institutional\",\"Municipal\",\"Builder or developer\",\"Government\"]"
+  },
+  {
+    "phase": 2,
+    "step": 4,
+    "what": "62.5% and 'check the rate' on step 2",
+    "pass": true,
+    "evidence": "New tax or fee Save draft & exit \u2713 What it is 2 How much 3 Filing 4 Review & save Rate Charged as A percentage of the bill A fixed amount per bill An amount per unit used An amount per meter Rate* % 62.5% is high."
+  },
+  {
+    "phase": 2,
+    "step": 5,
+    "what": "liability and email refused by name",
+    "pass": true,
+    "evidence": "[\"tax-liability-error:Choose the liability account.\",\"tax-reminder-error:Enter a valid email.\"]"
+  },
+  {
+    "phase": 2,
+    "step": 4,
+    "what": "62.5% and the warning on Review",
+    "pass": true,
+    "evidence": "New tax or fee Save draft & exit \u2713 What it is \u2713 How much \u2713 Filing 4 Review & save 62.5% is high."
+  },
+  {
+    "phase": 2,
+    "step": 6,
+    "what": "named-place boundary: not offered (PO ruling \u2014 dropped)",
+    "pass": true,
+    "evidence": "boundaries served: everywhere, city_limits"
+  },
+  {
+    "phase": 2,
+    "step": 2,
+    "what": "only the utility's switched-on services, All services first",
+    "pass": true,
+    "evidence": "[\"All services\",\"Electric\",\"Water\",\"Sewer\",\"Trash\",\"Storm water\"] \u00b7 switched on: 5"
+  },
+  {
+    "phase": 1,
+    "step": "1",
+    "what": "State sales tax: exactly one row in the database",
+    "pass": true,
+    "evidence": "[[\"01a10140-e360-718c-ae48-3cd2615d766c\",\"1\",\"0.062500\",\"\",\"\",\"\",\"2026-01-01\",\"\",\"f\",\"\",\"State sales tax\",\"\"]]"
+  },
+  {
+    "phase": 1,
+    "step": "2",
+    "what": "County utility tax: exactly one row in the database",
+    "pass": true,
+    "evidence": "[[\"01a10140-fe14-7449-91c2-bc3a34a12a06\",\"1\",\"0.020000\",\"\",\"\",\"\",\"2026-01-01\",\"\",\"f\",\"\",\"County utility tax\",\"\"]]"
+  },
+  {
+    "phase": 1,
+    "step": 3,
+    "what": "150% typed warns, does not refuse",
+    "pass": true,
+    "evidence": "New tax or fee Save draft & exit \u2713 What it is 2 How much 3 Filing 4 Review & save Rate Charged as A percentage of the bill A fixed amount per bill An amount per unit used An amount per meter Rate* % 150% is high."
+  },
+  {
+    "phase": 1,
+    "step": "3",
+    "what": "City franchise fee: exactly one row in the database",
+    "pass": true,
+    "evidence": "[[\"01a10141-18c8-7cbd-835b-6105e852d264\",\"1\",\"1.500000\",\"\",\"\",\"\",\"2026-09-01\",\"\",\"f\",\"\",\"City franchise fee\",\"\"]]"
+  },
+  {
+    "phase": 1,
+    "step": "5",
+    "what": "Riverside storm fee: exactly one row in the database",
+    "pass": true,
+    "evidence": "[[\"01a10141-32a7-735f-96a4-194c048f55b2\",\"1\",\"\",\"\",\"\",\"1.250000\",\"2026-01-01\",\"\",\"f\",\"\",\"Riverside storm fee\",\"\"]]"
+  },
+  {
+    "phase": 1,
+    "step": "6",
+    "what": "Water conservation fee: exactly one row in the database",
+    "pass": true,
+    "evidence": "[[\"01a10141-4d3c-7828-ad11-46a7f23a85be\",\"1\",\"\",\"\",\"0.050000\",\"\",\"2026-01-01\",\"\",\"f\",\"\",\"Water conservation fee\",\"\"]]"
+  },
+  {
+    "phase": 1,
+    "step": 8,
+    "what": "Save draft & exit stores a DRAFT (DEF-RAT-9275)",
+    "pass": true,
+    "evidence": "[[\"01a10141-5a72-7505-b684-ddac3ecf1432\",\"t\",\"City permit fee (draft)\"]]"
+  },
+  {
+    "phase": 1,
+    "step": "1",
+    "what": "State sales tax: list row with v1, From, To, GL, premises",
+    "pass": true,
+    "evidence": "v1 \u00b7 2026-01-01 \u2192 No end \u00b7 GL 2200-01 Tax payable \u2014 Local \u00b7 Bexar County \u00b7 premises 9 of 80"
+  },
+  {
+    "phase": 1,
+    "step": "2",
+    "what": "County utility tax: list row with v1, From, To, GL, premises",
+    "pass": true,
+    "evidence": "v1 \u00b7 2026-01-01 \u2192 No end \u00b7 GL 2200-01 Tax payable \u2014 Local \u00b7 Bexar County \u00b7 premises 72 of 80"
+  },
+  {
+    "phase": 1,
+    "step": "3",
+    "what": "City franchise fee: list row with v1, From, To, GL, premises",
+    "pass": true,
+    "evidence": "v1 \u00b7 2026-09-01 \u2192 No end \u00b7 GL 2200-01 Tax payable \u2014 Local \u00b7 Bexar County \u00b7 premises 72 of 80"
+  },
+  {
+    "phase": 1,
+    "step": "5",
+    "what": "Riverside storm fee: list row with v1, From, To, GL, premises",
+    "pass": true,
+    "evidence": "v1 \u00b7 2026-01-01 \u2192 No end \u00b7 GL 2200-01 Tax payable \u2014 Local \u00b7 Bexar County \u00b7 premises 0 of 80"
+  },
+  {
+    "phase": 1,
+    "step": "6",
+    "what": "Water conservation fee: list row with v1, From, To, GL, premises",
+    "pass": true,
+    "evidence": "v1 \u00b7 2026-01-01 \u2192 No end \u00b7 GL 2200-01 Tax payable \u2014 Local \u00b7 Bexar County \u00b7 premises 58 of 80"
+  },
+  {
+    "phase": 3,
+    "step": 1,
+    "what": "State sales tax: header and sections show what was entered",
+    "pass": true,
+    "evidence": "shown: State sales tax \u00b7 ST-SALES \u00b7 v1 \u00b7 State sales tax \u00b7 TX Comptroller"
+  },
+  {
+    "phase": 3,
+    "step": 1,
+    "what": "State sales tax: API read equals what was entered",
+    "pass": true,
+    "evidence": "code ST-SALES \u00b7 filed monthly \u00b7 due 20th_next_month \u00b7 boundary everywhere \u00b7 services [] \u00b7 classes [\"commercial\",\"industrial\"] \u00b7 rate 0.062500"
+  },
+  {
+    "phase": 3,
+    "step": 1,
+    "what": "County utility tax: header and sections show what was entered",
+    "pass": true,
+    "evidence": "shown: County utility tax \u00b7 CNTY-UTIL \u00b7 v1 \u00b7 County tax \u00b7 Wapello"
+  },
+  {
+    "phase": 3,
+    "step": 1,
+    "what": "County utility tax: API read equals what was entered",
+    "pass": true,
+    "evidence": "code CNTY-UTIL \u00b7 filed quarterly \u00b7 due last_day_next_month \u00b7 boundary everywhere \u00b7 services [\"water\",\"sewer\"] \u00b7 classes [] \u00b7 rate 0.020000"
+  },
+  {
+    "phase": 3,
+    "step": 1,
+    "what": "City franchise fee: header and sections show what was entered",
+    "pass": true,
+    "evidence": "shown: City franchise fee \u00b7 CITY-FRAN \u00b7 v1 \u00b7 City franchise fee \u00b7 Ottumwa \u00b7 Over 20%"
+  },
+  {
+    "phase": 3,
+    "step": 1,
+    "what": "City franchise fee: API read equals what was entered",
+    "pass": true,
+    "evidence": "code CITY-FRAN \u00b7 filed monthly \u00b7 due 15th_next_month \u00b7 boundary city_limits \u00b7 services [] \u00b7 classes [] \u00b7 rate 1.500000"
+  },
+  {
+    "phase": 3,
+    "step": 1,
+    "what": "Riverside storm fee: header and sections show what was entered",
+    "pass": true,
+    "evidence": "shown: Riverside storm fee \u00b7 SD-STORM \u00b7 v1 \u00b7 Storm fee"
+  },
+  {
+    "phase": 3,
+    "step": 1,
+    "what": "Riverside storm fee: API read equals what was entered",
+    "pass": true,
+    "evidence": "code SD-STORM \u00b7 filed monthly \u00b7 due 25th_next_month \u00b7 boundary everywhere \u00b7 services [\"storm_water\"] \u00b7 classes [\"residential\"] \u00b7 rate 1.250000"
+  },
+  {
+    "phase": 3,
+    "step": 1,
+    "what": "Water conservation fee: header and sections show what was entered",
+    "pass": true,
+    "evidence": "shown: Water conservation fee \u00b7 ST-CONS \u00b7 v1 \u00b7 Conservation fee \u00b7 TX Comptroller"
+  },
+  {
+    "phase": 3,
+    "step": 1,
+    "what": "Water conservation fee: API read equals what was entered",
+    "pass": true,
+    "evidence": "code ST-CONS \u00b7 filed quarterly \u00b7 due 30_days_after_quarter \u00b7 boundary everywhere \u00b7 services [\"water\"] \u00b7 classes [\"residential\",\"commercial\"] \u00b7 rate 0.050000"
+  },
+  {
+    "phase": 3,
+    "step": 2,
+    "what": "Over 20% banner counts 1.3; pill shows; MM/DD/YYYY dates",
+    "pass": true,
+    "evidence": "8 taxes & fees \u00b7 effective 10/01/2026 History + New tax or fee Plans Rate schedules Charge codes Discounts Taxes & fees 1 tax charges over 20%."
+  },
+  {
+    "phase": 5,
+    "step": 4,
+    "what": "BL-2610-000101: one line per tax, State sales tax $3.75, County utility tax $1.20, City franchise fee $90.00, Water conservation fee $0.60",
+    "pass": true,
+    "evidence": "Tax City franchise fee 90.00 \u00b7 Tax County utility tax 1.20 \u00b7 Tax State sales tax 3.75 \u00b7 Tax Water conservation fee 0.60 \u00b7 total 155.55"
+  },
+  {
+    "phase": 4,
+    "step": 1,
+    "what": "same row updated, still v1, rate and reach locked",
+    "pass": true,
+    "evidence": "rows 1, id same true, v1, name Wapello County utility tax; locked note: Rate and reach"
+  },
+  {
+    "phase": 4,
+    "step": 1,
+    "what": "Audit: before \u2192 after for the change",
+    "pass": true,
+    "evidence": "[{\"before\":{\"name\":\"County utility tax\",\"due_date_rule\":\"last_day_next_month\",\"filing_reminder_recipient\":\"county@brazosbend.example\"},\"after\":{\"name\":\"Wapello County utility tax\",\"due_date_rule\":\"20th_next_month\",\"filing_reminder_recipient\":\"treasurer@wapello.example\"}}]"
+  },
+  {
+    "phase": 4,
+    "step": 4,
+    "what": "a new rate before the version's start is refused by name",
+    "pass": true,
+    "evidence": "Must be after 01/01/2026."
+  },
+  {
+    "phase": 4,
+    "step": 4,
+    "what": "the server refuses it too, by name",
+    "pass": true,
+    "evidence": "422 rating.taxes.new_rate_too_early (422 is this API's validation status; the check first asked for 400 \u2014 the check was wrong, not the product)"
+  },
+  {
+    "phase": 4,
+    "step": 2,
+    "what": "What is taxed, Discounts and Rounding are open (image 28, DEF-RAT-9301)",
+    "pass": true,
+    "evidence": "discounts true \u00b7 rounding true"
+  },
+  {
+    "phase": 4,
+    "step": 2,
+    "what": "v1 ends 10/31/2026, v2 starts 11/01/2026, two rows, nothing deleted",
+    "pass": true,
+    "evidence": "[[\"1\",\"0.062500\",\"2026-01-01\",\"2026-10-31\"],[\"2\",\"0.065000\",\"2026-11-01\",\"\"]]"
+  },
+  {
+    "phase": 4,
+    "step": 2,
+    "what": "header shows Next: 6.50% from 11/01/2026",
+    "pass": true,
+    "evidence": "Next: 6.50% from 11/01/2026 Edit More \u25be Overview Plans7 Audit RATE 6.25% of the taxed amount PREMISES 9 of 80 PLANS 7 using it COLLECTED \u2014 Not counted yet Rate and scope Charged as A percentage of the bill Rate 6.25% What is taxed Usage charges, Base charges Services All services Customer classes Commercial, Industrial Boundary Everywhere this utility serves Starts 01/01/2026 Ends 10/31/2026 Discounts "
+  },
+  {
+    "phase": 4,
+    "step": 3,
+    "what": "reason required",
+    "pass": true,
+    "evidence": "Enter the reason."
+  },
+  {
+    "phase": 4,
+    "step": 3,
+    "what": "v1 superseded and kept, v2 the same dates at 3%",
+    "pass": true,
+    "evidence": "[[\"1\",\"1.500000\",\"2026-09-01\",\"\",\"superseded\"],[\"2\",\"0.030000\",\"2026-09-01\",\"\",\"live\"]]"
+  },
+  {
+    "phase": 4,
+    "step": 3,
+    "what": "Over 20% banner and pill gone",
+    "pass": true,
+    "evidence": "none"
+  },
+  {
+    "phase": 4,
+    "step": 5,
+    "what": "county: versions table and Audit carry every version and change, with who",
+    "pass": true,
+    "evidence": "versions v1 2.00% \u00b7 audit names Dana: true"
+  },
+  {
+    "phase": 4,
+    "step": 5,
+    "what": "sales: versions table and Audit carry every version and change, with who",
+    "pass": true,
+    "evidence": "versions v2 6.50%, v1 6.25% \u00b7 audit names Dana: true"
+  },
+  {
+    "phase": 4,
+    "step": 5,
+    "what": "city: versions table and Audit carry every version and change, with who",
+    "pass": true,
+    "evidence": "versions v2 3.00%, v1 150.00% \u00b7 audit names Dana: true"
+  },
+  {
+    "phase": 4,
+    "step": 5,
+    "what": "Audit shows the correction's reason",
+    "pass": true,
+    "evidence": "Typed as 150%"
+  },
+  {
+    "phase": 5,
+    "step": 1,
+    "what": "1.1 on 10/31/2026 and 11/01/2026: one live row each",
+    "pass": true,
+    "evidence": "10/31 1 \u00b7 11/01 1"
+  },
+  {
+    "phase": 5,
+    "step": 2,
+    "what": "1.3 after the fix: one live row (the 3%)",
+    "pass": true,
+    "evidence": "rows 1"
+  },
+  {
+    "phase": 5,
+    "step": 3,
+    "what": "1.2 after the rename: one row, the same row",
+    "pass": true,
+    "evidence": "rows 1"
+  },
+  {
+    "phase": 5,
+    "step": 5,
+    "what": "BL-2611-000102: one line per tax, State sales tax $3.90, County utility tax $1.20, City franchise fee $1.80, Water conservation fee $0.60",
+    "pass": true,
+    "evidence": "Tax City franchise fee 1.80 \u00b7 Tax State sales tax 3.90 \u00b7 Tax Wapello County utility tax 1.20 \u00b7 Tax Water conservation fee 0.60 \u00b7 total 67.50"
+  },
+  {
+    "phase": 5,
+    "step": "5_october_again",
+    "what": "BL-2610-000101: one line per tax, State sales tax $3.75",
+    "pass": true,
+    "evidence": "Tax City franchise fee 90.00 \u00b7 Tax County utility tax 1.20 \u00b7 Tax State sales tax 3.75 \u00b7 Tax Water conservation fee 0.60 \u00b7 total 155.55"
+  },
+  {
+    "phase": 5,
+    "step": 6,
+    "what": "BL-2610-000101: one line per tax, City franchise fee $90.00",
+    "pass": true,
+    "evidence": "Tax City franchise fee 90.00 \u00b7 Tax County utility tax 1.20 \u00b7 Tax State sales tax 3.75 \u00b7 Tax Water conservation fee 0.60 \u00b7 total 155.55"
+  },
+  {
+    "phase": 6,
+    "step": 1,
+    "what": "State sales tax: Plans tab rows with real account counts",
+    "pass": true,
+    "evidence": "Industrial: 0 accounts / 1 units \u00b7 Residential Standard: 0 accounts / 7 units \u00b7 Sample \u2014 Commercial: 2 accounts / 2 units \u00b7 Sample \u2014 Industrial: 1 accounts / 1 units \u00b7 Sample \u2014 Residential: 67 accounts / 75 units \u00b7 Small Commercial: 0 accounts / 2 units \u00b7 Tax walk \u00b7 Commercial water: 1 accounts / 1 units"
+  },
+  {
+    "phase": 6,
+    "step": 1,
+    "what": "County utility tax: Plans tab rows with real account counts",
+    "pass": true,
+    "evidence": "Industrial: 0 accounts / 1 units \u00b7 Residential Standard: 0 accounts / 7 units \u00b7 Sample \u2014 Commercial: 2 accounts / 2 units \u00b7 Sample \u2014 Industrial: 1 accounts / 1 units \u00b7 Sample \u2014 Residential: 67 accounts / 75 units \u00b7 Small Commercial: 0 accounts / 2 units \u00b7 Tax walk \u00b7 Commercial water: 1 accounts / 1 units"
+  },
+  {
+    "phase": 6,
+    "step": 1,
+    "what": "City franchise fee: Plans tab rows with real account counts",
+    "pass": true,
+    "evidence": "Industrial: 0 accounts / 1 units \u00b7 Residential Standard: 0 accounts / 7 units \u00b7 Sample \u2014 Commercial: 2 accounts / 2 units \u00b7 Sample \u2014 Industrial: 1 accounts / 1 units \u00b7 Sample \u2014 Residential: 67 accounts / 75 units \u00b7 Small Commercial: 0 accounts / 2 units \u00b7 Tax walk \u00b7 Commercial water: 1 accounts / 1 units"
+  },
+  {
+    "phase": 6,
+    "step": 1,
+    "what": "Riverside storm fee: Plans tab rows with real account counts",
+    "pass": true,
+    "evidence": "Industrial: 0 accounts / 1 units \u00b7 Residential Standard: 0 accounts / 7 units \u00b7 Sample \u2014 Commercial: 2 accounts / 2 units \u00b7 Sample \u2014 Industrial: 1 accounts / 1 units \u00b7 Sample \u2014 Residential: 67 accounts / 75 units \u00b7 Small Commercial: 0 accounts / 2 units"
+  },
+  {
+    "phase": 6,
+    "step": 1,
+    "what": "Water conservation fee: Plans tab rows with real account counts",
+    "pass": true,
+    "evidence": "Industrial: 0 accounts / 1 units \u00b7 Residential Standard: 0 accounts / 7 units \u00b7 Sample \u2014 Commercial: 2 accounts / 2 units \u00b7 Sample \u2014 Industrial: 1 accounts / 1 units \u00b7 Sample \u2014 Residential: 67 accounts / 75 units \u00b7 Small Commercial: 0 accounts / 2 units \u00b7 Tax walk \u00b7 Commercial water: 1 accounts / 1 units"
+  },
+  {
+    "phase": 6,
+    "step": 2,
+    "what": "Plans tab count equals the plans listed (DEF-RAT-9304)",
+    "pass": true,
+    "evidence": "tab 7 \u00b7 foot 7"
+  },
+  {
+    "phase": 6,
+    "step": 2,
+    "what": "add and remove both in Audit",
+    "pass": true,
+    "evidence": "tax.detached_from_plan, tax.attached_to_plan, tax.detached_from_plan, tax.attached_to_plan, tax.attached_to_plan, tax.created"
+  },
+  {
+    "phase": 6,
+    "step": 3,
+    "what": "Audit after phase 4: who, when, what, before \u2192 after, reason",
+    "pass": true,
+    "evidence": "2026-10-03T10:17 Dana Whitfield tax.new_rate_created | 2026-10-03T10:17 Dana Whitfield tax.ended_for_new_rate | 2026-10-03T10:14 Dana Whitfield tax.attached_to_plan | 2026-10-03T10:13 Dana Whitfield tax.created"
+  },
+  {
+    "phase": 7,
+    "step": 1,
+    "what": "Utility B sees none of A's taxes on screen",
+    "pass": true,
+    "evidence": "none shown"
+  },
+  {
+    "phase": 7,
+    "step": 1,
+    "what": "the server returns none of A's taxes to B",
+    "pass": true,
+    "evidence": "status 200, rows 0"
+  },
+  {
+    "phase": 7,
+    "step": 1,
+    "what": "opening A's tax by id from B gives nothing",
+    "pass": true,
+    "evidence": "GET taxes/{A} \u2192 404 \u00b7 audit \u2192 404"
+  },
+  {
+    "phase": 7,
+    "step": 1,
+    "what": "A's tax address on B shows nothing of A's",
+    "pass": true,
+    "evidence": "Failed We couldn't load this definition. We could not find that. It may have been removed, or the address may be wrong. Retry Download error report Cancel"
+  },
+  {
+    "phase": 7,
+    "step": 1,
+    "what": "B's authority accounts list none of A's",
+    "pass": true,
+    "evidence": "rows 0"
+  },
+  {
+    "phase": 7,
+    "step": 2,
+    "what": "es-MX: no English left on list and details (spot check)",
+    "pass": true,
+    "evidence": "none of the probe words"
+  },
+  {
+    "phase": 7,
+    "step": 2,
+    "what": "ja-JP: no English left on list and details (spot check)",
+    "pass": true,
+    "evidence": "none of the probe words"
+  },
+  {
+    "phase": 1,
+    "step": 8,
+    "what": "Edit on a draft reopens it filled (DEF-RAT-9305)",
+    "pass": true,
+    "evidence": "http://127.0.0.1:8792/brazosbend/plans-rates/taxes-fees/new?draft=01a10141-5a72-7505-b684-ddac3ecf1432"
+  },
+  {
+    "phase": 1,
+    "step": 8,
+    "what": "nothing typed before the draft was saved is lost",
+    "pass": true,
+    "evidence": "3.00"
+  },
+  {
+    "phase": 1,
+    "step": 8,
+    "what": "the SAME row, no longer a draft, one row",
+    "pass": true,
+    "evidence": "[[\"01a10141-5a72-7505-b684-ddac3ecf1432\",\"f\",\"City permit fee\",\"CITY-PERMIT\",\"2026-11-01\"]]"
+  },
+  {
+    "phase": 3,
+    "step": "dup",
+    "what": "Duplicate opens the New form filled from the tax",
+    "pass": true,
+    "evidence": "Wapello County utility tax \u00b7 http://127.0.0.1:8792/brazosbend/plans-rates/taxes-fees/new?duplicate=01a10140-fe14-7449-91c2-bc3a34a12a06"
+  },
+  {
+    "phase": 3,
+    "step": "dup",
+    "what": "the code is cleared (one code names one tax)",
+    "pass": true,
+    "evidence": ""
+  },
+  {
+    "phase": 3,
+    "step": "dup",
+    "what": "a NEW tax: its own row, v1, its own chain; the original untouched",
+    "pass": true,
+    "evidence": "[[\"01a1014e-df40-7301-aded-8d815c59c9cd\",\"1\",\"t\",\"0.020000\",\"[\\\"water\\\", \\\"sewer\\\"]\"]]"
+  },
+  {
+    "phase": 4,
+    "step": 2,
+    "what": "a new rate saves a changed rounding on v2 only (DEF-RAT-9301)",
+    "pass": true,
+    "evidence": "[[\"1\",\"0.050000\",\"half_up\",\"2026-01-01\",\"2026-12-31\"],[\"2\",\"0.060000\",\"half_even\",\"2027-01-01\",\"\"]] \u00b7 review lists rounding: true"
+  },
+  {
+    "phase": 1,
+    "step": 5,
+    "what": "THIS TAX panel reads a dash, not $0.00, for a per-meter tax (DEF-RAT-9306)",
+    "pass": true,
+    "evidence": "\u2014"
+  }
+]

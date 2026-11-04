@@ -1,0 +1,190 @@
+{
+  "order_id": "01a106a9-8fdd-773d-9efe-8f68ec7147b2",
+  "order_no": "WO-0040",
+  "template_id": "01a106a7-4a74-7038-b2b6-fd64a7e93c94",
+  "template_version": 2,
+  "safety": [
+    {
+      "id": "01a106a9-8fe3-7881-9561-7b354fc3a46a",
+      "seq": 1,
+      "text": "Shut the curb stop before breaking the union",
+      "is_mandatory": true,
+      "ticked_at": "2026-10-04T11:25:39.449950+00:00",
+      "ticked_by": "01a106a6-df9f-772d-9fa6-ec19cc03577c",
+      "ticked_by_name": "Dana Whitfield"
+    },
+    {
+      "id": "01a106a9-8fe3-713e-a47b-6e693dc7bd06",
+      "seq": 2,
+      "text": "Check the pit for standing water before reaching in",
+      "is_mandatory": true,
+      "ticked_at": "2026-10-04T11:25:39.461462+00:00",
+      "ticked_by": "01a106a6-df9f-772d-9fa6-ec19cc03577c",
+      "ticked_by_name": "Dana Whitfield"
+    }
+  ],
+  "safety_lock": {
+    "locked": false,
+    "remaining": 0,
+    "first_outstanding": null,
+    "ticked": 2,
+    "total": 2,
+    "mandatory_total": 2
+  },
+  "tasks": [
+    {
+      "id": "01a106a9-8fe7-76a3-92e7-c8a577cdaad2",
+      "seq": 1,
+      "title": "Confirm the pit is the right address",
+      "instruction": null,
+      "est_minutes": 5,
+      "photo_required": false,
+      "is_mandatory": true,
+      "ticked_at": "2026-10-04T11:25:39.473908+00:00",
+      "ticked_by": "01a106a6-df9f-772d-9fa6-ec19cc03577c",
+      "ticked_by_name": "Dana Whitfield",
+      "photo_attachment_id": null
+    },
+    {
+      "id": "01a106a9-8fe7-7477-9cbe-e84f60491992",
+      "seq": 2,
+      "title": "Fit the meter with the flow arrow in the direction of supply",
+      "instruction": null,
+      "est_minutes": 20,
+      "photo_required": false,
+      "is_mandatory": true,
+      "ticked_at": "2026-10-04T11:25:39.485574+00:00",
+      "ticked_by": "01a106a6-df9f-772d-9fa6-ec19cc03577c",
+      "ticked_by_name": "Dana Whitfield",
+      "photo_attachment_id": null
+    },
+    {
+      "id": "01a106a9-8fe7-7f33-ba56-7fe68148840a",
+      "seq": 3,
+      "title": "Charge the line and check for weeps at both unions",
+      "instruction": null,
+      "est_minutes": 10,
+      "photo_required": false,
+      "is_mandatory": true,
+      "ticked_at": "2026-10-04T11:25:39.497503+00:00",
+      "ticked_by": "01a106a6-df9f-772d-9fa6-ec19cc03577c",
+      "ticked_by_name": "Dana Whitfield",
+      "photo_attachment_id": null
+    },
+    {
+      "id": "01a106a9-8fe7-7aac-af35-a48bebbf7801",
+      "seq": 4,
+      "title": "Seal and record the seal number",
+      "instruction": null,
+      "est_minutes": 5,
+      "photo_required": true,
+      "is_mandatory": true,
+      "ticked_at": "2026-10-04T11:25:39.508709+00:00",
+      "ticked_by": "01a106a6-df9f-772d-9fa6-ec19cc03577c",
+      "ticked_by_name": "Dana Whitfield",
+      "photo_attachment_id": null
+    },
+    {
+      "id": "01a106a9-8fe7-7641-bfc8-af91398e3792",
+      "seq": 5,
+      "title": "Photograph the meter in the pit",
+      "instruction": null,
+      "est_minutes": 5,
+      "photo_required": true,
+      "is_mandatory": true,
+      "ticked_at": "2026-10-04T11:25:39.520399+00:00",
+      "ticked_by": "01a106a6-df9f-772d-9fa6-ec19cc03577c",
+      "ticked_by_name": "Dana Whitfield",
+      "photo_attachment_id": null
+    }
+  ],
+  "tasks_total": 5,
+  "tasks_ticked": 5,
+  "tasks_est_minutes": 45,
+  "readings": [
+    {
+      "id": "01a106a9-8fef-75f8-ab9c-179c4882d915",
+      "seq": 1,
+      "prompt": "Meter number as fitted",
+      "unit_of_measure": "text",
+      "min_value": null,
+      "max_value": null,
+      "required": true,
+      "photo_required": false,
+      "posts_as_meter_read": true,
+      "value": null,
+      "kind": "number",
+      "value_text": null,
+      "captured_at": null,
+      "photo_attachment_id": null,
+      "in_range": null
+    },
+    {
+      "id": "01a106a9-8fef-7929-b026-a141666cde06",
+      "seq": 2,
+      "prompt": "Opening register",
+      "unit_of_measure": "gal",
+      "min_value": "0.0000",
+      "max_value": "99999999.0000",
+      "required": true,
+      "photo_required": false,
+      "posts_as_meter_read": true,
+      "value": null,
+      "kind": "number",
+      "value_text": null,
+      "captured_at": null,
+      "photo_attachment_id": null,
+      "in_range": null
+    }
+  ],
+  "materials": [
+    {
+      "id": "01a106a9-8feb-7820-a53c-ea962d0d1d29",
+      "part_id": "01a106a9-8cdc-7207-9789-41fe1c65e7f0",
+      "part_no": "GSK-58",
+      "part_name": "Meter gasket 5/8\"",
+      "planned_qty": "2.0000",
+      "used_qty": "2.0000",
+      "unit_of_measure": "each",
+      "unplanned": false
+    },
+    {
+      "id": "01a106a9-8feb-757a-8354-60c72538da55",
+      "part_id": "01a106a9-8cc9-7d86-b426-ef4f76ef1a64",
+      "part_no": "MTR-W58",
+      "part_name": "Water meter 5/8\" positive displacement",
+      "planned_qty": "1.0000",
+      "used_qty": "1.0000",
+      "unit_of_measure": "each",
+      "unplanned": false
+    },
+    {
+      "id": "01a106a9-8feb-7045-a88b-08a1fd7df819",
+      "part_id": "01a106a9-8ce1-71a2-918b-ef3e0855c775",
+      "part_no": "SEAL-WIRE",
+      "part_name": "Meter seal, wire and tag",
+      "planned_qty": "1.0000",
+      "used_qty": "1.0000",
+      "unit_of_measure": "each",
+      "unplanned": false
+    }
+  ],
+  "help": [
+    {
+      "id": "01a106a9-8ff2-70ac-be18-534f0940beda",
+      "seq": 1,
+      "kind": "document",
+      "label": "Water meter setting standard",
+      "ref": "STD-WA-006"
+    }
+  ],
+  "details": {
+    "access_notes": null,
+    "hazards": null,
+    "gate_code": null,
+    "show_account_summary": true,
+    "show_asset_card": true,
+    "show_access_notes": true,
+    "show_appointment": true
+  }
+}

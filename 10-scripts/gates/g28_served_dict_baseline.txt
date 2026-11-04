@@ -1,0 +1,34 @@
+# G28 Part 2b baseline — every string an API module serialises that still names
+# an internal reference (DEF-335, 2026-08-19).
+#
+# ⚠ THIS FILE MUST ONLY EVER SHRINK. It is not an allowlist and it is not a
+# decision that these sentences are acceptable — it is the count that existed
+# the hour Part 2b was widened from an allowlist to a denylist. A gate that is
+# RED from birth earns a `# noqa`, not a fix, so the 27 it found on day one are
+# recorded here and the 28th fails the build.
+#
+# THE TWO THE PO PHOTOGRAPHED ARE ABSENT BY CONSTRUCTION: templates_api's
+# `set_default_reason` and `language_selection_reason` were rewritten in the
+# same commit, so 29 were found and 27 are baselined.
+#
+# ⚠ KEYED ON file :: field :: patterns :: text — NEVER on a line number, which
+# churns whenever anything above it is edited. To clear a line: rewrite the
+# sentence as customer English, move the ids to a `*_br_ref` machine field, and
+# DELETE the line from here. The gate prints how many are already fixed.
+06-backend/apps/billing/api.py :: detail :: PO ruling or quote :: `bill_run_releases.summary` records what was SHOWN at sign-off, and this route stores the summary the SERVER c
+06-backend/apps/billing/api.py :: detail :: rule or story id/HTTP route :: has no authorised release, so nothing may be issued. The gate is five separately recorded facts — compliance,
+06-backend/apps/billing/budget_api.py :: eligible_unavailable :: rule or story id/register id :: BR-RAT-043 puts budget-billing eligibility on the rate PLAN and no endpoint publishes that flag (OQ-237). The
+06-backend/apps/billing/corrections_api.py :: detail :: module path or source file :: correction reasons are REFERENCE DATA a tenant may extend (r10 #13) and that lookup table is not built. `apps/
+06-backend/apps/billing/corrections_api.py :: detail :: rule or story id/HTTP route :: a bill that should never have existed is VOIDED, not corrected, and `POST /invoices/{id}/void` is US-BIL-027's
+06-backend/apps/ledger/chart_api.py :: wanted_read :: HTTP route :: 11b §2.10 names PUT /ledger/gl-mappings. Half of what it would write is tenancy's tenant_services.revenue_acco
+06-backend/apps/ledger/cost_api.py :: reason :: register id :: The CSV and PDF download of this reconciliation is not built, because WHERE this view lives has not been ruled
+06-backend/apps/notifications/api.py :: detail :: PO ruling or quote :: no certified-mail tracking number appears on any row. The number arrives on the print provider's response at d
+06-backend/apps/notifications/api.py :: detail :: rule or story id/register id :: this copy goes to the address SNAPSHOTTED when the original was queued, and renders the template version pinne
+06-backend/apps/notifications/in_app_api.py :: channel_note :: rule or story id :: in-app is delivered by this platform and needs no integration. Email, SMS and print still have no provider ada
+06-backend/apps/notifications/settings_api.py :: merge_fields_reason :: rule or story id :: One footer prints on all three disconnection notices, and each of those carries its own merge fields (BR-NOT-0
+06-backend/apps/notifications/settings_api.py :: cannot_edit_reason :: rule or story id :: Only a System Admin can change these clauses. They are the text telling a customer their legal rights before t
+06-backend/apps/notifications/settings_api.py :: designer_cut_reason :: PO ruling or quote :: the S91-S96 template designer was CUT from R2 by the PO on 2026-08-16 ("why cant we give 5 differnt tempaltes
+06-backend/apps/notifications/templates_api.py :: create_action_reason :: register id :: A template CLASS is platform vocabulary: its merge-field whitelist is what makes a body checkable, and a class
+06-backend/apps/notifications/templates_api.py :: detail :: rule or story id :: is unchanged and every message pinned to it still renders from it (BR-BIL-026). Publish the draft to make it l
+06-backend/apps/notifications/templates_api.py :: resolution_after :: rule or story id :: Resolution now falls through to the (default, default) variant (BR-NOT-006: missing variant → tenant-default f
+06-backend/apps/notifications/templates_api.py :: detail :: rule or story id/register id :: Name the version to act on, by id. There is no "latest" path anywhere in this module (BR-BIL-026, US-NOT-005 T

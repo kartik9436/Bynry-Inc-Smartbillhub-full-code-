@@ -1,0 +1,14 @@
+{
+  "name": "SMART360 Next Field",
+  "short_name": "Field",
+  "description": "Today's jobs, the job in hand, and the help pack — with or without a signal.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#1f4e79",
+  "icons": [
+    { "src": "/work-mobile-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

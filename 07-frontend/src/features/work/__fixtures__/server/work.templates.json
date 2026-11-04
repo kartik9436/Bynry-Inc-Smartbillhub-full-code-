@@ -1,0 +1,240 @@
+{
+  "count": 6,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": "01a106a7-49f9-7bea-a27b-d2f2a523b295",
+      "template_no": "ST-0001",
+      "name": "Service drop",
+      "service": {
+        "id": "01a106a0-01e3-7291-91d6-7f9c5cca756f",
+        "code": "electric",
+        "name": "Electric"
+      },
+      "scope": "per_premise",
+      "sequence": 1,
+      "job_type": null,
+      "skill": {
+        "id": "01a106a6-e35a-79de-9611-12daf7250a9c",
+        "name": "Electric I"
+      },
+      "safety_kit": {
+        "id": "01a106a6-e36b-7bf3-8c4a-0914360e7b7d",
+        "name": "Traffic control"
+      },
+      "crew_size": 2,
+      "est_duration": "9000.0",
+      "is_gate": false,
+      "no_gate_reason": null,
+      "is_sample": true,
+      "active": true,
+      "version": 2,
+      "updated_at": "2026-10-04T12:29:35.918124Z",
+      "est_duration_minutes": 150,
+      "contents": {
+        "tasks": 6,
+        "parts": 2,
+        "readings": 1,
+        "safety": 3,
+        "help": 3
+      },
+      "status": "published"
+    },
+    {
+      "id": "01a106a7-4a20-764c-8712-43529ccad428",
+      "template_no": "ST-0002",
+      "name": "Meter set",
+      "service": {
+        "id": "01a106a0-01e3-7291-91d6-7f9c5cca756f",
+        "code": "electric",
+        "name": "Electric"
+      },
+      "scope": "per_asset",
+      "sequence": 2,
+      "job_type": null,
+      "skill": {
+        "id": "01a106a6-e35d-7da4-8d6a-051afcad8aa3",
+        "name": "Meter I"
+      },
+      "safety_kit": {
+        "id": "01a106a6-e366-730b-8959-469d2a313b8e",
+        "name": "Basic PPE"
+      },
+      "crew_size": 1,
+      "est_duration": "2700.0",
+      "is_gate": true,
+      "no_gate_reason": null,
+      "is_sample": true,
+      "active": true,
+      "version": 2,
+      "updated_at": "2026-10-04T11:25:37.789026Z",
+      "est_duration_minutes": 45,
+      "contents": {
+        "tasks": 4,
+        "parts": 2,
+        "readings": 2,
+        "safety": 2,
+        "help": 1
+      },
+      "status": "published"
+    },
+    {
+      "id": "01a106a7-4a92-795e-aff1-e707a5dd5923",
+      "template_no": "ST-0006",
+      "name": "Meter exchange — residential",
+      "service": {
+        "id": "01a106a0-01e5-76ce-b268-0633d1bf4226",
+        "code": "water",
+        "name": "Water"
+      },
+      "scope": "per_asset",
+      "sequence": 0,
+      "job_type": null,
+      "skill": {
+        "id": "01a106a6-e35d-7da4-8d6a-051afcad8aa3",
+        "name": "Meter I"
+      },
+      "safety_kit": {
+        "id": "01a106a6-e366-730b-8959-469d2a313b8e",
+        "name": "Basic PPE"
+      },
+      "crew_size": 1,
+      "est_duration": "2400.0",
+      "is_gate": false,
+      "no_gate_reason": null,
+      "is_sample": true,
+      "active": true,
+      "version": 2,
+      "updated_at": "2026-10-04T12:29:35.880834Z",
+      "est_duration_minutes": 40,
+      "contents": {
+        "tasks": 6,
+        "parts": 3,
+        "readings": 3,
+        "safety": 2,
+        "help": 3
+      },
+      "status": "published"
+    },
+    {
+      "id": "01a106a7-4a3f-70cc-b36c-41fd45bd3c86",
+      "template_no": "ST-0003",
+      "name": "Site inspection & mark-out",
+      "service": {
+        "id": "01a106a0-01e5-76ce-b268-0633d1bf4226",
+        "code": "water",
+        "name": "Water"
+      },
+      "scope": "per_premise",
+      "sequence": 1,
+      "job_type": null,
+      "skill": {
+        "id": "01a106a6-e356-7f93-9e0b-0a962f336775",
+        "name": "Water I"
+      },
+      "safety_kit": {
+        "id": "01a106a6-e36b-7bf3-8c4a-0914360e7b7d",
+        "name": "Traffic control"
+      },
+      "crew_size": 1,
+      "est_duration": "3600.0",
+      "is_gate": false,
+      "no_gate_reason": null,
+      "is_sample": true,
+      "active": true,
+      "version": 2,
+      "updated_at": "2026-10-04T11:25:37.852933Z",
+      "est_duration_minutes": 60,
+      "contents": {
+        "tasks": 4,
+        "parts": 1,
+        "readings": 2,
+        "safety": 2,
+        "help": 2
+      },
+      "status": "published"
+    },
+    {
+      "id": "01a106a7-4a59-74fb-b1b3-a10e7971c350",
+      "template_no": "ST-0004",
+      "name": "Tap and service line",
+      "service": {
+        "id": "01a106a0-01e5-76ce-b268-0633d1bf4226",
+        "code": "water",
+        "name": "Water"
+      },
+      "scope": "per_unit",
+      "sequence": 2,
+      "job_type": null,
+      "skill": {
+        "id": "01a106a6-e363-723d-96ea-e3d7209bd2a4",
+        "name": "Excavation"
+      },
+      "safety_kit": {
+        "id": "01a106a6-e36a-7bab-8c96-4f740333dc38",
+        "name": "Confined space"
+      },
+      "crew_size": 2,
+      "est_duration": "18000.0",
+      "is_gate": false,
+      "no_gate_reason": null,
+      "is_sample": true,
+      "active": true,
+      "version": 2,
+      "updated_at": "2026-10-04T11:25:37.936041Z",
+      "est_duration_minutes": 300,
+      "contents": {
+        "tasks": 6,
+        "parts": 3,
+        "readings": 2,
+        "safety": 4,
+        "help": 2
+      },
+      "status": "published"
+    },
+    {
+      "id": "01a106a7-4a74-7038-b2b6-fd64a7e93c94",
+      "template_no": "ST-0005",
+      "name": "Meter set",
+      "service": {
+        "id": "01a106a0-01e5-76ce-b268-0633d1bf4226",
+        "code": "water",
+        "name": "Water"
+      },
+      "scope": "per_asset",
+      "sequence": 3,
+      "job_type": null,
+      "skill": {
+        "id": "01a106a6-e35d-7da4-8d6a-051afcad8aa3",
+        "name": "Meter I"
+      },
+      "safety_kit": {
+        "id": "01a106a6-e366-730b-8959-469d2a313b8e",
+        "name": "Basic PPE"
+      },
+      "crew_size": 1,
+      "est_duration": "3000.0",
+      "is_gate": true,
+      "no_gate_reason": null,
+      "is_sample": true,
+      "active": true,
+      "version": 2,
+      "updated_at": "2026-10-04T11:25:38.024571Z",
+      "est_duration_minutes": 50,
+      "contents": {
+        "tasks": 5,
+        "parts": 3,
+        "readings": 2,
+        "safety": 2,
+        "help": 1
+      },
+      "status": "published"
+    }
+  ],
+  "counts": {
+    "published": 6,
+    "draft": 0,
+    "inactive": 0
+  }
+}

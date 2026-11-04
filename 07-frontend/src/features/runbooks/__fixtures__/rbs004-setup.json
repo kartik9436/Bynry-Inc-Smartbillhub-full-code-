@@ -1,0 +1,300 @@
+{
+  "detail": {
+    "activity": [
+      {
+        "actor": {
+          "name": "System_Admin"
+        },
+        "changes": [
+          {
+            "field": "cap",
+            "from": null,
+            "to": 400
+          },
+          {
+            "field": "enabled",
+            "from": true,
+            "to": false
+          }
+        ],
+        "id": 2,
+        "version": 2,
+        "when": "2026-09-06T07:00:00+00:00"
+      },
+      {
+        "actor": {
+          "name": "System_Admin"
+        },
+        "changes": [
+          {
+            "field": "origin",
+            "to": "shipped"
+          }
+        ],
+        "id": 1,
+        "version": 1,
+        "when": "2026-09-06T07:00:00+00:00"
+      }
+    ],
+    "cap": 400,
+    "category": "platform",
+    "current_version": 2,
+    "definition": {
+      "category": "platform",
+      "guards": [],
+      "key": "configuration_check",
+      "kind": "check",
+      "name": "Can we bill?",
+      "parameters": [
+        {
+          "choices": [
+            "blockers_and_warnings",
+            "blockers_only"
+          ],
+          "default": "blockers_and_warnings",
+          "label": "Report",
+          "name": "report",
+          "required": true,
+          "setting_key": null,
+          "type": "enum"
+        },
+        {
+          "choices": [
+            "ladder_is_unbounded"
+          ],
+          "default": "ladder_is_unbounded",
+          "label": "Usage to cover",
+          "name": "usage_to_cover",
+          "required": true,
+          "setting_key": null,
+          "type": "enum"
+        },
+        {
+          "choices": [],
+          "default": false,
+          "label": "Include held accounts",
+          "name": "include_held_accounts",
+          "required": false,
+          "setting_key": null,
+          "type": "toggle"
+        },
+        {
+          "choices": [],
+          "default": true,
+          "label": "Raise work items",
+          "name": "raise_work_items",
+          "required": false,
+          "setting_key": null,
+          "type": "toggle"
+        }
+      ],
+      "ports": [],
+      "requires": null,
+      "steps": [
+        {
+          "key": "services_and_units",
+          "label": "Services and units",
+          "mode": "set",
+          "writes": false
+        },
+        {
+          "key": "reference_data",
+          "label": "Reference data",
+          "mode": "set",
+          "writes": false
+        },
+        {
+          "key": "tax",
+          "label": "Tax",
+          "mode": "set",
+          "writes": false
+        },
+        {
+          "key": "plans_in_force",
+          "label": "Plans in force",
+          "mode": "set",
+          "writes": false
+        },
+        {
+          "key": "rate_coverage",
+          "label": "Rate coverage",
+          "mode": "set",
+          "writes": false
+        },
+        {
+          "key": "account_chain",
+          "label": "Account chain",
+          "mode": "set",
+          "writes": false
+        },
+        {
+          "key": "meters",
+          "label": "Meters",
+          "mode": "set",
+          "writes": false
+        },
+        {
+          "key": "reads_and_windows",
+          "label": "Reads and windows",
+          "mode": "set",
+          "writes": false
+        },
+        {
+          "key": "documents",
+          "label": "Documents",
+          "mode": "set",
+          "writes": false
+        },
+        {
+          "key": "books",
+          "label": "Books",
+          "mode": "set",
+          "writes": false
+        }
+      ],
+      "subject_type": "tenant",
+      "tags": [
+        "Plans & Rates",
+        "Service points"
+      ],
+      "triggers": [
+        "manual"
+      ],
+      "unit_of_work": "config graph"
+    },
+    "dry_run_only": false,
+    "enabled": false,
+    "gate_mode": "approve_each_run",
+    "guards": [],
+    "key": "configuration_check",
+    "kind": "check",
+    "last_run": {
+      "counts": {
+        "blocked": 3,
+        "clean": 7
+      },
+      "finished_at": "2026-09-06T07:00:00+00:00",
+      "id": "00000000-0000-4000-8000-000000000000",
+      "mode": "dry",
+      "started_at": "2026-09-06T07:00:00+00:00",
+      "status": "done",
+      "took_seconds": 42.0,
+      "trigger": "manual"
+    },
+    "name": "Can we bill?",
+    "open_items": 0,
+    "origin": "shipped",
+    "parameters": [
+      {
+        "choices": [
+          "blockers_and_warnings",
+          "blockers_only"
+        ],
+        "domain": null,
+        "is_set": false,
+        "label": "Report",
+        "multi": false,
+        "name": "report",
+        "required": true,
+        "setting_key": null,
+        "type": "enum",
+        "value": "blockers_and_warnings",
+        "value_labels": {}
+      },
+      {
+        "choices": [
+          "ladder_is_unbounded"
+        ],
+        "domain": null,
+        "is_set": false,
+        "label": "Usage to cover",
+        "multi": false,
+        "name": "usage_to_cover",
+        "required": true,
+        "setting_key": null,
+        "type": "enum",
+        "value": "ladder_is_unbounded",
+        "value_labels": {}
+      },
+      {
+        "choices": [],
+        "domain": null,
+        "is_set": false,
+        "label": "Include held accounts",
+        "multi": false,
+        "name": "include_held_accounts",
+        "required": false,
+        "setting_key": null,
+        "type": "toggle",
+        "value": false,
+        "value_labels": {}
+      },
+      {
+        "choices": [],
+        "domain": null,
+        "is_set": false,
+        "label": "Raise work items",
+        "multi": false,
+        "name": "raise_work_items",
+        "required": false,
+        "setting_key": null,
+        "type": "toggle",
+        "value": true,
+        "value_labels": {}
+      }
+    ],
+    "ports": [],
+    "requires": null,
+    "roles": [
+      "system_admin"
+    ],
+    "schedule": {
+      "cron": null,
+      "event_kind": null,
+      "next_run": null,
+      "timezone": "UTC",
+      "trigger_kind": "manual"
+    },
+    "subject_type": "tenant",
+    "tags": [
+      "Plans & Rates",
+      "Service points"
+    ],
+    "template_key": "configuration_check",
+    "template_update": null,
+    "trusted_version": 1,
+    "unit_of_work": "config graph",
+    "visible_to_roles": null,
+    "writes_nothing": true
+  },
+  "runs": {
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+      {
+        "by": {
+          "person": null,
+          "trigger": "manual"
+        },
+        "category": "platform",
+        "counts": {
+          "blocked": 3,
+          "clean": 7
+        },
+        "finished_at": "2026-09-06T07:00:00+00:00",
+        "id": "00000000-0000-4000-8000-000000000000",
+        "kind": "check",
+        "mode": "dry",
+        "records": 0,
+        "runbook_key": "configuration_check",
+        "runbook_name": "Can we bill?",
+        "started_at": "2026-09-06T07:00:00+00:00",
+        "status": "done",
+        "took_seconds": 42.0,
+        "trigger": "manual",
+        "version": 2
+      }
+    ]
+  }
+}

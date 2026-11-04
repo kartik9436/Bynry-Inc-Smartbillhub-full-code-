@@ -1,0 +1,25 @@
+# G118 — portal API wrappers that exist with no caller, as of 2026-09-07.
+#
+# SHRINK ONLY. An entry leaves when a screen calls the wrapper (or when the
+# wrapper and its endpoint are deleted); nothing is ever added without the
+# reason and the revisit condition on the line, because an allow entry IS a
+# loosening (G13's own rule, ratified by the PO 2026-08-11).
+#
+# Form: <module stem>::<function>   — never a line number (G86's rule: a line
+# number moves under an unrelated edit and a gate that reddens on somebody
+# else's commit is a gate nobody trusts).
+#
+# `portalClient::signOut` was the FOURTH entry until 2026-09-07. It is gone
+# because DEF-CWP-4359 was fixed, which is what shrinking looks like.
+
+# Superseded in practice by `getHome()`, which brings `balances` down with the
+# page (`Home.tsx`). The endpoints are still served. REVISIT when CWP-023's
+# per-account balance strip needs a read of its own, or when a portal decision
+# retires the two endpoints — either way this line goes.
+portalClient::getBalanceSummary
+portalClient::getAccountBalance
+
+# `BR-CWP-095` — the tip bar is deliberately absent today ("a panel with
+# nothing in it renders as nothing"). A wrapper waiting for a screen, not a
+# screen missing a wrapper. REVISIT when the TipBar slot lands on CWP-022.
+guestClient::getPortalTip

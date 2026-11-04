@@ -1,0 +1,2 @@
+NO RECORDED FIXTURE — NOT A SUPPORTED FORMAT (BR-INT-033).
+The codec `pdf` is registered BY NAME ONLY so a manifest may cite it and a picker may offer it. Its first real file is recorded from the billing print set (CR-053 task 13), which builds the PDF itself on connect day, by no integrations wave — billing owns it, and its encoder or decoder lands in the same commit. Nothing in this folder is a sample somebody typed: a typed sample would make the conformance kit say *supported* about a format nothing reads.

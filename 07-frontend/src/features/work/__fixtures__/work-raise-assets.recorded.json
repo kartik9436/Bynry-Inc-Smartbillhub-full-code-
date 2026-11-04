@@ -1,0 +1,63 @@
+{
+    "count": 2,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": "01a1068f-f4c6-7486-967a-d7be4a99715f",
+            "asset_no": "E-5000",
+            "serial": null,
+            "location": "Front boundary box",
+            "type": {
+                "id": "01a1068f-9ad2-758e-8d41-6047870f0983",
+                "name": "Meter"
+            },
+            "last_read": {
+                "reading": "3400.000000",
+                "unit": "kWh",
+                "on": "2026-10-04"
+            },
+            "service": {
+                "code": "electric",
+                "name": "Electric"
+            },
+            "unit": {
+                "id": "01a1068f-bc10-7af4-b101-3f93bda126f2",
+                "label": "Unit 1"
+            },
+            "premises": {
+                "id": "01a1068f-bc04-7312-95bd-bdf7a6daaa65",
+                "address": "101 Silver Creek Rd"
+            },
+            "shares_unit": true
+        },
+        {
+            "id": "01a1068f-ed64-7596-9d90-22678f53fa3a",
+            "asset_no": "W-5000",
+            "serial": null,
+            "location": "Front boundary box",
+            "type": {
+                "id": "01a1068f-9ad2-758e-8d41-6047870f0983",
+                "name": "Meter"
+            },
+            "last_read": {
+                "reading": "1024.000000",
+                "unit": "kgal",
+                "on": "2026-10-04"
+            },
+            "service": {
+                "code": "water",
+                "name": "Water"
+            },
+            "unit": {
+                "id": "01a1068f-bc10-7af4-b101-3f93bda126f2",
+                "label": "Unit 1"
+            },
+            "premises": {
+                "id": "01a1068f-bc04-7312-95bd-bdf7a6daaa65",
+                "address": "101 Silver Creek Rd"
+            },
+            "shares_unit": true
+        }
+    ]
+}

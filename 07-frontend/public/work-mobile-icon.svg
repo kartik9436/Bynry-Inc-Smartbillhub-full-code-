@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" role="img" aria-label="SMART360 Next Field">
+  <rect width="192" height="192" rx="36" fill="#1f4e79"/>
+  <path d="M56 44h56l24 24v80a8 8 0 0 1-8 8H56a8 8 0 0 1-8-8V52a8 8 0 0 1 8-8z" fill="#ffffff"/>
+  <path d="M112 44l24 24h-24z" fill="#cfe0f0"/>
+  <path d="M68 96h56M68 116h56M68 76h28" stroke="#1f4e79" stroke-width="8" stroke-linecap="round"/>
+</svg>

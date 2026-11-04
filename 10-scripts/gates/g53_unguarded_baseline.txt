@@ -1,0 +1,166 @@
+# G53 — files that invoke the 🔒 human-review protocol in their own module
+# docstring (HUMAN-OWNED or, since 2026-08-31, HUMAN-REVIEW-PENDING) and that
+# no glob in human_owned.txt matches. A NAMED SET, measured 2026-08-28 at the
+# tip, not a count: a count lets one file leave while another joins and reports
+# green over the swap (G52's reason).
+#
+# THIS FILE IS NOT A PERMISSION. Every name here is a file whose own author
+# said the 🔒 protocol applies to it, and which nothing watches. They are the
+# PO's to rule on — adding one to human_owned.txt is a process event and the
+# PO's call, not a lane's. Delete a name from this file in the SAME diff that
+# adds its glob, and G53 fails if you forget.
+# Measured: 50 file(s), +4 named below. Re-measured 2026-08-31 after the gate
+# was widened to the condition the PO actually ruled: 59 named here, 62 findings
+# in all, 60,508 lines. The three not named here are another lane's and are
+# explained in the +5 block below.
+#
+# ⚠ EVERY "+N" BLOCK BELOW THIS LINE IS HISTORY AS OF 2026-08-31, AND NOT
+# ONE OF THE FILES IT DESCRIBES IS STILL IN THIS LIST. They record why each
+# file was PARKED here — which is worth keeping, because it is the reasoning
+# that was eventually put to the PO — but the PO ruled on 2026-08-31 that
+# groups one to four go on the watched list ("56 files"), and every file
+# these blocks name is in that 56 and is now on
+# 10-scripts/gates/human_owned.txt. The only names this file still holds are
+# the six in the ruling block at the bottom. Read a "+N" block as a dated
+# note, never as a statement about today.
+#
+# +1 on 2026-08-28: `06-backend/apps/billing/resolution_switch.py`, the per-step
+# switch that lets ONE rule of the R1–R7 chain price a real bill (step 5 of the
+# cutover recorded in the decision log, 2026-08-27). It decides WHICH
+# implementation prices a customer's base charge, so it is rating math on
+# CLAUDE.md's own terms — and it is added HERE rather than to human_owned.txt
+# because a lane may not add itself. The glob is asked for in plain words in
+# 12-governance/09-human-review-ledger.md. Nothing is switched on: the file is
+# inert on every deployment until somebody types a step name.
+#
+# +1 on 2026-08-28: `06-backend/apps/billing/shadow_report.py`, the S31.2 panel
+# that shows WHERE the two pricing paths disagree (step 3 of the same cutover).
+# It computes no money — it counts, groups and labels what the comparison
+# produced — so whether it belongs on human_owned.txt is a genuine question
+# rather than an obvious yes, and it is asked in plain words in
+# 12-governance/09-human-review-ledger.md. It is here because its own docstring
+# names the 🔒 protocol and nothing watches it, which is exactly what this file
+# is a list of. It writes nothing and is on no path a bill travels.
+#
+# +1 on 2026-08-30: `06-backend/apps/billing/run_jobs.py`, the three background
+# verbs of the bill run (CR-051 tasks 8-10). It carries the IDEMPOTENCY SCOPE
+# KEYS for calculate, findings and issue — `billing:<verb>:<run id>` — which is
+# what stops a double-clicked *Work out the bills*, or a Celery task delivered
+# twice, becoming two passes over the same accounts. CLAUDE.md names idempotency
+# keys as a 🔒 sensitive path, so the file declares HUMAN-OWNED and
+# HUMAN-REVIEW-PENDING and has a ledger row; the GLOB is asked for in plain
+# words in 12-governance/09-human-review-ledger.md, because a lane may not add
+# itself. It computes no money: every figure on a bill is produced by
+# `runs.calculate_run` and `issue.issue_run` exactly as before, and
+# golden-verify is 33 PASS / 0 FAIL either side of the change.
+
+# +1 on 2026-08-30: `06-backend/apps/billing/selectors.py`, the billing READ
+# surface, which as of CR-053 task 9 PERFORMS MONEY ARITHMETIC for the first
+# time. It was pure serialization until then — every figure came out of a column
+# and went onto the wire unchanged. `_charges_by_service` ADDS money up: it sums
+# a bill's line amounts into a subtotal per service, and HOW IT ROUNDS while
+# doing so is a signed rule (B4.4 plus B4's 2026-08-11 ruling — the sum is taken
+# over the ROUNDED line amounts, so three lines of 33.333333 subtotal to 99.99
+# and not 100.00, and the printed lines foot against the printed subtotal).
+# CLAUDE.md names money rounding as a 🔒 sensitive path, so the file declares
+# HUMAN-OWNED and HUMAN-REVIEW-PENDING and has a ledger row; the GLOB is asked
+# for in plain words in 12-governance/09-human-review-ledger.md, because a lane
+# may not add itself. It writes NOTHING — hard rule 4 — and no signed figure
+# moved: golden-verify is 33 PASS / 0 FAIL either side of the change, and the
+# GT-10 reference bill still ties out at 82.08 + 18.50 + 8.13 + 8.30 = 117.01.
+# Recorded as `DEF-2437`, the sixth time a money file has joined the CODE
+# without joining the LIST.
+
+# +5 on 2026-08-31 (`DEF-2790`) — AND NOT ONE OF THEM IS NEW CODE. They are the
+# files this gate COULD NOT SEE until today, because it keyed on `HUMAN-OWNED`
+# alone while the PO's ruling of 2026-08-30 (*"FIX THE CAUSE, NOT THE FIFTH
+# INSTANCE"*, OQ-441 CLOSED) named the condition `HUMAN-REVIEW-PENDING` + a
+# review-ledger row. Widening the gate to EITHER marker took the finding set
+# from 57 files to 62. All five carry `HUMAN-REVIEW-PENDING` in their own module
+# docstring and NO `HUMAN-OWNED`, and all five already have a row in
+# 12-governance/09-human-review-ledger.md — so on the ruling's own wording every
+# one of them was in scope from the day it was written, and none was reported:
+#
+#   06-backend/apps/billing/gather.py            2,282 lines — NAMED IN THE RULING
+#   06-backend/apps/billing/metering_seam.py       413 lines — NAMED IN THE RULING
+#   06-backend/apps/notifications/catalogs.py    2,019 lines
+#   06-backend/apps/payments/receipts.py           551 lines
+#   06-backend/apps/tenancy/services.py          5,221 lines
+#
+# ⚠ TWO OF THEM ARE FILES THE RULING ITSELF LISTED BY NAME as the five the cause
+# fix would go red on. The cause fix went green over both. That is the finding,
+# and it is recorded as `DEF-2790`.
+#
+# They are HERE and not in human_owned.txt for the reason every other name here
+# is: a lane may not add itself. The globs are asked for in plain words, as ONE
+# question about the whole list, in 12-governance/09-human-review-ledger.md.
+#
+# ⚠ THREE FILES ARE DELIBERATELY ABSENT FROM THIS BLOCK and G53 is RED on them at
+# the moment this lands: `06-backend/apps/billing/cut_bill.py`,
+# `06-backend/apps/billing/run_resume.py` and `06-backend/core/rls_guard.py`.
+# They were red BEFORE this widening, they belong to three lanes that have each
+# already opened their own review-ledger row asking for a glob, and parking
+# another lane's finding would take the pressure off work that is still in
+# flight. Those three are theirs to park or to have ruled on, not this lane's.
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ⚖️ 2026-08-31 · THE SIX NAMES BELOW ARE UNGUARDED BY A RECORDED DECISION, NOT
+# BY OVERSIGHT — DO NOT RE-RAISE THEM AS A FINDING.
+#
+# The PO was shown all 62 files this gate reports, in five groups named by what
+# goes wrong if the file nobody looked at was wrong, and ruled: put on the
+# watched list **groups one, two, three and four — everything where money moves
+# or one utility's data could reach another — and leave group five off, because
+# nothing in it works out an amount. That is 56 files.**
+#
+# **Group five is these six**, and the PO's own reason is the operative fact:
+# NO MONEY IS WORKED OUT IN ANY OF THEM. They are the wording we send customers
+# and the record of what is kept and for how long. The example put to the PO
+# beside them was the first overdue-payment letter opening "Hi ——," and naming
+# the account as "——" — a real defect, and one that costs a customer nothing.
+#
+# The 56 went onto 10-scripts/gates/human_owned.txt in the same commit that
+# removed their names from this file, which this file's own header requires.
+#
+# ⚠ THREE OF THESE SIX HAVE NO REVIEW RECORD AT ALL — `notifications/models.py`,
+# `notifications/template_models.py` and `core/archival.py`. That is OUR omission
+# and not what the PO ruled on; the ruling was about the guard list. The records
+# are owed regardless and are tracked in 12-governance/09-human-review-ledger.md.
+#
+# A LANE MAY NOT ADD ONE OF THESE SIX TO human_owned.txt ON ITS OWN — that is
+# still a process event and still the PO's call. If one of them starts working
+# out an amount, the PO's own reason no longer holds: say so and ask again.
+# ══════════════════════════════════════════════════════════════════════════════
+
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ⚠ THE NAME BELOW IS **NOT** PART OF THE GROUP-FIVE RULING ABOVE. It is a NEW
+# finding, parked here the day it was written, and the glob is ASKED FOR rather
+# than taken.
+#
+# +1 on 2026-08-31: `06-backend/apps/billing/print_set.py`, the print hand-over
+# CR-053 task 13 ruled (PO 2026-08-30, *"Im okay with this"*). It carries the
+# IDEMPOTENCY SCOPE KEY for building a print set — `billing:print-set:<the
+# filters>` — which is what stops a double-clicked *Build the print set*
+# becoming two passes over ten thousand bills. CLAUDE.md names idempotency keys
+# as a 🔒 sensitive path, so the file declares HUMAN-OWNED and
+# HUMAN-REVIEW-PENDING and has a row in 12-governance/09-human-review-ledger.md;
+# the GLOB is asked for there in plain words, because a lane may not add itself.
+# This is the same position `run_jobs.py` took above, for the same key, on the
+# same reasoning.
+#
+# It computes NO MONEY and writes nothing: `amount_due` is `invoices.total`
+# formatted for display through `exports.format_money`, the IS-9 writer every
+# other file in this product uses, so there is no second money formatter here to
+# disagree with the first. golden-verify is 33 PASS / 0 FAIL either side.
+#
+# ⚠ AND IT READS A CUSTOMER'S HOME ADDRESS, which is why the answer may not be
+# the same as `shadow_report.py`'s. Nothing in it can WRITE one — BR-CUS-674, PO
+# 2026-08-31, *"we cannot make chnges until account confirm it"* — and G60
+# enforces that absence; but a file that assembles names and home addresses into
+# something a person carries out of the building is worth a human's eyes on its
+# own terms, whatever the money answer is. Put to the PO in those words.
+# ══════════════════════════════════════════════════════════════════════════════
+

@@ -1,0 +1,111 @@
+# VERSIONS THAT WERE PUBLISHED WITH NO CHANGELOG ENTRY, AND ARE NOT GOING TO GET ONE
+#
+# `G35` clause 5 fails when a version that has ever been written into
+# `07-frontend/package.json` on this branch carries no `## [x.y.z]` heading in
+# `CHANGELOG.md`. Clause 4 before it only ever asked about the version that is
+# CURRENT at the moment it runs — so a version that was current for twenty
+# minutes and was then superseded by a sibling lane could ship with no entry and
+# nothing ever looked again. That happened to `2.377.1`, `2.377.2` and `2.380.3`
+# (`DEF-GOV-6930`), and to `2.354.0` before them (`DEF-GOV-6813`, which recorded
+# the hole and did not close it).
+#
+# ⚠ **THIS FILE IS A RATCHET, NOT A PARDON.** It holds the eighteen versions
+# that were already published unrecorded on the day the clause was written. They
+# are listed rather than written up because the entries would have to be
+# invented three weeks late, from commits whose lanes are gone — and a gate born
+# red on eighteen historical rows is a gate somebody switches off (hard-won law
+# 7). Every one of them is a real gap in the record and is named here so the
+# gap has a NUMBER beside it rather than being silently absent.
+#
+# ⚠ **ADDING A LINE HERE IS NOT HOW YOU MAKE THE GATE GREEN.** The fix for a
+# version with no entry is the entry. A line is added only for a version already
+# published before this file existed, which means: never again.
+#
+# One version per line. Blank lines and `#` comments ignored.
+
+2.351.79
+2.351.80
+2.351.82
+2.351.84
+2.351.85
+2.351.86
+2.351.87
+2.351.88
+2.351.89
+2.351.90
+2.351.91
+2.351.97
+2.351.98
+2.351.100
+2.351.101
+2.352.4
+2.352.5
+2.354.0
+
+# ── ADDED 2026-09-30 by the gate triage lane (plan T6, DEF-GOV-8531) ──────────────────────
+# FIFTY-EIGHT MORE, EVERY ONE OLDER THAN THIS FILE, and they are here for the
+# reason the header gives rather than as a pardon. This file was written from a
+# SHALLOW clone that could see 16 published versions (`history_is_shallow`,
+# DEF-GOV-7807, says so). A clone whose history reaches back to 2026-08-29 sees
+# these 58 as well: 2.180.0 to 2.336.0, all published before 2.382.2 created
+# this file, none with a `## [x.y.z]` heading. A deeper clone may see still
+# older ones; this list is what history back to 2026-08-29 shows, no more.
+# The one gap NEWER than this file, 2.383.5, got its entry instead.
+2.180.0
+2.187.0
+2.197.2
+2.197.3
+2.197.5
+2.197.6
+2.216.1
+2.218.4
+2.218.6
+2.218.7
+2.218.8
+2.218.10
+2.219.0
+2.229.1
+2.232.0
+2.234.0
+2.234.2
+2.234.6
+2.234.7
+2.234.8
+2.234.12
+2.234.13
+2.248.0
+2.261.4
+2.263.1
+2.264.0
+2.278.0
+2.278.1
+2.279.0
+2.280.0
+2.281.0
+2.283.1
+2.292.2
+2.293.0
+2.293.1
+2.293.2
+2.295.0
+2.295.3
+2.296.0
+2.296.1
+2.308.4
+2.308.6
+2.317.2
+2.317.3
+2.317.4
+2.318.0
+2.318.1
+2.319.0
+2.319.1
+2.319.2
+2.319.3
+2.319.4
+2.319.5
+2.320.0
+2.321.0
+2.334.0
+2.335.0
+2.336.0

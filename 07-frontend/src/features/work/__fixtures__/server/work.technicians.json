@@ -1,0 +1,89 @@
+{
+  "count": 7,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "user_id": "01a10791-1590-782b-8d02-91220b2b6fa8",
+      "full_name": "Avery Cole",
+      "email": "avery.cole@sample.test",
+      "role_code": "executive",
+      "status": "invited",
+      "has_profile": false,
+      "technician_id": null,
+      "crew": null
+    },
+    {
+      "user_id": "01a10791-16e5-7d3e-94f7-991a8b8ef284",
+      "full_name": "D. Ortiz",
+      "email": "d.ortiz@sample.test",
+      "role_code": "field_technician",
+      "status": "invited",
+      "has_profile": true,
+      "technician_id": "01a10793-b6a5-79bb-9b2b-a502c41d2fdc",
+      "crew": {
+        "id": "01a10793-b67f-76b5-806e-2d6b7fe6ce5c",
+        "name": "Field crew A"
+      }
+    },
+    {
+      "user_id": "01a10790-db9b-7c63-9e26-ab548749467e",
+      "full_name": "Dana Whitfield",
+      "email": "dana@brazosbendutilities.com",
+      "role_code": "system_admin",
+      "status": "active",
+      "has_profile": false,
+      "technician_id": null,
+      "crew": null
+    },
+    {
+      "user_id": "01a10791-1b3b-7b15-9f20-e283057bca84",
+      "full_name": "J. Okoro",
+      "email": "j.okoro@sample.test",
+      "role_code": "field_technician",
+      "status": "invited",
+      "has_profile": true,
+      "technician_id": "01a10793-b78e-78bb-99b2-77ccfd44ff20",
+      "crew": {
+        "id": "01a10793-b68b-769b-87cb-394d1ccdbf09",
+        "name": "Field crew B"
+      }
+    },
+    {
+      "user_id": "01a10791-19c3-7791-b31f-a39fb6bebc4e",
+      "full_name": "M. Chen",
+      "email": "m.chen@sample.test",
+      "role_code": "field_technician",
+      "status": "invited",
+      "has_profile": true,
+      "technician_id": "01a10793-b74a-782a-858f-0d273a17d4a7",
+      "crew": {
+        "id": "01a10793-b68b-769b-87cb-394d1ccdbf09",
+        "name": "Field crew B"
+      }
+    },
+    {
+      "user_id": "01a10791-1847-764d-8134-7549db8633fe",
+      "full_name": "R. Patel",
+      "email": "r.patel@sample.test",
+      "role_code": "field_technician",
+      "status": "invited",
+      "has_profile": true,
+      "technician_id": "01a10793-b704-70b8-b614-c16ae19ad411",
+      "crew": {
+        "id": "01a10793-b67f-76b5-806e-2d6b7fe6ce5c",
+        "name": "Field crew A"
+      }
+    },
+    {
+      "user_id": "01a10791-13e0-7674-9503-a69ff5246574",
+      "full_name": "Sam Reyes",
+      "email": "sam.reyes@sample.test",
+      "role_code": "billing_clerk",
+      "status": "invited",
+      "has_profile": false,
+      "technician_id": null,
+      "crew": null
+    }
+  ]
+}

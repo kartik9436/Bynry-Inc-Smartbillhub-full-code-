@@ -1,0 +1,38 @@
+# G86 clause (c) — the component names that already collided with the shared
+# kit on 2026-09-04, when this check was written.
+#
+# ⚠ THIS FILE MAY ONLY SHRINK, like the button baseline beside it. Every line is
+# a component exported outside `src/components/` under a name the kit already
+# uses. Two components called `Panel` in two directories are two visual
+# decisions wearing one name, and the second author cannot see the first
+# because an import names a PATH.
+#
+# ⚠ AND THE PORTAL'S THREE ARE A SECOND KIT, NOT THREE ACCIDENTS. `src/portal`
+# is 1,733 lines and imports the shared kit FOUR times (three `StateFrame`, one
+# `Button`) while defining its own `Panel` twice — `content.tsx` AND
+# `primitives.tsx`, which is drift inside the drift — plus a `Chip` whose own
+# comment says what it is: *"the guest surface's status chip — the staff kit's
+# tones, its own markup"*. `components/Panel.tsx` gained a `title` prop on this
+# very day under B14 rule 36, because three CR-068 wave D screens had each
+# written their own bordered `<section>` with their own small-caps heading —
+# and the portal's `Panel`, one directory away, was not in that pass.
+#
+# ⚠ THE PORTAL'S THREE ARE GONE — FOLDED 2026-09-04, THE RATCHET COMING DOWN
+# FROM FIVE TO TWO. The note above said folding them was a wave rather than a
+# hunk and that a person should see the visual decision; the decision was put in
+# writing first (decision log, "THE PORTAL'S COLOUR, MEASURED IN A BROWSER") and
+# then made. `content.tsx`'s `Panel` and `Chip` and `primitives.tsx`'s `Panel`
+# are deleted; `components/Panel.tsx` gained `tone`, `trailing` and
+# `as="aside"` to hold what they did, and the portal's chip is the kit's
+# `StatusPill` through `primitives.StatusChip`.
+#
+# ⚠ AND IT WAS THE SAME DEFECT AS THE COLOUR, WHICH IS THE PART WORTH KEEPING.
+# `DEF-CWP-3736` — the guest surface rendering in the PRODUCT's red rather than
+# the utility's own hex — was measured to land exactly where the portal had
+# drawn its own controls: the pieces that reached the kit carried the colour,
+# the ones hand-rolled from raw utilities never could. A second kit is not only
+# duplication; it is a surface the theme cannot reach.
+#
+# A key is `<path> :: <Name>`.
+features/tenancy/SettingsCustomFields.tsx :: CustomFieldsView
+features/tenancy/settingsShared.tsx :: Panel

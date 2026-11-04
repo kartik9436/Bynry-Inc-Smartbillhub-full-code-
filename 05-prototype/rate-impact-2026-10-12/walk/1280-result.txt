@@ -1,0 +1,274 @@
+← Reports
+Rate Impact
+2025-10-01 to 2026-09-30
+Event date
+Schedule
+Edit
+Services
+Electric, Water
+▾
+Customer classes
+Residential, Municipal
+▾
+Usage period
+1 month
+2 months
+3 months
+6 months
+9 months
+12 months
+Change all prices
+Choose %
+-10%
+-5%
++2%
++3%
++5%
++8%
++10%
++15%
++20%
+Fill
+Run report
+Proposed rates
+TYPE	ITEM	VERSION	EFFECTIVE FROM	SERVICE	CAPACITY	BASE / MONTH	PRICE PER UNIT	MINIMUM	
+
+Choose
+Rate schedule
+Charge code
+	
+Choose
+Industrial Electric — Energy + demand
+Residential Electric — TOU
+Sample — Commercial electric usage
+Sample — Electric usage
+Sample — Industrial electric usage
+Residential Water — Inclining tiers
+Sample — Commercial water (flat)
+Sample — Residential water (inclining tiers)
+Small Commercial Water — Flat
+	
+Choose
+2026-09-20
+2026-09-15
+2026-08-01
+	09/20/2026	Electric	
+Choose
+Electric 1φ 100A
+Electric 1φ 200A
+Electric 1φ 400A
+Electric 3φ 200A
+Electric 3φ 400A
+Electric CT-metered
+	
+now $12.00
+	
+now Billed
+	
+now Billed
+	
+✕
+
+
+Choose
+Rate schedule
+Charge code
+	
+Choose
+Industrial Electric — Energy + demand
+Residential Electric — TOU
+Sample — Commercial electric usage
+Sample — Electric usage
+Sample — Industrial electric usage
+Residential Water — Inclining tiers
+Sample — Commercial water (flat)
+Sample — Residential water (inclining tiers)
+Small Commercial Water — Flat
+	
+Choose
+2026-09-20
+2026-09-15
+2026-08-01
+	09/20/2026	Electric	
+Choose
+Electric 1φ 100A
+Electric 1φ 200A
+Electric 1φ 400A
+Electric 3φ 200A
+Electric 3φ 400A
+Electric CT-metered
+	
+now $12.00
+	
+now Billed
+	
+now Billed
+	
+✕
+
+
+Choose
+Rate schedule
+Charge code
+	
+Choose
+Industrial Electric — Energy + demand
+Residential Electric — TOU
+Sample — Commercial electric usage
+Sample — Electric usage
+Sample — Industrial electric usage
+Residential Water — Inclining tiers
+Sample — Commercial water (flat)
+Sample — Residential water (inclining tiers)
+Small Commercial Water — Flat
+	
+Choose
+2026-09-20
+2026-09-15
+2026-08-01
+	09/20/2026	Electric	
+Choose
+Electric 1φ 100A
+Electric 1φ 200A
+Electric 1φ 400A
+Electric 3φ 200A
+Electric 3φ 400A
+Electric CT-metered
+	
+now $12.00
+	
+now Billed
+	
+now Billed
+	
+✕
+
+
+Choose
+Rate schedule
+Charge code
+	
+Choose
+Industrial Electric — Energy + demand
+Residential Electric — TOU
+Sample — Commercial electric usage
+Sample — Electric usage
+Sample — Industrial electric usage
+Residential Water — Inclining tiers
+Sample — Commercial water (flat)
+Sample — Residential water (inclining tiers)
+Small Commercial Water — Flat
+	
+Choose
+2026-10-01
+2027-03-01
+2026-08-01
+	10/01/2026	Water	
+Choose
+Water 5/8"
+Water 3/4"
+Water 1"
+Water 1½"
+Water 2"
+Water 3"
+Water 4"
+Water 5"
+Water 6"
+	
+now $8.00
+	
+now Billed
+	
+now Billed
+	
+✕
+
+
+Choose
+Rate schedule
+Charge code
+	
+Choose
+Industrial Electric — Energy + demand
+Residential Electric — TOU
+Sample — Commercial electric usage
+Sample — Electric usage
+Sample — Industrial electric usage
+Residential Water — Inclining tiers
+Sample — Commercial water (flat)
+Sample — Residential water (inclining tiers)
+Small Commercial Water — Flat
+	
+Choose
+2026-10-01
+2027-03-01
+2026-08-01
+	08/01/2026	Water	
+Choose
+Water 5/8"
+Water 3/4"
+Water 1"
+Water 1½"
+Water 2"
+Water 3"
+Water 4"
+Water 5"
+Water 6"
+	
+now $8.00
+	
+now Billed
+	
+now Billed
+	
+✕
++ Add a row
+NOW (BILLED)
+$35,350.50EVENT DATE
+PROPOSED
+$29,639.30EVENT DATE
+CHANGE
+-$5,711.20EVENT DATE
+CHANGE %
+-16.16%
+CAPACITY	CONSUMER CLASS	ACCOUNTS	USAGE	ITEMS	REVENUE NOW (BILLED)	REVENUE PROPOSED	CHANGE	CHANGE %
+
+▾
+Sample — Electric usage, from 2026-09-20
+3 rows
+		$47.00			$19,367.50	$17,809.40	-$1,558.10	-8.04%
+Electric 1φ 100A	Residential	40	114500 kWh	—	$16,766.00	$15,320.50	-$1,445.50	-8.62%
+Electric 1φ 200A	Residential	6	16100 kWh	—	$2,292.50	$2,163.70	-$128.80	-5.62%
+Electric 3φ 400A	Municipal	1	2400 kWh	—	$309.00	$325.20	$16.20	5.24%
+
+▾
+Sample — Residential water (inclining tiers), from 2026-10-01
+1 row
+		$40.00			$7,991.50	$5,914.95	-$2,076.55	-25.98%
+Water 5/8"	Residential	40	1165.1 kgal	—	$7,991.50	$5,914.95	-$2,076.55	-25.98%
+
+▾
+Sample — Residential water (inclining tiers), from 2026-08-01
+1 row
+		$40.00			$7,991.50	$5,914.95	-$2,076.55	-25.98%
+Water 5/8"	Residential	40	1165.1 kgal	—	$7,991.50	$5,914.95	-$2,076.55	-25.98%
+Total		47			$35,350.50	$29,639.30	-$5,711.20	-16.16%
+1–8 of 8
+Rows per page
+50
+100
+200
+500
+1000
+‹
+›
+What is missing
+Today's size used for every month.
+Not worked out
+39 accounts · No capacity on file
+Proposed figures used
+Sample — Electric usage · 2026-09-20 · Electric 1φ 100A (09/20/2026) Base / month $12.00 → $12.60 · Price per unit Billed → $0.125 · Minimum Billed → Billed
+Sample — Electric usage · 2026-09-20 · Electric 1φ 200A (09/20/2026) Base / month $12.00 → $12.60 · Price per unit Billed → $0.125 · Minimum Billed → Billed
+Sample — Electric usage · 2026-09-20 · Electric 3φ 400A (09/20/2026) Base / month $12.00 → $12.60 · Price per unit Billed → $0.125 · Minimum Billed → Billed
+Sample — Residential water (inclining tiers) · 2026-10-01 · Water 5/8" (10/01/2026) Base / month $8.00 → $8.40 · Price per unit Billed → $4.50 · Minimum Billed → $10.00
+Sample — Residential water (inclining tiers) · 2026-08-01 · Water 5/8" (08/01/2026) Base / month $8.00 → $8.40 · Price per unit Billed → $4.50 · Minimum Billed → $10.00

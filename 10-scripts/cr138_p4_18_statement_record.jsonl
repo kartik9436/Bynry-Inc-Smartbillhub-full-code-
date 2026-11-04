@@ -1,0 +1,17 @@
+# `P4.18` — THE DEBTOR LIST AT 40,000, RECORDED RATHER THAN REMEMBERED.
+#
+# One JSON line per (read, debtor count), appended by
+# `10-scripts/cr138_p4_debtor_cost.py --check`. It exists because the property
+# `P4.18` asks for — *the work does not grow with the tenant* — CANNOT BE SEEN
+# IN ONE RUN however carefully it is measured. Two sizes are the smallest thing
+# that is an assertion rather than an observation.
+#
+# ⚠ NEVER HAND-EDIT. The script appends; it reads every line back and compares.
+# A line typed here by hand is a figure nobody measured, in the one file whose
+# whole value is that every figure in it was.
+{"debtors": 2046, "per": 50, "read": "GET /outstandings (page 1 of 50)", "served": 50, "statements": 13}
+{"debtors": 2046, "per": 50, "read": "GET /outstandings (f.bucket=90+, page 1)", "served": 50, "statements": 13}
+{"debtors": 2046, "per": 50, "read": "collections/ladder (UNPAGED \u2014 this build takes no page)", "served": 2030, "statements": 20}
+{"debtors": 40046, "per": 50, "read": "GET /outstandings (page 1 of 50)", "served": 50, "statements": 12}
+{"debtors": 40046, "per": 50, "read": "GET /outstandings (f.bucket=90+, page 1)", "served": 50, "statements": 12}
+{"debtors": 40046, "per": 50, "read": "collections/ladder (UNPAGED \u2014 this build takes no page)", "served": 40030, "statements": 20}

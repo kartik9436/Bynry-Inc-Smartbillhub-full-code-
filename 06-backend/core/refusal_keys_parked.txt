@@ -1,0 +1,62 @@
+# PARK FILE — message_keys that are RAISED by shipped code and resolve to
+# NOTHING, and were already live on the day core/refusal_catalogue.py was
+# written (2026-09-05). THIRTEEN of them, TWELVE still parked — the
+# thirteenth, `rating.discounts.proof_kinds_required`, was written in all
+# eleven catalogues on 2026-09-19 by the DEF-RAT-5816 lane and its line is
+# deleted below, which is what EXPIRING means. IT MAY ONLY SHRINK.
+#
+# ONE LINE PER KEY:   <the exact key> :: <the defect row that owns it>
+#
+# Every one is a clerk clicking Save and NOTHING happening — no sentence, no
+# explanation — because the PO suppressed `params.detail` on 2026-08-19.
+#
+# NOT AN ALLOWLIST, and the three properties are what keep it from becoming one.
+# They are copied deliberately from `10-scripts/gates/g112_computed_key_gaps.txt`,
+# which was written the same day for the same class of fault:
+#
+#   NARROW    the EXACT key, never a prefix. `rating.discounts.value` does not
+#             cover `rating.discounts.value_sign` — both are listed. The list
+#             cannot cover the next one like it.
+#   LOUD      the count and every key are asserted BY NAME in
+#             06-backend/tests/test_refusal_keys_resolve_at_raise.py, and the
+#             defect row states the figure in plain English.
+#   EXPIRING  an entry that no longer reproduces FAILS the test, in BOTH of the
+#             two ways it can stop reproducing — the key gains a sentence, or
+#             the raise site goes away — so the line must be deleted in the same
+#             diff as the copy that fixes it.
+#
+# ⚠ WHY THESE THIRTEEN ARE PARKED RATHER THAN FIXED HERE, said plainly because
+# the next lane will otherwise assume it was laziness. The fix for each is COPY,
+# and it is copy in ELEVEN catalogues rather than one: G15 checks PARITY, so
+# adding the sentences to `en.json` alone turns G15 red on ten counts of
+# "missing". Adding the English string to the other ten instead turns G15 red a
+# different way — it already reports 5,917 baselined values pasted in English
+# rather than translated — and B14 rule 35 says a catalogue is written in its
+# own language and not mechanically translated from English (PO, 2026-09-03:
+# *"it sound like local person language and not mechanical translations of
+# English"*). So the copy belongs to the modules that own these screens, and
+# this lane cannot honestly invent it in ten languages it cannot check.
+#
+# ⚠ HOW THEY WERE INVISIBLE, because it is the transferable part. G32 resolves a
+# positional `message_key` helper ONLY when the helper is defined in the same
+# file, and says so about itself: *"A helper imported from a sibling module is
+# still invisible; that is a KNOWN and stated limit, not a silent one."* Both
+# files below import `_field_error` from a sibling. **A declared blind spot with
+# no NUMBER attached is indistinguishable from an empty one** — and G32's
+# headline reads `0 unresolved`, which is true of everything it can see.
+#
+# `DEF-MET-4093` is the row that owns all thirteen. It stays OPEN until the last
+# of these lines is deleted.
+
+metering.premises_owner.category_required          :: DEF-MET-4093
+metering.premises_owner.category_unknown           :: DEF-MET-4093
+metering.premises_owner.category_inactive          :: DEF-MET-4093
+metering.premises_owner.name_required              :: DEF-MET-4093
+rating.discounts.automatic_with_mandatory_proof    :: DEF-MET-4093
+rating.discounts.duplicate_code                    :: DEF-MET-4093
+rating.discounts.money                             :: DEF-MET-4093
+rating.discounts.percent_over_100                  :: DEF-MET-4093
+rating.discounts.proof                             :: DEF-MET-4093
+rating.discounts.reason_required                   :: DEF-MET-4093
+rating.discounts.value                             :: DEF-MET-4093
+rating.discounts.value_sign                        :: DEF-MET-4093

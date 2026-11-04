@@ -1,0 +1,89 @@
+{
+  "count": 4,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": "01a106e4-2de6-7ed1-a638-a5b43a7ae3b3",
+      "order_no": "WO-0042",
+      "type": "Meter exchange — residential",
+      "premise": {
+        "id": "01a106a7-2b05-7dd5-be94-ea3e264227f4",
+        "premise_no": "P-00007",
+        "address": "101 Silver Creek Rd"
+      },
+      "service": "water",
+      "outcome": "passed",
+      "completed_at": "2026-10-04T12:29:40.666612+00:00",
+      "waiting_days": 0,
+      "connection": null
+    },
+    {
+      "id": "01a106a7-5e3a-79d2-bbe4-df822263ad08",
+      "order_no": "WO-0037",
+      "type": "Site inspection & mark-out",
+      "premise": {
+        "id": "01a106a7-4e09-7695-b890-a183cccbde95",
+        "premise_no": "P-00064",
+        "address": "240 Sable Court"
+      },
+      "service": "water",
+      "outcome": "passed",
+      "completed_at": "2026-10-04T12:29:43.377666+00:00",
+      "waiting_days": 0,
+      "connection": {
+        "id": "01a106a7-5dda-7b32-8684-5ba4e87d4dd6",
+        "connection_no": "CON-26-0128",
+        "home": {
+          "kind": "premises",
+          "id": "01a106a7-4e09-7695-b890-a183cccbde95"
+        }
+      }
+    },
+    {
+      "id": "01a106a7-5e49-7727-a085-c53940b56613",
+      "order_no": "WO-0038",
+      "type": "Tap and service line",
+      "premise": {
+        "id": "01a106a7-4e09-7695-b890-a183cccbde95",
+        "premise_no": "P-00064",
+        "address": "240 Sable Court"
+      },
+      "service": "water",
+      "outcome": "passed",
+      "completed_at": "2026-10-04T12:29:44.039702+00:00",
+      "waiting_days": 0,
+      "connection": {
+        "id": "01a106a7-5dda-7b32-8684-5ba4e87d4dd6",
+        "connection_no": "CON-26-0128",
+        "home": {
+          "kind": "premises",
+          "id": "01a106a7-4e09-7695-b890-a183cccbde95"
+        }
+      }
+    },
+    {
+      "id": "01a106a7-5c65-7255-9c63-d5c56a455a46",
+      "order_no": "WO-0021",
+      "type": "Meter set",
+      "premise": {
+        "id": "01a106a7-4f10-765a-83ff-8eba09209d8f",
+        "premise_no": "P-00067",
+        "address": "Kestrel Park ph. 2"
+      },
+      "service": "electric",
+      "outcome": "partially_done",
+      "completed_at": "2026-10-04T12:29:44.703087+00:00",
+      "waiting_days": 0,
+      "connection": {
+        "id": "01a106a7-5b7d-7e58-b1c1-de718fb9a07a",
+        "connection_no": "CON-26-0122",
+        "home": {
+          "kind": "premises",
+          "id": "01a106a7-4f10-765a-83ff-8eba09209d8f"
+        }
+      }
+    }
+  ],
+  "oldest_waiting": 0
+}

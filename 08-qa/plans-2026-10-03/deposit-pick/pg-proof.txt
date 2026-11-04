@@ -1,0 +1,10 @@
+DEF-CUS-9521 · PostgreSQL 16, sbh_deppick, build 2.492.0 (lane DEP-PICK, 2026-10-04)
+walk: POST accounts → 201 AC-2026-00054, deposit required 600.0000 taken, PY-261004-0084 cleared
+accounts: AC-2026-00054 | deposit_assessed 600.0000 | deposit_on_file 600.000000 | deposit_size_class W-2 | picked_at set | picked_by Dana
+payments: PY-261004-0084 | 600.000000 | deposit | cleared
+journal: JE-100426-0205 | debit 600.000000 1010 Undeposited funds · credit 600.000000 2300 Customer deposit liability
+audit_log: deposit.size_picked | Dana | {"size": "Water 2\"", "amount": "600.0000", "reason": "no_meter_fitted", "size_class": "W-2"}
+first bill (10-scripts/dep_pick_first_bill_pg.py):
+AC-2026-00055: size W-2 · first-bill deposit lines [('deposit', '600.0000')] · asked 600.0000 · already paid 0
+AC-2026-00054: size W-2 · first-bill deposit lines [] · asked 600.0000 · already paid 600.000000
+step: SCW-U-207 (5/8" meter) → amount 150.00, no Meter size picker

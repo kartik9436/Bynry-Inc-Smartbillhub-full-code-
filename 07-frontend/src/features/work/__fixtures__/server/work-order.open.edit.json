@@ -1,0 +1,63 @@
+{
+  "id": "01a106e4-2ad5-7a9a-8a92-886d9205a50f",
+  "order_no": "WO-0041",
+  "type": "Meter exchange — residential",
+  "dispatch_state": "scheduled",
+  "state": "planned",
+  "priority_id": null,
+  "due_at": null,
+  "window_start": "2026-10-05T09:00:00+00:00",
+  "window_end": "2026-10-05T12:00:00+00:00",
+  "area_id": null,
+  "technician_notes": null,
+  "custom_data": {},
+  "technician": {
+    "id": "01a106a9-8b7e-7fe1-8ada-c85b4529ceec",
+    "kind": "person",
+    "name": "D. Ortiz",
+    "slug": "d-ortiz"
+  },
+  "appointment": {
+    "date": "2026-10-05",
+    "start": "04:00",
+    "end": "07:00",
+    "time_zone": "America/Chicago"
+  },
+  "priorities": [
+    {
+      "id": "01a106a6-e30a-75ac-90c9-23e5adb25c71",
+      "code": "URGENT",
+      "name": "Urgent",
+      "rank": 1,
+      "sla_hours": 4
+    },
+    {
+      "id": "01a106a6-e30b-7e55-9c9c-6cab199ee006",
+      "code": "HIGH",
+      "name": "High",
+      "rank": 2,
+      "sla_hours": 8
+    },
+    {
+      "id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e",
+      "code": "NORMAL",
+      "name": "Normal",
+      "rank": 3,
+      "sla_hours": 72
+    },
+    {
+      "id": "01a106a6-e30f-73f8-9a8d-09fe9046480b",
+      "code": "LOW",
+      "name": "Low",
+      "rank": 4,
+      "sla_hours": 168
+    }
+  ],
+  "premise": {
+    "id": "01a106a7-2b05-7dd5-be94-ea3e264227f4",
+    "premise_no": "P-00007",
+    "address": "101 Silver Creek Rd"
+  },
+  "template_id": "01a106a7-4a92-795e-aff1-e707a5dd5923",
+  "priority_locked": false
+}

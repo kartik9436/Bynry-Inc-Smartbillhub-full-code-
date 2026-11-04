@@ -1,0 +1,12 @@
+{
+  "eventId": "K-88231",
+  "eventType": "return",
+  "kioskId": "KSK-014",
+  "accountNumber": "ACC-1048",
+  "amount": "42.10",
+  "currency": "USD",
+  "tender": "CASH",
+  "returnCode": "R01",
+  "returnedAt": "2026-09-05T09:31:44-05:00",
+  "receiptNumber": "R-2026-0903-0147"
+}

@@ -1,0 +1,1353 @@
+[
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/auth/session",
+  "status": 201,
+  "request": {
+   "email": "r.patel@sample.test",
+   "password": "S3cure!passw0rd",
+   "surface": "mobile"
+  },
+  "response": {
+   "user": {
+    "id": "01a109dd-43a7-72ab-a652-47a7cb1bc928",
+    "full_name": "R. Patel",
+    "email": "r.patel@sample.test",
+    "phone": null,
+    "role": "field_technician",
+    "role_name": "Field technician",
+    "must_change_password": false
+   }
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/capture-token",
+  "status": 200,
+  "request": {
+   "device_label": "Tablet 3"
+  },
+  "response": {
+   "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZY8:YCKOF3kMFGT_2ECzuvbAXPM4mK65N4wnBve45pjv3dE",
+   "technician": {
+    "name": "R. Patel"
+   },
+   "max_age_seconds": 604800,
+   "br_ref": "BR-WRK-059"
+  }
+ },
+ {
+  "who": "Dana",
+  "method": "POST",
+  "path": "/auth/session",
+  "status": 201,
+  "request": {
+   "email": "dana@brazosbendutilities.com",
+   "password": "S3cure!passw0rd",
+   "surface": "web"
+  },
+  "response": {
+   "user": {
+    "id": "01a109dc-f2b8-7b99-88a5-4f2a467b6658",
+    "full_name": "Dana Whitfield",
+    "email": "dana@brazosbendutilities.com",
+    "phone": "+1 (281) 555-0164",
+    "role": "system_admin",
+    "role_name": "System Admin",
+    "must_change_password": false
+   }
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "GET",
+  "path": "/work/mobile/changes?page_size=50",
+  "status": 200,
+  "request": null,
+  "response": {
+   "changes": [
+    {
+     "change": "upsert",
+     "order_id": "01a109dd-aaa8-7c04-9312-e4b29225df8c",
+     "at": "2026-10-05T02:25:01.564061+00:00",
+     "job": {
+      "id": "01a109dd-aaa8-7c04-9312-e4b29225df8c",
+      "order_no": "WO-0038",
+      "type": "Tap and service line",
+      "premise": {
+       "id": "01a109dd-9523-7225-82ad-9a94cdb166c9",
+       "premise_no": "P-00064",
+       "address": "240 Sable Court"
+      },
+      "window_start": null,
+      "window_end": null,
+      "due_at": "2026-10-08T02:21:24.515606+00:00",
+      "est_minutes": null,
+      "priority": {
+       "id": "01a109dc-f63d-7590-a15d-0638f84feaae",
+       "code": "NORMAL",
+       "name": "Normal",
+       "colour": "info",
+       "rank": 3
+      },
+      "state": "planned",
+      "dispatch_state": "en_route",
+      "access_notes": null,
+      "hazards": null,
+      "gate_code": null
+     }
+    },
+    {
+     "change": "upsert",
+     "order_id": "01a109dd-a8a6-7e3b-8c66-2c4dced0b7bb",
+     "at": "2026-10-05T02:56:23.255390+00:00",
+     "job": {
+      "id": "01a109dd-a8a6-7e3b-8c66-2c4dced0b7bb",
+      "order_no": "WO-0028",
+      "type": "Tap and service line",
+      "premise": {
+       "id": "01a109dd-95d6-7642-bcfa-f7112273ce69",
+       "premise_no": "P-00066",
+       "address": "12 Harbour View"
+      },
+      "window_start": null,
+      "window_end": null,
+      "due_at": "2026-10-08T02:21:24.001370+00:00",
+      "est_minutes": null,
+      "priority": {
+       "id": "01a109dc-f63d-7590-a15d-0638f84feaae",
+       "code": "NORMAL",
+       "name": "Normal",
+       "colour": "info",
+       "rank": 3
+      },
+      "state": "planned",
+      "dispatch_state": "en_route",
+      "access_notes": null,
+      "hazards": null,
+      "gate_code": null
+     }
+    },
+    {
+     "change": "upsert",
+     "order_id": "01a10a23-84b6-765f-985d-3cf6d7078fc5",
+     "at": "2026-10-05T03:37:42.368778+00:00",
+     "job": {
+      "id": "01a10a23-84b6-765f-985d-3cf6d7078fc5",
+      "order_no": "WO-0105",
+      "type": "Final read \u2014 residential",
+      "premise": {
+       "id": "01a109dd-6199-7647-abaf-aff83a3e1da6",
+       "premise_no": "P-00007",
+       "address": "101 Silver Creek Rd"
+      },
+      "window_start": null,
+      "window_end": null,
+      "due_at": "2026-10-05T05:37:42+00:00",
+      "est_minutes": 5,
+      "priority": null,
+      "state": "planned",
+      "dispatch_state": "scheduled",
+      "access_notes": "",
+      "hazards": "",
+      "gate_code": ""
+     }
+    },
+    {
+     "change": "upsert",
+     "order_id": "01a10a23-8597-776f-b960-2a06afbea081",
+     "at": "2026-10-05T03:37:42.583427+00:00",
+     "job": {
+      "id": "01a10a23-8597-776f-b960-2a06afbea081",
+      "order_no": "WO-0108",
+      "type": "Final read \u2014 residential",
+      "premise": {
+       "id": "01a109dd-6581-7ef8-be21-60ef93445326",
+       "premise_no": "P-00014",
+       "address": "115 Cedar Ridge Way"
+      },
+      "window_start": null,
+      "window_end": null,
+      "due_at": "2026-10-05T05:37:42+00:00",
+      "est_minutes": 5,
+      "priority": null,
+      "state": "planned",
+      "dispatch_state": "scheduled",
+      "access_notes": "",
+      "hazards": "",
+      "gate_code": ""
+     }
+    },
+    {
+     "change": "upsert",
+     "order_id": "01a10a23-85dc-72fc-9060-d0d6943ea712",
+     "at": "2026-10-05T03:37:42.651864+00:00",
+     "job": {
+      "id": "01a10a23-85dc-72fc-9060-d0d6943ea712",
+      "order_no": "WO-0109",
+      "type": "Final read \u2014 residential",
+      "premise": {
+       "id": "01a109dd-6631-7e9d-8b8f-4d993e87099e",
+       "premise_no": "P-00015",
+       "address": "117 Mill Pond Ln"
+      },
+      "window_start": null,
+      "window_end": null,
+      "due_at": "2026-10-05T05:37:42+00:00",
+      "est_minutes": 5,
+      "priority": null,
+      "state": "planned",
+      "dispatch_state": "scheduled",
+      "access_notes": "",
+      "hazards": "",
+      "gate_code": ""
+     }
+    }
+   ],
+   "count": 5,
+   "next_cursor": "MjAyNi0xMC0wNVQwMzozNzo0Mi42NTE4NjQrMDA6MDB8MDFhMTBhMjMtODVkYy03MmZjLTkwNjAtZDBkNjk0M2VhNzEy",
+   "has_more": false,
+   "br_ref": "BR-WRK-063"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "GET",
+  "path": "/work/mobile/jobs/01a10a23-8597-776f-b960-2a06afbea081",
+  "status": 200,
+  "request": null,
+  "response": {
+   "order_id": "01a10a23-8597-776f-b960-2a06afbea081",
+   "order_no": "WO-0108",
+   "template_id": "01a10a23-8472-70b9-84c8-0b8f6a2d6c24",
+   "template_version": 1,
+   "safety": [
+    {
+     "id": "01a10a23-859b-7ba1-8cba-99a1a907663d",
+     "seq": 1,
+     "text": "Gloves and eye protection on",
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null
+    }
+   ],
+   "safety_lock": {
+    "locked": true,
+    "remaining": 1,
+    "first_outstanding": "Gloves and eye protection on",
+    "ticked": 0,
+    "total": 1,
+    "mandatory_total": 1
+   },
+   "tasks": [
+    {
+     "id": "01a10a23-859d-71fe-85b9-db9590ed4d78",
+     "seq": 1,
+     "title": "Photograph the meter face",
+     "instruction": null,
+     "est_minutes": 3,
+     "photo_required": true,
+     "is_mandatory": false,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null,
+     "photo_attachment_id": null
+    },
+    {
+     "id": "01a10a23-859d-7ddc-80dc-aeb23f30ef47",
+     "seq": 2,
+     "title": "Seal and tidy",
+     "instruction": null,
+     "est_minutes": 2,
+     "photo_required": false,
+     "is_mandatory": false,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null,
+     "photo_attachment_id": null
+    }
+   ],
+   "tasks_total": 2,
+   "tasks_ticked": 0,
+   "tasks_est_minutes": 5,
+   "readings": [
+    {
+     "id": "01a10a23-85a0-7a14-a6c5-7b54866b96c7",
+     "seq": 1,
+     "prompt": "Final read",
+     "unit_of_measure": "kWh",
+     "min_value": "0.0000",
+     "max_value": "999999.0000",
+     "required": true,
+     "photo_required": false,
+     "posts_as_meter_read": true,
+     "value": null,
+     "kind": "number",
+     "value_text": null,
+     "captured_at": null,
+     "photo_attachment_id": null,
+     "in_range": null
+    }
+   ],
+   "materials": [],
+   "help": [],
+   "details": null,
+   "customer": {
+    "name": "Hugo Hollis",
+    "phone": "+1 (402) 555-1007",
+    "account_no": "AC-2026-00008"
+   },
+   "card": {
+    "id": "01a10a23-8597-776f-b960-2a06afbea081",
+    "order_no": "WO-0108",
+    "type": "Final read \u2014 residential",
+    "premise": {
+     "id": "01a109dd-6581-7ef8-be21-60ef93445326",
+     "premise_no": "P-00014",
+     "address": "115 Cedar Ridge Way"
+    },
+    "window_start": null,
+    "window_end": null,
+    "due_at": "2026-10-05T05:37:42+00:00",
+    "est_minutes": 5,
+    "priority": null,
+    "state": "planned",
+    "dispatch_state": "scheduled",
+    "access_notes": "",
+    "hazards": "",
+    "gate_code": ""
+   },
+   "technician_acceptance": {
+    "state": "pending",
+    "at": null,
+    "reason": null
+   }
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a10a23-8597-776f-b960-2a06afbea081/accept",
+  "status": 200,
+  "request": {},
+  "response": {
+   "order_id": "01a10a23-8597-776f-b960-2a06afbea081",
+   "order_no": "WO-0108",
+   "technician_acceptance": {
+    "state": "accepted",
+    "at": "2026-10-05T03:39:37.689543+00:00",
+    "reason": null
+   }
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a10a23-8597-776f-b960-2a06afbea081/sync",
+  "status": 200,
+  "request": {
+   "items": [
+    {
+     "key": "WO-0108-proof-9d91f9-0001",
+     "kind": "safety_tick",
+     "seq": 1,
+     "captured_at": "2026-10-05T03:39:37.741514+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZY8:YCKOF3kMFGT_2ECzuvbAXPM4mK65N4wnBve45pjv3dE",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T03:39:37.741545+00:00"
+     },
+     "payload": {
+      "safety_id": "01a10a23-859b-7ba1-8cba-99a1a907663d"
+     }
+    },
+    {
+     "key": "WO-0108-proof-9d91f9-0002",
+     "kind": "task_tick",
+     "seq": 2,
+     "captured_at": "2026-10-05T03:39:37.741553+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZY8:YCKOF3kMFGT_2ECzuvbAXPM4mK65N4wnBve45pjv3dE",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T03:39:37.741556+00:00"
+     },
+     "payload": {
+      "task_id": "01a10a23-859d-71fe-85b9-db9590ed4d78"
+     }
+    },
+    {
+     "key": "WO-0108-proof-9d91f9-0003",
+     "kind": "task_tick",
+     "seq": 3,
+     "captured_at": "2026-10-05T03:39:37.741560+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZY8:YCKOF3kMFGT_2ECzuvbAXPM4mK65N4wnBve45pjv3dE",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T03:39:37.741563+00:00"
+     },
+     "payload": {
+      "task_id": "01a10a23-859d-7ddc-80dc-aeb23f30ef47"
+     }
+    },
+    {
+     "key": "WO-0108-proof-9d91f9-0004",
+     "kind": "reading",
+     "seq": 4,
+     "captured_at": "2026-10-05T03:39:37.741569+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZY8:YCKOF3kMFGT_2ECzuvbAXPM4mK65N4wnBve45pjv3dE",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T03:39:37.741571+00:00"
+     },
+     "payload": {
+      "reading_id": "01a10a23-85a0-7a14-a6c5-7b54866b96c7",
+      "value": "5120",
+      "unit": "kWh"
+     }
+    }
+   ]
+  },
+  "response": {
+   "work_order_id": "01a10a23-8597-776f-b960-2a06afbea081",
+   "accepted": 4,
+   "duplicate": 0,
+   "refused": 0,
+   "held_for_review": 0,
+   "acknowledged": [
+    "WO-0108-proof-9d91f9-0001",
+    "WO-0108-proof-9d91f9-0002",
+    "WO-0108-proof-9d91f9-0003",
+    "WO-0108-proof-9d91f9-0004"
+   ],
+   "items": [
+    {
+     "key": "WO-0108-proof-9d91f9-0001",
+     "kind": "safety_tick",
+     "seq": 1,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a10a23-859b-7ba1-8cba-99a1a907663d",
+      "ticked_at": "2026-10-05T03:39:37.799409+00:00",
+      "safety_lock": {
+       "locked": false,
+       "remaining": 0,
+       "first_outstanding": null,
+       "ticked": 1,
+       "total": 1,
+       "mandatory_total": 1
+      }
+     }
+    },
+    {
+     "key": "WO-0108-proof-9d91f9-0002",
+     "kind": "task_tick",
+     "seq": 2,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a10a23-859d-71fe-85b9-db9590ed4d78",
+      "ticked_at": "2026-10-05T03:39:37.826943+00:00",
+      "tasks_ticked": 1,
+      "tasks_total": 2
+     }
+    },
+    {
+     "key": "WO-0108-proof-9d91f9-0003",
+     "kind": "task_tick",
+     "seq": 3,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a10a23-859d-7ddc-80dc-aeb23f30ef47",
+      "ticked_at": "2026-10-05T03:39:37.850756+00:00",
+      "tasks_ticked": 2,
+      "tasks_total": 2
+     }
+    },
+    {
+     "key": "WO-0108-proof-9d91f9-0004",
+     "kind": "reading",
+     "seq": 4,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a10a23-85a0-7a14-a6c5-7b54866b96c7",
+      "seq": 1,
+      "prompt": "Final read",
+      "unit": "kWh",
+      "kind": "number",
+      "value_text": null,
+      "value": "5120",
+      "in_range": true,
+      "required": true,
+      "photo_required": false,
+      "photo_attachment_id": null,
+      "captured_at": "2026-10-05T03:39:37.875318Z",
+      "posts_as_meter_read": true
+     }
+    }
+   ],
+   "synced_at": "2026-10-05T03:39:37.882165+00:00",
+   "br_ref": "BR-WRK-042"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a10a23-8597-776f-b960-2a06afbea081/sync",
+  "status": 200,
+  "request": {
+   "items": [
+    {
+     "key": "WO-0108-proof-9d91f9-0005",
+     "kind": "close",
+     "seq": 5,
+     "captured_at": "2026-10-05T03:39:37.925698+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZY8:YCKOF3kMFGT_2ECzuvbAXPM4mK65N4wnBve45pjv3dE",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T03:39:37.925722+00:00"
+     },
+     "payload": {
+      "outcome": "passed"
+     }
+    }
+   ]
+  },
+  "response": {
+   "work_order_id": "01a10a23-8597-776f-b960-2a06afbea081",
+   "accepted": 0,
+   "duplicate": 0,
+   "refused": 1,
+   "held_for_review": 0,
+   "acknowledged": [],
+   "items": [
+    {
+     "key": "WO-0108-proof-9d91f9-0005",
+     "kind": "close",
+     "seq": 5,
+     "result": "refused",
+     "detail": {
+      "message": "BIZ-LOCKED (work.order.photos_still_needed)",
+      "code": "BIZ-LOCKED",
+      "message_key": "work.order.photos_still_needed",
+      "params": {
+       "missing": 1,
+       "first": "Photograph the meter face"
+      },
+      "br_ref": "BR-WRK-040"
+     }
+    }
+   ],
+   "synced_at": "2026-10-05T03:39:38.009516+00:00",
+   "br_ref": "BR-WRK-042"
+  }
+ },
+ {
+  "who": "Dana",
+  "method": "GET",
+  "path": "/work-orders/01a10a23-8597-776f-b960-2a06afbea081",
+  "status": 200,
+  "request": null,
+  "response": {
+   "id": "01a10a23-8597-776f-b960-2a06afbea081",
+   "order_no": "WO-0108",
+   "type": "Final read \u2014 residential",
+   "premise": {
+    "id": "01a109dd-6581-7ef8-be21-60ef93445326",
+    "premise_no": "P-00014",
+    "address": "115 Cedar Ridge Way"
+   },
+   "stored_at": null,
+   "service": "electric",
+   "state": "planned",
+   "outcome": null,
+   "mode": "our_crew",
+   "is_gate": false,
+   "connection": null,
+   "account": null,
+   "raised_at": "2026-10-05T03:37:42.552409+00:00",
+   "priority": null,
+   "technician": {
+    "kind": "person",
+    "name": "R. Patel",
+    "slug": "r-patel"
+   },
+   "due_at": "2026-10-05T05:37:42+00:00",
+   "window_start": null,
+   "window_end": null,
+   "dispatch_state": "scheduled",
+   "completed_at": null,
+   "source": "dispatcher",
+   "source_ref": null,
+   "area": {
+    "id": "01a109dc-f47d-7df8-8bfd-1385fe0e744d",
+    "code": "EAST-SE",
+    "name": "SE"
+   },
+   "technician_acceptance": {
+    "state": "accepted",
+    "at": "2026-10-05T03:39:37.689543+00:00",
+    "reason": null
+   },
+   "hold": null,
+   "accepted": null,
+   "sla": {
+    "due_at": "2026-10-05T05:37:42+00:00",
+    "target": "priority",
+    "at_risk": false
+   },
+   "shape": "open",
+   "customer": {
+    "name": "Hugo Hollis",
+    "phone": "+1 (402) 555-1007",
+    "account_no": "AC-2026-00008"
+   },
+   "location": {
+    "premises": {
+     "id": "01a109dd-6581-7ef8-be21-60ef93445326",
+     "premise_no": "P-00014"
+    },
+    "unit": {
+     "id": "01a109dd-6598-72da-afe6-3743ef8fbd72",
+     "label": "Unit 1"
+    },
+    "asset": {
+     "id": "01a109dd-bc9f-7cce-ab81-457344dbddea",
+     "asset_no": "E-5007",
+     "serial": null
+    },
+    "address": "115 Cedar Ridge Way"
+   },
+   "signature": null,
+   "closed": null,
+   "photos_uploading": 0,
+   "timeline": [
+    {
+     "kind": "raised",
+     "at": "2026-10-05T03:37:42.552409+00:00",
+     "by": null,
+     "detail": "dispatcher"
+    },
+    {
+     "kind": "assigned",
+     "at": "2026-10-05T03:37:42.583273+00:00",
+     "by": {
+      "name": "Dana Whitfield"
+     },
+     "detail": "R. Patel"
+    }
+   ],
+   "est_duration_minutes": 5,
+   "custom_data": {},
+   "follows": null,
+   "follow_ups": []
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a10a23-8597-776f-b960-2a06afbea081/sync",
+  "status": 200,
+  "request": {
+   "items": [
+    {
+     "key": "WO-0108-proof-9d91f9-0006",
+     "kind": "photo",
+     "seq": 6,
+     "captured_at": "2026-10-05T03:39:38.789632+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZY8:YCKOF3kMFGT_2ECzuvbAXPM4mK65N4wnBve45pjv3dE",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T03:39:38.789662+00:00"
+     },
+     "payload": {
+      "photo_id": "3a1812f3-0837-4686-a214-305e1d57e321",
+      "sha256": "7086a7c2fdf01127284565d061df3f70dbb5a765da33b49c2b6c882b63ea1e20",
+      "task_id": "01a10a23-859d-71fe-85b9-db9590ed4d78"
+     }
+    }
+   ]
+  },
+  "response": {
+   "work_order_id": "01a10a23-8597-776f-b960-2a06afbea081",
+   "accepted": 1,
+   "duplicate": 0,
+   "refused": 0,
+   "held_for_review": 0,
+   "acknowledged": [
+    "WO-0108-proof-9d91f9-0006"
+   ],
+   "items": [
+    {
+     "key": "WO-0108-proof-9d91f9-0006",
+     "kind": "photo",
+     "seq": 6,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "photo_id": "3a1812f3-0837-4686-a214-305e1d57e321",
+      "upload_url": "/api/brazosbend/work/mobile/photos/3a1812f3-0837-4686-a214-305e1d57e321",
+      "state": "pending",
+      "attachment_id": null
+     }
+    }
+   ],
+   "synced_at": "2026-10-05T03:39:38.853679+00:00",
+   "br_ref": "BR-WRK-042"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a10a23-8597-776f-b960-2a06afbea081/sync",
+  "status": 200,
+  "request": {
+   "items": [
+    {
+     "key": "WO-0108-proof-9d91f9-0007",
+     "kind": "close",
+     "seq": 7,
+     "captured_at": "2026-10-05T03:39:38.857230+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZY8:YCKOF3kMFGT_2ECzuvbAXPM4mK65N4wnBve45pjv3dE",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T03:39:38.857248+00:00"
+     },
+     "payload": {
+      "outcome": "passed"
+     }
+    }
+   ]
+  },
+  "response": {
+   "work_order_id": "01a10a23-8597-776f-b960-2a06afbea081",
+   "accepted": 1,
+   "duplicate": 0,
+   "refused": 0,
+   "held_for_review": 0,
+   "acknowledged": [
+    "WO-0108-proof-9d91f9-0007"
+   ],
+   "items": [
+    {
+     "key": "WO-0108-proof-9d91f9-0007",
+     "kind": "close",
+     "seq": 7,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a10a23-8597-776f-b960-2a06afbea081",
+      "state": "completed",
+      "awaiting_review": true,
+      "br_ref": "BR-MET-110"
+     }
+    }
+   ],
+   "synced_at": "2026-10-05T03:39:38.965432+00:00",
+   "br_ref": "BR-WRK-042"
+  }
+ },
+ {
+  "who": "Dana",
+  "method": "GET",
+  "path": "/work-orders/01a10a23-8597-776f-b960-2a06afbea081",
+  "status": 200,
+  "request": null,
+  "response": {
+   "id": "01a10a23-8597-776f-b960-2a06afbea081",
+   "order_no": "WO-0108",
+   "type": "Final read \u2014 residential",
+   "premise": {
+    "id": "01a109dd-6581-7ef8-be21-60ef93445326",
+    "premise_no": "P-00014",
+    "address": "115 Cedar Ridge Way"
+   },
+   "stored_at": null,
+   "service": "electric",
+   "state": "completed",
+   "outcome": "passed",
+   "mode": "our_crew",
+   "is_gate": false,
+   "connection": null,
+   "account": null,
+   "raised_at": "2026-10-05T03:37:42.552409+00:00",
+   "priority": null,
+   "technician": {
+    "kind": "person",
+    "name": "R. Patel",
+    "slug": "r-patel"
+   },
+   "due_at": "2026-10-05T05:37:42+00:00",
+   "window_start": null,
+   "window_end": null,
+   "dispatch_state": "complete",
+   "completed_at": "2026-10-05T03:39:38.857230+00:00",
+   "source": "dispatcher",
+   "source_ref": null,
+   "area": {
+    "id": "01a109dc-f47d-7df8-8bfd-1385fe0e744d",
+    "code": "EAST-SE",
+    "name": "SE"
+   },
+   "technician_acceptance": {
+    "state": "accepted",
+    "at": "2026-10-05T03:39:37.689543+00:00",
+    "reason": null
+   },
+   "hold": null,
+   "accepted": null,
+   "sla": {
+    "due_at": "2026-10-05T05:37:42+00:00",
+    "target": "priority",
+    "at_risk": false
+   },
+   "shape": "completed",
+   "customer": {
+    "name": "Hugo Hollis",
+    "phone": "+1 (402) 555-1007",
+    "account_no": "AC-2026-00008"
+   },
+   "location": {
+    "premises": {
+     "id": "01a109dd-6581-7ef8-be21-60ef93445326",
+     "premise_no": "P-00014"
+    },
+    "unit": {
+     "id": "01a109dd-6598-72da-afe6-3743ef8fbd72",
+     "label": "Unit 1"
+    },
+    "asset": {
+     "id": "01a109dd-bc9f-7cce-ab81-457344dbddea",
+     "asset_no": "E-5007",
+     "serial": null
+    },
+    "address": "115 Cedar Ridge Way"
+   },
+   "signature": null,
+   "closed": {
+    "by": {
+     "name": "R. Patel"
+    },
+    "at": "2026-10-05T03:39:38.857230+00:00",
+    "location": {
+     "lat": "29.560100",
+     "lng": "-95.807200",
+     "fix_at": "2026-10-05T03:39:38.857248+00:00",
+     "precise": true,
+     "accuracy_m": "8.0",
+     "threshold_m": 50
+    }
+   },
+   "photos_uploading": 1,
+   "timeline": [
+    {
+     "kind": "raised",
+     "at": "2026-10-05T03:37:42.552409+00:00",
+     "by": null,
+     "detail": "dispatcher"
+    },
+    {
+     "kind": "assigned",
+     "at": "2026-10-05T03:37:42.583273+00:00",
+     "by": {
+      "name": "Dana Whitfield"
+     },
+     "detail": "R. Patel"
+    },
+    {
+     "kind": "completed",
+     "at": "2026-10-05T03:39:38.857230+00:00",
+     "by": null,
+     "detail": "passed"
+    }
+   ],
+   "est_duration_minutes": 5,
+   "custom_data": {},
+   "follows": null,
+   "follow_ups": []
+  }
+ },
+ {
+  "who": "Dana",
+  "method": "POST",
+  "path": "/work-orders/01a10a23-8597-776f-b960-2a06afbea081/accept",
+  "status": 409,
+  "request": {},
+  "response": {
+   "code": "BIZ-LOCKED",
+   "message_key": "work.order.photos_uploading",
+   "params": {
+    "count": 1
+   },
+   "field_errors": [],
+   "br_ref": "BR-WRK-062",
+   "trace_id": "79e4f3b9ceee4cffa2f88b67e37ea247"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "PUT",
+  "path": "/work/mobile/photos/3a1812f3-0837-4686-a214-305e1d57e321",
+  "status": 200,
+  "request": "<4,082,031 bytes>",
+  "response": {
+   "photo_id": "3a1812f3-0837-4686-a214-305e1d57e321",
+   "upload_url": "/api/brazosbend/work/mobile/photos/3a1812f3-0837-4686-a214-305e1d57e321",
+   "state": "landed",
+   "attachment_id": "01a10a25-5190-7766-a928-c4db9a0706ba",
+   "duplicate": false,
+   "job_id": "01a10a25-4ee9-73ec-9bae-f4a157418ad0"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "GET",
+  "path": "/work/mobile/photos/3a1812f3-0837-4686-a214-305e1d57e321",
+  "status": 200,
+  "request": null,
+  "response": {
+   "photo_id": "3a1812f3-0837-4686-a214-305e1d57e321",
+   "upload_url": "/api/brazosbend/work/mobile/photos/3a1812f3-0837-4686-a214-305e1d57e321",
+   "state": "landed",
+   "attachment_id": "01a10a25-5190-7766-a928-c4db9a0706ba"
+  }
+ },
+ {
+  "who": "Dana",
+  "method": "POST",
+  "path": "/work-orders/01a10a23-8597-776f-b960-2a06afbea081/accept",
+  "status": 200,
+  "request": {},
+  "response": {
+   "id": "01a10a23-8597-776f-b960-2a06afbea081",
+   "accepted_at": "2026-10-05T03:39:40.845653+00:00",
+   "connection_state": null,
+   "service_request": null,
+   "communication": {
+    "id": "01a10a23-8597-776f-b960-2a06afbea081",
+    "queued": false,
+    "no_connection": true,
+    "reason": "work_order_has_no_connection",
+    "br_ref": "BR-MET-115"
+   },
+   "failed_outcome": null,
+   "report": {
+    "id": "01a10a25-53bc-7d47-8a21-534de8362770",
+    "version": 1,
+    "total": "0.00",
+    "lines": 0
+   },
+   "br_ref": "BR-MET-115"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "GET",
+  "path": "/work/mobile/changes?page_size=50",
+  "status": 200,
+  "request": null,
+  "response": {
+   "changes": [
+    {
+     "change": "upsert",
+     "order_id": "01a109dd-aaa8-7c04-9312-e4b29225df8c",
+     "at": "2026-10-05T02:25:01.564061+00:00",
+     "job": {
+      "id": "01a109dd-aaa8-7c04-9312-e4b29225df8c",
+      "order_no": "WO-0038",
+      "type": "Tap and service line",
+      "premise": {
+       "id": "01a109dd-9523-7225-82ad-9a94cdb166c9",
+       "premise_no": "P-00064",
+       "address": "240 Sable Court"
+      },
+      "window_start": null,
+      "window_end": null,
+      "due_at": "2026-10-08T02:21:24.515606+00:00",
+      "est_minutes": null,
+      "priority": {
+       "id": "01a109dc-f63d-7590-a15d-0638f84feaae",
+       "code": "NORMAL",
+       "name": "Normal",
+       "colour": "info",
+       "rank": 3
+      },
+      "state": "planned",
+      "dispatch_state": "en_route",
+      "access_notes": null,
+      "hazards": null,
+      "gate_code": null
+     }
+    },
+    {
+     "change": "upsert",
+     "order_id": "01a109dd-a8a6-7e3b-8c66-2c4dced0b7bb",
+     "at": "2026-10-05T02:56:23.255390+00:00",
+     "job": {
+      "id": "01a109dd-a8a6-7e3b-8c66-2c4dced0b7bb",
+      "order_no": "WO-0028",
+      "type": "Tap and service line",
+      "premise": {
+       "id": "01a109dd-95d6-7642-bcfa-f7112273ce69",
+       "premise_no": "P-00066",
+       "address": "12 Harbour View"
+      },
+      "window_start": null,
+      "window_end": null,
+      "due_at": "2026-10-08T02:21:24.001370+00:00",
+      "est_minutes": null,
+      "priority": {
+       "id": "01a109dc-f63d-7590-a15d-0638f84feaae",
+       "code": "NORMAL",
+       "name": "Normal",
+       "colour": "info",
+       "rank": 3
+      },
+      "state": "planned",
+      "dispatch_state": "en_route",
+      "access_notes": null,
+      "hazards": null,
+      "gate_code": null
+     }
+    },
+    {
+     "change": "upsert",
+     "order_id": "01a10a23-84b6-765f-985d-3cf6d7078fc5",
+     "at": "2026-10-05T03:37:42.368778+00:00",
+     "job": {
+      "id": "01a10a23-84b6-765f-985d-3cf6d7078fc5",
+      "order_no": "WO-0105",
+      "type": "Final read \u2014 residential",
+      "premise": {
+       "id": "01a109dd-6199-7647-abaf-aff83a3e1da6",
+       "premise_no": "P-00007",
+       "address": "101 Silver Creek Rd"
+      },
+      "window_start": null,
+      "window_end": null,
+      "due_at": "2026-10-05T05:37:42+00:00",
+      "est_minutes": 5,
+      "priority": null,
+      "state": "planned",
+      "dispatch_state": "scheduled",
+      "access_notes": "",
+      "hazards": "",
+      "gate_code": ""
+     }
+    },
+    {
+     "change": "upsert",
+     "order_id": "01a10a23-85dc-72fc-9060-d0d6943ea712",
+     "at": "2026-10-05T03:37:42.651864+00:00",
+     "job": {
+      "id": "01a10a23-85dc-72fc-9060-d0d6943ea712",
+      "order_no": "WO-0109",
+      "type": "Final read \u2014 residential",
+      "premise": {
+       "id": "01a109dd-6631-7e9d-8b8f-4d993e87099e",
+       "premise_no": "P-00015",
+       "address": "117 Mill Pond Ln"
+      },
+      "window_start": null,
+      "window_end": null,
+      "due_at": "2026-10-05T05:37:42+00:00",
+      "est_minutes": 5,
+      "priority": null,
+      "state": "planned",
+      "dispatch_state": "scheduled",
+      "access_notes": "",
+      "hazards": "",
+      "gate_code": ""
+     }
+    }
+   ],
+   "count": 4,
+   "next_cursor": "MjAyNi0xMC0wNVQwMzozNzo0Mi42NTE4NjQrMDA6MDB8MDFhMTBhMjMtODVkYy03MmZjLTkwNjAtZDBkNjk0M2VhNzEy",
+   "has_more": false,
+   "br_ref": "BR-WRK-063"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "GET",
+  "path": "/work/mobile/jobs/01a10a23-85dc-72fc-9060-d0d6943ea712",
+  "status": 200,
+  "request": null,
+  "response": {
+   "order_id": "01a10a23-85dc-72fc-9060-d0d6943ea712",
+   "order_no": "WO-0109",
+   "template_id": "01a10a23-8472-70b9-84c8-0b8f6a2d6c24",
+   "template_version": 1,
+   "safety": [
+    {
+     "id": "01a10a23-85df-7808-8bc0-d6ba14793e02",
+     "seq": 1,
+     "text": "Gloves and eye protection on",
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null
+    }
+   ],
+   "safety_lock": {
+    "locked": true,
+    "remaining": 1,
+    "first_outstanding": "Gloves and eye protection on",
+    "ticked": 0,
+    "total": 1,
+    "mandatory_total": 1
+   },
+   "tasks": [
+    {
+     "id": "01a10a23-85e1-7fef-a6f0-fa437f4ae1f4",
+     "seq": 1,
+     "title": "Photograph the meter face",
+     "instruction": null,
+     "est_minutes": 3,
+     "photo_required": true,
+     "is_mandatory": false,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null,
+     "photo_attachment_id": null
+    },
+    {
+     "id": "01a10a23-85e1-7970-a70e-366173ef2291",
+     "seq": 2,
+     "title": "Seal and tidy",
+     "instruction": null,
+     "est_minutes": 2,
+     "photo_required": false,
+     "is_mandatory": false,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null,
+     "photo_attachment_id": null
+    }
+   ],
+   "tasks_total": 2,
+   "tasks_ticked": 0,
+   "tasks_est_minutes": 5,
+   "readings": [
+    {
+     "id": "01a10a23-85e5-7008-9fa1-e8ab79176949",
+     "seq": 1,
+     "prompt": "Final read",
+     "unit_of_measure": "kWh",
+     "min_value": "0.0000",
+     "max_value": "999999.0000",
+     "required": true,
+     "photo_required": false,
+     "posts_as_meter_read": true,
+     "value": null,
+     "kind": "number",
+     "value_text": null,
+     "captured_at": null,
+     "photo_attachment_id": null,
+     "in_range": null
+    }
+   ],
+   "materials": [],
+   "help": [],
+   "details": null,
+   "customer": {
+    "name": "Ines Iversen",
+    "phone": "+1 (402) 555-1008",
+    "account_no": "AC-2026-00009"
+   },
+   "card": {
+    "id": "01a10a23-85dc-72fc-9060-d0d6943ea712",
+    "order_no": "WO-0109",
+    "type": "Final read \u2014 residential",
+    "premise": {
+     "id": "01a109dd-6631-7e9d-8b8f-4d993e87099e",
+     "premise_no": "P-00015",
+     "address": "117 Mill Pond Ln"
+    },
+    "window_start": null,
+    "window_end": null,
+    "due_at": "2026-10-05T05:37:42+00:00",
+    "est_minutes": 5,
+    "priority": null,
+    "state": "planned",
+    "dispatch_state": "scheduled",
+    "access_notes": "",
+    "hazards": "",
+    "gate_code": ""
+   },
+   "technician_acceptance": {
+    "state": "pending",
+    "at": null,
+    "reason": null
+   }
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a10a23-85dc-72fc-9060-d0d6943ea712/accept",
+  "status": 200,
+  "request": {},
+  "response": {
+   "order_id": "01a10a23-85dc-72fc-9060-d0d6943ea712",
+   "order_no": "WO-0109",
+   "technician_acceptance": {
+    "state": "accepted",
+    "at": "2026-10-05T03:39:41.525364+00:00",
+    "reason": null
+   }
+  }
+ },
+ {
+  "who": "Dana",
+  "method": "POST",
+  "path": "/work-orders/01a10a23-85dc-72fc-9060-d0d6943ea712/assignments",
+  "status": 200,
+  "request": {
+   "act": "reassign",
+   "technician_id": "01a109e0-eb57-775a-b2d9-7e07208e275e",
+   "reason": "Patel off sick"
+  },
+  "response": {
+   "assignment_id": "01a10a25-56bd-77cb-9137-750fe97ec1c2",
+   "order_no": "WO-0109",
+   "act": "reassign",
+   "dispatch_state": "scheduled",
+   "technician": {
+    "kind": "person",
+    "name": "M. Chen",
+    "slug": "m-chen"
+   },
+   "reason": "Patel off sick",
+   "against_advice": null,
+   "push_job_id": "01a10a25-56e1-73f1-a2a1-1b6b55f5b450",
+   "customer_notice": "visit_message_no_channel_elected"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a10a23-85dc-72fc-9060-d0d6943ea712/sync",
+  "status": 200,
+  "request": {
+   "items": [
+    {
+     "key": "WO-0109-offline-43c4f7-0001",
+     "kind": "safety_tick",
+     "seq": 1,
+     "captured_at": "2026-10-05T03:39:41.581569+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZY8:YCKOF3kMFGT_2ECzuvbAXPM4mK65N4wnBve45pjv3dE",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T03:39:41.581592+00:00"
+     },
+     "payload": {
+      "safety_id": "01a10a23-85df-7808-8bc0-d6ba14793e02"
+     }
+    },
+    {
+     "key": "WO-0109-offline-43c4f7-0002",
+     "kind": "task_tick",
+     "seq": 2,
+     "captured_at": "2026-10-05T03:39:41.581599+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZY8:YCKOF3kMFGT_2ECzuvbAXPM4mK65N4wnBve45pjv3dE",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T03:39:41.581602+00:00"
+     },
+     "payload": {
+      "task_id": "01a10a23-85e1-7fef-a6f0-fa437f4ae1f4"
+     }
+    },
+    {
+     "key": "WO-0109-offline-43c4f7-0003",
+     "kind": "task_tick",
+     "seq": 3,
+     "captured_at": "2026-10-05T03:39:41.581606+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDZY8:YCKOF3kMFGT_2ECzuvbAXPM4mK65N4wnBve45pjv3dE",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T03:39:41.581608+00:00"
+     },
+     "payload": {
+      "task_id": "01a10a23-85e1-7970-a70e-366173ef2291"
+     }
+    }
+   ]
+  },
+  "response": {
+   "work_order_id": "01a10a23-85dc-72fc-9060-d0d6943ea712",
+   "accepted": 0,
+   "duplicate": 0,
+   "refused": 0,
+   "held_for_review": 3,
+   "acknowledged": [
+    "WO-0109-offline-43c4f7-0001",
+    "WO-0109-offline-43c4f7-0002",
+    "WO-0109-offline-43c4f7-0003"
+   ],
+   "items": [
+    {
+     "key": "WO-0109-offline-43c4f7-0001",
+     "kind": "safety_tick",
+     "seq": 1,
+     "result": "held_for_review",
+     "ack": true,
+     "detail": {
+      "needs_review": "work.mobile.not_your_job",
+      "params": {}
+     }
+    },
+    {
+     "key": "WO-0109-offline-43c4f7-0002",
+     "kind": "task_tick",
+     "seq": 2,
+     "result": "held_for_review",
+     "ack": true,
+     "detail": {
+      "needs_review": "work.mobile.not_your_job",
+      "params": {}
+     }
+    },
+    {
+     "key": "WO-0109-offline-43c4f7-0003",
+     "kind": "task_tick",
+     "seq": 3,
+     "result": "held_for_review",
+     "ack": true,
+     "detail": {
+      "needs_review": "work.mobile.not_your_job",
+      "params": {}
+     }
+    }
+   ],
+   "synced_at": "2026-10-05T03:39:41.876333+00:00",
+   "br_ref": "BR-WRK-042"
+  }
+ }
+]

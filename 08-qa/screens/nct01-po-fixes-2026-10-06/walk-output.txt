@@ -1,0 +1,57 @@
+  PASS  Kyle Mark's application saved — 200 {"token":"5055d1fc-081e-40f4-b98d-c2d3d66f3f03","address_as_given":"Haustin Towers 2","address_unit_as_given":"Apt-12","address_city_as_given":"Austin","address_postal_code_as_given":"78701","service_
+  PASS  the photo ID is attached on the portal — 200
+  PASS  Kyle Mark's application sent — 200 SR-26-0009
+  PASS  co-applicant and language recorded on the request — 200 {"header":{"id":"01a1112f-9f9f-7b93-880a-1000b9c47763","request_no":"SR-26-0009","number_absence":null,"state":"submitted","classification":"not_yet_classified","applicant":"Kyle Mark","address_as_giv
+      SSN on the request 200
+      customer-link (no prior customer) 200
+      shot 08-qa/screens/nct01-po-fixes-2026-10-06/0-approve-modal.png
+  PASS  Approve opens New Connect on the raised build — http://127.0.0.1:5828/brazosbend/connections/new?build=01a1112f-c105-796f-a1de-b6518e3bda98
+  PASS  N2 owner name arrived — Kyle Mark
+  PASS  N2 email arrived — kyle.mark@example.test
+  PASS  N2 category arrived — residential
+  PASS  N1 sub-category offers Residential's sub-types — Multi-family, Senior/Low-income, Single-family
+  PASS  N2 sub-category arrived — multi_family
+  PASS  N2 Owner is marked from the request
+  PASS  N6 SSN masked by default — password
+  PASS  N6 Show beside SSN
+  PASS  N2 the request's SSN is acknowledged as its last four, box empty — Gov-ID Social Security number Show Provided on the request · ends 1234 Driver's license Show A company gives Tax ID instead.
+  PASS  N2 the SSN is never copied into the box
+      shot 08-qa/screens/nct01-po-fixes-2026-10-06/1b0-step1-govid-from-request.png
+  PASS  N6 Show reveals the SSN
+      shot 08-qa/screens/nct01-po-fixes-2026-10-06/1a-step1-owner-govid-show.png
+      shot 08-qa/screens/nct01-po-fixes-2026-10-06/1b-step1-govid-revealed.png
+  PASS  N2 the closed co-applicant card reads Maya Mark
+  PASS  N2 co-applicant arrived — Co-applicant
+Maya Mark
+Collapse▴
+Full name*
+Email
+Phone
+Date of birth
+Social Security number
+Show
+Driver's license
+Show
+Remove co-applicant
+  PASS  N7 co-applicant has no owner type, category, sub-category or person/company
+  PASS  N6 co-applicant SSN has Show/Hide
+      shot 08-qa/screens/nct01-po-fixes-2026-10-06/1c-step1-co-applicant-short-form.png
+  PASS  N2 mailing address arrived
+  PASS  N2 the request's photo ID is listed as already brought in — Documents Filled from request SR-26-0009. DOCUMENT REQUIRED FILE UPLOADED BY STATE ACTIONS Anything else No kyle-photo-id.pdf · PDF · 2 KB 10/06/2026 Attaching one Document type* Contract Identity Payment Correspondence File Drop a file here Choose a file What it proves Document number Only the last
+  PASS  N2 Documents marked from the request
+  PASS  N3 no Add another document
+  PASS  N3 one Attach a file
+  PASS  N4 Uploaded by names the clerk for the draft file — 10/06/2026 | Dana Whitfield · 10/06/2026
+  PASS  N5 View on both rows — 2
+  PASS  N5 the request's photo ID opens through the request — http://127.0.0.1:5828/api/brazosbend/service-requests/01a1112f-9f9f-7b93-880a-1000b9c47763/documents/01a1112f-9f6a-7af2-9944-1a6d2c228f07/content?as=view
+  PASS  N5 the draft file opens from the browser — blob:http://127.0.0.1:5828/7db20fb8-fc70-497b-8569-9c547b720250
+      shot 08-qa/screens/nct01-po-fixes-2026-10-06/1d-step1-documents.png
+      shot 08-qa/screens/nct01-po-fixes-2026-10-06/1-step1-full.png
+  PASS  N2 step 2 street, town and ZIP arrived —  | Haustin Towers 2 |  | Austin |  | 78701
+  PASS  N2 step 2 marked from the request — Address Filled from request SR-26-0009. Premise type Choose a premise type Apartment complex Commercial building Governm
+      shot 08-qa/screens/nct01-po-fixes-2026-10-06/2-step2-address.png
+      shot 08-qa/screens/nct01-po-fixes-2026-10-06/2-step2-full.png
+  PASS  N2 step 3 holds Kyle's unit (Apt 12) — 12 | 12 | 2026-10-27 | on | Apt 12 | on
+      shot 08-qa/screens/nct01-po-fixes-2026-10-06/3-step3-units.png
+
+ALL PASS

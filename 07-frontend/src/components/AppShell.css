@@ -1,0 +1,664 @@
+/* AppShell (FE-01) styles — US-SHL-001..004 / BR-SHL-001..008.
+ * Modernist tokens only (B8: no hex literals — every color is a token from
+ * src/styles/tokens.css), with BR-SHL-001's 240/64px frame widths; no prototype
+ * runtime is ever ported.
+ *
+ * ⚠ **THIS HEADER CITED `05-prototype/UtilityBilling.html` AS "the signed
+ * reference" UNTIL 2026-09-24, AND THAT FILE HAS BEEN DELETED SINCE `DEF-610`.**
+ * A provenance comment that outlived its source — hard-won law 1, and `DEF-524`'s
+ * shape exactly (a hardcoded path that outlived the file it named and went on
+ * reporting PASS). A reader sent to it finds nothing and cannot tell whether the
+ * layout was ever checked against anything. **The readable reference is
+ * `05-prototype/r10-2026-08-16/SMARTBillHub.dc.html`**, which is r10 and is what
+ * the PO ruled the default on 2026-08-16; r9's `.app-shell`/`.sidebar`/`.topbar`
+ * rules are where these shapes came from and can no longer be opened.
+ *
+ * ⚠ **AND THE SPACING IN THIS FILE IS NOW ON THE RULED SCALE — B14 RULE 44
+ * (PO ruling 2026-09-24): *"please use our ui, styleguide, spacing
+ * specifications. all the time"*.** Fourteen values moved on 2026-09-24
+ * (Finance blueprint `P2.17`). **Two were deliberately LEFT**: `.sidebar
+ * .brand`'s `18px`, because r10 sets that exact element at 18px — and it has
+ * since LEFT this file altogether, to `ProductName.tsx` as `text-brand`, the
+ * step `OQ-279` named for it (2026-10-02, the name in two sizes); and
+ * `.side-sub`'s `34px` indent, which is an optical alignment derived from the
+ * parent nav item rather than a rhythm value.
+ * **BR-SHL-001's 240px and 64px are untouched and were never off-scale** — they
+ * are a signed business rule about the frame, not a spacing choice. */
+
+/* ── Frame (BR-SHL-001: 240px expanded / 64px collapsed) ────────────────── */
+.app-shell {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  height: 100vh;
+  overflow: hidden;
+  transition: grid-template-columns 0.2s ease;
+}
+.app-shell.collapsed {
+  grid-template-columns: 64px 1fr;
+}
+
+/* ── Sidebar (inverted ink panel) ───────────────────────────────────────── */
+.sidebar {
+  background: var(--color-text);
+  color: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.sidebar .brand {
+  padding: 20px 20px 16px;
+  /* The name's family, weights, sizes (18px + 14px) and its one-line rule now
+     live on `components/ProductName.tsx` in Tailwind (decision log 2026-10-02,
+     "two sizes and two colours"; B14 rules 21 and 43). This block keeps only
+     the lockup's frame — the padding, the accent square and the rule below. */
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-bg) 15%, transparent);
+}
+.sidebar .brand::before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: var(--color-accent);
+  flex-shrink: 0;
+}
+.sidebar .brand .nav-toggle {
+  margin-left: auto;
+  color: var(--color-bg);
+}
+
+/* Sidebar tenant block — ported from the prototype's own rule
+ * (UtilityBilling.html:103-104). The app had the padding and the border and
+ * none of the type treatment, so the second line had nowhere to sit and the
+ * name rendered at body size on the ink panel.
+ * `cursor: pointer` is deliberately NOT ported: the prototype's block opens
+ * nothing (see AppShell.tsx), and a pointer cursor on inert text is a promise. */
+.sidebar .tenant {
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--text-sm);
+  color: color-mix(in srgb, var(--color-bg) 70%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-bg) 15%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+.sidebar .tenant .tn {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  color: var(--color-bg);
+  font-size: var(--text-base);
+  display: block;
+  margin-bottom: var(--space-1);
+}
+/* The second line: where the prototype's "1,247 connections · Growth" sits.
+   It carries a stated absence rather than a figure — see AppShell.tsx. */
+.sidebar .tenant .tenant-sub {
+  display: block;
+}
+
+.sidebar nav {
+  padding: var(--space-2);
+}
+
+/* ⚠ `DEF-MET-4963` — MEASURED, DELIBERATELY NOT CHANGED. `9px 12px` with a
+ * 10px gap is off the R11 scale (4·8·12·16·20·24·32), as is `.view`'s bottom
+ * padding (56px at ≤ 1440, 64px above it) and `.card`'s 28px. Five anchors,
+ * not the three the row first named. They are NOT swept here: all five are
+ * shell values reaching every screen in the product, and the row's own
+ * prevention says a sweep without a decision is how a product acquires a
+ * sixth. A 9px rail item may be the right optical value — if it is, it wants
+ * a token rather than a literal. */
+.side-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-base);
+  color: color-mix(in srgb, var(--color-bg) 78%, transparent);
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  text-align: left;
+  text-decoration: none;
+  width: 100%;
+}
+.side-item:hover {
+  color: var(--color-bg);
+  background: color-mix(in srgb, var(--color-bg) 6%, transparent);
+}
+/* Active module highlight (US-SHL-001 TC-3). */
+.side-item.active {
+  color: var(--color-bg);
+  background: var(--color-accent);
+}
+.side-item .side-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.side-sub {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-1) 0 var(--space-2) 34px;
+}
+.side-sub a {
+  text-align: left;
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--text-sm);
+  color: color-mix(in srgb, var(--color-bg) 65%, transparent);
+  text-decoration: none;
+  font-family: var(--font-body);
+}
+.side-sub a:hover {
+  color: var(--color-accent-300);
+}
+.side-sub a.sub-active {
+  color: var(--color-bg);
+}
+
+/* ── The product version, at the foot of the rail ───────────────────────────
+ * Change process §7 rule 2 (12-governance/13-change-process.md, PO-ruled
+ * 2026-08-16): the running build's version must be readable on screen.
+ *
+ * This element carries the sidebar column's ONLY `margin-top: auto` — see
+ * `.foot-wrap` below, whose auto margin was removed when this landed. Two auto
+ * margins in one flex column SPLIT the free space between them, which would
+ * have floated the user block into the middle of the rail on a tall viewport.
+ * One auto margin, on the first of the two bottom-pinned blocks, pins both.
+ *
+ * Deliberately quiet: `--text-xs`, 40% of the sidebar's own foreground. It is
+ * reference information a person goes looking for when filing a defect, not
+ * something a clerk should read past twelve times a day. It is NOT hidden on
+ * the collapsed rail — "v2.4.0" is ~37px at this size and the rail is 64px, so
+ * it stays findable in both states rather than disappearing exactly when a
+ * screenshot is being taken.
+ * ⚠ THE SIZE WAS 10px UNTIL 2026-08-19 and the clearance figure said ~34px.
+ * The ruled scale has no 10px step, so it is `--text-xs` (11px) now and the
+ * measurement above was re-derived rather than left describing the old size —
+ * a comment that keeps quoting a number the code no longer has is how the next
+ * lane "verifies" a fit against the wrong width (hard-won law 1). */
+.sidebar-version {
+  margin-top: auto;
+  padding: var(--space-2) 20px 0;
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  color: color-mix(in srgb, var(--color-bg) 40%, transparent);
+}
+.app-shell.collapsed .sidebar-version {
+  padding-left: 0;
+  padding-right: 0;
+  text-align: center;
+}
+
+/* BR-SHL-008 footer user block. */
+.sidebar .foot {
+  margin-top: auto;
+  padding: var(--space-4) 20px;
+  font-size: var(--text-xs);
+  color: color-mix(in srgb, var(--color-bg) 55%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--color-bg) 12%, transparent);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.sidebar .foot .av {
+  width: 28px;
+  height: 28px;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: var(--text-sm);
+  flex-shrink: 0;
+}
+.sidebar .foot .foot-name {
+  color: var(--color-bg);
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+}
+
+/* ── Collapsed rail: icons only (BR-SHL-001) ────────────────────────────── */
+.app-shell.collapsed .brand-name,
+.app-shell.collapsed .tenant,
+.app-shell.collapsed .side-label,
+.app-shell.collapsed .side-sub,
+.app-shell.collapsed .foot-id {
+  display: none;
+}
+.app-shell.collapsed .side-item {
+  justify-content: center;
+  padding: var(--space-3) 0;
+}
+.app-shell.collapsed .sidebar .brand {
+  justify-content: center;
+  padding: 20px 0 16px;
+}
+.app-shell.collapsed .foot {
+  justify-content: center;
+  padding: var(--space-4) 0;
+}
+
+.nav-toggle {
+  background: none;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.topbar .nav-toggle:hover {
+  background: var(--color-surface);
+}
+
+/* ── Main column ────────────────────────────────────────────────────────── */
+.main {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: 0 var(--space-6);
+  height: 56px;
+  border-bottom: 2px solid var(--color-divider);
+  background: var(--color-bg);
+  flex-shrink: 0;
+}
+
+/* BR-SHL-004 breadcrumb: ancestors are links, the leaf is plain text. */
+.crumbs {
+  font-size: var(--text-base);
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+.crumbs a {
+  color: inherit;
+  text-decoration: none;
+}
+.crumbs a:hover {
+  color: var(--color-text);
+}
+.crumbs .sep {
+  margin: 0 var(--space-2);
+  color: color-mix(in srgb, var(--color-text) 30%, transparent);
+}
+.crumbs .cur {
+  color: var(--color-text);
+}
+
+/* ── Global search (US-SHL-003 — the box AND its popover) ───────────────── */
+/* ⚠ WIDENED 2026-09-03 ON THE PO'S OWN INSTRUCTION — "if you have to increase
+   the length of search bar please increase it", said in the same breath as
+   growing the search from four groups to nine. Nine group names is more than a
+   260px box can hint at.
+
+   THE WIDENING IS `flex`, NOT A BIGGER FIXED WIDTH, AND THAT IS THE WHOLE
+   CONSTRAINT THE RULING PUT ON IT: it must not push the bell or the help icon
+   off the header at a narrow width. `flex: 0 1 360px` asks for 360px and
+   SHRINKS first when the row runs out of room; `min-width` stops it collapsing
+   to nothing. `min-width: 0` on the input lets the flex item actually shrink,
+   which a text input will not do on its own. No media query is needed, so no
+   breakpoint is added to the ruled scale (G36).
+
+   NO NEW CLASS NAME IS DECLARED HERE, deliberately: B14 rule 21's ceiling is
+   the COUNT of declared classes (G31) and every selector below already existed.
+   The popover is `components/GlobalSearchResults.tsx`, in Tailwind utilities,
+   because `AppShell.tsx` is not on `src/styles/route-b-migrated.txt` and a
+   utility written there emits no CSS at all. */
+.shell-search {
+  margin-left: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 0 1 360px;
+  min-width: 140px;
+}
+.shell-search input {
+  width: 100%;
+  min-width: 0;
+  /* ⚠ **LEFT OFF THE SCALE DELIBERATELY, AND THE REASON IS OPTICAL RATHER THAN
+     RHYTHMIC (B14 rule 44 triage, `P2.17`, 2026-09-24).** None of these four is
+     a spacing choice:
+       · `30px` left and `28px` right are the ROOM FOR THE TWO ICONS this input
+         draws inside itself — the magnifier and the clear affordance. They are
+         derived from those glyphs' size and inset, so snapping them to 32px/24px
+         would move the text off the icons rather than onto a rhythm.
+       · the `6px` verticals sit inside a FIXED `height: 32px` below, so they do
+         not size the control at all; they only centre 13px text in it. 32px less
+         two 1px borders leaves 30px, and 8px verticals would leave 14px for the
+         line box — enough to clip a descender on a longer-lined locale.
+     Rule 44 governs how a screen is BUILT; an optical inset is not a spacing
+     specification, and forcing one onto the scale is the bulk snap the task
+     warns against. Counted as SKIPPED with this reason, never as clean. */
+  padding: 6px 28px 6px 30px;
+  background: var(--color-field-fill); /* Group A decision 6 (2026-10-23) */
+  border: 1px solid var(--color-field-border); /* Group A F-09 (2026-10-23) */
+  font: inherit;
+  font-size: var(--text-base);
+  height: 32px;
+  color: var(--color-text);
+}
+/* DEF-2423's disabled look — KEPT, and the reason is worth one line rather than
+   a deletion. The input is no longer disabled (US-SHL-003 landed the endpoint,
+   2026-09-03), so nothing renders this state today. It stays because the rule
+   above sets `background` and `color` explicitly: any future state that
+   disables this box would otherwise inherit the LIVE styling and the browser's
+   own greying would never show, giving a control that reads as working while
+   refusing every keystroke. That is the defect wearing the fix's clothes, and
+   it took a PO report to find the first time. It declares no class name, so
+   G31's ceiling is unaffected either way. */
+.shell-search input:disabled {
+  background: color-mix(in srgb, var(--color-text) 4%, transparent);
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+  cursor: not-allowed;
+}
+.shell-search > svg {
+  position: absolute;
+  left: 8px;
+  width: 14px;
+  height: 14px;
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+  pointer-events: none;
+}
+.shell-search-clear {
+  position: absolute;
+  right: 4px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: var(--text-sm);
+  color: var(--color-neutral-600);
+  padding: var(--space-1);
+}
+.shell-search-clear:hover {
+  color: var(--color-text);
+}
+
+/* ── Notifications bell (US-SHL-004 shell) ──────────────────────────────── */
+/* DEF-450 — the top-bar help control. Sized to `.shell-bell > summary`'s own
+   32x32 box below, because the two sit as a pair and a 2px difference between
+   adjacent icon targets reads as a mistake. */
+/* DEF-SHL-7825 — the control is a `<button>` now, not an `<a>`, because it has
+   nowhere true to go until `OQ-307` is answered. A button brings the browser's
+   own border, background and font with it, so those three are reset HERE on the
+   rule that already exists rather than in a new class: B14 rule 21 lets existing
+   CSS shrink as a migration phase takes it, never grow by a class. The 32x32 box
+   and the hover are unchanged, so the pair with the bell beside it still lines
+   up to the pixel. */
+.shell-help {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-text);
+  text-decoration: none;
+}
+.shell-help:hover:not(:disabled) {
+  background: var(--color-neutral-100);
+}
+/* BR-SHL-025's look, and the one thing it must NOT do is disappear: a clerk who
+   cannot find the control learns the feature does not exist, which is the thing
+   BR-SHL-008 already ruled against in this same shell. */
+.shell-help:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.shell-bell {
+  position: relative;
+}
+.shell-bell > summary {
+  list-style: none;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  color: var(--color-text);
+}
+.shell-bell > summary::-webkit-details-marker {
+  display: none;
+}
+.shell-bell > summary:hover {
+  background: var(--color-surface);
+}
+.shell-bell > summary svg {
+  width: 16px;
+  height: 16px;
+}
+/* BR-SHL-007 unread badge (display capped at "9+"). */
+.bell-badge {
+  position: absolute;
+  top: 1px;
+  right: 0;
+  min-width: 15px;
+  height: 15px;
+  padding: 0 var(--space-1);
+  background: var(--color-accent);
+  color: var(--color-bg);
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  /* A pill label — `--text-xs`. The badge box is fixed at 15px with a matching
+     line-height, so the 10px → 11px re-point moves the digit, never the box. */
+  font-size: var(--text-xs);
+  line-height: 15px;
+  text-align: center;
+}
+.bell-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + var(--space-1));
+  z-index: 50;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-2);
+}
+.bell-empty {
+  margin: 0;
+  padding: var(--space-3);
+  font-size: var(--text-base);
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+}
+.bell-item {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  font-size: var(--text-base);
+  color: var(--color-text);
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-text) 12%, transparent);
+}
+.bell-item:hover {
+  background: var(--color-surface);
+}
+.bell-item.read {
+  color: var(--color-neutral-600);
+}
+.bell-mark-all {
+  align-self: flex-end;
+  margin-top: var(--space-1);
+}
+
+/* ── Content region (hosts every module screen via <Outlet/>) ───────────── */
+/* ⚠ `position: relative` IS LOAD-BEARING — DEF-CUS-6366 / DEF-CUS-6367
+   (PO 2026-09-23: "scrren breaks and show white screen").
+   This pane is the scroll container, so it must also be the CONTAINING BLOCK
+   for what it holds. Without it, every absolutely positioned descendant that
+   has no positioned ancestor of its own — the kit's `sr-only` checkbox input,
+   the segmented control's hidden radio — is laid out against the PAGE. The
+   pane clips it, but the document grows to reach it: on the move-in step 4
+   the Paperless input sat at y=3585 under a 1000px shell, the document was
+   3942px tall, and ticking the box focused the input and scrolled the PAGE
+   2942px, leaving only the fixed screen tag on a blank viewport. On step 3 a
+   mouse wheel at the pane's bottom did the same by 478px. Nothing in the
+   suites can see it: the DOM is intact and no gate reads rendered layout. */
+.view {
+  position: relative;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--space-8) var(--space-8) var(--space-8);
+  min-width: 0;
+}
+@media (max-width: 1440px) {
+  .view {
+    padding: var(--space-6) var(--space-6) var(--space-6);
+  }
+}
+@media (max-width: 1024px) {
+  .view {
+    padding: var(--space-5) var(--space-5) var(--space-5);
+  }
+}
+
+/* ── BR-SHL-009 / S48 user menu — opens UPWARD out of the sidebar footer ────
+ *
+ * This block used to name three tokens THAT DO NOT EXIST — `var(--surface,#fff)`,
+ * `var(--rule,#ddd)`, `var(--hover,#f2f2f2)`. tokens.css defines `--color-surface`,
+ * `--color-divider` and no `--hover` at all, so every one of them fell through
+ * to its hardcoded fallback and the popover rendered in colours from no design
+ * system: a white box with a light-grey border and a 6px radius in a
+ * ZERO-RADIUS design (--radius-* are all 0px — "Modernist is square; keep 0, do
+ * not fix"). That is the grey box the PO saw.
+ *
+ * The muted text had its own cause, and it is worth naming because it is not
+ * obvious: `.foot-menu-item { color: inherit }` inherited from `.sidebar .foot`,
+ * which is `color-mix(--color-bg 55%, transparent)` — a WASHED-OUT LIGHT tone,
+ * correct on the sidebar's ink panel and nearly invisible on the popover's own
+ * light background. A popover that leaves the panel it hangs off must restate
+ * its ink; it cannot inherit it.
+ *
+ * Ported from the prototype's real rules: the container from its inline style
+ * (UtilityBilling.html:625 — `background:var(--color-bg); box-shadow:
+ * var(--shadow-lg); padding:6px`), the items from `.btn.btn-ghost`
+ * (styles.css:117-146) and the rule from `.hr` (styles.css:121). No hex
+ * literals (B8): every colour below is a token this repo already names. */
+/* `margin-top: auto` moved to `.sidebar-version`, which now precedes this
+ * block in the DOM and pins both to the foot of the rail. Restoring it here
+ * would put TWO auto margins in one flex column and split the free space. */
+.foot-wrap { position: relative; }
+button.foot {
+  width: 100%;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.foot-menu {
+  position: absolute;
+  bottom: calc(100% + var(--space-2));
+  left: var(--space-2);
+  right: var(--space-2);
+  z-index: 50;
+  background: var(--color-bg);
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-md);
+  padding: var(--space-1);
+}
+
+/* The prototype's ruled identity header: name, then "email · role". */
+.foot-menu-identity {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-divider);
+}
+.foot-menu-name {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: var(--text-md);
+  color: var(--color-text);
+}
+.foot-menu-meta {
+  font-size: var(--text-sm);
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+
+/* `.btn.btn-ghost` + `justify-content:flex-start`, which is what the prototype
+   writes on each item. `color` is STATED, never inherited — see above. */
+.foot-menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: var(--space-2) var(--space-1);
+  border: 1px solid transparent;
+  background: transparent;
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: var(--text-md);
+  line-height: 1.2;
+  text-align: left;
+  color: var(--color-text);
+  cursor: pointer;
+}
+.foot-menu-item:hover:not(:disabled),
+.foot-menu-item:focus-visible:not(:disabled) {
+  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+}
+.foot-menu-item:active:not(:disabled) {
+  background: color-mix(in srgb, var(--color-accent) 18%, transparent);
+}
+/* BR-SHL-025: an item with no destination is DISABLED and says why in its
+   title — the prototype's own `.btn:disabled` treatment, unchanged. */
+.foot-menu-item:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+/* The prototype puts Sign out in --color-accent, alone below the rule: the one
+   item on this menu that ends something. */
+.foot-menu-signout {
+  color: var(--color-accent);
+}
+/* `.hr` (styles.css:121) — 2px of the divider token, not a 1px border. */
+.foot-menu-sep {
+  height: 2px;
+  border: 0;
+  margin: var(--space-1) 0;
+  background: var(--color-divider);
+}
+
+/* ── DEF-327 · two shell classes the sidebar has asked for since W0 ────────
+ * `.tenant-id` wraps the tenant NAME above its sub-line, and `.foot-role`
+ * is the user's role under their name. Both were undeclared, so the name and
+ * its sub-line ran together in the sidebar head and the role rendered at body
+ * copy directly beneath the user's name — the two most-seen lines in the
+ * product, on every screen. `.tenant-sub` and `.foot-name` were declared all
+ * along; only their siblings were missing. ─────────────────────────────── */
+.tenant-id {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.foot-role {
+  font-size: var(--text-xs);
+  line-height: 1.4;
+  color: color-mix(in srgb, var(--color-bg) 60%, transparent);
+}

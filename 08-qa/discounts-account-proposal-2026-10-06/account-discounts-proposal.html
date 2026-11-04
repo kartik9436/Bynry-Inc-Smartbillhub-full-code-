@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Account Discounts Proposal</title>
+<!--
+  DEF-CUS-9781 — a DRAWING PROPOSAL, NOT A BUILD (2026-10-06, lane DEF-RAT-9792/9780/9781).
+  No drawing places an account's discounts on the account page (the Accounts
+  blueprint, pages 6–38, draws twelve tabs and no discount anywhere), so under
+  the UI skill's no-drawing rule this is drawn and put to the PO before any
+  code is written. Drawn on the as-built Overview tab (M3 photograph
+  08-qa/movein-2026-10-05/e2e/M3/M3-w3-account.png, 2.549.0) with the kit's
+  look: section heading in the red rule style, the kit's one table, row
+  actions as icons. Figures are Harold Whitfield's from the M3 walk; the
+  Paperless and Senior rows are illustrations (B14 rule 37).
+  This file is a picture source only. Nothing in 07-frontend reads it.
+-->
+<style>
+  :root {
+    --bg: #f2f2f2; --ink: #1a1a1a; --muted: #6b6b6b; --rule: #e8321c;
+    --red: #e8321c; --side: #1d1d1d; --line: #cfcfcf; --pill: #e4e4e4;
+    --ok: #0f7a3a; --warn: #9a5b00; --note: #fff7d6; --note-line: #c9a227;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 13px/1.45 "DejaVu Sans", Arial, sans-serif; }
+  .frame { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+  .side { background: var(--side); color: #fff; padding: 16px 0; }
+  .brand { font-weight: 700; font-size: 16px; padding: 0 16px 16px; }
+  .brand b { color: var(--red); }
+  .side a { display: block; color: #ddd; padding: 6px 24px; text-decoration: none; font-weight: 600; }
+  .side a.on { background: var(--red); color: #fff; }
+  .main { padding: 0 40px 40px; }
+  .top { height: 56px; border-bottom: 1px solid var(--line); display: flex; align-items: center; font-weight: 600; margin: 0 -40px 24px; padding: 0 40px; }
+  .back { color: var(--red); font-weight: 700; font-size: 14px; }
+  .kicker { color: var(--red); font-weight: 700; font-size: 11px; letter-spacing: .08em; margin-top: 8px; }
+  h1 { font-size: 32px; margin: 2px 0 8px; }
+  .pill { display: inline-block; background: var(--pill); padding: 2px 8px; font-size: 11px; font-weight: 700; margin-right: 4px; }
+  .pill.ok { color: var(--ok); }
+  .tabs { display: flex; gap: 16px; border-bottom: 1px solid var(--line); margin: 20px 0 16px; font-size: 14px; }
+  .tabs span { padding: 0 0 8px; }
+  .tabs span.on { color: var(--red); border-bottom: 2px solid var(--red); font-weight: 700; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 32px; }
+  h2 { font-size: 11px; letter-spacing: .08em; color: var(--red); margin: 24px 0 0; padding-bottom: 16px; border-bottom: 2px solid var(--rule); }
+  dl { display: grid; grid-template-columns: 144px 1fr; gap: 6px 8px; margin: 12px 0 0; }
+  dt { font-weight: 700; color: #444; } dd { margin: 0; }
+  table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+  th { text-align: left; font-size: 11px; letter-spacing: .06em; padding: 8px 6px; border-bottom: 2px solid #444; }
+  td { padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .state { display: inline-block; padding: 2px 8px; font-size: 11px; font-weight: 700; background: var(--pill); }
+  .state.pending { color: var(--warn); } .state.on { color: var(--ok); } .state.ended { color: var(--muted); }
+  .icon { display: inline-flex; width: 28px; height: 28px; align-items: center; justify-content: center; border: 1px solid var(--line); background: #fff; color: var(--red); }
+  .muted { color: var(--muted); }
+  .new { outline: 3px dashed var(--note-line); outline-offset: 8px; }
+  .callout { background: var(--note); border: 1px solid var(--note-line); padding: 12px 16px; margin: 0 0 16px; font-size: 13px; }
+  .callout .title { display: block; margin-bottom: 4px; font-weight: 700; }
+  td { white-space: nowrap; } td:first-child { white-space: normal; }
+  .callout ol { margin: 4px 0 0 18px; padding: 0; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <nav class="side">
+    <div class="brand">SMART360 <b>Next</b></div>
+    <a>Dashboard</a><a>Plans &amp; Rates</a><a>Premises</a><a>Assets</a>
+    <a class="on">Accounts</a><a>Reads</a><a>Billing</a><a>Payments</a><a>Work</a>
+    <a>Finance</a><a>Runbooks</a><a>Reports</a><a>Settings</a>
+  </nav>
+  <main class="main">
+    <div class="top">Accounts</div>
+    <div class="callout">
+      <span class="title">Proposal — discounts on the account page (not built)</span>
+      <ol>
+        <li>A <b>Discounts</b> group on the Overview tab, under <b>Plan</b> — discounts come through the plan.</li>
+        <li>One row per enrolment, newest first: discount, state, value, from, to, proof.</li>
+        <li>States use the words Plans &amp; Rates already shows: <b>Proof pending</b>, <b>Receiving</b>, <b>Ended</b>.</li>
+        <li>Proof opens the letter taken at move-in. System Admin only.</li>
+        <li>No enrol or verify here — those stay on the discount's own page.</li>
+      </ol>
+    </div>
+    <div class="back">← Accounts</div>
+    <div class="kicker">ACCOUNT AC-2026-00057 · CUSTOMER C-00054</div>
+    <h1>Harold Whitfield</h1>
+    <span class="pill ok">Active</span><span class="pill">Billable</span><span class="pill">Residential · Senior/Low-income</span>
+    <div class="muted" style="margin-top:6px">18 Juniper Street · Unit 1 · Cedar Ford, TX 78610 · Since Oct 2026</div>
+    <div class="tabs"><span class="on">Overview</span><span>Bills</span><span>Payments</span><span>Credits</span><span>Payment plan</span><span>Usage</span><span>Meters</span><span>Work</span><span>Adjustments</span><span>Documents</span><span>Notes</span><span>Audit</span></div>
+    <div class="cols">
+      <section>
+        <h2>PLAN</h2>
+        <dl><dt>Plan</dt><dd>Sample — Residential</dd><dt>Code</dt><dd>SCW-RES</dd><dt>Version</dt><dd>1</dd><dt>In force since</dt><dd>01/01/2026</dd></dl>
+
+        <div class="new">
+        <h2>DISCOUNTS</h2>
+        <table>
+          <thead><tr><th>DISCOUNT</th><th>STATE</th><th class="num">VALUE</th><th>FROM</th><th>TO</th><th>PROOF</th></tr></thead>
+          <tbody>
+            <tr><td>CAP / low-income credit</td><td><span class="state pending">Proof pending</span></td><td class="num">10% off</td><td>10/10/2026</td><td>—</td>
+                <td><span class="icon" title="View proof: cap-award-letter.pdf" aria-label="View proof">👁</span></td></tr>
+            <tr><td>Paperless</td><td><span class="state on">Receiving</span></td><td class="num">$1.00 off</td><td>10/11/2026</td><td>—</td><td class="muted">—</td></tr>
+            <tr><td>Senior</td><td><span class="state ended">Ended</span></td><td class="num">15% off</td><td>01/02/2026</td><td>09/30/2026</td><td class="muted">—</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <h2>HISTORY</h2>
+        <div style="margin-top:12px"><b>NO BILL HAS BEEN ISSUED</b><div class="muted">No bill has been raised yet.</div></div>
+      </section>
+      <section>
+        <h2>CUSTOMER</h2>
+        <dl><dt>Full name</dt><dd>Harold Whitfield</dd><dt>Email</dt><dd>harold.whitfield@example.invalid</dd><dt>Phone</dt><dd>(512) 555-0127</dd><dt>Date of birth</dt><dd>03/22/1951</dd></dl>
+        <h2>BILLING PREFERENCES</h2>
+        <dl><dt>Autopay</dt><dd>Off</dd><dt>Paperless</dt><dd>On</dd><dt>Text reminders</dt><dd>Off</dd></dl>
+      </section>
+    </div>
+  </main>
+</div>
+</body>
+</html>

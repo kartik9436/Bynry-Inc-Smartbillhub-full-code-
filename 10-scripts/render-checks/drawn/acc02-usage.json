@@ -1,0 +1,43 @@
+{
+ "tab": "usage",
+ "note": "Transcribed from 04-docs/05-modules/03-customers/blueprint/02-account-detail.md — ACC-T06, the EXTRACTED TEXT, not from looking at the picture, so anybody can re-check it against the source.",
+ "drawn": {
+  "toolbar": "Electric · Water · All · 12 months · 24 months",
+  "chart": "Electric · Sep 2025 — Aug 2026 · a value axis 0 · 2,000 · 4,000 · 6,000 · 8,000 · the caption 'kWh a month' · one labelled bar per month, Sep 25 … Aug 26",
+  "monthsToolbar": "Filter ▾ · ⚲ Search periods · Columns ▾ · ⇩ Export",
+  "elsewhereNote": "The service picker is a DROPDOWN and not the drawn chips — PO ruling 2026-09-07, 'can you do dropdown - for utility services - dyamically so that user can see one data at a time'. Reported, not taken silently."
+ },
+ "groups": [
+  {
+   "col": "left",
+   "slug": "usage-chart",
+   "heading": "ELECTRIC · SEP 2025 — AUG 2026",
+   "rows": [],
+   "readouts": [
+    "Average",
+    "Highest",
+    "Lowest",
+    "Vs last month"
+   ],
+   "elsewhere": {
+    "Electric / Water / All chips": "a DROPDOWN instead, one service at a time — PO ruling 2026-09-07, \"can you do dropdown - for utility services - dyamically so that user can see one data at a time\". A later ruling beats an earlier drawing; the chips are not built.",
+    "This month vs last (the label)": "reads \"Vs last month\", three words — B14 rule 33 caps a LABEL at three words and rule 38 gives our own rules the construction. The FIGURE is the drawn one."
+   }
+  },
+  {
+   "col": "left",
+   "slug": "usage-months",
+   "heading": "MONTH BY MONTH",
+   "table": [
+    "MONTH",
+    "READ ON",
+    "SOURCE"
+   ],
+   "tableNote": "One column per SERVICE sits between MONTH and READ ON — the drawing shows ELECTRIC and WATER because its account holds two. The columns are payload.services and are never typed out (hard-won law 2), so they are not listed here as fixed names.",
+   "elsewhere": {
+    "READ ON (the value)": "no source — monthly_usage stores source_read_ids and no read date, and usage_payload serves computed_at, which is when the FIGURE was worked out. Each cell states the absence. DEF-CUS-5146.",
+    "SOURCE (the read method)": "half served — an estimated month says Estimated (BR-MET-106); the read METHOD behind an ordinary month is not served and the cell states it. DEF-CUS-5146."
+   }
+  }
+ ]
+}

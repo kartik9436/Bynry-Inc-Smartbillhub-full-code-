@@ -1,0 +1,70 @@
+# G65 — the cross-module imports `apps/billing` already had on 2026-09-01.
+#
+# A RATCHET, NOT A TARGET: this list may fall and never rise (the 2026-08-27
+# ruling on gate families — "a baseline that may fall and never rise is a
+# ratchet; a baseline nobody can reach is decoration"). Every line here is a
+# seam that was BYPASSED and has not yet been routed; none of them is approved.
+#
+# `DEF-2845` counted SEVEN in five files on 2026-08-31. One day later the same
+# scan finds them in EIGHT files — `print_api.py`, `print_set.py` and
+# `resolution_shadow.py` arrived in between, with nothing going red. That is the
+# defect's own escape reason happening again while the row was open.
+#
+# ⚠ **THE COUNT HERE IS NOT COMPARABLE TO THE ROW'S "SEVEN", AND IT IS NOT A
+# REGRESSION.** The gate is keyed by `<file>::<module>.<submodule>`, so one file
+# reaching two submodules of one module is TWO lines where a module-level count
+# said one. Finer granularity, same imports. It is keyed that way because the
+# module name alone cannot tell a platform facility from a data read — see
+# `PLATFORM_FACILITIES` in the gate, and the two candidates it deliberately
+# REFUSED to exempt (`tenancy.document_storage`, `tenancy.document_store`: two
+# or three importers is what an unanswered seam question looks like, not
+# evidence of a platform facility).
+#
+# `apps.tenancy.exports` is absent from this list because it is exempt by name
+# in the gate: it is the platform's export REGISTRY, seven of twelve modules
+# import it, and its own contract invites the import. It belongs in `core/`.
+#
+# One line per `<file>::<module>.<submodule>`. Deliberately no line numbers: a
+# baseline keyed by line churns on every edit above it, and one that has to be
+# regenerated to stay green is one nobody reads.
+06-backend/apps/billing/documents.py::rating.pricing
+06-backend/apps/billing/documents_api.py::tenancy.document_storage
+06-backend/apps/billing/documents_api.py::tenancy.document_store
+06-backend/apps/billing/frozen_bill.py::tenancy.document_storage
+06-backend/apps/billing/frozen_bill.py::tenancy.document_store
+# ⚠ THE LINE BELOW IS BANKED BECAUSE TWO GUARDS DISAGREE, NOT BECAUSE IT IS
+# FINE — and the disagreement is the thing to read (2026-09-05).
+#
+# `print_formats.py` imports `apps.integrations.codecs` for `NamedRegistry` and
+# `AlreadyRegistered` — a REGISTRY MECHANISM, not integrations' data. By this
+# gate's own criterion it is NOT a platform facility: `tenancy.exports` earns
+# that exemption on SEVEN of twelve importers, and `codecs` has exactly ONE
+# outside its own module, which the header above calls "what an unanswered seam
+# question looks like".
+#
+# The clean fix is the one this gate already argues for `tenancy.exports`: the
+# mechanism belongs in `core/`, the shared floor, and its home in the
+# integrations app is a naming accident. `core` is not in the ring (see
+# OTHER_MODULES) so the break would simply disappear.
+#
+# ⚠ IT WAS NOT DONE HERE BECAUSE A SIGNED TEST CASE PINS THE IMPORT STRING.
+# `US-INT-039` TC-6 asserts, on the SOURCE TEXT:
+#     assert "from apps.integrations import codecs" in source
+# (06-backend/tests/test_us_int_039_codecs.py, and the story's own reason: "one
+# registry mechanism in this repository, not two"). Moving the class to `core/`
+# turns that assertion red, so doing it quietly would REVERSE a signed statement
+# to make a gate green — the change process' step 2, and exactly the trade this
+# lane was told not to make.
+#
+# So the two must move together, in one change that amends TC-6 to assert the
+# ONE-MECHANISM property it actually cares about (identity of the object) rather
+# than the import LINE it currently spells. Recorded in the decision log for
+# 2026-09-05; it needs an integrations lane, because it edits their file.
+06-backend/apps/billing/print_api.py::tenancy.selectors
+06-backend/apps/billing/print_formats.py::integrations.codecs
+06-backend/apps/billing/print_set.py::tenancy.document_storage
+06-backend/apps/billing/print_set.py::tenancy.document_store
+06-backend/apps/billing/sample_data.py::customers.sample_data
+06-backend/apps/billing/sample_data.py::metering.sample_data
+06-backend/apps/billing/sample_data.py::rating.sample_data
+06-backend/apps/billing/selectors.py::rating.models

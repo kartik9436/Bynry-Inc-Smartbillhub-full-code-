@@ -1,0 +1,730 @@
+/* ══════════════════════════════════════════════════════════════════════════
+ * CR-018 Phase 0 · THE TAILWIND THEME — our 76 design tokens, and nothing else
+ * ══════════════════════════════════════════════════════════════════════════
+ *
+ * ⚠ NOTHING IMPORTS THIS FILE YET, AND THAT IS DELIBERATE.
+ * Phase 0 touches zero screens (decision log 2026-08-19, "CR-018 TAKES ROUTE B",
+ * §"One exception"). Importing this sheet pulls in Tailwind Preflight, which
+ * resets every base element and would restyle the whole product in one commit.
+ * Phase 1 adds the import, deliberately, with a browser walkthrough. Until then
+ * the only consumer is `07-frontend/tailwind-specimen/`, the throwaway proof
+ * page — which is why the app bundle is byte-identical with Tailwind wired in.
+ *
+ * ── WHAT THIS FILE IS FOR ────────────────────────────────────────────────
+ * `src/styles/tokens.css` declares 76 custom properties. Route B (PO ruling
+ * 2026-08-19, verbatim *"Route B"*) puts styles in the markup as utilities, so
+ * every one of those 76 must be reachable as a Tailwind theme key — or carry a
+ * written reason why it is not. A token that silently fails to cross is a
+ * screen that silently drifts in Phase 3.
+ *
+ * ── THE NAMING RULE, AND WHY THE PO'S FILE WAS NOT COPIED ────────────────
+ * The attached `smartbillhub-fixes.tailwind.css` renames `--color-text` to
+ * `--color-ink`, and the CR-018 capture called it "one rename". REJECTED, with
+ * the figure: 32 stylesheets write `var(--color-text)` at 252 sites, and the 76
+ * tokens are read at 1,788 sites in all. Route B ends with `tokens.css` deleted
+ * and this `@theme` block as the single declaration of every token — so a key
+ * spelled `ink` kills all 252 of those sites on the day that deletion happens.
+ * SO: **a token crosses under its own name wherever the namespace allows it.**
+ * The utility reads `text-text` / `bg-text`, which is uglier than `text-ink` in
+ * 3,020 markup sites and correct in the one commit that matters.
+ *
+ * Where a namespace prefix genuinely differs (Tailwind says `--leading-*`, we
+ * say `--line-height-*`) BOTH names are emitted and the Tailwind one is written
+ * as `var(--our-name)` — a derivation, never a second literal (hard-won law 5).
+ *
+ * ── DRIFT IS GATED, NOT TRUSTED ──────────────────────────────────────────
+ * Every value below is duplicated from tokens.css for as long as both files
+ * exist — a deliberate exception to law 5 with an end date. Until then
+ * `tailwindTheme.test.ts`, beside this file and run by `npm test`, asserts the
+ * two agree token by token; it was proved RED on five sabotages before it was
+ * trusted green. And because a config claiming a value is not the value
+ * (hard-won law 1), `07-frontend/tailwind-specimen/` proves all 76 a second
+ * way: by RENDERING them in a browser and comparing computed styles.
+ *
+ * ── RAISED, NOT DECIDED ──────────────────────────────────────────────────
+ *   OQ-272  PARTIALLY CLOSED 2026-10-20 — Archivo IS the typeface (PO);
+ *           whether the web self-hosts it is still open
+ *   OQ-273  CLOSED 2026-08-20 — all ten services now have a colour token
+ *   OQ-274  six ad-hoc breakpoints in the app, and no ratified set
+ * ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── THE IMPORT IS SPLIT, AND PREFLIGHT IS DELIBERATELY NOT IN IT ────────────
+ * `@import "tailwindcss"` is three sheets: `theme.css`, `preflight.css` and
+ * `utilities.css`. Phase 1 takes the first and the third and LEAVES PREFLIGHT
+ * OUT, because Preflight is a whole-product change and Route B is incremental
+ * by construction — 127 components across three phases, and CR-018 §6 requires
+ * every screen to render identically to its pre-migration self at every step.
+ *
+ * ⚠ MEASURED, NOT ASSUMED (2026-08-19). The full import was wired into
+ * `main.tsx`, the app rebuilt, and the Rate schedules screen re-photographed
+ * with the same instrument as everything else in this phase
+ * (`e2e/CR-018-rate-schedules-visual.spec.ts`). One import line moved **684
+ * computed property values on one screen**, and one of them is a
+ * whole-product regression:
+ *
+ *   · `<h1>` font-size **30px → 15px** and margin **20.1px 0 → 0** — on EVERY
+ *     screen. `global.css:21` gives h1..h6 a family, weight, line-height and
+ *     tracking and NO font-size: the size has always come from the browser's
+ *     own stylesheet, and Preflight's whole job is to delete that. The shared
+ *     `PageHeader` draws that h1, so this is 127 screens losing their title in
+ *     one commit — and no gate in this repo reads rendered output, so it would
+ *     have shipped green (hard-won law 6).
+ *   · 654 border values `0px none` → `0px solid`, cosmetically inert at 0px
+ *     width but a change in every computed value a conformance harness reads.
+ *   · every `<option>` loses its 0 2px 1px padding.
+ *
+ * Preflight lands at the END of Phase 3, in its own commit, when `tokens.css`
+ * and the 40 component stylesheets are gone and the base-element resets have
+ * nothing left to fight. It is a phase, not a line — and it needs the h1 sizes
+ * that were never written down to be written down first.
+ *
+ * ── AND `utilities.css` IS IMPORTED UNLAYERED, WHICH IS NOT THE DEFAULT ─────
+ * Tailwind's own recipe puts utilities in `layer(utilities)`. **Cascade layers
+ * always lose to unlayered CSS, whatever the specificity** — so with 40
+ * unlayered legacy stylesheets still in the bundle, every utility this phase
+ * writes would be outranked by any legacy rule touching the same property.
+ * Concretely: the rate card is `class="card rating-rate-card"`, `.card` sets
+ * `padding: 28px` (StateFrame.css:114) and `.rating-rate-card` overrode it to
+ * 16px. Delete the second and write `p-4`, and a LAYERED `p-4` loses to
+ * unlayered `.card` — the card silently grows 12px of padding on every side.
+ *
+ * Unlayered, a utility is one class (0,1,0) against a legacy rule of one class
+ * (0,1,0), so SOURCE ORDER decides and this sheet must come last. That is a
+ * real constraint on Phases 2–3 and it is written here rather than discovered:
+ * when the last legacy stylesheet is deleted, restore `layer(utilities)`. */
+@layer theme, base, components;
+@import "tailwindcss/theme.css" layer(theme);
+/* ⚠ PREFLIGHT, ENABLED 2026-08-20 (CR-018 Phase 5, PO: "Complete this - Phase 5
+ * (Preflight) not started"). It was held to last for the reason the header
+ * above records: Phase 1 imported it once and measured **684 computed property
+ * values moving on ONE screen**, `<h1>` 30px -> 15px, 654 border values
+ * `0px none` -> `0px solid`.
+ *
+ * ⚠ `layer(base)` IS THE WHOLE OF WHY THIS IS SURVIVABLE NOW AND WAS NOT THEN.
+ * The cascade puts UNLAYERED author CSS above every layer, so the order is
+ *
+ *      browser UA styles  <  layer(base) = Preflight  <  the legacy stylesheets
+ *
+ * and every legacy rule still wins. What Preflight can change is exactly the
+ * set of properties where the BROWSER was supplying the value and no author
+ * rule overrides — which is what `e2e/CR-018-phase5-preflight.spec.ts`
+ * measures, before and after, over 7,413 elements on 20 screens. */
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" source(none);
+
+/* ── AND THE SCANNER IS POINTED AT `src/`, WHICH IS NOT THE DEFAULT ─────────
+ * v4 auto-detects sources by walking the project directory, and it generates a
+ * rule for ANY token in ANY of those files that parses as a utility — prose in
+ * a comment included. Left on, the FIRST BUILD OF PHASE 1 shipped 16,569 bytes
+ * of utilities to customers with zero utilities intentionally written, and 48
+ * of the 148 rules came from ONE file: `07-frontend/tailwind-specimen/`,
+ * Phase 0's throwaway proof page. Its README says "not in `src/`, not routed,
+ * not shipped" — and with the theme imported it was shipped, because the
+ * scanner does not care what is routed. Measured, all at commit e2fb4ae:
+ *
+ *     auto-detected sources   16,569 bytes of utilities · 148 rules
+ *     source(none) + src/      8,745 bytes of utilities ·  75 rules
+ *
+ * 7,824 raw bytes, on every page load, for one line. The remainder is still
+ * partly noise — `p-101`, `p-420` and `p-11800` are generated from bare
+ * NUMBERS that appear in our own source text — and that is a Phase 3 tuning
+ * problem, not a Phase 1 one, recorded here so it is tuned rather than
+ * rediscovered.
+ * ──────────────────────────────────────────────────────────────────────── */
+@source "../";
+
+@theme {
+  /* ── The namespaces we clear, and why ─────────────────────────────────────
+   * Route B was chosen to make a wrong style UNWRITABLE (decision log: "there
+   * is no class name to get wrong because there is no class name"). That only
+   * holds if Tailwind's own defaults cannot smuggle in a value the design
+   * system never ratified. So five namespaces are emptied before ours land:
+   *
+   *   --color-*   kills red-500/blue-500/… — 22 palettes of colours that are
+   *               not ours. `bg-blue-500` now generates nothing.
+   *   --text-*    kills Tailwind's own text-xs…text-9xl. This is B14 rules 5
+   *               and 20 BY CONSTRUCTION: `text-lg` on a table cell would be
+   *               18px and break rule 20; Tailwind's `text-base` on a button
+   *               would be 16px and a third button size against rule 5.
+   *               ⚠ SINCE THE TYPE SCALE WAS RULED (2026-08-19, OQ-275/276),
+   *               four of those NAMES are re-declared below with OUR values —
+   *               `text-xs` is 11px, `text-sm` 12px, `text-base` 13px,
+   *               `text-md` 14px. The namespace is still cleared FIRST, so
+   *               every size Tailwind shipped is gone and what answers to the
+   *               name afterwards is a ruled step. `text-lg`, `text-xl` and
+   *               `text-9xl` still generate nothing at all.
+   *               ⚠ AND CLEARING THE NAMESPACE IS ONLY HALF THE FENCE.
+   *               It kills `text-2xl`; it does NOT kill `text-[12.5px]`.
+   *               Tailwind's arbitrary-value syntax compiles whatever is
+   *               inside the brackets, so every half-step Phase 2 absorbed
+   *               can come straight back in bracket notation and no
+   *               stylesheet would show it. That hole is closed OUTSIDE this
+   *               file, by `10-scripts/gates/g34_type_scale_escape.py` (which
+   *               gates.yml runs on every push) and the matching ESLint rule.
+   *   --radius-*  the Modernist system is square (tokens.css: "keep 0, do not
+   *               fix"). Cleared, then EVERY radius key is re-declared as 0, so
+   *               a `rounded-xl` typed in Phase 3 renders square rather than
+   *               silently rendering nothing.
+   *   --shadow-*  the system has exactly three elevations. Cleared, then ours.
+   *   --font-*    kills font-sans/serif/mono, then ours are declared.
+   *
+   * NOT cleared, each for a stated reason: `--leading-*`, `--tracking-*`,
+   * `--font-weight-*` and `--container-*`. B14 ratifies no rule over any of
+   * them, and clearing a namespace no rule governs is inventing law.
+   *
+   *   --breakpoint-*  CLEARED as of OQ-274 — see the block below. It was in the
+   *               not-cleared list until the direction was ratified, and that
+   *               ruling is exactly what turned it from "no rule governs it"
+   *               into "one does".
+   * ──────────────────────────────────────────────────────────────────────── */
+  --color-*: initial;
+  --text-*: initial;
+  --breakpoint-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+  --font-*: initial;
+
+  /* ══ COLOUR · 48 tokens, all crossing under their own name ══════════════ */
+
+  /* Core surface & ink — tokens.css "Core surface & ink" */
+  --color-bg: #f3f2f2;
+  --color-surface: #eae9e9;
+  --color-text: #201e1d; /* NOT renamed to --color-ink; see header */
+  --color-accent: #ec3013;
+  --color-accent-2: #e15b47;
+  --color-divider: color-mix(in srgb, #201e1d 40%, transparent);
+
+  /* Neutral ramp */
+  --color-neutral-100: #f8f4f4;
+  --color-neutral-200: #eae7e7;
+  --color-neutral-300: #d7d3d3;
+  --color-neutral-400: #bab6b6;
+  --color-neutral-500: #9b9797;
+  --color-neutral-600: #6b6767; /* Group A F-01, PO/QA 2026-10-23: was #7d7979 (4.30 on white); 5.58 on white, 5.00 on #f3f2f2 */
+  --color-neutral-700: #605d5d;
+  --color-neutral-800: #444141;
+  --color-neutral-900: #2d2b2b;
+
+  /* Group A F-09 (PO/QA 2026-10-23): the 3:1 grey for a non-text boundary.
+     3.50 on white, 3.14 on #f3f2f2. Used by the border of an input, select
+     or textarea, and (Group A decision 4) the future step's circle and last
+     year's chart bar — NOTHING else. Dividers and card lines stay
+     --color-neutral-300 #d7d3d3. */
+  --color-field-border: #8c8888;
+  /* Group A decision 6 (PO/QA 2026-10-23): the fill of a staff input,
+     select or textarea — white, so the field border reads 3.50 (it read
+     2.89 on --color-surface #eae9e9). */
+  --color-field-fill: #ffffff;
+  /* Text on an accent-filled surface (rest, hover, pressed). On staff
+     screens, the ink the contrast rule picks for the stock accent ramp
+     (Group A decision 7): black on #ec3013 (5.00), white on #dd2b0f (4.74)
+     and #ae1800 (7.17) — lib/contrast.ts STOCK_ACCENT_INKS. The portal
+     frame sets each one for the utility's own colour (GuestFrame.tsx
+     brandStyle, Group A ruling 3(a)). */
+  --color-on-accent: #000000;
+  --color-on-accent-600: #ffffff;
+  --color-on-accent-700: #ffffff;
+  /* Brand-coloured TEXT (Group A decision 2). The accent itself on staff
+     screens; the portal frame sets the brand's darkened text shade
+     (#EC3013 -> #D02A11, 5.22 on white, 4.67 on #f3f2f2). */
+  --color-accent-text: var(--color-accent);
+
+  /* Accent ramp */
+  --color-accent-100: #fff2ef;
+  --color-accent-200: #ffe0d9;
+  --color-accent-300: #ffc4b8;
+  --color-accent-400: #ff9783;
+  --color-accent-500: #ff563c;
+  --color-accent-600: #dd2b0f;
+  --color-accent-700: #ae1800;
+  --color-accent-800: #7c1405;
+  --color-accent-900: #4d170e;
+
+  /* Accent-2 ramp — 0 uses in the app today; crossed anyway, because a token
+   * that exists and is unreachable is the gap this phase is here to close. */
+  --color-accent-2-100: #fff2ef;
+  --color-accent-2-200: #ffe0da;
+  --color-accent-2-300: #ffc4b9;
+  --color-accent-2-400: #ff9784;
+  --color-accent-2-500: #ef6853;
+  --color-accent-2-600: #c94b39;
+  --color-accent-2-700: #9e3526;
+  --color-accent-2-800: #71261b;
+  --color-accent-2-900: #471d16;
+
+  /* Semantic status — meaning ONLY (StatusPill FE-10), never decoration */
+  --color-success-100: #e6f4ec;
+  --color-success-500: #1f9d57;
+  --color-success-700: #0f6e3a;
+  --color-warning-100: #fdf0d8;
+  --color-warning-500: #e08a1e;
+  --color-warning-700: #a65d0a;
+  --color-danger-100: #fde4df;
+  --color-danger-500: #e0341a;
+  --color-danger-700: #a81600;
+  /* INFO — the fifth semantic status (DEF-722, PO ruling 2026-08-26). The one
+   * account status the warm ramps cannot express: `Vacation hold` is a PAUSE
+   * the customer asked for, and every other non-green token here is a
+   * red-orange. Reasoning and the 6.64:1 measurement live on the tokens.css
+   * declaration; this is the crossing that makes `bg-info-100` /
+   * `text-info-700` compile. No `-500`: nothing renders one. */
+  --color-info-100: #e6eefb;
+  --color-info-700: #1d4ea8;
+
+  /* Service colours — TEN for a TEN-service platform (BR-RAT-024, and
+   * CLAUDE.md's opening line), in the seed order of
+   * `tenancy/migrations/0001_initial.py`. OQ-273 CLOSED 2026-08-20 (decision
+   * log, commit 4e78da4): the four that had no token now have one, so all ten
+   * are reachable as `bg-service-*` / `text-service-*` in Phase 3. `fire` is the
+   * ELEVENTH, added by CR-063 on 2026-09-02.
+   * ⚠ `broadband` KEEPS #6b3d8a and is NOT renamed "bundle"; no service gets
+   * two colours. ⚠ `solar` is recorded as the weakest fit — see tokens.css.
+   * ⚠ The token name hyphenates where the service CODE has an underscore
+   * (`storm_water` -> `--color-service-storm-water`): a theme key with an
+   * underscore yields no usable utility name. The runtime CLASS keeps the
+   * underscore, because it is built as `svc-${service.code}`. */
+  --color-service-electric: #ec3013;
+  --color-service-water: #1e6b8f;
+  --color-service-gas: #c47a1d;
+  --color-service-sewer: #5a5555;
+  --color-service-trash: #3a6b3d;
+  --color-service-storm-water: #2f4a7a;
+  --color-service-solar: #7a9a2a;
+  --color-service-broadband: #6b3d8a;
+  --color-service-thermal-heat: #a8256b;
+  --color-service-battery: #3aa39b;
+  /* CR-063 — fire. Mirrors tokens.css, which carries the argument for the
+   * hue and for the hollow dot; `tailwindTheme.test.ts` asserts the two
+   * files agree token by token. */
+  --color-service-fire: #8f1f14;
+
+  /* ══ TYPEFACE · 2 tokens crossing + 1 literal tokenised ═════════════════ */
+
+  /* ARCHIVO IS THE TYPEFACE — ratified by the PO on 2026-10-20 (*"our style's
+   * font"*; OQ-272 (a), decision log 2026-10-21 "Field app Phase 0"). Until
+   * then it was carried forward and decided by NOBODY (CLAUDE.md hard-won law
+   * 1 names this as one of the cases that law was written from). Whether the
+   * web self-hosts the woff2 files is OQ-272 (b), still open. The `@import
+   * url(...)` that actually FETCHES the font stays in tokens.css and is
+   * deliberately not duplicated here — one source (law 5). */
+  --font-heading: "Archivo", system-ui, sans-serif;
+  --font-body: "Archivo", system-ui, sans-serif;
+
+  /* NOT one of the 76. `ui-monospace, SFMono-Regular, Menlo, monospace` is
+   * written as a bare literal in two stylesheets — `features/ledger/finance.css:283`
+   * and `features/billing/billRun.css:210` — and declared nowhere: the same
+   * shape as `--table-font-size` before DEF-198 tokenised it. Clearing
+   * `--font-*` would have removed `font-mono` entirely, so the existing literal
+   * is tokenised rather than dropped or re-invented. */
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Preflight reads these; point them at ours so the base element styles match
+   * the design system the moment Phase 1 imports this sheet. */
+  --default-font-family: var(--font-body);
+  --default-mono-font-family: var(--font-mono);
+
+  /* ══ TYPE SCALE · the RULED steps, crossing under their own names ═══════
+   * Decision log 2026-08-19, "THE TYPE SCALE IS RULED — OQ-275 and OQ-276
+   * CLOSED" (commit 4b6baa6). Every value here is a mirror of `tokens.css`
+   * for as long as both files exist, and `tailwindTheme.test.ts` asserts the
+   * two agree token by token.
+   *
+   * The heading sizes carry their line-height, tracking and weight as v4
+   * modifiers, which is how `--line-height-heading`, `--letter-spacing-heading`
+   * and `--font-heading-weight` reach the markup: `text-h2` on its own
+   * reproduces global.css's whole h2 rule.
+   *
+   * ⚠ THE SMALL STEPS CARRY NO MODIFIERS, AND THAT IS THE DIFFERENCE THAT
+   * MATTERS IN PHASE 3. `text-h5` sets a size AND a heading weight, leading and
+   * tracking; `text-base` sets a size and nothing else. So a 16px CONTROL is
+   * `text-[16px]`-shaped work for a later ruling, never `text-h5` — writing
+   * `text-h5` on it would silently make it extrabold. The same trap exists in
+   * plain CSS in the other direction: `font-size: var(--text-h5)` on a control
+   * is harmless TODAY and becomes wrong the moment Phase 3 turns it into a
+   * utility, which is why the heading steps are only pointed at real headings.
+   *
+   * ⚠ 9px IS NOT A STEP. Below the readability floor in r10's UI-RULES.md; the
+   * one declaration using it was re-pointed at `--text-xs`. */
+  --text-display: 56px;
+  --text-display--line-height: var(--line-height-heading);
+  --text-display--letter-spacing: var(--letter-spacing-heading);
+  --text-display--font-weight: var(--font-heading-weight);
+
+  --text-body: 15px;
+  --text-body--line-height: var(--line-height-body);
+
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-base: 13px;
+  --text-md: 14px;
+
+  /* ── OQ-279's THREE MISSING NAMES (PO ruling 2026-08-22: option A) ──────
+   * The question was never "is 18px right" — it was that six sites used
+   * roles the ruled scale had no NAME for, so every one of them had to be a
+   * literal, and a literal is what G34 bans and what the drift is made of.
+   * The PO chose to NAME them rather than snap them, on the ground that
+   * snapping would move pixels: `.nav-brand` is 18px in r10 itself
+   * (`SMARTBillHub.dc.html:102`), so 16 or 20 would diverge FROM the
+   * reference the PO ruled authoritative.
+   *
+   * ⚠ `--text-lead` IS THE ONE THAT IS NOT ABOUT A PIXEL VALUE. 16px already
+   * exists as `--text-h5`, but the heading steps carry the heading WEIGHT,
+   * leading and tracking as v4 modifiers — so a marketing lede or a control
+   * set to `text-h5` renders EXTRABOLD. `--text-lead` is 16px with none of
+   * that: same size, no heading semantics. */
+  --text-lead: 16px;
+  --text-lead--line-height: var(--line-height-body);
+  /* ⚠ NOT `--text-lg` / `--text-xl`, and the theme test is what said so.
+   * Those are TAILWIND'S OWN names, which `--text-*: initial` deliberately
+   * KILLS so that nobody writes `text-lg` and silently gets an unruled size.
+   * Defining them here would resurrect the namespace this design system
+   * chose to close. Named by ROLE instead — which is what OQ-279 said the
+   * problem was in the first place: *"every one is a role the ruled scale
+   * has no name for, not a value it disagrees with."* */
+  --text-brand: 18px; /* the sidebar wordmark — r10's own `.nav-brand` */
+  --text-panel: 24px; /* a panel or wizard frame title; the scale jumps 22 → 25 */
+
+  --text-h1: 40px;
+  --text-h1--line-height: var(--line-height-heading);
+  --text-h1--letter-spacing: var(--letter-spacing-heading);
+  --text-h1--font-weight: var(--font-heading-weight);
+  --text-h2: 32px;
+  --text-h2--line-height: var(--line-height-heading);
+  --text-h2--letter-spacing: var(--letter-spacing-heading);
+  --text-h2--font-weight: var(--font-heading-weight);
+  --text-h3: 25px;
+  --text-h3--line-height: var(--line-height-heading);
+  --text-h3--letter-spacing: var(--letter-spacing-heading);
+  --text-h3--font-weight: var(--font-heading-weight);
+  --text-h4: 20px;
+  --text-h4--line-height: var(--line-height-heading);
+  --text-h4--letter-spacing: var(--letter-spacing-heading);
+  --text-h4--font-weight: var(--font-heading-weight);
+  --text-h5: 16px;
+  --text-h5--line-height: var(--line-height-heading);
+  --text-h5--letter-spacing: var(--letter-spacing-heading);
+  --text-h5--font-weight: var(--font-heading-weight);
+
+  /* ══ THE METRIC TIER · RULED 2026-08-19, OQ-278 CLOSED ══════════════════════
+   * Decision log 2026-08-19, "OQ-278 RULED — three metric tokens, and a metric
+   * is not a heading" (commit 6a13828). Mirrors `tokens.css`; the drift test in
+   * `tailwindTheme.test.ts` asserts the two agree.
+   *
+   * ⚠ THESE CARRY A LEADING AND NOTHING ELSE, AND THAT ASYMMETRY IS THE RULING.
+   * The heading steps above set size + weight + leading + tracking, which is
+   * what makes `text-h2` reproduce global.css's whole h2 rule. A metric is NOT
+   * a heading: every metric site in this app already sets its own weight (800
+   * on the KPI value and the "Today" total, 600 on a net-pair figure) and a
+   * `--font-weight` modifier here would silently overwrite each of them the
+   * moment Phase 3 turned the site into a utility. A tracking modifier would do
+   * the same to the -0.02em the two big figures set by hand. So `text-metric`
+   * is A SIZE AND A LEADING. Adding a weight to it later is a re-ratification,
+   * not a tidy-up.
+   *
+   * ⚠ AND THE THREE KEYS ARE LOCKED: **KPI values only — never a heading.**
+   * OQ-279 RULED (decision log 2026-08-20, commit 5dbf2d7). Three TITLES were
+   * pointed at `--text-metric-sm` because 22px had no heading name; they are
+   * absorbed into the heading scale and 22px is a metric size again. Writing
+   * `text-metric-sm` on a title in Phase 3 re-opens the same hole — and it
+   * becomes a VISIBLE bug the moment OQ-274's density steps take the KPI
+   * 30 → 26 → 22, because the title then resizes with the metric. */
+  --text-metric-sm: 22px;
+  --text-metric-sm--line-height: var(--line-height-metric-sm);
+  --text-metric: 26px;
+  --text-metric--line-height: var(--line-height-metric);
+  --text-metric-lg: 32px;
+  --text-metric-lg--line-height: var(--line-height-metric);
+
+  /* ── BREAKPOINTS (OQ-274) ────────────────────────────────────────────────
+   * ⚠ DESKTOP-FIRST. Every responsive rule in this product is `max-width`, so
+   * authoring reads `max-lg:grid-cols-1` — NEVER `lg:grid-cols-2`.
+   *
+   * Tailwind's own breakpoints are MIN-width. That is why the namespace is
+   * CLEARED above rather than extended: leaving the defaults in place gives two
+   * scales pointing in opposite directions with overlapping names, and the
+   * mismatch is silent — `lg:` and `max-lg:` would both compile and mean
+   * different viewports. One scale, one direction.
+   *
+   * ⚠ THE VALUES ARE OURS, NOT THE PROTOTYPE'S, AND THAT IS DELIBERATE.
+   * The ruled scale offered 640/768/1024/1200/1440. Adopting it would move
+   * ELEVEN rules and change layout at real viewport sizes for no design reason.
+   * r10 is the authority for how a screen LOOKS — layout, copy, flows, states.
+   * It is not the authority for which widths our React grid happens to break
+   * at; those were never designed. So the NAMES are fitted to OUR widths and
+   * ZERO pixels move. Decided by the engineering lane, not the PO, and
+   * reversible the moment a responsive design is actually authored.
+   *
+   * What each owns today, counted in 07-frontend/src:
+   *   2xl 1440  1 rule    ·  xl 1100  1 rule   ·  lg 1024  3 rules
+   *   md   900  5 rules   ·  sm  720  2 rules
+   *
+   * ⚠ 760px is a SIXTH width, one rule, in global.css — the `.chooser`/`.kv`
+   * patterns. It has no name here on purpose: absorbing it into `sm` moves
+   * pixels, so it is filed rather than rounded (DEF-345). Do not add a sixth
+   * key for it; that would ratify a width nobody chose.
+   * ──────────────────────────────────────────────────────────────────────── */
+  --breakpoint-sm: 720px;
+  --breakpoint-md: 900px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1100px;
+  --breakpoint-2xl: 1440px;
+
+  /* B14 rule 20 — table type is ONE size everywhere, and its header tier is the
+   * 12px small tier rule 5 allows. Both are ratified figures; here they become
+   * `text-table` and `text-table-header`, derived from the tokens so there is
+   * still exactly one literal per number. */
+  --table-font-size: 13.5px;
+  --table-header-font-size: 12px;
+  --text-table: var(--table-font-size);
+  --text-table-header: var(--table-header-font-size);
+
+  /* B14 rule 5 — *"Two button sizes only — default and small (12px). No inline
+   * font sizes."* RATIFIED, and enforced by the CR-016 conformance register at
+   * `["12px","14px"]`. Neither number has ever been a token: both live inline in
+   * component CSS, which is exactly what rule 5's second sentence forbids.
+   * Clearing `--text-*` removes `text-sm`, so without these two keys a Phase 3
+   * lane has no way to write a conforming button except an arbitrary value
+   * nobody can grep for.
+   * ⚠ These two keys are NOT among the 76 and are NOT new design decisions —
+   * they tokenise figures B14 already ratified, the same move `--table-font-size`
+   * and `--desc-measure` already made for rules 20 and 18. Decision log
+   * 2026-08-19, "CR-018 PHASE 0". */
+  --text-btn: 14px;
+  --text-btn-sm: 12px;
+
+  /* ══ LINE-HEIGHT / TRACKING · 3 tokens, namespace-renamed ═══════════════
+   * Tailwind's prefixes are `--leading-*` and `--tracking-*`; ours are
+   * `--line-height-*` and `--letter-spacing-*`. Both names are emitted and the
+   * Tailwind one derives from ours, so there is one literal, not two. */
+  --line-height-body: 1.55;
+  --line-height-heading: 1.12;
+  --line-height-metric-sm: 1.15;
+  --line-height-metric: 1.1;
+  --letter-spacing-heading: -0.015em;
+  /* ── OQ-279's SECOND HALF, measured 2026-08-22 (PO ruling: option A) ────
+   * `line-height` is identical in kind to `font-size` — `leading-[1.6]` is
+   * banned exactly as `text-[16px]` is — and NOTHING counted it until the
+   * Tailwind long-tail lane did: 23 literals across 9 stylesheets, which is
+   * what blocked thirteen of the twenty remaining files. Named here, at the
+   * values already in use, so the sweep moves no pixels. */
+  /* ── OQ-337's THREE (PO ruling 2026-08-22: option A, as OQ-279 was) ──────
+   * The three values that actually held the long tail. OQ-279's four names
+   * turned out to be role-generic ALIASES for values already reachable and
+   * closed only two of the 23 sites; these are the ones nobody had named,
+   * measured at 1.6 ×16 · 1.7 ×3 · 1.9 ×2. Named at the values already in
+   * use, so the sweep that consumes them moves no pixels.
+   *
+   * ⚠ NAMED BY ROLE, and NOT `--leading-loose`: OQ-279's own lesson is that a
+   * Tailwind-namespace name reopens a door this system closed, and the theme
+   * test refuses it. Each name below is what the sites actually are. */
+  --leading-prose: 1.6; /* explainer + lede paragraphs — `.bil-explainer`, `.bil-lede` and 14 more */
+  --leading-note: 1.7; /* a standing note beside a control — `.bil-standing`, `.audit-retention-partitions` */
+  --leading-sample: 1.9; /* a rendered SAMPLE a user reads back — `.numbering-sample` and the wizard's */
+  --leading-none: 1; /* a glyph box that must not grow: icons, pills, badges */
+  --leading-tight: 1.2; /* dense figures and table cells */
+  --leading-snug: 1.4;
+  --leading-relaxed: 1.45; /* long prose blocks that are not `body` */
+  --leading-body: var(--line-height-body);
+  --leading-heading: var(--line-height-heading);
+  --leading-metric-sm: var(--line-height-metric-sm);
+  --leading-metric: var(--line-height-metric);
+
+  /* ⚠ THE BUTTON'S LINE-HEIGHT, ADDED BY CR-018 PHASE 3 — a TRANSCRIPTION, not
+   * a new decision. `components/StateFrame.css:19` has said `line-height: 1.2`
+   * on `.btn` since the kit was ported from the signed reference; the ruled
+   * scale simply never gave that number a name, because it names the HEADING
+   * and METRIC leadings and buttons are neither.
+   *
+   * Without a name the widest shared class in the product cannot be migrated at
+   * all: `leading-[1.2]` is refused by `g34_type_scale_escape.py` AND by the
+   * eslint rule beside it, both correctly and both by design. That is the whole
+   * point of OQ-278 — so the answer is to NAME the figure the product already
+   * renders, exactly as `--text-btn`/`--text-btn-sm` above tokenise rule 5's two
+   * sizes, and NOT to widen the escape hatch.
+   *
+   * It is `--leading-btn`, not a `--text-btn--line-height` modifier, for one
+   * measured reason: `.btn-link` takes `--text-btn-sm` and inherits its leading
+   * from the page. A modifier on the size step would push 1.2 onto it and the
+   * parity census fails on `line-height`. */
+  --leading-btn: 1.2;
+
+  /* ── CR-018 long tail round 3 · the provisioning dot's pulse (2026-08-22) ──
+   * A TRANSCRIPTION, exactly like `--leading-btn` above — not a new decision.
+   * `features/tenancy/SignupWizard.css` has declared these two things since
+   * CR-017 shipped the provisioning screen:
+   *     animation: signup-provisioning-pulse 1.2s ease-in-out infinite;
+   *     @keyframes signup-provisioning-pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+   * They are copied here byte for byte so that stylesheet can be DELETED. No
+   * value is chosen, no timing is invented and nothing on any screen moves.
+   *
+   * ⚠ THE KEYFRAMES MUST LIVE INSIDE `@theme`. Tailwind v4 emits an
+   * `@keyframes` block only when it is declared in the theme beside the
+   * `--animate-*` key that names it; declared outside, the utility compiles to
+   * an animation nothing defines and the dot simply stops pulsing — a failure
+   * with no error anywhere. `--animate-*` is NOT one of the cleared
+   * namespaces (see the reset block), so this key sits beside Tailwind's own
+   * `animate-spin` / `animate-pulse` rather than replacing anything.
+   *
+   * The `prefers-reduced-motion` half of the rule is `motion-reduce:animate-none`
+   * on the same element — Tailwind's own variant, same media query, same
+   * `animation: none`. Motion is decoration on that screen: every state the dot
+   * encodes is also spelled out in words on its own row. */
+  --animate-provisioning-pulse: signup-provisioning-pulse 1.2s ease-in-out infinite;
+  @keyframes signup-provisioning-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.35;
+    }
+  }
+  --tracking-heading: var(--letter-spacing-heading);
+
+  /* ⚠ THE KICKER'S TRACKING, NAMED (CR-018 Phase 4b-3). `.kicker` had
+   * `letter-spacing: 0.1em` as a literal — the only wide tracking in the
+   * product, and the one value the heading token cannot supply because it runs
+   * the other way (-0.015em). It is a token rather than `tracking-[0.1em]` for
+   * the same reason every other literal became one: an arbitrary value is a
+   * number nobody can find again, and the theme is where this product's
+   * decisions are supposed to live. */
+  --tracking-kicker: 0.1em;
+
+  /* r10's `.table th` tracking, named (CR-018 Phase 4b-4). The table header is
+   * the only other wide tracking in the product and it is a DIFFERENT value
+   * from the kicker's — which is exactly why both are tokens rather than two
+   * arbitrary numbers a reader has to compare by eye. */
+  --tracking-table-header: 0.08em;
+
+  /* The LABEL register's tracking, named (CR-018 long tail, W14). The quiet
+   * uppercase section/label headings — the custom-fields section heading, the
+   * AppShell rail group label, the DataTable empty-state label, two Settings
+   * registers — all write `letter-spacing: 0.04em`: a THIRD wide-tracking
+   * value, distinct from the kicker's 0.1em and the table header's 0.08em,
+   * and like both it is a token rather than an arbitrary number so the three
+   * can be compared by name instead of by eye (and because G34 bans
+   * `tracking-[…]` outright). */
+  --tracking-label: 0.04em;
+
+  /* The consequence-preview tag's tracking, named (CR-018 long tail round 4).
+   * `features/tenancy/RoutesCyclesWizards.css` wrote
+   * `letter-spacing: 0.06em` on `.rcw-consequence-tag` from the day CR-006
+   * shipped the SET-06/07 wizards until round 4 DELETED that stylesheet —
+   * a FIFTH wide-tracking value, distinct from the
+   * kicker's 0.1em, the table header's 0.08em, the screen-id's 0.07em and the
+   * label register's 0.04em. A TRANSCRIPTION, exactly like those four: the
+   * number is copied from the stylesheet being deleted, nothing is chosen, and
+   * it is a token rather than `tracking-[0.06em]` because G34 bans the bracket
+   * form outright and an arbitrary number is one nobody can find again. */
+  --tracking-tag: 0.06em;
+
+  /* The screen-id tag's own pair (CR-018 long tail, W14). r10's badge
+   * (SMARTBillHub.dc.html line 8830) writes `letter-spacing: 0.07em` — a
+   * FOURTH wide-tracking value, used by exactly one element, and named for
+   * the same reason as the three above (G34 bans `tracking-[…]`, and an
+   * arbitrary number is one nobody can find again). The 1.4 leading is the
+   * tag's own line box — no ruled leading step holds it (body 1.55, btn 1.2,
+   * heading 1.12) and G34 bans `leading-[…]` too. */
+  --tracking-screen-id: 0.07em;
+  --leading-screen-id: 1.4;
+
+  /* The dial box's digit spacing, named (`DEF-CWP-3986`, 2026-09-05). A SIXTH
+   * wide-tracking value and by far the widest — `09-component-inventory.md` §5
+   * spells `DialInput` as `font-mono text-[22px] tracking-[0.35em] h-14`, and
+   * 0.35em is not a typographic nicety here: it is what makes a six-digit
+   * one-time code (`CWP-017`) and a meter dial (`CWP-035`) checkable digit by
+   * digit against the thing they are copied from. A token rather than the
+   * bracket form for the same reason as the five above — G34 bans
+   * `tracking-[…]` outright and an arbitrary number is one nobody can find
+   * again. Distinct from the kicker's 0.1em, the table header's 0.08em, the
+   * screen-id's 0.07em, the tag's 0.06em and the label register's 0.04em. */
+  --tracking-dial: 0.35em;
+
+  /* ⚠ --font-heading-weight CROSSES AS A VARIABLE ONLY, WITH NO UTILITY OF ITS
+   * OWN, and that is a hard Tailwind collision rather than an oversight.
+   * A font-WEIGHT key would have to be spelled `--font-weight-heading`, whose
+   * utility class is `font-heading` — the exact class `--font-heading` (the font
+   * FAMILY) already owns. Tailwind resolves `font-heading` to the family, so the
+   * weight key would be permanently unreachable: a theme entry that looks
+   * declared and does nothing, which is hard-won law 1 inside a config file.
+   * Instead the value reaches the markup two ways, both proved by rendering:
+   *   · as the `--text-h1..h6--font-weight` modifiers above, and
+   *   · as `font-extrabold`, Tailwind's own `--font-weight-extrabold: 800`.
+   * `tailwindTheme.test.ts` asserts 800 == 800 so a retune of one without the
+   * other goes RED, and the specimen page proves it by rendering. */
+  --font-heading-weight: 800;
+
+  /* ══ SPACING · 6 tokens, mapped onto Tailwind's multiplier ══════════════
+   * Our scale IS Tailwind's: `--space-N` is N × 4px, and v4's `--spacing:
+   * 0.25rem` makes `p-N` = N × 4px at the 16px root this app runs at — nothing
+   * sets `html { font-size }`; global.css sets `body`, which `rem` ignores.
+   * So no `--spacing-N` keys are declared: they would be six second literals
+   * for numbers Tailwind already has right. The raw names ARE emitted, so the
+   * existing `var(--space-N)` sites survive tokens.css being deleted.
+   * ⚠ Measured in a browser, not reasoned about — and the measuring is not
+   * optional here: sabotaging `--space-4` to 17px was invisible to the
+   * specimen's utility check (p-4 comes from the multiplier, not from our key)
+   * and is caught only by its variable check. See tailwind-specimen/README.md. */
+  /* The narrowest a dropdown panel may be before its own labels wrap. Named
+     because CR-013 P0.5 first wrote it as `min-w-[260px]` — an arbitrary value
+     is a token nobody can find, reuse, or change in one place, which is the
+     whole reason this @theme block exists. */
+  --size-menu-min: 260px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  /* ⚠ **`--space-5` WAS THE ONE MISSING STEP OF B14 RULE 39'S SEVEN, ADDED
+     2026-09-11 (`CR-085`).** The rule is stated in the PO's own words as
+     `--sp-1 … --sp-7`; the amendment ruled the SAME DAY says the token family
+     is `--space-N` and that a lane ADDS the missing step rather than minting a
+     second family — *"Okay"* — because two spacing scales in one product is a
+     second copy free to drift (hard-won law 5, two OpenAPI schemas; DEF-154,
+     two base-charge columns). Its job in the rule: **step side padding and KPI
+     cell side padding**. `p-5`/`gap-5` already reached 20px through Tailwind's
+     `--spacing` multiplier, so nothing on screen moves by adding it — what
+     moves is that the step now has a NAME a stylesheet and a reader can find,
+     which is the whole reason this block exists. */
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* ══ RADIUS · 3 tokens crossing, plus the defaults neutralised ══════════
+   * Modernist is square. Every radius key is 0 so a `rounded-lg` typed in
+   * Phase 3 renders square instead of rendering nothing.
+   * ⚠ `rounded-full` IS DELIBERATELY LEFT ALONE, and that is the opposite of
+   * what it looks like. It is a STATIC utility in v4 (`calc(infinity * 1px)`),
+   * not a theme key, and it is LOAD-BEARING: the A12 service dots are
+   * `border-radius: 50%` circles (features/rating/PlansRates.css:137), as are
+   * three more affordances elsewhere. "The system is square" is a rule about
+   * boxes and cards, never about a 6px status dot — zeroing it would break a
+   * design element WHILE LOOKING LIKE COMPLIANCE, which is hard-won law 1. The
+   * specimen asserts it is NOT 0px. */
+  --radius-none: 0px;
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
+
+  /* ══ ELEVATION · 3 tokens crossing under their own name ═════════════════
+   * ⚠ B14 RATIFIES NO "no shadows" RULE — checked rather than assumed. r10's
+   * own styles.css draws five box-shadows and the app uses these three at 10
+   * sites. The namespace is cleared so `shadow-2xl` cannot introduce a fourth
+   * elevation the design system never ratified; the three we have stay. */
+  --shadow-sm: 0 1px 2px color-mix(in srgb, #2d2b2b 14%, transparent);
+  --shadow-md: 0 3px 10px color-mix(in srgb, #2d2b2b 16%, transparent);
+  --shadow-lg: 0 12px 32px color-mix(in srgb, #2d2b2b 22%, transparent);
+
+  /* ══ MEASURE · 1 token, namespace-renamed ═══════════════════════════════
+   * B14 rule 18 as amended: descriptions cap at 80% of the content width (PO
+   * 2026-08-16, *"make it 80%"*, *"across the app"*). 23 declarations point at
+   * this token today. `--container-*` is the namespace behind `max-w-*`, so the
+   * utility is `max-w-measure` — one name a Phase 3 lane reaches for, instead of
+   * the eight different caps the app had before the token existed. */
+  --desc-measure: 80%;
+  --container-measure: var(--desc-measure);
+}

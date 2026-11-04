@@ -1,0 +1,151 @@
+{
+    "count": 7,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "kind": "person",
+            "id": "01a10692-8a0d-701b-a99c-d8377300b354",
+            "name": "D. Ortiz",
+            "advice": {
+                "skill": {
+                    "name": "Meter I"
+                },
+                "has_skill": true,
+                "area_match": false,
+                "off_that_day": false,
+                "jobs_that_day": 0,
+                "certifications_lapsed": []
+            },
+            "best_fit": true,
+            "lapsed": [],
+            "eligible": true
+        },
+        {
+            "kind": "person",
+            "id": "01a10692-8ab5-7d75-a4bb-a4f207c140c8",
+            "name": "M. Chen",
+            "advice": {
+                "skill": {
+                    "name": "Meter I"
+                },
+                "has_skill": true,
+                "area_match": false,
+                "off_that_day": false,
+                "jobs_that_day": 0,
+                "certifications_lapsed": []
+            },
+            "best_fit": false,
+            "lapsed": [],
+            "eligible": true
+        },
+        {
+            "kind": "person",
+            "id": "01a10692-8a64-787b-a40c-223219db3176",
+            "name": "R. Patel",
+            "advice": {
+                "skill": {
+                    "name": "Meter I"
+                },
+                "has_skill": true,
+                "area_match": false,
+                "off_that_day": false,
+                "jobs_that_day": 0,
+                "certifications_lapsed": []
+            },
+            "best_fit": false,
+            "lapsed": [],
+            "eligible": true
+        },
+        {
+            "kind": "person",
+            "id": "01a10692-8afd-74f9-b035-26c3a55001c8",
+            "name": "J. Okoro",
+            "advice": {
+                "skill": {
+                    "name": "Meter I"
+                },
+                "has_skill": false,
+                "area_match": false,
+                "off_that_day": true,
+                "jobs_that_day": 0,
+                "certifications_lapsed": [
+                    {
+                        "name": "First aid / CPR · 2-yr",
+                        "expired_on": "2026-09-22"
+                    }
+                ]
+            },
+            "best_fit": false,
+            "lapsed": [
+                {
+                    "certification": "First aid / CPR · 2-yr",
+                    "expires_on": "2026-09-22"
+                }
+            ],
+            "eligible": true
+        },
+        {
+            "kind": "crew",
+            "id": "01a10692-89f2-7d58-a699-c46aafa2b8f1",
+            "name": "Field crew B",
+            "advice": {
+                "skill": {
+                    "name": "Meter I"
+                },
+                "has_skill": true,
+                "area_match": false,
+                "off_that_day": false,
+                "jobs_that_day": 0,
+                "certifications_lapsed": []
+            },
+            "best_fit": false,
+            "lapsed": [],
+            "eligible": true,
+            "members": 2
+        },
+        {
+            "kind": "crew",
+            "id": "01a10692-89e7-7a12-a325-6a39f8ab1f70",
+            "name": "Field crew A",
+            "advice": {
+                "skill": {
+                    "name": "Meter I"
+                },
+                "has_skill": false,
+                "area_match": false,
+                "off_that_day": false,
+                "jobs_that_day": 0,
+                "certifications_lapsed": []
+            },
+            "best_fit": false,
+            "lapsed": [],
+            "eligible": true,
+            "members": 2
+        },
+        {
+            "kind": "contractor",
+            "id": "01a10692-89fb-7236-8647-ad02b72ddcd6",
+            "name": "Redline Meter Services",
+            "advice": {
+                "skill": {
+                    "name": "Meter I"
+                },
+                "has_skill": true,
+                "area_match": false,
+                "off_that_day": false,
+                "jobs_that_day": 0,
+                "certifications_lapsed": []
+            },
+            "best_fit": false,
+            "lapsed": [],
+            "eligible": true,
+            "members": 0
+        }
+    ],
+    "skill": {
+        "id": "01a1068f-9ce5-7a1e-8843-0ae2875d6a00",
+        "name": "Meter I"
+    },
+    "on": "2026-10-04"
+}

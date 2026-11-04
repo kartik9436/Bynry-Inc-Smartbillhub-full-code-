@@ -1,0 +1,42 @@
+/* MoneyCell (FE-11) styles — US-SHL-013 / BR-SHL-023 / BR-REP-001.
+ * Modernist tokens only (B8: no hex literals — every color is a token from
+ * src/styles/tokens.css). */
+
+.cell-money {
+  font-variant-numeric: tabular-nums; /* A12: money aligns in columns */
+  white-space: nowrap;
+}
+
+/* DEF-176 — a cell whose figure could not be rendered at all. It is a SENTENCE
+ * where a number belongs, so it must not inherit the figure's `nowrap` or its
+ * tabular alignment, and it must not look like money. Quiet and italic: the
+ * same register `.fin-absent-reason` uses on the finance panels. */
+.cell-money-unrenderable {
+  white-space: normal;
+  font-variant-numeric: normal;
+  font-style: italic;
+  color: var(--color-neutral-600);
+}
+
+/* BR-REP-001 date-basis label, set small and quiet beside the figure. */
+.cell-money-basis {
+  margin-left: var(--space-2);
+  font-family: var(--font-heading);
+  /* Table meta beside a figure — `--text-xs`. It is a span INSIDE the cell, so
+     the cell's own 13.5px body tier (B14 rule 20) is untouched. */
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-neutral-600);
+}
+
+/* ── DEF-327 · the FIGURE inside a money cell. `.cell-money` (the wrapper) and
+ * `.cell-money-basis` (the qualifier beside it) were declared; the amount
+ * itself was not, so a money value carried no tabular numerals and a column of
+ * them did not align on the decimal point. This is the most-rendered element
+ * in a billing product. ────────────────────────────────────────────────── */
+.cell-money-amount {
+  font-feature-settings: "tnum";
+  white-space: nowrap;
+}

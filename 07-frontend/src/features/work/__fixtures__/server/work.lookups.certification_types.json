@@ -1,0 +1,55 @@
+{
+  "count": 6,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": "01a106d3-11fb-75b6-a7db-521b4db40abf",
+      "code": "BF-TST",
+      "name": "Backflow tester · 5-yr",
+      "active": true,
+      "is_system": true,
+      "used_by": 0
+    },
+    {
+      "id": "01a106d3-11f8-7935-9f2b-a882199b1d5d",
+      "code": "CONF-SP",
+      "name": "Confined space · 3-yr validity",
+      "active": true,
+      "is_system": true,
+      "used_by": 0
+    },
+    {
+      "id": "01a106d3-11fd-7ca9-9046-086356d5420f",
+      "code": "FA-CPR",
+      "name": "First aid / CPR · 2-yr",
+      "active": true,
+      "is_system": true,
+      "used_by": 0
+    },
+    {
+      "id": "01a106d3-11fa-7f49-8837-68fd3bb844fa",
+      "code": "HV-AW",
+      "name": "HV awareness · 2-yr",
+      "active": true,
+      "is_system": true,
+      "used_by": 0
+    },
+    {
+      "id": "01a106d3-11fc-7ef8-9b7c-bc62a30b0244",
+      "code": "TRAF",
+      "name": "Traffic control · 3-yr",
+      "active": true,
+      "is_system": true,
+      "used_by": 0
+    },
+    {
+      "id": "01a106d3-11fe-7b3c-b125-f07c8c41335d",
+      "code": "TRENCH",
+      "name": "Trench safety · 3-yr",
+      "active": true,
+      "is_system": true,
+      "used_by": 0
+    }
+  ]
+}

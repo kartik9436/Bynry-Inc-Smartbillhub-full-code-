@@ -1,0 +1,90 @@
+CHECK:
+START SERVICE
+Check this, then send it
+2200 Riverbend Ct, Apt 101, Katy, TX 77494 · step 4 of 4
+✓
+The address
+✓
+When
+✓
+About you
+4
+Check and send
+
+THE SERVICE
+
+Change
+Address
+2200 Riverbend Ct, Apt 101, Katy, TX 77494
+Services
+Electric, Water
+Start on
+11/08/2026
+Roof Material
+Metal
+
+YOU
+
+Change
+Applicant
+Maria Lopez
+Email
+maria.lopez@example.com
+Cell phone
+(734) 555-0182
+How should we contact you?
+Text message
+Date of birth
+04/12/1988
+Last 4 of SSN
+4471
+Co-applicant
+Daniel Lopez · Spouse
+Mailing address
+PO Box 2210, Ypsilanti, MI 48197
+Preferences
+Paperless billing · Text reminders · Español
+
+WHAT YOU WILL PAY
+
+To pay before we start
+$90.00
+On your first bill
+No deposit
+
+WE WILL NEED THESE FROM YOU
+
+Photo ID
+ATTACHED ✓
+maria-id.pdf
+Proof of address
+BRING LATER
+How we send your bills *
+Send my bills and letters by email
+
+We print them as well. You can go back to paper at any time.
+
+WHAT THIS WILL DO
+
+Sends your application to us.
+Records how you want your bills sent.
+Nothing is charged today.
+We answer within two working days.
+← Back
+Send my application ✓
+SAVED AS YOU GO
+Close this by accident and the form is still here. Nothing is promised until you send it, so it carries no reference yet.
+Attach them now, or bring them later.
+
+SENT:
+Your reference
+SR-26-0065
+
+WHAT HAPPENS NOW
+
+We answer within two working days.
+Nothing is charged today.
+We recorded that you want your bills by email.
+
+ERRORS:
+

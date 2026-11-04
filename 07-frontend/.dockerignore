@@ -1,0 +1,26 @@
+# The build stage runs `npm ci` itself and `vite build` itself — a host
+# node_modules or a host dist in the context would be slower AND wrong
+# (host-platform binaries, stale bundle).
+node_modules/
+dist/
+
+# Secrets — never in an image layer. The example file is documentation; compose
+# reads it from the host, not from inside the container.
+.env
+.env.*
+
+# Test and tooling output
+test-results/
+playwright-report/
+coverage/
+.vite/
+
+# E2E specs run against a RUNNING app from CI or a workstation, never from
+# inside this image.
+e2e/
+playwright.config.ts
+
+# Never part of a build context
+.git/
+Dockerfile
+.dockerignore

@@ -1,0 +1,88 @@
+signed in as dana@brazosbendutilities.com
+PLANS SERVED: 200 [["01a1023a-ef55-70de-90bc-708019bda005","Industrial","IND","published",1],["01a1023a-ecfa-7ca9-966a-b5f91796105f","Residential Standard","RES-STD","published",1],["01a1023b-22db-7121-afcc-1d61309d0763","Sample — Commercial","SCW-COM","published",1],["01a1023b-23f5-7598-8260-2607e81e576d","Sample — Industrial","SCW-IND","published",1],["01a1023b-21b9-7b8c-b67e-f3492171042e","Sample — Residential","SCW-RES","published",1],["01a1023a-ee2e-704c-bbe3-011e63990c96","Small Commercial","COM-SM","published",1],["01a10240-7bfb-72fa-8953-9abee15190b3","Walk — Residential City","WALK19754","published",2]]
+TARGET PLAN: 01a1023b-21b9-7b8c-b67e-f3492171042e Sample — Residential
+PLAN READ KEYS: ["id","code","name","description","status","version","account_type_ids","account_type_id","account_subtype_id","budget_billing","eligibility","minimum_bill_amount","outside_city_factor","outside_city_percent","outside_city_percent_display","effective_from","effective_to","services","base_charges","base_charges_display","base_charges_unavailable","rate_schedules","accounts","charge_rules","deposit_rules","late_fee_charge","penalty_rule","tax_rules","tax_attachments","tax_lines","combined_tax_rate_display","discounts","versions"]
+PLAN READ: {"id":"01a1023b-21b9-7b8c-b67e-f3492171042e","code":"SCW-RES","name":"Sample — Residential","description":"Sample plan. Water on inclining tiers, sewer at 40% of the water usage charge, trash at $15.00 per cart with no monthly base. Electric is metered too.","status":"published","version":1,"account_type_ids":["01a1023a-e194-775d-8948-9817511773ba"],"account_type_id":"01a1023a-e194-775d-8948-9817511773ba","account_subtype_id":null,"budget_billing":false,"eligibility":{},"minimum_bill_amount":null,"outside_city_factor":"1.500000","outside_city_percent":"50.000000","outside_city_percent_display":"50.00%","effective_from":"2026-08-01","effective_to":null,"services":[{"service":"electric","name":"Electric","base_charge":"12.000000","base_charge_code":null,"currency":"USD","schedule_minimum_amount":null,"schedule_minimum_amount_display":null,"gl_account_id":null,"outside_city_exempt":false},{"service":"water","name":"Water","base_charge":"8.000000","base_charge_code":null,"currency":"USD","schedule_minimum_amount":null,"schedule_minimum_amount_display":null,"gl_account_id":null,"outside_city_exempt":false}],"base_charges":"20.000000","base_charges_display":"20.00","base_charges_unavailable":null,"rate_schedules":[{"service":"electric","tariff_id":"01a1023b-1dfb-7be4-b177-42e61b1ce538","tariff_name":"Sample — Electric usage"},{"service":"water","tariff_id":"01a1023b-1ea9-7f69-9e1a-4ad2dfcd75df","tariff_name":"Sample — Residential water (inclining tiers)"}],"accounts":75,"charge_rules":[],"deposit_rules":[],"late_fee_charge":{"id":"01a1023a-df5e-7376-aaf4-db2abf0a9e38","code":"LATE","name":"Late payment fee","amount_rule":"percent_with_minimum","percent_display":"1.50%","min_amount_display":"5.00"},"penalty_rule":null,"tax_rules":[{"jurisdiction_id":"01a1023a-dfbb-7aca-a842-d5e915a6ee45","jurisdiction":"City","rate_override":null},{"jurisdiction_id":"01a1023a-dfc1-732d-aa67-0c9de9087a47","jurisdiction":"County","rate_override":null},{"jurisdiction_id":"01a1023a-dfb5-751d-89ea-961cf0967ca6","jurisdiction":"Local","rate_override":null},{"jurisdiction_id":"01a1023a-dfc3-777b-a33c-abe6f54ed157","jurisdiction":"Special district","rate_override":null},{"jurisdiction_id":"01a1023a-dfb8-7c12-a913-2f9a03539ac1","jurisdiction":"Texas Public Utility Commission","rate_override":null},{"jurisdiction_id":"01a1023a-dfb0-798e-a91a-999ce8cfe850","jurisdiction":"Texas State","rate_override":null},{"jurisdiction_id":"01a1023a-dfbe-7893-b133-4d4939f60980","jurisdiction":"Texas Water Development Board","rate_override":null}],"tax_attachments":[],"tax_lines":[{"level":"state","authority":"Texas Comptroller of Public Accounts","name":"TX State Utility Tax","kind":"percent","rate_display":"6.25%","flat_amount_display":null,"applies_to_services":[]},{"level":"county","authority":"Bexar County Tax Office","name":"Local · Bexar County","kind":"percent","rate_display":"2.00%","flat_amount_display":null,"applies_to_services":[]}],"combined_tax_rate_display":"8.25%","discounts":[{"id":"01a1023b-2613-7c5c-82f4-ad568a7ff5f8","discount_id":"01a1023b-2599-7eeb-ab0a-1d8ed2606aa5","code":"AUTOPAY","name":"Autopay discount","status":"active","type":"percentage","value_display":"0.50%","eligibility":"Autopay is on","terms":{"version_no":1,"version_status":"active","effective_from":"2026-08-01","effective_to":null,"resolved_on":"2026-10-03","eligibility_summary":"Autopay is on","eligibility_rule_recorded":false,"eligibility_checked":{"served":false,"reason":"no_code_evaluates_a_discount_eligibility_rule","tracks":null},"enrolment_mode":"automatic","verification_method":"automatic","proof_required":false,"accepted_proof_kinds":[],"proof_before_first_reduction":false,"recertification_months":null,"recertification_notice_days":60,"recertification_grace_days":0,"lapse_behaviour":"never_expires","applies_to":"whole_bill","applies_to_service":null,"applies_to_service_name":null,"applies_to_charge_codes":[],"currency":"USD","cap_per_bill_display":null,"cap_per_year_display":null,"cap_lifetime_display":null,"bill_floor_amount_display":"0.00","stacks_with_others":true,"exclusivity_group":null,"stacking_precedence":40},"available_from":null,"available_to":null,"enrolled":0},{"id":"01a1023b-261a-7746-bb07-a69858bcbf50","discount_id":"01a1023b-25e2-7521-9290-90db94320d6c","code":"MUNICIPAL","name":"Municipal account","status":"active","type":"percentage","value_display":"20.00%","eligibility":"Government or municipal account","terms":{"version_no":1,"version_status":"active","effective_from":"2026-08-01","effective_to":null,"resolved_on":"2026-10-03","eligibility_summary":"Government or municipal account","eligibility_rule_recorded":false,"eligibility_checked":{"served":false,"reason":"no_code_evaluates_a_discount_eligibility_rule","tracks":null},"enrolment_mode":"automatic","verification_method":"automatic","proof_required":false,"accepted_proof_kinds":[],"proof_before_first_reduction":false,"recertification_months":null,"recertification_notice_days":60,"recertification_grace_days":0,"lapse_behaviour":"never_expires","applies_to":"whole_bill","applies_to_service":null,"applies_to_service_name":null,"applies_to_charge_codes":[],"currency":"USD","cap_per_bill_display":null,"cap_per_year_display":null,"cap_lifetime_display":null,"bill_floor_amount_display":"0.00","stacks_with_others":true,"exclusivity_group":null,"stacking_precedence":60},"available_from":null,"available_to":null,"enrolled":1},{"id":"01a1023b-260b-75ff-836b-f8aacfce8746","discount_id":"01a1023b-2566-79b5-aac0-e3044288867c","code":"PAPERLESS","name":"Paperless billing","status":"active","type":"fixed_amount","value_display":"$1.00","eligibility":"Paperless billing is on","terms":{"version_no":1,"version_status":"active","effective_from":"2026-08-01","effective_to":null,"resolved_on":"2026-10-03","eligibility_summary":"Paperless billing is on","eligibility_rule_recorded":false,"eligibility_checked":{"served":false,"reason":"no_code_evaluates_a_discount_eligibility_rule","tracks":nu
+
+=== c9-change-publish-refused.png — change of a published plan · after Publish plan
+← Plans & Rates
+EDIT PLAN
+Edit Walk — Residential City
+Eight steps · takes about 5 minutes.
+Save draft & exit
+Archive
+Only a draft plan can be published. This one is published.
+1
+Basics
+2
+Services
+3
+Rate schedules
+4
+Charges
+5
+Taxes
+6
+Discounts & billing
+7
+Eligibility
+8
+Review & activate
+STEP 8 OF 8
+Everything, on one page.
+Basics · Walk — Residential City · WALK19754 · Residential, Commercial
+Edit Basics
+Services · Water
+Edit Services
+Rate schedules · Sample — Residential water (inclining tiers)
+Edit Rate schedules
+Charges · 0 charge codes
+Edit Charges
+Taxes · 0 tax authorities
+Edit Taxes
+Discounts & billing · 0 discount(s) offered · Budget billing not allowed
+Edit Discounts & billing
+Eligibility · 1 eligibility rules
+Edit Eligibility
+The price
+effective before the first bill
+Rate schedule
+SERVICE	BASE	RATE SCHEDULE	USAGE	RATE
+Water	8.00 · 15.00	Sample — Residential water (inclining tiers)	Tiered	$4.24 · $6.89 · $8.48
+from BASE-W · BASE-W-COM
+Charge codes
+What each one lands on.
+CODE	NAME	AMOUNT	WHEN IT APPLIES
+LATE	Late payment fee	1.50% · 5.00	after the due date
+Discounts
+This plan offers no discount.
+Taxes
+No tax authority reaches this plan.
+Other terms
+Everything else that changes a bill.
+Outside the city limits
+not set
+premises beyond the boundary
+Budget billing
+not offered
+Minimum bill
+$13.00
+Cycle and due date
+not settable per plan
+from the utility’s billing defaults
+Service	Rate schedule
+Water	Sample — Residential water (inclining tiers)
+Reason for this change*
+Required for a published plan: every change becomes a new version with this reason in the compliance record.
+No live customer is affected.
+SAVE IT
+Effective from 11/01/2026
+Edit Effective from
+Bills change for accounts moved here.
+Failed
+We couldn't publish this plan.
+Only a draft plan can be published. This one is published.
+Retry
+Download error report
+Cancel
+VERSION before/after: 2 3 minimum before/after: 12.000000 13.000000 status: published

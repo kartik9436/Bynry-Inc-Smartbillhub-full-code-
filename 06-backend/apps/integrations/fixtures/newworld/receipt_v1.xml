@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ROOT>
+  <ReceiptHeaderLevel ReceiptNumber="" VoidedFlag="0" PaymentEnteredDate="09/15/2026" PaymentRecordedDate="09/15/2026" PaymentGLDate="09/15/2026" ReceivedFromName="Rosa Delgado" ReceiptDescription="PMT-2609-0187" ReceiptCashier="SMART360 NEXT">
+    <ReceiptTransactionLevel ReceiptTransactionType="UTILITY" ReceiptTransactionAmount="142.18" ReceiptTransactionDescription="PMT-2609-0187" ReceiptTransactionARCustomerNumber="AC-2026-00036" ReceiptTransactionARBillType="UTILITY" ReceiptTransactionARBillNumber="INV-2609-00412">
+      <ReceiptTransactionGLDistributionLevel GLAccountNumber="1200" DueToDueFromFund="" ProjectCode1="" ProjectCode2="" ProjectCode3="" DistributionAmount="142.18" DistributionType="2" />
+    </ReceiptTransactionLevel>
+    <ReceiptPaymentLevel ReceiptPaymentType="3" ReceiptPaymentAmount="142.18" ReceiptPaymentCheckNumber="" ReceiptPaymentCreditCardNumber="" ReceiptPaymentCreditCardType="" ReceiptPaymentCreditCardExpirationDate="" ReceiptPaymentCreditCardValidationNumber="" ReceiptPaymentOtherType="ACH" />
+  </ReceiptHeaderLevel>
+  <ReceiptHeaderLevel ReceiptNumber="" VoidedFlag="0" PaymentEnteredDate="09/15/2026" PaymentRecordedDate="09/15/2026" PaymentGLDate="09/15/2026" ReceivedFromName="Marcus Hale" ReceiptDescription="PMT-2609-0188 · Paid online" ReceiptCashier="SMART360 NEXT">
+    <ReceiptTransactionLevel ReceiptTransactionType="UTILITY" ReceiptTransactionAmount="200.00" ReceiptTransactionDescription="PMT-2609-0188 · Paid online" ReceiptTransactionARCustomerNumber="AC-2026-00036" ReceiptTransactionARBillType="UTILITY" ReceiptTransactionARBillNumber="">
+      <ReceiptTransactionGLDistributionLevel GLAccountNumber="1200" DueToDueFromFund="" ProjectCode1="" ProjectCode2="" ProjectCode3="" DistributionAmount="142.18" DistributionType="2" />
+      <ReceiptTransactionGLDistributionLevel GLAccountNumber="2400" DueToDueFromFund="" ProjectCode1="" ProjectCode2="" ProjectCode3="" DistributionAmount="57.82" DistributionType="2" />
+    </ReceiptTransactionLevel>
+    <ReceiptPaymentLevel ReceiptPaymentType="2" ReceiptPaymentAmount="200.00" ReceiptPaymentCheckNumber="" ReceiptPaymentCreditCardNumber="" ReceiptPaymentCreditCardType="" ReceiptPaymentCreditCardExpirationDate="" ReceiptPaymentCreditCardValidationNumber="" ReceiptPaymentOtherType="" />
+  </ReceiptHeaderLevel>
+  <ReceiptHeaderLevel ReceiptNumber="" VoidedFlag="0" PaymentEnteredDate="09/15/2026" PaymentRecordedDate="09/15/2026" PaymentGLDate="09/15/2026" ReceivedFromName="Aisha Bennett" ReceiptDescription="PMT-2609-0189" ReceiptCashier="SMART360 NEXT">
+    <ReceiptTransactionLevel ReceiptTransactionType="UTILITY" ReceiptTransactionAmount="100.00" ReceiptTransactionDescription="PMT-2609-0189" ReceiptTransactionARCustomerNumber="AC-2026-00036" ReceiptTransactionARBillType="UTILITY" ReceiptTransactionARBillNumber="INV-2609-00418">
+      <ReceiptTransactionGLDistributionLevel GLAccountNumber="4100" DueToDueFromFund="" ProjectCode1="" ProjectCode2="" ProjectCode3="" DistributionAmount="33.33" DistributionType="2" />
+      <ReceiptTransactionGLDistributionLevel GLAccountNumber="4105" DueToDueFromFund="" ProjectCode1="" ProjectCode2="" ProjectCode3="" DistributionAmount="33.33" DistributionType="2" />
+      <ReceiptTransactionGLDistributionLevel GLAccountNumber="4110" DueToDueFromFund="" ProjectCode1="" ProjectCode2="" ProjectCode3="" DistributionAmount="33.33" DistributionType="2" />
+    </ReceiptTransactionLevel>
+    <ReceiptPaymentLevel ReceiptPaymentType="3" ReceiptPaymentAmount="100.00" ReceiptPaymentCheckNumber="" ReceiptPaymentCreditCardNumber="" ReceiptPaymentCreditCardType="" ReceiptPaymentCreditCardExpirationDate="" ReceiptPaymentCreditCardValidationNumber="" ReceiptPaymentOtherType="ACH" />
+  </ReceiptHeaderLevel>
+</ROOT>

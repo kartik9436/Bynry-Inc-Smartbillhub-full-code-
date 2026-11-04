@@ -1,0 +1,959 @@
+signed in as dana@brazosbendutilities.com
+SERVICES SERVED: 11 · switched on: electric,water
+
+=== w01-step1-empty.png — step 1 as it opens (P2 P3 P5)
+← Plans & Rates
+NEW TAX OR FEE
+Add a tax, franchise fee, or surcharge.
+Three steps · about 2 minutes.
+Save draft & exit
+1
+What it is
+2
+How much
+3
+Review & save
+STEP 1 OF 3
+Name and jurisdiction.
+Name it and its authority. Then set who it reaches.
+Authority
+Name on bill*
+Authority*
+Choose an authority
+City
+County
+Local
+Special district
+Texas Public Utility Commission
+Texas State
+Texas Water Development Board
+Add an authority
+Where it applies
+Boundary
+Everywhere in this utility
+Inside city limits
+In a county
+In a state
+In a taxing district
+A named list of premises
+SERVICES
+All services
+Add a service…
+Add a service…
+Electric
+Water
+Gas
+Sewer
+Trash
+Storm water
+Solar
+Broadband
+Thermal/Heat
+Battery
+Fire
+CUSTOMER CLASSES
+Every customer class
+Add a customer class…
+Add a customer class…
+Residential
+Commercial
+Industrial
+Agricultural
+Institutional
+Municipal
+Builder or developer
+Government
+This tax reaches every premises.
+Cancel
+Continue
+services select id: null
+SELECTS: [{"id":"jurisdiction","options":["Choose an authority","City","County","Local","Special district","Texas Public Utility Commission","Texas State","Texas Water Development Board","Add an authority"]},{"id":"premises_scope_kind","options":["Everywhere in this utility","Inside city limits","In a county","In a state","In a taxing district","A named list of premises"]},{"id":"cr165-select-2","options":["Add a service…","Electric","Water","Gas","Sewer","Trash","Storm water","Solar","Broadband","Thermal/Heat","Battery","Fire"]},{"id":"cr165-select-3","options":["Add a customer class…","Residential","Commercial","Industrial","Agricultural","Institutional","Municipal","Builder or developer","Government"]}]
+
+=== w02-services-list.png — services list, select expanded with size=12 for the photo (P1)
+
+=== w03-boundary-city-classes-open.png — boundary = Inside city limits; class list expanded for the photo (P4 P6)
+
+=== w04-step1-filled-count.png — step 1 filled, the reach count and its sample (P6 P7)
+← Plans & Rates
+NEW TAX OR FEE
+Add a tax, franchise fee, or surcharge.
+Three steps · about 2 minutes.
+Save draft & exit
+1
+What it is
+2
+How much
+3
+Review & save
+STEP 1 OF 3
+Name and jurisdiction.
+Name it and its authority. Then set who it reaches.
+Authority
+Name on bill*
+Authority*
+Choose an authority
+City
+County
+Local
+Special district
+Texas Public Utility Commission
+Texas State
+Texas Water Development Board
+Add an authority
+Where it applies
+Boundary
+Everywhere in this utility
+Inside city limits
+In a county
+In a state
+In a taxing district
+A named list of premises
+Named place
+Recorded City limits decide first. This name covers the rest.
+SERVICES
+All services
+Add a service…
+Add a service…
+Electric
+Water
+Gas
+Sewer
+Trash
+Storm water
+Solar
+Broadband
+Thermal/Heat
+Battery
+Fire
+CUSTOMER CLASSES
+Every customer class
+Add a customer class…
+Add a customer class…
+Residential
+Commercial
+Industrial
+Agricultural
+Institutional
+Municipal
+Builder or developer
+Government
+6 of 6 premises match.
+0 by recorded City limits. 6 more by name.
+P-00001 · 1408 Bluestem Ln — P-00002 · 2201 Cane Island Pkwy — P-00003 · 500 Mason Rd Plaza
+Cancel
+Continue
+
+=== w05-step2-empty.png — step 2 as it opens (P8 P10–P16 P18)
+← Plans & Rates
+NEW TAX OR FEE
+Add a tax, franchise fee, or surcharge.
+Three steps · about 2 minutes.
+Save draft & exit
+1
+What it is
+2
+How much
+3
+Review & save
+STEP 2 OF 3
+Set the rate and what it is charged on.
+Set the rate, dates and rounding.
+Rate & base
+Basis
+A percentage of the bill
+A fixed amount per bill
+An amount per unit used
+An amount per meter
+Rate
+Enter a fraction: 6.25% is 0.0625.
+What is taxed
+Usage charges
+Base service charges
+Only these two can be taxed.
+From when
+Effective from
+Once billed, this date cannot change.
+Effective to
+Past bills keep their own rate.
+Statutory settings
+Discounts
+Discounted amount taxed
+Full amount taxed
+Example: $1.00 credit, 2% tax. After discounts $3.78, before $3.80.
+Rounding
+Standard rounding (half up)
+Half up
+Half to even
+Always up
+Always down
+Cut off
+Record what your authority requires. Leave blank to use standard rounding.
+Exemptions are on the Exemptions tab.
+Cancel
+Back
+Continue
+
+=== w06-basis-open.png — basis list expanded with size=4 for the photo (P10)
+
+=== w07-step2-rate-1-5.png — rate typed 1.5 meaning 1.5% (P8 P9)
+← Plans & Rates
+NEW TAX OR FEE
+Add a tax, franchise fee, or surcharge.
+Three steps · about 2 minutes.
+Save draft & exit
+1
+What it is
+2
+How much
+3
+Review & save
+STEP 2 OF 3
+Set the rate and what it is charged on.
+Set the rate, dates and rounding.
+Rate & base
+Basis
+A percentage of the bill
+A fixed amount per bill
+An amount per unit used
+An amount per meter
+Rate
+Enter a fraction: 6.25% is 0.0625.
+What is taxed
+Usage charges
+Base service charges
+Only these two can be taxed.
+From when
+Effective from
+Once billed, this date cannot change.
+Effective to
+Past bills keep their own rate.
+Statutory settings
+Discounts
+Discounted amount taxed
+Full amount taxed
+Example: $1.00 credit, 2% tax. After discounts $3.78, before $3.80.
+Rounding
+Standard rounding (half up)
+Half up
+Half to even
+Always up
+Always down
+Cut off
+Record what your authority requires. Leave blank to use standard rounding.
+Exemptions are on the Exemptions tab.
+Cancel
+Back
+Continue
+
+=== w08-step3-review.png — review after typing 1.5 — no over-20% warning (P9 P17 P18 P19)
+← Plans & Rates
+NEW TAX OR FEE
+Add a tax, franchise fee, or surcharge.
+Three steps · about 2 minutes.
+Save draft & exit
+1
+What it is
+2
+How much
+3
+Review & save
+STEP 3 OF 3
+Read it back before it reaches a bill.
+This is what will be stored.
+What you chose
+Name on bill
+ann arbor City
+Authority
+City
+Basis
+A percentage of the bill
+Rate
+1.5
+What is taxed
+Usage charges, Base service charges
+Discounts
+Full amount taxed
+Boundary
+Inside city limits · Katy
+Customer classes
+Every customer class
+Applies to
+All services
+Effective from
+—
+Effective to
+—
+Rounding
+Standard rounding (half up)
+Shown as you typed it. Bills show the rounded figure.
+Before you save
+6 of 6 premises match.
+0 by recorded City limits. 6 more by name.
+P-00001 · 1408 Bluestem Ln — P-00002 · 2201 Cane Island Pkwy — P-00003 · 500 Mason Rd Plaza
+Saving puts this tax in force. Save as draft instead.
+A tax cannot be deleted. Switch it off instead.
+Cancel
+Back
+Save tax or fee
+REVIEW BUTTONS: ["Save draft & exit","1What it is","2How much","3Review & save","Cancel","Back","Save tax or fee"]
+SAVED -> http://127.0.0.1:8492/brazosbend/plans-rates/taxes-fees/01a10067-1fe2-7960-a5b5-c22127b79b7d
+SAVED second -> http://127.0.0.1:8492/brazosbend/plans-rates/taxes-fees/01a10067-300f-707a-9036-afad5c0898d6
+
+=== w09-save-draft-and-exit.png — about to press Save draft & exit on a new tax
+DRAFT PROBE stored as: {"status":"active","in_force":true}
+
+=== w10-after-save-draft.png — list after Save draft & exit — the tax reads active
+GL picked: 2520 Current portion of long-term debt
+PATCH GL: 200
+
+=== l01-list.png — list with two taxes over 20% (P21–P28)
+Plans & Rates
+3 plans · 4 rate schedules · 27 charge codes · 0 discounts · 5 taxes & fees · effective 08/01/2026
+History
++ New tax or fee
+Plans
+Rate schedules
+Charge codes
+Discounts
+Taxes & fees
+Taxes and franchise fees are computed per bill line, not per bill — each declares its jurisdiction, which services and customer classes it touches, and which charge codes are exempt.
+All
++ Filter
+▾
+TAX OR FEE
+▲
+	APPLIES TO	RATE	REMITTANCE	LIABILITY GL ACCOUNT	STATUS	ACTIONS
+Draft probe fee · Special district	All services	1.00% of the taxable amount	Monthly	Not set	Active	
+Local · Bexar County · Local	All services	2.00% of the taxable amount	Monthly	Not set	Active	
+TX State Utility Tax · Texas State	All services · Commercial, Industrial	6.25% of the taxable amount	Monthly	Not set	Active	
+Water Development Fee · Texas Water Development Board	All services	62.50% of the taxable amount	Monthly	Not set	Active	
+ann arbor City · City	All services · Inside city limits: Katy	150.00% of the taxable amount	Monthly	2520 — Current portion of long-term debt	Active	
+1–5 of 5
+Rows per page
+50
+100
+200
+500
+1000
+‹
+›
+LIST COLUMNS: ["Tax or fee▲","Applies to","Rate","Remittance","Liability GL account","Status","Actions"]
+
+=== d01-overview.png — details · Overview of the 150% tax (P29–P38 P42–P43)
+← Plans & Rates
+TAX · CITY · CITY
+ann arbor City
+Active
+Effective from: — · Liability GL account: 2520 — Current portion of long-term debt · Live taxes are corrected, never edited. Issued bills keep their rate.
+Duplicate
+Edit
+Retire
+Overview
+Plans
+Audit
+PLANS IT TOUCHES
+3
+PREMISES IN SCOPE
+6
+of 6
+RATE
+150.00% of the taxable amount
+NOT WORKED OUT YET
+What it is and what it taxes. Who it reaches, and its filing.
+WHAT IT IS
+NAME ON BILL
+ann arbor City
+AUTHORITY
+City
+LEVEL
+City
+BASIS
+A percentage of the bill
+WHAT IS TAXED
+The rate, and exactly what it is charged on.
+RATE
+150.00% of the taxable amount
+USAGE CHARGES
+Taxed
+BASE SERVICE CHARGES
+Taxed
+DISCOUNTS
+Full amount taxed
+APPLIES ABOVE
+—
+ROUNDING
+Standard rounding (half up)
+WHO IT REACHES
+A tax attaches by jurisdiction and service, and no plan can leave one off a bill.
+SERVICES
+All services
+CUSTOMER CLASSES
+Every customer class
+BOUNDARY
+Inside city limits · Katy
+EFFECTIVE FROM
+—
+EFFECTIVE TO
+—
+On the bill
+EDITABLE
+These can be changed at any time, so the wizard no longer asks for them.
+Code
+Your own short identifier for this tax, unique across your taxes. Leave blank if you do not use codes.
+Bill label
+What the customer reads on their bill. Leave blank to show the name above.
+Remittance & filings
+EDITABLE
+Every field here can be changed at any time, on a live tax, without a new version.
+Tax type
+Not stated
+Sales tax
+Franchise fee
+Regulatory fee
+Utility tax
+Environmental fee
+Other
+Liability GL account
+2520 — Current portion of long-term debt
+This account is set in Settings, under Accounting. Open Accounting settings
+Remitted to
+Filed
+Monthly
+Quarterly
+Annual
+Filing form
+Due-date rule
+How the authority sets the deadline, in your own words — for example “20th of following month”.
+Payment method
+Not stated
+Bank transfer (ACH)
+Electronic transfer
+Check
+Authority's online portal
+Other
+Your account number with the authority
+The reference the authority knows you by, quoted on every filing.
+Collection allowance you keep
+The share of what you collect that the authority lets you keep for filing on time, as a fraction — enter 0.005 for 0.5%. On $2,400.00 remitted that is $12.00 of your own income.
+Account the allowance is posted to
+Not set
+This account is set in Settings, under Accounting. Open Accounting settings
+Interest or penalty for filing late
+What the authority charges you, as a fraction — enter 0.015 for 1.5%. State the period beside it, or the figure means nothing.
+Charged per
+Not stated
+Day
+Month
+Year
+Who gets the filing reminder
+An email address. It does not have to be someone who uses this product — an outside bookkeeper is fine.
+The remittance worksheet
+What you record here is saved and shown back to you, but the product does not yet produce a return from it. Preparing a filing is still a manual step.
+Save filing details
+DETAIL BUTTONS: ["Duplicate","Edit","Retire","Overview","Plans","Audit","Open Accounting settings","Open Accounting settings","Save filing details"]
+
+=== d02-plans-tab.png — details · Plans tab of the new tax (P39)
+← Plans & Rates
+TAX · CITY · CITY
+ann arbor City
+Active
+Effective from: — · Liability GL account: 2520 — Current portion of long-term debt · Live taxes are corrected, never edited. Issued bills keep their rate.
+Duplicate
+Edit
+Retire
+Overview
+Plans
+Audit
+PLANS IT TOUCHES
+3
+PREMISES IN SCOPE
+6
+of 6
+RATE
+150.00% of the taxable amount
+NOT WORKED OUT YET
+Plans that carry this tax.
+WHERE THIS REACHES
+PLAN	REACHED BY	UNITS
+Industrial	Its authority is on the plan	1
+Residential Standard	Its authority is on the plan	7
+Small Commercial	Its authority is on the plan	2
+CANNOT OPT OUT
+A plan cannot drop this tax. Attaching adds; nothing detaches.
+
+=== d03-audit-tab.png — details · Audit tab of the new tax (P39 P40)
+← Plans & Rates
+TAX · CITY · CITY
+ann arbor City
+Active
+Effective from: — · Liability GL account: 2520 — Current portion of long-term debt · Live taxes are corrected, never edited. Issued bills keep their rate.
+Duplicate
+Edit
+Retire
+Overview
+Plans
+Audit
+PLANS IT TOUCHES
+3
+PREMISES IN SCOPE
+6
+of 6
+RATE
+150.00% of the taxable amount
+NOT WORKED OUT YET
+What the rate has been. Who changed it.
+AUDIT
+EFFECTIVE	RATE	WHY IT CHANGED	BY
+—	150.00%	First recorded	—
+DATED
+Bills always use the version in force on the usage date.
+
+=== d04-state-plans-tab.png — details · Plans tab of TX State Utility Tax (P39)
+← Plans & Rates
+TAX · STATE · TEXAS STATE
+TX State Utility Tax
+Active
+Effective from: — · Liability GL account: Not set · Live taxes are corrected, never edited. Issued bills keep their rate.
+Duplicate
+Edit
+Retire
+Overview
+Plans
+Audit
+PLANS IT TOUCHES
+3
+PREMISES IN SCOPE
+0
+of 6
+RATE
+6.25% of the taxable amount
+NOT WORKED OUT YET
+Plans that carry this tax.
+WHERE THIS REACHES
+PLAN	REACHED BY	UNITS
+Industrial	Its authority is on the plan	1
+Residential Standard	Its authority is on the plan	7
+Small Commercial	Its authority is on the plan	2
+CANNOT OPT OUT
+A plan cannot drop this tax. Attaching adds; nothing detaches.
+EDIT OPENS -> http://127.0.0.1:8492/brazosbend/plans-rates/taxes-fees/01a10067-1fe2-7960-a5b5-c22127b79b7d/edit
+
+=== e01-edit-opens.png — Edit pressed on a live tax (P44 P45 P46)
+← Plans & Rates
+EDIT TAX OR FEE
+Edit ann arbor City.
+Three steps · about 2 minutes.
+Save draft & exit
+Filing a correction
+Saving writes a new dated version. It carries the reason you give.
+Issued bills keep their rate.
+1
+What it is
+2
+How much
+3
+Review & save
+STEP 1 OF 3
+Name and jurisdiction.
+Name it and its authority. Then set who it reaches.
+Authority
+Name on bill*
+Authority*
+Choose an authority
+City
+County
+Local
+Special district
+Texas Public Utility Commission
+Texas State
+Texas Water Development Board
+Add an authority
+Where it applies
+Boundary
+Everywhere in this utility
+Inside city limits
+In a county
+In a state
+In a taxing district
+A named list of premises
+Named place
+Recorded City limits decide first. This name covers the rest.
+SERVICES
+All services
+Add a service…
+Add a service…
+Electric
+Water
+Gas
+Sewer
+Trash
+Storm water
+Solar
+Broadband
+Thermal/Heat
+Battery
+Fire
+CUSTOMER CLASSES
+Every customer class
+Add a customer class…
+Add a customer class…
+Residential
+Commercial
+Industrial
+Agricultural
+Institutional
+Municipal
+Builder or developer
+Government
+6 of 6 premises match.
+0 by recorded City limits. 6 more by name.
+P-00001 · 1408 Bluestem Ln — P-00002 · 2201 Cane Island Pkwy — P-00003 · 500 Mason Rd Plaza
+Cancel
+Continue
+EDIT step 2: rate disabled = false · effective_from disabled = true
+
+=== e02-edit-step2.png — edit step 2: rate editable, dates shown (P46 P47)
+← Plans & Rates
+EDIT TAX OR FEE
+Edit ann arbor City.
+Three steps · about 2 minutes.
+Save draft & exit
+Filing a correction
+Saving writes a new dated version. It carries the reason you give.
+Issued bills keep their rate.
+1
+What it is
+2
+How much
+3
+Review & save
+STEP 2 OF 3
+Set the rate and what it is charged on.
+Set the rate, dates and rounding.
+Rate & base
+Basis
+A percentage of the bill
+A fixed amount per bill
+An amount per unit used
+An amount per meter
+Rate
+Enter a fraction: 6.25% is 0.0625.
+What is taxed
+Usage charges
+Base service charges
+Only these two can be taxed.
+From when
+Effective from
+A correction keeps these dates.
+Effective to
+A correction keeps these dates.
+Statutory settings
+Discounts
+Discounted amount taxed
+Full amount taxed
+Example: $1.00 credit, 2% tax. After discounts $3.78, before $3.80.
+Rounding
+Standard rounding (half up)
+Half up
+Half to even
+Always up
+Always down
+Cut off
+Record what your authority requires. Leave blank to use standard rounding.
+Exemptions are on the Exemptions tab.
+Cancel
+Back
+Continue
+
+=== e03-edit-review.png — edit review before a reason is typed (P48 P49 P50)
+← Plans & Rates
+EDIT TAX OR FEE
+Edit ann arbor City.
+Three steps · about 2 minutes.
+Save draft & exit
+Filing a correction
+Saving writes a new dated version. It carries the reason you give.
+Issued bills keep their rate.
+1
+What it is
+2
+How much
+3
+Review & save
+STEP 3 OF 3
+Read it back before it reaches a bill.
+This is what will be stored.
+What you chose
+Name on bill
+ann arbor City
+Authority
+City
+Basis
+A percentage of the bill
+Rate
+0.015
+What is taxed
+Usage charges, Base service charges
+Discounts
+Full amount taxed
+Boundary
+Inside city limits · Katy
+Customer classes
+Every customer class
+Applies to
+All services
+Effective from
+—
+Effective to
+—
+Rounding
+Standard rounding (half up)
+Shown as you typed it. Bills show the rounded figure.
+Before you save
+6 of 6 premises match.
+0 by recorded City limits. 6 more by name.
+P-00001 · 1408 Bluestem Ln — P-00002 · 2201 Cane Island Pkwy — P-00003 · 500 Mason Rd Plaza
+Saving supersedes this rate now. Issued bills are untouched.
+Why this changed
+Reason for correction*
+Say what was wrong. It is kept forever.
+Cancel
+Back
+Save correction
+EDIT REVIEW BUTTONS: ["Save draft & exit","1What it is","2How much","3Review & save","Cancel","Back","Save correction"]
+
+=== e04-edit-save-no-reason.png — pressed "Save correction" with no reason (P48)
+← Plans & Rates
+EDIT TAX OR FEE
+Edit ann arbor City.
+Three steps · about 2 minutes.
+Save draft & exit
+Filing a correction
+Saving writes a new dated version. It carries the reason you give.
+Issued bills keep their rate.
+Say why this rate is being corrected, in a sentence someone will still understand in a year.
+1
+What it is
+2
+How much
+3
+Review & save
+STEP 3 OF 3
+Read it back before it reaches a bill.
+This is what will be stored.
+What you chose
+Name on bill
+ann arbor City
+Authority
+City
+Basis
+A percentage of the bill
+Rate
+0.015
+What is taxed
+Usage charges, Base service charges
+Discounts
+Full amount taxed
+Boundary
+Inside city limits · Katy
+Customer classes
+Every customer class
+Applies to
+All services
+Effective from
+—
+Effective to
+—
+Rounding
+Standard rounding (half up)
+Shown as you typed it. Bills show the rounded figure.
+Before you save
+6 of 6 premises match.
+0 by recorded City limits. 6 more by name.
+P-00001 · 1408 Bluestem Ln — P-00002 · 2201 Cane Island Pkwy — P-00003 · 500 Mason Rd Plaza
+Saving supersedes this rate now. Issued bills are untouched.
+Why this changed
+Reason for correction*
+Say what was wrong. It is kept forever.
+Say why this rate is being corrected, in a sentence someone will still understand in a year.
+Cancel
+Back
+Save correction
+
+=== e05-edit-saved.png — after saving the correction with a reason (P49 P40)
+AFTER CORRECTION -> http://127.0.0.1:8492/brazosbend/plans-rates/taxes-fees/01a10067-ad8c-7c0e-b61c-181d8eefb66f
+← Plans & Rates
+TAX · CITY · CITY
+ann arbor City
+Active
+Effective from: — · Liability GL account: 2520 — Current portion of long-term debt · Live taxes are corrected, never edited. Issued bills keep their rate.
+Duplicate
+Edit
+Retire
+Overview
+Plans
+Audit
+PLANS IT TOUCHES
+3
+PREMISES IN SCOPE
+6
+of 6
+RATE
+1.50% of the taxable amount
+NOT WORKED OUT YET
+What it is and what it taxes. Who it reaches, and its filing.
+WHAT IT IS
+NAME ON BILL
+ann arbor City
+AUTHORITY
+City
+LEVEL
+City
+BASIS
+A percentage of the bill
+WHAT IS TAXED
+The rate, and exactly what it is charged on.
+RATE
+1.50% of the taxable amount
+USAGE CHARGES
+Taxed
+BASE SERVICE CHARGES
+Taxed
+DISCOUNTS
+Full amount taxed
+APPLIES ABOVE
+—
+ROUNDING
+Standard rounding (half up)
+WHO IT REACHES
+A tax attaches by jurisdiction and service, and no plan can leave one off a bill.
+SERVICES
+All services
+CUSTOMER CLASSES
+Every customer class
+BOUNDARY
+Inside city limits · Katy
+EFFECTIVE FROM
+—
+EFFECTIVE TO
+—
+On the bill
+EDITABLE
+These can be changed at any time, so the wizard no longer asks for them.
+Code
+Your own short identifier for this tax, unique across your taxes. Leave blank if you do not use codes.
+Bill label
+What the customer reads on their bill. Leave blank to show the name above.
+Remittance & filings
+EDITABLE
+Every field here can be changed at any time, on a live tax, without a new version.
+Tax type
+Not stated
+Sales tax
+Franchise fee
+Regulatory fee
+Utility tax
+Environmental fee
+Other
+Liability GL account
+2520 — Current portion of long-term debt
+This account is set in Settings, under Accounting. Open Accounting settings
+Remitted to
+Filed
+Monthly
+Quarterly
+Annual
+Filing form
+Due-date rule
+How the authority sets the deadline, in your own words — for example “20th of following month”.
+Payment method
+Not stated
+Bank transfer (ACH)
+Electronic transfer
+Check
+Authority's online portal
+Other
+Your account number with the authority
+The reference the authority knows you by, quoted on every filing.
+Collection allowance you keep
+The share of what you collect that the authority lets you keep for filing on time, as a fraction — enter 0.005 for 0.5%. On $2,400.00 remitted that is $12.00 of your own income.
+Account the allowance is posted to
+Not set
+This account is set in Settings, under Accounting. Open Accounting settings
+Interest or penalty for filing late
+What the authority charges you, as a fraction — enter 0.015 for 1.5%. State the period beside it, or the figure means nothing.
+Charged per
+Not stated
+Day
+Month
+Year
+Who gets the filing reminder
+An email address. It does not have to be someone who uses this product — an outside bookkeeper is fine.
+The remittance worksheet
+What you record here is saved and shown back to you, but the product does not yet produce a return from it. Preparing a filing is still a manual step.
+Save filing details
+
+=== e06-audit-after-correction.png — Audit tab after the correction (P40)
+← Plans & Rates
+TAX · CITY · CITY
+ann arbor City
+Active
+Effective from: — · Liability GL account: 2520 — Current portion of long-term debt · Live taxes are corrected, never edited. Issued bills keep their rate.
+Duplicate
+Edit
+Retire
+Overview
+Plans
+Audit
+PLANS IT TOUCHES
+3
+PREMISES IN SCOPE
+6
+of 6
+RATE
+1.50% of the taxable amount
+NOT WORKED OUT YET
+What the rate has been. Who changed it.
+AUDIT
+EFFECTIVE	RATE	WHY IT CHANGED	BY
+—	1.50%	Rate typed as 1.5 meaning 1.5 percent; the authority's rate is 1.5%.	Dana Whitfield
+—	150.00%	First recorded	—
+DATED
+Bills always use the version in force on the usage date.
+
+=== l02-list-after-correction.png — list after correcting the 150% tax (P27 — no version column)
+Plans & Rates
+3 plans · 4 rate schedules · 27 charge codes · 0 discounts · 6 taxes & fees · effective 08/01/2026
+History
++ New tax or fee
+Plans
+Rate schedules
+Charge codes
+Discounts
+Taxes & fees
+Taxes and franchise fees are computed per bill line, not per bill — each declares its jurisdiction, which services and customer classes it touches, and which charge codes are exempt.
+All
++ Filter
+▾
+TAX OR FEE
+▲
+	APPLIES TO	RATE	REMITTANCE	LIABILITY GL ACCOUNT	STATUS	ACTIONS
+Draft probe fee · Special district	All services	1.00% of the taxable amount	Monthly	Not set	Active	
+Local · Bexar County · Local	All services	2.00% of the taxable amount	Monthly	Not set	Active	
+TX State Utility Tax · Texas State	All services · Commercial, Industrial	6.25% of the taxable amount	Monthly	Not set	Active	
+Water Development Fee · Texas Water Development Board	All services	62.50% of the taxable amount	Monthly	Not set	Active	
+ann arbor City · City	All services · Inside city limits: Katy	150.00% of the taxable amount	Monthly	2520 — Current portion of long-term debt	Active	
+ann arbor City · City	All services · Inside city limits: Katy	1.50% of the taxable amount	Monthly	2520 — Current portion of long-term debt	Active	
+1–6 of 6
+Rows per page
+50
+100
+200
+500
+1000
+‹
+›
+PATCH code on State tax: 200
+CORRECT coded tax: 422 {"code":"VAL-002","message_key":"rating.taxes.duplicate_code","params":{},"field_errors":[{"field":"code","code":"VAL-002","message_key":"rating.taxes.duplicate_code","params":{}}],"br_ref":null,"trace_id":"be54f7aa4be443a09a41fefc7344bfdb"}
+VERSIONS of 150% tax: 200 [{"id":"01a10067-ad8c-7c0e-b61c-181d8eefb66f","effective_from":null,"effective_to":null,"rate_display":"1.50%","correction_reason":"Rate typed as 1.5 meaning 1.5 percent; the authority's rate is 1.5%.","corrected_by":{"id":"01a1005c-b8aa-7924-b6e9-f64af070c458","name":"Dana Whitfield"},"status":"active","is_current":true},{"id":"01a10067-1fe2-7960-a5b5-c22127b79b7d","effective_from":null,"effective_to":null,"rate_display":"150.00%","correction_reason":null,"corrected_by":null,"status":"active","is_current":false}]
+WATER id 01a10067-300f-707a-9036-afad5c0898d6 ANN ARBOR id 01a10067-1fe2-7960-a5b5-c22127b79b7d

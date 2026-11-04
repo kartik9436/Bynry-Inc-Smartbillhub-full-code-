@@ -1,0 +1,7 @@
+NO RECORDED FIXTURE — NOT A SUPPORTED FORMAT (BR-INT-033). ⚠ AND THE REASON CHANGED ON 2026-09-06, SO READ THE WHOLE LINE RATHER THAN THE FIRST SENTENCE.
+
+The codec `camt053` now CARRIES A DECODER (CR-069 wave J, `codecs._decode_camt053`). What it does NOT carry is a statement recorded from a real bank, and BR-INT-033 makes the FIXTURE — not the code — the thing that decides `supported`. So `is_supported("camt053")` answers False, `check_fixtures()` reports *not a supported format*, and both are telling the truth about different halves.
+
+The decoder is proved against a structural camt.053 fixture held under `06-backend/tests/fixtures/camt053/`, DELIBERATELY OUTSIDE this folder, so that a file written to exercise a parser can never make the conformance kit say *supported* about a format no real bank has been read with. That is the failure this whole folder exists to prevent, and a test file must not be able to cause it.
+
+What is still owed is an ARTEFACT AND NOT A DECISION: a redacted camt.053 statement from a going-live utility's own bank. Nobody can rule it into existence. Recorded as a known gap in `10-scripts/render-checks/cr069-j-export-target.mjs` so it goes red in BOTH directions — record the file here and leave the gap in place, and that walkthrough fails for being stale.

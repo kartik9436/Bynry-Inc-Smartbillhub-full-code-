@@ -1,0 +1,248 @@
+/* StateFrame (FE-07) styles — US-SHL-011 / A18 §1–§6.
+ * Modernist tokens only (B8: no hex literals here — every color is a token
+ * from src/styles/tokens.css). The .btn/.card/.pill blocks are ported values
+ * from the signed reference 05-prototype/styles.css (design system A12);
+ * this is their ONE app-side definition — later component packets compose
+ * these classes, never redefine them. */
+
+/* ── Design-system primitives used by the state patterns (A12, ported) ───── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: var(--text-btn);
+  line-height: 1.2;
+  color: var(--color-text);
+  background: transparent;
+  border: 1px solid transparent;
+  padding: var(--space-2) calc(var(--space-3) * 1.2);
+  border-radius: var(--radius-md);
+}
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+/* ⚠ THE SIX VARIANT/SIZE RULES ARE GONE (CR-018 Phase 4a, 2026-08-20).
+   `.btn-primary`, `.btn-secondary`, `.btn-ghost`, `.btn-sm`, `.btn-danger` and
+   `.btn-link` were declared here and are now written by `components/buttonKit.ts`
+   — ONE copy, proved equal to these rules property by property, in a browser, in
+   rest / hover / active / disabled, by `e2e/CR-018-phase3-button-parity.spec.ts`.
+   Nothing in `src/` references them any more; the last call site was migrated on
+   this commit and that is the ONLY thing that makes deleting them safe.
+
+   `.btn` ITSELF STAYS. Three controls still use it as a base — `.btn btn-icon`
+   on the modal and reads-drawer close buttons and `.btn settings-icon-btn` on
+   numbering — and the icon family is not modelled by the kit yet. Deleting the
+   base while those exist is exactly DEF-350: a variant with no base renders as a
+   browser-default button, and no check in this repo can see it. */
+
+.card {
+  background: var(--color-surface);
+  padding: 28px;
+  border-top: 2px solid var(--color-divider);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  font-family: var(--font-heading);
+  /* ⚠ `DEF-MET-4963` — `2px 9px` with a 5px gap is off the R11 scale.
+   * Measured and deliberately not changed: this pill draws on every list and
+   * every detail in the product, so moving it is its own decision. */
+  padding: 2px 9px;
+  border-radius: var(--radius-md);
+}
+.pill.past {
+  background: var(--color-danger-100);
+  color: var(--color-danger-700);
+}
+
+/* ── A18 §1 + §6 — centered state blocks (empty list, permission denied) ── */
+.state-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: var(--space-3);
+  padding: var(--space-8) var(--space-4);
+}
+.state-frame h4 {
+  margin: 0;
+  font-size: var(--text-h4);
+}
+.state-helper {
+  margin: 0;
+  font-size: var(--text-base);
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+}
+
+/* ── A18 §2 — zero results (rows region only; toolbar stays) ────────────── */
+.state-zero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-6) var(--space-4);
+  text-align: center;
+}
+
+/* ── A18 §3 — loading skeleton (shimmering grey bars in the real layout) ── */
+.skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.skeleton-bar {
+  height: 14px;
+  background: var(--color-neutral-200);
+  animation: state-shimmer 1.2s ease-in-out infinite;
+}
+.skeleton-row .skeleton-bar {
+  height: 18px;
+}
+.skeleton-bar.w-long {
+  width: 92%;
+}
+.skeleton-bar.w-mid {
+  width: 70%;
+}
+.skeleton-bar.w-short {
+  width: 45%;
+}
+.skeleton-kpi {
+  flex-direction: row;
+  gap: var(--space-4);
+}
+.skeleton-kpi-block {
+  width: 180px;
+  height: 72px;
+  animation: state-shimmer 1.2s ease-in-out infinite;
+}
+.skeleton-title {
+  height: 22px;
+  margin-bottom: var(--space-2);
+}
+@keyframes state-shimmer {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+/* ── A18 §4 — failed with retry ─────────────────────────────────────────── */
+.state-failed {
+  border-top-color: var(--color-danger-500);
+}
+.state-failed .pill {
+  align-self: flex-start;
+}
+.state-failed-title {
+  margin: 0;
+  font-weight: 600;
+}
+.state-failed-reason {
+  margin: 0;
+  font-size: var(--text-base);
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+}
+.state-failed-counts {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.state-failed-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+/* ── A18 §5 — inline validation presentation kit ────────────────────────── */
+/* DEF-BIL-8317 (2026-09-30) — `.input` is declared in FormModal.css, which the
+ * bundle emits AFTER this file, and at equal specificity it won: the danger
+ * border never rendered on any field in the product while the class sat in the
+ * DOM and every test that looked for it passed. `.input.input-invalid` outranks
+ * `.input` (and `.input:hover`) wherever the two meet. The tint is the drawn
+ * one (one-time bill 1440-33-state-problems-Interim.png). */
+.input-invalid,
+.input.input-invalid,
+.input.input-invalid:hover {
+  border-color: var(--color-danger-500);
+  background-color: var(--color-danger-100);
+}
+.field-error {
+  margin: var(--space-1) 0 0;
+  font-size: var(--text-sm);
+  color: var(--color-danger-700);
+}
+.form-error-summary {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-base);
+  color: var(--color-danger-700);
+}
+
+/* Support-grade diagnostic (PO report 2026-08-10). Quiet enough that it does not
+   compete with the plain-language reason, selectable so it can be copied into a
+   ticket, and wrapping so a long trace id never widens the card. */
+.state-failed-diagnostic {
+  margin: 0.25rem 0 0;
+  /* ⚠ THIS WAS `0.8125rem`, THE ONLY NON-px FONT SIZE IN THE PRODUCT, and it
+     is why a grep for `font-size:Npx` reported 347 and not 348. `rem` is
+     relative to the ROOT element, which nothing here sets, so it resolved to
+     13px — `--text-base`'s ruled step exactly. Same pixel, now greppable with
+     the other 300. */
+  font-size: var(--text-base);
+  /* DEF-312 — `--ink-muted` is declared nowhere, so the raw #666 shipped in a
+     file whose own header says "no hex literals here". This is the design
+     system's muted ink (r10 `.text-muted`). */
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+  user-select: all;
+  overflow-wrap: anywhere;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   DEF-327 — THE STATE VARIANTS, AND `.btn-link`, WHICH IS A KIT MEMBER
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* `.state-empty` and `.state-denied` are VARIANTS of `.state-frame`, which
+   already carries the whole layout. They are declared rather than deleted
+   because A18 gives the two states different meanings and a stylesheet must
+   be able to tell them apart — but they are deliberately given only the one
+   difference each actually has, rather than decoration invented to justify a
+   selector. An empty list is a normal, expected state; a denied screen is a
+   stop, and it is the only one of the two that carries the accent. */
+.state-empty {
+  color: inherit;
+}
+
+.state-denied {
+  border-top: 2px solid var(--color-accent);
+}
+
+/* ⚠ A BUTTON INSIDE RUNNING TEXT. `.state-failed-view` sits mid-sentence in a
+   `<p>` — "…3 need review. [View the failing rows]" — and `.btn` is an
+   inline-FLEX box with padding, so without this the sentence broke around a
+   pill. Padding and box go; the affordance stays. NO font-size: it inherits
+   `.btn`'s 14px, which is one of the two sizes B14 rule 5 allows and which
+   `e2e/ui-conformance-baseline.json` records exactly. */
+.state-failed-view {
+  display: inline;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  color: var(--color-accent-text); /* Group A decision 2 (2026-10-23) */
+  text-decoration: underline;
+}
+

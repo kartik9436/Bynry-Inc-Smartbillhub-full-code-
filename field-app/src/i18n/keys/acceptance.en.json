@@ -1,0 +1,15 @@
+{
+  "field.accept.decline": "Decline",
+  "field.accept.declineA11y": "Decline {{job}}",
+  "field.accept.declined": "Declined",
+  "field.accept.title": "Decline job",
+  "field.accept.why": "Why?",
+  "field.accept.reason.time": "Not enough time",
+  "field.accept.reason.reach": "Can't get there",
+  "field.accept.reason.skill": "Not my skill",
+  "field.accept.reason.unsafe": "Unsafe",
+  "field.accept.reason.other": "Other",
+  "field.accept.note": "Note",
+  "field.accept.keep": "Keep job",
+  "field.accept.goesBack": "The office reassigns it."
+}

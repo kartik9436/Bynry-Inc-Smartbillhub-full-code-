@@ -1,0 +1,518 @@
+<title>Add Premise Redesign</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: product frame — form column + sticky "This property" card; three steps; square corners, 4px scale.
+   Light-only on purpose: SMARTBillHub staff screens are light-only. */
+:root{
+  --bg:#f3f2f2; --surface:#ffffff; --panel:#eae9e9; --text:#201e1d; --muted:#605d5d; --faint:#9b9797;
+  --line:#d7d3d3; --accent:#ec3013; --accent-ink:#ae1800; --accent-soft:#fff2ef;
+  --ok:#0f6e3a; --ok-soft:#e6f4ec; --warn:#a65d0a; --warn-soft:#fdf0d8; --bad:#a81600; --bad-soft:#fde4df; --info:#1d4ea8; --info-soft:#e6eefb;
+  --font:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --t-xs:11px; --t-sm:12px; --t-base:13px; --t-md:14px; --t-body:15px; --t-h4:20px; --t-h2:32px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:var(--t-body);line-height:1.55;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:20px 48px;display:flex;flex-direction:column;gap:20px}
+h1,h2,h3{font-weight:800;letter-spacing:-.015em;line-height:1.12;margin:0;text-wrap:balance}
+h1{font-size:var(--t-h2)} h2{font-size:var(--t-h4)} h3{font-size:var(--t-md);font-weight:700}
+.kicker{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.num{font-variant-numeric:tabular-nums}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.demo{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 12px;border:1px dashed var(--faint);font-size:var(--t-sm);color:var(--muted)}
+.demo b{color:var(--text)}
+.chipbtn{border:1px solid var(--line);background:var(--surface);padding:4px 10px;cursor:pointer;font-size:var(--t-sm)}
+.chipbtn[aria-pressed="true"]{border-color:var(--text);font-weight:600;color:var(--text)}
+.head{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:flex-end}
+.crumb{font-size:var(--t-sm)}
+.crumb a{color:var(--accent-ink);font-weight:600}
+.btn{border:1px solid var(--text);background:var(--surface);padding:9px 16px;font-weight:600;cursor:pointer;font-size:var(--t-md)}
+.btn.p{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.g{border-color:transparent;background:transparent;color:var(--accent-ink);padding-inline:4px}
+.rail{display:flex;border:1px solid var(--line);background:var(--surface)}
+.rail button{flex:1;display:flex;align-items:center;gap:10px;padding:12px 16px;border:0;background:transparent;cursor:pointer;text-align:left;border-right:1px solid var(--line);min-width:0}
+.rail button:last-child{border-right:0}
+.rail .n{width:24px;height:24px;display:grid;place-items:center;border:1.5px solid var(--faint);font-size:var(--t-sm);font-weight:700;flex:none}
+.rail button[data-state="current"]{box-shadow:inset 0 -3px 0 var(--accent)}
+.rail button[data-state="current"] .n{background:var(--accent);border-color:var(--accent);color:#fff}
+.rail button[data-state="done"] .n{background:var(--text);border-color:var(--text);color:#fff}
+.rail .lbl{font-size:var(--t-md);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:640px){.rail .lbl{display:none}.rail button{justify-content:center}}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:20px;align-items:start}
+@media (max-width:960px){.grid{grid-template-columns:minmax(0,1fr)}}
+.stack{display:flex;flex-direction:column;gap:20px;min-width:0}
+.panel{background:var(--surface);border:1px solid var(--line);padding:20px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px)}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:720px){.fields{grid-template-columns:minmax(0,1fr)}}
+.span2{grid-column:1/-1}
+.row3{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,2fr) minmax(0,1fr);gap:16px}
+@media (max-width:720px){.row3{grid-template-columns:minmax(0,1fr)}}
+.f{display:flex;flex-direction:column;gap:4px;min-width:0}
+.f label,.f .lab{font-size:var(--t-base);font-weight:600}
+.req{color:var(--accent)}
+.f input,.f select{border:1px solid var(--line);background:var(--surface);padding:8px 10px;min-height:38px;width:100%;font-size:var(--t-md)}
+.f .help{font-size:var(--t-sm);color:var(--muted)}
+.f.err input,.f.err select{border-color:var(--bad);background:var(--bad-soft)}
+.f .msg{font-size:var(--t-sm);color:var(--bad);font-weight:600}
+.seg{display:inline-flex;border:1px solid var(--line);background:var(--surface);width:max-content}
+.seg button{border:0;border-right:1px solid var(--line);background:transparent;padding:8px 14px;cursor:pointer;font-size:var(--t-md)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--text);color:#fff;font-weight:600}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);padding:6px 12px;cursor:pointer;font-size:var(--t-md)}
+.tag[aria-pressed="true"]{border-color:var(--text);background:var(--text);color:#fff;font-weight:600}
+.tag .tk{width:14px;height:14px;border:1.5px solid currentColor;display:grid;place-items:center;font-size:10px;line-height:1}
+details.fold{background:var(--surface);border:1px solid var(--line)}
+details.fold>summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary h2{font-size:var(--t-h4)}
+details.fold>summary .state{font-size:var(--t-md);color:var(--muted)}
+details.fold>summary .state::after{content:" \25BE"}
+details.fold[open]>summary .state::after{content:" \25B4"}
+details.fold .body{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
+.mapbox{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;border:1px solid var(--line);background:var(--bg);padding:12px 14px}
+@media (max-width:720px){.mapbox{grid-template-columns:minmax(0,1fr)}}
+.mapbox .k{font-size:var(--t-sm);color:var(--muted)} .mapbox .v{font-weight:600;font-size:var(--t-md)}
+.found{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:var(--ok-soft);color:var(--ok);padding:8px 12px;font-size:var(--t-md);font-weight:600}
+.searchrow{display:flex;gap:8px}
+.searchrow input{flex:1;min-width:0}
+.cand{border:1px solid var(--text);background:var(--surface);box-shadow:0 12px 32px rgba(45,43,43,.18)}
+.cand button{display:flex;justify-content:space-between;gap:12px;width:100%;padding:8px 12px;border:0;border-bottom:1px solid var(--line);background:transparent;cursor:pointer;text-align:left;font-size:var(--t-md)}
+.cand button:last-child{border-bottom:0}
+.cand small{color:var(--muted)}
+.ro{border:1px solid var(--line);background:var(--bg);padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+.ro .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.ro .acts{display:flex;gap:12px;align-items:center}
+.ro .linked{color:var(--ok);font-weight:700;font-size:var(--t-md)}
+.ro .top b{font-size:var(--t-md)}
+.ro .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px}
+@media (max-width:720px){.ro .grid2{grid-template-columns:minmax(0,1fr)}}
+.ro .k{font-size:var(--t-sm);color:var(--muted)} .ro .v{font-weight:600;font-size:var(--t-md)}
+.checkrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.checkrow .help{font-size:var(--t-sm);color:var(--muted)}
+.res{border-left:4px solid currentColor;padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+.res .t{font-weight:700;font-size:var(--t-md)}
+.res.ok{background:var(--ok-soft);color:var(--ok)}
+.res.warn{background:var(--warn-soft);color:var(--warn)}
+.res.off{background:var(--panel);color:var(--muted)}
+.res table{background:var(--surface);color:var(--text)}
+.res td:first-child{width:160px;color:var(--muted)}
+.res .acts{display:flex;gap:8px;flex-wrap:wrap}
+.choice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:720px){.choice{grid-template-columns:minmax(0,1fr)}}
+.card{border:1px solid var(--line);background:var(--surface);padding:18px 20px;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:4px}
+.card[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 3px 0 0 var(--accent)}
+.card b{font-size:var(--t-h4);font-weight:800}
+.card span{color:var(--muted);font-size:var(--t-md)}
+.sum{display:flex;flex-direction:column;gap:12px}
+.sum .big{font-size:34px;font-weight:800;line-height:1;letter-spacing:-.02em}
+.sum .sub{color:var(--muted);font-size:var(--t-md)}
+.kv{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 12px;border-top:1px solid var(--line);padding-top:12px;font-size:var(--t-base)}
+.kv dt{color:var(--muted)} .kv dd{margin:0;text-align:right;font-weight:600;overflow-wrap:anywhere}
+.tw{overflow-x:auto;border:1px solid var(--line);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:var(--t-base)}
+th{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;font-weight:600;background:var(--bg);padding:8px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+.rv td:first-child{width:200px;color:var(--muted);background:var(--bg)}
+.rv a{color:var(--accent-ink);font-size:var(--t-sm);margin-left:8px;cursor:pointer;text-decoration:underline}
+.rv .grp td{background:var(--panel);font-weight:700;color:var(--text);font-size:var(--t-sm);text-transform:uppercase;letter-spacing:.06em}
+.ms{position:relative}
+.ms-btn{width:100%;display:flex;justify-content:space-between;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);padding:8px 10px;min-height:38px;cursor:pointer;text-align:left;font-size:var(--t-md)}
+.ms-btn .val{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ms-btn .caret{color:var(--muted);flex:none}
+.ms-list{position:absolute;top:calc(100% + 2px);left:0;right:0;z-index:5;background:var(--surface);border:1px solid var(--text);box-shadow:0 12px 32px rgba(45,43,43,.22);max-height:300px;overflow:auto}
+.ms-list label{display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px solid var(--line);cursor:pointer;font-size:var(--t-md)}
+.ms-list label:last-child{border-bottom:0}
+.ms-list label.all{font-weight:700;background:var(--bg)}
+.ms-list input{width:16px;height:16px;accent-color:var(--accent)}
+.link{color:var(--accent-ink);font-weight:600;font-size:var(--t-md)}
+.note{background:var(--info-soft);color:var(--info);padding:10px 12px;font-size:var(--t-md)}
+.foot{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:16px}
+.empty{color:var(--faint)}
+.pill{display:inline-block;font-size:var(--t-xs);font-weight:700;padding:2px 8px;text-transform:uppercase;letter-spacing:.05em}
+.p-new{background:var(--warn-soft);color:var(--warn)} .p-fix{background:var(--ok-soft);color:var(--ok)} .p-bug{background:var(--bad-soft);color:var(--bad)}
+</style>
+
+<div class="wrap">
+  <div class="demo" role="group" aria-label="Mock-up controls">
+    <b>Design mock-up · example data</b>
+    <span>Screen:</span>
+    <button class="chipbtn" data-go="1">Property</button>
+    <button class="chipbtn" data-go="2">Units</button>
+    <button class="chipbtn" data-go="3">Review</button>
+    <span>Utility:</span>
+    <button class="chipbtn" id="gisOff">No City map</button>
+    <button class="chipbtn" id="gisOn">Has City map</button>
+    <button class="chipbtn" id="dupDemo">Try a duplicate address</button>
+    <span>Ottumwa Water Works · USD.</span>
+  </div>
+
+  <div class="head">
+    <div>
+      <div class="crumb"><a href="#">&larr; Premises</a></div>
+      <h1 id="title">Add a premise</h1>
+    </div>
+    <button class="btn" id="draftTop" type="button">Save draft &amp; exit</button>
+  </div>
+
+  <nav class="rail" aria-label="Steps" id="rail"></nav>
+
+
+  <div id="flow" hidden>
+    <div class="grid">
+      <div class="stack">
+
+        <!-- STEP 1 · PROPERTY -->
+        <section id="s1" class="stack">
+          <div class="panel">
+            <h2>Address</h2>
+            <div class="fields">
+              <div class="f span2" id="f-street">
+                <label for="street">Street address <span class="req">*</span></label>
+                <input id="street" value="3721 S Village Dr" autocomplete="off">
+              </div>
+              <div class="span2 row3">
+                <div class="f"><label for="city">City</label><input id="city" value="Avenel"></div>
+                <div class="f"><label for="state">State</label><select id="state"><option>New Jersey</option><option>Iowa</option></select></div>
+                <div class="f"><label for="zip">ZIP code</label><input id="zip" value="07001" inputmode="numeric"></div>
+              </div>
+            </div>
+            <div class="checkrow">
+              <button class="btn" type="button" id="checkBtn">Check address</button>
+              <span class="help" id="checkHint">Checks it against the city map.</span>
+            </div>
+            <div id="dupResult" hidden></div>
+            <div id="checkResult" hidden></div>
+            <div class="fields">
+              <div class="f"><label for="ptype">Property type</label>
+                <select id="ptype"><option value="">Choose a type</option><option selected>Single-family home</option><option>Apartment block</option><option>Commercial</option></select></div>
+              <div class="f"><label for="limits">City limits</label>
+                <select id="limits"><option>Not recorded</option><option selected>Inside</option><option>Outside</option></select>
+                <span class="help">Outside may add a surcharge.</span></div>
+              <div class="f span2"><span class="lab" id="svcLab">Services</span>
+                <div class="ms" id="ms">
+                  <button type="button" class="ms-btn" id="msBtn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="svcLab"><span class="val" id="msVal"></span><span class="caret">&#9662;</span></button>
+                  <div class="ms-list" id="msList" role="listbox" aria-multiselectable="true" hidden></div>
+                </div>
+                <span class="help">Active services of this utility.</span></div>
+            </div>
+          </div>
+
+          <details class="fold" id="mapFold" hidden>
+            <summary><h2>Map</h2><span class="state" id="mapState">Not checked</span></summary>
+            <div class="body">
+              <div class="mapbox">
+                <div><div class="k">Parcel</div><div class="v" id="mParcel">—</div></div>
+                <div><div class="k">Point</div><div class="v num" id="mPoint">—</div></div>
+                <div><div class="k">Checked against GIS</div><div class="v" id="mChecked">Not checked</div></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="fold">
+            <summary><h2>Owner</h2><span class="state" id="ownerState">Needs an owner</span></summary>
+            <div class="body">
+              <div class="f">
+                <label for="master">Master account</label>
+                <div class="searchrow">
+                  <input id="master" placeholder="Name or account number" autocomplete="off">
+                  <button class="btn" type="button" id="masterFind">Find</button>
+                </div>
+                <div class="cand" id="masterList" hidden></div>
+                <span class="help">Optional. Try “Rosa” or “AC-2026-00031”.</span>
+              </div>
+              <div id="masterResult" hidden></div>
+            </div>
+          </details>
+
+          <details class="fold">
+            <summary><h2>Area &amp; sub-area</h2><span class="state">No area</span></summary>
+            <div class="body">
+              <div class="fields">
+                <div class="f"><label for="area">Area</label><select id="area"><option>No area</option><option>North</option><option>South</option></select></div>
+                <div class="f"><label for="subarea">Sub-area</label><select id="subarea" disabled><option>Choose an area first</option></select></div>
+                <div class="f"><label for="route">Read route</label><select id="route"><option>Choose a route</option><option>R-01 North</option></select></div>
+                <div class="f"><label for="cycle">Billing cycle</label><select id="cycle"><option>Follows the route</option><option>Cycle 1</option></select></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="fold" id="cfFold">
+            <summary><h2>Custom fields</h2><span class="state" id="cfState">1 required</span></summary>
+            <div class="body">
+              <div class="fields">
+                <div class="f" id="f-roof"><label for="roof">Roof age <span class="req">*</span></label><input id="roof" inputmode="numeric" placeholder="Years"><span class="msg" id="roofMsg" hidden>Enter the roof age.</span></div>
+                <div class="f"><label for="roofmat">Roof material</label><input id="roofmat"></div>
+                <div class="f"><label for="ev">EV charged on site</label><select id="ev"><option value="">Choose</option><option>Yes</option><option>No</option></select></div>
+              </div>
+              <div><a class="link" href="#" title="Settings › Configure › Custom fields">Manage custom fields in Settings &rarr;</a></div>
+            </div>
+          </details>
+        </section>
+
+        <!-- STEP 2 · UNITS -->
+        <section id="s2" class="stack" hidden>
+          <div class="panel">
+            <h2>Units</h2>
+            <div class="fields">
+              <div class="f"><label for="units">How many units</label><input id="units" value="1" inputmode="numeric"><span class="help">0 adds units later.</span></div>
+              <div class="f" id="f-utype"><label for="utype">Unit type</label><select id="utype"><option value="">Choose a type</option><option selected>Single-family home</option><option>Apartment</option></select></div>
+            </div>
+          </div>
+          <details class="fold">
+            <summary><h2>Common areas</h2><span class="state">None</span></summary>
+            <div class="body">
+              <div class="fields">
+                <div class="f"><label for="ca">Common area</label><input id="ca" placeholder="e.g. Laundry"></div>
+              </div>
+              <div><button class="btn" type="button">Add a common area</button></div>
+            </div>
+          </details>
+        </section>
+
+        <!-- STEP 3 · REVIEW -->
+        <section id="s3" class="stack" hidden>
+          <div class="panel">
+            <h2>Check before saving</h2>
+            <div class="tw"><table class="rv"><tbody id="rv"></tbody></table></div>
+          </div>
+          <div class="note" id="outcome">Creates 1 premise and 1 unit.</div>
+        </section>
+
+        <div class="foot">
+          <button class="btn" type="button" id="back">Cancel</button>
+          <button class="btn p" type="button" id="next">Continue</button>
+        </div>
+      </div>
+
+      <aside class="panel aside sum" aria-label="This premise">
+        <div class="kicker">This premise</div>
+        <div class="big num">P-00086</div>
+        <div class="sub" id="sAddr">3721 S Village Dr, Avenel, NJ 07001</div>
+        <dl class="kv" id="kv"></dl>
+      </aside>
+    </div>
+  </div>
+
+  <section class="panel">
+    <div class="head"><h2>What this design fixes</h2><span class="kicker">30 issues · Add premise (PRM-07)</span></div>
+    <div class="tw"><table>
+      <thead><tr><th>#</th><th>Where</th><th>Today</th><th>In this design</th></tr></thead>
+      <tbody id="fixes"></tbody>
+    </table></div>
+  </section>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const SERVICES=["Water","Sewer","Trash","Storm water","Solar","Battery","Fire"];
+let S={step:0,gis:false,svc:new Set(),tried:false,dup:null,dupOk:false};
+// Example premises already in the system. Same address = same street, city, state and ZIP,
+// ignoring capitals, extra spaces and punctuation.
+const EXISTING=[
+  {no:"P-00001",street:"101 Silver Creek Rd",city:"Silver Creek",state:"TX",zip:"78611",units:1,status:"Active"},
+  {no:"P-00074",street:"123 Main Street",city:"Ottumwa",state:"IA",zip:"52501",units:1,status:"Vacant"}
+];
+const norm=t=>(t||"").toLowerCase().replace(/[.,#]/g," ").replace(/\s+/g," ").trim();
+function findDup(){
+  const key=[val("street"),val("city"),stateAbbr(),val("zip")].map(norm).join("|");
+  return EXISTING.find(e=>[e.street,e.city,e.state,e.zip].map(norm).join("|")===key)||null;
+}
+function renderDup(){
+  const r=$("dupResult"),d=S.dup;
+  $("f-street").classList.toggle("err",!!d&&!S.dupOk);
+  if(!d){r.hidden=true;r.innerHTML="";return}
+  r.hidden=false;
+  r.innerHTML=`<div class="res warn"><span class="t">${S.dupOk?"Same address as "+d.no+". Adding anyway.":"This address already exists."}</span>
+    <div class="tw"><table><tbody>
+      <tr><td>Premise</td><td>${d.no}</td></tr>
+      <tr><td>Address</td><td>${d.street}, ${d.city}, ${d.state} ${d.zip}</td></tr>
+      <tr><td>Units · status</td><td>${d.units} · ${d.status}</td></tr>
+    </tbody></table></div>
+    ${S.dupOk?"":`<div class="acts"><button class="btn p" type="button" id="openDup">Open ${d.no}</button><button class="btn" type="button" id="dupAnyway">Add it anyway</button></div>`}</div>`;
+}
+function runDup(){const d=findDup();if((d&&d.no)!==(S.dup&&S.dup.no))S.dupOk=false;S.dup=d;renderDup();return !d||S.dupOk}
+const STEPS=["Property","Units","Review"];
+
+function rail(){
+  $("rail").innerHTML=STEPS.map((s,i)=>{const n=i+1,st=n<S.step?"done":n===S.step?"current":"todo";
+    return `<button type="button" data-state="${st}" data-go="${n}"><span class="n">${st==="done"?"✓":n}</span><span class="lbl">${s}</span></button>`}).join("");
+}
+function svc(){
+  const all=SERVICES.every(s=>S.svc.has(s));
+  $("msVal").textContent=S.svc.size?(all?"All services":[...S.svc].join(", ")):"Choose services";
+  $("msList").innerHTML=`<label class="all"><input type="checkbox" data-all ${all?"checked":""}>All services</label>`+
+    SERVICES.map(s=>`<label><input type="checkbox" data-svc="${s}" ${S.svc.has(s)?"checked":""}>${s}</label>`).join("");
+}
+function val(id){const e=$(id);return e?(e.value||"").trim():""}
+function addr(){return [val("street"),val("city"),stateAbbr(),val("zip")].filter(Boolean).join(", ").replace(/, (\d{5})$/," $1")}
+function stateAbbr(){return {"New Jersey":"NJ","Iowa":"IA","Texas":"TX"}[val("state")]||val("state")}
+// Example master accounts. A found account is shown read-only; the owner stays optional.
+const MASTERS=[
+  {no:"AC-2026-00012",name:"Rosa Delgado",type:"Residential",kind:"Person",managed:"—",status:"Active"},
+  {no:"AC-2026-00031",name:"Bramble Property Group",type:"Commercial",kind:"Company",managed:"Northside Management",status:"Active"},
+  {no:"AC-2026-00045",name:"Maria Alvarez",type:"Residential",kind:"Person",managed:"—",status:"Active"}
+];
+function matchMasters(q){q=norm(q);if(q.length<2)return[];return MASTERS.filter(m=>norm(m.name).includes(q)||norm(m.no).includes(q))}
+function showMasterList(){
+  const list=matchMasters(val("master")),l=$("masterList");
+  if(S.master||S.found||!list.length){l.hidden=true;return}
+  l.hidden=false;l.innerHTML=list.map(m=>`<button type="button" data-master="${m.no}"><span>${m.name}</span><small>${m.no} · ${m.type}</small></button>`).join("");
+}
+function renderMaster(){
+  const r=$("masterResult"),m=S.master||S.found,linked=!!S.master;
+  $("masterList").hidden=true;
+  $("ownerState").textContent=S.master?S.master.name:"Needs an owner";
+  if(m){r.hidden=false;r.innerHTML=`<div class="ro"><div class="top"><b>${m.name} · ${m.no}</b>${linked?`<span class="acts"><span class="linked">✓ Linked</span><button class="btn g" type="button" id="masterUnlink">Unlink</button></span>`:`<button class="btn" type="button" id="masterLink">Link this account</button>`}</div>
+    <div class="grid2"><div><div class="k">Account type</div><div class="v">${m.type}</div></div><div><div class="k">Person or company</div><div class="v">${m.kind}</div></div>
+    <div><div class="k">Managed by</div><div class="v">${m.managed}</div></div><div><div class="k">Status</div><div class="v">${m.status}</div></div></div></div>`;return}
+  if(S.masterMiss){r.hidden=false;r.innerHTML=`<div class="res off"><span class="t">This account is not available.</span><span>You can continue without an owner.</span></div>`;return}
+  r.hidden=true;r.innerHTML="";
+}
+function findMaster(){const q=val("master");if(!q){S.masterMiss=false;renderMaster();return}
+  const hit=matchMasters(q);if(hit.length===1){S.found=hit[0];S.master=null;S.masterMiss=false}else if(!hit.length){S.found=null;S.master=null;S.masterMiss=true}else{showMasterList();return}
+  renderMaster();summary()}
+function owner(){return S.master?S.master.name:"Needs an owner"}
+function summary(){
+  $("sAddr").textContent=addr()||"No address yet";
+  const rows=[["Type",val("ptype")||"—"],["Services",[...S.svc].join(" · ")||"—"],["Units",val("units")||"0"],["Owner",owner()],["Route",val("route").startsWith("Choose")?"—":val("route")]];
+  const chk={off:"Cannot be checked",nomatch:"No match",match:S.used?"Matches city map":"Match found"}[S.check]||"Not checked";
+  rows.splice(1,0,["Address check",chk]);
+  $("kv").innerHTML=rows.map(r=>`<dt>${r[0]}</dt><dd>${r[1]}</dd>`).join("");
+}
+function review(){
+  const d=v=>v&&!v.startsWith("Choose")&&v!=="No area"?v:"—";
+  const groups=[
+    ["Address",[["Premise number","P-00086",0],["Address",addr(),1]].concat(S.check==="match"&&S.used?[["Parcel","09-00-00-000-001",1],["Map point","40.582310, −74.284120",1],["Checked against GIS","Checked 10/09/2026",1]]:[["Address check",{off:"Cannot be checked — city map not connected",nomatch:"No match on the city map"}[S.check]||"Not checked",1]])],
+    ["Property",[["Property type",d(val("ptype")),1],["City limits",d(val("limits")==="Not recorded"?"":val("limits")),1],["Services",[...S.svc].join(" · ")||"—",1]]],
+    ["Owner",S.master?[["Master account",S.master.name+" · "+S.master.no,1],["Account type",S.master.type,1],["Person or company",S.master.kind,1],["Managed by",S.master.managed,1]]
+      :[["Master account","Needs an owner",1]]],
+    ["Area & sub-area",[["Area",d(val("area")),1],["Sub-area","—",1],["Read route",d(val("route")),1],["Billing cycle",val("cycle"),1]]],
+    ["Custom fields",[["Roof age",val("roof")?val("roof")+" years":"—",1],["Roof material",d(val("roofmat")),1],["EV charged on site",d(val("ev")),1]]],
+    ["Units",[["Units",(val("units")||"0")+(val("utype")?" · "+val("utype"):""),2],["Common areas","None",2]]]
+  ];
+  $("rv").innerHTML=groups.map(g=>`<tr class="grp"><td colspan="2">${g[0]}</td></tr>`+g[1].map(r=>`<tr><td>${r[0]}</td><td>${r[1]}${r[2]?` <a data-go="${r[2]}">Edit</a>`:""}</td></tr>`).join("")).join("");
+  const u=parseInt(val("units")||"0",10)||0;
+  $("outcome").textContent=`Creates 1 premise${u?` and ${u} unit${u>1?"s":""}`:""}.`;
+}
+function gis(){
+  $("gisOff").setAttribute("aria-pressed",!S.gis);$("gisOn").setAttribute("aria-pressed",S.gis);
+  S.check=null;renderCheck();
+}
+// S.check: null = not checked · "off" = no City map · "match" · "nomatch"
+function renderCheck(){
+  const r=$("checkResult");
+  $("mapFold").hidden=S.check!=="match";
+  if(!S.check){r.hidden=true;r.innerHTML="";return}
+  r.hidden=false;
+  if(S.check==="off"){
+    r.innerHTML=`<div class="res off"><span class="t">City map not connected.</span><span>This address cannot be checked. It saves as typed.</span></div>`;return}
+  if(S.check==="nomatch"){
+    r.innerHTML=`<div class="res warn"><span class="t">No match on the city map.</span><span>Check the street and ZIP, then try again.</span></div>`;return}
+  const used=S.used;
+  r.innerHTML=`<div class="res ok"><span class="t">${used?"Matches the city map. Details used.":"Matches the city map."}</span>
+    <div class="tw"><table><tbody>
+      <tr><td>City address</td><td>3721 S Village Dr, Avenel, NJ 07001</td></tr>
+      <tr><td>Parcel</td><td>09-00-00-000-001</td></tr>
+      <tr><td>Map point</td><td class="num">40.582310, −74.284120</td></tr>
+    </tbody></table></div>
+    ${used?"":`<div class="acts"><button class="btn p" type="button" id="useBtn">Use these details</button><button class="btn" type="button" id="keepBtn">Keep my address</button></div>`}</div>`;
+  $("mParcel").textContent="09-00-00-000-001";$("mPoint").textContent="40.582310, −74.284120";
+  $("mChecked").textContent=used?"Checked 10/09/2026":"Not checked";$("mapState").textContent=used?"Checked":"Not checked";
+}
+function runCheck(){
+  if(!val("street")){validStep1();return}
+  S.used=false;
+  S.check=!S.gis?"off":(/village/i.test(val("street"))?"match":"nomatch");
+  renderCheck();summary();
+}
+function validStep1(){
+  const ok=!!val("street")&&!!val("roof");
+  $("f-street").classList.toggle("err",!val("street"));
+  $("f-roof").classList.toggle("err",!val("roof"));$("roofMsg").hidden=!!val("roof");
+  if(!val("roof"))$("cfFold").open=true;
+  $("cfState").textContent=val("roof")?"Roof age "+val("roof"):"1 required";
+  return ok;
+}
+function go(n){
+  if(n>S.step&&S.step===1){const ok=validStep1(),dupOk=runDup();if(!ok||!dupOk){S.tried=true;if(!dupOk)$("dupResult").scrollIntoView({block:"center"});return}}
+  S.step=n;
+  $("flow").hidden=false;
+  for(const i of [1,2,3]) $("s"+i).hidden=n!==i;
+  $("back").textContent=n===1?"Cancel":"Back";
+  $("next").textContent=n===3?"Create premise":"Continue";
+  document.querySelectorAll(".demo [data-go]").forEach(b=>b.setAttribute("aria-pressed",+b.dataset.go===n));
+  rail();summary();if(n===3)review();
+  window.scrollTo({top:0});
+}
+document.addEventListener("click",e=>{
+  const g=e.target.closest("[data-go]");if(g){go(+g.dataset.go);return}
+  if(e.target.closest("#msBtn")){const l=$("msList");l.hidden=!l.hidden;$("msBtn").setAttribute("aria-expanded",!l.hidden);return}
+  const t=e.target.closest("#msList input");if(t){if(t.dataset.all!==undefined){S.svc=t.checked?new Set(SERVICES):new Set()}else{const s=t.dataset.svc;t.checked?S.svc.add(s):S.svc.delete(s)}svc();summary();return}
+  if(!e.target.closest("#ms")){$("msList").hidden=true;$("msBtn").setAttribute("aria-expanded","false")}
+  const sg=e.target.closest(".seg button");if(sg){sg.parentNode.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b===sg));return}
+  const c=e.target.closest(".card");if(c){c.parentNode.querySelectorAll(".card").forEach(b=>b.setAttribute("aria-pressed",b===c));return}
+  if(e.target.closest("#checkBtn")){runCheck();return}
+  if(e.target.closest("#useBtn")){S.used=true;$("street").value="3721 S Village Dr";$("city").value="Avenel";$("zip").value="07001";renderCheck();summary();return}
+  if(e.target.closest("#keepBtn")){S.check=null;renderCheck();summary();return}
+  const mb=e.target.closest("[data-master]");if(mb){S.found=MASTERS.find(m=>m.no===mb.dataset.master);S.master=null;S.masterMiss=false;$("master").value=S.found.name;renderMaster();summary();return}
+  if(e.target.closest("#masterFind")){findMaster();return}
+  if(e.target.closest("#masterLink")){S.master=S.found;renderMaster();summary();return}
+  if(e.target.closest("#masterUnlink")){S.master=null;S.found=null;S.masterMiss=false;$("master").value="";renderMaster();summary();$("master").focus();return}
+  if(!e.target.closest("#masterList")&&!e.target.closest("#master"))$("masterList").hidden=true;
+  if(e.target.closest("#dupAnyway")){S.dupOk=true;renderDup();summary();return}
+  if(e.target.closest("#openDup")){$("dupResult").querySelector(".t").textContent="Opens "+S.dup.no+" in the product.";return}
+  if(e.target.closest("#dupDemo")){$("street").value="101 silver creek rd.";$("city").value="Silver Creek";
+    if(![...$("state").options].some(o=>o.value==="Texas"))$("state").add(new Option("Texas","Texas"));$("state").value="Texas";$("zip").value="78611";
+    S.check=null;renderCheck();runDup();summary();if(S.step!==1)go(1);return}
+});
+$("next").addEventListener("click",()=>{if(S.step<3)go(S.step+1)});
+$("back").addEventListener("click",()=>{if(S.step>1)go(S.step-1)});
+$("gisOff").addEventListener("click",()=>{S.gis=false;gis();summary();if(S.step===3)review()});
+$("gisOn").addEventListener("click",()=>{S.gis=true;gis();summary();if(S.step===3)review()});
+["street","city","zip","state"].forEach(id=>{$(id).addEventListener("input",()=>{if(S.check){S.check=null;S.used=false;renderCheck()}if(S.dup){S.dup=null;S.dupOk=false;renderDup()}summary();if(S.tried)validStep1()});$(id).addEventListener("change",()=>{runDup()})});
+$("master").addEventListener("input",()=>{if(S.master||S.found){S.master=null;S.found=null;renderMaster()}S.masterMiss=false;$("masterResult").hidden=true;showMasterList();summary()});
+$("master").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();findMaster()}});
+["city","zip","state","ptype","route","units","utype","roof"].forEach(id=>$(id).addEventListener("input",()=>{summary();if(S.tried&&id==="roof")validStep1()}));
+
+const FIX=[
+["Steps","Step 1 \u201cHow many?\u201d asks again what the button that opened the form already chose, then the step is renamed \u201cOne premise\u201d.","Removed. Bulk import has its own screens. Add a premise opens on Property and runs Property \u00b7 Units \u00b7 Review.","fix"],
+["All","Eyebrow, title and subtitle say the same thing.","One title: \u201cAdd a premise\u201d. No eyebrow, no subtitle.","fix"],
+["All","Footer: “Every change here is recorded in the audit log by the server.”","Removed.","fix"],
+["All","“Save draft & exit” only from step 2; Cancel far right in red.","Save draft & exit top right on every step; Cancel and Back bottom left.","fix"],
+["Property","“The premise number is allocated…” and “Street address is the only answer we must have.”","Removed. The number shows in the side card; * marks the required field.","fix"],
+["Property","“Start typing. We look it up.” and a search on every pause in typing, even with no City map.","No search while typing. A “Check address” button under the address: with a City map it shows the match (address, parcel, map point) and “Use these details”, or “No match on the city map.” Without one: “City map not connected. This address cannot be checked.”","bug"],
+["Property","Parcel, Point, Checked against GIS and Mark checked shown with no City map.","Shown only when the utility has a City map, in a closed Map section.","bug"],
+["Address","Nothing stops the same address being added twice.","When the address is complete (and again on Continue) it is compared with every premise: same street, city, state and ZIP, ignoring capitals, spaces and punctuation. A match shows \u201cThis address already exists.\u201d with the premise number, address, units and status, and two buttons: Open P-00001, or Add it anyway. Continue waits for one of them.","new"],
+["Property","Address, property and services in three separate places.","One Address section: street, city, state, ZIP, property type, city limits and services together.","fix"],
+["Property","“Outside the city limits, a surcharge may apply.” and “These two pick the taxes and the rate.” City limits as three buttons.","City limits is a dropdown. One line: “Outside may add a surcharge.”","fix"],
+["Property","Services as removable tags with two sentences of help.","A multi-select dropdown of the utility’s active services, with “All services” at the top.","fix"],
+["Property","All six services ticked by default.","None ticked. The clerk picks.","fix"],
+["Owner","“Optional. Empty, it waits on Needs an owner.”","A closed Owner section whose header reads “Needs an owner”.","fix"],
+["Owner","Account type, Person or company and Managed by typed by hand.","Removed. They come from the master account found by the search.","fix"],
+["Owner","Master account is a free-text box; nothing says whether the account exists.","Search the master-account list by name or number. Found: its account type, person or company, managed by and status show read-only, with “Link this account”; once linked, “Unlink”. Not found: “This account is not available. You can continue without an owner.” The owner stays optional.","new"],
+["Area","Area, route and cycle explained in three sentences.","A closed “Area & sub-area” section with area, sub-area, read route and billing cycle. No sentences.","fix"],
+["Area","“Who reads the meters here.” and “When it bills. It follows the route.”","Removed. The cycle box reads “Follows the route”.","fix"],
+["Custom fields","“Your own fields”, always open, with no way to change them.","“Custom fields”, closed by default, its header saying what is required, and a link to manage them in Settings.","fix"],
+["Custom fields","Roof age is required but can be skipped.","Continue refuses, opens the section and says “Enter the roof age.”","bug"],
+["Units","Starts at 1 and says “Leave it at zero to add units later.”","“0 adds units later.”","fix"],
+["Units","Common areas with two helper lines, open.","A closed section: “Common areas · None”.","fix"],
+["Units","Occupancy paragraph.","Removed.","fix"],
+["Units","Meters and default plan paragraph.","Removed.","fix"],
+["Review","Address reads “3721 S Village Dr,, Avenel”.","Empty parts are skipped: “3721 S Village Dr, Avenel, NJ 07001”.","bug"],
+["Review","“not answered” twelve times.","“—”, grouped under the same headings as the form.","fix"],
+["Review","Map rows with no City map.","Shown only with a City map.","bug"],
+["Review","Units: “1 — labeled 1 · Choose a type”.","“1 · Single-family home”. A placeholder is never shown as a value.","bug"],
+["Review","Number explained twice.","Once, in the side card.","fix"],
+["Review","Paragraph about vacant units and owners.","One line: “Creates 1 premise and 1 unit.”","fix"],
+["Review","No way back to one field.","An Edit link on every row.","fix"]
+];
+const tagOf={fix:'<span class="pill p-fix">Text</span>',bug:'<span class="pill p-bug">Bug</span>',new:'<span class="pill p-new">Your call</span>'};
+$("fixes").innerHTML=FIX.map((r,i)=>`<tr><td class="num">${i+1}</td><td>${r[0]}</td><td>${r[1]}</td><td>${tagOf[r[3]]} ${r[2]}</td></tr>`).join("");
+
+svc();gis();go(1);
+</script>

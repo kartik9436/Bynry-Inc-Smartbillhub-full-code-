@@ -1,0 +1,65 @@
+POST /discounts goes to the API
+signed in as dana@brazosbendutilities.com — form-options STUBBED in the browser (README values)
+GET /discounts/form-options answered 200 (browser stub)
+=== 05-new-1-details-pct.png + 05-new-1-details-pct-side-by-side.png — percentage, Limits closed
+=== 06-new-1-limits-open.png + 06-new-1-limits-open-side-by-side.png — Limits open
+=== 07-new-1-details-fixed.png + 07-new-1-details-fixed-side-by-side.png — fixed amount, 4 limits set
+=== 08-new-1-type-rate-override.png + 08-new-1-type-rate-override-side-by-side.png — type rate_override
+=== 09-new-1-type-charge-waiver.png + 09-new-1-type-charge-waiver-side-by-side.png — type charge_waiver
+=== 10-new-1-type-usage-allowance.png + 10-new-1-type-usage-allowance-side-by-side.png — type usage_allowance
+=== 11-new-1-applies-service.png + 11-new-1-applies-service-side-by-side.png — applies to one service
+=== 12-new-1-applies-codes.png + 12-new-1-applies-codes-side-by-side.png — named charge codes, list open
+=== 13-new-1-errors.png + 13-new-1-errors-side-by-side.png — empty, Continue pressed
+=== 14-new-1-value-over-100.png + 14-new-1-value-over-100-side-by-side.png — 150% refused
+  enrollment options: ["Automatic [DISABLED]","Apply and approve"]
+=== 15-new-2-eligibility.png + 15-new-2-eligibility-side-by-side.png — Eligibility filled
+=== 16-new-2-errors.png + 16-new-2-errors-side-by-side.png — who missing, ends before starts
+=== 17-new-3-review.png + 17-new-3-review-side-by-side.png — Review
+POST /discounts -> 422 {"code":"VAL-002","message_key":"rating.unknown_field","params":{},"field_errors":[{"field":"eligibility","code":"VAL-002","message_key":"rating.unknown_field","params":{}},{"field":"program_owner","code":"VAL-002","message_key":"rating.unknown_field","params":{}},{"field":"accepted_proof_kinds","code":"VAL-001","message_key":"rating.discounts.proof_kinds_required","params":{"br_ref":"BR-RAT-076"}
+  body sent: {"code":"SENIOR","name":"Senior discount","funding_source":"Rate-payer funded","report_in_assistance_filing":true,"discount_type":"percentage","applies_to":"whole_bill","stacks_with_others":true,"proof_required":true,"proof_before_first_reduction":true,"program_owner":"billing","exclusivity_group":"none","eligibility":"age_65_or_over","enrolment_mode":"apply_and_approve","verification_method":"annual_recertification","lapse_behaviour":"notify_then_drop","budget_period":"annual","exhaustion_behaviour":"suspend","effective_from":"2026-11-01","recertification_months":12,"recertification_notice_days":30,"recertification_grace_days":15,"value":"15","currency":"USD"}
+SAVED: (not saved)
+  page says: ← Discounts
+New discount
+Save draft & exit
+1
+Details
+2
+Eligibility
+3
+Review
+Basics
+Code*
+
+Example: SENIOR.
+
+Bill line label*
+
+What the customer reads.
+
+Program owner
+Choose
+Billing
+Customer service
+Finance
+Conservation
+Community programs
+City or county agency
+State agency
+Nonprofit partner
+
+This screen doesn't have that field.
+
+Funding source
+Type*
+Percentage — A share of the charges
+Fixed amount — A flat sum off
+Rate override — Bills from another schedule
+Charge waiver — Removes the whole charge
+Usage allowance — Free units before pricing
+In the assistance report
+Value
+Percent off*
+%
+
+Type 15
+=== 18-new-4-saved.png + 18-new-4-saved-side-by-side.png — save refused by the server

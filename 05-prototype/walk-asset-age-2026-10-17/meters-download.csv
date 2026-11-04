@@ -1,0 +1,119 @@
+asset_no,parent_asset_no,type,type_name,meter_type,read_method,unit,multiplier,assigned_to,assigned_address,install_date,status,status_name,age_start,age_from,age_years,age_months,age_days,past_life
+M-4022,,meter,Meter,amr,drive_by,kgal,1.000000,Unit A,1408 Elm Street,2010-05-01,active,Installed,2010-05-01,install,16,5,16,true
+E-5001,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,103 Willow Bend Dr,2012-05-15,retired,Retired,2012-05-15,install,13,1,15,false
+AST-04414,,meter,Meter,walk_by,walk_by,kgal,1.000000,,,,inventory,Inventory,2019-06-20,purchase,7,3,27,true
+AST-04412,,meter,Meter,ami,ami,kgal,1.000000,,,,inventory,Inventory,2021-03-15,purchase,5,7,2,true
+M-4021,,meter,Meter,ami,ami,kWh,1.000000,Unit A,1408 Elm Street,2024-02-01,active,Installed,2024-02-01,install,2,8,16,false
+AST-04413,,meter,Meter,amr,amr,kgal,1.000000,,,,inventory,Inventory,2024-03-01,purchase,2,7,16,false
+M-7001,,meter,Meter,ami,ami,kWh,1.000000,Unit A,1408 Bluestem Ln,2025-01-06,active,Installed,2025-01-06,install,1,9,11,false
+W-7001,,meter,Meter,ami,ami,kgal,1.000000,Unit A,1408 Bluestem Ln,2025-01-06,active,Installed,2025-01-06,install,1,9,11,false
+M-7200,,meter,Meter,master,ami,kWh,1.000000,Master,500 Mason Rd Plaza,2025-01-06,active,Installed,2025-01-06,install,1,9,11,false
+M-7301,,meter,Meter,ami,ami,kWh,1.000000,Apt 101,2200 Riverbend Ct,2025-01-06,active,Installed,2025-01-06,install,1,9,11,false
+M-7302,,meter,Meter,ami,ami,kWh,1.000000,Apt 102,2200 Riverbend Ct,2025-01-06,active,Installed,2025-01-06,install,1,9,11,false
+M-7450,,meter,Meter,ami,ami,kWh,1.000000,Unit 1,2201 Cane Island Pkwy,2025-01-06,active,Installed,2025-01-06,install,1,9,11,false
+M-7210,,meter,Meter,amr,amr,kWh,10.000000,Bldg 1,77 Gulf Fwy Industrial,2025-01-06,active,Installed,2025-01-06,install,1,9,11,false
+W-5100,,meter,Meter,walk_by,walk_by,kgal,1.000000,,,,inventory,Inventory,2025-03-10,purchase,1,7,7,false
+W-5000,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,101 Silver Creek Rd,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5001,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,103 Willow Bend Dr,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5002,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,105 Cedar Ridge Way,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5003,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,107 Mill Pond Ln,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5004,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,109 Quarry Hill Ct,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5005,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,111 Silver Creek Rd,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5006,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,113 Willow Bend Dr,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5007,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,115 Cedar Ridge Way,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5008,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,117 Mill Pond Ln,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5009,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,119 Quarry Hill Ct,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5010,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,121 Silver Creek Rd,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5011,,meter,Meter,walk_by,walk_by,kgal,1.000000,,,2026-01-05,retired,Retired,2026-01-05,install,0,5,25,false
+W-5012,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,125 Cedar Ridge Way,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5013,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,127 Mill Pond Ln,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5014,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,129 Quarry Hill Ct,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5015,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,131 Silver Creek Rd,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5016,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,133 Willow Bend Dr,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5017,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,135 Cedar Ridge Way,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5018,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,137 Mill Pond Ln,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5019,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,139 Quarry Hill Ct,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5020,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,141 Silver Creek Rd,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5021,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,143 Willow Bend Dr,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5022,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,145 Cedar Ridge Way,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5023,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,147 Mill Pond Ln,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5024,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,149 Quarry Hill Ct,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5025,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,151 Silver Creek Rd,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5026,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,153 Willow Bend Dr,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5027,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,155 Cedar Ridge Way,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5028,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,157 Mill Pond Ln,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5029,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,159 Quarry Hill Ct,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5030,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,161 Silver Creek Rd,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5031,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,163 Willow Bend Dr,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5032,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,165 Cedar Ridge Way,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5033,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,167 Mill Pond Ln,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5034,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,169 Quarry Hill Ct,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5035,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,171 Silver Creek Rd,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5036,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit A,181 Willow Bend Dr,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5037,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit B,181 Willow Bend Dr,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5038,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit A,183 Cedar Ridge Way,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5039,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit B,183 Cedar Ridge Way,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5040,,meter,Meter,walk_by,walk_by,kgal,1.000000,Apt 101,301 Mill Pond Ln,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5041,,meter,Meter,walk_by,walk_by,kgal,1.000000,Apt 102,301 Mill Pond Ln,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5042,,meter,Meter,walk_by,walk_by,kgal,1.000000,Apt 103,301 Mill Pond Ln,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5043,,meter,Meter,walk_by,walk_by,kgal,1.000000,Apt 104,301 Mill Pond Ln,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5044,,meter,Meter,walk_by,walk_by,kgal,1.000000,Apt 105,301 Mill Pond Ln,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5045,,meter,Meter,walk_by,walk_by,kgal,1.000000,Apt 106,301 Mill Pond Ln,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5046,,meter,Meter,walk_by,walk_by,kgal,1.000000,Suite 1,401 Quarry Hill Ct,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5047,,meter,Meter,walk_by,walk_by,kgal,1.000000,Suite 1,403 Silver Creek Rd,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5048,,meter,Meter,walk_by,walk_by,kgal,1.000000,Public Works Depot,601 Quarry Hill Ct,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+W-5049,,meter,Meter,walk_by,walk_by,kgal,1.000000,Mill Building,603 Silver Creek Rd,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5002,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,105 Cedar Ridge Way,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5003,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,107 Mill Pond Ln,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5004,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,109 Quarry Hill Ct,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5005,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,111 Silver Creek Rd,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5006,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,113 Willow Bend Dr,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5007,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,115 Cedar Ridge Way,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5008,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,117 Mill Pond Ln,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5009,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,119 Quarry Hill Ct,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5010,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,121 Silver Creek Rd,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5011,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,123 Willow Bend Dr,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5012,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,125 Cedar Ridge Way,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5013,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,127 Mill Pond Ln,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5014,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,129 Quarry Hill Ct,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5015,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,131 Silver Creek Rd,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5016,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,133 Willow Bend Dr,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5017,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,135 Cedar Ridge Way,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5018,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,137 Mill Pond Ln,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5019,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,139 Quarry Hill Ct,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5020,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,141 Silver Creek Rd,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5021,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,143 Willow Bend Dr,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5022,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,145 Cedar Ridge Way,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5023,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,147 Mill Pond Ln,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5024,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,149 Quarry Hill Ct,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5025,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,151 Silver Creek Rd,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5026,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,153 Willow Bend Dr,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5027,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,155 Cedar Ridge Way,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5028,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,157 Mill Pond Ln,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5029,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,159 Quarry Hill Ct,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5030,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,161 Silver Creek Rd,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5031,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,163 Willow Bend Dr,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5032,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,165 Cedar Ridge Way,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5033,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,167 Mill Pond Ln,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5034,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,169 Quarry Hill Ct,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5035,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,171 Silver Creek Rd,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5036,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit A,181 Willow Bend Dr,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5037,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit B,181 Willow Bend Dr,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5038,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit A,183 Cedar Ridge Way,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5039,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit B,183 Cedar Ridge Way,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5040,,meter,Meter,walk_by,walk_by,kWh,1.000000,Apt 101,301 Mill Pond Ln,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5041,,meter,Meter,walk_by,walk_by,kWh,1.000000,Apt 102,301 Mill Pond Ln,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5042,,meter,Meter,walk_by,walk_by,kWh,1.000000,Apt 103,301 Mill Pond Ln,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5043,,meter,Meter,walk_by,walk_by,kWh,1.000000,Apt 104,301 Mill Pond Ln,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5044,,meter,Meter,walk_by,walk_by,kWh,1.000000,Apt 105,301 Mill Pond Ln,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5045,,meter,Meter,walk_by,walk_by,kWh,1.000000,Apt 106,301 Mill Pond Ln,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5046,,meter,Meter,walk_by,walk_by,kWh,1.000000,Suite 1,401 Quarry Hill Ct,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5047,,meter,Meter,walk_by,walk_by,kWh,1.000000,Suite 1,403 Silver Creek Rd,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5048,,meter,Meter,walk_by,walk_by,kWh,1.000000,Public Works Depot,601 Quarry Hill Ct,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+E-5049,,meter,Meter,walk_by,walk_by,kWh,1.000000,Mill Building,603 Silver Creek Rd,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+M-MASTER-01,,meter,Meter,master,ami,kgal,1.000000,Apt 101,301 Mill Pond Ln,2026-01-05,active,Installed,2026-01-05,install,0,9,12,false
+M-NET-01,,net_meter,Net meter,ami,ami,kWh,1.000000,,,,inventory,Inventory,2026-06-20,purchase,0,3,27,false
+W-9011,,meter,Meter,walk_by,walk_by,kgal,1.000000,Unit 1,123 Willow Bend Dr,2026-07-01,active,Installed,2026-07-01,install,0,3,16,false
+W-5101,,meter,Meter,walk_by,walk_by,kgal,1.000000,,,,inventory,Inventory,2026-07-15,purchase,0,3,2,false
+334556,,meter,Meter,walk_by,walk_by,kWh,1.000000,Unit 1,101 Silver Creek Rd,2026-09-12,active,Installed,2026-09-12,install,0,1,5,false
+M-5099,,meter,Meter,ami,ami,kWh,1.000000,,,,inventory,Inventory,2026-10-11,record,0,0,6,false

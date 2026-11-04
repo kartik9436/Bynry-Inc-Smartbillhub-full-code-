@@ -1,0 +1,1658 @@
+{
+ "U:BASE-BAT": {
+  "phase": "update",
+  "code": "BASE-BAT",
+  "kind": "base",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 6.00",
+   "Next change tile: $6.00",
+   "rate schedules reading it as base: 1; plans reached: 3",
+   "bill preview AC-2026-00005: Oct 5.00×1=5.00 · Nov 6.00×1=6.00 · 16 Oct–15 Nov 2.58×1=2.58 + 3.00×1=3.00 (total 5.58)"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": true
+ },
+ "U:BASE-BB": {
+  "phase": "update",
+  "code": "BASE-BB",
+  "kind": "base",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 31.00",
+   "Next change tile: $31.00",
+   "rate schedules reading it as base: 1; plans reached: 3",
+   "bill preview AC-2026-00009: Oct 30.00×1=30.00 · Nov 31.00×1=31.00 · 16 Oct–15 Nov 15.48×1=15.48 + 15.50×1=15.50 (total 30.98)"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": true
+ },
+ "U:BASE-E": {
+  "phase": "update",
+  "code": "BASE-E",
+  "kind": "base",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 13.00",
+   "Next change tile: $13.00",
+   "rate schedules reading it as base: 4; plans reached: 5",
+   "bill preview AC-2026-00001: Oct 12.00×1=12.00 · Nov 13.00×1=13.00 · 16 Oct–15 Nov 6.19×1=6.19 + 6.50×1=6.50 (total 12.69)"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": true
+ },
+ "U:BASE-E-COM": {
+  "phase": "update",
+  "code": "BASE-E-COM",
+  "kind": "base",
+  "notes": [
+   "rows 6 → 7; changed E-1P-100  → 49.00",
+   "Next change tile: $13.00",
+   "rate schedules reading it as base: 4; plans reached: 5",
+   "bill preview AC-2026-00047: Oct 120.00×1=120.00 · Nov 120.00×1=120.00 · 16 Oct–15 Nov 61.94×1=61.94 + 60.00×1=60.00 (total 121.94)"
+  ],
+  "shape": "sized",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": true
+ },
+ "U:BASE-E-IND": {
+  "phase": "update",
+  "code": "BASE-E-IND",
+  "kind": "base",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 181.00",
+   "Next change tile: $13.00",
+   "rate schedules reading it as base: 4; plans reached: 5",
+   "bill preview AC-2026-00050: Oct 180.00×1=180.00 · Nov 181.00×1=181.00 · 16 Oct–15 Nov 92.90×1=92.90 + 90.50×1=90.50 (total 183.40)"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": true
+ },
+ "U:BASE-FIRE": {
+  "phase": "update",
+  "code": "BASE-FIRE",
+  "kind": "base",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 1.00",
+   "Next change tile: $1.00",
+   "rate schedules reading it as base: 1; plans reached: 3",
+   "bill preview AC-2026-00025: Oct in the per-size line 0.00/0.00 each = 0.00 · Nov in the per-size line 1.00/1.00 each = 3.00 · 16 Oct–15 Nov 0.00×1=0.00 + 1.50×1=1.50 (total 1.50)"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": true
+ },
+ "U:BASE-G": {
+  "phase": "update",
+  "code": "BASE-G",
+  "kind": "base",
+  "notes": [
+   "rows 4 → 5; changed G-1000  → 16.00",
+   "Next change tile: $16.00",
+   "rate schedules reading it as base: 1; plans reached: 3",
+   "bill preview AC-2026-00001: Oct 6.00×1=6.00 · Nov 6.00×1=6.00 · 16 Oct–15 Nov 3.10×1=3.10 + 3.00×1=3.00 (total 6.10)"
+  ],
+  "shape": "sized",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": true
+ },
+ "U:BASE-S": {
+  "phase": "update",
+  "code": "BASE-S",
+  "kind": "base",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 10.00",
+   "Next change tile: $10.00",
+   "rate schedules reading it as base: 1; plans reached: 3",
+   "bill preview AC-2026-00001: Oct 9.00×1=9.00 · Nov 10.00×1=10.00 · 16 Oct–15 Nov 4.65×1=4.65 + 5.00×1=5.00 (total 9.65)"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": true
+ },
+ "U:BASE-SOL": {
+  "phase": "update",
+  "code": "BASE-SOL",
+  "kind": "base",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 1.00",
+   "Next change tile: $1.00",
+   "rate schedules reading it as base: 1; plans reached: 3",
+   "bill preview AC-2026-00005: Oct 0.00×1=0.00 · Nov 1.00×1=1.00 · 16 Oct–15 Nov 0.00×1=0.00 + 0.50×1=0.50 (total 0.50)"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": true
+ },
+ "U:BASE-SW": {
+  "phase": "update",
+  "code": "BASE-SW",
+  "kind": "base",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 3.00",
+   "Next change tile: $3.00",
+   "rate schedules reading it as base: 1; plans reached: 3",
+   "bill preview AC-2026-00001: Oct 2.00×1=2.00 · Nov 3.00×1=3.00 · 16 Oct–15 Nov 1.03×1=1.03 + 1.50×1=1.50 (total 2.53)"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": true
+ },
+ "U:BASE-T": {
+  "phase": "update",
+  "code": "BASE-T",
+  "kind": "base",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 1.00",
+   "Next change tile: $1.00",
+   "rate schedules reading it as base: 1; plans reached: 3",
+   "bill preview AC-2026-00002: Oct in the per-size line 0.00 each = 0.00 · Nov in the per-size line 1.00 each = 3.00 · 16 Oct–15 Nov 0.00×1=0.00 + 1.50×1=1.50 (total 1.50)"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": true
+ },
+ "U:BASE-TH": {
+  "phase": "update",
+  "code": "BASE-TH",
+  "kind": "base",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 21.00",
+   "Next change tile: $21.00",
+   "rate schedules reading it as base: 1; plans reached: 3",
+   "bill preview AC-2026-00001: Oct 20.00×1=20.00 · Nov 21.00×1=21.00 · 16 Oct–15 Nov 10.32×1=10.32 + 10.50×1=10.50 (total 20.82)"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": true
+ },
+ "U:BASE-W": {
+  "phase": "update",
+  "code": "BASE-W",
+  "kind": "base",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 9.00",
+   "Next change tile: $9.00",
+   "rate schedules reading it as base: 5; plans reached: 5",
+   "bill preview AC-2026-00001: Oct 8.00×1=8.00 · Nov 9.00×1=9.00 · 16 Oct–15 Nov 4.13×1=4.13 + 4.50×1=4.50 (total 8.63)"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": true
+ },
+ "U:BASE-W-COM": {
+  "phase": "update",
+  "code": "BASE-W-COM",
+  "kind": "base",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 16.00",
+   "Next change tile: $9.00",
+   "rate schedules reading it as base: 5; plans reached: 5",
+   "bill preview AC-2026-00047: Oct 15.00×1=15.00 · Nov 16.00×1=16.00 · 16 Oct–15 Nov 7.74×1=7.74 + 8.00×1=8.00 (total 15.74)"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": true
+ },
+ "U:AFTER-HRS": {
+  "phase": "update",
+  "code": "AFTER-HRS",
+  "kind": "other",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 76.00",
+   "fee preview 2026-10-15 → 75.00, 2026-11-15 → 76.00"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "feePreview": true,
+  "impact": true
+ },
+ "U:BULK-WATER": {
+  "phase": "update",
+  "code": "BULK-WATER",
+  "kind": "other",
+  "notes": [
+   "rows 0 → 0; changed no price",
+   "fee preview 2026-10-15 → 1250.00, 2026-11-15 → 1250.00"
+  ],
+  "shape": "entered",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "feePreview": true,
+  "impact": true
+ },
+ "U:CC-EXPEDITE": {
+  "phase": "update",
+  "code": "CC-EXPEDITE",
+  "kind": "other",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 46.00",
+   "fee preview 2026-10-15 → —, 2026-11-15 → —",
+   "fee preview: before: refused — charge code 'CC-EXPEDITE' has no GL account, so a fee raised on it could never be issued (BR-BIL-010: *charge codes carry their own GL*). Refused HERE rather than at issue, so the message names the sc; after: refused — charge code 'CC-EXPEDITE' has no GL account, so a fee raised on it could never be issued (BR-BIL-010: *charge codes carry their own GL*). Refused HERE rather than at issue, so the message names the sc"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "feePreview": false,
+  "impact": false
+ },
+ "U:CC-METERTEST": {
+  "phase": "update",
+  "code": "CC-METERTEST",
+  "kind": "other",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 61.00",
+   "fee preview 2026-10-15 → —, 2026-11-15 → —",
+   "fee preview: before: refused — charge code 'CC-METERTEST' has no GL account, so a fee raised on it could never be issued (BR-BIL-010: *charge codes carry their own GL*). Refused HERE rather than at issue, so the message names the s; after: refused — charge code 'CC-METERTEST' has no GL account, so a fee raised on it could never be issued (BR-BIL-010: *charge codes carry their own GL*). Refused HERE rather than at issue, so the message names the s"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "feePreview": false,
+  "impact": false
+ },
+ "U:CC-REQFEE": {
+  "phase": "update",
+  "code": "CC-REQFEE",
+  "kind": "other",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 26.00",
+   "fee preview 2026-10-15 → 25.00, 2026-11-15 → 26.00"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "feePreview": true,
+  "impact": true
+ },
+ "U:DAMAGE": {
+  "phase": "update",
+  "code": "DAMAGE",
+  "kind": "other",
+  "notes": [
+   "rows 0 → 0; changed no price",
+   "fee preview 2026-10-15 → 1250.00, 2026-11-15 → 1250.00"
+  ],
+  "shape": "entered",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "feePreview": true,
+  "impact": true
+ },
+ "U:IMPACT": {
+  "phase": "update",
+  "code": "IMPACT",
+  "kind": "other",
+  "notes": [
+   "rows 0 → 0; changed no price",
+   "fee preview 2026-10-15 → 1250.00, 2026-11-15 → 1250.00"
+  ],
+  "shape": "entered",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "feePreview": true,
+  "impact": true
+ },
+ "U:INSPECT": {
+  "phase": "update",
+  "code": "INSPECT",
+  "kind": "other",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 31.00",
+   "fee preview 2026-10-15 → 30.00, 2026-11-15 → 31.00"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "feePreview": true,
+  "impact": true
+ },
+ "U:METER-TEST": {
+  "phase": "update",
+  "code": "METER-TEST",
+  "kind": "other",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 26.00",
+   "fee preview 2026-10-15 → 25.00, 2026-11-15 → 26.00"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "feePreview": true,
+  "impact": true
+ },
+ "U:RE-READ": {
+  "phase": "update",
+  "code": "RE-READ",
+  "kind": "other",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 21.00",
+   "fee preview 2026-10-15 → 20.00, 2026-11-15 → 21.00"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "feePreview": true,
+  "impact": true
+ },
+ "U:RETURN-TRIP": {
+  "phase": "update",
+  "code": "RETURN-TRIP",
+  "kind": "other",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 31.00",
+   "fee preview 2026-10-15 → 30.00, 2026-11-15 → 31.00"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "feePreview": true,
+  "impact": true
+ },
+ "U:SAME-DAY": {
+  "phase": "update",
+  "code": "SAME-DAY",
+  "kind": "other",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 51.00",
+   "fee preview 2026-10-15 → 50.00, 2026-11-15 → 51.00"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "feePreview": true,
+  "impact": true
+ },
+ "U:SEASONAL": {
+  "phase": "update",
+  "code": "SEASONAL",
+  "kind": "other",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 26.00",
+   "fee preview 2026-10-15 → 25.00, 2026-11-15 → 26.00"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "feePreview": true,
+  "impact": true
+ },
+ "U:TAP": {
+  "phase": "update",
+  "code": "TAP",
+  "kind": "other",
+  "notes": [
+   "rows 0 → 0; changed no price",
+   "fee preview 2026-10-15 → 1250.00, 2026-11-15 → 1250.00"
+  ],
+  "shape": "entered",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "feePreview": true,
+  "impact": true
+ },
+ "U:TEMP-SVC": {
+  "phase": "update",
+  "code": "TEMP-SVC",
+  "kind": "other",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 41.00",
+   "fee preview 2026-10-15 → 40.00, 2026-11-15 → 41.00"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "feePreview": true,
+  "impact": true
+ },
+ "U:CC-CONV": {
+  "phase": "update",
+  "code": "CC-CONV",
+  "kind": "plan",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 3.95",
+   "fee preview 2026-10-15 → 2.95, 2026-11-15 → 3.95"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "feePreview": true,
+  "impact": true
+ },
+ "U:CONN": {
+  "phase": "update",
+  "code": "CONN",
+  "kind": "plan",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 46.00",
+   "plan Residential Standard shows 45.00",
+   "fee preview 2026-10-15 → 45.00, 2026-11-15 → 46.00"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "feePreview": true,
+  "impact": true
+ },
+ "U:DISC": {
+  "phase": "update",
+  "code": "DISC",
+  "kind": "plan",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 46.00",
+   "plan Small Commercial shows 45.00",
+   "fee preview 2026-10-15 → 45.00, 2026-11-15 → 46.00"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "feePreview": true,
+  "impact": true
+ },
+ "U:HYDRANT": {
+  "phase": "update",
+  "code": "HYDRANT",
+  "kind": "plan",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 51.00",
+   "fee preview 2026-10-15 → 50.00, 2026-11-15 → 51.00"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "feePreview": true,
+  "impact": true
+ },
+ "U:LATE": {
+  "phase": "update",
+  "code": "LATE",
+  "kind": "plan",
+  "notes": [
+   "rows 0 → 1; changed All sizes  → 1.75%/6.00",
+   "plan Industrial shows 1.50%/5.00",
+   "plan Residential Standard shows 1.50%/5.00",
+   "plan Small Commercial shows 1.50%/5.00"
+  ],
+  "shape": "penalty",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": true
+ },
+ "U:MOVE-OUT": {
+  "phase": "update",
+  "code": "MOVE-OUT",
+  "kind": "plan",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 21.00",
+   "fee preview 2026-10-15 → 20.00, 2026-11-15 → 21.00"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "feePreview": true,
+  "impact": true
+ },
+ "U:NSF": {
+  "phase": "update",
+  "code": "NSF",
+  "kind": "plan",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 31.00",
+   "plan Industrial shows 30.00",
+   "plan Residential Standard shows 30.00",
+   "plan Small Commercial shows 30.00",
+   "fee preview 2026-10-15 → 30.00, 2026-11-15 → 31.00"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "feePreview": true,
+  "impact": true
+ },
+ "U:PAPER": {
+  "phase": "update",
+  "code": "PAPER",
+  "kind": "plan",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 3.00",
+   "fee preview 2026-10-15 → 2.00, 2026-11-15 → 3.00"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "feePreview": true,
+  "impact": true
+ },
+ "U:RECON": {
+  "phase": "update",
+  "code": "RECON",
+  "kind": "plan",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 76.00",
+   "fee preview 2026-10-15 → 75.00, 2026-11-15 → 76.00"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "feePreview": true,
+  "impact": true
+ },
+ "U:TAMPER": {
+  "phase": "update",
+  "code": "TAMPER",
+  "kind": "plan",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 251.00",
+   "plan Industrial shows 250.00",
+   "fee preview 2026-10-15 → 250.00, 2026-11-15 → 251.00"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "feePreview": true,
+  "impact": true
+ },
+ "U:TRANSFER": {
+  "phase": "update",
+  "code": "TRANSFER",
+  "kind": "plan",
+  "notes": [
+   "rows 1 → 2; changed All sizes  → 16.00",
+   "fee preview 2026-10-15 → 15.00, 2026-11-15 → 16.00"
+  ],
+  "shape": "flat",
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "feePreview": true,
+  "impact": true
+ },
+ "A:A-BASE-BAT": {
+  "phase": "add",
+  "code": "A-BASE-BAT",
+  "twinOf": "BASE-BAT",
+  "kind": "base",
+  "shape": "one",
+  "notes": [
+   "beside the live BASE-BAT, Add refuses: \"BASE-BAT already covers this class.\"",
+   "stored All sizes 5.00",
+   "GL 4165 — the seeded BASE-BAT posts to 4165",
+   "twin retired and BASE-BAT brought back"
+  ],
+  "refusedSecondBase": true,
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true,
+  "gl": true
+ },
+ "A:A-BASE-BB": {
+  "phase": "add",
+  "code": "A-BASE-BB",
+  "twinOf": "BASE-BB",
+  "kind": "base",
+  "shape": "one",
+  "notes": [
+   "beside the live BASE-BB, Add refuses: \"BASE-BB already covers this class.\"",
+   "stored All sizes 30.00",
+   "GL 4145 — the seeded BASE-BB posts to 4145",
+   "twin retired and BASE-BB brought back"
+  ],
+  "refusedSecondBase": true,
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true,
+  "gl": true
+ },
+ "A:A-BASE-E": {
+  "phase": "add",
+  "code": "A-BASE-E",
+  "twinOf": "BASE-E",
+  "kind": "base",
+  "shape": "one",
+  "notes": [
+   "beside the live BASE-E, Add refuses: \"BASE-E already covers this class.\"",
+   "stored All sizes 12.00",
+   "GL 4105 — the seeded BASE-E posts to 4105",
+   "twin retired and BASE-E brought back"
+  ],
+  "refusedSecondBase": true,
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true,
+  "gl": true
+ },
+ "A:A-BASE-E-COM": {
+  "phase": "add",
+  "code": "A-BASE-E-COM",
+  "twinOf": "BASE-E-COM",
+  "kind": "base",
+  "shape": "size",
+  "notes": [
+   "beside the live BASE-E-COM, Add refuses: \"BASE-E-COM already covers this class.\"",
+   "stored E-1P-100 48.00, E-1P-200 72.00, E-1P-400 120.00, E-3P-200 96.00, E-3P-400 168.00, E-CT 456.00",
+   "GL 4105 — the seeded BASE-E-COM posts to 4105",
+   "twin retired and BASE-E-COM brought back"
+  ],
+  "refusedSecondBase": true,
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true,
+  "gl": true
+ },
+ "A:A-BASE-E-IND": {
+  "phase": "add",
+  "code": "A-BASE-E-IND",
+  "twinOf": "BASE-E-IND",
+  "kind": "base",
+  "shape": "one",
+  "notes": [
+   "beside the live BASE-E-IND, Add refuses: \"BASE-E-IND already covers this class.\"",
+   "stored All sizes 180.00",
+   "GL 4105 — the seeded BASE-E-IND posts to 4105",
+   "twin retired and BASE-E-IND brought back"
+  ],
+  "refusedSecondBase": true,
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true,
+  "gl": true
+ },
+ "A:A-BASE-FIRE": {
+  "phase": "add",
+  "code": "A-BASE-FIRE",
+  "twinOf": "BASE-FIRE",
+  "kind": "base",
+  "shape": "one",
+  "notes": [
+   "beside the live BASE-FIRE, Add refuses: \"BASE-FIRE already covers this class.\"",
+   "stored All sizes 0.00",
+   "GL 4155 — the seeded BASE-FIRE posts to 4155",
+   "twin retired and BASE-FIRE brought back"
+  ],
+  "refusedSecondBase": true,
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true,
+  "gl": true
+ },
+ "A:A-BASE-G": {
+  "phase": "add",
+  "code": "A-BASE-G",
+  "twinOf": "BASE-G",
+  "kind": "base",
+  "shape": "size",
+  "notes": [
+   "beside the live BASE-G, Add refuses: \"BASE-G already covers this class.\"",
+   "stored G-1000 15.00, G-250 6.00, G-425 8.10, G-630 10.56",
+   "GL 4140 — the seeded BASE-G posts to 4140",
+   "twin retired and BASE-G brought back"
+  ],
+  "refusedSecondBase": true,
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true,
+  "gl": true
+ },
+ "A:A-BASE-S": {
+  "phase": "add",
+  "code": "A-BASE-S",
+  "twinOf": "BASE-S",
+  "kind": "base",
+  "shape": "one",
+  "notes": [
+   "beside the live BASE-S, Add refuses: \"BASE-S already covers this class.\"",
+   "stored All sizes 9.00",
+   "GL 4120 — the seeded BASE-S posts to 4120",
+   "twin retired and BASE-S brought back"
+  ],
+  "refusedSecondBase": true,
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true,
+  "gl": true
+ },
+ "A:A-BASE-SOL": {
+  "phase": "add",
+  "code": "A-BASE-SOL",
+  "twinOf": "BASE-SOL",
+  "kind": "base",
+  "shape": "one",
+  "notes": [
+   "beside the live BASE-SOL, Add refuses: \"BASE-SOL already covers this class.\"",
+   "stored All sizes 0.00",
+   "GL 4150 — the seeded BASE-SOL posts to 4150",
+   "twin retired and BASE-SOL brought back"
+  ],
+  "refusedSecondBase": true,
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true,
+  "gl": true
+ },
+ "A:A-BASE-SW": {
+  "phase": "add",
+  "code": "A-BASE-SW",
+  "twinOf": "BASE-SW",
+  "kind": "base",
+  "shape": "one",
+  "notes": [
+   "beside the live BASE-SW, Add refuses: \"BASE-SW already covers this class.\"",
+   "stored All sizes 2.00",
+   "GL 4160 — the seeded BASE-SW posts to 4160",
+   "twin retired and BASE-SW brought back"
+  ],
+  "refusedSecondBase": true,
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true,
+  "gl": true
+ },
+ "A:A-BASE-T": {
+  "phase": "add",
+  "code": "A-BASE-T",
+  "twinOf": "BASE-T",
+  "kind": "base",
+  "shape": "one",
+  "notes": [
+   "beside the live BASE-T, Add refuses: \"BASE-T already covers this class.\"",
+   "stored All sizes 0.00",
+   "GL 4130 — the seeded BASE-T posts to 4130",
+   "twin retired and BASE-T brought back"
+  ],
+  "refusedSecondBase": true,
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true,
+  "gl": true
+ },
+ "A:A-BASE-TH": {
+  "phase": "add",
+  "code": "A-BASE-TH",
+  "twinOf": "BASE-TH",
+  "kind": "base",
+  "shape": "one",
+  "notes": [
+   "beside the live BASE-TH, Add refuses: \"BASE-TH already covers this class.\"",
+   "stored All sizes 20.00",
+   "GL 4170 — the seeded BASE-TH posts to 4170",
+   "twin retired and BASE-TH brought back"
+  ],
+  "refusedSecondBase": true,
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true,
+  "gl": true
+ },
+ "A:A-BASE-W": {
+  "phase": "add",
+  "code": "A-BASE-W",
+  "twinOf": "BASE-W",
+  "kind": "base",
+  "shape": "one",
+  "notes": [
+   "beside the live BASE-W, Add refuses: \"BASE-W already covers this class.\"",
+   "stored All sizes 8.00",
+   "GL 4115 — the seeded BASE-W posts to 4115",
+   "twin retired and BASE-W brought back"
+  ],
+  "refusedSecondBase": true,
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true,
+  "gl": true
+ },
+ "A:A-BASE-W-COM": {
+  "phase": "add",
+  "code": "A-BASE-W-COM",
+  "twinOf": "BASE-W-COM",
+  "kind": "base",
+  "shape": "one",
+  "notes": [
+   "beside the live BASE-W-COM, Add refuses: \"BASE-W-COM already covers this class.\"",
+   "stored All sizes 15.00",
+   "GL 4115 — the seeded BASE-W-COM posts to 4115",
+   "twin retired and BASE-W-COM brought back"
+  ],
+  "refusedSecondBase": true,
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true,
+  "gl": true
+ },
+ "A:A-AFTER-HRS": {
+  "phase": "add",
+  "code": "A-AFTER-HRS",
+  "twinOf": "AFTER-HRS",
+  "kind": "other",
+  "shape": "one",
+  "notes": [
+   "stored All sizes 75.00"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true
+ },
+ "A:A-BULK-WATER": {
+  "phase": "add",
+  "code": "A-BULK-WATER",
+  "twinOf": "BULK-WATER",
+  "kind": "other",
+  "shape": "entered",
+  "notes": [
+   "stored no price row"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true
+ },
+ "A:A-CC-EXPEDITE": {
+  "phase": "add",
+  "code": "A-CC-EXPEDITE",
+  "twinOf": "CC-EXPEDITE",
+  "kind": "other",
+  "shape": "one",
+  "notes": [
+   "stored All sizes 45.00"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true
+ },
+ "A:A-CC-METERTEST": {
+  "phase": "add",
+  "code": "A-CC-METERTEST",
+  "twinOf": "CC-METERTEST",
+  "kind": "other",
+  "shape": "one",
+  "notes": [
+   "stored All sizes 60.00"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true
+ },
+ "A:A-CC-REQFEE": {
+  "phase": "add",
+  "code": "A-CC-REQFEE",
+  "twinOf": "CC-REQFEE",
+  "kind": "other",
+  "shape": "one",
+  "notes": [
+   "stored All sizes 25.00"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true
+ },
+ "A:A-DAMAGE": {
+  "phase": "add",
+  "code": "A-DAMAGE",
+  "twinOf": "DAMAGE",
+  "kind": "other",
+  "shape": "entered",
+  "notes": [
+   "stored no price row"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true
+ },
+ "A:A-IMPACT": {
+  "phase": "add",
+  "code": "A-IMPACT",
+  "twinOf": "IMPACT",
+  "kind": "other",
+  "shape": "entered",
+  "notes": [
+   "stored no price row"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true
+ },
+ "A:A-INSPECT": {
+  "phase": "add",
+  "code": "A-INSPECT",
+  "twinOf": "INSPECT",
+  "kind": "other",
+  "shape": "one",
+  "notes": [
+   "stored All sizes 30.00"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true
+ },
+ "A:A-METER-TEST": {
+  "phase": "add",
+  "code": "A-METER-TEST",
+  "twinOf": "METER-TEST",
+  "kind": "other",
+  "shape": "one",
+  "notes": [
+   "stored All sizes 25.00"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true
+ },
+ "A:A-RE-READ": {
+  "phase": "add",
+  "code": "A-RE-READ",
+  "twinOf": "RE-READ",
+  "kind": "other",
+  "shape": "one",
+  "notes": [
+   "stored All sizes 20.00"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true
+ },
+ "A:A-RETURN-TRIP": {
+  "phase": "add",
+  "code": "A-RETURN-TRIP",
+  "twinOf": "RETURN-TRIP",
+  "kind": "other",
+  "shape": "one",
+  "notes": [
+   "stored All sizes 30.00"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true
+ },
+ "A:A-SAME-DAY": {
+  "phase": "add",
+  "code": "A-SAME-DAY",
+  "twinOf": "SAME-DAY",
+  "kind": "other",
+  "shape": "one",
+  "notes": [
+   "stored All sizes 50.00"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true
+ },
+ "A:A-SEASONAL": {
+  "phase": "add",
+  "code": "A-SEASONAL",
+  "twinOf": "SEASONAL",
+  "kind": "other",
+  "shape": "one",
+  "notes": [
+   "stored All sizes 25.00"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true
+ },
+ "A:A-TAP": {
+  "phase": "add",
+  "code": "A-TAP",
+  "twinOf": "TAP",
+  "kind": "other",
+  "shape": "entered",
+  "notes": [
+   "stored no price row"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true
+ },
+ "A:A-TEMP-SVC": {
+  "phase": "add",
+  "code": "A-TEMP-SVC",
+  "twinOf": "TEMP-SVC",
+  "kind": "other",
+  "shape": "one",
+  "notes": [
+   "stored All sizes 40.00"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true
+ },
+ "A:A-CC-CONV": {
+  "phase": "add",
+  "code": "A-CC-CONV",
+  "twinOf": "CC-CONV",
+  "kind": "plan",
+  "shape": "one",
+  "notes": [
+   "stored All sizes 2.95"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true
+ },
+ "A:A-CONN": {
+  "phase": "add",
+  "code": "A-CONN",
+  "twinOf": "CONN",
+  "kind": "plan",
+  "shape": "one",
+  "notes": [
+   "stored All sizes 45.00"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true
+ },
+ "A:A-DISC": {
+  "phase": "add",
+  "code": "A-DISC",
+  "twinOf": "DISC",
+  "kind": "plan",
+  "shape": "one",
+  "notes": [
+   "stored All sizes 45.00"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true
+ },
+ "A:A-HYDRANT": {
+  "phase": "add",
+  "code": "A-HYDRANT",
+  "twinOf": "HYDRANT",
+  "kind": "plan",
+  "shape": "one",
+  "notes": [
+   "stored All sizes 50.00"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true
+ },
+ "A:A-LATE": {
+  "phase": "add",
+  "code": "A-LATE",
+  "twinOf": "LATE",
+  "kind": "plan",
+  "shape": "penalty",
+  "notes": [
+   "stored All sizes 1.50%/5.00"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true
+ },
+ "A:A-MOVE-OUT": {
+  "phase": "add",
+  "code": "A-MOVE-OUT",
+  "twinOf": "MOVE-OUT",
+  "kind": "plan",
+  "shape": "one",
+  "notes": [
+   "stored All sizes 20.00"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true
+ },
+ "A:A-NSF": {
+  "phase": "add",
+  "code": "A-NSF",
+  "twinOf": "NSF",
+  "kind": "plan",
+  "shape": "one",
+  "notes": [
+   "stored All sizes 30.00"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true
+ },
+ "A:A-PAPER": {
+  "phase": "add",
+  "code": "A-PAPER",
+  "twinOf": "PAPER",
+  "kind": "plan",
+  "shape": "one",
+  "notes": [
+   "stored All sizes 2.00"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true
+ },
+ "A:A-RECON": {
+  "phase": "add",
+  "code": "A-RECON",
+  "twinOf": "RECON",
+  "kind": "plan",
+  "shape": "one",
+  "notes": [
+   "stored All sizes 75.00"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true
+ },
+ "A:A-TAMPER": {
+  "phase": "add",
+  "code": "A-TAMPER",
+  "twinOf": "TAMPER",
+  "kind": "plan",
+  "shape": "one",
+  "notes": [
+   "stored All sizes 250.00"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true
+ },
+ "A:A-TRANSFER": {
+  "phase": "add",
+  "code": "A-TRANSFER",
+  "twinOf": "TRANSFER",
+  "kind": "plan",
+  "shape": "one",
+  "notes": [
+   "stored All sizes 15.00"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "oneRow": true
+ },
+ "N:NB-W-RES": {
+  "phase": "new",
+  "code": "NB-W-RES",
+  "kind": "base",
+  "shape": "sized",
+  "service": "water",
+  "cls": "residential",
+  "notes": [
+   "retired the seeded BASE-W first",
+   "stored W-1 11.50, W-2 34.00, W-34 8.00, W-58 8.00",
+   "GL 4115 — Water base",
+   "changed W-58 → 9.00",
+   "Next change tile: $16.00",
+   "rate schedules reading it as base: 5; plans reached: 5",
+   "bill preview AC-2026-00001: Oct 8.00×1=8.00 · Nov 9.00×1=9.00 · 16 Oct–15 Nov 4.13×1=4.13 + 4.50×1=4.50 (total 8.63)"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "gl": true,
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": true
+ },
+ "N:NB-W-COM": {
+  "phase": "new",
+  "code": "NB-W-COM",
+  "kind": "base",
+  "shape": "sized",
+  "service": "water",
+  "cls": "commercial",
+  "notes": [
+   "retired the seeded BASE-W-COM first",
+   "stored W-1 22.00, W-112 28.00, W-2 60.00, W-34 15.00, W-4 150.00, W-58 15.00",
+   "GL 4115 — Water base",
+   "changed W-58 → 16.00",
+   "Next change tile: $16.00",
+   "rate schedules reading it as base: 5; plans reached: 5",
+   "bill preview AC-2026-00047: Oct 28.00×1=28.00 · Nov 28.00×1=28.00 · 16 Oct–15 Nov 14.45×1=14.45 + 14.00×1=14.00 (total 28.45)"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "gl": true,
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": true
+ },
+ "N:NB-E-RES": {
+  "phase": "new",
+  "code": "NB-E-RES",
+  "kind": "base",
+  "shape": "sized",
+  "service": "electric",
+  "cls": "residential",
+  "notes": [
+   "retired the seeded BASE-E first",
+   "stored E-1P-100 12.00, E-1P-200 14.50, E-1P-400 22.00",
+   "GL 4105 — Electric base",
+   "changed E-1P-100 → 13.00",
+   "Next change tile: $49.00",
+   "rate schedules reading it as base: 4; plans reached: 5",
+   "bill preview AC-2026-00001: Oct 12.00×1=12.00 · Nov 13.00×1=13.00 · 16 Oct–15 Nov 6.19×1=6.19 + 6.50×1=6.50 (total 12.69)"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "gl": true,
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": true
+ },
+ "N:NB-E-COM": {
+  "phase": "new",
+  "code": "NB-E-COM",
+  "kind": "base",
+  "shape": "sized",
+  "service": "electric",
+  "cls": "commercial",
+  "notes": [
+   "retired the seeded BASE-E-COM first",
+   "stored E-1P-200 48.00, E-1P-400 120.00, E-3P-200 96.00, E-3P-400 168.00, E-CT 456.00",
+   "GL 4105 — Electric base",
+   "changed E-1P-200 → 49.00",
+   "Next change tile: $181.00",
+   "rate schedules reading it as base: 4; plans reached: 5",
+   "bill preview AC-2026-00047: Oct 120.00×1=120.00 · Nov 120.00×1=120.00 · 16 Oct–15 Nov 61.94×1=61.94 + 60.00×1=60.00 (total 121.94)"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "gl": true,
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": true
+ },
+ "N:NB-G": {
+  "phase": "new",
+  "code": "NB-G",
+  "kind": "base",
+  "shape": "sized",
+  "service": "gas",
+  "cls": "all",
+  "notes": [
+   "retired the seeded BASE-G first",
+   "stored G-1000 15.00, G-250 6.00, G-425 8.10, G-630 10.56",
+   "GL 4140 — Gas",
+   "changed G-1000 → 16.00",
+   "Next change tile: $16.00",
+   "rate schedules reading it as base: 1; plans reached: 3",
+   "bill preview AC-2026-00001: Oct 6.00×1=6.00 · Nov 6.00×1=6.00 · 16 Oct–15 Nov 3.10×1=3.10 + 3.00×1=3.00 (total 6.10)"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "gl": true,
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": true
+ },
+ "N:NB-S": {
+  "phase": "new",
+  "code": "NB-S",
+  "kind": "base",
+  "shape": "flat",
+  "service": "sewer",
+  "cls": "all",
+  "notes": [
+   "retired the seeded BASE-S first",
+   "stored All sizes 9.00",
+   "GL 4120 — Sewer",
+   "changed All sizes → 10.00",
+   "Next change tile: $10.00",
+   "rate schedules reading it as base: 1; plans reached: 3",
+   "bill preview AC-2026-00001: Oct 9.00×1=9.00 · Nov 10.00×1=10.00 · 16 Oct–15 Nov 4.65×1=4.65 + 5.00×1=5.00 (total 9.65)"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "gl": true,
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": true
+ },
+ "N:NB-T-RES": {
+  "phase": "new",
+  "code": "NB-T-RES",
+  "kind": "base",
+  "shape": "sized",
+  "service": "trash",
+  "cls": "residential",
+  "notes": [
+   "retired the seeded BASE-T first",
+   "stored CART-35 9.00, CART-64 12.00, CART-96 15.00, DUMP-2 null",
+   "GL 4130 — Trash",
+   "changed CART-35 → 10.00",
+   "Next change tile: $10.00",
+   "rate schedules reading it as base: 1; plans reached: 3",
+   "bill preview AC-2026-00002: Oct in the per-size line 15.00 each = 45.00 · Nov in the per-size line 15.00 each = 45.00 · 16 Oct–15 Nov 23.23×1=23.23 + 22.50×1=22.50 (total 45.73)"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "gl": true,
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": true
+ },
+ "N:NB-T-COM": {
+  "phase": "new",
+  "code": "NB-T-COM",
+  "kind": "base",
+  "shape": "sized",
+  "service": "trash",
+  "cls": "commercial",
+  "notes": [
+   "stored CART-96 15.00, DUMP-2 40.00, DUMP-4 65.00, DUMP-6 90.00, DUMP-8 115.00",
+   "GL 4130 — Trash",
+   "changed CART-96 → 16.00",
+   "Next change tile: $16.00",
+   "rate schedules reading it as base: 1; plans reached: 3",
+   "no commercial account on trash could be billed (2 on the service) — the first one is refused: plan 01a0f9c9-746a-703c-b22e-b8d1a988c2d9 resolves to no tariff for any service in this run's scope. A bill with no services is not a $0.00 bill — it is a confi"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "gl": true,
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": true
+ },
+ "N:NB-SW": {
+  "phase": "new",
+  "code": "NB-SW",
+  "kind": "base",
+  "shape": "sized",
+  "service": "storm_water",
+  "cls": "all",
+  "notes": [
+   "retired the seeded BASE-SW first",
+   "stored SW-APT 12.00, SW-COM-L 45.00, SW-COM-S 18.00, SW-DUP 3.50, SW-SF 2.00",
+   "GL 4160 — Storm water",
+   "changed SW-APT → 13.00",
+   "Next change tile: $13.00",
+   "rate schedules reading it as base: 1; plans reached: 3",
+   "bill preview (AC-2026-00001): Oct preview refused: This connection's size is not recorded. Record the connection's size.; Nov preview refused: This connection's size is not recorded. Record the connection's size.; 16 Oct–15 Nov preview refused: This connection's size is not recorded. Record the connection's size."
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "gl": true,
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": false
+ },
+ "N:NB-SOL": {
+  "phase": "new",
+  "code": "NB-SOL",
+  "kind": "base",
+  "shape": "sized",
+  "service": "solar",
+  "cls": "all",
+  "notes": [
+   "retired the seeded BASE-SOL first",
+   "stored SOL-P10 10.00, SOL-P3 3.00, SOL-P5 5.00, SOL-P8 8.00",
+   "GL 4150 — Solar",
+   "changed SOL-P3 → 4.00",
+   "Next change tile: $4.00",
+   "rate schedules reading it as base: 1; plans reached: 3",
+   "bill preview AC-2026-00005: Oct 8.00×1=8.00 · Nov 8.00×1=8.00 · 16 Oct–15 Nov 4.13×1=4.13 + 4.00×1=4.00 (total 8.13)"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "gl": true,
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": true
+ },
+ "N:NB-BB": {
+  "phase": "new",
+  "code": "NB-BB",
+  "kind": "base",
+  "shape": "sized",
+  "service": "broadband",
+  "cls": "all",
+  "notes": [
+   "retired the seeded BASE-BB first",
+   "stored BB-100 30.00, BB-1000 70.00, BB-500 50.00",
+   "GL 4145 — Broadband",
+   "changed BB-100 → 31.00",
+   "Next change tile: $31.00",
+   "rate schedules reading it as base: 1; plans reached: 3",
+   "bill preview AC-2026-00009: Oct 30.00×1=30.00 · Nov 31.00×1=31.00 · 16 Oct–15 Nov 15.48×1=15.48 + 15.50×1=15.50 (total 30.98)"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "gl": true,
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": true
+ },
+ "N:NB-TH": {
+  "phase": "new",
+  "code": "NB-TH",
+  "kind": "base",
+  "shape": "sized",
+  "service": "thermal_heat",
+  "cls": "all",
+  "notes": [
+   "retired the seeded BASE-TH first",
+   "stored TH-T10 35.00, TH-T25 80.00, TH-T5 20.00, TH-T50 150.00",
+   "GL 4170 — Thermal/Heat",
+   "changed TH-T5 → 21.00",
+   "Next change tile: $21.00",
+   "rate schedules reading it as base: 1; plans reached: 3",
+   "bill preview (AC-2026-00001): Oct preview refused: This connection's size is not recorded. Record the connection's size.; Nov preview refused: This connection's size is not recorded. Record the connection's size.; 16 Oct–15 Nov preview refused: This connection's size is not recorded. Record the connection's size."
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "gl": true,
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": false
+ },
+ "N:NB-BAT": {
+  "phase": "new",
+  "code": "NB-BAT",
+  "kind": "base",
+  "shape": "sized",
+  "service": "battery",
+  "cls": "all",
+  "notes": [
+   "retired the seeded BASE-BAT first",
+   "stored BAT-10 8.00, BAT-15 11.00, BAT-20 14.00, BAT-5 5.00",
+   "GL 4165 — Battery",
+   "changed BAT-5 → 6.00",
+   "Next change tile: $6.00",
+   "rate schedules reading it as base: 1; plans reached: 3",
+   "bill preview AC-2026-00005: Oct 8.00×1=8.00 · Nov 8.00×1=8.00 · 16 Oct–15 Nov 4.13×1=4.13 + 4.00×1=4.00 (total 8.13)"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "gl": true,
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": true
+ },
+ "N:NB-FIRE": {
+  "phase": "new",
+  "code": "NB-FIRE",
+  "kind": "base",
+  "shape": "sized",
+  "service": "fire",
+  "cls": "all",
+  "notes": [
+   "retired the seeded BASE-FIRE first",
+   "stored FL-2 12.00, FL-4 30.00, FL-6 60.00, FL-8 100.00",
+   "GL 4155 — Fire",
+   "changed FL-2 → 13.00",
+   "Next change tile: $13.00",
+   "rate schedules reading it as base: 1; plans reached: 3",
+   "bill preview AC-2026-00025: Oct in the per-size line 12.00/60.00 each = 84.00 · Nov in the per-size line 13.00/60.00 each = 86.00 · 16 Oct–15 Nov 43.35×1=43.35 + 43.00×1=43.00 (total 86.35)"
+  ],
+  "add": true,
+  "dbAdd": true,
+  "view": true,
+  "gl": true,
+  "update": true,
+  "dbUpdate": true,
+  "history": true,
+  "oneRow": true,
+  "impact": true
+ }
+}

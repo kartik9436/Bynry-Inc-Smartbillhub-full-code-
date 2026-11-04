@@ -1,0 +1,31 @@
+# G114 — files allowed to declare a `rows` + `per`/`pages`/`last_page` shape.
+# One path per line, relative to the repo root, reason after `#`.
+#
+# ⚠ THIS IS FOR A GENUINELY DIFFERENT CONTRACT, NOT FOR A SCREEN IN A HURRY.
+# The fix for a screen is `readListPage` from `@/api/paginated`, which is
+# shorter than the interface it replaces.
+#
+# ⚠ **AND THE ENTRIES BELOW ARE THE REASON THE ORIGINAL DEFECT WAS PLAUSIBLE,
+# WHICH IS WORTH MORE THAN THE ALLOW-LIST ITSELF.** This product has TWO list
+# conventions, and both are live:
+#
+#   · work · metering · rating · assets — the view wraps its selector in
+#     `_envelope()` and the wire carries `{count, next, previous, results}`.
+#   · customers' four worklists — the view returns the selector's dict
+#     DIRECTLY (`Response(move_reads.move_ins_list(...))`, no wrapper), so the
+#     wire really does carry `{rows, page, per, total, pages}` plus `kpis`,
+#     `columns`, `filters`, `states` and §5.7.3's `exclusion` contract.
+#
+# Verified against the running API on 2026-09-05, not inferred from source:
+#   GET /move-ins    → as_of columns exclusion filters kpis page pages per rows
+#   GET /disconnects → as_of chips columns delivery filters kpis page pages per rows
+#
+# So a lane that learned the shape of a list from the customers module and
+# carried it to a Work screen wrote something that is TRUE of half this product.
+# That is not carelessness; it is two conventions with nothing naming the
+# boundary between them. Unifying them is a real change with a real blast
+# radius (those richer bodies carry tiles and a counting contract, not just
+# rows) and belongs to the customers module, not to this gate.
+07-frontend/src/features/customers/MoveInsTab.tsx        # GET /move-ins — no _envelope; serves rows+kpis+columns+exclusion, verified live
+07-frontend/src/features/customers/MoveOutsTab.tsx       # GET /move-outs — same contract, same view family
+07-frontend/src/features/customers/worklistEndpoints.ts  # GET /transfers and GET /disconnects — same, both verified live

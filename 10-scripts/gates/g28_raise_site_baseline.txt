@@ -1,0 +1,577 @@
+# G28 PART 3 BASELINE — the identity of every raise site that carried an
+# internal reference in its refusal prose on 2026-08-31. IT MAY ONLY SHRINK.
+#
+# 536 distinct lines for 541 sites: five sites share a file, a kind set and a
+# sentence with another site. The TOTAL is held separately by RAISE_SITE_CEILING
+# in the gate, so adding another copy of an already-parked sentence still fails.
+#
+# WHY THIS FILE EXISTS (DEF-2468, on the PO ruling of 2026-08-30)
+# --------------------------------------------------------------
+# Part 3 was the only part of G28 ratcheted BY COUNT with no identity file, and
+# the gate's own header said what that cost: "it can never say WHICH site is
+# new. Three lanes have each paid to rediscover the same drift." A count tells
+# you the size of a problem and nothing about its location. This file answers
+# by name.
+#
+# WHAT THESE 541 ARE, AND IT DECIDES HOW TO TREAT THEM
+# ----------------------------------------------------
+# They are DIAGNOSTICS, not leaks -- verified on 2026-08-31 rather than assumed.
+# 07-frontend/src/api/client.ts:202 reads `delete rest.detail;` before any
+# catalogue interpolation, and a sweep of every `.detail` render under
+# 07-frontend/src finds no screen reading a refusal's `params.detail`. So this
+# prose reaches the audit row and the server log and stops there. It is refusal
+# text naming the rule it enforces, which is the convention this repo asks for
+# everywhere else -- clearing it would delete engineering value for no customer
+# benefit. DEF-2605 tracks the 541 as a project.
+#
+# ONE LINE PER SITE:  <file> :: <kinds> :: <the prose, truncated to 110 chars>
+#
+# ⚠ NO LINE NUMBER, ON PURPOSE. A baseline keyed on a line number churns on
+# every edit made ABOVE a violation, and a ratchet whose file changes when
+# nothing was fixed is a ratchet nobody reads. This is exactly what
+# `g28_internal_references.py --list` prints.
+#
+# ⚠ ADDING A LINE HERE IS A LOOSENING. RAISE_SITE_CEILING (541) is the other
+# half of the ratchet and lives in the gate: growing this file without lowering
+# that integer still fails, so a wholesale regeneration cannot be quiet.
+#
+# TO RETIRE A LINE: move the id, path or quote into the code comment beside the
+# string and delete the line in the SAME diff. The gate reports a stale line on
+# every run until you do.
+
+
+#
+# ⚠ 537 → 517 ON 2026-09-25: twenty baselined sites were rewritten or gone and
+#   the gate had been asking for them to be deleted on every run —
+#     "Part 3: 20 baselined site(s) are now rewritten or gone — delete them
+#      from g28_raise_site_baseline.txt to tighten the ratchet"
+#   Deleting them TIGHTENS the ratchet and can retire nothing by accident: a
+#   stale line is one no live raise site matches, so a sentence that came back
+#   would be `fresh` again rather than silently parked. Among them, the
+#   `service_size_classes.py` line still said "the ten utility services",
+#   which `fire` made eleven.
+#
+# ⚠⚠ THIS EDIT DOES NOT MAKE G28 GREEN AND IS NOT MEANT TO. `site_stale` is
+#   appended to `notes` in g28_internal_references.py:843, and `run()` DISCARDS
+#   `notes` entirely — so this backlog is invisible in the runner's row and
+#   only `--list`/`check()` ever showed it. G28 is red on Part 1 (one internal
+#   reference reaching a SCREEN, apps/integrations/partner_api.py) and on 13
+#   Part 3 diagnostic findings, including `Part 3 ROSE: 782 raise sites …
+#   ceiling 542`. Those are other work and are REPORTED, not smoothed here.
+06-backend/apps/assets/seams.py :: module path or source file :: apps... is not wired — see apps/assets/seams.py
+06-backend/apps/assets/services.py :: rule or story id :: assets owns no reference list (BR-TEN-031)
+06-backend/apps/billing/api.py :: rule or story id/HTTP route :: run has no authorised release, so nothing may be issued. The gate is five separately recorded facts — complian
+06-backend/apps/billing/backbill.py :: register id :: the tenant's finance-controls settings carry no , so where a split segment's usage comes from (OQ-191) cannot
+06-backend/apps/billing/backbill.py :: register id :: the tenant's is , which is not one of the two the Product Owner ruled (, OQ-191 2026-08-12). The back-bill is
+06-backend/apps/billing/backbill.py :: register id/PO ruling or quote :: . OQ-191 (PO 2026-08-12) day-weights a read-less segment by default and asks metering as a tenant option; refu
+06-backend/apps/billing/backbill.py :: rule or story id :: a back-bill must carry a reason code (BR-BIL-018). Charging a customer for a period they were never billed for
+06-backend/apps/billing/backbill.py :: rule or story id :: a back-bill needs its sub-periods stated: the unbilled periods being recovered (WE-10's six months). They are
+06-backend/apps/billing/backbill.py :: rule or story id :: account : has no usable read in and no decision. BR-BIL-015 makes that a choice — estimate it, hold the period
+06-backend/apps/billing/backbill.py :: rule or story id :: service has no tariff version in force across → . BR-RAT-007: there is no fallback to today's prices, because
+06-backend/apps/billing/backbill.py :: rule or story id :: this back-bill spans months ( → ) and the tenant's back-bill window is capped at months (, Settings → Finance
+06-backend/apps/billing/backbill.py :: rule or story id :: unit has no plan (BR-MET-040), so there is no version timeline to split this back-bill on.
+06-backend/apps/billing/budget.py :: rule or story id :: drift is measured against the CURRENT level and this account's level is 0.00, which cannot be a denominator (B
+06-backend/apps/billing/budget.py :: rule or story id :: the budget averaging window is months, which cannot be a divisor. BR-BIL-021 makes it a tenant setting; a zero
+06-backend/apps/billing/budget.py :: rule or story id :: unknown budget level rounding ; BR-BIL-017 ratifies and nothing else. A rounding mode the code does not implem
+06-backend/apps/billing/budget.py :: rule or story id/register id :: a budget level override of is outside the ±% bound – around the computed level (BR-BIL-017, OQ-068). The bound
+06-backend/apps/billing/budget.py :: rule or story id/register id :: a per-account budget level override requires a REASON (BR-BIL-017 as OQ-068 closed it: 'allowed with reason +
+06-backend/apps/billing/budget_service.py :: rule or story id :: account cannot be enrolled on budget billing: (, BR-BIL-017/BR-RAT-043).
+06-backend/apps/billing/budget_service.py :: rule or story id :: account is already on budget billing. One live budget status per account (BR-BIL-017) — a second would give th
+06-backend/apps/billing/budget_service.py :: rule or story id :: account is not on budget billing (BR-BIL-017).
+06-backend/apps/billing/budget_service.py :: rule or story id :: account is not on budget billing, so its level cannot be overridden (BR-BIL-017).
+06-backend/apps/billing/budget_service.py :: rule or story id :: the tenant's budget-billing settings carry no . The ratified default lives once, in apps.tenancy.settings_fami
+06-backend/apps/billing/bulk_corrections.py :: rule or story id :: a bulk correction case carries ONE class and these reasons carry () — BR-BIL-042. Somebody approving a total o
+06-backend/apps/billing/bulk_corrections.py :: rule or story id :: bill is already inside an unresolved correction case (BR-BIL-048 — one open case per chain). Finish or abandon
+06-backend/apps/billing/bulk_corrections.py :: rule or story id :: closing a case over unresolved bills needs a reason (BR-BIL-047). Those bills are still wrong, and the record
+06-backend/apps/billing/bulk_corrections.py :: rule or story id :: the aggregate does not tie out: Σ credit − Σ rebill = , and Σ net is (BR-BIL-046 / BR-BIL-032's redundancy). A
+06-backend/apps/billing/bulk_corrections.py :: rule or story id :: the inputs moved between preview and execute, so this case no longer describes what would happen (BR-BIL-044).
+06-backend/apps/billing/bulk_corrections.py :: rule or story id :: the preview on screen is not the preview stored on this case (BR-BIL-044): approval binds the artifact, not th
+06-backend/apps/billing/bulk_corrections.py :: rule or story id :: unknown correction scope ; BR-BIL-014 defines .,
+06-backend/apps/billing/bulk_corrections.py :: rule or story id/hard-won law :: a rebill is issued with a template version pinned (BR-BIL-026) and none was supplied. `bill_templates` (r10 #4
+06-backend/apps/billing/bulk_corrections.py :: rule or story id/register id :: case is : nothing executes without a recorded approval (BR-BIL-014, and the gate is server-side — US-BIL-017 T
+06-backend/apps/billing/correction_reasons.py :: rule or story id :: a correction case cites at least one reason code (BR-BIL-014). The reason is what the mechanism is DERIVED fro
+06-backend/apps/billing/correction_reasons.py :: rule or story id :: a correction's mechanism cannot be supplied ( was passed): it is DERIVED from the reason's class (BR-BIL-041).
+06-backend/apps/billing/correction_reasons.py :: rule or story id :: correction reason carries no class, so no mechanism can be derived from it (BR-BIL-041). The seeded reasons ar
+06-backend/apps/billing/correction_reasons.py :: rule or story id :: unknown correction class ; BR-BIL-041 defines .,
+06-backend/apps/billing/corrections.py :: register id/PO ruling or quote :: a goodwill credit EXCLUDES tax (PO 2026-08-11, OQ-105). Nothing on the original bill is reversed, so no tax co
+06-backend/apps/billing/corrections.py :: rule or story id :: bill has already been corrected and is not the latest document in its chain (BR-BIL-048). Open the case on its
+06-backend/apps/billing/corrections.py :: rule or story id :: bill is still a DRAFT. A draft is re-priced or discarded, not corrected — the correction workflow exists becau
+06-backend/apps/billing/corrections.py :: rule or story id :: bill is void: there is nothing to correct, because the customer was never billed. A void is not a correction a
+06-backend/apps/billing/corrections.py :: rule or story id :: the books refused the credit note reversing bill , so the correction did not execute and nothing was written (
+06-backend/apps/billing/corrections.py :: rule or story id :: the books refused the goodwill credit of on bill , so nothing was written (BR-BIL-011):
+06-backend/apps/billing/corrections.py :: rule or story id :: the rebill for could not be priced: . The credit note was NOT written — one bill is one transaction (BR-BIL-04
+06-backend/apps/billing/corrections.py :: rule or story id :: this reason does not change money, but recomputing bill moved (BR-BIL-043). A document correction reissues a p
+06-backend/apps/billing/corrections.py :: rule or story id/register id/PO ruling or quote :: this correction adds to a period that ended months ago, and the tenant's back-bill window is months (BR-BIL-01
+06-backend/apps/billing/custom_snapshot.py :: rule or story id :: apps..selectors. is not published, so no bill can know which tenant-defined fields belong on a document (B2 r1
+06-backend/apps/billing/custom_snapshot.py :: rule or story id :: custom field . is typed but holds , so it has no display string to stamp (BR-BIL-030: the snapshot holds strin
+06-backend/apps/billing/cut_bill.py :: register id :: customers has not published account_detail, so the first unbilled day of a cut account cannot be derived and n
+06-backend/apps/billing/decisions.py :: rule or story id :: / may not be taken in bulk (BR-BIL-003). A first-time waiver is a per-case, manual decision, and the reason is
+06-backend/apps/billing/decisions.py :: rule or story id :: apps.rating.selectors.charge_by_code is not published, so an applied late fee cannot name the charge code it b
+06-backend/apps/billing/decisions.py :: rule or story id :: charge code is not a live charge code of this tenant, so an applied late fee has no GL account to book to and
+06-backend/apps/billing/delivery_seam.py :: register id :: apps..services. does not accept ``, so this bill cannot be queued as the event it is () and this utility's Set
+06-backend/apps/billing/delivery_seam.py :: rule or story id :: apps..services. is not published, so this bill cannot leave a delivery record (BR-BIL-016). Billing may not wr
+06-backend/apps/billing/delivery_seam.py :: rule or story id :: bill carries no template pin, so its delivery row could not say what will be rendered (BR-BIL-026). The pin is
+06-backend/apps/billing/document_correction.py :: rule or story id :: a document correction may not change . Class D reissues the PAGE (name, address, labels, meter numbers, read d
+06-backend/apps/billing/document_correction.py :: rule or story id :: bill carries no locked document instance (BR-BIL-030), so there is nothing to correct a COPY of. Rendering a r
+06-backend/apps/billing/document_correction.py :: rule or story id :: bill carries no locked document instance and no reissue, so there is no issued document to reprint (BR-BIL-030
+06-backend/apps/billing/document_correction.py :: rule or story id :: bill is : only a bill that was actually sent has a document worth reissuing (BR-BIL-030).
+06-backend/apps/billing/document_correction.py :: rule or story id :: this case is class and a document reissue is class D only (BR-BIL-041). The mechanism is derived from the reas
+06-backend/apps/billing/documents.py :: rule or story id :: bill : custom field holds where BR-BIL-030 stores a display STRING. Nothing is coerced — `str()` on it would p
+06-backend/apps/billing/documents.py :: rule or story id :: bill carries no template pin and none was supplied, so there is no version to render on (BR-BIL-026). An issue
+06-backend/apps/billing/documents.py :: rule or story id :: bill carries payload version and this layout declares it can render (BR-BIL-031). The payload is a DATA contra
+06-backend/apps/billing/documents.py :: rule or story id :: bill has no locked document instance (BR-BIL-030), so there is nothing to render it FROM. Rendering it from li
+06-backend/apps/billing/documents.py :: rule or story id :: bill is pinned to template and this call asked for template . The pin is what makes what the customer was sent
+06-backend/apps/billing/documents.py :: rule or story id :: bill is pinned to template version and this call asked for version . BR-BIL-026: a reprint renders the pinned
+06-backend/apps/billing/documents.py :: rule or story id :: bill was refused by its layout () with : — so the document cannot be rendered, and BR-BIL-033 refuses the issu
+06-backend/apps/billing/fee_bill.py :: rule or story id :: apps.rating.selectors.charge_by_code is not published, so a charge-code fee cannot be priced or booked (BR-BIL
+06-backend/apps/billing/fee_bill.py :: rule or story id :: charge code has no GL account, so a fee raised on it could never be issued (BR-BIL-010: *charge codes carry th
+06-backend/apps/billing/fee_bill.py :: rule or story id/register id :: charge code is not a live charge code of this tenant, so no fee can be raised against it (BR-BIL-007). An unkn
+06-backend/apps/billing/final_bill.py :: register id/PO ruling or quote :: . PO 2026-08-12 (OQ-158) settles *everything outstanding*, so the prior balance is part of the settled base an
+06-backend/apps/billing/final_bill.py :: rule or story id :: account has no unit, so there is nothing to bill a final period for (BR-CUS-017).account_no
+06-backend/apps/billing/final_bill.py :: rule or story id :: apps.customers.selectors. is not published, so the interest accrued on this account's deposit cannot be read.
+06-backend/apps/billing/final_bill.py :: rule or story id :: invoice is typed , not 'final'. The deposit settles ONCE, on the final bill (BR-BIL-013); applying it to an or
+06-backend/apps/billing/final_bill.py :: rule or story id :: this final bill settles automatically as (remainder against a write-off threshold), so is not one of its paths
+06-backend/apps/billing/final_bill.py :: rule or story id/module path or source file :: account is already , and stage 1 refuses to price an account that is not billable (BR-CUS-055). The final bill
+06-backend/apps/billing/first_bill.py :: rule or story id :: account has no plan, so no deposit rule can be resolved for its first bill (BR-BIL-012 / BR-RAT-020). Stage 1
+06-backend/apps/billing/first_bill.py :: rule or story id :: account names no consumer category, so the deposit rule for its first bill cannot be resolved — `plan_deposit_
+06-backend/apps/billing/first_bill.py :: rule or story id :: apps.rating.selectors.charge_by_code is not published, so a first bill's connection charge cannot be resolved
+06-backend/apps/billing/first_bill.py :: rule or story id :: apps.rating.selectors.deposit_rule_for is not published, so the deposit a first bill must carry (BR-BIL-012) c
+06-backend/apps/billing/first_bill.py :: rule or story id :: charge code carries a amount rule, which needs a basis this bill has not stated, so no connection-charge amoun
+06-backend/apps/billing/first_bill.py :: rule or story id :: charge code is not a live charge code of this tenant, so the connection charge cannot be placed on account 's
+06-backend/apps/billing/first_bill.py :: rule or story id :: the deposit already paid by account could not be read (apps.payments.credit.deposit_payments_for_account is no
+06-backend/apps/billing/first_bill.py :: rule or story id/register id :: account did not move in during → (move-in ), so this is not a first bill. `bill_type` is DERIVED from the move
+06-backend/apps/billing/first_bill.py :: rule or story id/register id/PO ruling or quote :: account has no prior read, so its first bill prices at the plan's MINIMUM for its consumer category, prorated
+06-backend/apps/billing/gather.py :: rule or story id :: account : has no occupying account and takes , so BR-CUS-170 puts its base charge on this owner's bill — and a
+06-backend/apps/billing/gather.py :: rule or story id :: account covers units (BR-CUS-068) and metering has not published unit_row/service_points_for, so the other cov
+06-backend/apps/billing/gather.py :: rule or story id :: account is a MASTER account whose premises holds unit(s) with no occupying account, and the reads that price t
+06-backend/apps/billing/gather.py :: rule or story id :: covered common area has no plan. BR-MET-040: a plan is REQUIRED, and this account's bill prices that area besi
+06-backend/apps/billing/gather.py :: rule or story id :: service : no tariff version is in force on . BR-RAT-007: a bill prices on the version in force at the SERVICE
+06-backend/apps/billing/gather.py :: rule or story id :: service : this account's plan surcharges outside the city by × (BR-RAT-102) and nobody has recorded whether is
+06-backend/apps/billing/gather.py :: rule or story id :: unit 's plan is not published. BR-RAT-030: a draft plan has no prices a bill could be produced from.
+06-backend/apps/billing/gather.py :: rule or story id :: unit has no plan. BR-MET-040: a plan is REQUIRED — a unit without one blocks. The account belongs in the run's
+06-backend/apps/billing/gather.py :: rule or story id/register id :: account covers TWO common areas that both take (BR-CUS-068), and no signed rule says whether the second connec
+06-backend/apps/billing/gather.py :: rule or story id/register id :: account covers common areas on TWO DIFFERENT plans ( and ), and no signed rule says whose taxes, fees, discoun
+06-backend/apps/billing/gather.py :: rule or story id/register id :: account is a MASTER account (BR-CUS-068) and customers has not published covered_unit_ids, so WHICH common are
+06-backend/apps/billing/issue.py :: rule or story id :: a line () names no service, so its revenue account cannot be resolved (BR-BIL-010). The map is keyed on the se
+06-backend/apps/billing/issue.py :: rule or story id :: bill has no locked document instance (BR-BIL-030). It is stamped when the draft is priced, and a bill issued w
+06-backend/apps/billing/issue.py :: rule or story id :: bill has no payload_version (BR-BIL-031). The payload is a data CONTRACT and a renderer must know which shape
+06-backend/apps/billing/issue.py :: rule or story id :: bill has no template pin. BR-BIL-026 pins the template and its version AT ISSUE and a reprint renders that ver
+06-backend/apps/billing/issue.py :: rule or story id :: bill is already and cannot be issued again (BR-BIL-004). An issued bill is a fact about what a customer was to
+06-backend/apps/billing/issue.py :: rule or story id :: no ledger account carries the designation, so this first bill's security-deposit line cannot be stamped (BR-BI
+06-backend/apps/billing/issue.py :: rule or story id :: service has no revenue account configured, so its line cannot be stamped (BR-BIL-010). A human sets this on th
+06-backend/apps/billing/issue.py :: rule or story id :: the charge code behind this bill's fee line () has no GL account, so the line cannot be stamped and this bill
+06-backend/apps/billing/issue.py :: rule or story id :: the cycle carries no bill date and due-days pair, so the due date cannot be derived (BR-BIL-024). It is never
+06-backend/apps/billing/issue.py :: rule or story id :: the cycle's due_days is . BR-MET-009 requires due_days ≥ 0; a due date before the bill date would make every b
+06-backend/apps/billing/issue.py :: rule or story id/PO ruling or quote :: draft carries no number. BR-BIL-063 (PO ruling 2026-08-11) allocates the number when the DRAFT is created — is
+06-backend/apps/billing/issue.py :: rule or story id/PO ruling or quote :: no ledger account carries the designation, so a minimum-bill adjustment line cannot be stamped (BR-BIL-010). T
+06-backend/apps/billing/issue.py :: rule or story id/register id :: apps..selectors. is not published, so a fee line cannot resolve its charge code's GL account (BR-BIL-010 / DEF
+06-backend/apps/billing/issue.py :: rule or story id/register id :: is mapped to a ledger account that is not this tenant's, or is one they have deactivated (IS-1), so this bill'
+06-backend/apps/billing/issue.py :: rule or story id/register id :: run has no authorised release, so nothing may be issued (BR-BIL-058, US-BIL-005 TC-14). The gate is five separ
+06-backend/apps/billing/issue.py :: rule or story id/register id :: the charge code behind this bill's fee line () points at a ledger account that is not this tenant's, or is one
+06-backend/apps/billing/issue.py :: rule or story id/register id/PO ruling or quote :: a tax line () names no tax, so the authority it was collected for is unknown and its liability account cannot
+06-backend/apps/billing/issue.py :: rule or story id/register id/PO ruling or quote :: apps..selectors. / / are not published, so no line can resolve its GL account (BR-BIL-010). The ledger owns th
+06-backend/apps/billing/issue.py :: rule or story id/register id/PO ruling or quote :: apps..selectors. is not published, so a tax line cannot resolve the authority's liability account (BR-BIL-010
+06-backend/apps/billing/issue.py :: rule or story id/register id/PO ruling or quote :: has no liability account, so this bill's tax line () cannot be stamped and this bill does not issue (BR-BIL-01
+06-backend/apps/billing/issue.py :: rule or story id/register id/module path or source file/PO ruling or quote :: a fee line () names no charge code, so its GL account cannot be resolved. BR-BIL-010 gives every charge code i
+06-backend/apps/billing/late_fee.py :: PO ruling or quote :: business-day grace needs the tenant's holiday calendar: pass holidays=apps.billing.tenancy_seam.holiday_dates(
+06-backend/apps/billing/late_fee.py :: rule or story id :: late-fee grace of days is outside the BR-BIL-008 range -.
+06-backend/apps/billing/late_fee.py :: rule or story id :: unknown late-fee grace mode ; BR-BIL-002 defines . A mode the code does not implement stops the assessment — i
+06-backend/apps/billing/midperiod.py :: rule or story id :: account : is billed by a COUNT of its assets on the unit (BR-RAT-090) and no count could be determined in . Th
+06-backend/apps/billing/midperiod.py :: rule or story id :: account : still has no usable read in and no decision. BR-BIL-015 makes that a choice — estimate it, hold the
+06-backend/apps/billing/midperiod.py :: rule or story id/register id :: account covers units (BR-CUS-068) and this period contains a plan or rate boundary. BR-RAT-114 cuts a period o
+06-backend/apps/billing/one_time.py :: hard-won law :: unknown one-time bill kind . The tab offers ; the prototype's fourth option 'Deposit invoice' is not among the
+06-backend/apps/billing/one_time.py :: rule or story id :: a bill is priced PER SUB-PERIOD against the tariff version in force at the time (BR-BIL-018), so it needs the
+06-backend/apps/billing/one_time.py :: rule or story id :: a bill must carry a reason code (BR-BIL-018). Charging a customer for a period they were never billed for is a
+06-backend/apps/billing/one_time.py :: rule or story id :: customers has not published account_detail, so the consumer category the first bill's deposit rule is keyed on
+06-backend/apps/billing/one_time.py :: rule or story id/register id :: customers has not published account_detail, so the move-in date a first bill is derived from cannot be read (U
+06-backend/apps/billing/one_time.py :: rule or story id/register id :: this account records no move-in date, so no first bill can be derived for it (US-BIL-010 TC-6 — the type follo
+06-backend/apps/billing/pending.py :: rule or story id :: a catch-up sub-run names the held accounts it is going to bill (BR-BIL-015). A sub-run with no scope would occ
+06-backend/apps/billing/pending.py :: rule or story id :: a phase-3 mark-for-later records the STAGE that broke (BR-BIL-040/053). A queue row with no stage tells a cler
+06-backend/apps/billing/pending.py :: rule or story id/register id :: account(s) in this catch-up were never held on run — . A sub-run's scope must be a SUBSET of its parent's unre
+06-backend/apps/billing/pipeline.py :: rule or story id :: bill carries a stamped instance with no total, so it cannot be reconciled to its rows (BR-BIL-032). The payloa
+06-backend/apps/billing/pipeline.py :: rule or story id :: bill does not tie out (BR-BIL-032): the stamped instance says and , and the rows say over line(s) — a delta of
+06-backend/apps/billing/pipeline.py :: rule or story id/register id :: there is no stage ; BR-BIL-037 (as amended 2026-08-22, DEF-502) names eight ().,
+06-backend/apps/billing/posting_seam.py :: PO ruling or quote :: no live ledger account carries the designation, so a goodwill credit has nowhere to land. The credit is raised
+06-backend/apps/billing/posting_seam.py :: register id/PO ruling or quote :: GL account sums to on this bill — a NEGATIVE posting bucket. §7 makes the buckets CREDITS (DR AR / CR per-GL b
+06-backend/apps/billing/posting_seam.py :: rule or story id :: apps.. publishes no , so this bill's balanced posting handoff cannot be emitted (BR-BIL-011). Billing may not
+06-backend/apps/billing/posting_seam.py :: rule or story id :: apps.. publishes no / , so this final bill's deposit legs cannot be emitted (US-LED-001's contract table, rows
+06-backend/apps/billing/posting_seam.py :: rule or story id :: bill does not foot: its stored total is and its stamped lines sum to across GL bucket(s) — a difference of . T
+06-backend/apps/billing/posting_seam.py :: rule or story id :: bill produced no posting buckets, so there is nothing to credit against its AR debit (BR-BIL-011). A journal e
+06-backend/apps/billing/posting_seam.py :: rule or story id :: line of () carries no GL account, so it cannot be placed in a posting bucket (BR-BIL-010 / BR-BIL-011). The st
+06-backend/apps/billing/posting_seam.py :: rule or story id :: the books refused bill , so it did not issue and nothing was posted (BR-BIL-011): invoice_no
+06-backend/apps/billing/posting_seam.py :: rule or story id :: the books refused this final bill's deposit, so it did not issue and nothing was posted (BR-BIL-013):
+06-backend/apps/billing/posting_seam.py :: rule or story id/register id/PO ruling or quote :: , so its deposit cannot be applied (BR-BIL-013). The deposit settles against *everything outstanding* (PO 2026
+06-backend/apps/billing/posting_seam.py :: rule or story id/register id/PO ruling or quote :: no live ledger account carries the designation, so this bill's posting handoff has no debit side (BR-BIL-011 —
+06-backend/apps/billing/rating_seam.py :: register id :: no outstanding balance reported for — the open bills stated no composition, so no breakdown exists to report (
+06-backend/apps/billing/release.py :: register id/PO ruling or quote :: this run holds bill(s) marked `corrected` that no bill replaces — . The chain column exists (, migration 0017,
+06-backend/apps/billing/release.py :: rule or story id :: release cannot be released: not confirmed (BR-BIL-058). The gate is checked here AND at issue on purpose — a f
+06-backend/apps/billing/release.py :: rule or story id :: release refused: not confirmed (BR-BIL-058). The gate is five separately recorded facts — compliance, email ma
+06-backend/apps/billing/release.py :: rule or story id :: this run's bills are in and it carries credit note(s) in . There is no lawful subtraction: less is a number wi
+06-backend/apps/billing/resolution_switch.py :: rule or story id :: names without . BR-BIL-873: the chain produces ONE base charge from R3 and R4 together — R4's charge code wher
+06-backend/apps/billing/resolution_switch.py :: rule or story id :: the ruled path resolves one answer per service and this bill carries more than one tariff for (a master accoun
+06-backend/apps/billing/resolution_switch.py :: rule or story id :: this bill covers several units on one master account (BR-CUS-068) and the ruled path resolves one connection.
+06-backend/apps/billing/runs.py :: rule or story id :: account : is billed by a COUNT of its assets on the unit (BR-RAT-090) and no count could be determined. The bi
+06-backend/apps/billing/runs.py :: rule or story id :: account : still has no usable read and no decision. BR-BIL-015 makes that a choice — estimate it, hold the acc
+06-backend/apps/billing/runs.py :: rule or story id :: account is not in this run's ready set, so there is nothing to retry. An account that was never prepared canno
+06-backend/apps/billing/settings_seam.py :: rule or story id :: apps..selectors. is not published, so the tenant's budget-billing parameters cannot be read. Budget billing de
+06-backend/apps/billing/settings_seam.py :: rule or story id :: apps..selectors. is not published, so the tenant's finance controls cannot be read. This does NOT fall back to
+06-backend/apps/billing/settings_seam.py :: rule or story id :: the tenant's is , which is not a money amount. A settlement is refused rather than compared against a threshol
+06-backend/apps/billing/settings_seam.py :: rule or story id :: the tenant's is , which is not a whole number of months. The back-bill window is refused rather than measured
+06-backend/apps/billing/single.py :: rule or story id :: account is held for a period overlapping → (exclusion , reason ). BR-BIL-055 settles it in a catch-up sub-run;
+06-backend/apps/billing/single.py :: rule or story id :: account is not in the billable set for its unit (BR-CUS-055). A pending-activation or closed account is correc
+06-backend/apps/billing/single_correction.py :: rule or story id :: case pins bills and this is the SINGLE-bill surface (US-BIL-015). A multi-bill case is US-BIL-016's — its appr
+06-backend/apps/billing/single_correction.py :: rule or story id :: the impact preview is missing required section(s) — BR-BIL-044 requires all nine and none is collapsible away.
+06-backend/apps/billing/single_correction.py :: rule or story id/register id :: case is : nothing executes without a recorded approval (BR-BIL-014, and the gate is server-side — TC-4). The p
+06-backend/apps/billing/stages/assemble_document.py :: rule or story id :: account : a line () does not say which service it charged for. BR-BIL-010 resolves that line's revenue account
+06-backend/apps/billing/stages/assemble_document.py :: rule or story id :: account : a line was priced for service , which is not in the active platform catalog (BR-TEN-025). The line c
+06-backend/apps/billing/stages/measure_consumption.py :: rule or story id :: account , service : this service is billed by a COUNT of its assets (BR-RAT-090) and its tariff states no bill
+06-backend/apps/billing/stages/resolve_subscription.py :: rule or story id :: account : unknown behaviour class . BR-CUS-055 defines . A class the code does not implement stops this accoun
+06-backend/apps/billing/stages/resolve_subscription.py :: rule or story id :: account has no plan. BR-MET-040: a plan is REQUIRED — a unit without one blocks with a message. The account be
+06-backend/apps/billing/stages/resolve_subscription.py :: rule or story id :: account is and is not billed. This is a scope decision the run makes BEFORE the pipeline; reaching stage 1 wit
+06-backend/apps/billing/templates_service.py :: register id :: is not one of the platform's printed- layouts. The PO ruled on 2026-08-12 (OQ-149) that v1 offers the platform
+06-backend/apps/billing/templates_service.py :: rule or story id :: a does not create template drafts. BR-BIL-027 gives drafting and test-printing to ; publishing is narrower sti
+06-backend/apps/billing/templates_service.py :: rule or story id :: is not a consumer category; BR-BIL-025 names . A template with no category is the tenant's fallback for its ty
+06-backend/apps/billing/templates_service.py :: rule or story id :: is not a printed template type; this table holds . Email, SMS and contract templates are notifications' (US-NO
+06-backend/apps/billing/templates_service.py :: rule or story id :: publishing a bill template is a action and this actor is (BR-BIL-027). A Billing Clerk drafts and test-prints;
+06-backend/apps/billing/templates_service.py :: rule or story id :: template has no PUBLISHED version (BR-BIL-026). A draft is test-printable but never pinned: a bill pinned to a
+06-backend/apps/billing/templates_service.py :: rule or story id :: this tenant has no template for consumer category and no fallback (BR-BIL-025). A bill cannot be issued withou
+06-backend/apps/billing/templates_service.py :: rule or story id :: version is PUBLISHED. Publish a replacement or archive it — a template whose live version simply vanished woul
+06-backend/apps/billing/templates_service.py :: rule or story id :: version is and only a DRAFT is published (BR-BIL-026). Re-publishing an archived version would make the same v
+06-backend/apps/billing/templates_service.py :: rule or story id :: version of is pinned by issued bill(s) and can never be deleted (BR-BIL-027, the audit-lock). Each of those bi
+06-backend/apps/billing/templates_service.py :: rule or story id :: whether version is pinned by a printed bill cannot be determined: apps.notifications.selectors.template_pin_co
+06-backend/apps/billing/templates_service.py :: rule or story id/register id :: this tenant has no bill template to put a layout on. One is planted at provisioning (DEF-123) and choosing a l
+06-backend/apps/billing/tenancy_seam.py :: PO ruling or quote :: apps..selectors. is not published, so the tenant's public holidays cannot be read. This does NOT fall back to
+06-backend/apps/billing/tenancy_seam.py :: PO ruling or quote :: the tenant holiday calendar carries , which is not an ISO date. The late-fee grace clock cannot skip a day it
+06-backend/apps/billing/tenancy_seam.py :: module path or source file :: the tenant holiday calendar carries a where a date was expected. Nothing is guessed — see apps/billing/tenancy
+06-backend/apps/billing/tenancy_seam.py :: rule or story id :: apps..selectors. is not published, so a bill line cannot name the service it charged for. This does NOT fall b
+06-backend/apps/customers/disconnects.py :: rule or story id :: a cut is scheduled after TIER 3 · 48-HOUR, the certified final notice (BR-CUS-039: certified mail is REQUIRED
+06-backend/apps/customers/disconnects.py :: rule or story id :: a proof of service needs its reference — the tracking or article number of the posted item. BR-CUS-100 names i
+06-backend/apps/customers/disconnects.py :: rule or story id :: an account that closes owing nothing has nothing to chase and no ladder runs. BR-CUS-030's `dunning stops` is
+06-backend/apps/customers/disconnects.py :: rule or story id :: is not a sequence. BR-CUS-082 names two and only two: a SERVICE sequence that can end in a cut, and a COLLECTI
+06-backend/apps/customers/disconnects.py :: rule or story id :: the in-app bell is how this notice was SENT, not proof that it was SERVED. BR-CUS-100: *'IN-APP DOES NOT SATIS
+06-backend/apps/customers/disconnects.py :: rule or story id :: the tenant's currency could not be read, and `disconnect_cases.currency` is CHAR(3) derived from the tenant (B
+06-backend/apps/customers/disconnects.py :: rule or story id :: the tier-3 notice is recorded as served by , and `DSC-02.3` marks certified mail *'Required at tier 3 — proof
+06-backend/apps/customers/disconnects.py :: rule or story id :: this account is closed. There is no live service to disconnect, so a cut is not a step that exists for it (BR-
+06-backend/apps/customers/disconnects.py :: rule or story id/register id/PO ruling or quote :: a payment-plan protection has no expiry date of its own. BR-CUS-043 holds it *while the plan is active AND cur
+06-backend/apps/customers/disconnects.py :: rule or story id/register id/PO ruling or quote :: this is a COLLECTIONS sequence and it cannot reach a cut. BR-CUS-082 (PO 2026-08-24, closing OQ-346): *'a clos
+06-backend/apps/customers/payment_plan.py :: rule or story id :: a current bill of is negative. A credit balance is not a bill and is not settled by a payment (BR-PAY-012).
+06-backend/apps/customers/payment_plan.py :: rule or story id :: a payment of is negative. Money coming back OUT of an account is a refund or a reversal, each of which is its
+06-backend/apps/customers/payment_plan.py :: rule or story id :: a plan activates on signature from ; this plan is . Activation is the CUSTOMER's signature and nothing else (B
+06-backend/apps/customers/payment_plan.py :: rule or story id :: an instalment of is negative; BR-CUS-043 requires every instalment to be more than 0.00.
+06-backend/apps/customers/payment_plan.py :: rule or story id :: choose at least one way to send the agreement — email for e-signature, an SMS signing link, or print for count
+06-backend/apps/customers/payment_plan.py :: rule or story id :: every instalment must be more than 0.00 — a zero or negative row is a date on a schedule with no payment behin
+06-backend/apps/customers/payment_plan.py :: rule or story id :: the first instalment falls on , which is not after . A schedule whose first row is already due is one the cust
+06-backend/apps/customers/payment_plan.py :: rule or story id :: the schedule must equal the total to spread: instalment(s) totalling plus a down payment of comes to , and the
+06-backend/apps/customers/payment_plan.py :: rule or story id :: this account already has a live payment plan. One live plan per account (BR-CUS-043 / A3) — a second would giv
+06-backend/apps/customers/payment_plan.py :: rule or story id :: those edits total of a spread, which leaves nothing for the final instalment. Reduce an earlier row or remove
+06-backend/apps/customers/payment_plan.py :: rule or story id/register id :: a payment plan needs at least one instalment (US-CUS-018 TC-6).
+06-backend/apps/customers/payment_plan.py :: rule or story id/register id :: a payment plan needs at least one instalment; was asked for (US-CUS-018 TC-6).
+06-backend/apps/customers/payment_plan.py :: rule or story id/register id :: the balance to spread () is more than the account owes (). A plan spreads a debt that exists (US-CUS-018 TC-6)
+06-backend/apps/customers/payment_plan.py :: rule or story id/register id :: there is nothing to spread: the balance to spread must be more than 0.00 (US-CUS-018 TC-6).
+06-backend/apps/customers/payment_plan_service.py :: rule or story id :: every schedule edit names the instalment number it changes; one of them does not. The sequence is the customer
+06-backend/apps/customers/payment_plan_service.py :: rule or story id :: the payment plan cannot be saved: `payment_plans` and `payment_plan_installments` are payments-owned (B2 §2, E
+06-backend/apps/customers/payment_plan_service.py :: rule or story id :: the schedule edits must be a list of rows, each naming the instalment it changes (US-CUS-018 §1 step 2).
+06-backend/apps/customers/payment_plan_service.py :: rule or story id :: the signature cannot be recorded: `apps.payments.services.activate_payment_plan` is not published and `payment
+06-backend/apps/customers/seams.py :: rule or story id/register id :: apps.billing.services.raise_and_issue_charge_fee is not published, so the reconnection fee cannot be charged (
+06-backend/apps/customers/seams.py :: rule or story id/register id/PO ruling or quote :: apps.billing.services.raise_and_issue_cut_bill is not published, so the final bill a disconnection raises AT t
+06-backend/apps/customers/services.py :: rule or story id :: customers owns no reference list (BR-TEN-031)
+06-backend/apps/ledger/billing_seam.py :: register id :: is not one of . OQ-202 asks which of the two the billed denominator uses and is OPEN; this seam computes eithe
+06-backend/apps/ledger/close.py :: rule or story id :: a period is resolved from a DATE (BR-TEN-043 — the caller names the business event's day; nothing here reads a
+06-backend/apps/ledger/close.py :: rule or story id :: apps.tenancy.selectors.current_period is not published, so the ledger cannot tell which fiscal period a date b
+06-backend/apps/ledger/close.py :: rule or story id :: closed_at must be a datetime supplied by the caller (BR-TEN-043): the moment a period shut is a business fact,
+06-backend/apps/ledger/close.py :: rule or story id :: every fiscal period from onward is closed for the next periods, so a late-dated event has nowhere open to land
+06-backend/apps/ledger/close.py :: rule or story id :: reopened_at must be a datetime supplied by the caller (BR-TEN-043).
+06-backend/apps/ledger/close.py :: rule or story id :: reopening a closed period needs a REASON (BR-LED-006, *reason + audit*). A reopened month can receive entries
+06-backend/apps/ledger/close.py :: rule or story id :: the close checklist is not complete — . BR-LED-018: a month closes with WARN + CONFIRM, so this is not a refus
+06-backend/apps/ledger/close.py :: rule or story id :: this tenant has no fiscal settings, so no period boundary exists to close (BR-TEN-022 / US-TEN-006: fiscal yea
+06-backend/apps/ledger/cost_capture.py :: register id :: a register search needs at least characters (IS-3): a one-character term scans every row of the table to retur
+06-backend/apps/ledger/cost_capture.py :: register id :: no live chart account belongs to this tenant. A deactivated account is not a valid target either (IS-1 deactiv
+06-backend/apps/ledger/cost_capture.py :: register id/PO ruling or quote :: an after the invoice's period has CLOSED needs a REASON. PO 2026-08-16 (OQ-203), verbatim: 'Yes it can be corr
+06-backend/apps/ledger/cost_capture.py :: register id/PO ruling or quote :: the invoice date of a purchase in a CLOSED period cannot be changed here. is dated and its period is closed; m
+06-backend/apps/ledger/cost_capture.py :: rule or story id :: a captured supplier invoice must carry a POSITIVE amount; got . An invoice for nothing is not an invoice, and
+06-backend/apps/ledger/cost_capture.py :: rule or story id :: a captured supplier invoice must name its supplier (BR-LED-029).
+06-backend/apps/ledger/cost_capture.py :: rule or story id :: a captured supplier invoice must name its supplier. The field is FREE TEXT and there is no vendor master (BR-L
+06-backend/apps/ledger/cost_capture.py :: rule or story id :: a unit () was given with no volume. Half a quantity is not a quantity — omit BOTH for a cost-only invoice, whi
+06-backend/apps/ledger/cost_capture.py :: rule or story id :: a void needs a REASON, and the requirement is the point of the feature. The row stays visible in the register
+06-backend/apps/ledger/cost_capture.py :: rule or story id :: a volume () was given with NO UNIT. CLAUDE.md rule 3: consumption is always recorded with an explicit unit and
+06-backend/apps/ledger/cost_capture.py :: rule or story id :: cannot be edited. BR-LED-034 makes the CAPTURED FACTS editable while the period is open (); status, the void t
+06-backend/apps/ledger/cost_capture.py :: rule or story id :: invoice_date must be a date supplied by the caller. It is what the SUPPLIER wrote on the document, so nothing
+06-backend/apps/ledger/cost_capture.py :: rule or story id :: is not one of . There is no 'approved', 'scheduled' or 'paid' status, BY RULE (BR-LED-028).
+06-backend/apps/ledger/cost_capture.py :: rule or story id :: no GL account was given and none is seeded for , so this capture has nowhere to be classified. BR-LED-028 make
+06-backend/apps/ledger/cost_capture.py :: rule or story id :: supplier invoice is VOIDED and cannot be edited. BR-LED-035 makes a correction a void plus a FRESH CAPTURE — n
+06-backend/apps/ledger/cost_capture.py :: rule or story id :: voided_at must be a datetime supplied by the caller (BR-TEN-043): the moment a capture was withdrawn is a busi
+06-backend/apps/ledger/cost_capture.py :: rule or story id/register id :: the currency must be a three-letter CHAR(3) code; got . CLAUDE.md rule 2 / DB-3 pairs every money column with
+06-backend/apps/ledger/cost_capture.py :: rule or story id/register id :: this tenant's books are kept in and the capture states . BR-TEN-042 locks a tenant to one currency, and DEF-08
+06-backend/apps/ledger/cost_capture.py :: rule or story id/register id/PO ruling or quote :: does not exist in this product and will not, BY RULE. BR-LED-028 (PO 2026-08-12, OQ-188): the product is the s
+06-backend/apps/ledger/cost_reconciliation.py :: rule or story id :: the unaccounted-for ratio divides by the BOUGHT volume and it is zero — the caller must report `bought_volume_
+06-backend/apps/ledger/deposit_legs.py :: rule or story id/register id :: this account's deposit is worth and its closing position is , so applying the deposit in full would leave in A
+06-backend/apps/ledger/exports.py :: rule or story id :: created_at must be a datetime supplied by the caller (BR-TEN-043).
+06-backend/apps/ledger/exports.py :: rule or story id :: is not a dimension extract. BR-LED-004 names three — by service, by premises, by authority.
+06-backend/apps/ledger/exports.py :: rule or story id :: is not one of . BR-LED-017 (PO L-1, *"keep it flexible"*) offers ONE summary JE per closed period or WEEKLY JE
+06-backend/apps/ledger/exports.py :: rule or story id :: is not one of — BR-LED-004 names four targets: QuickBooks Online, Xero, generic CSV and QuickBooks Desktop IIF
+06-backend/apps/ledger/exports.py :: rule or story id :: the period … is NOT CLOSED, so it may not be exported (BR-LED-017, PO L-3b: *the ERP never receives numbers th
+06-backend/apps/ledger/exports.py :: rule or story id :: the window … is already covered for by batch ( … , sent ). BR-LED-004: batches are recorded and IDEMPOTENT — n
+06-backend/apps/ledger/exports.py :: rule or story id :: the window … was recorded for by another request while this one was running (BR-LED-004, DB-12's unique key).
+06-backend/apps/ledger/exports.py :: rule or story id/register id :: export batch is not one of this tenant's batches (US-LED-016 TC-7).
+06-backend/apps/ledger/exports.py :: rule or story id/register id :: the period does not FOOT — debits <> credits (difference ). BR-LED-007 makes drift a RELEASE BLOCKER with no d
+06-backend/apps/ledger/exports.py :: rule or story id/register id :: these accounts have no and addresses accounts by that ref: . BR-LED-014 puts the export codes on the GL mappin
+06-backend/apps/ledger/journal.py :: rule or story id :: a remittance needs its filing CONFIRMATION REF (BR-LED-019, CONFIRMED PO L-4 — *remittance records carry a fil
+06-backend/apps/ledger/journal.py :: rule or story id :: account () is not in the signed tax-payable series, so a remittance may not debit it. B5 line 74 ❄️: *2200-ser
+06-backend/apps/ledger/journal.py :: rule or story id :: journal entry is , not posted. A DRAFT is edited or deleted directly (BR-LED-003 — drafts are freely editable
+06-backend/apps/ledger/journal.py :: rule or story id :: remitting basis is not one of (BR-LED-002 — BOTH bases are always computed and a per-authority setting picks w
+06-backend/apps/ledger/journal.py :: rule or story id/register id :: journal entry has already been reversed by . An entry reverses ONCE (US-LED-013 TC-6) — a second mirror would
+06-backend/apps/ledger/journal.py :: rule or story id/register id :: journal entry is not one of this tenant's entries (US-LED-013 TC-7). Nothing is reversed and nothing is report
+06-backend/apps/ledger/journal.py :: rule or story id/register id :: ledger account is not a LIVE account of this tenant's own chart (US-LED-014 TC-8). It belongs to another tenan
+06-backend/apps/ledger/journal.py :: rule or story id/register id :: no live ledger account carries the designation, so this remittance has no credit side. Resolved BY DESIGNATION
+06-backend/apps/ledger/journal.py :: rule or story id/register id :: reverse + repost needs a REASON (BR-LED-003; US-LED-013 TC-3: *the click demands a reason*). The original entr
+06-backend/apps/ledger/manual_je.py :: rule or story id :: as_of must be a date supplied by the caller (BR-TEN-043 — nothing in a money path reads a clock, gate G6). A s
+06-backend/apps/ledger/manual_je.py :: rule or story id :: journal entry type is not one of . S57 offers Standard / Accrual / Reversing (A1 r2), and the choice is not co
+06-backend/apps/ledger/manual_je.py :: rule or story id/register id :: journal entry is not one of this tenant's entries (US-LED-011 TC-7). Nothing is posted and nothing is reported
+06-backend/apps/ledger/manual_je.py :: rule or story id/register id :: posting a journal entry needs a MEMO (BR-LED-003: *balanced required at post; reason + audit*; US-LED-011 TC-4
+06-backend/apps/ledger/opening_balances.py :: register id :: a cutover batch id is required to key an opening balance (CLAUDE.md rule 6). GT-16's identity is *per (batch,
+06-backend/apps/ledger/opening_balances.py :: register id :: cutover batch does not tie out: AR debits against opening-clearing credits , a difference of . GT-16 (❄️ finan
+06-backend/apps/ledger/opening_balances.py :: rule or story id :: account 's opening entry has no cutover date. BR-CUS-049 dates these entries AT CUTOVER and BR-TEN-043 forbids
+06-backend/apps/ledger/opening_balances.py :: rule or story id/register id :: account carries an opening balance of , which is a CREDIT — the utility owes this customer money at cutover. B
+06-backend/apps/ledger/opening_balances.py :: rule or story id/register id/PO ruling or quote :: no live ledger account carries the designation, so a cutover batch has no (BR-CUS-049 — DR AR / CR opening-bal
+06-backend/apps/ledger/posting.py :: rule or story id :: entry_date must be a date — it is the BOOK date the trial balance groups by, and the Product Owner ruled on 20
+06-backend/apps/ledger/posting.py :: rule or story id :: journal entry is , not a draft. A posted entry is IMMUTABLE (hard rule 4 / BR-LED-003) and its only 'edit' is
+06-backend/apps/ledger/posting.py :: rule or story id :: journal entry is , not posted. A DRAFT is edited or deleted directly (BR-LED-003 — drafts are freely editable)
+06-backend/apps/ledger/posting.py :: rule or story id :: journal entry is and cannot be deleted. Hard rule 4: a posted entry is a financial record — the correction is
+06-backend/apps/ledger/posting.py :: rule or story id :: journal entry type is not one of (B2 addendum r13 #2). A typo'd type is an entry no report groups correctly, a
+06-backend/apps/ledger/posting.py :: rule or story id :: names no source document (source_type=, source_id=). BR-LED-001: *every journal line carries source_type + sou
+06-backend/apps/ledger/posting.py :: rule or story id :: posted_at must be a datetime supplied by the caller (BR-TEN-043): a resumed batch, a replay and a re-run must
+06-backend/apps/ledger/posting.py :: rule or story id :: the request is UNBALANCED — debits <> credits (difference ). CLAUDE.md rule 5 / BR-LED-003: a posted entry mus
+06-backend/apps/ledger/posting.py :: rule or story id/register id :: a posting key needs the source_type, the source_id AND the event (got , , ). US-LED-001 TC-6 wants 'one entry,
+06-backend/apps/ledger/posting.py :: rule or story id/register id :: a posting request carries no posting_key, so a replay could not be recognised and the same money event would l
+06-backend/apps/ledger/posting.py :: rule or story id/register id :: account has no resolvable unit → premises chain (), so this entry's lines cannot carry BR-LED-001's premises a
+06-backend/apps/ledger/posting.py :: rule or story id/register id :: journal entry is not one of this tenant's entries (US-LED-011 TC-7).
+06-backend/apps/ledger/posting.py :: rule or story id/register id :: journal entry is not one of this tenant's entries (US-LED-011 TC-7). Nothing is saved and nothing is reported
+06-backend/apps/ledger/posting.py :: rule or story id/register id :: journal entry is not one of this tenant's entries, so there is nothing to reverse. US-LED-003 TC-7: an entry i
+06-backend/apps/ledger/posting.py :: rule or story id/register id :: names ledger account , which is not a LIVE account of this tenant's own chart. It belongs to another tenant, h
+06-backend/apps/ledger/posting.py :: rule or story id/register id :: the draft is UNBALANCED — debits <> credits (gap ). BR-LED-003: *balanced required at post*. This is the serve
+06-backend/apps/ledger/posting.py :: rule or story id/register id/PO ruling or quote :: carries — MORE THAN TWO DECIMAL PLACES. BR-LED-025 (PO 2026-08-12, OQ-176's sitting, verbatim: *"Refuse and ma
+06-backend/apps/ledger/tenancy_seam.py :: register id/PO ruling or quote :: apps..selectors. is not published, so The ledger derives its service roll-up from attributes tenancy owns (PO
+06-backend/apps/metering/monthly_usage.py :: rule or story id/register id :: DEF-798: register is neither , nor a time-of-use window, nor a declared never-consumption register. A consumpt
+06-backend/apps/metering/monthly_usage.py :: rule or story id/register id :: OQ-358: carries reads in for one account and one service. BR-MET-106 says a month's figure carries ONE unit ex
+06-backend/apps/metering/quantities.py :: rule or story id :: consumption_from_registers: prior → current is a NEGATIVE read, not a register wrap (drop ; register_digits ).
+06-backend/apps/metering/quantities.py :: rule or story id/register id :: true_up_quantity: actual is in and previously_billed is in . A true-up is register arithmetic within ONE linea
+06-backend/apps/metering/services.py :: rule or story id :: metering owns no reference list (BR-TEN-031)
+06-backend/apps/notifications/delivery_ops.py :: rule or story id :: this tenant has `suppress_paper_on_bad_address` OFF, so paper is NOT held for bad-address accounts (BR-PAY-018
+06-backend/apps/notifications/delivery_ops.py :: rule or story id :: this tenant's collections settings carry no , so whether paper is suppressed for bad-address accounts cannot b
+06-backend/apps/notifications/dispatch_config.py :: rule or story id :: a send window of – ends before it starts. This is refused rather than read as 'wraps midnight': BR-NOT-009 exi
+06-backend/apps/notifications/dispatch_config.py :: rule or story id :: is not a dispatch setting. The editable set is (US-NOT-004 §5 + BR-NOT-022's four elections). Provider status
+06-backend/apps/notifications/dispatch_config.py :: rule or story id :: is on or off, not . It governs whether this platform makes provider calls on that channel at all (US-NOT-003),
+06-backend/apps/notifications/dispatch_config.py :: rule or story id :: is on or off, not . It is one of A15's four send-time elections (BR-NOT-022) — a default for whether the send
+06-backend/apps/notifications/dispatch_config.py :: rule or story id :: must be a time of day, not . BR-NOT-009's send window is wall-clock TENANT time — 08:00–21:00 by default — and
+06-backend/apps/notifications/dispatch_config.py :: rule or story id :: the dispatch batch size must be a whole number of messages, not . It is the size of each hand-off to a provide
+06-backend/apps/notifications/dispatch_config.py :: rule or story id/register id :: a dispatch batch size of would hand the provider nothing on every cycle (US-NOT-004 TC-6). The queue would fil
+06-backend/apps/notifications/dispatcher.py :: rule or story id :: a queue row cannot move → . The lifecycle is forward-only (BR-NOT-005): queued → sent → delivered | failed | b
+06-backend/apps/notifications/dispatcher.py :: rule or story id :: is not a delivery channel. v1 is (r12 #16); BR-NOT-010 keeps door-hanger out until v2.,
+06-backend/apps/notifications/frozen_documents.py :: rule or story id/PO ruling or quote :: queue row () was about to be marked `sent` with no frozen artefact behind it. BR-NOT-027 (PO 2026-08-30) makes
+06-backend/apps/notifications/notices.py :: rule or story id :: is not a tone. BR-PAY-035 fixes three — — and states that *'free-text tones do not exist'*: the tone is not a
+06-backend/apps/notifications/notices.py :: rule or story id :: the 48-hour final notice requires certified mail, so the print channel cannot be omitted and SMS never stands
+06-backend/apps/notifications/notices.py :: rule or story id :: this disconnect notice prints a {reconnect_fee} and no reconnect fee was supplied. The figure comes from the t
+06-backend/apps/notifications/notices.py :: rule or story id :: this tenant's collections settings carry no ladder intervals, so a dunning letter has no day number to print.
+06-backend/apps/notifications/notices.py :: rule or story id/register id :: tone maps to the step, which is a REGULATED ladder step: BR-NOT-008 says it *'ALWAYS renders the disconnect-no
+06-backend/apps/notifications/rendering.py :: rule or story id :: is not a template class this platform knows. The known set is (A19 r8's sixteen + BR-NOT-004's four contracts
+06-backend/apps/notifications/rendering.py :: rule or story id/register id :: queue row carries no pinned template version (code=, id=, version=). There is no path in this module that rend
+06-backend/apps/notifications/rights_footer.py :: rule or story id :: cannot be used in a rights clause. One footer prints on all three disconnection notices — the 10-day warning,
+06-backend/apps/notifications/rights_footer.py :: rule or story id :: is not a rights clause. The footer has five, named by BR-NOT-015 and by the ruling that authorised these defau
+06-backend/apps/notifications/rule_service.py :: rule or story id :: is not a language mode. The set is (BR-NOT-006).,
+06-backend/apps/notifications/rule_service.py :: rule or story id :: the send time must be a time of day, not . It is WALL-CLOCK tenant time, the same as BR-NOT-009's send window.
+06-backend/apps/notifications/seed_templates.py :: rule or story id :: is a CONTRACT class and cannot be seeded. BR-NOT-002 makes every contract version effective-dated and there is
+06-backend/apps/notifications/sender_config.py :: register id :: is not a sender setting. The editable set is (CR-009 C-12). The dispatch switches live on the dispatch-config
+06-backend/apps/notifications/services.py :: rule or story id :: a is queued with its template VERSION pinned (BR-BIL-026): a reprint renders the pinned version forever, and a
+06-backend/apps/notifications/services.py :: rule or story id :: a queue row needs the id of the document it is delivering (US-NOT-001 §5 marks the source ref REQUIRED). It is
+06-backend/apps/notifications/services.py :: rule or story id :: a queue row says what it will be rendered from — the template CODE, or the pinned id + version (US-NOT-001 §1)
+06-backend/apps/notifications/services.py :: rule or story id :: copy_no is negative. 0 is the delivery record BR-BIL-016 mandates and 1, 2, … are the deliberate extra copies
+06-backend/apps/notifications/services.py :: rule or story id :: unknown delivery channel(s) . v1 channels are (r12 #16, US-NOT-003 §4); BR-NOT-010 keeps door-hanger out until
+06-backend/apps/notifications/settings_api.py :: register id :: is not a sender setting. The editable set is (CR-009 C-12)., ,
+06-backend/apps/notifications/settings_api.py :: rule or story id :: is not a dispatch setting. The editable set is (US-NOT-004 §5)., ,
+06-backend/apps/notifications/template_service.py :: rule or story id :: a variant needs a language, or the sentinel for the tenant's own default-language variant (BR-NOT-006). An emp
+06-backend/apps/notifications/template_service.py :: rule or story id :: is a BILLING designer (S91–S93, US-BIL-021) and its versions live in `bill_templates` / `bill_template_version
+06-backend/apps/notifications/template_service.py :: rule or story id :: is a contract template and every version needs an `effective_from` (BR-NOT-002: *'generation picks the version
+06-backend/apps/notifications/template_service.py :: rule or story id :: is in the group and cannot carry an effective date. BR-NOT-002 makes CONTRACT templates effective-date version
+06-backend/apps/notifications/template_service.py :: rule or story id :: is not a consumer category. BR-NOT-001 names *'plus a default fallback'* (), and they are spelled as `account_
+06-backend/apps/notifications/template_service.py :: rule or story id :: the account's override variant (, , ) has no published version. Nothing is rendered from a draft (BR-BIL-027)
+06-backend/apps/notifications/template_service.py :: rule or story id :: version is already . Only a draft is published, and a published version is never re-published: the lifecycle i
+06-backend/apps/notifications/template_service.py :: rule or story id :: version is and can never be deleted. A published or archived version is what an issued document renders from (
+06-backend/apps/notifications/template_service.py :: rule or story id :: version is pinned by sent message(s) and is audit-locked (BR-BIL-027). A pinned version can never be deleted:
+06-backend/apps/notifications/templates_api.py :: register id :: is not a template class this platform knows. The catalog lists classes; a class is platform vocabulary and is
+06-backend/apps/notifications/templates_api.py :: rule or story id/register id :: Name the version to act on, by id. There is no "latest" path anywhere in this module (BR-BIL-026, US-NOT-005 T
+06-backend/apps/notifications/tenancy_seam.py :: rule or story id :: apps..selectors. is not published, so this tenant's collection-ladder intervals cannot be read. Nothing here f
+06-backend/apps/notifications/tenancy_seam.py :: rule or story id :: apps..selectors. is not published, so this tenant's timezone cannot be read. BR-NOT-009's send window is 08:00
+06-backend/apps/notifications/tenancy_seam.py :: rule or story id :: this tenant's Regional settings carry no timezone, so BR-NOT-009's send window has no clock to be evaluated on
+06-backend/apps/notifications/tenancy_seam.py :: rule or story id :: this tenant's stored timezone is not a zone this system knows, so the send window cannot be evaluated. Refused
+06-backend/apps/notifications/unified_templates.py :: rule or story id :: is not a template kind. This screen lists templates (the words a person typed) and templates (which of the pla
+06-backend/apps/notifications/unified_templates.py :: rule or story id/module path or source file :: a bill draft has no — it holds WHICH LAYOUT to print on (layout_key) and that layout's options. There is no bo
+06-backend/apps/payments/allocation.py :: register id :: an open bill states a balance, but this tenant has defined no such class. The PO ruled on 2026-08-11 that the
+06-backend/apps/payments/allocation.py :: register id :: cannot order open invoices: some carry issued_on and some do not (undated: ). Either every bill states its iss
+06-backend/apps/payments/allocation.py :: register id :: no outstanding balance reported for — the open bills stated no composition, so no breakdown exists to report (
+06-backend/apps/payments/allocation.py :: rule or story id :: allocated + carried != — every cent of a payment is either applied or carried (BR-PAY-010)
+06-backend/apps/payments/allocation.py :: rule or story id :: allocation names against — an allocation row is money that moved, so an amount must be positive. A reversal is
+06-backend/apps/payments/allocation.py :: rule or story id :: allocation order 'specific' carries no amount — it means 'this bill, up to what it owes', and the whole paymen
+06-backend/apps/payments/allocation.py :: rule or story id :: allocation order names no invoice — it is a staff instruction about WHICH bill (BR-PAY-001), so there is nothi
+06-backend/apps/payments/allocation.py :: rule or story id :: allocation order takes no targets, but were named — decides which bill is paid from the bills themselves, and
+06-backend/apps/payments/allocation.py :: rule or story id :: cannot allocate: some open bills state a line composition and some do not (no composition: ). Either every bil
+06-backend/apps/payments/allocation.py :: rule or story id :: is outstanding — a class cannot be paid more than it owed; a credit position is an account credit row (US-PAY-
+06-backend/apps/payments/allocation.py :: rule or story id :: no application recorded on — the payment did not reach that class (BR-PAY-010 orders usage+base → taxes → the
+06-backend/apps/payments/allocation.py :: rule or story id :: open invoice states a balance of and a composition summing to — the classes must foot to the bill. The differe
+06-backend/apps/payments/allocation.py :: rule or story id :: open invoice states a negative balance () — a credit position is an account credit row (US-PAY-007 / BR-PAY-01
+06-backend/apps/payments/allocation.py :: rule or story id :: payment_amount must not be negative — a reversal is a new reversing row (BR-PAY-002 / hard rule 4), never a ne
+06-backend/apps/payments/allocation.py :: rule or story id :: received but its classes account for — the within-invoice walk neither invents nor loses money (BR-PAY-010)
+06-backend/apps/payments/allocation.py :: rule or story id :: the allocation class order does not place , which the open bills state balances for — a class left out of the
+06-backend/apps/payments/allocation.py :: rule or story id :: unknown allocation order — this contract executes (BR-PAY-010 / BR-PAY-001). A misspelled tenant setting must
+06-backend/apps/payments/allocation.py :: rule or story id/PO ruling or quote :: open invoice states line class , which BR-PAY-010's order does not place — it orders and names nothing else. S
+06-backend/apps/payments/allocation.py :: rule or story id/register id :: a split names of a payment — US-PAY-006 TC-4 makes Σ rows = payment amount. Naming less leaves money for the e
+06-backend/apps/payments/allocation.py :: rule or story id/register id :: allocated of a payment — Σ allocations ≤ payment amount (US-PAY-006 TC-7)
+06-backend/apps/payments/allocation.py :: rule or story id/register id :: allocation names against , which owes — a bill never takes more than its balance (US-PAY-006 TC-7). The excess
+06-backend/apps/payments/allocation.py :: rule or story id/register id :: allocation names invoice , which is not in this account's open bills () — only an open issued invoice is an al
+06-backend/apps/payments/allocation.py :: rule or story id/register id :: allocation order 'specific' names exactly one bill; were given. A payment divided over several named bills is
+06-backend/apps/payments/allocation.py :: rule or story id/register id :: outstanding but its classes account for — the breakdown IS the outstanding balance, seen per class (US-PAY-006
+06-backend/apps/payments/allocation.py :: rule or story id/register id/PO ruling or quote :: unknown line class in the allocation class order — BR-PAY-010 orders (usage+base → taxes → the tenant-defined
+06-backend/apps/payments/autopay.py :: rule or story id :: apps.customers.selectors.account_queryset is not published, so whether this account is enrolled in autopay can
+06-backend/apps/payments/billing_seam.py :: rule or story id :: billing stated allocation class(es) that BR-PAY-010's order does not place — it orders and names nothing else.
+06-backend/apps/payments/idempotency.py :: rule or story id :: an inbound payment key needs a reference as well as the source (got , ). BR-PAY-003 wants 'double delivery = o
+06-backend/apps/payments/idempotency.py :: rule or story id :: is not one of the inbound payment sources (BR-PAY-003 webhooks · BR-PAY-023 imports · US-PAY-001 staff entry).
+06-backend/apps/payments/ladder.py :: register id :: this account paid against outstanding, and whether that pauses the ladder depends on a percentage the Product
+06-backend/apps/payments/ladder.py :: rule or story id :: is not one of BR-PAY-017's rungs (). A step nothing recognises is a notice no screen will show and no history
+06-backend/apps/payments/ledger_seam.py :: register id :: deposit batch 's credit split does not foot: the member receipts' debits sum to and the batch recorded . Credi
+06-backend/apps/payments/ledger_seam.py :: register id :: the tender points at clearing account , which is not a LIVE account of this tenant's own chart — it was deacti
+06-backend/apps/payments/ledger_seam.py :: rule or story id :: a write-off posts DR write-off / CR AR of a POSITIVE amount; its direction is the posting's, never the figure'
+06-backend/apps/payments/ledger_seam.py :: rule or story id :: deposit batch does not tie: bank − recorded = , and the explanations sum to . The entry is refused rather than
+06-backend/apps/payments/ledger_seam.py :: rule or story id :: deposit batch has no member payments, so the currency of its money cannot be read and nothing can be posted. A
+06-backend/apps/payments/ledger_seam.py :: rule or story id :: payment is but the allocation reports against bills, carried as credit and held as a deposit (). Every cent a
+06-backend/apps/payments/ledger_seam.py :: rule or story id :: payment names no journal entry, so there is nothing in the books to unwind. A cleared payment is stamped with
+06-backend/apps/payments/ledger_seam.py :: rule or story id :: refund names no journal entry, so there is nothing to unwind. Only an ISSUED refund has posted, and only an is
+06-backend/apps/payments/ledger_seam.py :: rule or story id/register id :: no live ledger account carries the designation for this tenant, so the payment cannot be posted (US-LED-001's
+06-backend/apps/payments/lockbox.py :: rule or story id :: statements are not read in this release — only CSV is. OFX, QBO and QFX are per-bank SGML/XML dialects, and a
+06-backend/apps/payments/lockbox.py :: rule or story id :: the statement header names no column (read: ). Accepted names are . Nothing is read positionally: a file whose
+06-backend/apps/payments/lockbox.py :: rule or story id :: the uploaded statement has a header and no rows — an import that wrote nothing would still consume this file's
+06-backend/apps/payments/notices.py :: PO ruling or quote :: a plan notice changed the plan's status from to . Nobody is dropped off a plan (PO 2026-08-11) — notices are s
+06-backend/apps/payments/notices.py :: rule or story id :: the 48-hour final notice requires certified mail and SMS never stands alone (A19 rule 3 / BR-CUS-039). A disco
+06-backend/apps/payments/notices.py :: rule or story id/register id :: choose at least one channel (US-PAY-015 TC-5).
+06-backend/apps/payments/notices.py :: rule or story id/register id :: choose at least one channel. A reminder with no channel would report 'Sent 4 ✓' having queued nothing at all (
+06-backend/apps/payments/plans.py :: rule or story id :: . One live plan per account (BR-CUS-043 / A3) — a second would give the same arrears two schedules and no rule
+06-backend/apps/payments/plans.py :: rule or story id :: a payment plan needs at least one instalment (BR-CUS-043).
+06-backend/apps/payments/plans.py :: rule or story id :: a plan activates on the customer's signature from ; this plan is (BR-CUS-044). Activation is the CUSTOMER's si
+06-backend/apps/payments/plans.py :: rule or story id :: every instalment must be more than 0.00 — a zero row is a date on a schedule with no payment behind it (BR-CUS
+06-backend/apps/payments/plans.py :: rule or story id :: the schedule does not re-sum: instalment(s) totalling plus a down payment of comes to , and the balance being
+06-backend/apps/payments/purposes.py :: rule or story id :: apps.customers.selectors. is not published, so this account's deposit position cannot be read. A deposit-purpo
+06-backend/apps/payments/purposes.py :: rule or story id :: is not one of the payment purposes BR-PAY-012 defines (). Nothing here invents a fifth.
+06-backend/apps/payments/purposes.py :: rule or story id :: plan is not a live payment plan on this account, so a down payment has nothing to attach to (BR-PAY-012: *plan
+06-backend/apps/payments/purposes.py :: rule or story id :: this account has no live payment plan, so a payment with purpose 'plan_down' has nothing to attach to (BR-PAY-
+06-backend/apps/payments/purposes.py :: rule or story id :: this account's rate plan requires no deposit, so there is no deposit position for the money to be held against
+06-backend/apps/payments/reconciliation.py :: PO ruling or quote :: deposit batch code already belongs to the batch of , so this batch cannot be cut. B2 §2 makes the code UNIQUE
+06-backend/apps/payments/reconciliation.py :: PO ruling or quote :: names GL account , which is not a LIVE account of this tenant's own chart. It belongs to another tenant, has b
+06-backend/apps/payments/reconciliation.py :: PO ruling or quote :: payment names deposit batch , which cannot be read for this tenant — so this process cannot tell what it is ab
+06-backend/apps/payments/reconciliation.py :: register id :: apps.ledger.selectors publishes no entry_debit_totals, so this batch's reconciliation cannot know which holdin
+06-backend/apps/payments/reconciliation.py :: rule or story id :: () names no GL account. BR-PAY-019 requires both; a difference posted to no account is money that left the tie
+06-backend/apps/payments/reconciliation.py :: rule or story id :: carries no reason. BR-PAY-019 requires a reason AND a GL account on every difference — the prototype's 'Force
+06-backend/apps/payments/reconciliation.py :: rule or story id :: deposit batch does not tie: we recorded , the bank shows , a difference of — and the explanations sum to , lea
+06-backend/apps/payments/reconciliation.py :: rule or story id :: deposit batch is already reconciled and LOCKED (BR-PAY-004). Unreconcile is the only way back and it is audite
+06-backend/apps/payments/reconciliation.py :: rule or story id :: deposit batch is not matched to a bank line, so there is nothing to reconcile it against. A batch reconciles a
+06-backend/apps/payments/reconciliation.py :: rule or story id :: deposit batch is reconciled and LOCKED (BR-PAY-004) — Unreconcile is the only way back, and it is audited.
+06-backend/apps/payments/reconciliation.py :: rule or story id :: must be a datetime supplied by the caller (BR-TEN-043, gate G6): a resumed batch run, a replay and a re-run mu
+06-backend/apps/payments/reconciliation.py :: rule or story id :: this statement file was already imported for – — import , by , at . Importing it again would write every bank
+06-backend/apps/payments/reconciliation.py :: rule or story id/register id :: Unreconcile needs a reason: it re-opens a signed-off day (BR-PAY-004, US-PAY-023 TC-4 — 'confirm + reason, aud
+06-backend/apps/payments/reconciliation.py :: rule or story id/register id/PO ruling or quote :: deposit batch is RECONCILED and LOCKED (BR-PAY-004), so its total cannot be recomputed: that would be an in-pl
+06-backend/apps/payments/refunds.py :: PO ruling or quote :: the PO ruled on 2026-08-12 that a customer owing on ANOTHER account is offset first, and `apps.customers.selec
+06-backend/apps/payments/refunds.py :: PO ruling or quote :: this account's credit position is , which is a DEBT and not a credit — the customer OWES the utility that mone
+06-backend/apps/payments/refunds.py :: rule or story id :: a refund is not available in this release. BR-PAY-014 puts card refunds behind the payment rails (W7) — there
+06-backend/apps/payments/refunds.py :: rule or story id :: a refund needs the moment it was , and it is the caller's (BR-TEN-043 — the caller names the moment; gate G6 g
+06-backend/apps/payments/refunds.py :: rule or story id :: a refund of is more than this account's credit of . BR-PAY-014 allows a refund only out of a real credit balan
+06-backend/apps/payments/refunds.py :: rule or story id :: is not a refund method. BR-PAY-014 ships in v1.
+06-backend/apps/payments/refunds.py :: rule or story id :: payment has not cleared, so there is no money to give back. A credit exists only once the money has actually a
+06-backend/apps/payments/refunds.py :: rule or story id :: refund is and only a REQUESTED refund can be approved. Approval gates the money exactly once (BR-PAY-014).
+06-backend/apps/payments/refunds.py :: rule or story id :: refund is and only an APPROVED refund can be issued. BR-PAY-014 requires Admin approval BEFORE the money moves
+06-backend/apps/payments/refunds.py :: rule or story id :: this account holds no credit balance, so there is nothing to refund (BR-PAY-014: refunds come only from a REAL
+06-backend/apps/payments/refunds.py :: rule or story id/PO ruling or quote :: this customer owes about on another of their accounts, and the PO ruled on 2026-08-12 that the credit is offse
+06-backend/apps/payments/returned_mail.py :: rule or story id/register id :: returned mail is a PAPER-channel event and this record is (US-PAY-016 TC-5). An email that bounced rides the q
+06-backend/apps/payments/reversal.py :: rule or story id :: a reversal needs the date the bank returned the item, and it is the bank's (BR-PAY-021 — NSF hangs off the CLE
+06-backend/apps/payments/reversal.py :: rule or story id :: idempotency key has already been used, and it was used for a DIFFERENT payment (). This bounce is NOT recorded
+06-backend/apps/payments/reversal.py :: rule or story id :: payment IS a reversing row — it is the record that another payment came back. Reversing a reversal would re-ap
+06-backend/apps/payments/reversal.py :: rule or story id/register id :: payment is still PROCESSING — the money never arrived, so it cannot come back. A bounce is a CLEARING-side fai
+06-backend/apps/payments/services.py :: rule or story id :: a payment names no account. Every payment is tagged to an account, in every account status (BR-PAY-036) — ther
+06-backend/apps/payments/services.py :: rule or story id :: a payment needs a POSTING date and it is the user's (BR-PAY-021 / BR-PAY-033: 'never silently the system times
+06-backend/apps/payments/services.py :: rule or story id :: payment amount must be greater than zero (A2 §S22 '> 0'). A reversal is a NEW reversing row (BR-PAY-002 / hard
+06-backend/apps/payments/services.py :: rule or story id :: payment method is not one of this tenant's active methods (BR-PAY-026 seeds cash, check, card, ACH, wire and m
+06-backend/apps/payments/services.py :: rule or story id :: the CLEARING date must be a datetime or absent (BR-PAY-021). Absent means the payment is still processing — th
+06-backend/apps/payments/services.py :: rule or story id :: the payment states and the account holds . Nothing here converts between them: this module holds no exchange r
+06-backend/apps/payments/settings_seam.py :: rule or story id :: apps..selectors. is not published, so the tenant's bank-match tolerance cannot be read. This does NOT fall bac
+06-backend/apps/payments/settings_seam.py :: rule or story id :: apps..selectors. is not published, so this tenant's collection-ladder settings cannot be read. The ladder does
+06-backend/apps/payments/settings_seam.py :: rule or story id :: apps.tenancy.selectors. answered , which is not a ZoneInfo. The anchor is refused rather than guessed: see the
+06-backend/apps/payments/settings_seam.py :: rule or story id :: the tenant's is , and a negative amount tolerance would match nothing at all — not even the exact ties this pr
+06-backend/apps/payments/settings_seam.py :: rule or story id :: the tenant's is , and a negative interval is not a schedule — it would fire every step at once, on the first d
+06-backend/apps/payments/settings_seam.py :: rule or story id :: the tenant's is , and a negative tolerance is not a window at all — it would match nothing, silently, and ever
+06-backend/apps/payments/settings_seam.py :: rule or story id :: the tenant's is , which is not a list of days. The ladder is refused rather than run on a shape nobody can rea
+06-backend/apps/payments/settings_seam.py :: rule or story id :: the tenant's is , which is not a money figure. Auto-matching is refused rather than run against a window nobod
+06-backend/apps/payments/settings_seam.py :: rule or story id :: the tenant's is , which is not a percentage. The ladder is refused rather than run against a threshold nobody
+06-backend/apps/payments/settings_seam.py :: rule or story id :: the tenant's is , which is not a whole number of days. Auto-matching is refused rather than run against a wind
+06-backend/apps/payments/settings_seam.py :: rule or story id :: the tenant's is , which is not a whole number of days. The ladder is refused rather than run against an interv
+06-backend/apps/payments/settings_seam.py :: rule or story id :: the tenant's is . A negative approval threshold is not a policy — every write-off is above it, which is the sa
+06-backend/apps/payments/settings_seam.py :: rule or story id/register id :: the tenant's finance-controls settings carry no . The ratified default (0 — penny-exact, today's behaviour) li
+06-backend/apps/payments/settings_seam.py :: rule or story id/register id :: the tenant's finance-controls settings carry no . The ratified default (0.00 — every manual write-off needs an
+06-backend/apps/payments/settings_seam.py :: rule or story id/register id/PO ruling or quote :: apps.tenancy.selectors. is not published, so the utility's own clock cannot be read and a date a clerk TYPED c
+06-backend/apps/payments/writeoffs.py :: rule or story id :: a write-off needs a note (US-PAY-012 §5 marks it *Required*). It is the only place a human explains a decision
+06-backend/apps/payments/writeoffs.py :: rule or story id :: a write-off of is more than the this account actually owes (computed from its issued bills less every allocati
+06-backend/apps/payments/writeoffs.py :: rule or story id :: is not a write-off reason. US-PAY-012 ships — the prototype's own four. *Send to collections agency* and *flag
+06-backend/apps/rating/discount_pricing.py :: register id :: discount has spent its budget and its exhaustion behaviour is 'suspend', so this bill run stops here rather th
+06-backend/apps/rating/discount_pricing.py :: rule or story id/register id :: discount is a , which this product stores but cannot yet price: a rate override swaps a schedule inside R2 and
+06-backend/apps/rating/engine.py :: rule or story id :: price_bill received no services. A plan that resolves to nothing priceable is an exception for a human (BR-BIL
+06-backend/apps/rating/pricing/amount_rules/rules.py :: hard-won law :: charge amount rule needs and it was not supplied. A missing input is a refusal, never a zero charge (hard-won
+06-backend/apps/rating/pricing/models/capacity.py :: rule or story id :: capacity tariff for service states no unit label and no rate (BR-RAT-022 — both are tenant-defined). A capacit
+06-backend/apps/rating/pricing/models/capacity.py :: rule or story id :: service : capacity arrived in and the tariff prices at . BR-RAT-038: a unit mismatch blocks rating for that in
+06-backend/apps/rating/pricing/models/demand.py :: rule or story id :: demand tariff for service needs BOTH an energy rate per and a demand rate per kW (BR-RAT-014); it states energ
+06-backend/apps/rating/pricing/models/demand.py :: rule or story id :: service : energy was measured in and the tariff bills in . BR-RAT-038: convert at rating input with a defined
+06-backend/apps/rating/pricing/models/demand.py :: rule or story id :: service bills a demand charge at per kW and no peak-demand read arrived. BR-RAT-014's measurement is a MAX-DEM
+06-backend/apps/rating/pricing/models/demand.py :: rule or story id/register id :: service : this demand tariff enables , and the measurement rules for both are still PROPOSED (BR-RAT-014, B4 a
+06-backend/apps/rating/pricing/models/flat.py :: rule or story id/hard-won law :: flat tariff for service has no unit_price; a tariff that cannot be priced is a refusal, never a zero line (BR-
+06-backend/apps/rating/pricing/models/tiered.py :: rule or story id :: service : of usage falls above the highest tier and no tier is open-ended (BR-RAT-026/032). Unbilled usage is
+06-backend/apps/rating/pricing/models/tiered.py :: rule or story id :: service : only the LAST tier may be open-ended (BR-RAT-032); tier of has no upper bound.
+06-backend/apps/rating/pricing/models/tiered.py :: rule or story id :: service : tier bounds must ascend and be contiguous (BR-RAT-032); tier ends at after .
+06-backend/apps/rating/pricing/models/tiered.py :: rule or story id :: tiered tariff for service has no tiers (BR-RAT-032).
+06-backend/apps/rating/pricing/models/tou.py :: rule or story id :: service : every time-of-use window is scoped to a season () and no season was resolved for this period. BR-RAT
+06-backend/apps/rating/pricing/models/tou.py :: rule or story id :: service : no time-of-use window is priced for season ; the tariff prices . BR-RAT-033 requires the seasons to
+06-backend/apps/rating/pricing/models/tou.py :: rule or story id :: service : the tariff prices window (register ) at and nothing measured it. A window with no read is UNKNOWN, n
+06-backend/apps/rating/pricing/models/tou.py :: rule or story id :: service : window was measured in and the tariff bills in . BR-RAT-038 (PO R6): convert at rating input with a
+06-backend/apps/rating/pricing/models/tou.py :: rule or story id :: service : windows and both read register , and one register holds ONE number for the period. Pricing it once w
+06-backend/apps/rating/pricing/models/tou.py :: rule or story id :: service prices on time of use () and NO per-window quantity arrived. BR-RAT-021: reads arrive pre-split per wi
+06-backend/apps/rating/pricing/models/tou.py :: rule or story id :: time-of-use tariff for service defines no windows (BR-RAT-021/033). A TOU schedule with no priced window canno
+06-backend/apps/rating/pricing/models/tou.py :: rule or story id/register id :: service : window is priced at on day-type and on . Metering supplies ONE pre-split quantity per register for t
+06-backend/apps/rating/pricing/models/tou.py :: rule or story id/register id/PO ruling or quote :: service : time-of-use window does not say which meter register it is measured on, so nothing can price it. A w
+06-backend/apps/rating/pricing/registry.py :: rule or story id :: no plugin registered for ; registered: . A the engine does not implement is a refusal, never a zero (BR-RAT-04
+06-backend/apps/rating/pricing/registry.py :: rule or story id/module path or source file :: the registry is closed at import time (BR-RAT-044): cannot be registered at runtime. A new is a new module imp
+06-backend/apps/rating/pricing/stages/apply_charges.py :: rule or story id :: BR-RAT-028 mode B: this bill's tariffs state different plan minimum-bill floors () and the rule says the plan
+06-backend/apps/rating/pricing/stages/apply_discounts.py :: rule or story id :: discount has scope `named_codes` — named charge codes (), and the engine's priced lines do not carry a charge
+06-backend/apps/rating/pricing/stages/apply_discounts.py :: rule or story id :: this bill carries a tariff line that is outside the tax base (taxable=False), and a discount is present. The d
+06-backend/apps/rating/pricing/stages/normalize.py :: PO ruling or quote :: tariff.multiplier= was supplied to the pricing engine, which does NOT apply meter multipliers (PO ruling 2026-
+06-backend/apps/rating/pricing/stages/normalize.py :: rule or story id :: service : read unit is not the billed unit and the engine holds no conversion factor. BR-RAT-038 (PO R6): conv
+06-backend/apps/rating/resolution.py :: register id :: R3: connection size is on the rate schedule version for with a BLANK base charge. CR-013 part 1: a blank base
+06-backend/apps/rating/resolution.py :: register id :: R4: charge code states BOTH a flat amount and a per-size table. CR-013 part 2 gives a code one basis; this cha
+06-backend/apps/rating/resolution.py :: register id :: R4: charge code states no amount rule and no amount. Either it is priced per case by a clerk at the time it is
+06-backend/apps/rating/resolution.py :: rule or story id :: R1: account has no plan version in force on . BR-RAT-007 prices a period on the terms in force AT THE SERVICE
+06-backend/apps/rating/resolution.py :: rule or story id :: R2: the plan @ binds schedule to and no version of it is in force on . BR-RAT-007 prices on the version in for
+06-backend/apps/rating/resolution.py :: rule or story id :: R3: the plan covers and the unit has no meter for it, so there is no connection size to resolve a size row aga
+06-backend/apps/rating/resolution.py :: rule or story id :: R3b: is declared UNMETERED (BR-RAT-081) and this bill carries no asset count for it, so BR-RAT-090's quantity
+06-backend/apps/rating/resolution.py :: rule or story id :: R3b: is declared UNMETERED (BR-RAT-081), so its billable quantity is a COUNT of its assets on the unit (BR-RAT
+06-backend/apps/rating/resolution.py :: rule or story id :: R3b: the meter on states no multiplier, so the register difference cannot become a billable quantity. BR-MET-0
+06-backend/apps/rating/resolution.py :: rule or story id :: R4: charge code is priced as ( of a balance, minimum ). R1-R7 resolves rating facts and is handed no balance,
+06-backend/apps/rating/resolution.py :: rule or story id :: R4: charge code is priced by , which BR-RAT-041 reserves as visible-but-disabled. No version of this product e
+06-backend/apps/rating/resolution.py :: rule or story id/register id :: R4: — and no charge code declaring `is_base` covers this account for it (BR-RAT-088: the charge code owns the
+06-backend/apps/rating/seams.py :: rule or story id/PO ruling or quote :: apps.ledger.services.account_is_live is not published, so a tax's liability account cannot be validated as thi
+06-backend/apps/rating/services.py :: rule or story id :: rating owns no reference list (BR-TEN-031)
+06-backend/apps/tenancy/document_models.py :: rule or story id :: stored document cannot be deleted (BR-NOT-027, NFR-35). It is the document a customer was sent, kept as eviden
+06-backend/apps/tenancy/document_models.py :: rule or story id :: stored document cannot be updated (BR-NOT-027, NFR-35). What the customer read is frozen at the moment it was
+06-backend/apps/tenancy/document_storage.py :: PO ruling or quote :: DOCUMENT_STORAGE_URL_TTL_SECONDS is ; it must be between 1 and (four hours, PO ruling 2026-08-30). A temporary
+06-backend/apps/tenancy/document_storage.py :: module path or source file :: DOCUMENT_STORAGE_BACKEND is 'filesystem' but this settings module does not allow it. Local disk is for the tes
+06-backend/apps/tenancy/document_storage.py :: module path or source file :: DOCUMENT_STORAGE_BACKEND is ; the document store has one cloud adapter, , and for tests and local development.
+06-backend/apps/tenancy/document_storage.py :: register id :: DOCUMENT_STORAGE_SSE is empty, which would write customer documents to the bucket unencrypted. Encryption at r
+06-backend/apps/tenancy/reference_sweep.py :: rule or story id :: lookup_defaults.json content changed but `version` is still (expected digest , got ). BR-TEN-077: a fixture ch
+06-backend/apps/tenancy/reference_sweep.py :: rule or story id/module path or source file :: fixture version has no ratified content digest. The content currently hashes to . If this bump is deliberate,
+06-backend/apps/tenancy/reference_sweep.py :: rule or story id/register id/PO ruling or quote :: fixture version does not match BR-TEN-077's grammar V<a>.<b>.<c>.<d> (e.g. 'V1.0.0.0' — CR-010 item 9, PO 2026
+06-backend/apps/tenancy/seams.py :: module path or source file :: apps..services. is not wired yet — see the seam contract in apps/tenancy/seams.py
+06-backend/apps/tenancy/services.py :: rule or story id :: no number series row for this tenant — provisioning seeds series rows (US-TEN-012/BE-06)
+06-backend/apps/tenancy/services.py :: rule or story id :: no tenant context for series allocation (BR-TEN-003)
+06-backend/apps/tenancy/services.py :: rule or story id :: unknown reference-data list (EP-TEN-07)
+06-backend/apps/tenancy/services.py :: rule or story id/register id :: numbering_restart_backdated: restarts and is counting in ; an issuance dated falls in and would re-mint a numb

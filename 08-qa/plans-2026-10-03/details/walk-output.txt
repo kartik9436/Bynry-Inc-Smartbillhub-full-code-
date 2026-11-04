@@ -1,0 +1,57 @@
+signed in as dana@brazosbendutilities.com
+upcoming: [{"kind":"plan","code":"SCW-RES","name":"Sample — Residential","version":2,"effective_from":"2027-01-01"},{"kind":"schedule","code":"","name":"Sample — Residential water (inclining tiers)","version":3,"effective_from":"2027-03-01"}]
+versions: [[2,"scheduled","2027-01-01",null],[1,"in_force","2026-08-01","2026-12-31"]]
+units row keys: account_closed, account_id, account_no, assigned_from, customer_name, premises_address, premises_city, premises_id, services, unit_id, unit_label, unit_no, vacant
+PASS units CSV is served — {"status":200,"type":"text/csv; charset=utf-8","head":"Unit,Premises,City,Services,Account,Customer,Occupancy,On this plan since\r\nUnit 1,16 Poplar Grove,Silver Creek,electric water,,,Vacant,08/01/2026\r\nUnit 1,204 Qu"}
+
+=== 24-detail-overview.png — Overview: tiles, banner, Details, versions (image 24)
+tabs: Overview | Services2 | Charges | Billing | Units75 | Audit
+PASS 24 six tabs in the drawn order — Overview|Services2|Charges|Billing|Units75|Audit
+PASS 24 banner names the later version — This plan's v2 starts 01/01/2027.
+See it
+PASS 24 no removed text
+PASS 24 no database id
+PASS 24 the class is named
+
+=== 25-detail-more.png — More ▾: Duplicate (held), Retire (image 25)
+PASS 25 Duplicate is disabled
+
+=== 26-detail-services-folded.png — Services, each folded to one line (image 26)
+PASS 26 a service reads Base charges · Usage charges in one line
+PASS 26 names are links
+
+=== 27-detail-services-open.png — Services, Expand all (image 27)
+PASS 27 every service opened
+
+=== 28-detail-services-asof-2027.png — Services, Priced as of 01/15/2027 (image 28)
+PASS 28 the address carries the date
+
+=== 29-detail-charges.png — Charges: charge codes and taxes (image 29)
+PASS 29 no database id
+
+=== 30-detail-billing.png — Billing: deposits, discounts, billing terms (image 30)
+PASS 30 minimum bill with $
+
+=== 31-detail-units.png — Units: search, occupancy, CSV (image 31)
+PASS 31 unit, premises and account are links
+PASS 31 no Move control, no selection column
+
+=== 32-detail-units-search.png — Units searched "Unit 1" (image 32)
+PASS 32 the search went to the server — http://127.0.0.1:5301/brazosbend/plans-rates/plans/01a10301-fc45-7a58-9c6b-ee3b1dd74d52?tab=units&u.q=Unit+1&u.sort=premises&u.dir=asc
+
+=== 33-detail-units-vacant.png — Units, Vacant only (image 33)
+PASS 33 the filter went to the server — http://127.0.0.1:5301/brazosbend/plans-rates/plans/01a10301-fc45-7a58-9c6b-ee3b1dd74d52?tab=units&u.sort=premises&u.dir=asc&u.f.occupancy=vacant
+
+=== 34-detail-audit.png — Audit: all changes (image 34)
+PASS 34 no database id, no JSON
+
+=== 35-detail-audit-underneath.png — Audit: changes underneath (image 35)
+PASS 35 the filter went to the server — http://127.0.0.1:5301/brazosbend/plans-rates/plans/01a10301-fc45-7a58-9c6b-ee3b1dd74d52?tab=audit&a.sort=at&a.dir=desc&a.f.kind=underneath
+
+=== 36-detail-audit-open.png — Audit: a row opened to before → after (image 36)
+PASS 36 a row opened
+
+=== 37-detail-section-edit.png — Charge codes › Edit lands on /brazosbend/plans-rates/plans/01a10301-fc45-7a58-9c6b-ee3b1dd74d52/edit?change=change&step=2 (image 37)
+PASS 37 the address is the agreed edit door — http://127.0.0.1:5301/brazosbend/plans-rates/plans/01a10301-fc45-7a58-9c6b-ee3b1dd74d52/edit?change=change&step=2
+
+ALL PASS

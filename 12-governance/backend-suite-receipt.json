@@ -1,0 +1,28 @@
+{
+  "branch": "worktree-agent-ad2c26f03c77e864e",
+  "commit": "f95ca0f1925679a8ca8e3e866ee8a16c3e80af09",
+  "counts": {
+    "failed": 4,
+    "passed": 87
+  },
+  "duration_s": 439.57,
+  "exit_code": 1,
+  "failing": [
+    "tests/test_br_rat_088_base_migration.py::test_tc10__the_shipped_sample_plans_now_SAY_which_customers_they_price",
+    "tests/test_br_rat_088_base_migration.py::test_tc1__the_base_charged_before_equals_the_base_charged_after",
+    "tests/test_br_rat_088_base_migration.py::test_tc9__apply_refuses_while_the_live_path_still_reads_the_plan_column",
+    "tests/test_br_rat_088_base_migration.py::test_tc9c__a_LEGACY_ZERO_SCHEDULE_BASE_SILENTLY_MOVES_THE_BILL_TO_ZERO"
+  ],
+  "scope": [
+    "tests/test_br_rat_088_base_migration.py",
+    "tests/test_br_rat_088_base_charge_gate.py",
+    "tests/test_br_rat_091_rate_change_impact.py",
+    "tests/test_def_438_parity.py",
+    "tests/test_def455_def254_base_codes_and_tax_silence.py",
+    "tests/test_br_rat_1040_plan_base_total.py",
+    "tests/test_def_498_def_493_charge_code_recurrence.py"
+  ],
+  "scope_files": 7,
+  "taken_at": "2026-10-02T10:23:23+00:00",
+  "tests_dir_files": 1466
+}

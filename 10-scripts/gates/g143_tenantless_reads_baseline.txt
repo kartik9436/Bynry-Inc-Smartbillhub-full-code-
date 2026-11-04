@@ -1,0 +1,27 @@
+# G143 ratchet — read-module chains OUTSIDE rating that named no tenant when
+# the gate landed (DEF-RAT-9791, 2026-10-06). `path:line  Model`. It may only
+# SHRINK: fix a chain (add `tenant_id=`) and delete its row in the same commit.
+# Rating may never appear here. Many of these narrow by an id the module
+# already scoped (pk=, account_id=) and RLS covers them; they are listed, not
+# pardoned — a lane owning the module sweeps them.
+apps/customers/move_in_unit_read.py:123  Account
+apps/customers/move_record_reads.py:974  User
+apps/customers/selectors.py:5621  AccountSubtype
+apps/customers/selectors.py:5622  AccountStatus
+apps/customers/selectors.py:5627  AccountType
+apps/customers/service_request_reads.py:1368  ServiceRequestService
+apps/customers/service_request_reads.py:1509  ServiceRequestDocument
+apps/customers/service_request_reads.py:1650  ServiceRequestFee
+apps/customers/service_request_reads.py:1915  ServiceRequestEvent
+apps/customers/service_request_reads.py:1963  ServiceRequestEvent
+apps/customers/service_request_reads.py:477  ServiceRequestDocument
+apps/customers/transfer_reads.py:1270  User
+apps/identity/selectors.py:212  TenantMembership
+apps/identity/selectors.py:98  Session
+apps/integrations/selectors.py:137  IntegrationRun
+apps/integrations/selectors.py:144  IntegrationRun
+apps/integrations/selectors.py:161  IntegrationRun
+apps/integrations/selectors.py:175  IntegrationCredential
+apps/reports/catalogue_read.py:302  ReportCategory
+apps/reports/catalogue_read.py:375  ReportDefinition
+apps/work/selectors.py:836  WorkOrderTemplateAssetType

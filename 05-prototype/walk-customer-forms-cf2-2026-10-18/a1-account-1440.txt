@@ -1,0 +1,203 @@
+← Accounts
+ACCOUNT AC-2026-00057 · CUSTOMER C-00055
+Maria Lopez
+Active
+Billable
+Residential · Multi-family
+Regular account
+2200 Riverbend Ct · Apt 103
+·
+Katy, TX 77494
+·
+Since
+Nov 2026
+ELECTRIC
+WATER
+Adjust
+Temporary stop
+Move-out
+Activate account
+Move-in
+Close out
+Record payment
+Overview
+Bills
+Payments
+Credits
+Payment plan
+Usage
+Meters
+Work
+Adjustments
+Documents
+Notes
+Audit
+BALANCE
+$0.00
+Due date not known yet
+AGING
+—
+LAST BILL
+Never billed
+No bill has been raised yet.
+PLAN FROM UNIT
+Residential Standard v1 · since 08/01/2026
+Base charge
+DEPOSIT ON FILE
+$0.00
+Deposit received
+MONEY
+Basis
+Posting date
+Source
+The ledger
+Aging
+—
+Days past due
+—
+Aging source
+—
+Credit tier
+Not computed
+Deposit on file
+$0.00 a deposit shows here once its payment clears
+Deposit received
+—
+Interest accrued
+Not accrued
+Returned payments
+0
+SERVICE
+SERVICES	STARTED	ENDED
+
+E
+Electric
+	11/08/2026	Still open
+
+W
+Water
+	11/08/2026	Still open
+METERS
+
+NO METER IS ASSIGNED
+
+This account holds 2 service agreements and no measuring asset. Consumption cannot be read and a metered bill cannot be raised until one is assigned.
+
+PLAN
+Plan
+Residential Standard
+Code
+RES-STD
+Version
+1
+In force since
+08/01/2026
+HISTORY
+All bills →
+
+NO BILL HAS BEEN ISSUED
+
+No bill has been raised yet.
+
+USAGE TREND
+Details →
+12 months
+24 months
+
+No readings have been recorded for this account yet, so there is nothing to chart.
+
+CUSTOMER
+Full name
+Maria Lopez
+Email
+maria.lopez@example.com
+Phone
+(734) 555-0182
+Date of birth
+04/12/1988
+Social Security Number
+—
+Driver's license
+—
+CO-APPLICANT
+Full name
+Daniel Lopez
+Email
+dan.lopez@example.com
+Phone
+(734) 555-0144
+MAILING ADDRESS
+PO Box 2210, Ypsilanti, MI, 48197
+CUSTOMER RECORD
+Customer ID
+C-00055
+Linked accounts
+1
+BILLING PREFERENCES
+Autopay
+Off
+Paperless
+On
+Text reminders
+On
+Preferred language
+es
+Notification template
+Not shown yet
+
+Autopay is recorded only; nothing is collected.
+
+ACCOUNT SETUP
+Category
+Residential
+Sub-category
+Multi-family
+Account kind
+Regular
+Master account
+—
+Behavior class
+Billable
+Tax exempt
+No
+Exemption reference
+—
+Exemption expires
+—
+Bad address
+No
+Opened
+11/08/2026
+Closed
+—
+UNIT
+Unit
+Apt 103
+Premises
+2200 Riverbend Ct
+Service address
+2200 Riverbend Ct, Katy, TX 77494
+Unit type
+Residential · sub-metered
+Unit plan
+RES-STD v1
+PORTAL ACCESS
+Sign-in
+Nobody has signed up
+Locked
+0
+Last sign-in
+Never signed in
+PAYMENT METHOD
+Update method
+On file
+None on file
+All accounts for this customer
+
+Maria Lopez
+
+person
+
+AC-2026-00057
+
+1 account(s) linked to this customer.

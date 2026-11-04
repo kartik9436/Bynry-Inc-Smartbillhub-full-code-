@@ -1,0 +1,28 @@
+CR-171-BRC10 lane MVI-E2E-2 - M5's key checks shown to go RED, then restored (law 7).
+Method: a throwaway copy of 10-scripts/cr171_e2e_matrix_readback.py with ONE expected value changed, run
+against the committed M5 move (MVI-26-0007, build 2.549.0, PostgreSQL 16, world restored from the post-setup dump);
+the copy deleted afterwards. The [DEF-BIL-9751] FAIL is today's known behaviour, present in every run.
+
+== M5 red 1: fire amount 84.00 -> 85.00
+<         "fire": {"lines": 1, "amount": "84.00"},
+  FAIL Billing · a deposit paid at move-in is not billed again on the first bill — [DEF-BIL-9751] [('Security deposit', '300.00')]
+  FAIL Billing · the fire line is $85.00 ($60.00 + 2 × $12.00) — expected ['85.00'], read ['84.00']
+   53 PASS · 2 FAIL
+== M5 red 2: the State tax moved into taxes_absent (ruling (A) says the certificate must NOT remove it)
+<         "taxes_absent": ["City of Cedar Ford utility tax"],
+  FAIL Billing · a deposit paid at move-in is not billed again on the first bill — [DEF-BIL-9751] [('Security deposit', '300.00')]
+  FAIL Billing · the first bill carries NO TX State Utility Tax (its certificate removes it) — ['Local · Bexar County', 'TX State Utility Tax']
+   54 PASS · 2 FAIL
+== M5 red 3: fire expected on TWO lines (one per size, the superseded layout)
+  FAIL Billing · a deposit paid at move-in is not billed again on the first bill — [DEF-BIL-9751] [('Security deposit', '300.00')]
+  FAIL Billing · fire is ONE bill line (one line per service, PO 'per service') — expected 2, read 1
+  FAIL Billing · the fire line is $84.00 ($60.00 + 2 × $12.00) — expected ['84.00', '84.00'], read ['84.00']
+   52 PASS · 3 FAIL
+== M5 restored
+  FAIL Billing · a deposit paid at move-in is not billed again on the first bill — [DEF-BIL-9751] [('Security deposit', '300.00')]
+   54 PASS · 1 FAIL
+
+Preview lines read (rolled back): fire - 2 × Fire line 2", 1 × Fire line 6" 84.00 · water usage 28.60 ·
+water base 63.75 · sewer usage (90% of water) 24.75 · sewer base 9.00 · Security deposit 300.00 ·
+Connection charge 25.00 · Tax Local 4.20 · Tax Texas State 13.13 (no City line).
+Taxable base 210.10: 2.00% = 4.20, 6.25% = 13.13.

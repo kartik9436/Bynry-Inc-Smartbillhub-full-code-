@@ -1,0 +1,1754 @@
+{
+  "_comment": "Versioned platform seed fixture for 'Load standard charge codes & reference data' (S111 toggle, BR-TEN-012). Entries per US-TEN-002 §4 signed test data (fixture set us-tx · 2026.08). Charge-code mnemonics are real constants (A2/A10); charge amounts are FIXTURE VALUES seeded as-is — the fee amounts remain pending ratification (A17 #9) and their money semantics belong to rating/B4, never to this file. payment_methods includes 'wire' (EP-TEN-07 addendum, W0 seed addition) and 'money_order' (BR-TEN-041 settings-audit upgrade). DEF-017 (2026-08-10) added the six lists that were never here: meter_types + read_methods (BR-AST-043, five each, names verbatim from the rule), asset_types (BR-AST-004/009/042 + BR-AST-042's two additions, `category` = the S49 tab partition) and asset_statuses (BR-AST-031 lifecycle stages over the A5 v4 stage set, `behavior_class` REQUIRED) — all four mirrored EXACTLY by apps/assets/services.py's rule-cited SEED_* constants and pinned equal by tests/test_reference_data_completeness.py so the two copies can never drift; account_types from B2 'Tables to add' #12 [D5] ('platform-seeded: residential/commercial/industrial/government'). W2 CUSTOMERS SLICE (2026-08-10) — two changes to the two account lists: (1) account_statuses is NO LONGER ABSENT. The earlier note here said three sources named three different sets and that the conflict was unresolved; it was in fact resolved on 2026-08-08 by BR-CUS-055 (PO OQ-058 option b, class seed OQ-064 CLOSED), which supersedes B2's account_status ENUM, A5 §Account (itself marked UNKNOWN) and the S8 prototype card alike. The five entries below carry that ruling's own values and behaviour classes — Pending activation=non_billable, Active=billable, Marked disconnect=billable ('consuming until cut'), Vacation hold/Suspended=billable_base_only, Closed=terminal — mirrored EXACTLY by apps/customers/services.SEED_ACCOUNT_STATUSES and pinned equal by tests/test_us_cus_schema_and_seed.py. (2) account_types is a PLATFORM table (r5 #12 [D5]: no tenant_id, RLS-excluded), so its four rows are created by migration customers.0003 before any tenant exists; the copy below is what a --tenant backfill uses to restore a platform row that went missing, and it is pinned equal to apps/customers/services.SEED_ACCOUNT_TYPES and to the migration's own copy. 'government' beats the S8 prototype's 'Municipal' per the PO ruling of 2026-08-10 (B2 governs data, the prototype governs layout/copy).",
+  "_v2_13_0_1_comment": "V2.13.0.1 (CR-010 schema slices, 2026-08-18): NO list change in this file — the bump exists so the sweep revisits every tenant and delivers the two NEW lists whose rows live in their owning modules' ratified constants: account_subtypes (customers.SEED_ACCOUNT_SUBTYPES, BR-CUS-067, 12 rows) and unit_types (metering.SEED_UNIT_TYPES, BR-MET-084, 5 rows). Both lists deliberately carry no entries here — the DEF-026 premises_types posture, one copy of the law. Content digest is therefore IDENTICAL to V2.13.0.0; the pin carries both keys.",
+  "_v2_48_0_0_comment": "V2.48.0.0 (BR-CUS-107, PO ruling 2026-08-25 closing DEF-701): account_statuses grows 5 -> 6. The sixth is `disconnected` / \"Disconnected\" / behaviour class `non_billable` -- a cut account. BR-CUS-055 seeded five and NONE of them means \"the service is off\": a cut account read `Marked disconnect / billable`, which is the rung BEFORE the cut and says \"consuming until cut\" about a customer who has stopped consuming. The other three classes were each ruled out with a reason (billable bills a service that no longer runs; billable_base_only was eliminated by BR-CUS-103 the same day -- base stops at the cut, so there is no base to bill; terminal is what Closed means, and a cut account is not closed -- it holds a debt, it can pay and it comes back). Worked: A-11488, cut 2026-08-18 owing $612.75, reads Disconnected / non-billable. Seeded as reference data ONLY: nothing in the product assigns this row to an account yet -- see apps/customers/services.SEED_ACCOUNT_STATUSES and apps/customers/disconnects.DISCONNECTED_STATUS_NOT_ASSIGNED for the two measured consequences (occupancy, and billing dropping the whole account) that must be closed first. The version bump is what makes the row reach tenants that already exist: the sweep skips a list whose seed-run row is at the current version, so without it the sixth status would only ever reach NEW tenants (the 2026.08.2 / V2.13.0.1 precedent). Migration customers.0025 delivers the same row directly, so a deployment that never runs a sweep is not left five-status.",
+  "_v2_48_0_1_comment": "V2.48.0.1 (CR-039 wave E task 22, PO 2026-08-26): `areas` grows 4 -> 7 with the THREE SUB-AREAS of BR-MET-066b -- NORTH-NE and NORTH-NW under NORTH, EAST-SE under EAST. See _cr039_areas_comment for why these three and not r10's decorative eight. THE SERIAL MOVES, NOT A PRODUCT DIGIT, and that is the documented case: the product version is assigned centrally by the integrator at merge (PO ruling 2026-08-26) and no product digit rode this landing, which is exactly what BR-TEN-077's fourth part is for (V2.13.0.1's own entry says so). THE BUMP IS THE DELIVERY, not the paperwork: `_seed_reference_data` skips a list whose seed-run row already exists AT THE CURRENT VERSION, so without it the three sub-areas would reach NEW tenants only and every tenant the PO was looking at would stay flat -- the 2026.08.2 and V2.48.0.0 precedent, twice recorded. There is NO accompanying migration and none is owed: `areas` is SAMPLE content under BR-TEN-067 (a tenant that declined the defaults has no areas at all), so unlike account_statuses there is no deployment that must not be left without it. The repair door is `manage.py seed_demo --tenant <sub>`.",
+  "_v2_48_0_2_comment": "V2.48.0.2 (BR-MET-140, PO ruling 2026-08-27 closing OQ-392): `read_methods` grows 5 -> 8 with `drive_by` / \"Drive-by\", `self_read` / \"Self-read\" and `field_visit` / \"Field visit\". Those three were the legacy `read_batches.source_detail` words that mapped to NO method at all, so every reading collected under them served `read_method_origin = not_stated`. The PO DELEGATED the choice -- verbatim, \"(a) Rule each onto one of the five or you can add new categories\" -- and the build added all three rather than folding them onto neighbours, because each records a different fact: self_read is about WHO read the meter, field_visit about WHY somebody went, mobile about WHAT DEVICE was used, and mapping would have re-labelled history nobody verified. Mirrored EXACTLY by apps/assets/services.SEED_READ_METHODS and pinned equal by tests/test_reference_data_completeness.py. THE SERIAL MOVES, NOT A PRODUCT DIGIT -- the product version is assigned centrally by the integrator at merge (PO ruling 2026-08-26), which is BR-TEN-077's fourth part and the V2.13.0.1 / V2.48.0.1 precedent. THE BUMP IS THE DELIVERY for the sweep: `_seed_reference_data` skips a list whose seed-run row already exists AT THE CURRENT VERSION, so without it the three words would reach NEW tenants only. NO MIGRATION ACCOMPANIES THIS ONE and none is owed, and the reason differs from both precedents above: `read_methods` is STRUCTURAL (unlike `areas`), but unlike `account_statuses` it sits behind `apps.assets.services.ensure_reference_catalogs()`, a get_or_create safety net that runs on every asset write AND on `reference_list_options` -- the selector the S28 read-upload picker calls -- so an existing tenant receives the three rows the first time anyone opens a screen that would use them. A migration would be a second delivery mechanism for a job already done. NO COMMITTED READING IS REWRITTEN: the legacy translation stays ON READ in read_import.LEGACY_READ_METHOD_BY_DETAIL (CLAUDE.md hard rule 4 -- several of those readings are billed).",
+  "_v2_48_0_3_comment": "V2.48.0.3 (BR-TEN-170 + BR-TEN-171, PO ruling 2026-08-27, CR-039 wave E tasks 20-21): the list `meter_size_classes` is RENAMED to `service_size_classes` -- PO verbatim, \"it is utility service size class\" -- and grows 9 -> 40. THE RENAME IS THE RULING, not tidying: four of the five services these bands add have NO METER (storm water is sized by the property, broadband by the tier bought, solar by inverter capacity, battery by its rating), so a list called *meter* size classes could not hold them without lying about what it was sizing. THE FORTY: water 9 (5/8\", 3/4\", 1\", 1 1/2\", 2\", 3\", 4\", 5\", 6\" -- the 5\" is the PO's OWN addition and was not in the proposal), electric 6, gas 4, trash 7, storm water 4, solar 4, broadband 3, thermal chilled water 3, sewer NONE by ruling (priced as a share of the water usage charge, BR-RAT-015, and it reads no register). TWO SERVICES ARE DELIBERATELY UNSEEDED AND ARE NOT A GAP IN THIS FILE: thermal STEAM (OQ-560) and BATTERY (OQ-561) were put to the PO as a DIMENSION with no boundaries, so \"rest all are correct in this\" ratified the dimension and not bands nobody was shown -- a signature covers only what was shown (PO 2026-08-11), and a band boundary decides which base charge a customer pays. THE ENTRIES ARE A MIRROR, NOT THE SOURCE: apps/tenancy/service_size_classes.RATIFIED_SERVICE_SIZE_CLASSES is the law -- it is the only place that can say which services have none BY RULING and which have none BY ABSENCE OF ONE -- and test_cr039_e20_size_class_bands.py refuses any drift between the two. ONE SEEDED CODE LEAVES: `E-3P` \"Electric 3phi\", because the ratified electric list names 3phi 200A and 3phi 400A and a bare 3phi is neither; BR-TEN-071 deletes nothing, so a tenant that already has it keeps it and can deactivate it on S8. THE SERIAL MOVES, NOT A PRODUCT DIGIT -- the product version is assigned centrally by the integrator at merge (PO ruling 2026-08-26), BR-TEN-077's fourth part.",
+  "_v2_48_0_4_comment": "V2.48.0.4 -- RENUMBERED FROM V2.48.0.3 AT MERGE (DEF-892 one identifier family further on: two lanes each took the next free FIXTURE SERIAL, exactly as three lanes took the next free rule id this morning; the size-class lane merged first and keeps 0.3). V2.48.0.4 (BR-TEN-150, PO ruling 2026-08-27 -- verbatim \"category is okay, no richer text\"): a NEW list `owner_categories`, five rows, in the exact order the five were put to the PO -- owner_occupier / landlord / property_manager / hoa / builder. The question answered was whether a premises owner is a TYPED PARTY RECORD (kind, contact details, linked to the customer they already are) or richer free text; the typed record was ruled, and this is its vocabulary. STRUCTURAL (apps/tenancy/services.STRUCTURAL_REFERENCE_LISTS): `premises_owners.category_id` is NOT NULL, so a tenant whose S111 toggle emptied this list could not record a single owner -- the exact state BR-TEN-067 exists to prevent. TENANT-EXTENSIBLE, and that is the HOUSE PATTERN (DB-14 / BR-TEN-036) rather than something the PO ruled: nothing was put to them about whether a sixth may be added, so OQ-502 asks. THE SERIAL MOVES, NOT A PRODUCT DIGIT -- the product version is assigned centrally by the integrator at merge (PO ruling 2026-08-26), BR-TEN-077's fourth part, same as the three entries above. THE BUMP IS THE DELIVERY for the sweep: `_seed_reference_data` skips a list whose seed-run row already exists AT THE CURRENT VERSION, so without it the five would reach NEW tenants only. A MIGRATION DOES ACCOMPANY THIS ONE (tenancy 0022) and it builds the TABLE, not the rows -- a fourth reason distinct from all three above: the list is structural AND new, so there is no existing tenant holding a stale version of it and no safety net to lean on; the rows arrive through the ordinary seed and the repair door for a tenant provisioned before the bump is `manage.py seed_demo --tenant <subdomain>`. NO PREMISES IS MATCHED TO A CATEGORY BY THIS BUMP OR BY THE MIGRATION (BR-MET-151): the twelve existing free-text owner names are left exactly as they are and are offered for matching by a person, because silently guessing which string is which party is what the ruling forbade.",
+  "_v2_48_0_5_comment": "V2.48.0.5 (BR-TEN-171 as amended by CR-062 group A AND CR-063 tasks A4/A5, both PO ruling 2026-09-02): `service_size_classes` grows 40 -> 60, and it carries TWO changes that landed hours apart. CR-063's half first, because it is the smaller one: FIRE joins as the ELEVENTH utility service with SEVEN BANDS (FL-2 .. FL-10 and a private hydrant), APPENDED at position 11 with nothing renumbered. PO verbatim: \"We will need Fire as utility Service - Capacity based - this will behave exactly like trash\", and \"we need it for one of the customer we want to go live\". FIRE COUNTS, IT DOES NOT SUM -- the size class PICKS the price and the count MULTIPLIES it, so one 6\" line with two hydrants is $60.00 + 2 x $25.00 = $110.00, and there is no unit in which a 6-inch line plus a hydrant is a quantity. ** THESE SEVEN ARE THE ONLY ROWS IN THIS LIST THE PRODUCT OWNER HAS NEVER SEEN: they are SEEDED DEFAULTS a tenant edits on Settings, never signed law, and the going-live customer's real list is OQ-1360, OPEN. No screen, document or report may present them as anybody's tariff until it is answered.** Now CR-062's half, which is the larger one and is a REVERSAL of two ratified lists rather than an addition to them. A size class is now one of TWO things and the difference is arithmetic: a BAND is a label that PICKS a rate (a pipe diameter, an amperage, a CFH rating) and two of them add up to nothing; a CAPACITY is a number with its unit that is INSTALLED, possibly several times on one unit, and the billable quantity is the SUM. PO verbatim: \"We have 10 Types of Solar panel with various capaity 1 Kw, 2Kw 3Kw 4Kw so and SO forth ; on given Unit we have installed 3 panels with 2Kw, 4Kw and 8 Kw , it means the totla capacity will be 14 Kw\" -- and under the old code-and-name row the only quantity this product could produce for that array was 3, which prices a 14 kW system exactly like three 1 kW ones. EIGHT ROWS ARE WITHDRAWN AND NOTHING ELSE LEAVES: solar's four inverter bands (SOL-5, SOL-5-10, SOL-10-25, SOL-25P) and storm water's four ERU bands (SW-1ERU, SW-2-5, SW-6-20, SW-20P), both ratified 2026-08-27 and both superseded by the capacity-multiplier ruling -- the solar four by that same day's sentence \"(a) multiplier replaces bands for capacity services (solar, battery, thermal); bands stay for pipe/amp/CFH - this si corect\", the storm water four by 2026-09-02's \"Storm water - it is capacity based not unmetered , capaicyt is decided based on sizes of propoerty\", which the PO was told they could decline and told us to execute. TWENTY-ONE ROWS ARRIVE: solar 10 panel types (1-10 kW), battery 6 capacities (5-30 kW), storm water 5 property sizes (1-10 ERU). BATTERY HAD NONE AND IS NOT REOPENING A DISSOLVED QUESTION: OQ-561 asked WHERE ONE BAND ENDS and none of these six states a boundary -- every battery bills at the same per-kW rate and the rows say only what a utility can install. BR-TEN-071 DELETES NOTHING: a tenant that already holds the eight withdrawn codes keeps them and can deactivate them on S8; the withdrawal means no NEW tenant receives them. THE ENTRIES ARE STILL A MIRROR, NOT THE SOURCE -- apps/tenancy/service_size_classes.RATIFIED_SERVICE_SIZE_CLASSES is the law, it is the only place that can say whether a row is a band or a capacity and how much the capacity IS, and test_cr039_e20_size_class_bands.py refuses any drift between the two. THE FLAT {code, name} DELIVERY SHAPE IS UNCHANGED and no migration is owed: the capacity is ratified law in that module, never a column on the hosted table. THE SERIAL MOVES, NOT A PRODUCT DIGIT -- the product version is assigned centrally by the integrator at merge (PO ruling 2026-08-26), BR-TEN-077's fourth part.",
+  "_v2_48_0_6_comment": "V2.48.0.6 (CR-063 task A3, PO ruling 2026-09-02): `uoms` grows 26 -> 27 with `connection` / \"Connection\", SCOPED TO FIRE -- the eleventh utility service, added because a real utility is being onboarded and it sells fire protection (PO verbatim: 'we have to do it ; curenlty we need it for one of the customer we want to go live'). THE UNIT IS `connection` AND NOT `line`, AND A HYDRANT IS WHY: fire's seven size classes are six line diameters and a PRIVATE HYDRANT, a hydrant is not a line, and both are billed off the one tick on the one service -- so a unit named for either half would be wrong for the other. Decided by the CR-063 lane rather than put to the PO (CLAUDE.md law 13: it collides with no signed rule, costs no money and is reversible by a clerk on Settings -> Lookups), and recorded in 12-governance/02-decision-log.md with that reasoning. IT STATES ITS SERVICE IN THE FIXTURE, which matters: `_seed_uoms` resolves a new row as `stated or SEEDED_UOM_SERVICE_SCOPE.get(code)`, and apps/tenancy/services._derive_uom_service_scope independently derives `connection -> fire` from SERVICE_DEFAULT_UOMS because fire is the only service that claims it -- the two statements AGREE, so nothing can move whichever one a reader consults, and a test asserts they never disagree. THE SERIAL MOVES, NOT A PRODUCT DIGIT -- the product version is assigned centrally by the integrator at merge (PO ruling 2026-08-26), BR-TEN-077's fourth part, the same as every entry above. THE BUMP IS THE DELIVERY: `_seed_reference_data` skips a list whose seed-run row already exists AT THE CURRENT VERSION, so without it `connection` would reach NEW tenants only and every tenant that already exists would have a fire service whose declared unit is not in its own catalogue. NO MIGRATION IS OWED and the reason is `read_methods`' reason (V2.48.0.2): `uoms` sits behind a get_or_create safety net on the reference-list selectors, so an existing tenant receives the row the first time anyone opens a screen that offers it. The repair door is `manage.py seed_demo --tenant <subdomain>`.",
+  "_v2_48_0_7_comment": "V2.48.0.7 (CR-065 tasks A1-A3, closing DEF-2385, PO ruling 2026-09-02): every service_size_classes row now carries `service_code`, the utility service it belongs to. THE COUNT DOES NOT MOVE -- still 60 rows, same codes, same names, same order; what changes is that each one finally says which service it is. PO verbatim, sent with a screenshot of the FIRE rate schedule listing Electric 3phi 400A, Electric CT-metered, Gas 250 CFH and Gas 1,000+ CFH among the seven fire lines: \"This is where we are setting rates for fire  you should show only capacity for fire . in Setting a capacity needs to tags to utility services .\" ** THIS REVERSES BR-TEN-078 FOR THIS ONE LIST AND THE SUPERSESSION IS STATED, NOT ASSUMED. ** That rule is CONFIRMED and named this list among the UNSCOPED on the PO's own words of 2026-08-16 -- \"I have clariffied - already - dont attached them to service\" -- put to them TWICE, deliberately, because size classes read as the strongest candidate for scoping. The 2026-09-02 sentence is the same list, the same question and the opposite answer from the same person, later, so the later ruling stands; every OTHER list BR-TEN-078 names is untouched and `service_size_classes` simply becomes the SECOND scoped list after `uoms`. THE TAG IS NULLABLE AND NULL MEANS \"NOBODY HAS SAID\", WHICH LISTS EVERYWHERE: BR-TEN-071 forbids deleting a tenant's own row, so a size class a tenant added keeps a blank tag and keeps appearing on every service's picker exactly as all sixty rows did before today. THE SIXTY, BY SERVICE -- electric 6, water 9, gas 4, sewer 0 (ruled to have none, BR-RAT-015), trash 7, storm water 5, solar 10, broadband 3, thermal chilled water 3, battery 6, fire 7. THE ENTRIES ARE STILL A MIRROR, NOT THE SOURCE -- apps/tenancy/service_size_classes.RATIFIED_SERVICE_SIZE_CLASSES is the law and has been KEYED BY SERVICE since it was written; this fixture is where that key finally travels, and test_cr039_e20_size_class_bands.py refuses any drift between the two. EXISTING TENANTS ARE FILLED IN BY MIGRATION, NOT BY THIS FILE -- a fixture only ever reaches a NEW tenant, so tenancy 0035 backfills every platform-seeded row and touches no tenant-created one (BR-TEN-012). Whether one size may belong to MORE than one service is OQ-1380, OPEN. THE SERIAL MOVES, NOT A PRODUCT DIGIT -- the product version is assigned centrally by the integrator at merge (PO ruling 2026-08-26), BR-TEN-077's fourth part.",
+  "_v2_48_0_8_comment": "V2.48.0.8 (BR-TEN-171 as amended by the PO ruling of 2026-09-03, CR-063 C3/C5 superseded in part): `service_size_classes` SHRINKS 60 -> 59, and it is the first time a row has left this list because the Product Owner took it out rather than because a lane withdrew a proposal. PO verbatim: \"remove private hydrants from list\", answering the narrow question put to them after their earlier \"we rnable fire line right now , hydrants are assets not utility service as of now\". ONE ROW LEAVES AND NOTHING ELSE MOVES: `HYD` \"Private hydrant\", seeded 2026-09-02 with CR-063 and priced $25.0000 in apps/tenancy/service_size_classes.FIRE_DEFAULT_PRICES. FIRE GOES 7 BANDS -> 6 and the platform total goes 60 -> 59; every other service is untouched -- electric 6, water 9, gas 4, sewer 0 (ruled to have none, BR-RAT-015), trash 7, storm water 5, solar 10, broadband 3, thermal chilled water 3, battery 6, FIRE 6. ** IT SUPERSEDES A WORKED FIGURE APPROVED THE DAY BEFORE AND THE CHAIN IS STATED HERE RATHER THAN ASSUMED. ** CR-063 was signed on 2026-09-02 with the example \"a warehouse with a 6-inch line and two private hydrants is charged $60.00 for the line plus $25.00 for each hydrant -- $110.00 in total, printed as two separate lines\". THAT WAREHOUSE NOW BILLS $60.00 -- minus $50.00 a month on that customer. It is a deliberate reversal and not a correction: nothing was wrong with the arithmetic, the PO decided a hydrant is not a thing this product bills as a utility service. THE SIX DIAMETERS AND THEIR PRICES DO NOT MOVE: a 2-inch line still bills $12.00, and FL-4 $30.00, FL-6 $60.00, FL-8 $100.00, FL-10 $160.00, FL-12 $230.00 stand exactly as seeded. Fire remains capacity-COUNTING like trash -- the size class PICKS the price and the COUNT multiplies it, BR-RAT-090 unchanged -- so a property with more than one size still bills ONE LINE PER SIZE; what changed is which sizes exist, never the arithmetic over them. BR-TEN-071 DELETES NOTHING: a tenant that already holds HYD keeps it and can deactivate it on S8, exactly as E-3P and CR-062 eight withdrawn rows did; the withdrawal means no NEW tenant receives it. NO MIGRATION IS OWED AND NONE MAY BE WRITTEN -- a migration that deleted the row would be the DELETE that rule forbids, and tenancy 0035 (the CR-065 service backfill) is left EXACTLY as it is because a tenant that still holds HYD still needs it tagged to fire. A HYDRANT DOES NOT DISAPPEAR, IT MOVES SURFACE: the PO own framing is \"assets not utility service\", so it is equipment recorded against a premises, and OQ-1361 is now HALF answered -- the hydrant half ruled, the fire-LINE asset type still open under BR-AST-042. THE SEEDED `HYDRANT` CHARGE CODE IS A DIFFERENT THING AND IS UNTOUCHED: \"Hydrant meter rental\", recurring, GL 4630 -- that is a temporary metered standpipe a contractor rents, not a size a fire service is billed by, and a utility that wants to charge for hydrants can still do so through it or through its own code (BR-TEN-036). THE ENTRIES ARE STILL A MIRROR, NOT THE SOURCE -- apps/tenancy/service_size_classes.RATIFIED_SERVICE_SIZE_CLASSES is the law and carries the ruling in full; test_cr039_e20_size_class_bands.py refuses any drift between the two. OQ-1360 IS NOT CLOSED BY THIS: the PO removed a row, they did not ratify the six that remain or the amounts beside them, and no screen, document or report may present the six as anybody tariff. THE SERIAL MOVES, NOT A PRODUCT DIGIT -- the product version is assigned centrally by the integrator at merge (PO ruling 2026-08-26), BR-TEN-077 fourth part, the same as every entry above. THE BUMP IS THE DELIVERY: `_seed_reference_data` skips a list whose seed-run row already exists AT THE CURRENT VERSION, so without it the sweep would never revisit the list at all.",
+  "_v2_48_0_9_comment": "V2.48.0.9 -- PO ruling 2026-09-07, verbatim: \"Can you have Tax jurisdictions - for all states - atleast 1 - you seed based on customer selection - if they select Iowa you seed in Iowa, but you ahve to ahve a list for all 50 states\", and on the shape, put to them as \"the right jurisdictions and the right authority names for all 50 states, and the rates left blank for the utility to fill in\": \"yes this is good - you can have 0 filled in\". Decision log 2026-09-07. FIFTY-TWO KEYS, WHICH IS EXACTLY THE PLATFORM'S OWN STATE VOCABULARY (tenancy.selectors.US_STATES: 50 states + DC + PR). No other territory is offered at sign-up, so no other territory is seeded -- a key nobody can select would be a list nobody reads. EVERY ONE OF THESE ROWS CARRIES A NAME, A LEVEL AND AN AUTHORITY AND NO `taxes` BLOCK AT ALL, WHICH IS THE POINT OF THE JOB: the rating seeder creates a tax row only from a stated figure, so an entry with no `taxes` key can never price anything. BLANK IS NOT ZERO (DEF-127): a NULL rate means nobody has answered yet and PLN-03 step 5 can say so, where 0.00 would be a real tax position that bills silently at nothing and looks deliberate. TX IS NOT IN THIS BLOCK and keeps its five priced rows above -- those are the PO's ruled transcription of prototype r10's own tax table (DEF-254/DEF-273) and this lane touches no signed figure. Each state gets its REVENUE AUTHORITY and its UTILITY COMMISSION; the universal County / City / Special district scaffold is merged in from `ALL` by services.tax_jurisdiction_entries, so a tenant that names Iowa holds five jurisdictions and a Texas tenant still holds seven. TWO NAMES ARE RECENT RENAMES AND ARE WRITTEN AS THEY STAND TODAY, checked against the agencies' own sites rather than recalled: `IA` is the IOWA UTILITIES COMMISSION -- it was the Iowa Utilities Board for 38 years and was renamed on 2024-07-01 -- and `WV` is the WEST VIRGINIA TAX DIVISION, which is how the body formerly styled the West Virginia State Tax Department writes itself at tax.wv.gov. A NAME IS NEVER INVENTED HERE: a wrong authority on a remittance is a payment sent to the wrong government, so a state whose authority could not be established would be left out and reported rather than filled with something plausible (none were).",
+  "_v2_48_0_10_comment": "V2.48.0.10 -- PO ruling 2026-09-07, verbatim: \"use only Inventory and Installed\". `asset_statuses` keeps all five rows and all five CODES; two NAMES change: `Inventory/Spare` -> `Inventory` and `Installed/Active` -> `Installed`. Needs repair, In repair and Retired are untouched. A slash in a lookup name is two words competing to be the label and a clerk reads the first one anyway; it also reached a CUSTOMER's screen -- the portal asset list printed the raw stored value, slash included. NOTHING BRANCHES ON THESE NAMES: BR-AST-031 makes every stage carry a `behavior_class` (available / in_service / out_of_service / terminal) precisely so filters, transitions and billing stay sound whatever a tenant renames a stage to, and the seeded rows are matched by CODE everywhere. THE FIXTURE ONLY REACHES NEW TENANTS, so this ruling also needs a migration: seeding is insert-if-absent by code (BR-TEN-071), so a tenant provisioned yesterday keeps `Inventory/Spare` for ever and no version bump would ever reach it. `assets/0011_po_2026_09_07_stage_names` renames the live rows, and it renames ONLY a row whose name is still byte-identical to the superseded seeded string -- a tenant who typed their own label keeps it (BR-TEN-012: a tenant-touched row is never overwritten, applied conservatively because no touch-tracking column exists to tell a pristine seeded row from an edited one).",
+  "_v2_48_0_11_comment": "V2.48.0.11 (CR-080, PO ruling 2026-09-07): THERMAL/HEAT stops being a metered service and becomes a CAPACITY one billed on CONNECTED TONNAGE. PO verbatim: \"connected tonnage - it is capacity not metering; i will ahve 100 tonne or 200 tonne etc\", and it is a DEBT BEING CALLED IN rather than a new ruling -- the PO already said on 2026-08-27 \"(a) multiplier replaces bands for capacity services (solar, battery, thermal); bands stay for pipe/amp/CFH - this si corect\", and thermal was the one of the three never executed. TWO LISTS MOVE. `uoms` grows 27 -> 28 with `ton` / \"Refrigeration ton (connected)\", SCOPED TO thermal_heat -- the REFRIGERATION ton (12,000 BTU/hr), not the metric tonne, which is what the withdrawn rows already said and what a North American chilled-water utility measures. `ton-hr` STAYS in the catalogue and keeps its stated scope: BR-TEN-071 deletes nothing and a utility that meters chilled-water energy still has the unit to pick; what changed is that thermal no longer DEFAULTS to it. `service_size_classes` goes 59 -> 64: the three `TH-CW-*` rows are WITHDRAWN -- each is a RANGE (\"<=25 tons\", \"25-100\") and a range has no single value a capacity could be -- and EIGHT connected-tonnage capacities `TH-T5` `TH-T10` `TH-T25` `TH-T50` `TH-T100` `TH-T200` `TH-T400` `TH-T800` take their place. 25 and 100 are deliberately kept: they were the withdrawn ranges' own boundaries. BR-TEN-071 deletes the three from NOBODY -- a tenant that already holds them keeps them and may deactivate them on S8, the same posture as `E-3P`, solar's four inverter bands and `HYD`. The eight values and the seeded per-ton price are the CR-080 lane's proposal under the PO's market-research delegation and are NOT ratified figures; steam is untouched and OQ-560 stays OPEN.",
+  "_v2_48_0_13_comment": "V2.48.0.13 (CR-139-BRC07 `P5.11`, PO ruling 2026-09-23): TAP & PAY IS A PAYMENT METHOD A CLERK PICKS, NOT AN INTEGRATION. PO verbatim: \"user will manually use it and add reference # and Tap & pay options in system - we are not going to integrate them drectly\". The blueprint drew `P5.11` as `Integrations: a card terminal`; the PO agrees it is a device and goes further — THE PRODUCT NEVER SPEAKS TO IT. No adapter, no manifest, no webhook, no driver and no settlement callback from a terminal. A clerk taps on the device, reads the reference off it and records the payment with that reference in `payments.confirmation` — one of exactly three columns `POST /payments/{id}/correct-reference` may later fix, so a mistyped terminal reference is repaired on the path the PO already ruled for a mistyped cheque number and hard rule 4's allow list DOES NOT MOVE. THE SEVEN TENDERS DO NOT MOVE EITHER: `ach . card . check . cash . lockbox . wire . money_order` is unchanged and A TAP IS A CARD. This row is an entry on the tenant's own configurable list, editable on Settings, which is why it is a seeded default here rather than a constant anywhere. WHAT IT DOES NOT CHANGE, STATED SO NOBODY TIDIES IT INTO PLACE: a card is NOT one of the three tenders that require an open till (BR-PAY-1164), and the Close screen still counts ONLY cash and cheques — a close screen demanding a counted card total trains clerks to type the system figure back at it, which makes the whole reconciliation worthless. A card taken at a window banks under phase 0's SYSTEM TILL, which is what gives it a batch (OQ-PAY-12601). AND THE HONEST LIMIT: because we never speak to the terminal, THE PRODUCT CANNOT KNOW A TAP SUCCEEDED. The reference is what a person read off a device and typed, so no screen, document or docstring may describe a Tap & pay payment as confirmed BY THE PROVIDER — it is confirmed by a clerk, exactly like a cheque number. Same posture BR-PAY-1150 takes in refusing to honour a partner's late_fee_waived.",
+  "_v2_48_0_14_comment": "V2.48.0.14 (PO ruling 2026-10-03, decision log, option A): `service_size_classes` grows 64 -> 65 with ONE storm-water row, `SW-FLAT` / \"Flat\" = 2 ERU. PO verbatim: \"A Keep charging per unit, and add a size for a single flat, e.g. \\\"Flat\\\" = 2 ERU\". Storm water is charged PER UNIT; the five property sizes left a clerk sizing one flat of a block only \"Apartment building\" (6 ERU, the whole building), so 3 flats billed 3 x 6 x $4.50 = $81.00 where 3 x 2 x $4.50 = $27.00. A SEEDED DEFAULT a utility edits on Settings, not signed law; nothing else moves. This list is DISCRETIONARY, so the sweep does not deliver it: tenancy/0058 adds the row to an existing tenant ONLY where its storm-water list is still the untouched seed.",
+  "version": "V2.48.0.15",
+  "uoms": [
+    {
+      "code": "kWh",
+      "name": "Kilowatt-hour"
+    },
+    {
+      "code": "kW",
+      "name": "Kilowatt (demand)"
+    },
+    {
+      "code": "kgal",
+      "name": "Thousand gallons"
+    },
+    {
+      "code": "ccf",
+      "name": "Hundred cubic feet"
+    },
+    {
+      "code": "therm",
+      "name": "Therm"
+    },
+    {
+      "code": "month",
+      "name": "Month (flat)"
+    },
+    {
+      "code": "kVA",
+      "name": "Kilovolt-ampere (apparent demand)",
+      "service": "electric"
+    },
+    {
+      "code": "kVArh",
+      "name": "Kilovolt-ampere-reactive hour",
+      "service": "electric"
+    },
+    {
+      "code": "gal",
+      "name": "Gallon",
+      "service": "water"
+    },
+    {
+      "code": "cf",
+      "name": "Cubic foot",
+      "service": "water"
+    },
+    {
+      "code": "m3",
+      "name": "Cubic meter",
+      "service": "water"
+    },
+    {
+      "code": "Mcf",
+      "name": "Thousand cubic feet",
+      "service": "gas"
+    },
+    {
+      "code": "Dth",
+      "name": "Dekatherm",
+      "service": "gas"
+    },
+    {
+      "code": "MMBtu",
+      "name": "Million BTU"
+    },
+    {
+      "code": "EDU",
+      "name": "Equivalent dwelling unit",
+      "service": "sewer"
+    },
+    {
+      "code": "cart",
+      "name": "Cart",
+      "service": "trash"
+    },
+    {
+      "code": "pickup",
+      "name": "Pickup",
+      "service": "trash"
+    },
+    {
+      "code": "yd3",
+      "name": "Cubic yard",
+      "service": "trash"
+    },
+    {
+      "code": "ERU",
+      "name": "Equivalent residential unit",
+      "service": "storm_water"
+    },
+    {
+      "code": "ksf",
+      "name": "Impervious 1,000 sq ft",
+      "service": "storm_water"
+    },
+    {
+      "code": "kW-DC",
+      "name": "Kilowatt DC (capacity)"
+    },
+    {
+      "code": "Mbps",
+      "name": "Megabits per second",
+      "service": "broadband"
+    },
+    {
+      "code": "GB",
+      "name": "Gigabyte",
+      "service": "broadband"
+    },
+    {
+      "code": "ton-hr",
+      "name": "Ton-hour (cooling)",
+      "service": "thermal_heat"
+    },
+    {
+      "code": "ton",
+      "name": "Refrigeration ton (connected)",
+      "service": "thermal_heat"
+    },
+    {
+      "code": "klb",
+      "name": "Thousand pounds (steam)",
+      "service": "thermal_heat"
+    },
+    {
+      "code": "day",
+      "name": "Day (prorated flat)"
+    },
+    {
+      "code": "connection",
+      "name": "Connection",
+      "service": "fire"
+    }
+  ],
+  "_charge_codes_comment": "PO RULING 2026-08-10 — TAMPER = $250.00, and it is the PLATFORM default. Two ratified sources disagreed: EP-RAT-03 §4 test data says 'New: TAMPER $250.00' while the billing workbook (04-docs/05-modules/07-billing/08-worked-examples.md §1 + WE-11) prices it at $500.00. The PO ruled $250.00 and ruled it a platform figure rather than one fixture utility's number, so it is seeded here — `amount_rule` follows mechanically (amount stated ⇒ flat, apps/rating/services._charge_money_from_fixture) and the money stays a decimal STRING into NUMERIC(18,6): no float, no cents (CLAUDE.md rule 2). The workbook's $500.00 stays what it always was — the Brazos Bend WE-11 worked example — and is NOT a second default. `charge_type` is CONFIRMED per code (S12's four cards, apps/rating/services.CHARGE_TYPES): LATE penalty · CONN one_time · DISC one_time · NSF penalty · DEPO-R refundable · TAMPER penalty. DEPO-R carries its code and class but NO amount, and that is DELIBERATE, not a missing figure: BR-RAT-020/023 (CONFIRMED, PO Q&A R1 D6 + R3) moves deposits to `plan_deposit_rules` — fixed $ per consumer category, PLAN-level — and EXPLICITLY SUPERSEDES the prototype's single DEPO-R checkbox, so a platform-wide DEPO-R amount would encode a model the PO already replaced. apps/rating/services.CHARGE_CODES_NOT_SEEDED carries that reason in prose and reference_seed_omissions prints it.",
+  "charge_codes": [
+    {
+      "code": "LATE",
+      "name": "Late payment fee",
+      "charge_type": "penalty",
+      "percent": "1.5",
+      "min_amount": "5"
+    },
+    {
+      "code": "CONN",
+      "name": "Connection fee",
+      "charge_type": "one_time",
+      "amount": "45"
+    },
+    {
+      "code": "DISC",
+      "name": "Disconnect fee",
+      "charge_type": "one_time",
+      "amount": "45"
+    },
+    {
+      "code": "NSF",
+      "name": "Returned payment (NSF) fee",
+      "charge_type": "penalty",
+      "amount": "30",
+      "is_nsf_fee": true
+    },
+    {
+      "code": "DEPO-R",
+      "name": "Deposit refund",
+      "charge_type": "refundable"
+    },
+    {
+      "code": "TAMPER",
+      "name": "Tamper fee",
+      "charge_type": "penalty",
+      "amount": "250"
+    },
+    {
+      "code": "RECON",
+      "name": "Reconnection fee",
+      "charge_type": "one_time",
+      "amount": "75"
+    },
+    {
+      "code": "DEPO-C",
+      "name": "Deposit · commercial",
+      "charge_type": "refundable"
+    },
+    {
+      "code": "TRANSFER",
+      "name": "Account transfer fee",
+      "charge_type": "one_time",
+      "amount": "15"
+    },
+    {
+      "code": "METER-TEST",
+      "name": "Meter accuracy test (customer-requested)",
+      "charge_type": "one_time",
+      "amount": "25"
+    },
+    {
+      "code": "AFTER-HRS",
+      "name": "After-hours service call",
+      "charge_type": "one_time",
+      "amount": "75"
+    },
+    {
+      "code": "RETURN-TRIP",
+      "name": "Return trip fee",
+      "charge_type": "one_time",
+      "amount": "30"
+    },
+    {
+      "code": "DAMAGE",
+      "name": "Damaged equipment recovery",
+      "charge_type": "one_time",
+      "pricing": "per_case"
+    },
+    {
+      "code": "RE-READ",
+      "name": "Meter re-read (customer-requested)",
+      "charge_type": "one_time",
+      "amount": "20"
+    },
+    {
+      "code": "TAP",
+      "name": "New service tap fee",
+      "charge_type": "one_time",
+      "pricing": "per_case"
+    },
+    {
+      "code": "IMPACT",
+      "name": "Capacity / impact fee",
+      "charge_type": "one_time",
+      "pricing": "per_case"
+    },
+    {
+      "code": "HYDRANT",
+      "name": "Hydrant meter rental",
+      "charge_type": "recurring",
+      "amount": "50"
+    },
+    {
+      "code": "TEMP-SVC",
+      "name": "Temporary service",
+      "charge_type": "one_time",
+      "amount": "40"
+    },
+    {
+      "code": "SEASONAL",
+      "name": "Seasonal turn-off / turn-on",
+      "charge_type": "one_time",
+      "amount": "25"
+    },
+    {
+      "code": "SAME-DAY",
+      "name": "Same-day service",
+      "charge_type": "one_time",
+      "amount": "50"
+    },
+    {
+      "code": "MOVE-OUT",
+      "name": "Move-out final read",
+      "charge_type": "one_time",
+      "amount": "20"
+    },
+    {
+      "code": "CC-CONV",
+      "name": "Card convenience fee",
+      "charge_type": "one_time",
+      "amount": "2.95"
+    },
+    {
+      "code": "PAPER",
+      "name": "Paper bill fee",
+      "charge_type": "recurring",
+      "amount": "2"
+    },
+    {
+      "code": "INSPECT",
+      "name": "Backflow / cross-connection inspection",
+      "charge_type": "one_time",
+      "amount": "30"
+    },
+    {
+      "code": "BULK-WATER",
+      "name": "Bulk water sale (per kgal)",
+      "charge_type": "one_time",
+      "pricing": "per_case"
+    }
+  ],
+  "reason_codes": [
+    {
+      "code": "BILLERR",
+      "name": "Billing error correction"
+    },
+    {
+      "code": "METERR",
+      "name": "Meter error"
+    },
+    {
+      "code": "LEAK",
+      "name": "Leak credit"
+    },
+    {
+      "code": "GOODWILL",
+      "name": "Goodwill credit"
+    },
+    {
+      "code": "DISPUTE",
+      "name": "Dispute resolution"
+    }
+  ],
+  "payment_methods": [
+    {
+      "code": "ach",
+      "name": "ACH"
+    },
+    {
+      "code": "card",
+      "name": "Card"
+    },
+    {
+      "code": "check",
+      "name": "Check"
+    },
+    {
+      "code": "cash",
+      "name": "Cash"
+    },
+    {
+      "code": "lockbox",
+      "name": "Lockbox"
+    },
+    {
+      "code": "wire",
+      "name": "Wire"
+    },
+    {
+      "code": "money_order",
+      "name": "Money order"
+    },
+    {
+      "code": "tap_pay",
+      "name": "Tap & pay"
+    }
+  ],
+  "meter_types": [
+    {
+      "code": "ami",
+      "name": "AMI"
+    },
+    {
+      "code": "amr",
+      "name": "AMR"
+    },
+    {
+      "code": "walk_by",
+      "name": "walk-by"
+    },
+    {
+      "code": "sub_meter",
+      "name": "sub-meter"
+    },
+    {
+      "code": "master",
+      "name": "master"
+    }
+  ],
+  "read_methods": [
+    {
+      "code": "ami",
+      "name": "AMI"
+    },
+    {
+      "code": "amr",
+      "name": "AMR"
+    },
+    {
+      "code": "walk_by",
+      "name": "walk-by"
+    },
+    {
+      "code": "manual",
+      "name": "Manual"
+    },
+    {
+      "code": "mobile",
+      "name": "Mobile"
+    },
+    {
+      "code": "drive_by",
+      "name": "Drive-by"
+    },
+    {
+      "code": "self_read",
+      "name": "Self-read"
+    },
+    {
+      "code": "field_visit",
+      "name": "Field visit"
+    }
+  ],
+  "asset_types": [
+    {
+      "code": "meter",
+      "name": "Meter",
+      "category": "meters"
+    },
+    {
+      "code": "net_meter",
+      "name": "Net meter",
+      "category": "meters"
+    },
+    {
+      "code": "sub_meter",
+      "name": "Sub-meter",
+      "category": "sub_meters"
+    },
+    {
+      "code": "backflow",
+      "name": "Backflow preventer",
+      "category": "behind_the_meter"
+    },
+    {
+      "code": "comms",
+      "name": "Comms endpoint",
+      "category": "behind_the_meter"
+    },
+    {
+      "code": "pv",
+      "name": "PV / solar",
+      "category": "behind_the_meter"
+    },
+    {
+      "code": "battery",
+      "name": "Battery storage",
+      "category": "behind_the_meter"
+    },
+    {
+      "code": "ev_charger",
+      "name": "EV charger",
+      "category": "behind_the_meter"
+    },
+    {
+      "code": "transformer",
+      "name": "Transformer (customer premise)",
+      "category": "behind_the_meter"
+    },
+    {
+      "code": "generator",
+      "name": "Generator (customer premise)",
+      "category": "behind_the_meter"
+    },
+    {
+      "code": "container_cart",
+      "name": "Container / Cart",
+      "category": "behind_the_meter"
+    },
+    {
+      "code": "modem_cpe",
+      "name": "Modem / CPE",
+      "category": "behind_the_meter"
+    },
+    {
+      "code": "fire_line",
+      "name": "Fire service line",
+      "category": "behind_the_meter"
+    }
+  ],
+  "asset_statuses": [
+    {
+      "code": "inventory",
+      "name": "Inventory",
+      "behavior_class": "available"
+    },
+    {
+      "code": "active",
+      "name": "Installed",
+      "behavior_class": "in_service"
+    },
+    {
+      "code": "needs_repair",
+      "name": "Needs repair",
+      "behavior_class": "out_of_service"
+    },
+    {
+      "code": "in_repair",
+      "name": "In repair",
+      "behavior_class": "out_of_service"
+    },
+    {
+      "code": "retired",
+      "name": "Retired",
+      "behavior_class": "terminal"
+    }
+  ],
+  "account_statuses": [
+    {
+      "code": "pending_activation",
+      "name": "Pending activation",
+      "behavior_class": "non_billable"
+    },
+    {
+      "code": "active",
+      "name": "Active",
+      "behavior_class": "billable"
+    },
+    {
+      "code": "marked_disconnect",
+      "name": "Marked disconnect",
+      "behavior_class": "billable"
+    },
+    {
+      "code": "vacation_hold",
+      "name": "Vacation hold/Suspended",
+      "behavior_class": "billable_base_only"
+    },
+    {
+      "code": "closed",
+      "name": "Closed",
+      "behavior_class": "terminal"
+    },
+    {
+      "code": "disconnected",
+      "name": "Disconnected",
+      "behavior_class": "non_billable"
+    }
+  ],
+  "account_types": [
+    {
+      "code": "residential",
+      "name": "Residential"
+    },
+    {
+      "code": "commercial",
+      "name": "Commercial"
+    },
+    {
+      "code": "industrial",
+      "name": "Industrial"
+    },
+    {
+      "code": "agricultural",
+      "name": "Agricultural"
+    },
+    {
+      "code": "institutional",
+      "name": "Institutional"
+    },
+    {
+      "code": "municipal",
+      "name": "Municipal"
+    },
+    {
+      "code": "builder_developer",
+      "name": "Builder or developer"
+    },
+    {
+      "code": "government",
+      "name": "Government"
+    }
+  ],
+  "_tax_rates_comment": "DEF-254/DEF-273, PO ruling 2026-08-18, verbatim twice: 'Tax jurisdiction rates (5 TX rows) - already answered' and 'I ahve already answered it; close it'. The answer is prototype r10's own tax table (05-prototype/r10-2026-08-16/SMARTBillHub.dc.html, the Taxes & fees tab) and the five rows below are transcribed from it, condition included. `rate` is PERCENT POINTS as r10 prints them; rating's seeder stores the column's FRACTION (6.25 -> 0.062500), a representation change and never a new number. `customer_classes` is an INCLUSION list of platform account_types codes - r10's 'Comm, Industrial only / Residential exempt'. `premises_scope` is one of CR-013 part 4's five mechanisms (city limits, county, state, taxing district, explicit premise list) and DELIBERATELY carries no value: r10 says 'Inside city limits' and names no city, so the utility types their own on S13 and until they do the fee reaches nobody (fail-safe, DEF-273). The ALL scaffold below stays rate-less - that is the 2026-08-17 ruling ('a and B - default available') and this does not reverse it.",
+  "tax_jurisdictions": {
+    "TX": [
+      {
+        "code": "TX-STATE",
+        "name": "Texas State",
+        "level": "state",
+        "authority": "Texas Comptroller of Public Accounts",
+        "taxes": [
+          {
+            "name": "TX State Utility Tax",
+            "kind": "percent",
+            "rate": "6.25",
+            "customer_classes": ["commercial", "industrial"],
+            "remit_to": "Texas Comptroller of Public Accounts",
+            "filing_frequency": "monthly",
+            "gl_code": "2300"
+          }
+        ]
+      },
+      {
+        "code": "TX-LOCAL",
+        "name": "Local",
+        "level": "county",
+        "authority": "Bexar County Tax Office",
+        "taxes": [
+          {
+            "name": "Local \u00b7 Bexar County",
+            "kind": "percent",
+            "rate": "2.00",
+            "remit_to": "Bexar County Tax Office",
+            "filing_frequency": "monthly",
+            "gl_code": "2301"
+          }
+        ]
+      },
+      {
+        "code": "TX-PUC",
+        "name": "Texas Public Utility Commission",
+        "level": "special_district",
+        "authority": "Public Utility Commission of Texas",
+        "taxes": [
+          {
+            "name": "PUC Regulatory Fee",
+            "kind": "flat_per_bill",
+            "flat_amount": "0.85",
+            "flat_frequency": "per_bill",
+            "services": ["electric"],
+            "remit_to": "Public Utility Commission of Texas",
+            "filing_frequency": "quarterly",
+            "gl_code": "2302"
+          }
+        ]
+      },
+      {
+        "code": "TX-CITY",
+        "name": "City",
+        "level": "city",
+        "taxes": [
+          {
+            "name": "City Franchise Fee",
+            "kind": "percent",
+            "rate": "1.50",
+            "services": ["electric", "gas"],
+            "premises_scope": "city_limits",
+            "remit_to": "City",
+            "filing_frequency": "quarterly",
+            "gl_code": "2303"
+          }
+        ]
+      },
+      {
+        "code": "TX-TWDB",
+        "name": "Texas Water Development Board",
+        "level": "state",
+        "authority": "Texas Water Development Board",
+        "taxes": [
+          {
+            "name": "Water Conservation Surcharge",
+            "kind": "per_unit",
+            "per_unit_amount": "0.25",
+            "per_unit_uom": "kgal",
+            "applies_above_units": "10",
+            "services": ["water"],
+            "remit_to": "Texas Water Development Board",
+            "filing_frequency": "annual",
+            "gl_code": "2304"
+          }
+        ]
+      }
+    ],
+    "AK": [
+      {
+        "name": "Alaska Department of Revenue",
+        "level": "state",
+        "authority": "Alaska Department of Revenue"
+      },
+      {
+        "name": "Regulatory Commission of Alaska",
+        "level": "state",
+        "authority": "Regulatory Commission of Alaska"
+      }
+    ],
+    "AL": [
+      {
+        "name": "Alabama Department of Revenue",
+        "level": "state",
+        "authority": "Alabama Department of Revenue"
+      },
+      {
+        "name": "Alabama Public Service Commission",
+        "level": "state",
+        "authority": "Alabama Public Service Commission"
+      }
+    ],
+    "AR": [
+      {
+        "name": "Arkansas Department of Finance and Administration",
+        "level": "state",
+        "authority": "Arkansas Department of Finance and Administration"
+      },
+      {
+        "name": "Arkansas Public Service Commission",
+        "level": "state",
+        "authority": "Arkansas Public Service Commission"
+      }
+    ],
+    "AZ": [
+      {
+        "name": "Arizona Department of Revenue",
+        "level": "state",
+        "authority": "Arizona Department of Revenue"
+      },
+      {
+        "name": "Arizona Corporation Commission",
+        "level": "state",
+        "authority": "Arizona Corporation Commission"
+      }
+    ],
+    "CA": [
+      {
+        "name": "California Department of Tax and Fee Administration",
+        "level": "state",
+        "authority": "California Department of Tax and Fee Administration"
+      },
+      {
+        "name": "California Public Utilities Commission",
+        "level": "state",
+        "authority": "California Public Utilities Commission"
+      }
+    ],
+    "CO": [
+      {
+        "name": "Colorado Department of Revenue",
+        "level": "state",
+        "authority": "Colorado Department of Revenue"
+      },
+      {
+        "name": "Colorado Public Utilities Commission",
+        "level": "state",
+        "authority": "Colorado Public Utilities Commission"
+      }
+    ],
+    "CT": [
+      {
+        "name": "Connecticut Department of Revenue Services",
+        "level": "state",
+        "authority": "Connecticut Department of Revenue Services"
+      },
+      {
+        "name": "Connecticut Public Utilities Regulatory Authority",
+        "level": "state",
+        "authority": "Connecticut Public Utilities Regulatory Authority"
+      }
+    ],
+    "DC": [
+      {
+        "name": "District of Columbia Office of Tax and Revenue",
+        "level": "state",
+        "authority": "District of Columbia Office of Tax and Revenue"
+      },
+      {
+        "name": "Public Service Commission of the District of Columbia",
+        "level": "state",
+        "authority": "Public Service Commission of the District of Columbia"
+      }
+    ],
+    "DE": [
+      {
+        "name": "Delaware Division of Revenue",
+        "level": "state",
+        "authority": "Delaware Division of Revenue"
+      },
+      {
+        "name": "Delaware Public Service Commission",
+        "level": "state",
+        "authority": "Delaware Public Service Commission"
+      }
+    ],
+    "FL": [
+      {
+        "name": "Florida Department of Revenue",
+        "level": "state",
+        "authority": "Florida Department of Revenue"
+      },
+      {
+        "name": "Florida Public Service Commission",
+        "level": "state",
+        "authority": "Florida Public Service Commission"
+      }
+    ],
+    "GA": [
+      {
+        "name": "Georgia Department of Revenue",
+        "level": "state",
+        "authority": "Georgia Department of Revenue"
+      },
+      {
+        "name": "Georgia Public Service Commission",
+        "level": "state",
+        "authority": "Georgia Public Service Commission"
+      }
+    ],
+    "HI": [
+      {
+        "name": "Hawaii Department of Taxation",
+        "level": "state",
+        "authority": "Hawaii Department of Taxation"
+      },
+      {
+        "name": "Hawaii Public Utilities Commission",
+        "level": "state",
+        "authority": "Hawaii Public Utilities Commission"
+      }
+    ],
+    "IA": [
+      {
+        "name": "Iowa Department of Revenue",
+        "level": "state",
+        "authority": "Iowa Department of Revenue"
+      },
+      {
+        "name": "Iowa Utilities Commission",
+        "level": "state",
+        "authority": "Iowa Utilities Commission"
+      }
+    ],
+    "ID": [
+      {
+        "name": "Idaho State Tax Commission",
+        "level": "state",
+        "authority": "Idaho State Tax Commission"
+      },
+      {
+        "name": "Idaho Public Utilities Commission",
+        "level": "state",
+        "authority": "Idaho Public Utilities Commission"
+      }
+    ],
+    "IL": [
+      {
+        "name": "Illinois Department of Revenue",
+        "level": "state",
+        "authority": "Illinois Department of Revenue"
+      },
+      {
+        "name": "Illinois Commerce Commission",
+        "level": "state",
+        "authority": "Illinois Commerce Commission"
+      }
+    ],
+    "IN": [
+      {
+        "name": "Indiana Department of Revenue",
+        "level": "state",
+        "authority": "Indiana Department of Revenue"
+      },
+      {
+        "name": "Indiana Utility Regulatory Commission",
+        "level": "state",
+        "authority": "Indiana Utility Regulatory Commission"
+      }
+    ],
+    "KS": [
+      {
+        "name": "Kansas Department of Revenue",
+        "level": "state",
+        "authority": "Kansas Department of Revenue"
+      },
+      {
+        "name": "Kansas Corporation Commission",
+        "level": "state",
+        "authority": "Kansas Corporation Commission"
+      }
+    ],
+    "KY": [
+      {
+        "name": "Kentucky Department of Revenue",
+        "level": "state",
+        "authority": "Kentucky Department of Revenue"
+      },
+      {
+        "name": "Kentucky Public Service Commission",
+        "level": "state",
+        "authority": "Kentucky Public Service Commission"
+      }
+    ],
+    "LA": [
+      {
+        "name": "Louisiana Department of Revenue",
+        "level": "state",
+        "authority": "Louisiana Department of Revenue"
+      },
+      {
+        "name": "Louisiana Public Service Commission",
+        "level": "state",
+        "authority": "Louisiana Public Service Commission"
+      }
+    ],
+    "MA": [
+      {
+        "name": "Massachusetts Department of Revenue",
+        "level": "state",
+        "authority": "Massachusetts Department of Revenue"
+      },
+      {
+        "name": "Massachusetts Department of Public Utilities",
+        "level": "state",
+        "authority": "Massachusetts Department of Public Utilities"
+      }
+    ],
+    "MD": [
+      {
+        "name": "Comptroller of Maryland",
+        "level": "state",
+        "authority": "Comptroller of Maryland"
+      },
+      {
+        "name": "Maryland Public Service Commission",
+        "level": "state",
+        "authority": "Maryland Public Service Commission"
+      }
+    ],
+    "ME": [
+      {
+        "name": "Maine Revenue Services",
+        "level": "state",
+        "authority": "Maine Revenue Services"
+      },
+      {
+        "name": "Maine Public Utilities Commission",
+        "level": "state",
+        "authority": "Maine Public Utilities Commission"
+      }
+    ],
+    "MI": [
+      {
+        "name": "Michigan Department of Treasury",
+        "level": "state",
+        "authority": "Michigan Department of Treasury"
+      },
+      {
+        "name": "Michigan Public Service Commission",
+        "level": "state",
+        "authority": "Michigan Public Service Commission"
+      }
+    ],
+    "MN": [
+      {
+        "name": "Minnesota Department of Revenue",
+        "level": "state",
+        "authority": "Minnesota Department of Revenue"
+      },
+      {
+        "name": "Minnesota Public Utilities Commission",
+        "level": "state",
+        "authority": "Minnesota Public Utilities Commission"
+      }
+    ],
+    "MO": [
+      {
+        "name": "Missouri Department of Revenue",
+        "level": "state",
+        "authority": "Missouri Department of Revenue"
+      },
+      {
+        "name": "Missouri Public Service Commission",
+        "level": "state",
+        "authority": "Missouri Public Service Commission"
+      }
+    ],
+    "MS": [
+      {
+        "name": "Mississippi Department of Revenue",
+        "level": "state",
+        "authority": "Mississippi Department of Revenue"
+      },
+      {
+        "name": "Mississippi Public Service Commission",
+        "level": "state",
+        "authority": "Mississippi Public Service Commission"
+      }
+    ],
+    "MT": [
+      {
+        "name": "Montana Department of Revenue",
+        "level": "state",
+        "authority": "Montana Department of Revenue"
+      },
+      {
+        "name": "Montana Public Service Commission",
+        "level": "state",
+        "authority": "Montana Public Service Commission"
+      }
+    ],
+    "NC": [
+      {
+        "name": "North Carolina Department of Revenue",
+        "level": "state",
+        "authority": "North Carolina Department of Revenue"
+      },
+      {
+        "name": "North Carolina Utilities Commission",
+        "level": "state",
+        "authority": "North Carolina Utilities Commission"
+      }
+    ],
+    "ND": [
+      {
+        "name": "North Dakota Office of State Tax Commissioner",
+        "level": "state",
+        "authority": "North Dakota Office of State Tax Commissioner"
+      },
+      {
+        "name": "North Dakota Public Service Commission",
+        "level": "state",
+        "authority": "North Dakota Public Service Commission"
+      }
+    ],
+    "NE": [
+      {
+        "name": "Nebraska Department of Revenue",
+        "level": "state",
+        "authority": "Nebraska Department of Revenue"
+      },
+      {
+        "name": "Nebraska Public Service Commission",
+        "level": "state",
+        "authority": "Nebraska Public Service Commission"
+      }
+    ],
+    "NH": [
+      {
+        "name": "New Hampshire Department of Revenue Administration",
+        "level": "state",
+        "authority": "New Hampshire Department of Revenue Administration"
+      },
+      {
+        "name": "New Hampshire Public Utilities Commission",
+        "level": "state",
+        "authority": "New Hampshire Public Utilities Commission"
+      }
+    ],
+    "NJ": [
+      {
+        "name": "New Jersey Division of Taxation",
+        "level": "state",
+        "authority": "New Jersey Division of Taxation"
+      },
+      {
+        "name": "New Jersey Board of Public Utilities",
+        "level": "state",
+        "authority": "New Jersey Board of Public Utilities"
+      }
+    ],
+    "NM": [
+      {
+        "name": "New Mexico Taxation and Revenue Department",
+        "level": "state",
+        "authority": "New Mexico Taxation and Revenue Department"
+      },
+      {
+        "name": "New Mexico Public Regulation Commission",
+        "level": "state",
+        "authority": "New Mexico Public Regulation Commission"
+      }
+    ],
+    "NV": [
+      {
+        "name": "Nevada Department of Taxation",
+        "level": "state",
+        "authority": "Nevada Department of Taxation"
+      },
+      {
+        "name": "Public Utilities Commission of Nevada",
+        "level": "state",
+        "authority": "Public Utilities Commission of Nevada"
+      }
+    ],
+    "NY": [
+      {
+        "name": "New York State Department of Taxation and Finance",
+        "level": "state",
+        "authority": "New York State Department of Taxation and Finance"
+      },
+      {
+        "name": "New York State Public Service Commission",
+        "level": "state",
+        "authority": "New York State Public Service Commission"
+      }
+    ],
+    "OH": [
+      {
+        "name": "Ohio Department of Taxation",
+        "level": "state",
+        "authority": "Ohio Department of Taxation"
+      },
+      {
+        "name": "Public Utilities Commission of Ohio",
+        "level": "state",
+        "authority": "Public Utilities Commission of Ohio"
+      }
+    ],
+    "OK": [
+      {
+        "name": "Oklahoma Tax Commission",
+        "level": "state",
+        "authority": "Oklahoma Tax Commission"
+      },
+      {
+        "name": "Oklahoma Corporation Commission",
+        "level": "state",
+        "authority": "Oklahoma Corporation Commission"
+      }
+    ],
+    "OR": [
+      {
+        "name": "Oregon Department of Revenue",
+        "level": "state",
+        "authority": "Oregon Department of Revenue"
+      },
+      {
+        "name": "Public Utility Commission of Oregon",
+        "level": "state",
+        "authority": "Public Utility Commission of Oregon"
+      }
+    ],
+    "PA": [
+      {
+        "name": "Pennsylvania Department of Revenue",
+        "level": "state",
+        "authority": "Pennsylvania Department of Revenue"
+      },
+      {
+        "name": "Pennsylvania Public Utility Commission",
+        "level": "state",
+        "authority": "Pennsylvania Public Utility Commission"
+      }
+    ],
+    "PR": [
+      {
+        "name": "Puerto Rico Department of Treasury",
+        "level": "state",
+        "authority": "Puerto Rico Department of Treasury"
+      },
+      {
+        "name": "Puerto Rico Energy Bureau",
+        "level": "state",
+        "authority": "Puerto Rico Energy Bureau"
+      }
+    ],
+    "RI": [
+      {
+        "name": "Rhode Island Division of Taxation",
+        "level": "state",
+        "authority": "Rhode Island Division of Taxation"
+      },
+      {
+        "name": "Rhode Island Public Utilities Commission",
+        "level": "state",
+        "authority": "Rhode Island Public Utilities Commission"
+      }
+    ],
+    "SC": [
+      {
+        "name": "South Carolina Department of Revenue",
+        "level": "state",
+        "authority": "South Carolina Department of Revenue"
+      },
+      {
+        "name": "Public Service Commission of South Carolina",
+        "level": "state",
+        "authority": "Public Service Commission of South Carolina"
+      }
+    ],
+    "SD": [
+      {
+        "name": "South Dakota Department of Revenue",
+        "level": "state",
+        "authority": "South Dakota Department of Revenue"
+      },
+      {
+        "name": "South Dakota Public Utilities Commission",
+        "level": "state",
+        "authority": "South Dakota Public Utilities Commission"
+      }
+    ],
+    "TN": [
+      {
+        "name": "Tennessee Department of Revenue",
+        "level": "state",
+        "authority": "Tennessee Department of Revenue"
+      },
+      {
+        "name": "Tennessee Public Utility Commission",
+        "level": "state",
+        "authority": "Tennessee Public Utility Commission"
+      }
+    ],
+    "UT": [
+      {
+        "name": "Utah State Tax Commission",
+        "level": "state",
+        "authority": "Utah State Tax Commission"
+      },
+      {
+        "name": "Utah Public Service Commission",
+        "level": "state",
+        "authority": "Utah Public Service Commission"
+      }
+    ],
+    "VA": [
+      {
+        "name": "Virginia Department of Taxation",
+        "level": "state",
+        "authority": "Virginia Department of Taxation"
+      },
+      {
+        "name": "Virginia State Corporation Commission",
+        "level": "state",
+        "authority": "Virginia State Corporation Commission"
+      }
+    ],
+    "VT": [
+      {
+        "name": "Vermont Department of Taxes",
+        "level": "state",
+        "authority": "Vermont Department of Taxes"
+      },
+      {
+        "name": "Vermont Public Utility Commission",
+        "level": "state",
+        "authority": "Vermont Public Utility Commission"
+      }
+    ],
+    "WA": [
+      {
+        "name": "Washington State Department of Revenue",
+        "level": "state",
+        "authority": "Washington State Department of Revenue"
+      },
+      {
+        "name": "Washington Utilities and Transportation Commission",
+        "level": "state",
+        "authority": "Washington Utilities and Transportation Commission"
+      }
+    ],
+    "WI": [
+      {
+        "name": "Wisconsin Department of Revenue",
+        "level": "state",
+        "authority": "Wisconsin Department of Revenue"
+      },
+      {
+        "name": "Public Service Commission of Wisconsin",
+        "level": "state",
+        "authority": "Public Service Commission of Wisconsin"
+      }
+    ],
+    "WV": [
+      {
+        "name": "West Virginia Tax Division",
+        "level": "state",
+        "authority": "West Virginia Tax Division"
+      },
+      {
+        "name": "Public Service Commission of West Virginia",
+        "level": "state",
+        "authority": "Public Service Commission of West Virginia"
+      }
+    ],
+    "WY": [
+      {
+        "name": "Wyoming Department of Revenue",
+        "level": "state",
+        "authority": "Wyoming Department of Revenue"
+      },
+      {
+        "name": "Wyoming Public Service Commission",
+        "level": "state",
+        "authority": "Wyoming Public Service Commission"
+      }
+    ],
+    "ALL": [
+      {
+        "name": "County",
+        "level": "county"
+      },
+      {
+        "name": "City",
+        "level": "city"
+      },
+      {
+        "name": "Special district",
+        "level": "special_district"
+      }
+    ]
+  },
+  "_cr004_comment": "CR-004 (2026-08-16). CORRECTED 2026-08-16 (DEF-185): areas, service_size_classes (then named `meter_size_classes` -- BR-TEN-170 renamed it 2026-08-27), device_types and certification_types are now the codes and names prototype r10's SET-04 sub-screens actually carry. The first pass CLAIMED verbatim transcription and was not — certification_types matched r10 on 1 of 6 codes. occupancy_statuses has NO row data in r10 at all; its five codes come from the PO's own SET-04.occupancy screenshot (CR-004) and are sourced there, not here. import_mappings is deliberately empty — see UNSEEDABLE_REFERENCE_LISTS.",
+  "_cr039_areas_comment": "CR-039 wave E task 22 (PO 2026-08-26: 'Why you dont have sub areas below - Areas metering 4 North district . Downtown . East district . Industrial corridor'). The three `parent_code` rows are the SECOND LEVEL that BR-MET-066b has permitted since 2026-08-16 and that nothing had ever created: the column, both refusals, the Parent picker, the two-select premises tag and the 'South . SE' path string were all built, and the only thing able to write `parent_id` was a person typing on a settings screen. WHY THESE NAMES AND NO OTHERS: r10 SET-06.2 is the only place in the corpus that NAMES a sub-area, and what it names is a compass quadrant under a compass district ('South . SE', 'South . SW'). So the quadrant register is r10's own and nothing here is invented. r10's SET-04 card also declares COUNTS - North 3, Downtown 2, East 2, Industrial 1 - and those are deliberately NOT matched: a count is not a row, r10 supplies no name for six of the eight, and inventing six names to make a decorative number come out is the seeding-a-tenant's-vocabulary-for-them failure BR-MET-066b warned about. Downtown and Industrial corridor get NONE on purpose - a downtown core and a linear corridor are not quadrant-divisible, r10 names no sub-area for either, and a tenant needs at least one district with no children or the 'this area has no sub-areas' help text and the top-level-only premises tag are both undemonstrable on seeded data.",
+  "areas": [
+    {
+      "code": "NORTH",
+      "name": "North district"
+    },
+    {
+      "code": "NORTH-NE",
+      "name": "NE",
+      "parent_code": "NORTH"
+    },
+    {
+      "code": "NORTH-NW",
+      "name": "NW",
+      "parent_code": "NORTH"
+    },
+    {
+      "code": "DTWN",
+      "name": "Downtown"
+    },
+    {
+      "code": "EAST",
+      "name": "East district"
+    },
+    {
+      "code": "EAST-SE",
+      "name": "SE",
+      "parent_code": "EAST"
+    },
+    {
+      "code": "IND",
+      "name": "Industrial corridor"
+    }
+  ],
+  "service_size_classes": [
+    {
+      "code": "E-1P-100",
+      "name": "Electric 1φ 100A",
+      "service_code": "electric"
+    },
+    {
+      "code": "E-1P-200",
+      "name": "Electric 1φ 200A",
+      "service_code": "electric"
+    },
+    {
+      "code": "E-1P-400",
+      "name": "Electric 1φ 400A",
+      "service_code": "electric"
+    },
+    {
+      "code": "E-3P-200",
+      "name": "Electric 3φ 200A",
+      "service_code": "electric"
+    },
+    {
+      "code": "E-3P-400",
+      "name": "Electric 3φ 400A",
+      "service_code": "electric"
+    },
+    {
+      "code": "E-CT",
+      "name": "Electric CT-metered",
+      "service_code": "electric"
+    },
+    {
+      "code": "W-58",
+      "name": "Water 5/8\"",
+      "service_code": "water"
+    },
+    {
+      "code": "W-34",
+      "name": "Water 3/4\"",
+      "service_code": "water"
+    },
+    {
+      "code": "W-1",
+      "name": "Water 1\"",
+      "service_code": "water"
+    },
+    {
+      "code": "W-112",
+      "name": "Water 1½\"",
+      "service_code": "water"
+    },
+    {
+      "code": "W-2",
+      "name": "Water 2\"",
+      "service_code": "water"
+    },
+    {
+      "code": "W-3",
+      "name": "Water 3\"",
+      "service_code": "water"
+    },
+    {
+      "code": "W-4",
+      "name": "Water 4\"",
+      "service_code": "water"
+    },
+    {
+      "code": "W-5",
+      "name": "Water 5\"",
+      "service_code": "water"
+    },
+    {
+      "code": "W-6",
+      "name": "Water 6\"",
+      "service_code": "water"
+    },
+    {
+      "code": "G-250",
+      "name": "Gas 250 CFH (residential)",
+      "service_code": "gas"
+    },
+    {
+      "code": "G-425",
+      "name": "Gas 425 CFH",
+      "service_code": "gas"
+    },
+    {
+      "code": "G-630",
+      "name": "Gas 630 CFH",
+      "service_code": "gas"
+    },
+    {
+      "code": "G-1000",
+      "name": "Gas 1,000+ CFH",
+      "service_code": "gas"
+    },
+    {
+      "code": "CART-35",
+      "name": "Trash 35-gallon cart",
+      "service_code": "trash"
+    },
+    {
+      "code": "CART-64",
+      "name": "Trash 64-gallon cart",
+      "service_code": "trash"
+    },
+    {
+      "code": "CART-96",
+      "name": "Trash 96-gallon cart",
+      "service_code": "trash"
+    },
+    {
+      "code": "DUMP-2",
+      "name": "Trash 2 cu-yd dumpster",
+      "service_code": "trash"
+    },
+    {
+      "code": "DUMP-4",
+      "name": "Trash 4 cu-yd dumpster",
+      "service_code": "trash"
+    },
+    {
+      "code": "DUMP-6",
+      "name": "Trash 6 cu-yd dumpster",
+      "service_code": "trash"
+    },
+    {
+      "code": "DUMP-8",
+      "name": "Trash 8 cu-yd dumpster",
+      "service_code": "trash"
+    },
+    {
+      "code": "SW-SF",
+      "name": "Single-family home",
+      "service_code": "storm_water"
+    },
+    {
+      "code": "SW-DUP",
+      "name": "Two-unit home",
+      "service_code": "storm_water"
+    },
+    {
+      "code": "SW-FLAT",
+      "name": "Flat",
+      "service_code": "storm_water"
+    },
+    {
+      "code": "SW-APT",
+      "name": "Apartment building",
+      "service_code": "storm_water"
+    },
+    {
+      "code": "SW-COM-S",
+      "name": "Small commercial",
+      "service_code": "storm_water"
+    },
+    {
+      "code": "SW-COM-L",
+      "name": "Large commercial",
+      "service_code": "storm_water"
+    },
+    {
+      "code": "SOL-P1",
+      "name": "Solar panel 1 kW",
+      "service_code": "solar"
+    },
+    {
+      "code": "SOL-P2",
+      "name": "Solar panel 2 kW",
+      "service_code": "solar"
+    },
+    {
+      "code": "SOL-P3",
+      "name": "Solar panel 3 kW",
+      "service_code": "solar"
+    },
+    {
+      "code": "SOL-P4",
+      "name": "Solar panel 4 kW",
+      "service_code": "solar"
+    },
+    {
+      "code": "SOL-P5",
+      "name": "Solar panel 5 kW",
+      "service_code": "solar"
+    },
+    {
+      "code": "SOL-P6",
+      "name": "Solar panel 6 kW",
+      "service_code": "solar"
+    },
+    {
+      "code": "SOL-P7",
+      "name": "Solar panel 7 kW",
+      "service_code": "solar"
+    },
+    {
+      "code": "SOL-P8",
+      "name": "Solar panel 8 kW",
+      "service_code": "solar"
+    },
+    {
+      "code": "SOL-P9",
+      "name": "Solar panel 9 kW",
+      "service_code": "solar"
+    },
+    {
+      "code": "SOL-P10",
+      "name": "Solar panel 10 kW",
+      "service_code": "solar"
+    },
+    {
+      "code": "BB-100",
+      "name": "Broadband 100 Mbps",
+      "service_code": "broadband"
+    },
+    {
+      "code": "BB-500",
+      "name": "Broadband 500 Mbps",
+      "service_code": "broadband"
+    },
+    {
+      "code": "BB-1000",
+      "name": "Broadband 1,000 Mbps",
+      "service_code": "broadband"
+    },
+    {
+      "code": "TH-T5",
+      "name": "Thermal chilled water 5 tons",
+      "service_code": "thermal_heat"
+    },
+    {
+      "code": "TH-T10",
+      "name": "Thermal chilled water 10 tons",
+      "service_code": "thermal_heat"
+    },
+    {
+      "code": "TH-T25",
+      "name": "Thermal chilled water 25 tons",
+      "service_code": "thermal_heat"
+    },
+    {
+      "code": "TH-T50",
+      "name": "Thermal chilled water 50 tons",
+      "service_code": "thermal_heat"
+    },
+    {
+      "code": "TH-T100",
+      "name": "Thermal chilled water 100 tons",
+      "service_code": "thermal_heat"
+    },
+    {
+      "code": "TH-T200",
+      "name": "Thermal chilled water 200 tons",
+      "service_code": "thermal_heat"
+    },
+    {
+      "code": "TH-T400",
+      "name": "Thermal chilled water 400 tons",
+      "service_code": "thermal_heat"
+    },
+    {
+      "code": "TH-T800",
+      "name": "Thermal chilled water 800 tons",
+      "service_code": "thermal_heat"
+    },
+    {
+      "code": "BAT-5",
+      "name": "Battery 5 kW",
+      "service_code": "battery"
+    },
+    {
+      "code": "BAT-10",
+      "name": "Battery 10 kW",
+      "service_code": "battery"
+    },
+    {
+      "code": "BAT-15",
+      "name": "Battery 15 kW",
+      "service_code": "battery"
+    },
+    {
+      "code": "BAT-20",
+      "name": "Battery 20 kW",
+      "service_code": "battery"
+    },
+    {
+      "code": "BAT-25",
+      "name": "Battery 25 kW",
+      "service_code": "battery"
+    },
+    {
+      "code": "BAT-30",
+      "name": "Battery 30 kW",
+      "service_code": "battery"
+    },
+    {
+      "code": "FL-2",
+      "name": "Fire line 2\"",
+      "service_code": "fire"
+    },
+    {
+      "code": "FL-4",
+      "name": "Fire line 4\"",
+      "service_code": "fire"
+    },
+    {
+      "code": "FL-6",
+      "name": "Fire line 6\"",
+      "service_code": "fire"
+    },
+    {
+      "code": "FL-8",
+      "name": "Fire line 8\"",
+      "service_code": "fire"
+    },
+    {
+      "code": "FL-10",
+      "name": "Fire line 10\"",
+      "service_code": "fire"
+    },
+    {
+      "code": "FL-12",
+      "name": "Fire line 12\"",
+      "service_code": "fire"
+    }
+  ],
+  "occupancy_statuses": [
+    {
+      "code": "OCC-T",
+      "name": "Occupied · tenant-billed"
+    },
+    {
+      "code": "OCC-O",
+      "name": "Occupied · owner-billed"
+    },
+    {
+      "code": "LNDLRD",
+      "name": "Landlord-billed · between tenants"
+    },
+    {
+      "code": "VAC",
+      "name": "Vacant · base charges only"
+    },
+    {
+      "code": "VAC-OFF",
+      "name": "Vacant · service off, no billing"
+    }
+  ],
+  "device_types": [
+    {
+      "code": "BACKFLOW",
+      "name": "Backflow preventer · annual test"
+    },
+    {
+      "code": "INVERTER",
+      "name": "Solar inverter · export config"
+    },
+    {
+      "code": "EVCHG",
+      "name": "EV charger"
+    },
+    {
+      "code": "BATT",
+      "name": "Battery storage"
+    },
+    {
+      "code": "COMM",
+      "name": "Comms endpoint"
+    },
+    {
+      "code": "OTHER",
+      "name": "Other"
+    }
+  ],
+  "certification_types": [
+    {
+      "code": "CONF-SP",
+      "name": "Confined space · 3-yr validity"
+    },
+    {
+      "code": "HV-AW",
+      "name": "HV awareness · 2-yr"
+    },
+    {
+      "code": "BF-TST",
+      "name": "Backflow tester · 5-yr"
+    },
+    {
+      "code": "TRAF",
+      "name": "Traffic control · 3-yr"
+    },
+    {
+      "code": "FA-CPR",
+      "name": "First aid / CPR · 2-yr"
+    },
+    {
+      "code": "TRENCH",
+      "name": "Trench safety · 3-yr"
+    }
+  ],
+  "_owner_categories_comment": "BR-TEN-150 / BR-MET-150. THE FIVE, IN THE ORDER THEY WERE PUT TO THE PO on 2026-08-27 and ratified by \"category is okay, no richer text\". Codes are stable identifiers and names are what a person reads; a tenant may rename either half of a row and may add its own sixth (BR-TEN-036), which is the house pattern and NOT a ruling -- OQ-502. What a category MEANS is metering's law (BR-MET-150), which is why the owner string in SEED_LIST_OWNERS and LOOKUP_LISTS says `metering` although tenancy hosts the table (BR-TEN-031).",
+  "owner_categories": [
+    {
+      "code": "owner_occupier",
+      "name": "Owner-occupier"
+    },
+    {
+      "code": "landlord",
+      "name": "Landlord"
+    },
+    {
+      "code": "property_manager",
+      "name": "Property manager"
+    },
+    {
+      "code": "hoa",
+      "name": "HOA"
+    },
+    {
+      "code": "builder",
+      "name": "Builder"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+# Keep the build context — and therefore the image — small and secret-free.
+# Everything NOT listed here ships: apps/ config/ core/ db/ manage.py
+# docker-entrypoint.sh. db/ must ship: the RLS migrations read their policy SQL
+# from it at migrate time (core/migrationtools.load_db_sql).
+
+# Secrets — never in an image layer. The example file is documentation and is
+# excluded too; compose reads it from the host, not from inside the container.
+.env
+.env.*
+
+# Local virtualenvs and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+htmlcov/
+.coverage
+coverage.xml
+
+# Job artifacts written at runtime (JOB_ARTIFACTS_DIR); the Dockerfile creates
+# an empty one owned by the runtime user.
+var/
+
+# Tests do not run in the runtime image — pytest is not installed there.
+tests/
+
+# Never part of a build context
+.git/
+Dockerfile
+.dockerignore

@@ -1,0 +1,40 @@
+# G26 — REQUIRED PER-TENANT ROWS. One record for every row a money path REFUSES
+# without, together with the thing that can actually put it there. DEF-123: a
+# row nothing creates is a money path nothing can complete, and the register is
+# how that stops being invisible.
+#
+#   <table> | <refusal file::function> | <phrase> | <kind> | <writer file::symbol> | <wired file::kind:name> | <reason>
+#
+# phrase — a distinctive substring of the refusal's own sentence. It is the
+#   STALENESS anchor: if the refusal is reworded or deleted, this row is fiction
+#   and the gate says so rather than letting a dead entry vouch for a live table.
+#
+# kind — how the row comes into existence, and each is checked differently:
+#   provisioning   a seeder runs at signup. Checked: the writer is DEFINED, and
+#                  it is CALLED (an AST call site, not a mention in a comment).
+#                  This is DEF-123's exact hole — the writer did not exist at
+#                  all, and nothing anywhere asked.
+#   migration      a migration plants it. Checked: the file exists.
+#   endpoint       a human creates it through a MOUNTED route. Checked: the view
+#                  is defined, it appears inside a `path(...)` in its own module,
+#                  and that module's urlpatterns are included by config/urls.py.
+#                  An unmounted view is DEF-123 again: `templates_service` had a
+#                  complete create-and-publish lifecycle and S8's Templates tab
+#                  had no endpoint, so no human could reach it either.
+#
+# A row whose money path refuses and whose kind is NONE OF THESE does not belong
+# here — it belongs in the defect log.
+
+bill_templates | 06-backend/apps/billing/templates_service.py::resolve_for | this tenant has no | provisioning | 06-backend/apps/billing/templates_service.py::seed_platform_default | 06-backend/apps/tenancy/services.py::call:seed_bill_templates | DEF-123. BR-BIL-026 makes the template pin non-optional, so a tenant with no bill template cannot issue a single bill. The lifecycle service landed complete and correct on 2026-08-15 and nothing in the product ever wrote a row; every tenant on every deployment refused here for a day. Seeded at provisioning from 2026-08-16 through apps.tenancy.seams.seed_bill_templates.
+
+tenant_settings.fy_start_month | 06-backend/apps/ledger/close.py::period_window | this tenant has no fiscal settings | endpoint | 06-backend/apps/tenancy/api.py::regional_settings | 06-backend/apps/tenancy/api.py::route:regional_settings | BR-TEN-022 / US-TEN-006. A month cannot be closed before the fiscal calendar it belongs to is chosen, and provisioning deliberately does NOT choose one (apps/tenancy/services: "everything else stays blank for the tabs to fill: a default is only worth writing where the signup already told us the answer"). This is NOT DEF-123's shape and the difference is the whole point of the register: a human CAN create this row, on Settings -> Regional, through a route that is mounted. What DEF-123 had was a required row with no door at all.
+
+notification_templates | 06-backend/apps/notifications/template_service.py::resolve | no published | provisioning | 06-backend/apps/notifications/seed_templates.py::seed_notice_templates | 06-backend/apps/tenancy/services.py::call:seed_notice_templates | DEF-163, and it is DEF-123 word for word one module along. A notice renders from a PUBLISHED template version resolved at queue time (BR-BIL-026), so a tenant with no published body cannot send a dunning letter or a disconnection notice AT ALL. `template_service` landed complete on 2026-08-15 with its own tests passing against rows the TESTS create; there is no designer (S91-S96 were CUT by the PO on 2026-08-16), no migration plants a row and no endpoint writes one, so this refusal was the answer for every class on every tenant. Seeded at provisioning from 2026-08-16 through apps.tenancy.seams.seed_notice_templates. ⚠ THE SEEDER PLANTS TWO CLASSES AND REFUSES THE REST BY NAME: `dunning` and `receipt` are quoted verbatim from A13; `disconnect_notice` is OQ-243 (A19 §2 gives three tier bodies and a variant holds one, and the regulatory rights footer is written nowhere), `contract_payment_plan` is OQ-244, and the email/SMS/contract/plan-notice classes are OQ-206/OQ-207. So THIS ROW BEING GREEN DOES NOT MEAN EVERY NOTICE CAN BE SENT — it means the row can exist, which is the only question this register answers.
+
+notification_templates | 06-backend/apps/notifications/notices.py::_resolved_or_refuse | no published | provisioning | 06-backend/apps/notifications/seed_templates.py::seed_notice_templates | 06-backend/apps/tenancy/services.py::call:seed_notice_templates | THE SAME REQUIRED ROW AS THE LINE ABOVE, seen from the GENERATION path rather than from resolution — the same shape `bill_templates` is registered twice in. `notices.generate_disconnect_notice` and `generate_reminder` wrap the resolver's refusal in the sentence a clerk reads ("nothing is sent and nothing is invented"), which is a second raise site and therefore a second discovery hit. Registered rather than exempted: the refusal is REAL and its door is the same seeder, and a reader of this file should find both places a missing notice template stops the product.
+
+bill_templates | 06-backend/apps/billing/templates_service.py::choose_layout | this tenant has no | provisioning | 06-backend/apps/billing/templates_service.py::seed_platform_default | 06-backend/apps/tenancy/services.py::call:seed_bill_templates | THE SAME REQUIRED ROW AS THE LINE ABOVE, seen from the CHOOSER (2026-08-16, PO ruling cutting S91-S96). `choose_layout` publishes a new version of the tenant's fallback template and deliberately CREATES NO TEMPLATE: BR-BIL-025 needs exactly ONE category-less template and `uq_bill_templates_category` is partial on a non-null category, so a second would make which page a customer receives a coin toss (reported in templates_service.TEMPLATES_UNAVAILABLE). Refusing here rather than seeding as a side effect is why the chooser cannot produce that collision -- and why this refusal needs its own row: provisioning is the only door, and it is the same door.
+
+bill_templates | 06-backend/apps/billing/sample_data.py::_bill_one_period | tenant has no bill template | provisioning | 06-backend/apps/billing/templates_service.py::seed_platform_default | 06-backend/apps/tenancy/services.py::call:seed_bill_templates | THE SAME REQUIRED ROW AS THE THREE `bill_templates` LINES ABOVE, seen from the SAMPLE-DATA LOAD (2026-08-16, DEF-166). The seeder drives the real five-phase run and pins the real template, so it refuses where a clerk's run would refuse. It is registered rather than exempted because the refusal is REAL and its door is the same one: a tenant with no bill template cannot issue a bill, and until 2026-08-16 the sample load ANSWERED THIS SILENTLY — `_template_pin()` returned None, the block logged at INFO and reported "OK, 95 rows" over 95 drafts. Saying it out loud is the fix, and saying it out loud is what puts a row here.
+
+invoices | 06-backend/apps/payments/sample_data.py::seed_sample_records | tenant has NO ISSUED BILL to pay | endpoint | 06-backend/apps/billing/api.py::run_release | 06-backend/apps/billing/api.py::route:run_release | DEF-167, and it is NOT DEF-123's shape — which is exactly why it is worth reading beside the rows above. The required row is an ISSUED INVOICE, and a human CAN create one: the S31 bill run's release step is mounted at `billing/runs/<run_id>/release` (and `…/issue`), so the door exists and is reachable. What was wrong was the ANSWER when the row was absent: `_bills_by_account()` correctly asked billing for invoices with `status='issued'`, found none, and the block `return 0` -> panel printed "OK … 0 row(s)". Zero payments, zero journal entries, a green line, and DEF-166 hidden underneath it. The refusal now names the UPSTREAM BLOCK rather than the table, because that is the sentence an operator can act on: the Bills block above is what issues them.

@@ -1,0 +1,531 @@
+<title>Plans Redesign</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap">
+<style>
+/* Discounts redesign mock-up. SMARTBillHub tokens: light-only, square corners, 4px scale. */
+:root{
+  --bg:#f3f2f2; --surface:#ffffff; --panel:#eae9e9; --text:#201e1d; --muted:#605d5d; --faint:#9b9797;
+  --line:#d7d3d3; --accent:#ec3013; --accent-ink:#ae1800; --accent-soft:#fff2ef;
+  --ok:#0f6e3a; --ok-soft:#e6f4ec; --warn:#a65d0a; --warn-soft:#fdf0d8; --bad:#a81600; --bad-soft:#fde4df; --info:#1d4ea8; --info-soft:#e6eefb;
+  --font:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --t-xs:11px; --t-sm:12px; --t-base:13px; --t-md:14px; --t-body:15px; --t-h4:20px; --t-h2:32px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:var(--t-body);line-height:1.55;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:20px 48px;display:flex;flex-direction:column;gap:20px}
+h1,h2,h3{font-weight:800;letter-spacing:-.015em;line-height:1.12;margin:0;text-wrap:balance}
+h1{font-size:var(--t-h2)} h2{font-size:var(--t-h4)} h3{font-size:var(--t-md);font-weight:700}
+.kicker{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.num{font-variant-numeric:tabular-nums}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.demo{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 12px;border:1px dashed var(--faint);font-size:var(--t-sm);color:var(--muted)}
+.demo b{color:var(--text)}
+.chipbtn{border:1px solid var(--line);background:var(--surface);padding:4px 10px;cursor:pointer;font-size:var(--t-sm)}
+.chipbtn[aria-pressed="true"]{border-color:var(--text);font-weight:600}
+.head{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:flex-end}
+.crumb{font-size:var(--t-sm);color:var(--muted)}
+.crumb a{color:var(--accent-ink)}
+.rail{display:flex;border:1px solid var(--line);background:var(--surface)}
+.rail button{flex:1;display:flex;align-items:center;gap:10px;padding:12px 16px;border:0;background:transparent;cursor:pointer;text-align:left;border-right:1px solid var(--line);min-width:0}
+.rail button:last-child{border-right:0}
+.rail .n{width:24px;height:24px;display:grid;place-items:center;border:1.5px solid var(--faint);font-size:var(--t-sm);font-weight:700;flex:none}
+.rail button[data-state="current"]{box-shadow:inset 0 -3px 0 var(--accent)}
+.rail button[data-state="current"] .n{background:var(--accent);border-color:var(--accent);color:#fff}
+.rail button[data-state="done"] .n{background:var(--text);border-color:var(--text);color:#fff}
+.rail .lbl{font-size:var(--t-md);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:640px){.rail .lbl{display:none}.rail button{justify-content:center}}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:20px;align-items:start}
+@media (max-width:960px){.grid{grid-template-columns:minmax(0,1fr)}}
+.stack{display:flex;flex-direction:column;gap:20px;min-width:0}
+.panel{background:var(--surface);border:1px solid var(--line);padding:20px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px)}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:720px){.fields{grid-template-columns:minmax(0,1fr)}}
+.span2{grid-column:1/-1}
+.f{display:flex;flex-direction:column;gap:4px;min-width:0}
+.f label,.f .lab{font-size:var(--t-base);font-weight:600}
+.req{color:var(--accent)}
+.f input,.f select{border:1px solid var(--line);background:var(--surface);padding:8px 10px;min-height:38px;width:100%;font-size:var(--t-md)}
+.f .help{font-size:var(--t-sm);color:var(--muted)}
+.f.err input,.f.err select,.f.err .ms-btn{border-color:var(--bad);background:var(--bad-soft)}
+.f .msg{font-size:var(--t-sm);color:var(--bad);font-weight:600}
+.f .wmsg{font-size:var(--t-sm);color:var(--warn);font-weight:600}
+.f.wn input{border-color:var(--warn)}
+.suffix{display:flex;align-items:stretch;border:1px solid var(--line);background:var(--surface)}
+.suffix input{border:0;flex:1;min-width:0}
+.suffix span{display:grid;place-items:center;padding:0 12px;background:var(--bg);border-left:1px solid var(--line);font-weight:700;color:var(--muted)}
+.f.wn .suffix{border-color:var(--warn)}
+.f.err .suffix{border-color:var(--bad);background:var(--bad-soft)}
+.f.err .suffix input{background:transparent}
+/* one dropdown with ticks — services, customer classes */
+.ms{position:relative}
+.ms-btn{width:100%;display:flex;justify-content:space-between;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);padding:8px 10px;min-height:38px;cursor:pointer;text-align:left;font-size:var(--t-md)}
+.ms-btn .val{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ms-btn .caret{color:var(--muted);flex:none}
+.ms-list{position:absolute;top:calc(100% + 2px);left:0;right:0;z-index:5;background:var(--surface);border:1px solid var(--text);box-shadow:0 12px 32px rgba(45,43,43,.22);max-height:300px;overflow:auto}
+.ms-list label{display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px solid var(--line);cursor:pointer;font-size:var(--t-md)}
+.ms-list label:last-child{border-bottom:0}
+.ms-list label.all{font-weight:700;background:var(--bg)}
+.ms-list input{width:16px;height:16px;accent-color:var(--accent)}
+.ms-list .sw{width:10px;height:10px;flex:none}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--bg);padding:2px 8px;font-size:var(--t-sm);font-weight:600}
+.chip i{width:8px;height:8px;display:inline-block}
+.ticks{display:flex;flex-wrap:wrap;gap:12px 24px}
+.ticks label{display:flex;align-items:center;gap:8px;font-size:var(--t-md);font-weight:500;cursor:pointer}
+.ticks input{width:18px;height:18px;accent-color:var(--accent)}
+.reach{display:flex;flex-direction:column;gap:8px;border:1px solid var(--line);background:var(--bg);padding:12px 14px}
+.reach-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.reach b.big{font-size:22px;font-weight:800}
+.tw{overflow-x:auto;border:1px solid var(--line);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:var(--t-base)}
+th{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;font-weight:600;background:var(--bg);padding:8px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.r,th.r{text-align:right}
+tr.tot td{font-weight:700;background:var(--bg)}
+.pill{display:inline-block;font-size:var(--t-xs);font-weight:700;padding:2px 8px;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.p-ok{background:var(--ok-soft);color:var(--ok)} .p-warn{background:var(--warn-soft);color:var(--warn)} .p-off{background:var(--panel);color:var(--muted)} .p-bad{background:var(--bad-soft);color:var(--bad)}
+.note{display:flex;gap:10px;padding:10px 12px;font-size:var(--t-base);align-items:flex-start}
+.note.warn{background:var(--warn-soft);color:var(--warn)} .note.bad{background:var(--bad-soft);color:var(--bad)} .note.info{background:var(--info-soft);color:var(--info)} .note.ok{background:var(--ok-soft);color:var(--ok)}
+.btn{border:1px solid var(--text);background:var(--surface);padding:0 18px;min-height:40px;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.link{border:0;background:none;color:var(--accent-ink);padding:0;min-height:0;text-decoration:underline;font-weight:600}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:16px}
+.actions .right{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.why{font-size:var(--t-sm);color:var(--bad);font-weight:600}
+.sum{display:flex;flex-direction:column;gap:6px;font-size:var(--t-base)}
+.sum .row{display:flex;justify-content:space-between;gap:12px}
+.sum .row span:first-child{color:var(--muted)}
+.sum .row span:last-child{text-align:right;font-weight:600;overflow-wrap:anywhere}
+.bigrate{font-size:30px;font-weight:800;line-height:1.05}
+.hr{border-top:1px solid var(--line)}
+.rev{display:grid;grid-template-columns:180px minmax(0,1fr);gap:0;border:1px solid var(--line)}
+.rev div{padding:9px 12px;border-bottom:1px solid var(--line);font-size:var(--t-md)}
+.rev div:nth-child(odd){color:var(--muted);background:var(--bg)}
+.rev div:nth-last-child(-n+2){border-bottom:0}
+.rev .edit{color:var(--accent-ink);font-size:var(--t-sm);margin-left:8px;cursor:pointer;text-decoration:underline;background:none;border:0;padding:0}
+@media (max-width:560px){.rev{grid-template-columns:minmax(0,1fr)}.rev div:nth-child(odd){border-bottom:0;padding-bottom:0}}
+.done{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.done .check{width:44px;height:44px;background:var(--ok);color:#fff;display:grid;place-items:center;font-size:24px;font-weight:800}
+.fixes h2{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--text);color:var(--surface);padding:10px 16px;z-index:60;max-width:min(560px,calc(100% - 32px));font-size:var(--t-sm)}
+@media (prefers-reduced-motion:no-preference){.panel{animation:in .18s ease-out}@keyframes in{from{opacity:.4;transform:translateY(3px)}to{opacity:1;transform:none}}}
+.tabs{display:flex;gap:24px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.tabs button{border:0;background:none;padding:8px 0;cursor:pointer;font-size:var(--t-md);font-weight:600;color:var(--muted)}
+.tabs button[aria-selected="true"]{color:var(--text);box-shadow:inset 0 -3px 0 var(--accent)}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.toolbar input{border:1px solid var(--line);background:var(--surface);padding:8px 10px;min-height:38px;flex:1;min-width:180px;font-size:var(--t-md)}
+.seg{border:1px solid var(--line);background:var(--surface);padding:6px 12px;font-size:var(--t-sm);cursor:pointer;min-height:38px}
+.seg[aria-pressed="true"]{background:var(--text);color:#fff;border-color:var(--text)}
+.rate{font-weight:800;font-size:var(--t-md);white-space:nowrap}
+.ico{border:1px solid var(--line);background:var(--surface);width:32px;height:32px;cursor:pointer;display:inline-grid;place-items:center;font-size:14px}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:720px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.tile{border:1px solid var(--line);background:var(--surface);padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.tile span{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.tile b{font-size:24px;font-weight:800}
+.tile small{color:var(--muted);font-size:var(--t-sm)}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border:1px solid var(--line)}
+@media (max-width:720px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.fact{padding:10px 12px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);display:flex;flex-direction:column;gap:2px;min-width:0}
+.fact span{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.fact b{font-size:var(--t-md);font-weight:600;overflow-wrap:anywhere}
+.ph{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.lock{font-size:var(--t-sm);color:var(--muted)}
+[hidden]{display:none!important}
+.choice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.choice button{border:1px solid var(--line);background:var(--surface);padding:10px 12px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:2px}
+.choice button[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 3px 0 var(--accent)}
+.choice.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:480px){.choice.three{grid-template-columns:minmax(0,1fr)}}
+.choice button span{font-size:var(--t-sm);color:var(--muted)}
+.hcode{font-size:var(--t-md);font-weight:600;color:var(--muted);letter-spacing:.02em;vertical-align:middle}
+.hfact{font-size:var(--t-md);color:var(--muted);border-left:1px solid var(--line);padding-left:10px}
+.hfact b{color:var(--text);font-weight:700}
+.ro{padding:8px 0;font-size:var(--t-md);font-weight:600}
+.muted{color:var(--muted)}
+.hact{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.morewrap{position:relative}
+.menu{position:absolute;right:0;top:calc(100% + 2px);z-index:20;background:var(--surface);border:1px solid var(--text);box-shadow:0 12px 32px rgba(45,43,43,.22);display:flex;flex-direction:column;min-width:160px}
+.menu button{border:0;border-bottom:1px solid var(--line);background:var(--surface);padding:10px 14px;text-align:left;cursor:pointer;font-size:var(--t-md)}
+.menu button:last-child{border-bottom:0}
+.menu button:hover{background:var(--bg)}
+.sb{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 4px;color:#fff;font-size:11px;font-weight:800}
+.sbs{display:flex;gap:3px;flex-wrap:wrap}
+.adder{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap}
+.adder .f{flex:1;min-width:220px}
+.fchip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--text);background:var(--surface);padding:4px 8px;font-size:var(--t-sm);font-weight:600}
+.allbtn{border:1px solid var(--text);background:var(--text);color:#fff;padding:6px 12px;font-weight:700;font-size:var(--t-sm);cursor:pointer}
+td select,td input{min-width:0;width:100%}
+.ta table td{vertical-align:middle}
+.ta td select,.ta td input:not([type=checkbox]){height:38px;padding:6px 10px;border:1px solid var(--line);background:var(--surface);font-size:var(--t-md)}
+.ta td.pick select{background-image:none}
+.ta .rm{border:0;background:none;color:var(--accent);font-size:18px;font-weight:700;cursor:pointer;padding:4px 8px}
+.ta-foot{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-top:10px}
+.ta-foot .why{font-size:var(--t-sm);color:var(--muted);margin-left:8px}
+.ta td select{min-width:180px}
+.ta td.pick select{min-width:110px}
+.vf{margin-top:4px;font-size:var(--t-sm);white-space:nowrap}
+.vf .pill{font-size:10px;padding:1px 5px}
+.stickyhead{position:sticky;top:0;z-index:6;background:var(--bg);padding-top:8px;box-shadow:0 1px 0 var(--line)}
+button.tile{border:1px solid var(--line);background:var(--surface);font:inherit}
+button.tile:hover{border-color:var(--text)}
+.ta .rowerr td{color:var(--bad);font-size:var(--t-sm);padding-top:0}
+</style>
+<div class="wrap">
+  <div class="demo" role="group" aria-label="Demo controls">
+    <b>Design mock-up · example data</b>
+    <span>Screen:</span>
+    <button class="chipbtn" data-view="list" aria-pressed="true">List</button>
+    <button class="chipbtn" data-view="wiz" aria-pressed="false">New plan</button>
+    <button class="chipbtn" data-view="detail" aria-pressed="false">Details</button>
+    <span class="wizonly">Form:</span>
+    <button class="chipbtn wizonly" data-preset="full" aria-pressed="true">Filled in</button>
+    <button class="chipbtn wizonly" data-preset="empty" aria-pressed="false">Empty form</button>
+    <span>Ottumwa Water Works · water, sewer, trash, fire switched on.</span>
+  </div>
+  <div id="listView"></div>
+  <div id="detailView" hidden></div>
+  <div id="wizView" class="stack" hidden>
+  <header class="head"><div><div class="crumb" id="wizCrumb"></div><h1 id="wizTitle">New plan</h1></div><button class="btn" id="draft">Save draft &amp; exit</button></header>
+  <section class="panel" id="editChoice" hidden></section>
+  <nav class="rail" id="rail" aria-label="Steps"></nav>
+  <div class="grid"><main class="stack" id="main"></main><aside class="aside"><div class="panel" id="summary"></div></aside></div>
+  </div>
+  <section class="panel fixes" id="fixes">
+    <h2 id="fixtitle">What this design fixes</h2>
+    <div class="tw"><table><thead><tr><th>#</th><th>Where</th><th>Today</th><th>In this design</th></tr></thead><tbody id="fixrows"></tbody></table></div>
+  </section>
+</div>
+<div class="toast" id="toast" hidden></div>
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const money=v=>(v<0?"−":"")+"$"+Math.abs(v).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,",");
+const usDate=iso=>{if(!iso)return "—";const [y,m,d]=iso.split("-");return `${m}/${d}/${y}`};
+const dayBefore=iso=>{const d=new Date(iso+"T12:00:00");d.setDate(d.getDate()-1);return d.toISOString().slice(0,10)};
+const lbl=(arr,v)=>(arr.find(a=>a[0]===v)||["","—"])[1]||"—";
+const clone=o=>JSON.parse(JSON.stringify(o));
+
+const SVC={water:["Water","W","#1e6b8f","4110 · Water usage"],sewer:["Sewer","S","#5a5555","4120 · Sewer"],trash:["Trash","T","#3a6b3d","4130 · Trash"],fire:["Fire","F","#8a1c1c","4155 · Fire"]};
+const SCHED={water:[["RS-RW","Residential water (inclining tiers) · Tiered · 81 accounts","Tiered","$4.24 · $6.89 · $8.48 per kgal",10,5,"BASE-W1"],["RS-CW","Commercial water (flat) · Flat · 4 accounts","Flat","$5.10 per kgal",18,0,"BASE-W-COM"]],
+ sewer:[["RS-SF","Sewer flat rate · Flat · 5 accounts","Flat","$14.00 a month",9,0,"BASE-S"],["RS-SP","Sewer (% of water) · Percent · 76 accounts","Percent","60% of water",9,0,"BASE-S"]],
+ trash:[["RS-T","Trash (monthly, not measured) · Flat · 85 accounts","Flat","$15.00 a month",0,0,"BASE-T"]],
+ fire:[["RS-F","Fire capacity · Tiered · 85 accounts","By size","$12.00 – $60.00 by line size",0,0,"BASE-FIRE"]]};
+const sched=(s,id)=>(SCHED[s]||[]).find(x=>x[0]===id);
+const VER={"RS-RW":["v4","09/30/2026"],"RS-CW":["v2","08/01/2026"],"RS-SF":["v3","09/28/2026"],"RS-SP":["v1","08/01/2026"],"RS-T":["v1","08/01/2026"],"RS-F":["v2","09/03/2026"],
+ "BASE-W1":["v2","09/01/2026"],"BASE-W-COM":["v1","08/01/2026"],"BASE-S":["v1","08/01/2026"],"BASE-T":["v1","08/01/2026"],"BASE-FIRE":["v2","09/03/2026"],
+ "LATE":["v1","08/01/2026"],"RECON":["v2","09/15/2026"],"DEPOSIT":["v1","08/01/2026"],"NSF":["v1","08/01/2026"],
+ "TX-STATE":["v1","01/01/2026"],"BX-CNTY":["v3","01/01/2026"],"AA-CITY":["v2","09/01/2026"],
+ "SENIOR":["v1","08/01/2026"],"AUTOPAY":["v1","08/01/2026"],"PAPERLESS":["v1","08/01/2026"],"CAP":["v1","08/01/2026"]};
+const vf=k=>VER[k]?`<span class="pill p-off">${VER[k][0]}</span> <span class="muted num">from ${VER[k][1]}</span>`:"";
+const vline=k=>VER[k]?`<div class="vf">${vf(k)}</div>`:"";
+const DETAIL={
+ "RS-RW":{by:"Meter size",base:[['5/8"',"$10.00","$5.00"],['1"',"$18.00","$5.00"],['2"',"$40.00","$5.00"]],ubyl:"Usage charges · block (per month)",use:[["0 – 5 kgal","$4.24 per kgal"],["5 – 15 kgal","$6.89 per kgal"],["Over 15 kgal","$8.48 per kgal"]]},
+ "RS-CW":{by:"Meter size",base:[['1"',"$18.00","—"],['2"',"$40.00","—"],['4"',"$95.00","—"]],ubyl:"Usage charges",use:[["All usage","$5.10 per kgal"]]},
+ "RS-SF":{by:"",base:[["Every size","$9.00","—"]],ubyl:"Usage charges",use:[["Each month","$14.00 flat"]]},
+ "RS-SP":{by:"",base:[["Every size","$9.00","—"]],ubyl:"Usage charges",use:[["Each month","60% of the water usage charge"]]},
+ "RS-T":{by:"Cart size",base:[["64 gal cart","$0.00","—"],["96 gal cart","$0.00","—"]],ubyl:"Usage charges · per cart, per month",use:[["64 gal cart","$15.00"],["96 gal cart","$20.00"]]},
+ "RS-F":{by:"Fire line size",base:[['2" line',"$0.00","—"],['4" line',"$0.00","—"],['6" line',"$0.00","—"]],ubyl:"Usage charges · per line, per month",use:[['2" line',"$12.00"],['4" line',"$30.00"],['6" line',"$60.00"]]}};
+const CHPRICE={LATE:["Customer class",[["Residential","1.50% · min $5.00"],["Commercial","2.00% · min $10.00"]]],RECON:["",[["Everyone","$75.00"]]],NSF:["",[["Everyone","$25.00"]]]};
+const DEPS=[["DEPOSIT","Security deposit","Customer class",[["Residential","$150.00"],["Commercial","$300.00"]],"2300 · Deposits held"],["DEP-HYD","Hydrant meter deposit","Meter size",[['2"',"$500.00"],['3"',"$900.00"]],"2300 · Deposits held"]];
+VER["DEPOSIT"]=["v2","09/01/2026"];VER["DEP-HYD"]=["v1","08/01/2026"];
+const CLASSES=[["res","Residential"],["com","Commercial"],["ind","Industrial"],["agr","Agricultural"],["ins","Institutional"],["mun","Municipal"],["bld","Builder or developer"],["gov","Government"]];
+const CHARGES=[["LATE","Late payment fee","1.50% · min $5.00","2610 · Late fees","Penalty","After the due date"],["RECON","Reconnection fee","$75.00","4310 · Service fees","One-time","On reconnection"],["NSF","Returned payment fee","$25.00","4310 · Service fees","One-time","On a returned payment"]];
+const TAXES=[["TX-STATE","TX State Utility Tax","6.25%","2200-02 · Tax payable · State","Usage and base charges"],["BX-CNTY","Bexar County","2%","2200-01 · Tax payable · Local","Usage and base charges"],["AA-CITY","City franchise fee","3%","2200-03 · Fees payable · City","Usage and base charges"]];
+const DISCS=[["SENIOR","Senior discount","15%","4760 · Customer discounts",12],["AUTOPAY","Autopay discount","0.5%","4760 · Customer discounts",0],["PAPERLESS","Paperless billing","$1.00","4760 · Customer discounts",0],["CAP","CAP / low-income credit","$25.00","4760 · Customer discounts",0]];
+const ATTR=[["class","Customer class"],["service","Service"],["meter","Meter size"]];
+const OPS=[["is","is"],["isnot","is not"],["oneof","is one of"]];
+const PRE={
+ full:{name:"Residential City Plan",code:"RCP",clsAll:false,cls:["res"],desc:"Water, sewer, trash and fire for homes inside the city.",hardship:false,kw25:false,owner:false,notes:[["class","is","res"]],
+  svcs:[["water","RS-RW",true],["sewer","RS-SF",true],["trash","RS-T",false]],surcharge:"yes",surPct:"25",
+  charges:["LATE","RECON"],taxes:["TX-STATE","BX-CNTY"],deps:["DEPOSIT"],discs:[["SENIOR","2026-09-01","2026-10-31"]],budget:false,minimum:"10",from:"2026-11-01",to:""},
+ empty:{name:"",code:"",clsAll:true,cls:[],desc:"",hardship:false,kw25:false,owner:false,notes:[],svcs:[],surcharge:"no",surPct:"",charges:[],taxes:[],deps:[],discs:[],budget:false,minimum:"",from:"",to:""}};
+const STEPS={new:[["details","Details"],["services","Services"],["charges","Charges"],["billing","Billing"],["review","Review"]],
+ info:[["details","Details"],["review","Review"]],
+ change:[["services","Services"],["charges","Charges"],["billing","Billing"],["review","Review"]],
+ correct:[["services","Services"],["charges","Charges"],["billing","Billing"],["review","Review"]]};
+let S={mode:"new",step:0,saved:false,tried:{},pick:{},reason:"",orig:null,...clone(PRE.full)};
+const clsText=(o=S)=>o.clsAll?"Every customer class":o.cls.length?o.cls.map(c=>lbl(CLASSES,c)).join(", "):"Choose classes";
+const flow=()=>STEPS[S.mode];const key=()=>flow()[S.step][0];
+const baseOf=o=>o.svcs.reduce((a,s)=>a+(s[0]?((sched(s[0],s[1])||[])[4]||0):0),0);
+
+function errors(k){const E={};
+  if(k==="details"){if(!S.name.trim())E.name="Enter the plan name.";if(S.mode==="new"&&!S.code.trim())E.code="Enter a code.";if(!S.clsAll&&!S.cls.length)E.cls="Choose at least one class.";}
+  if(k==="services"){if(!S.svcs.length)E.svcs="Add at least one service.";if(S.svcs.some(s=>!s[0]))E.svcs="Choose a service in each row.";else if(S.svcs.some(s=>!s[1]))E.svcs="Pick a rate schedule for each service.";if(S.surcharge==="yes"&&!(parseFloat(S.surPct)>0))E.surPct="Enter the surcharge.";}
+  if(k==="charges"){if(S.charges.some(c=>!c))E.charges="Choose a code in each row, or remove it.";if(S.taxes.some(c=>!c))E.taxes="Choose a tax in each row, or remove it.";}
+  if(k==="billing"){if(S.deps.some(d=>!d))E.deps="Choose a deposit in each row, or remove it.";if(S.discs.some(d=>!d[0]))E.discs="Choose a discount in each row, or remove it.";if(S.minimum&&isNaN(parseFloat(S.minimum)))E.minimum="Enter an amount.";}
+  if(k==="review"){if(S.mode==="new"&&!S.from)E.from="Enter the start date.";if(S.mode==="change"&&(!S.from||S.from<=S.orig.from))E.from=S.from?`Must be after ${usDate(S.orig.from)}.`:"Enter the start date.";if(S.mode!=="new"&&S.mode!=="info"&&!S.reason.trim())E.reason="Enter the reason.";}
+  return E}
+function f(id,label,html,o={}){return `<div class="f ${o.err?"err":""} ${o.cls||""}"><label for="${id}" class="lab">${label}${o.req?' <span class="req">*</span>':""}</label>${html}${o.err?`<span class="msg">${o.err}</span>`:o.help?`<span class="help">${o.help}</span>`:""}</div>`}
+const inp=(k,o={})=>`<input id="f-${k}" data-k="${k}" value="${esc(S[k])}" ${o.ph?`placeholder="${esc(o.ph)}"`:""} ${o.type?`type="${o.type}"`:""}>`;
+const ro=v=>`<div class="ro">${v}</div>`;
+const badge=s=>`<span class="sb" style="background:${SVC[s][2]}" title="${SVC[s][0]}">${SVC[s][1]}</span>`;
+const err=m=>m?`<span class="msg" style="display:block">${m}</span>`:"";
+function opt(list,cur,used,ph){return `<option value="">${ph}</option>`+list.filter(o=>o[0]===cur||!used.includes(o[0])).map(o=>`<option value="${o[0]}" ${o[0]===cur?"selected":""}>${esc(o[1])}</option>`).join("")}
+function foot(id,label,left,trail){return `<div class="ta-foot"><div><button class="btn" data-addrow="${id}" ${left===0?`disabled`:""}>+ ${label}</button>${left===0?`<span class="why">All added.</span>`:""}</div>${trail||""}</div>`}
+const rmb=(a,i)=>`<button class="rm" data-rm="${a}:${i}" aria-label="Remove" title="Remove">×</button>`;
+function adder(id,label,opts,btn){return `<div class="adder">${f("p-"+id,label,`<select id="p-${id}" data-pick="${id}"><option value="">Choose</option>${opts.map(o=>`<option value="${o[0]}">${esc(o[1])}</option>`).join("")}</select>`,{})}<button class="btn" data-add="${id}">+ Add</button></div>`}
+
+function rail(){$("#rail").innerHTML=flow().map((s,i)=>{const st=S.saved||i<S.step?"done":i===S.step?"current":"todo";
+  return `<button data-go="${i}" data-state="${st}" ${i>S.step&&!S.saved?"disabled":""}><span class="n">${st==="done"?"✓":i+1}</span><span class="lbl">${s[1]}</span></button>`}).join("")}
+
+function stepDetails(){const E=S.tried.details?errors("details"):{};const ed=S.mode==="info";
+  return `<section class="panel"><h2>Plan</h2><div class="fields">
+   ${f("f-name","Plan name",inp("name",{ph:"e.g. Residential City Plan"}),{req:1,err:E.name,help:"Printed on the bill."})}
+   ${f("f-code","Code",ed?ro(esc(S.code)):inp("code",{ph:"e.g. RCP"}),{req:!ed,err:E.code})}
+   ${f("f-cls","Customer classes",`<div class="ms"><button type="button" class="ms-btn" id="f-cls" data-ms="cls" aria-expanded="${!!S.open}"><span class="val">${esc(clsText())}</span><span class="caret">▾</span></button>
+    ${S.open?`<div class="ms-list" role="listbox" aria-multiselectable="true"><label class="all"><input type="checkbox" data-clsall ${S.clsAll?"checked":""}>Every customer class</label>${CLASSES.map(c=>`<label><input type="checkbox" data-cls="${c[0]}" ${!S.clsAll&&S.cls.includes(c[0])?"checked":""}>${c[1]}</label>`).join("")}</div>`:""}</div>`,{req:1,err:E.cls,cls:"span2"})}
+   ${f("f-desc","Description for customers",inp("desc",{ph:"e.g. Water and sewer for homes"}),{cls:"span2",help:"Shown in self-service and at move-in."})}
+  </div></section>
+  <section class="panel"><h2>Intended for</h2>
+   <div class="ticks"><label><input type="checkbox" data-tick="hardship" ${S.hardship?"checked":""}>Proof of hardship or assistance</label><label><input type="checkbox" data-tick="kw25" ${S.kw25?"checked":""}>At least 25 kW of demand</label><label><input type="checkbox" data-tick="owner" ${S.owner?"checked":""}>Owner-occupied premises</label></div>
+   <div class="ta" style="margin-top:12px"><div class="tw"><table><thead><tr><th>Attribute</th><th>Operator</th><th>Value</th><th style="width:44px"></th></tr></thead><tbody>
+   ${S.notes.map((n,i)=>`<tr><td><select data-cell="notes:${i}:0" aria-label="Attribute">${ATTR.map(a=>`<option value="${a[0]}" ${a[0]===n[0]?"selected":""}>${a[1]}</option>`).join("")}</select></td><td><select data-cell="notes:${i}:1" aria-label="Operator">${OPS.map(a=>`<option value="${a[0]}" ${a[0]===n[1]?"selected":""}>${a[1]}</option>`).join("")}</select></td><td><select data-cell="notes:${i}:2" aria-label="Value">${CLASSES.map(a=>`<option value="${a[0]}" ${a[0]===n[2]?"selected":""}>${a[1]}</option>`).join("")}</select></td><td>${rmb("notes",i)}</td></tr>`).join("")||`<tr><td colspan="4" class="muted">None.</td></tr>`}
+   </tbody></table></div>${foot("notes","Add note",1)}</div></section>
+  ${ed?`<section class="panel"><div class="ph"><h2>Services, charges and billing</h2><span class="lock">🔒 Change from a date.</span></div><div class="facts">${fact("Services",S.svcs.map(s=>SVC[s[0]][0]).join(", "))}${fact("Charges · taxes",S.charges.length+" · "+S.taxes.length)}${fact("Discounts",S.discs.length)}</div></section>`:""}
+  ${actions()}`}
+const fact=(k,v)=>`<div class="fact"><span>${k}</span><b>${v===""||v===undefined?"—":v}</b></div>`;
+
+function stepServices(){const E=S.tried.services?errors("services"):{};const used=S.svcs.map(x=>x[0]);const all=Object.keys(SVC);const sur=S.surcharge==="yes";
+  return `<section class="panel ta"><div class="ph"><h2>Services and rate schedules</h2><span class="muted">${S.svcs.length} of ${all.length} switched on</span></div>
+   <div class="tw"><table><thead><tr><th>Service</th><th>Rate schedule</th><th>Base charges</th><th class="r">Minimum</th>${sur?'<th title="Outside-city surcharge">Surcharge</th>':""}<th style="width:44px"></th></tr></thead><tbody>
+   ${S.svcs.map((r,i)=>`<tr><td class="pick"><select data-cell="svcs:${i}:0" aria-label="Service">${opt(all.map(k=>[k,SVC[k][0]]),r[0],used,"Choose a service")}</select>${r[0]?`<div class="vf muted">GL ${SVC[r[0]][3].split(" · ")[0]}</div>`:""}</td>
+     <td><select data-cell="svcs:${i}:1" aria-label="Rate schedule" ${r[0]?"":"disabled"}>${r[0]?opt(SCHED[r[0]].map(o=>[o[0],o[1].split(" · ").slice(0,2).join(" · ")]),r[1],[],"Choose a schedule"):'<option>Pick the service first</option>'}</select>${r[1]?vline(r[1]):""}</td>
+     ${(()=>{const x=r[0]?sched(r[0],r[1]):null;return `<td class="num" style="white-space:nowrap">${x?`<b>${money(x[4])}</b><div class="muted">${x[6]}</div>${vline(x[6])}`:"—"}</td><td class="r num">${x?(x[5]?money(x[5]):"None"):"—"}</td>`})()}${sur?`<td><input type="checkbox" data-cell="svcs:${i}:2" ${r[2]?"checked":""} aria-label="Surcharged" ${r[0]?"":"disabled"}></td>`:""}<td>${rmb("svcs",i)}</td></tr>`).join("")||`<tr><td colspan="7" class="muted">No service yet.</td></tr>`}
+   </tbody></table></div>${err(E.svcs)}
+   ${foot("svcs","Add service",all.length-used.length,`<div class="sum" style="min-width:240px"><div class="row"><span><b>Monthly base charges</b></span><span class="num"><b>${money(baseOf(S))}</b></span></div><div class="row"><button class="btn link" data-toast="Opens Settings › Services.">Switch more services on ↗</button></div></div>`)}</section>
+  <section class="panel"><h2>Outside city limits</h2><div class="fields">
+   ${f("f-surcharge","Outside-city premises pay more",`<select id="f-surcharge" data-k="surcharge"><option value="no" ${!sur?"selected":""}>No, same price everywhere</option><option value="yes" ${sur?"selected":""}>Yes, a surcharge</option></select>`,{})}
+   ${sur?f("f-surPct","Surcharge",`<div class="suffix">${inp("surPct",{ph:"25"})}<span>%</span></div>`,{req:1,err:E.surPct,help:"Tick the services above."}):""}
+  </div></section>${actions()}`}
+
+function stepCharges(){const E=S.tried.charges?errors("charges"):{};const tx=S.taxes.filter(Boolean).reduce((a,k)=>a+parseFloat(TAXES.find(x=>x[0]===k)[2]),0);
+  return `<section class="panel ta"><div class="ph"><h2>Charge codes</h2><span class="muted">${S.charges.filter(Boolean).length} on this plan</span></div>
+   <div class="tw"><table><thead><tr><th style="width:32%">Charge code</th><th class="r">Amount</th><th>GL</th><th>Type</th><th>When</th><th style="width:44px"></th></tr></thead><tbody>
+   ${S.charges.map((k,i)=>{const c=CHARGES.find(x=>x[0]===k);return `<tr><td class="pick"><select data-cell="charges:${i}" aria-label="Charge code">${opt(CHARGES.map(c=>[c[0],c[0]+" · "+c[1]]),k,S.charges,"Choose a code")}</select>${k?vline(k):""}</td><td class="r num">${c?(CHPRICE[k]&&CHPRICE[k][0]?`<span class="muted">by ${CHPRICE[k][0].toLowerCase()}</span>`:c[2]):"—"}</td><td class="num">${c?c[3]:"—"}</td><td>${c?c[4]:"—"}</td><td>${c?c[5]:"—"}</td><td>${rmb("charges",i)}</td></tr>`}).join("")||`<tr><td colspan="6" class="muted">None.</td></tr>`}
+   </tbody></table></div>${err(E.charges)}
+   ${foot("charges","Add charge code",CHARGES.length-S.charges.filter(Boolean).length,`<button class="btn link" data-toast="Opens Charge codes.">Not listed? Define it ↗</button>`)}</section>
+  <section class="panel ta"><div class="ph"><h2>Taxes</h2><span class="muted">${tx?tx+"% combined":"None"}</span></div>
+   <div class="tw"><table><thead><tr><th style="width:32%">Tax</th><th class="r">Rate</th><th>GL</th><th>What is taxed</th><th style="width:44px"></th></tr></thead><tbody>
+   ${S.taxes.map((k,i)=>{const t=TAXES.find(x=>x[0]===k);return `<tr><td class="pick"><select data-cell="taxes:${i}" aria-label="Tax">${opt(TAXES.map(t=>[t[0],t[1]]),k,S.taxes,"Choose a tax")}</select>${k?vline(k):""}</td><td class="r num">${t?t[2]:"—"}</td><td class="num">${t?t[3]:"—"}</td><td>${t?t[4]:"—"}</td><td>${rmb("taxes",i)}</td></tr>`}).join("")||`<tr><td colspan="5" class="muted">None.</td></tr>`}
+   </tbody></table></div>${err(E.taxes)}
+   ${foot("taxes","Add tax",TAXES.length-S.taxes.filter(Boolean).length,tx?`<div class="sum" style="min-width:220px"><div class="row"><span><b>Combined</b></span><span class="num"><b>${tx}%</b></span></div></div>`:"")}</section>${actions()}`}
+
+function stepBilling(){const E=S.tried.billing?errors("billing"):{};const freeD=DISCS.filter(d=>!S.discs.some(x=>x[0]===d[0]));
+  const used=S.discs.map(d=>d[0]);
+  return `<section class="panel ta"><div class="ph"><h2>Deposits</h2><span class="muted">${S.deps.filter(Boolean).length} on this plan</span></div>
+   <div class="tw"><table><thead><tr><th style="width:30%">Deposit</th><th>Priced by</th><th>Amounts</th><th>GL</th><th style="width:44px"></th></tr></thead><tbody>
+   ${S.deps.map((k,i)=>{const d=DEPS.find(x=>x[0]===k);return `<tr><td class="pick"><select data-cell="deps:${i}" aria-label="Deposit">${opt(DEPS.map(d=>[d[0],d[0]+" · "+d[1]]),k,S.deps,"Choose a deposit")}</select>${k?vline(k):""}</td><td>${d?(d[2]||"One amount"):"—"}</td><td>${d?d[3].map(x=>`${x[0]} <b class="num">${x[1]}</b>`).join("<br>"):"—"}</td><td class="num">${d?d[4]:"—"}</td><td>${rmb("deps",i)}</td></tr>`}).join("")||`<tr><td colspan="5" class="muted">None.</td></tr>`}
+   </tbody></table></div>${err(E.deps)}${foot("deps","Add deposit",DEPS.length-S.deps.filter(Boolean).length)}</section>
+  <section class="panel ta"><div class="ph"><h2>Discounts offered</h2><span class="muted">${S.discs.filter(d=>d[0]).length} on this plan</span></div>
+   <div class="tw"><table><thead><tr><th style="width:28%">Discount</th><th class="r">Value</th><th>GL</th><th class="r">Enrolled</th><th>Offered from</th><th>Offered until</th><th style="width:44px"></th></tr></thead><tbody>
+   ${S.discs.map((x,i)=>{const d=DISCS.find(y=>y[0]===x[0]);return `<tr><td class="pick"><select data-cell="discs:${i}:0" aria-label="Discount">${opt(DISCS.map(d=>[d[0],d[0]+" · "+d[1]]),x[0],used,"Choose a discount")}</select>${x[0]?vline(x[0]):""}</td><td class="r num">${d?d[2]:"—"}</td><td class="num">${d?d[3]:"—"}</td><td class="r num">${d?d[4]:"—"}</td><td><input type="date" data-cell="discs:${i}:1" value="${x[1]}"></td><td><input type="date" data-cell="discs:${i}:2" value="${x[2]}"></td><td>${rmb("discs",i)}</td></tr>`}).join("")||`<tr><td colspan="7" class="muted">None.</td></tr>`}
+   </tbody></table></div>${err(E.discs)}
+   ${foot("discs","Add discount",DISCS.length-used.filter(Boolean).length)}</section>
+  <section class="panel"><h2>Billing terms</h2><div class="fields">
+   <div class="f"><span class="lab">Budget billing</span><div class="ticks"><label><input type="checkbox" data-tick="budget" ${S.budget?"checked":""}>Offer budget billing</label></div></div>
+   ${f("f-minimum","Minimum bill",`<div class="suffix"><span>$</span>${inp("minimum",{ph:"0.00"})}</div>`,{err:E.minimum,help:"After the per-service minimums."})}
+  </div></section>${actions()}`}
+
+function rows(o=S){const yn=b=>b?"Yes":"No";return [
+ [0,"Plan name",esc(o.name)||"—"],[0,"Code",esc(o.code)||"—"],[0,"Customer classes",clsText(o)],[0,"Description",esc(o.desc)||"—"],
+ [0,"Intended for",[o.hardship&&"Hardship proof",o.kw25&&"25 kW+",o.owner&&"Owner-occupied"].filter(Boolean).join(", ")||"—"],[0,"Notes",o.notes.map(n=>`${lbl(ATTR,n[0])} ${lbl(OPS,n[1])} ${lbl(CLASSES,n[2])}`).join("; ")||"—"],
+ [1,"Services and schedules",o.svcs.filter(s=>s[0]).map(s=>`${SVC[s[0]][0]}: ${(sched(s[0],s[1])||["","—"])[1].split(" · ")[0]}`).join("<br>")||"—"],[1,"Monthly base charges",money(baseOf(o))],[1,"Outside-city surcharge",o.surcharge==="yes"?`${o.surPct}% on ${o.svcs.filter(s=>s[2]).map(s=>SVC[s[0]][0]).join(", ")||"—"}`:"No"],
+ [2,"Charge codes",o.charges.join(", ")||"—"],[2,"Taxes",o.taxes.map(k=>TAXES.find(t=>t[0]===k)[1]).join(", ")||"—"],
+ [3,"Deposits",(o.deps||[]).join(", ")||"—"],[3,"Discounts",o.discs.map(d=>`${d[0]} ${usDate(d[1])} – ${usDate(d[2])}`).join("; ")||"—"],[3,"Budget billing",yn(o.budget)],[3,"Minimum bill",o.minimum?money(parseFloat(o.minimum)):"—"]]}
+function goIdx(sec){const k=["details","services","charges","billing"][sec];const i=flow().findIndex(s=>s[0]===k);return i<0?null:i}
+function PS(o,editable,cur,dx){
+  const lk=(t,what)=>dx?`<button class="btn link" data-toast="Opens ${what}.">${t}</button>`:t;
+  const ed=g=>{if(dx)return `<button class="btn link" data-secedit="${g}">Edit</button>`;if(!editable)return "";const i=goIdx(g);return i===null?"":`<button class="btn link" data-go="${i}">Edit</button>`};
+  const sec=(title,g,body,right)=>`<section class="panel"><div class="ph"><h2>${title}</h2><span>${right||""} ${ed(g)}</span></div>${body}</section>`;
+  const tbl=(head,rows)=>`<div class="tw"><table><thead><tr>${head.map(h=>`<th${h[1]?' class="r"':""}>${h[0]}</th>`).join("")}</tr></thead><tbody>${rows||`<tr><td colspan="${head.length}" class="muted">None.</td></tr>`}</tbody></table></div>`;
+  const planSec=sec("Plan",0,`<div class="rev">${cur.filter(r=>r[0]===0).map(r=>`<div>${r[1]}</div><div>${r[2]}</div>`).join("")}</div>`);
+  const svcSecs=o.svcs.filter(x=>x[0]&&x[1]).map(x=>{const r=sched(x[0],x[1]);let d=DETAIL[x[1]];const fut=dx&&x[1]==="RS-RW"&&V.asOf>="2027-01-01";
+    if(fut)d=Object.assign({},d,{use:[["0 – 5 kgal","$4.45 per kgal"],["5 – 15 kgal","$7.23 per kgal"],["Over 15 kgal","$8.90 per kgal"]]});
+    const sv=fut?`<div class="vf"><span class="pill p-off">v5</span> <span class="muted num">from 01/01/2027</span></div>`:vline(r[0]);
+    const folded=dx&&!V.exp[x[0]];
+    const rng=a=>a.length>1?`${a[0]} – ${a[a.length-1]}`:a[0];
+    const summary=`<div class="toolbar" style="justify-content:space-between"><span><b>Base charges</b> <span class="num">${rng(d.base.map(b=>b[1]))}</span> · <b>Usage charges</b> <span class="num">${rng(d.use.map(u=>u[1].split(" ")[0]))}${d.use[0][1].includes("kgal")?" per kgal":""}</span></span><button class="btn link" data-fold="${x[0]}" aria-expanded="false">Show sizes and blocks ▾</button></div>`;
+    return sec(`${badge(x[0])} ${SVC[x[0]][0]}`,1,`<div class="facts">${fact("Rate schedule",lk(r[1].split(" · ")[0],"the rate schedule")+sv)}${fact("Base charges",lk(r[6],"the base charge code")+vline(r[6]))}${fact("Outside city",o.surcharge==="yes"&&x[2]?"+"+o.surPct+"%":"Same price")}</div>
+     ${folded?summary:`${dx?`<div style="text-align:right"><button class="btn link" data-fold="${x[0]}" aria-expanded="true">Hide sizes and blocks ▴</button></div>`:""}<div class="grid2" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px">
+      ${tbl([[d.by?"Base charges by "+d.by.toLowerCase():"Base charges"],["Base charge",1],["Minimum",1]],d.base.map(b=>`<tr><td>${b[0]}</td><td class="r num">${b[1]}</td><td class="r num">${b[2]}</td></tr>`).join(""))}
+      ${tbl([[d.ubyl],["Rate",1]],d.use.map(u=>`<tr><td>${u[0]}</td><td class="r num">${u[1]}</td></tr>`).join(""))}</div>`}`,`<span class="muted num">GL ${SVC[x[0]][3].split(" · ")[0]}</span>`)}).join("");
+  const chgSec=sec("Charge codes",2,tbl([["Code"],["Priced by"],["Class or size"],["Amount",1],["GL"],["When"]],o.charges.filter(Boolean).map(k=>{const c=CHARGES.find(x=>x[0]===k),pr=CHPRICE[k];return pr[1].map((p,j)=>`<tr>${j===0?`<td rowspan="${pr[1].length}">${lk(`<b>${c[0]}</b>`,"the charge code")} · ${c[1]}${vline(k)}</td><td rowspan="${pr[1].length}">${pr[0]||"One amount"}</td>`:""}<td>${p[0]}</td><td class="r num">${p[1]}</td>${j===0?`<td rowspan="${pr[1].length}" class="num">${c[3]}</td><td rowspan="${pr[1].length}">${c[5]}</td>`:""}</tr>`).join("")}).join("")));
+  const taxSec=sec("Taxes",2,tbl([["Tax"],["Rate",1],["What is taxed"],["GL"]],o.taxes.filter(Boolean).map(k=>{const t=TAXES.find(x=>x[0]===k);return `<tr><td>${lk(`<b>${t[1]}</b>`,"the tax")}${vline(k)}</td><td class="r num">${t[2]}</td><td>${t[4]}</td><td class="num">${t[3]}</td></tr>`}).join("")),`<span class="muted">${o.taxes.filter(Boolean).reduce((a,k)=>a+parseFloat(TAXES.find(x=>x[0]===k)[2]),0)}% combined</span>`);
+  const depSec=sec("Deposits",3,tbl([["Deposit"],["Priced by"],["Class or size"],["Amount",1],["GL"]],o.deps.filter(Boolean).map(k=>{const d=DEPS.find(x=>x[0]===k);return d[3].map((p,j)=>`<tr>${j===0?`<td rowspan="${d[3].length}">${lk(`<b>${d[0]}</b>`,"the deposit")} · ${d[1]}${vline(k)}</td><td rowspan="${d[3].length}">${d[2]}</td>`:""}<td>${p[0]}</td><td class="r num">${p[1]}</td>${j===0?`<td rowspan="${d[3].length}" class="num">${d[4]}</td>`:""}</tr>`).join("")}).join("")));
+  const discSec=sec("Discounts",3,tbl([["Discount"],["Value",1],["Offered from"],["Offered until"],["GL"]],o.discs.filter(x=>x[0]).map(x=>{const d=DISCS.find(y=>y[0]===x[0]);return `<tr><td>${lk(`<b>${d[0]}</b>`,"the discount")} · ${d[1]}${vline(d[0])}</td><td class="r num">${d[2]}</td><td class="num">${usDate(x[1])}</td><td class="num">${x[2]?usDate(x[2]):"No end"}</td><td class="num">${d[3]}</td></tr>`}).join("")));
+  const termSec=sec("Billing terms",3,`<div class="facts">${fact("Monthly base charges",money(baseOf(o)))}${fact("Minimum bill",o.minimum?money(parseFloat(o.minimum)):"—")}${fact("Budget billing",o.budget?"Offered":"Not offered")}</div>`);
+  return {planSec,svcSecs,chgSec,taxSec,depSec,discSec,termSec}}
+function stepReview(){const E=S.tried.review?errors("review"):{};
+  if(S.saved)return `<section class="panel done"><div class="check">✓</div><h2>${esc(S.name)} ${S.saved==="published"?"published":"saved"}</h2><div>${S.saved==="published"?(S.mode==="new"?`Live from ${usDate(S.from)}. Assign it to units from the plan.`:`v2 live from ${usDate(S.from)}. 5 units move to it that day.`):S.mode==="new"?"Saved as a draft. Publish it from the plan.":S.mode==="info"?"Saved on this version. Logged in Audit.":S.mode==="change"?`New version from ${usDate(S.from)}.`:"Corrected. Same dates."}</div><div class="actions" style="width:100%"><span></span><div class="right"><button class="btn primary" data-open="p1">Open plan</button></div></div></section>`;
+  const cur=rows();const before=S.orig?rows(S.orig):null;
+  const changed=before?cur.map((r,i)=>[r[1],before[i][2],r[2]]).filter(r=>r[1]!==r[2]):null;
+  const {planSec,svcSecs,chgSec,taxSec,depSec,discSec,termSec}=PS(S,true,cur);
+  return `${S.mode==="new"?"":`<section class="panel"><h2>What changes</h2>${changed.length?`<div class="tw"><table><thead><tr><th>Field</th><th>Before</th><th>After</th></tr></thead><tbody>${changed.map(r=>`<tr><td>${r[0]}</td><td class="muted">${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</tbody></table></div>`:`<div class="note info"><div>Nothing changed yet.</div></div>`}</section>`}
+  ${planSec}${svcSecs}${chgSec}${taxSec}${depSec}${discSec}${termSec}
+  <section class="panel"><h2>Dates</h2><div class="fields">
+   ${S.mode==="correct"||S.mode==="info"?f("x1","Starts",ro(usDate(S.from)),{})+f("x2","Ends",ro(S.to?usDate(S.to):"No end"),{}):
+     f("f-from",S.mode==="change"?"New version starts":"Starts",inp("from",{type:"date"}),{req:1,err:E.from,help:S.mode==="change"&&S.from?`Today's version ends ${usDate(dayBefore(S.from))}.`:""})+f("f-to","Ends",inp("to",{type:"date"}),{help:"Leave empty if it has no end."})}
+   ${S.mode==="change"||S.mode==="correct"?f("f-reason","Reason",inp("reason",{ph:"e.g. New sewer schedule from council"}),{req:1,cls:"span2",err:E.reason,help:"Shown in Audit."}):""}
+  </div></section>
+  ${S.mode==="change"?`<section class="panel"><h2>How it is saved</h2><div class="tw"><table><thead><tr><th>Version</th><th>Dates</th><th>After saving</th></tr></thead><tbody><tr><td>v1 · today</td><td class="num">${usDate(S.orig.from)} – ${S.from?usDate(dayBefore(S.from)):"—"}</td><td>Gets an end date</td></tr><tr><td><b>v2 · new</b></td><td class="num">${usDate(S.from)} – ${S.to?usDate(S.to):"No end"}</td><td>New version</td></tr></tbody></table></div><div class="note info"><div>5 units move to v2 on ${usDate(S.from)}.</div></div></section>`:""}
+  ${S.mode==="correct"?`<section class="panel"><h2>How it is saved</h2><div class="tw"><table><thead><tr><th>Version</th><th>Dates</th><th>After saving</th></tr></thead><tbody><tr><td>v1 · today</td><td class="num">${usDate(S.orig.from)} – No end</td><td>Superseded, kept</td></tr><tr><td><b>v2 · correction</b></td><td class="num">${usDate(S.orig.from)} – No end</td><td>Replaces v1</td></tr></tbody></table></div><div class="note warn"><div>Issued bills keep v1. Correct those bills separately.</div></div></section>`:""}
+  ${actions()}`}
+
+function actions(){const i=S.step,k=key(),E=S.tried[k]?errors(k):{},n=Object.keys(E).length,last=i===flow().length-1;
+  const save={new:"Save as draft",info:"Save changes",change:"Save new version",correct:"Save correction"}[S.mode];
+  const pub=last&&(S.mode==="new"||S.mode==="change");
+  return `<div class="actions"><button class="btn" ${i===0?(S.mode==="new"?'data-view="list"':'data-open="p1"'):`data-go="${i-1}"`}>${i===0?"Cancel":"Back"}</button>
+  <div class="right">${n?`<span class="why">Fix ${n} thing${n>1?"s":""} first.</span>`:""}${pub?`<button class="btn" id="next">${save}</button><button class="btn primary" id="publish">${S.mode==="new"?"Publish plan":"Publish new version"}</button>`:`<button class="btn primary" id="next">${last?save:"Continue"}</button>`}</div></div>`}
+function summary(){const tx=S.taxes.filter(Boolean).reduce((a,k)=>a+parseFloat(TAXES.find(x=>x[0]===k)[2]),0);
+  $("#summary").innerHTML=`<div class="kicker">This plan</div><div class="bigrate num">${money(baseOf(S))}</div><div class="muted">monthly base charges</div>
+  <div class="sbs" style="margin-top:8px">${S.svcs.filter(s=>s[0]).map(s=>badge(s[0])).join("")}</div><div class="hr"></div>
+  <div class="sum"><div class="row"><span>Name</span><span>${esc(S.name)||"—"}</span></div><div class="row"><span>Code</span><span>${esc(S.code)||"—"}</span></div>
+  <div class="row"><span>Classes</span><span>${S.clsAll?"All":S.cls.map(c=>lbl(CLASSES,c)).join(", ")||"—"}</span></div><div class="row"><span>Services</span><span>${S.svcs.filter(s=>s[0]).length}</span></div>
+  <div class="row"><span>Charge codes</span><span>${S.charges.filter(Boolean).length}</span></div><div class="row"><span>Taxes</span><span>${tx?tx+"%":"None"}</span></div>
+  <div class="row"><span>Discounts</span><span>${S.discs.filter(d=>d[0]).length}</span></div><div class="row"><span>Minimum bill</span><span>${S.minimum?money(parseFloat(S.minimum)):"—"}</span></div></div>`}
+const CHOICES=[["info","Name and details","Saved on this version"],["change","Change from a date","Makes a new version"],["correct","Fix a mistake","Same dates, with a reason"]];
+function head(){const ed=S.mode!=="new";
+  $("#wizCrumb").innerHTML=ed?`<button class="btn link" data-open="p1">← ${esc(S.orig.name)}</button>`:`<button class="btn link" data-view="list">← Plans</button>`;
+  $("#wizTitle").textContent=ed?`Edit ${S.orig.name}`:"New plan";$("#draft").hidden=ed;
+  const c=$("#editChoice");c.hidden=!ed;if(ed)c.innerHTML=`<h2>What to change</h2><div class="choice three">${CHOICES.map(x=>`<button data-mode="${x[0]}" aria-pressed="${S.mode===x[0]}"><b>${x[1]}</b><span>${x[2]}</span></button>`).join("")}</div>`}
+const RENDER={details:stepDetails,services:stepServices,charges:stepCharges,billing:stepBilling,review:stepReview};
+function render(){head();rail();$("#main").innerHTML=RENDER[key()]();summary()}
+function toast(t){const el=$("#toast");el.textContent=t;el.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>el.hidden=true,2200)}
+
+/* ───── LIST + DETAILS ───── */
+const PL=[
+ {id:"p1",name:"Residential City Plan",code:"RCP",cls:"Residential",svcs:["water","sewer","trash","fire"],sch:4,base:19,units:5,ver:"v1",from:"2026-09-01",to:"2026-12-31",status:"Published"},
+ {id:"p2",name:"Residential sub-urban Plan",code:"RSP",cls:"Residential",svcs:["water","sewer","trash","fire"],sch:4,base:19,units:1,ver:"v1",from:"2026-09-01",to:"",status:"Published"},
+ {id:"p3",name:"Commercial",code:"COM",cls:"Commercial",svcs:["water","sewer","trash","fire"],sch:4,base:27,units:4,ver:"v2",from:"2026-08-01",to:"",status:"Published"},
+ {id:"p4",name:"Residential",code:"RES",cls:"Residential",svcs:["water","sewer","trash","fire"],sch:4,base:24,units:75,ver:"v3",from:"2026-08-01",to:"",status:"Published"},
+ {id:"p5",name:"Rural Draft",code:"RUR",cls:"Agricultural",svcs:["water"],sch:1,base:10,units:0,ver:"v1",from:"2026-12-01",to:"",status:"Draft"}];
+const V={view:"list",q:"",sel:"p1",tab:"over",more:false,exp:{},asOf:"2026-10-03",uq:"",uocc:"all",usel:[],afilt:"all",aexp:{},tb:{size:'5/8"',use:"8",cls:"Residential",out:false}};
+function listView(){const rows=PL.filter(p=>!V.q||(p.name+p.code).toLowerCase().includes(V.q.toLowerCase()));
+  return `<header class="head"><div><div class="crumb">Plans &amp; Rates</div><h1>Plans &amp; Rates</h1><div class="muted">${PL.length} plans · 9 rate schedules · 36 charge codes · 6 discounts · 4 taxes &amp; fees</div></div>
+   <div class="hact"><button class="btn" data-toast="Opens History.">History</button><button class="btn primary" data-view="wiz">+ New plan</button></div></header>
+  <nav class="tabs" role="tablist">${["Plans","Rate schedules","Charge codes","Discounts","Taxes & fees"].map(x=>`<button role="tab" aria-selected="${x==="Plans"}">${x}</button>`).join("")}</nav>
+  <div class="toolbar"><input id="lq" placeholder="Search plan name or code" value="${esc(V.q)}"><button class="allbtn">All</button><button class="btn" data-toast="Filter by status, service or class.">+ Filter ▾</button><span style="flex:1"></span><button class="ico" title="Download CSV" aria-label="Download CSV">⤓</button><button class="ico" title="Columns" aria-label="Columns">▦</button></div>
+  <div class="tw"><table><thead><tr><th>Plan</th><th>Version</th><th>Services</th><th class="r">Schedules</th><th class="r">Base charges</th><th class="r">Units</th><th>From</th><th>To</th><th>Status</th><th></th></tr></thead><tbody>
+  ${rows.map(p=>`<tr><td><button class="btn link" data-open="${p.id}">${esc(p.name)}</button><div class="muted">${p.code} · ${p.cls}</div></td><td><span class="pill p-off">${p.ver}</span></td><td><div class="sbs">${p.svcs.map(badge).join("")}</div></td><td class="r num">${p.sch}</td><td class="r num">${money(p.base)}</td><td class="r num">${p.units}</td>
+   <td class="num">${usDate(p.from)}</td><td class="num">${p.to?usDate(p.to):"No end"}</td><td><span class="pill ${p.status==="Published"?"p-ok":"p-off"}">${p.status}</span></td><td><button class="ico" data-open="${p.id}" title="Open" aria-label="Open">›</button></td></tr>`).join("")||`<tr><td colspan="10" class="muted">No plan matches.</td></tr>`}
+  </tbody></table></div><div class="muted num">1–${rows.length} of ${rows.length}</div>`}
+const UNITS=[["Unit 304","500 Main St",[],"—","Vacant","09/01/2026"],["1","78 New Market",["water","trash","fire"],"AC-2026-00057","Occupied","09/27/2026"],["1","Haustin Towers",["water","sewer","trash","fire"],"—","Vacant","10/02/2026"],["11","Highland Park",["water"],"—","Vacant","09/23/2026"],["12","Highland Park",["water"],"—","Vacant","09/23/2026"]];
+const PAUDIT=[["09/18/2026 2:10 PM","Vijay Bikkad","Fixed a mistake · v1","Sewer schedule: Sewer (% of water) → Sewer flat rate · Customer class: Commercial → Residential · Minimum bill: — → $10.00 · Taxes: Bexar County → Bexar County, TX State Utility Tax · Discount added: SENIOR","Plan edit fixing error"],["09/10/2026 9:00 AM","Vijay Bikkad","Created · v1","Draft → Published","—"]];
+const UNDER=[["Residential water (inclining tiers)","Rate schedule","09/30/2026","Vijay Bikkad","+6% across tiers · PUC #W-2025-1184"],["Sewer flat rate","Rate schedule","09/28/2026","Vijay Bikkad","We included base rate"],["Sewer flat rate","Rate schedule","09/18/2026","Vijay Bikkad","Rate unit changed from kgal to ccf"]];
+function tryBill(){const t=V.tb;const bases={'5/8"':10,'1"':18,'2"':40};const fut=V.asOf>="2027-01-01";const tiers=fut?[4.45,7.23,8.90]:[4.24,6.89,8.48];
+  const u=Math.max(0,parseFloat(t.use)||0);const wu=Math.min(u,5)*tiers[0]+Math.max(0,Math.min(u,15)-5)*tiers[1]+Math.max(0,u-15)*tiers[2];
+  const L=[["Water base charges · "+t.size,bases[t.size]],["Water usage charges · "+u+" kgal",wu],["Sewer base charges",9],["Sewer usage charges",14],["Trash · 64 gal cart",15],["Fire",0]];
+  if(t.out)L.push(["Outside-city surcharge · 25% of water and sewer",0.25*(bases[t.size]+wu+9+14)]);
+  const sub=L.reduce((a,x)=>a+x[1],0);const tax=sub*0.0825;
+  return `<section class="panel"><div class="ph"><h2>Try a bill</h2><span class="muted">Priced as of ${usDate(V.asOf)}</span></div><div class="fields">
+   ${f("tb-size","Meter size",`<select id="tb-size" data-tb="size">${['5/8"','1"','2"'].map(x=>`<option ${x===t.size?"selected":""}>${esc(x)}</option>`).join("")}</select>`,{})}
+   ${f("tb-use","Water used",`<div class="suffix"><input id="tb-use" data-tb="use" value="${esc(t.use)}" inputmode="decimal"><span>kgal</span></div>`,{})}
+   ${f("tb-cls","Customer class",`<select id="tb-cls" data-tb="cls">${["Residential","Commercial"].map(x=>`<option ${x===t.cls?"selected":""}>${x}</option>`).join("")}</select>`,{})}
+   <div class="f"><span class="lab">&nbsp;</span><div class="ticks"><label><input type="checkbox" data-tb="out" ${t.out?"checked":""}>Outside city limits</label></div></div></div>
+   <div class="tw" style="margin-top:12px"><table><tbody>${L.map(x=>`<tr><td>${x[0]}</td><td class="r num">${money(x[1])}</td></tr>`).join("")}
+   <tr><td>Taxes · 8.25%</td><td class="r num">${money(tax)}</td></tr><tr class="tot"><td>Total</td><td class="r num">${money(sub+tax)}</td></tr></tbody></table></div></section>`}
+function detailView(){const p=PL.find(x=>x.id===V.sel);const o=PRE.full;const F=(k,v)=>fact(k,v);
+  const tabs=[["over","Overview"],["svc","Services · "+p.svcs.length],["chg","Charges"],["bill","Billing"],["units","Units · "+p.units],["audit","Audit"]];
+  const tile=(tab,k,v,sm)=>`<button class="tile" data-dtab="${tab}" style="text-align:left;cursor:pointer" aria-label="${k}: open the ${tab} tab"><span>${k}</span><b class="num">${v}</b><small>${sm} ›</small></button>`;
+  const over=`<div class="tiles">${tile("units","Units",p.units,"on this plan")}${tile("svc","Monthly base charges",money(p.base),"all services")}${tile("svc","Services",p.svcs.length,p.svcs.map(s=>SVC[s][0]).join(" · "))}${tile("chg","Taxes","8.25%","combined")}</div>
+   <section class="panel"><h2>Details</h2><div class="facts">${F("Plan name",esc(p.name))}${F("Code",p.code)}${F("Customer classes",p.cls)}${F("Description","Water, sewer, trash and fire for homes inside the city.")}${F("Intended for","—")}${F("Notes","Customer class is Residential")}${F("Starts",usDate(p.from))}${F("Ends",p.to?usDate(p.to):"No end")}${F("Minimum bill","$10.00")}</div>
+    <div class="tw"><table><thead><tr><th>Version</th><th>Dates</th><th>Status</th></tr></thead><tbody><tr><td>${p.ver}</td><td class="num">${usDate(p.from)} – ${p.to?usDate(p.to):"No end"}</td><td><span class="pill p-ok">Active</span></td></tr></tbody></table></div>
+    <div><button class="btn link" data-dtab="audit">See every change in Audit</button></div></section>`;
+  const ps=PS(Object.assign(clone(o),{svcs:o.svcs.concat([["fire","RS-F",false]])}),false,rows(o),true);
+  const allExp=["water","sewer","trash","fire"].every(k=>V.exp[k]);
+  const svcT=`<div style="text-align:right"><button class="btn link" data-expall>${allExp?"Collapse all ▴":"Expand all ▾"}</button></div>`+ps.svcSecs+`<section class="panel"><div class="facts">${F("Monthly base charges",money(19))}${F("Outside-city surcharge","25% on Water, Sewer")}</div></section>`;
+  const chgT=ps.chgSec+ps.taxSec;
+  const billT=ps.depSec+ps.discSec+ps.termSec;
+  const uRows=UNITS.filter(u=>(!V.uq||(u[0]+u[1]).toLowerCase().includes(V.uq.toLowerCase()))&&(V.uocc==="all"||u[4]===V.uocc));
+  const unitsT=`<section class="panel"><div class="ph"><h2>Units</h2></div>
+    <div class="toolbar"><input id="uq" placeholder="Search unit or premises" value="${esc(V.uq)}">${["all","Occupied","Vacant"].map(x=>`<button class="seg" data-uocc="${x}" aria-pressed="${V.uocc===x}">${x==="all"?"All":x}</button>`).join("")}<span style="flex:1"></span><button class="ico" title="Download CSV" aria-label="Download CSV">⤓</button></div>
+    <div class="tw"><table><thead><tr><th>Unit</th><th>Premises</th><th>Services</th><th>Account</th><th>Occupancy</th><th>On this plan since</th></tr></thead><tbody>
+    ${uRows.map(u=>{const k=u[0]+"|"+u[1];return `<tr><td><button class="btn link" data-toast="Opens the unit.">${u[0]}</button></td><td><button class="btn link" data-toast="Opens the premises.">${u[1]}</button></td><td><div class="sbs">${u[2].map(badge).join("")||'<span class="muted">No service point</span>'}</div></td><td>${u[3]==="—"?"—":`<button class="btn link" data-toast="Opens ${u[3]}.">${u[3]}</button>`}</td><td><span class="pill ${u[4]==="Occupied"?"p-ok":"p-off"}">${u[4]}</span></td><td class="num">${u[5]}</td></tr>`}).join("")||`<tr><td colspan="6" class="muted">No unit matches.</td></tr>`}</tbody></table></div><div class="muted num">1–${uRows.length} of ${uRows.length} · Page 1 of 1</div></section>`;
+  const AU=[...PAUDIT.map(a=>({k:"plan",when:a[0],who:a[1],what:a[2],chg:a[3],why:a[4]})),...UNDER.map(a=>({k:"under",when:a[2],who:a[3],what:a[1]+" · "+a[0],chg:"New version",why:a[4]}))].filter(x=>V.afilt==="all"||x.k===V.afilt);
+  const auditT=`<section class="panel"><div class="ph"><h2>Audit</h2><button class="ico" title="Download CSV" aria-label="Download CSV">⤓</button></div>
+    <div class="toolbar">${[["all","All"],["plan","Plan changes"],["under","Changes underneath"]].map(x=>`<button class="seg" data-afilt="${x[0]}" aria-pressed="${V.afilt===x[0]}">${x[1]}</button>`).join("")}<span class="muted">From</span><input type="date" value="2026-09-01" aria-label="From"><span class="muted">To</span><input type="date" value="2026-10-03" aria-label="To"></div>
+    <div class="tw"><table><thead><tr><th></th><th>When</th><th>Who</th><th>What</th><th>Change</th><th>Reason</th></tr></thead><tbody>
+    ${AU.map((a,i)=>`<tr><td><button class="ico" data-aexp="${i}" aria-expanded="${!!V.aexp[i]}" aria-label="Show details">${V.aexp[i]?"▾":"▸"}</button></td><td class="num">${a.when}</td><td>${a.who}</td><td>${a.what}</td><td>${a.chg.length>60&&!V.aexp[i]?esc(a.chg.slice(0,60))+"…":a.chg}</td><td>${a.why}</td></tr>${V.aexp[i]?`<tr><td></td><td colspan="5"><div class="facts">${a.k==="plan"?fact("Before","Sewer schedule: Sewer (% of water) · Customer class: Commercial · Minimum bill: —")+fact("After","Sewer schedule: Sewer flat rate · Customer class: Residential · Minimum bill: $10.00")+fact("Version","v1 · correction"):fact("Before","$4.00 · $6.50 · $8.00 per kgal")+fact("After","$4.24 · $6.89 · $8.48 per kgal")+fact("Version","Rate schedule v4 from 09/30/2026")}</div></td></tr>`:""}`).join("")||`<tr><td colspan="6" class="muted">No change in this range.</td></tr>`}</tbody></table></div></section>`;
+  const T={over,svc:svcT,chg:chgT,bill:billT,units:unitsT,audit:auditT};
+  const pub=p.status==="Published";
+  const more=V.more?`<div class="menu" role="menu">${(pub?["Duplicate","Retire"]:["Duplicate","Delete draft"]).map(x=>`<button role="menuitem" data-toast="${x==="Retire"?"Retire asks for an end date.":x==="Delete draft"?"Asks to confirm.":"Opens a copy in the form."}">${x}</button>`).join("")}</div>`:"";
+  return `<div class="stickyhead"><header class="head"><div><div class="crumb"><button class="btn link" data-view="list">← Plans</button></div><h1>${esc(p.name)} <span class="hcode num">${p.code}</span></h1>
+   <div class="toolbar"><span class="pill ${pub?"p-ok":"p-off"}">${p.status}</span><span class="pill p-off">${p.ver}</span><span class="muted">${p.cls} · ${usDate(p.from)} – ${p.to?usDate(p.to):"no end"}</span></div></div>
+   <div class="hact">${pub?`<button class="btn primary" data-mode="info">Edit</button>`:`<button class="btn" data-mode="info">Edit</button><button class="btn primary" data-toast="Published from its start date.">Publish</button>`}<span class="morewrap"><button class="btn" data-more aria-expanded="${V.more}">More ▾</button>${more}</span></div></header>
+  <nav class="tabs" role="tablist" aria-label="Plan">${tabs.map(x=>`<button role="tab" data-dtab="${x[0]}" aria-selected="${V.tab===x[0]}" tabindex="${V.tab===x[0]?0:-1}">${x[1]}</button>`).join("")}</nav></div>
+  ${V.asOf<"2027-01-01"?`<div class="note info"><div><b>Water rate schedule v5 starts 01/01/2027.</b> Usage charges $4.45 · $7.23 · $8.90 per kgal. <button class="btn link" data-asofset="2027-01-01">See it</button></div></div>`:""}
+  ${["svc","chg","bill"].includes(V.tab)?`<div class="toolbar"><label class="muted" for="asof">Priced as of</label><input type="date" id="asof" data-asof value="${V.asOf}"><button class="btn link" data-asofset="2026-10-03">Today</button></div>`:""}
+  ${T[V.tab]}`}
+
+const FIX={
+ wiz:[["Eight steps; “takes about 5 minutes”.","Five: Details · Services · Charges · Billing · Review."],["“Add a class…” box shown twice.","One dropdown with ticks; “Every customer class” first."],["Services and their rate schedules on two steps.","One table array: pick the service and its schedule in the row; + Add service under it."],["Review lists names only; sizes, tiers and class prices hidden.","Review shows, per service, base and minimum by size and the usage blocks; charge codes and deposits by class or size."],["Deposits not on the plan anywhere.","A Deposits table on Billing: priced by class or meter size; shown on Review and details."],["Base / usage words differ from Rate schedules.","Base charges and Usage charges, the Rate schedule words, everywhere on the plan."],["No version or start date on what a plan uses.","Every rate schedule, base charge, charge code, tax and discount shows its version and “from” date."],["Pick-and-add controls of different sizes.","Every table is the kit's table array: full-size boxes in the row, red × to remove, + Add under it, disabled with “All added.” when nothing is left."],["Surcharged services as a second chip row, “Remove the ones to spare.”","A Surcharged tick in each service row."],["“4 services selected”.","Removed."],["Charges and taxes on two steps.","One Charges step: base, charge codes, taxes."],["Base on the Charges step, apart from its schedule; “10.00 · named BASE-W1”.","Base ($ and its code) and minimum shown in the service row, from the schedule; monthly base total under the table."],["Explanations: “A plan cannot change an amount/rate/value.”, “Budget cap over 50000…”, “Late fees and deposits: step 4.”","Removed."],["Minimum bill shown as 10.000000.","$10.00."],["Discount dates shown twice (box and 01-Sep-26).","Date boxes only."],["Eligibility value typed; shows a database id.","Value picked from a list; shows the class name."],["Eligibility and dates on step 7.","Notes on Details; dates on Review."],["Review says “Taxes · 0” while two are attached.","Review reads what the steps hold."],["No Publish on the last page.","Review ends with Save as draft and Publish plan (Publish new version when editing)."],["Review lists step names, not values.","Every value, with Edit per row, and the price."],["Archive as a red link in the form header.","Retire in More ▾ on details."],["Change/Fix toggle on step 1.","“What to change” cards; steps follow the choice."]],
+ list:[["Paragraph above the table.","Removed."],["Every schedule name in the row.","Badges, and a schedule count."],["Pencil and archive on every row.","Open goes to details."],["No version or dates.","Version, From and To."],["Code hidden.","Code and class under the name."]],
+ detail:[["Kicker “PLAN · RCP · V1” and three sentences.","Name, code, status, version, class and dates."],["Duplicate greyed out; Retire as a button.","Edit, and More ▾ with Duplicate and Retire."],["Revenue and Exceptions tiles with long “no figure” text.","Removed. Units, base, services, taxes."],["Tiles repeat on every tab.","Overview only."],["One long Overview page.","Tabs: Overview · Services · Charges · Billing · Units · Audit."],["Base “8.00 · 10.00 · 8.00 from BASE-W · BASE-W1 …”.","One base per service, in $."],["GL sentence repeated four times.","GL beside each service."],["Services tab: one wide row per service; sizes, tiers and class prices hidden.","Services, Charges and Billing tabs show the same tables as Review: base and minimum by size, usage blocks, charge codes and deposits by class or size."],["“Not recorded on a plan yet” list, How a plan works, Sample bill note.","Removed."],["Intended-for ticks hidden at the bottom.","On Overview › Details."],["Audit shows raw ids and JSON.","Named fields, before → after, reason."],["Dates as 01-Sep-26.","09/01/2026."],["Names are plain text.","Every rate schedule, base charge, charge code, tax, deposit, discount, unit and account opens its own page."],["Four services as one long page.","Each service folds to one line; Expand all."],["Upcoming changes are invisible.","A banner names the next version of anything the plan uses."],["No way to see an earlier or later price.","Priced as of a date; versions follow the date."],["Tiles are just numbers.","Tiles open their tab."],["Edit always starts at step 1.","Edit on a section opens that step."],["Header scrolls away.","Name, status and Edit stay at the top."],["Tab lost on refresh.","The tab is kept in the address."],["Units: no search or bulk action.","Search, occupancy filter, CSV."],["Audit: one long list.","Filter by plan changes or changes underneath and by date; rows open to before and after."],["Tabs by mouse only.","Arrow keys move between tabs."]],
+ edit:[["Edit = the same 8 steps.","Pick what to change; only those steps follow."],["Reason only for a published plan, at the bottom.","Reason on Review for a new version or a fix."],["No picture of the versions saved.","Review shows v1 ends the day before, v2 starts."]]};
+function setView(v){V.view=v;
+  document.querySelectorAll(".chipbtn[data-view]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.view===v));
+  document.querySelectorAll(".wizonly").forEach(e=>e.hidden=v!=="wiz");
+  $("#wizView").hidden=v!=="wiz";$("#listView").hidden=v!=="list";$("#detailView").hidden=v!=="detail";
+  if(v==="list")$("#listView").innerHTML=listView();if(v==="detail")$("#detailView").innerHTML=detailView();if(v==="wiz")render();
+  const k=v==="wiz"?(S.mode==="new"?"wiz":"edit"):v;const F=FIX[k];const where={wiz:"Form",list:"List",detail:"Details",edit:"Edit"}[k];
+  $("#fixtitle").innerHTML=`What this design fixes <span class="kicker">${F.length} issues · ${where.toLowerCase()}</span>`;
+  $("#fixrows").innerHTML=F.map((r,i)=>`<tr><td class="num">${i+1}</td><td>${where}</td><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("")}
+function loadEdit(mode){const base=Object.assign(clone(PRE.full),{from:"2026-09-01",to:""});S=Object.assign({},clone(base),{mode,step:0,saved:false,tried:{},reason:"",orig:clone(base)});if(mode==="change")S.from="2027-01-01"}
+function loadNew(p){S=Object.assign({},clone(PRE[p||"full"]),{mode:"new",step:0,saved:false,tried:{},reason:"",orig:null})}
+
+document.addEventListener("click",e=>{if(S.open&&!e.target.closest(".ms")){S.open=false;render();}const t=e.target.closest("button");if(!t)return;
+  if(t.dataset.ms){S.open=!S.open;render();return}
+  if(t.dataset.view){if(t.dataset.view==="wiz"&&(S.mode!=="new"||S.saved))loadNew("full");setView(t.dataset.view);window.scrollTo({top:0});return}
+  if(t.dataset.preset){loadNew(t.dataset.preset);document.querySelectorAll("[data-preset]").forEach(b=>b.setAttribute("aria-pressed",b===t));setView("wiz");return}
+  if(t.dataset.open){V.sel=t.dataset.open;V.tab="over";V.more=false;setView("detail");window.scrollTo({top:0});return}
+  if(t.dataset.mode){V.more=false;loadEdit(t.dataset.mode);setView("wiz");window.scrollTo({top:0});return}
+  if(t.dataset.toast){toast(t.dataset.toast);if(t.getAttribute("role")==="menuitem"){V.more=false;setView("detail")}return}
+  if(t.dataset.dtab){V.tab=t.dataset.dtab;try{history.replaceState(null,"","#tab="+V.tab)}catch(_){}setView("detail");if(e.detail===0){const b=document.querySelector(`[role=tab][data-dtab="${V.tab}"]`);b&&b.focus()}return}
+  if(t.dataset.fold){V.exp[t.dataset.fold]=!V.exp[t.dataset.fold];setView("detail");return}
+  if(t.dataset.expall!==undefined){const all=["water","sewer","trash","fire"].every(k=>V.exp[k]);["water","sewer","trash","fire"].forEach(k=>V.exp[k]=!all);setView("detail");return}
+  if(t.dataset.asofset){V.asOf=t.dataset.asofset;if(V.tab==="over"||V.tab==="units"||V.tab==="audit")V.tab="svc";setView("detail");return}
+  if(t.dataset.uocc){V.uocc=t.dataset.uocc;setView("detail");return}
+  if(t.dataset.afilt){V.afilt=t.dataset.afilt;V.aexp={};setView("detail");return}
+  if(t.dataset.aexp!==undefined){V.aexp[t.dataset.aexp]=!V.aexp[t.dataset.aexp];setView("detail");return}
+  if(t.dataset.secedit){const g=+t.dataset.secedit;V.more=false;if(g===0){loadEdit("info")}else{loadEdit("change");S.step=g-1}setView("wiz");window.scrollTo({top:0});return}
+  if(t.dataset.more!==undefined){V.more=!V.more;setView("detail");return}
+  if(t.dataset.go!==undefined){S.step=+t.dataset.go;S.saved=false;render();window.scrollTo({top:0,behavior:"smooth"});return}
+  if(t.dataset.add){const id=t.dataset.add,v=$("#p-"+id).value;if(!v){toast("Choose one first.");return}
+    if(id==="svc")S.svcs.push([v,"",false]);if(id==="chg")S.charges.push(v);if(id==="tax")S.taxes.push(v);if(id==="disc")S.discs.push([v,S.from||"2026-11-01",""]);render();return}
+  if(t.dataset.addrow){const a=t.dataset.addrow;S[a].push(a==="svcs"?["","",false]:a==="discs"?["",S.from||"2026-11-01",""]:a==="notes"?["class","is","res"]:"");render();return}
+  if(t.dataset.addnote!==undefined){S.notes.push([$("#n-attr").value,$("#n-op").value,$("#n-val").value]);render();return}
+  if(t.dataset.rm){const [a,i]=t.dataset.rm.split(":");S[a].splice(+i,1);render();return}
+  if(t.id==="draft"){toast("Draft saved.");return}
+  if(t.id==="publish"){S.tried.review=true;if(Object.keys(errors("review")).length){render();return}S.saved="published";render();toast("Published.");return}
+  if(t.id==="next"){const k=key();if(S.step<flow().length-1){S.tried[k]=true;if(Object.keys(errors(k)).length){render();return}S.step++;render();window.scrollTo({top:0,behavior:"smooth"});return}
+    S.tried.review=true;if(Object.keys(errors("review")).length){render();return}S.saved=true;render();toast(S.mode==="new"?"Saved as a draft.":"Saved. Logged in Audit.");}
+});
+document.addEventListener("keydown",e=>{const t=e.target;if(t.getAttribute&&t.getAttribute("role")==="tab"&&(e.key==="ArrowRight"||e.key==="ArrowLeft")){const tabs=[...document.querySelectorAll("#detailView [role=tab]")];let i=tabs.indexOf(t)+(e.key==="ArrowRight"?1:-1);i=(i+tabs.length)%tabs.length;tabs[i].click();e.preventDefault()}});
+document.addEventListener("change",e=>{const el=e.target;
+  if(el.dataset.asof!==undefined){V.asOf=el.value||"2026-10-03";setView("detail");return}
+  if(el.dataset.tb){V.tb[el.dataset.tb]=el.type==="checkbox"?el.checked:el.value;setView("detail");return}
+  if(el.dataset.usel){const k=el.dataset.usel;V.usel=el.checked?[...V.usel,k]:V.usel.filter(x=>x!==k);setView("detail");return}
+  if(el.dataset.uall!==undefined){V.usel=el.checked?UNITS.map(u=>u[0]+"|"+u[1]):[];setView("detail");return}
+  if(el.dataset.tick){S[el.dataset.tick]=el.checked;render();return}
+  if(el.dataset.clsall!==undefined){S.clsAll=el.checked;if(el.checked)S.cls=[];render();return}
+  if(el.dataset.cls){if(S.clsAll){S.clsAll=false;S.cls=[];}S.cls=el.checked?[...S.cls,el.dataset.cls]:S.cls.filter(c=>c!==el.dataset.cls);if(!S.cls.length)S.clsAll=true;render();return}
+  if(el.dataset.cell){const [a,i,j]=el.dataset.cell.split(":");const v=el.type==="checkbox"?el.checked:el.value;
+    if(j===undefined)S[a][+i]=v;else{S[a][+i][+j]=v;if(a==="svcs"&&j==="0")S[a][+i][1]=(SCHED[v]||[[""]])[0][0];}render();return}
+  if(el.dataset.sched!==undefined){S.svcs[+el.dataset.sched][1]=el.value;render();return}
+  if(el.dataset.sur!==undefined){S.svcs[+el.dataset.sur][2]=el.checked;render();return}
+  if(el.dataset.dd){const [i,j]=el.dataset.dd.split(":");S.discs[+i][+j]=el.value;render();return}
+  if(el.dataset.k){S[el.dataset.k]=el.value;if(el.tagName==="INPUT"&&el.type!=="date")summary();else render();}});
+document.addEventListener("input",e=>{const el=e.target;
+  if(el.id==="uq"){V.uq=el.value;const p=el.selectionStart;setView("detail");const n=$("#uq");n.focus();n.setSelectionRange(p,p);return}
+  if(el.id==="tb-use"){V.tb.use=el.value;const p=el.selectionStart;setView("detail");const n=$("#tb-use");n.focus();n.setSelectionRange(p,p);return}
+  if(el.id==="lq"){V.q=el.value;const p=el.selectionStart;$("#listView").innerHTML=listView();const n=$("#lq");n.focus();n.setSelectionRange(p,p);return}
+  if(el.dataset.k&&el.tagName==="INPUT"&&el.type!=="date"){S[el.dataset.k]=el.value;summary();}});
+setView("list");
+})();
+</script>

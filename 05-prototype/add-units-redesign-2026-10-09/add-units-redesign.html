@@ -1,0 +1,426 @@
+<title>Add Units Redesign</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: product frame — form column + sticky "These units" card; two steps; square corners, 4px scale.
+   Light-only on purpose: SMARTBillHub staff screens are light-only. */
+:root{
+  --bg:#f3f2f2; --surface:#ffffff; --panel:#eae9e9; --text:#201e1d; --muted:#605d5d; --faint:#9b9797;
+  --line:#d7d3d3; --accent:#ec3013; --accent-ink:#ae1800; --accent-soft:#fff2ef;
+  --ok:#0f6e3a; --ok-soft:#e6f4ec; --warn:#a65d0a; --warn-soft:#fdf0d8; --bad:#a81600; --bad-soft:#fde4df; --info:#1d4ea8; --info-soft:#e6eefb;
+  --font:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --t-xs:11px; --t-sm:12px; --t-base:13px; --t-md:14px; --t-body:15px; --t-h4:20px; --t-h2:32px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:var(--t-body);line-height:1.55;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:20px 48px;display:flex;flex-direction:column;gap:20px}
+h1,h2,h3{font-weight:800;letter-spacing:-.015em;line-height:1.12;margin:0;text-wrap:balance}
+h1{font-size:var(--t-h2)} h2{font-size:var(--t-h4)} h3{font-size:var(--t-md);font-weight:700}
+.kicker{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.num{font-variant-numeric:tabular-nums}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.demo{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 12px;border:1px dashed var(--faint);font-size:var(--t-sm);color:var(--muted)}
+.demo b{color:var(--text)}
+.chipbtn{border:1px solid var(--line);background:var(--surface);padding:4px 10px;cursor:pointer;font-size:var(--t-sm)}
+.chipbtn[aria-pressed="true"]{border-color:var(--text);font-weight:600;color:var(--text)}
+.head{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:flex-end}
+.crumb{font-size:var(--t-sm)}
+.crumb a{color:var(--accent-ink);font-weight:600}
+.btn{border:1px solid var(--text);background:var(--surface);padding:9px 16px;font-weight:600;cursor:pointer;font-size:var(--t-md)}
+.btn.p{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.g{border-color:transparent;background:transparent;color:var(--accent-ink);padding-inline:4px}
+.rail{display:flex;border:1px solid var(--line);background:var(--surface)}
+.rail button{flex:1;display:flex;align-items:center;gap:10px;padding:12px 16px;border:0;background:transparent;cursor:pointer;text-align:left;border-right:1px solid var(--line);min-width:0}
+.rail button:last-child{border-right:0}
+.rail .n{width:24px;height:24px;display:grid;place-items:center;border:1.5px solid var(--faint);font-size:var(--t-sm);font-weight:700;flex:none}
+.rail button[data-state="current"]{box-shadow:inset 0 -3px 0 var(--accent)}
+.rail button[data-state="current"] .n{background:var(--accent);border-color:var(--accent);color:#fff}
+.rail button[data-state="done"] .n{background:var(--text);border-color:var(--text);color:#fff}
+.rail .lbl{font-size:var(--t-md);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:640px){.rail .lbl{display:none}.rail button{justify-content:center}}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:20px;align-items:start}
+@media (max-width:960px){.grid{grid-template-columns:minmax(0,1fr)}}
+.stack{display:flex;flex-direction:column;gap:20px;min-width:0}
+.panel{background:var(--surface);border:1px solid var(--line);padding:20px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px)}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:720px){.fields{grid-template-columns:minmax(0,1fr)}}
+.span2{grid-column:1/-1}
+.row3{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,2fr) minmax(0,1fr);gap:16px}
+@media (max-width:720px){.row3{grid-template-columns:minmax(0,1fr)}}
+.f{display:flex;flex-direction:column;gap:4px;min-width:0}
+.f label,.f .lab{font-size:var(--t-base);font-weight:600}
+.req{color:var(--accent)}
+.f input,.f select{border:1px solid var(--line);background:var(--surface);padding:8px 10px;min-height:38px;width:100%;font-size:var(--t-md)}
+.f .help{font-size:var(--t-sm);color:var(--muted)}
+.f.err input,.f.err select{border-color:var(--bad);background:var(--bad-soft)}
+.f .msg{font-size:var(--t-sm);color:var(--bad);font-weight:600}
+.seg{display:inline-flex;border:1px solid var(--line);background:var(--surface);width:max-content}
+.seg button{border:0;border-right:1px solid var(--line);background:transparent;padding:8px 14px;cursor:pointer;font-size:var(--t-md)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--text);color:#fff;font-weight:600}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);padding:6px 12px;cursor:pointer;font-size:var(--t-md)}
+.tag[aria-pressed="true"]{border-color:var(--text);background:var(--text);color:#fff;font-weight:600}
+.tag .tk{width:14px;height:14px;border:1.5px solid currentColor;display:grid;place-items:center;font-size:10px;line-height:1}
+details.fold{background:var(--surface);border:1px solid var(--line)}
+details.fold>summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary h2{font-size:var(--t-h4)}
+details.fold>summary .state{font-size:var(--t-md);color:var(--muted)}
+details.fold>summary .state::after{content:" \25BE"}
+details.fold[open]>summary .state::after{content:" \25B4"}
+details.fold .body{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
+.mapbox{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;border:1px solid var(--line);background:var(--bg);padding:12px 14px}
+@media (max-width:720px){.mapbox{grid-template-columns:minmax(0,1fr)}}
+.mapbox .k{font-size:var(--t-sm);color:var(--muted)} .mapbox .v{font-weight:600;font-size:var(--t-md)}
+.found{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:var(--ok-soft);color:var(--ok);padding:8px 12px;font-size:var(--t-md);font-weight:600}
+.searchrow{display:flex;gap:8px}
+.searchrow input{flex:1;min-width:0}
+.cand{border:1px solid var(--text);background:var(--surface);box-shadow:0 12px 32px rgba(45,43,43,.18)}
+.cand button{display:flex;justify-content:space-between;gap:12px;width:100%;padding:8px 12px;border:0;border-bottom:1px solid var(--line);background:transparent;cursor:pointer;text-align:left;font-size:var(--t-md)}
+.cand button:last-child{border-bottom:0}
+.cand small{color:var(--muted)}
+.ro{border:1px solid var(--line);background:var(--bg);padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+.ro .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.ro .acts{display:flex;gap:12px;align-items:center}
+.ro .linked{color:var(--ok);font-weight:700;font-size:var(--t-md)}
+.ro .top b{font-size:var(--t-md)}
+.ro .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px}
+@media (max-width:720px){.ro .grid2{grid-template-columns:minmax(0,1fr)}}
+.ro .k{font-size:var(--t-sm);color:var(--muted)} .ro .v{font-weight:600;font-size:var(--t-md)}
+.checkrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.checkrow .help{font-size:var(--t-sm);color:var(--muted)}
+.res{border-left:4px solid currentColor;padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+.res .t{font-weight:700;font-size:var(--t-md)}
+.res.ok{background:var(--ok-soft);color:var(--ok)}
+.res.warn{background:var(--warn-soft);color:var(--warn)}
+.res.off{background:var(--panel);color:var(--muted)}
+.res table{background:var(--surface);color:var(--text)}
+.res td:first-child{width:160px;color:var(--muted)}
+.res .acts{display:flex;gap:8px;flex-wrap:wrap}
+.choice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:720px){.choice{grid-template-columns:minmax(0,1fr)}}
+.card{border:1px solid var(--line);background:var(--surface);padding:18px 20px;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:4px}
+.card[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 3px 0 0 var(--accent)}
+.card b{font-size:var(--t-h4);font-weight:800}
+.card span{color:var(--muted);font-size:var(--t-md)}
+.sum{display:flex;flex-direction:column;gap:12px}
+.sum .big{font-size:34px;font-weight:800;line-height:1;letter-spacing:-.02em}
+.sum .sub{color:var(--muted);font-size:var(--t-md)}
+.kv{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 12px;border-top:1px solid var(--line);padding-top:12px;font-size:var(--t-base)}
+.kv dt{color:var(--muted)} .kv dd{margin:0;text-align:right;font-weight:600;overflow-wrap:anywhere}
+.tw{overflow-x:auto;border:1px solid var(--line);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:var(--t-base)}
+th{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;font-weight:600;background:var(--bg);padding:8px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+.rv td:first-child{width:200px;color:var(--muted);background:var(--bg)}
+.rv a{color:var(--accent-ink);font-size:var(--t-sm);margin-left:8px;cursor:pointer;text-decoration:underline}
+.rv .grp td{background:var(--panel);font-weight:700;color:var(--text);font-size:var(--t-sm);text-transform:uppercase;letter-spacing:.06em}
+.ms{position:relative}
+.ms-btn{width:100%;display:flex;justify-content:space-between;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);padding:8px 10px;min-height:38px;cursor:pointer;text-align:left;font-size:var(--t-md)}
+.ms-btn .val{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ms-btn .caret{color:var(--muted);flex:none}
+.ms-list{position:absolute;top:calc(100% + 2px);left:0;right:0;z-index:5;background:var(--surface);border:1px solid var(--text);box-shadow:0 12px 32px rgba(45,43,43,.22);max-height:300px;overflow:auto}
+.ms-list label{display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px solid var(--line);cursor:pointer;font-size:var(--t-md)}
+.ms-list label:last-child{border-bottom:0}
+.ms-list label.all{font-weight:700;background:var(--bg)}
+.ms-list input{width:16px;height:16px;accent-color:var(--accent)}
+.link{color:var(--accent-ink);font-weight:600;font-size:var(--t-md)}
+.note{background:var(--info-soft);color:var(--info);padding:10px 12px;font-size:var(--t-md)}
+.foot{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:16px}
+.empty{color:var(--faint)}
+.pill{display:inline-block;font-size:var(--t-xs);font-weight:700;padding:2px 8px;text-transform:uppercase;letter-spacing:.05em}
+.p-new{background:var(--warn-soft);color:var(--warn)} .p-fix{background:var(--ok-soft);color:var(--ok)} .p-bug{background:var(--bad-soft);color:var(--bad)}
+.tags{display:flex;gap:4px;flex-wrap:wrap}
+.tag{font-size:var(--t-xs);font-weight:700;padding:2px 6px;background:var(--panel);color:var(--text)}
+.preview{font-size:var(--t-md);color:var(--muted)} .preview b{color:var(--text)}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:720px){.trio{grid-template-columns:minmax(0,1fr)}}
+.creates{min-height:38px;display:flex;flex-direction:column;justify-content:center;padding:6px 10px;background:var(--bg);border:1px solid var(--line);font-size:var(--t-md)}
+.creates span{color:var(--muted);font-size:var(--t-sm)}
+.inline{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+</style>
+
+<div class="wrap">
+  <div class="demo" role="group" aria-label="Mock-up controls">
+    <b>Design mock-up · example data</b>
+    <span>Screen:</span>
+    <button class="chipbtn" data-go="1">Details</button>
+    <button class="chipbtn" data-go="2">Review</button>
+    <span>Building:</span>
+    <button class="chipbtn" id="bNone">None picked</button>
+    <button class="chipbtn" id="bPick">101 Silver Creek Rd</button>
+    <button class="chipbtn" id="takenDemo">Try a taken number</button>
+    <span>Ottumwa Water Works · USD.</span>
+  </div>
+
+  <div class="head">
+    <div>
+      <div class="crumb"><a href="#">&larr; Units</a></div>
+      <h1>Add units</h1>
+    </div>
+  </div>
+
+  <nav class="rail" aria-label="Steps" id="rail"></nav>
+
+  <div id="flow">
+    <div class="grid">
+      <div class="stack">
+
+        <!-- STEP 1 · DETAILS -->
+        <section id="s1" class="stack">
+          <div class="panel">
+            <h2>Building</h2>
+            <div class="f" id="f-bld">
+              <label for="bq">Premise <span class="req">*</span></label>
+              <div class="searchrow">
+                <input id="bq" placeholder="Address, premise number or parcel" autocomplete="off">
+                <button class="btn" type="button" id="bFind">Find</button>
+              </div>
+              <div class="cand" id="bList" hidden></div>
+              <span class="msg" id="bMsg" hidden>Pick the building first.</span>
+            </div>
+            <div id="bResult" hidden></div>
+            <div class="f" id="f-svc" hidden>
+              <span class="lab" id="svcLab">Services</span>
+              <div class="ms" id="ms">
+                <button type="button" class="ms-btn" id="msBtn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="svcLab"><span class="val" id="msVal"></span><span class="caret">&#9662;</span></button>
+                <div class="ms-list" id="msList" hidden></div>
+              </div>
+              <span class="help">From the building.</span>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h2>What to add</h2>
+            <div class="seg" role="group" aria-label="What to add" id="kindSeg">
+              <button type="button" aria-pressed="true" data-kind="units">Units</button>
+              <button type="button" aria-pressed="false" data-kind="common">A common area</button>
+            </div>
+            <div id="unitsBox" class="stack">
+              <div class="trio">
+                <div class="f" id="f-count"><label for="count">How many <span class="req">*</span></label><input id="count" type="number" min="1" value="1"><span class="msg" id="countMsg" hidden>Enter how many units.</span></div>
+                <div class="f" id="f-start"><label for="start">Start numbering at</label><input id="start" type="number" min="1" value="1"><span class="help" id="startHelp"></span><span class="msg" id="startMsg" hidden></span></div>
+                <div class="f"><label for="utype">Unit type</label><select id="utype"><option value="">Not set</option><option>Apartment</option><option>Single-family</option><option>Shop</option><option>Office</option><option>Cabin</option><option>RV pad</option></select></div>
+                <div class="f"><label for="floor">Floor</label><input id="floor" placeholder="e.g. 2 or Ground"></div>
+                <div class="f"><label for="area">Floor area (sq ft)</label><input id="area" type="number" min="0"></div>
+                <div class="f"><span class="lab">Creates</span><div class="creates" id="preview"></div></div>
+              </div>
+            </div>
+            <div id="commonBox" class="fields" hidden>
+              <div class="f"><label for="ckind">Common area <span class="req">*</span></label><select id="ckind"><option value="">Choose one</option><option>Laundry</option><option>Corridor</option><option>Car park</option><option>Pool</option><option>Lift</option><option>Landscape irrigation</option></select><span class="help">Billed to the owner.</span><span class="msg" id="ckindMsg" hidden>Choose the common area.</span></div>
+            </div>
+          </div>
+
+          <details class="fold" id="nameFold">
+            <summary><h2>Names &amp; numbers</h2><span class="state" id="nameState">Unit 1 · from the series</span></summary>
+            <div class="body">
+              <div class="trio">
+                <div class="f"><label for="floors">Floors</label><input id="floors" type="number" min="1" value="1"><span class="help">Only if units repeat per floor.</span></div>
+                <div class="f"><label for="pattern">Label pattern</label><input id="pattern" placeholder="Unit {seq}"><span class="help">Use {floor} and {seq}.</span></div>
+                <div class="f"><label for="numSel">Unit numbers</label><select id="numSel"><option value="series">From the series</option><option value="own">My own pattern</option></select></div>
+              </div>
+              <div class="fields">
+                <div class="f span2" id="f-own" hidden><label for="own">Unit number pattern</label><input id="own" placeholder="A-{seq:00}"></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="fold" id="planFold">
+            <summary><h2>Plan &amp; start</h2><span class="state" id="planState">Plan when someone moves in</span></summary>
+            <div class="body">
+              <div class="fields">
+                <div class="f span2"><span class="lab">Plan</span>
+                  <div class="seg" role="group" aria-label="Plan" id="planSeg"><button type="button" aria-pressed="true" data-plan="later">When someone moves in</button><button type="button" aria-pressed="false" data-plan="now">Pick a plan now</button></div></div>
+                <div class="f span2" id="f-plan" hidden><label for="plan">Plan</label><select id="plan"><option value="">Choose a plan</option><option>Residential Water 2026</option><option>Residential Sewer 2026</option><option>Commercial Water 2026</option></select><span class="help">No plan: unit cannot be billed.</span></div>
+                <div class="f"><label for="starts">Starts</label><select id="starts"><option value="">The day it is created</option><option value="d">A date I choose</option></select></div>
+                <div class="f" id="f-date" hidden><label for="sdate">Start date</label><input id="sdate" type="date" value="2026-11-01"></div>
+              </div>
+            </div>
+          </details>
+        </section>
+
+        <!-- STEP 2 · REVIEW -->
+        <section id="s2" class="stack" hidden>
+          <div class="panel">
+            <h2>Check before creating</h2>
+            <div class="tw"><table class="rv"><tbody id="rv"></tbody></table></div>
+          </div>
+          <div class="panel">
+            <h2>This will create</h2>
+            <div class="tw"><table><thead><tr><th>Label</th><th>Unit number</th><th>Type</th><th>Plan</th><th>Starts</th></tr></thead><tbody id="rows"></tbody></table></div>
+          </div>
+          <div class="note" id="outcome"></div>
+        </section>
+
+        <div class="foot">
+          <button class="btn" type="button" id="back">Cancel</button>
+          <button class="btn p" type="button" id="next">Continue</button>
+        </div>
+      </div>
+
+      <aside class="panel aside sum" aria-label="These units">
+        <div class="kicker">These units</div>
+        <div class="big" id="sBig">1 unit</div>
+        <div class="sub" id="sSub">No building yet</div>
+        <dl class="kv" id="kv"></dl>
+      </aside>
+    </div>
+  </div>
+
+  <section class="panel">
+    <div class="head"><h2>What this design fixes</h2><span class="kicker" id="fixKicker"></span></div>
+    <div class="tw"><table>
+      <thead><tr><th>#</th><th>Where</th><th>Today</th><th>In this design</th></tr></thead>
+      <tbody id="fixes"></tbody>
+    </table></div>
+  </section>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const val=id=>($(id).value||"").trim();
+const norm=t=>(t||"").toLowerCase().replace(/[.,#·-]/g," ").replace(/\s+/g," ").trim();
+const STEPS=["Details","Review"];
+// Example buildings. Labels already taken are what "next free" is worked out from.
+const BUILDINGS=[
+  {no:"P-00001",addr:"101 Silver Creek Rd",city:"Silver Creek, TX 78611",type:"Single-family",status:"Active",taken:["1"],route:"RT-001 · CY-001",owner:"—",svc:["Sewer","Battery","Water","Trash","Solar","Fire"],parcel:"SC-0101"},
+  {no:"P-00074",addr:"123 Main Street",city:"Ottumwa, IA 52501",type:"Apartments",status:"Active",taken:["1","2","3","5"],route:"RT-004 · CY-002",owner:"Bramble Property Group",svc:["Water","Sewer","Trash"],parcel:"OT-4410"}
+];
+const SERIES_NEXT=13;
+let S={step:1,b:null,found:null,svc:new Set(),kind:"units",num:"series",plan:"later",tried:false};
+
+function rail(){
+  $("rail").innerHTML=STEPS.map((s,i)=>{const n=i+1,st=n<S.step?"done":n===S.step?"current":"todo";
+    return `<button type="button" data-state="${st}" data-go="${n}"><span class="n">${st==="done"?"✓":n}</span><span class="lbl">${s}</span></button>`}).join("");
+}
+// The first number from which the whole run is free, so "Use N" never lands on another taken label.
+function nextFree(b){const c=S.kind==="common"?1:Math.max(1,parseInt(($("count").value||"1"),10)||1);let n=1;while(b&&Array.from({length:c},(_,i)=>String(n+i)).some(x=>b.taken.includes(x)))n++;return n}
+function count(){return S.kind==="common"?1:Math.max(0,parseInt(val("count")||"0",10)||0)}
+function startN(){return Math.max(1,parseInt(val("start")||"1",10)||1)}
+function labelOf(i){const p=val("pattern")||"Unit {seq}";const fl=val("floor")||"1";return p.replace("{floor}",fl).replace(/\{seq(?::(0+))?\}/,(m,z)=>{const s=String(startN()+i);return z?s.padStart(z.length,"0"):s})}
+function labels(){if(S.kind==="common")return[val("ckind")||"Common area"];return Array.from({length:count()},(_,i)=>labelOf(i))}
+function numOf(i){if(S.num==="own"&&val("own")){return val("own").replace(/\{seq(?::(0+))?\}/,(m,z)=>{const s=String(i+1);return z?s.padStart(z.length,"0"):s})}return "U-"+String(SERIES_NEXT+i).padStart(5,"0")}
+function clash(){if(!S.b||S.kind==="common")return[];return labels().filter(l=>S.b.taken.includes(l.replace(/^Unit /,"")))}
+function range(a){return a.length?(a.length===1?a[0]:a[0]+" to "+a[a.length-1]):"—"}
+
+function renderBuilding(){
+  const r=$("bResult"),m=S.b||S.found,on=!!S.b;
+  $("bList").hidden=true;$("f-svc").hidden=!S.b;
+  if(!m){r.hidden=true;r.innerHTML="";return}
+  r.hidden=false;
+  r.innerHTML=`<div class="ro"><div class="top"><b>${m.addr} · ${m.no} · ${m.city}</b>${on?`<span class="acts"><span class="linked">✓ Selected</span><button class="btn g" type="button" id="bClear">Change building</button></span>`:`<button class="btn" type="button" id="bUse">Use this building</button>`}</div>
+   <div class="grid2"><div><div class="k">Type</div><div class="v">${m.type}</div></div><div><div class="k">Status</div><div class="v">${m.status}</div></div>
+   <div><div class="k">Units today</div><div class="v">${m.taken.length} · ${m.taken.map(t=>"Unit "+t).join(", ")}</div></div><div><div class="k">Route and cycle</div><div class="v">${m.route}</div></div>
+   <div><div class="k">Owner</div><div class="v">${m.owner}</div></div><div><div class="k">Services</div><div class="v"><span class="tags">${m.svc.map(s=>`<span class="tag">${s}</span>`).join("")}</span></div></div></div></div>`;
+}
+function pick(b){S.b=b;S.found=null;$("bq").value=b.addr+" · "+b.no;S.svc=new Set(b.svc);$("start").value=nextFree(b);$("bMsg").hidden=true;$("f-bld").classList.remove("err");renderBuilding();svc();update()}
+function findB(){const q=norm(val("bq"));if(q.length<2)return[];return BUILDINGS.filter(b=>norm(b.addr+" "+b.no+" "+b.parcel+" "+b.city).includes(q))}
+function showBList(){const l=$("bList"),list=findB();if(S.b||S.found||!list.length){l.hidden=true;return}
+  l.hidden=false;l.innerHTML=list.map(b=>`<button type="button" data-b="${b.no}"><span>${b.addr}</span><small>${b.no} · ${b.city}</small></button>`).join("")}
+function svc(){
+  const all=S.b?S.b.svc:[],every=all.length&&all.every(s=>S.svc.has(s));
+  $("msVal").textContent=S.svc.size?(every?"All the building’s services":[...S.svc].join(", ")):"No services";
+  $("msList").innerHTML=`<label class="all"><input type="checkbox" data-all ${every?"checked":""}>All the building’s services</label>`+
+    all.map(s=>`<label><input type="checkbox" data-svc="${s}" ${S.svc.has(s)?"checked":""}>${s}</label>`).join("");
+}
+function update(){
+  const c=count(),L=labels(),nums=L.map((_,i)=>numOf(i)),cl=clash();
+  $("startHelp").textContent=S.b?`Next free: ${nextFree(S.b)}`:"";
+  $("startMsg").hidden=!cl.length;$("f-start").classList.toggle("err",!!cl.length);
+  if(cl.length)$("startMsg").innerHTML=`${cl.join(", ")} ${cl.length>1?"are":"is"} taken. <a class="link" href="#" id="useFree">Use ${nextFree(S.b)}</a>`;
+  $("preview").innerHTML=S.kind==="units"&&c?`<b>${range(L)}</b><span>${range(nums)}</span>`:"—";
+  $("nameState").textContent=(S.num==="series"?"From the series":"Own pattern")+" · "+(val("pattern")||"Unit {seq}");
+  $("planState").textContent=(S.plan==="later"?"Plan when someone moves in":(val("plan")||"No plan chosen"))+" · "+(val("starts")?"from "+val("sdate"):"from creation");
+  $("sBig").textContent=S.kind==="common"?"1 common area":`${c} unit${c===1?"":"s"}`;
+  $("sSub").textContent=S.b?`${S.b.addr} · ${S.b.no}`:"No building yet";
+  const kv=[["Labels",range(L)],["Unit numbers",range(nums)],["Type",S.kind==="common"?"Common area":(val("utype")||"—")],["Services",S.svc.size?[...S.svc].join(" · "):"—"],["Plan",S.plan==="later"?"When someone moves in":(val("plan")||"—")],["Route",S.b?S.b.route:"—"]];
+  $("kv").innerHTML=kv.map(r=>`<dt>${r[0]}</dt><dd>${r[1]}</dd>`).join("");
+  review();
+}
+function d(v){return v||"—"}
+function review(){
+  const L=labels(),nums=L.map((_,i)=>numOf(i));
+  const groups=[
+    ["Building",[["Building",S.b?`${S.b.addr} · ${S.b.no} · ${S.b.city}`:"—"],["Units today",S.b?`${S.b.taken.length}`:"—"],["Route and cycle",S.b?S.b.route:"—"],["Services",S.svc.size?[...S.svc].join(" · "):"—"]]],
+    [S.kind==="common"?"Common area":"Units",S.kind==="common"?[["Common area",d(val("ckind"))],["Billed to","The owner"]]:[["How many",`${count()}, numbered from ${startN()}`],["Unit type",d(val("utype"))],["Floor",d(val("floor"))],["Floor area",val("area")?val("area")+" sq ft":"—"]]],
+    ["Names & numbers",[["Labels",range(L)],["Unit numbers",range(nums)]]],
+    ["Plan & start",[["Plan",S.plan==="later"?"When someone moves in":d(val("plan"))],["Starts",val("starts")?val("sdate"):"The day it is created"]]]
+  ];
+  $("rv").innerHTML=groups.map(g=>`<tr class="grp"><td colspan="2">${g[0]}</td></tr>`+g[1].map(r=>`<tr><td>${r[0]}</td><td>${r[1]} <a data-go="1">Edit</a></td></tr>`).join("")).join("");
+  $("rows").innerHTML=L.map((l,i)=>`<tr><td>${l}</td><td class="num">${nums[i]}</td><td>${S.kind==="common"?"Common area":d(val("utype"))}</td><td>${S.plan==="later"?"When someone moves in":d(val("plan"))}</td><td>Vacant, no meter</td></tr>`).join("");
+  $("outcome").textContent=S.b?`Creates ${S.kind==="common"?"1 common area":L.length+" unit"+(L.length===1?"":"s")} at ${S.b.addr}.`:"";
+}
+function valid(){
+  let ok=true;S.tried=true;
+  if(!S.b){ok=false;$("bMsg").hidden=false;$("f-bld").classList.add("err")}
+  if(S.kind==="units"){const bad=count()<1;$("countMsg").hidden=!bad;$("f-count").classList.toggle("err",bad);if(bad)ok=false;if(clash().length)ok=false}
+  else{const bad=!val("ckind");$("ckindMsg").hidden=!bad;if(bad)ok=false}
+  return ok;
+}
+function go(n){
+  if(n===2&&S.step===1&&!valid())return;
+  S.step=n;$("s1").hidden=n!==1;$("s2").hidden=n!==2;
+  $("back").textContent=n===1?"Cancel":"Back";$("next").textContent=n===2?(S.kind==="common"?"Create common area":`Create ${count()} unit${count()===1?"":"s"}`):"Continue";
+  document.querySelectorAll(".demo [data-go]").forEach(b=>b.setAttribute("aria-pressed",+b.dataset.go===n));
+  rail();update();window.scrollTo(0,0);
+}
+document.addEventListener("click",e=>{
+  const g=e.target.closest("[data-go]");if(g){e.preventDefault();go(+g.dataset.go);return}
+  const bb=e.target.closest("[data-b]");if(bb){S.found=BUILDINGS.find(b=>b.no===bb.dataset.b);$("bq").value=S.found.addr+" · "+S.found.no;renderBuilding();return}
+  if(e.target.closest("#bFind")){const h=findB();if(h.length===1){S.found=h[0];renderBuilding()}else showBList();return}
+  if(e.target.closest("#bUse")){pick(S.found);return}
+  if(e.target.closest("#bClear")){S.b=null;S.found=null;S.svc=new Set();$("bq").value="";renderBuilding();update();$("bq").focus();return}
+  if(e.target.closest("#useFree")){e.preventDefault();$("start").value=nextFree(S.b);update();return}
+  const k=e.target.closest("[data-kind]");if(k){S.kind=k.dataset.kind;$("kindSeg").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b===k));$("unitsBox").hidden=S.kind!=="units";$("commonBox").hidden=S.kind!=="common";update();return}
+  const pl=e.target.closest("[data-plan]");if(pl){S.plan=pl.dataset.plan;$("planSeg").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b===pl));$("f-plan").hidden=S.plan!=="now";update();return}
+  if(e.target.closest("#msBtn")){const l=$("msList");l.hidden=!l.hidden;$("msBtn").setAttribute("aria-expanded",!l.hidden);return}
+  if(!e.target.closest("#ms")){$("msList").hidden=true;$("msBtn").setAttribute("aria-expanded","false")}
+  if(!e.target.closest("#bList")&&!e.target.closest("#bq"))$("bList").hidden=true;
+  if(e.target.closest("#bNone")){S.b=null;S.found=null;S.svc=new Set();$("bq").value="";renderBuilding();go(1);return}
+  if(e.target.closest("#bPick")){pick(BUILDINGS[0]);go(1);return}
+  if(e.target.closest("#takenDemo")){pick(BUILDINGS[1]);$("start").value=1;$("count").value=3;go(1);update();return}
+  if(e.target.closest("#next")){if(S.step===1)go(2);else alert("Mock-up: units would be created now.");return}
+  if(e.target.closest("#back")){if(S.step===2)go(1);return}
+});
+document.addEventListener("change",e=>{
+  const a=e.target.closest("[data-all]");if(a){S.svc=a.checked?new Set(S.b.svc):new Set();svc();update();return}
+  const s=e.target.closest("[data-svc]");if(s){s.checked?S.svc.add(s.dataset.svc):S.svc.delete(s.dataset.svc);svc();update();return}
+  if(e.target.id==="starts"){$("f-date").hidden=!val("starts")}
+  if(e.target.id==="numSel"){S.num=val("numSel");$("f-own").hidden=S.num!=="own"}
+  update();
+});
+$("bq").addEventListener("input",()=>{if(S.b||S.found){S.b=null;S.found=null;S.svc=new Set();renderBuilding()}showBList();update()});
+$("bq").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();$("bFind").click()}});
+["count","start","floor","area","pattern","own","floors"].forEach(id=>$(id).addEventListener("input",()=>{if(id==="count"){$("countMsg").hidden=true;$("f-count").classList.remove("err")}update()}));
+
+const FIX=[
+["Building","“A unit always belongs to a building. Start by saying which.” under the title.","Removed. The Premise field says it.","fix"],
+["Building","Premise search fills the box and shows a card at once, with Change.","Search, then a read-only card with “Use this building”; once chosen, “✓ Selected” and “Change building”. Same pattern as Owner on Add a premise.","fix"],
+["Building","The building card shows “Not recorded” with no label.","Every value on the card has a label: Type, Status, Units today, Route and cycle, Owner, Services.","bug"],
+["Building","“Everything below is added to this building. Its route, cycle and services carry to every unit made here.”","Removed.","fix"],
+["Services","Removable tags plus “Uncheck what a unit will not take.” and “Every service here is taken”.","A multi-select dropdown of the building’s services, all ticked. Help: “From the building.”","fix"],
+["How many","Shows a red error border on a valid value (1).","Red only after Continue with the box empty: “Enter how many units.”","bug"],
+["How many","“Units to create: 0” while How many reads 1.","One count drives the preview, the right card, Review and the Create button.","bug"],
+["Start numbering at","Defaults to 1 even when Unit 1 is taken, then says “Unit 1 is taken.”","Defaults to the next free number. Help: “Next free: 2”. A taken number shows “Unit 1 is taken. Use 2”.","bug"],
+["Floor / Floor area","“Written onto every unit this run creates.” under both.","Removed.","fix"],
+["Common area","A dropdown at the bottom: “Or add a common area instead”, with a sentence of help.","A choice at the top: Units or A common area. A common area asks only which one. Help: “Billed to the owner.”","fix"],
+["Names & numbers","“Name them differently”, floors, label pattern, series choice and two help sentences, always open.","A closed section “Names & numbers” whose header shows the choice. Help cut to “Use {floor} and {seq}.” and “Only if units repeat per floor.”","fix"],
+["Unit numbers","“From the series — U-00013 onward”, “Or type a pattern of my own.”, “Optional. Leave blank to let the numbering series allocate unit IDs.”","A dropdown: From the series / My own pattern, on one line with Floors and Label pattern; the pattern box shows only for My own pattern. The numbers show in the preview line and the right card.","fix"],
+["Plan","“Optional. It is applied to every unit this run creates.” and “A unit with no plan is created and cannot be billed until one is set. Its Plan tab says so.”","A closed section “Plan & start”. Plan: When someone moves in / Pick a plan now. One line: “No plan: unit cannot be billed.”","fix"],
+["Starts","“Or a date you choose.” under two radio buttons.","A dropdown: The day it is created / A date I choose, then the date.","fix"],
+["Right side","Nothing; the count only shows at the bottom.","A “These units” card: count, labels, unit numbers, type, services, plan, route.","new"],
+["Review","“It has today”, “— every unit made here inherits both”, “— from the building”, italic placeholders.","Grouped table (Building, Units, Names & numbers, Plan & start) with Edit on every row and “—” for empty values.","fix"],
+["Review","A CHECK box: “Unit numbers come from this utility’s series in Settings — they are taken when you press Create, not now.” plus “Each unit starts vacant…”","Removed. “Vacant, no meter” stays in the Starts column.","fix"],
+["Review","Button “Create”.","Says what it does: “Create 3 units” / “Create common area”, with one line above it: “Creates 3 units at 123 Main Street.”","fix"],
+["Units list","Selection bar reads “0 unit(s) selected” with nothing selected.","Not part of this screen; recorded with it. The bar shows only once a unit is ticked.","bug"]
+];
+const tagOf={fix:'<span class="pill p-fix">Text</span>',bug:'<span class="pill p-bug">Bug</span>',new:'<span class="pill p-new">Your call</span>'};
+$("fixes").innerHTML=FIX.map((r,i)=>`<tr><td class="num">${i+1}</td><td>${r[0]}</td><td>${r[1]}</td><td>${tagOf[r[3]]} ${r[2]}</td></tr>`).join("");
+$("fixKicker").textContent=FIX.length+" issues · Add units (PRM-01U.new)";
+svc();go(1);
+</script>

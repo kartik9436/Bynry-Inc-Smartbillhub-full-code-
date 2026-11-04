@@ -1,0 +1,234 @@
+{
+  "order_id": "01a106e4-2de6-7ed1-a638-a5b43a7ae3b3",
+  "order_no": "WO-0042",
+  "template_id": "01a106a7-4a92-795e-aff1-e707a5dd5923",
+  "template_version": 2,
+  "safety": [
+    {
+      "id": "01a106e4-2dee-7c1e-8562-7b93642d992b",
+      "seq": 1,
+      "text": "Shut the curb stop before breaking the union",
+      "is_mandatory": true,
+      "ticked_at": "2026-10-04T12:29:40.373783+00:00",
+      "ticked_by": "01a106a7-1454-7a97-bd6f-4dc568038a1b",
+      "ticked_by_name": "D. Ortiz"
+    },
+    {
+      "id": "01a106e4-2dee-7fae-8f78-3a1244f7b564",
+      "seq": 2,
+      "text": "Check the pit for standing water before reaching in",
+      "is_mandatory": true,
+      "ticked_at": "2026-10-04T12:29:40.387087+00:00",
+      "ticked_by": "01a106a7-1454-7a97-bd6f-4dc568038a1b",
+      "ticked_by_name": "D. Ortiz"
+    }
+  ],
+  "safety_lock": {
+    "locked": false,
+    "remaining": 0,
+    "first_outstanding": null,
+    "ticked": 2,
+    "total": 2,
+    "mandatory_total": 2
+  },
+  "tasks": [
+    {
+      "id": "01a106e4-2df0-75ac-94ae-a4ddef34b43a",
+      "seq": 1,
+      "title": "Read and photograph the OLD meter before it comes out",
+      "instruction": "Isolate at the main before touching.",
+      "est_minutes": 5,
+      "photo_required": true,
+      "is_mandatory": true,
+      "ticked_at": "2026-10-04T12:29:40.452582+00:00",
+      "ticked_by": "01a106a7-1454-7a97-bd6f-4dc568038a1b",
+      "ticked_by_name": "D. Ortiz",
+      "photo_attachment_id": "01a106e4-30cb-7e12-bbe5-f114773cfe22"
+    },
+    {
+      "id": "01a106e4-2df0-7f5f-8ccf-c1505001166b",
+      "seq": 2,
+      "title": "Shut the curb stop and break the unions",
+      "instruction": null,
+      "est_minutes": 5,
+      "photo_required": false,
+      "is_mandatory": true,
+      "ticked_at": "2026-10-04T12:29:40.465594+00:00",
+      "ticked_by": "01a106a7-1454-7a97-bd6f-4dc568038a1b",
+      "ticked_by_name": "D. Ortiz",
+      "photo_attachment_id": null
+    },
+    {
+      "id": "01a106e4-2df0-7543-99ee-0717142d2a25",
+      "seq": 3,
+      "title": "Fit the new meter with new gaskets",
+      "instruction": null,
+      "est_minutes": 15,
+      "photo_required": false,
+      "is_mandatory": true,
+      "ticked_at": "2026-10-04T12:29:40.478145+00:00",
+      "ticked_by": "01a106a7-1454-7a97-bd6f-4dc568038a1b",
+      "ticked_by_name": "D. Ortiz",
+      "photo_attachment_id": null
+    },
+    {
+      "id": "01a106e4-2df0-7968-b349-6b1ed9488730",
+      "seq": 4,
+      "title": "Charge the line and check for weeps",
+      "instruction": null,
+      "est_minutes": 5,
+      "photo_required": false,
+      "is_mandatory": true,
+      "ticked_at": "2026-10-04T12:29:40.490478+00:00",
+      "ticked_by": "01a106a7-1454-7a97-bd6f-4dc568038a1b",
+      "ticked_by_name": "D. Ortiz",
+      "photo_attachment_id": null
+    },
+    {
+      "id": "01a106e4-2df0-7e31-a863-c414530f93a6",
+      "seq": 5,
+      "title": "Seal and photograph the NEW meter and its register",
+      "instruction": null,
+      "est_minutes": 5,
+      "photo_required": true,
+      "is_mandatory": true,
+      "ticked_at": "2026-10-04T12:29:40.540568+00:00",
+      "ticked_by": "01a106a7-1454-7a97-bd6f-4dc568038a1b",
+      "ticked_by_name": "D. Ortiz",
+      "photo_attachment_id": "01a106e4-312d-7a8f-8c72-dadb938648d4"
+    },
+    {
+      "id": "01a106e4-2df0-7cdc-aeb9-679cb9479069",
+      "seq": 6,
+      "title": "Leave the exchange card with the customer",
+      "instruction": null,
+      "est_minutes": 3,
+      "photo_required": false,
+      "is_mandatory": false,
+      "ticked_at": "2026-10-04T12:29:40.553335+00:00",
+      "ticked_by": "01a106a7-1454-7a97-bd6f-4dc568038a1b",
+      "ticked_by_name": "D. Ortiz",
+      "photo_attachment_id": null
+    }
+  ],
+  "tasks_total": 6,
+  "tasks_ticked": 6,
+  "tasks_est_minutes": 38,
+  "readings": [
+    {
+      "id": "01a106e4-2df4-79b9-ab8d-25892bb7bb31",
+      "seq": 1,
+      "prompt": "Closing read on the OLD meter",
+      "unit_of_measure": "gal",
+      "min_value": "0.0000",
+      "max_value": "99999999.0000",
+      "required": true,
+      "photo_required": false,
+      "posts_as_meter_read": true,
+      "value": "4821.0000",
+      "kind": "number",
+      "value_text": null,
+      "captured_at": "2026-10-04T12:29:40.566640+00:00",
+      "photo_attachment_id": "01a106e4-3177-7937-a8ad-085a901e3e5e",
+      "in_range": true
+    },
+    {
+      "id": "01a106e4-2df4-79b2-b129-91a3bb3f5698",
+      "seq": 2,
+      "prompt": "New meter number",
+      "unit_of_measure": "text",
+      "min_value": null,
+      "max_value": null,
+      "required": true,
+      "photo_required": false,
+      "posts_as_meter_read": true,
+      "value": null,
+      "kind": "number",
+      "value_text": null,
+      "captured_at": null,
+      "photo_attachment_id": null,
+      "in_range": null
+    },
+    {
+      "id": "01a106e4-2df4-7f7c-8b75-5952ef62c734",
+      "seq": 3,
+      "prompt": "Opening read on the NEW meter",
+      "unit_of_measure": "gal",
+      "min_value": "0.0000",
+      "max_value": "99999999.0000",
+      "required": true,
+      "photo_required": false,
+      "posts_as_meter_read": true,
+      "value": "0.0000",
+      "kind": "number",
+      "value_text": null,
+      "captured_at": "2026-10-04T12:29:40.615750+00:00",
+      "photo_attachment_id": null,
+      "in_range": true
+    }
+  ],
+  "materials": [
+    {
+      "id": "01a106e4-2df2-7957-bc47-997983610008",
+      "part_id": "01a106a9-8cdc-7207-9789-41fe1c65e7f0",
+      "part_no": "GSK-58",
+      "part_name": "Meter gasket 5/8\"",
+      "planned_qty": "2.0000",
+      "used_qty": null,
+      "unit_of_measure": "each",
+      "unplanned": false
+    },
+    {
+      "id": "01a106e4-2df2-711a-8749-35f2c12e61db",
+      "part_id": "01a106a9-8cc9-7d86-b426-ef4f76ef1a64",
+      "part_no": "MTR-W58",
+      "part_name": "Water meter 5/8\" positive displacement",
+      "planned_qty": "1.0000",
+      "used_qty": null,
+      "unit_of_measure": "each",
+      "unplanned": false
+    },
+    {
+      "id": "01a106e4-2df2-7fe2-8b7c-7d3384f9ae27",
+      "part_id": "01a106a9-8ce1-71a2-918b-ef3e0855c775",
+      "part_no": "SEAL-WIRE",
+      "part_name": "Meter seal, wire and tag",
+      "planned_qty": "1.0000",
+      "used_qty": null,
+      "unit_of_measure": "each",
+      "unplanned": false
+    }
+  ],
+  "help": [
+    {
+      "id": "01a106e4-2dfe-7a9c-a0ad-07593f88fede",
+      "seq": 1,
+      "kind": "document",
+      "label": "Meter exchange procedure",
+      "ref": "STD-WA-012"
+    },
+    {
+      "id": "01a106e4-2dfe-7c9c-bee3-b128a98721b9",
+      "seq": 2,
+      "kind": "note",
+      "label": "Leave the old meter in the van; the shop logs it in",
+      "ref": null
+    },
+    {
+      "id": "01a106e4-2dfe-74a9-9676-2d3f8382dfd6",
+      "seq": 3,
+      "kind": "link",
+      "label": "How to fit a meter (video)",
+      "ref": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    }
+  ],
+  "details": {
+    "access_notes": null,
+    "hazards": null,
+    "gate_code": null,
+    "show_account_summary": true,
+    "show_asset_card": true,
+    "show_access_notes": true,
+    "show_appointment": true
+  }
+}

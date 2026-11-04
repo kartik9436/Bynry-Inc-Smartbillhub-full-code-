@@ -1,0 +1,80 @@
+name: gates
+# B12 Addendum r2 (PO-confirmed 2026-08-09): the merge-blocking gate stack
+# G1-G12 runs on EVERY change — compliance by construction, not discipline.
+on:
+  push:
+  pull_request:
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # ⚠ DEPTH 0, AND IT IS LOAD-BEARING (G55, 2026-08-30). The default is
+          # depth 1 — ONE commit, ONE subject — and G55 reads commit subjects to
+          # find defect rows still reading `open` after their fix landed. On a
+          # depth-1 checkout it would report a confident zero over a register it
+          # had never looked at, which is a check that cannot fail (DEF-182).
+          # G55 SKIPs below 50 readable commits rather than lying, so without
+          # this line the gate would SKIP on every CI run and enforce nothing.
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      # ⚠ NODE IS HERE FOR G54, AND WITHOUT IT G54 CAN ONLY EVER SKIP.
+      #
+      # DEF-2464 stopped a Product Owner's deploy: `docker compose build` failed
+      # on a TypeScript error that `tsc` (as the lane invoked it) and `vitest`
+      # were both green over. G54 runs the frontend image's own build command —
+      # `npm run build`, read out of 07-frontend/Dockerfile — and it needs npm
+      # and an installed node_modules to do it. It SKIPs honestly when they are
+      # absent (G5's posture: never report PASS for a run that did not happen),
+      # so THIS is the step that turns the gate from honest into enforcing.
+      # `ci-frontend.yml` also builds, but only on pushes touching
+      # 07-frontend/** — a backend or governance commit that breaks the SPA
+      # build never reaches it. This workflow runs on every push to every path.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: 07-frontend/package-lock.json
+      - name: Install frontend deps (so G54 runs the image build for real)
+        working-directory: 07-frontend
+        # ci, not install: the lockfile is committed and CI must build what it
+        # pins. Measured at 3.9 s from a warm cache in the dev container.
+        run: npm ci
+      - name: Trace lint (docs-side ID integrity)
+        run: python3 10-scripts/02-trace_lint.py
+      - name: Merge gates G1-G12
+        # Piped to a file so the next step can read the RESULT ROWS rather than
+        # re-running two gates (G54 alone is 45 s). `PIPESTATUS` keeps the
+        # runner's own exit code authoritative — `tee` must not launder a FAIL.
+        run: |
+          set -o pipefail
+          python3 10-scripts/gates/run_gates.py | tee gate-results.txt
+      # ⚠ A SKIP FROM G54 OR G55 IN CI IS A BROKEN WORKFLOW, NOT A PASS — and
+      # `run_gates.py` exits 0 on a SKIP, so nothing above would say so. These
+      # two are the gates whose whole value is that they RAN: G54 because a
+      # build that was not attempted proves nothing, G55 because a truncated
+      # history reports a meaningless zero. Both are wired above; this asserts
+      # the wiring still holds, which is the half a comment cannot (law 1).
+      - name: G54 and G55 must have RUN in CI, not skipped
+        if: always()
+        run: |
+          test -f gate-results.txt || { echo "::error::the gate suite wrote no results"; exit 1; }
+          if grep -E '^G5[45] .*SKIP' gate-results.txt; then
+            echo "::error::G54 or G55 SKIPPED in CI. A skip means this workflow"
+            echo "stopped providing what the gate needs — Node plus node_modules"
+            echo "for G54, fetch-depth 0 for G55. Fix the workflow above; do not"
+            echo "delete this check, and do not read a skip as a pass."
+            exit 1
+          fi
+          echo "G54 and G55 both executed."
+      # A GATE'S OWN RED-PROOF, executed rather than asserted (hard-won law 1 +
+      # law 7). G12's docstring claimed "all six failure modes were proved RED
+      # before the gate was trusted" and that proof lived only in a lane report —
+      # so an edit that made a check unfireable would still have printed PASS
+      # above. `g12_selftest.py` breaks each check on purpose and asserts G12
+      # says so, including the four ways run evidence can be absent (DEF-113).
+      # It writes only to a temp directory and never touches real evidence.
+      - name: G12 self-test (prove the journey gate can still go RED)
+        run: python3 10-scripts/gates/g12_selftest.py

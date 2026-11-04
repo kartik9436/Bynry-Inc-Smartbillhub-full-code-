@@ -1,0 +1,13 @@
+{
+ "tab": "bills",
+ "note": "ACC-T02, transcribed from 04-docs/05-modules/03-customers/blueprint/02-account-detail.md lines 523–604 — the EXTRACTED TEXT, not from looking at the picture, so anybody can re-check it against the source. The drawing is ONE group filling the width: a toolbar (All · Outstanding · Settled, Filter, search, Columns, Export), then nine columns server-sorted on issue date newest first — BILL # · CYCLE · ISSUE DATE ▼ · DUE DATE · SUBTOTAL · TAX · TOTAL · STATUS and the row actions — then the pagination footer.",
+ "groups": [
+  {
+   "col": "left",
+   "slug": "bills",
+   "heading": "BILLS",
+   "notice": true,
+   "note": "⚠ **THE DRAWN COLUMNS ARE DELIBERATELY NOT ASSERTED HERE, AND THE REASON IS LAW 7's *INCAPABLE OF PASSING*.** This group mounts the SHARED `DataTable`, which replaces the whole table with its empty block when a list has no rows and no query state — B14's own rule that every list carries an empty state. The account this check drives is whichever `/accounts?per=1` answers first, and on this seed that account has never been billed, so a column assertion here could never pass no matter how right the screen was. The nine columns are asserted instead where an assertion can be true of any account: `AccountDetailPage.test.tsx` checks their presence AND their drawn order on a seeded list. What this file asserts is what the census alone can see — that the group exists, sits in the drawn column, is headed in the accent with the rule beneath it, and is spaced on B14 rule 39's scale."
+  }
+ ]
+}

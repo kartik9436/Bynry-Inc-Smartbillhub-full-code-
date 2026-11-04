@@ -1,0 +1,1338 @@
+{
+  "1": {
+    "case": 1,
+    "kind": "interim",
+    "account": "Unit A",
+    "review": {
+      "lines": [
+        {
+          "service": "Electric",
+          "meter": "—",
+          "charge": "Usage",
+          "quantity": "600 kWh",
+          "rate": "$0.1245",
+          "amount": "$74.70"
+        },
+        {
+          "service": "Electric",
+          "meter": "—",
+          "charge": "Base\nNo base set",
+          "quantity": "—",
+          "rate": "Not set",
+          "amount": "$0.00"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10442",
+          "charge": "Usage",
+          "quantity": "6.1 kgal",
+          "rate": "Tiered",
+          "amount": "$21.20"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10442",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$8.00",
+          "amount": "$8.00"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10443",
+          "charge": "Usage",
+          "quantity": "6.1 kgal",
+          "rate": "Tiered",
+          "amount": "$21.20"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10443",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$8.00",
+          "amount": "$8.00"
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Share of service",
+          "quantity": "4.88 kgal",
+          "rate": "$5.00",
+          "amount": "$24.40"
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$6.00",
+          "amount": "$6.00"
+        },
+        {
+          "service": "Trash",
+          "meter": "1 cart",
+          "charge": "Per cart",
+          "quantity": "1 cart",
+          "rate": "$18.00",
+          "amount": "$18.00"
+        }
+      ],
+      "subtotal": "$181.50",
+      "tax": [
+        {
+          "label": "Tax Local · 2.00% of taxable charges",
+          "amount": "$3.63"
+        }
+      ],
+      "one_time_charges": null,
+      "total": "$185.13",
+      "groups": 1
+    },
+    "sent": {
+      "run_id": "01a0f639-0ad1-7265-ba0a-3f568e086bdc",
+      "invoice_id": "01a0f639-0e1c-7104-aba8-b19ab608d04e",
+      "invoice_no": "BL-2609-000001",
+      "total": "185.1300",
+      "currency": "USD",
+      "due_date": "2026-10-22",
+      "status": "issued",
+      "delivery": "queued",
+      "delivery_choice": "email",
+      "reads": "locked",
+      "created": true,
+      "unavailable": [
+        {
+          "code": "paper_is_always_queued_for_a_bill",
+          "br_ref": "BR-BIL-036",
+          "detail": "print is the floor for every bill and the queue owner adds it whatever was chosen, so 'email' queues email AND paper, exactly as 'email_and_paper' does. The choice is recorded as the clerk's intent; no rule lets a bill go out without its paper copy."
+        }
+      ]
+    },
+    "replay_send": {
+      "status": 200,
+      "created": false,
+      "invoice_no": "BL-2609-000001"
+    },
+    "replay_draft": {
+      "status": 409,
+      "code": "BIZ-IDEMPOTENT"
+    },
+    "sent_text": "✓\nBill BL-2609-000001 sent\nTotal\n$185.13\nDue\n10/22/2026\nDelivery\nEmail · queued\nMeter reads\nLocked\nView bill\nNew one-time bill"
+  },
+  "2": {
+    "case": 2,
+    "kind": "interim",
+    "account": "Unit I",
+    "review": {
+      "lines": [
+        {
+          "service": "Water",
+          "meter": "—",
+          "charge": "Usage\nEst.",
+          "quantity": "6 kgal",
+          "rate": "Tiered",
+          "amount": "$20.75"
+        },
+        {
+          "service": "Water",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$8.00",
+          "amount": "$8.00"
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Share of service",
+          "quantity": "2.4 kgal",
+          "rate": "$5.00",
+          "amount": "$12.00"
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$6.00",
+          "amount": "$6.00"
+        }
+      ],
+      "subtotal": "$46.75",
+      "tax": [
+        {
+          "label": "Tax Local · 2.00% of taxable charges",
+          "amount": "$0.94"
+        }
+      ],
+      "one_time_charges": null,
+      "total": "$47.69",
+      "groups": 1
+    },
+    "sent": {
+      "run_id": "01a0f639-3952-73ae-a32d-8a016523f241",
+      "invoice_id": "01a0f639-3bf2-7e6c-9500-4ddab81dc291",
+      "invoice_no": "BL-2609-000002",
+      "total": "47.6900",
+      "currency": "USD",
+      "due_date": "2026-10-22",
+      "status": "issued",
+      "delivery": "queued",
+      "delivery_choice": "email",
+      "reads": "locked",
+      "created": true,
+      "unavailable": [
+        {
+          "code": "paper_is_always_queued_for_a_bill",
+          "br_ref": "BR-BIL-036",
+          "detail": "print is the floor for every bill and the queue owner adds it whatever was chosen, so 'email' queues email AND paper, exactly as 'email_and_paper' does. The choice is recorded as the clerk's intent; no rule lets a bill go out without its paper copy."
+        }
+      ]
+    },
+    "replay_send": {
+      "status": 200,
+      "created": false,
+      "invoice_no": "BL-2609-000002"
+    },
+    "replay_draft": {
+      "status": 409,
+      "code": "BIZ-IDEMPOTENT"
+    },
+    "sent_text": "✓\nBill BL-2609-000002 sent\nTotal\n$47.69\nDue\n10/22/2026\nDelivery\nEmail · queued\nMeter reads\nLocked\nView bill\nNew one-time bill"
+  },
+  "3": {
+    "case": 3,
+    "kind": "first",
+    "account": "Unit C",
+    "review": {
+      "lines": [
+        {
+          "service": "Electric",
+          "meter": "—",
+          "charge": "Usage",
+          "quantity": "520 kWh",
+          "rate": "$0.1245",
+          "amount": "$64.74"
+        },
+        {
+          "service": "Electric",
+          "meter": "—",
+          "charge": "Base\nNo base set",
+          "quantity": "—",
+          "rate": "Not set",
+          "amount": "$0.00"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10442C",
+          "charge": "Usage",
+          "quantity": "8.6 kgal",
+          "rate": "Tiered",
+          "amount": "$34.74"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10442C",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$5.07",
+          "amount": "$5.07"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10443C",
+          "charge": "Usage",
+          "quantity": "7.8 kgal",
+          "rate": "Tiered",
+          "amount": "$31.14"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10443C",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$5.07",
+          "amount": "$5.07"
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Share of service",
+          "quantity": "6.56 kgal",
+          "rate": "$5.00",
+          "amount": "$32.80"
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$3.80",
+          "amount": "$3.80"
+        },
+        {
+          "service": "Trash",
+          "meter": "1 cart",
+          "charge": "Per cart",
+          "quantity": "1 cart",
+          "rate": "$11.40",
+          "amount": "$11.40"
+        },
+        {
+          "service": "Security deposit",
+          "meter": "—",
+          "charge": "Deposit",
+          "quantity": "—",
+          "rate": "—",
+          "amount": "$150.00"
+        },
+        {
+          "service": "Connection fee",
+          "meter": "—",
+          "charge": "Fee · CONN",
+          "quantity": "1",
+          "rate": "$45.00",
+          "amount": "$45.00"
+        }
+      ],
+      "subtotal": "$188.76",
+      "tax": [
+        {
+          "label": "Tax Local · 2.00% of taxable charges",
+          "amount": "$3.78"
+        }
+      ],
+      "one_time_charges": "$195.00",
+      "total": "$387.54",
+      "groups": 2
+    },
+    "sent": {
+      "run_id": "01a0f639-7b72-7ad1-be17-4bc78b8d21c2",
+      "invoice_id": "01a0f639-7fde-7758-bc3c-768c2283de22",
+      "invoice_no": "BL-2609-000003",
+      "total": "387.5400",
+      "currency": "USD",
+      "due_date": "2026-10-22",
+      "status": "issued",
+      "delivery": "queued",
+      "delivery_choice": "email",
+      "reads": "locked",
+      "created": true,
+      "unavailable": [
+        {
+          "code": "paper_is_always_queued_for_a_bill",
+          "br_ref": "BR-BIL-036",
+          "detail": "print is the floor for every bill and the queue owner adds it whatever was chosen, so 'email' queues email AND paper, exactly as 'email_and_paper' does. The choice is recorded as the clerk's intent; no rule lets a bill go out without its paper copy."
+        }
+      ]
+    },
+    "replay_send": {
+      "status": 200,
+      "created": false,
+      "invoice_no": "BL-2609-000003"
+    },
+    "replay_draft": {
+      "status": 409,
+      "code": "BIZ-IDEMPOTENT"
+    },
+    "sent_text": "✓\nBill BL-2609-000003 sent\nTotal\n$387.54\nDue\n10/22/2026\nDelivery\nEmail · queued\nMeter reads\nLocked\nView bill\nNew one-time bill"
+  },
+  "4": {
+    "case": 4,
+    "kind": "final",
+    "account": "Unit J",
+    "review": {
+      "lines": [
+        {
+          "service": "Electric",
+          "meter": "—",
+          "charge": "Usage",
+          "quantity": "280 kWh",
+          "rate": "$0.1245",
+          "amount": "$34.86"
+        },
+        {
+          "service": "Electric",
+          "meter": "—",
+          "charge": "Base\nNo base set",
+          "quantity": "—",
+          "rate": "Not set",
+          "amount": "$0.00"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10442J",
+          "charge": "Usage",
+          "quantity": "2.7 kgal",
+          "rate": "Tiered",
+          "amount": "$8.78"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10442J",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$4.80",
+          "amount": "$4.80"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10443J",
+          "charge": "Usage",
+          "quantity": "2.4 kgal",
+          "rate": "Tiered",
+          "amount": "$7.80"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10443J",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$4.80",
+          "amount": "$4.80"
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Share of service",
+          "quantity": "2.04 kgal",
+          "rate": "$5.00",
+          "amount": "$10.20"
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$3.60",
+          "amount": "$3.60"
+        },
+        {
+          "service": "Trash",
+          "meter": "1 cart",
+          "charge": "Per cart",
+          "quantity": "1 cart",
+          "rate": "$10.80",
+          "amount": "$10.80"
+        }
+      ],
+      "subtotal": "$85.64",
+      "tax": [
+        {
+          "label": "Tax Local · 2.00% of taxable charges",
+          "amount": "$1.71"
+        }
+      ],
+      "one_time_charges": null,
+      "total": "$87.35",
+      "groups": 1
+    },
+    "sent": {
+      "run_id": "01a0f639-b767-7ccc-8ae3-bbd69dee2d4c",
+      "invoice_id": "01a0f639-ba06-7ea1-9234-ff18750cfa7d",
+      "invoice_no": "BL-2609-000004",
+      "total": "87.3500",
+      "currency": "USD",
+      "due_date": "2026-10-22",
+      "status": "issued",
+      "delivery": "queued",
+      "delivery_choice": "email",
+      "reads": "locked",
+      "created": true,
+      "unavailable": [
+        {
+          "code": "paper_is_always_queued_for_a_bill",
+          "br_ref": "BR-BIL-036",
+          "detail": "print is the floor for every bill and the queue owner adds it whatever was chosen, so 'email' queues email AND paper, exactly as 'email_and_paper' does. The choice is recorded as the clerk's intent; no rule lets a bill go out without its paper copy."
+        }
+      ]
+    },
+    "replay_send": {
+      "status": 200,
+      "created": false,
+      "invoice_no": "BL-2609-000004"
+    },
+    "replay_draft": {
+      "status": 409,
+      "code": "BIZ-IDEMPOTENT"
+    },
+    "sent_text": "✓\nBill BL-2609-000004 sent\nTotal\n$87.35\nDue\n10/22/2026\nDelivery\nEmail · queued\nMeter reads\nLocked\nView bill\nNew one-time bill"
+  },
+  "5": {
+    "case": 5,
+    "kind": "final",
+    "account": "Unit D",
+    "review": {
+      "lines": [
+        {
+          "service": "Electric",
+          "meter": "—",
+          "charge": "Usage",
+          "quantity": "280 kWh",
+          "rate": "$0.1245",
+          "amount": "$34.86"
+        },
+        {
+          "service": "Electric",
+          "meter": "—",
+          "charge": "Base\nNo base set",
+          "quantity": "—",
+          "rate": "Not set",
+          "amount": "$0.00"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10442D",
+          "charge": "Usage",
+          "quantity": "2.7 kgal",
+          "rate": "Tiered",
+          "amount": "$8.78"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10442D",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$4.80",
+          "amount": "$4.80"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10443D",
+          "charge": "Usage",
+          "quantity": "2.4 kgal",
+          "rate": "Tiered",
+          "amount": "$7.80"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10443D",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$4.80",
+          "amount": "$4.80"
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Share of service",
+          "quantity": "2.04 kgal",
+          "rate": "$5.00",
+          "amount": "$10.20"
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$3.60",
+          "amount": "$3.60"
+        },
+        {
+          "service": "Trash",
+          "meter": "1 cart",
+          "charge": "Per cart",
+          "quantity": "1 cart",
+          "rate": "$10.80",
+          "amount": "$10.80"
+        }
+      ],
+      "subtotal": "$85.64",
+      "tax": [
+        {
+          "label": "Tax Local · 2.00% of taxable charges",
+          "amount": "$1.71"
+        }
+      ],
+      "one_time_charges": null,
+      "total": "$87.35",
+      "groups": 1
+    },
+    "sent": {
+      "run_id": "01a0f639-f0cf-7aaf-bf05-35b875068b39",
+      "invoice_id": "01a0f639-f357-7fd7-8d5f-d44f0f9cc1c0",
+      "invoice_no": "BL-2609-000005",
+      "total": "87.3500",
+      "currency": "USD",
+      "due_date": "2026-10-22",
+      "status": "issued",
+      "delivery": "queued",
+      "delivery_choice": "email",
+      "reads": "locked",
+      "created": true,
+      "unavailable": [
+        {
+          "code": "paper_is_always_queued_for_a_bill",
+          "br_ref": "BR-BIL-036",
+          "detail": "print is the floor for every bill and the queue owner adds it whatever was chosen, so 'email' queues email AND paper, exactly as 'email_and_paper' does. The choice is recorded as the clerk's intent; no rule lets a bill go out without its paper copy."
+        }
+      ]
+    },
+    "replay_send": {
+      "status": 200,
+      "created": false,
+      "invoice_no": "BL-2609-000005"
+    },
+    "replay_draft": {
+      "status": 409,
+      "code": "BIZ-IDEMPOTENT"
+    },
+    "sent_text": "✓\nBill BL-2609-000005 sent\nTotal\n$87.35\nDue\n10/22/2026\nDelivery\nEmail · queued\nMeter reads\nLocked\nView bill\nNew one-time bill"
+  },
+  "6": {
+    "case": 6,
+    "kind": "backbill",
+    "account": "Unit E",
+    "review": {
+      "lines": [
+        {
+          "service": "Electric",
+          "meter": "—",
+          "charge": "Usage\nEst.",
+          "quantity": "700 kWh",
+          "rate": "$0.1245",
+          "amount": "$87.15"
+        },
+        {
+          "service": "Electric",
+          "meter": "—",
+          "charge": "Base\nNo base set",
+          "quantity": "—",
+          "rate": "Not set",
+          "amount": "$0.00"
+        },
+        {
+          "service": "Electric",
+          "meter": "—",
+          "charge": "Base\nNo base set",
+          "quantity": "—",
+          "rate": "Not set",
+          "amount": "$0.00"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10442E",
+          "charge": "Usage\nEst.",
+          "quantity": "13.9 kgal",
+          "rate": "Tiered",
+          "amount": "$54.62"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10442E",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$3.87",
+          "amount": "$3.87"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10442E",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$4.13",
+          "amount": "$4.13"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10443E",
+          "charge": "Usage\nEst.",
+          "quantity": "6.81 kgal",
+          "rate": "Tiered",
+          "amount": "$23.57"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10443E",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$3.87",
+          "amount": "$3.87"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10443E",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$4.13",
+          "amount": "$4.13"
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Share of service",
+          "quantity": "4.01 kgal",
+          "rate": "$5.00",
+          "amount": "$20.04"
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Share of service",
+          "quantity": "4.27 kgal",
+          "rate": "$5.00",
+          "amount": "$21.37"
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$2.90",
+          "amount": "$2.90"
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$3.10",
+          "amount": "$3.10"
+        },
+        {
+          "service": "Trash",
+          "meter": "1 cart",
+          "charge": "Per cart",
+          "quantity": "1 cart",
+          "rate": "$15.00",
+          "amount": "$7.26"
+        },
+        {
+          "service": "Trash",
+          "meter": "1 cart",
+          "charge": "Per cart",
+          "quantity": "1 cart",
+          "rate": "$15.00",
+          "amount": "$7.74"
+        },
+        {
+          "service": "Trash",
+          "meter": "—",
+          "charge": "Base · per cart",
+          "quantity": "1",
+          "rate": "$1.45",
+          "amount": "$1.45"
+        },
+        {
+          "service": "Trash",
+          "meter": "—",
+          "charge": "Base · per cart",
+          "quantity": "1",
+          "rate": "$1.55",
+          "amount": "$1.55"
+        },
+        {
+          "service": "Electric",
+          "meter": "—",
+          "charge": "Usage\nEst.",
+          "quantity": "518.36 kWh",
+          "rate": "$0.1245",
+          "amount": "$64.54"
+        },
+        {
+          "service": "Electric",
+          "meter": "—",
+          "charge": "Base\nNo base set",
+          "quantity": "—",
+          "rate": "Not set",
+          "amount": "$0.00"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10442E",
+          "charge": "Usage\nEst.",
+          "quantity": "8.28 kgal",
+          "rate": "Tiered",
+          "amount": "$31.03"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10442E",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$8.00",
+          "amount": "$8.00"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10443E",
+          "charge": "Usage\nEst.",
+          "quantity": "6.81 kgal",
+          "rate": "Tiered",
+          "amount": "$24.38"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10443E",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$8.00",
+          "amount": "$8.00"
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Share of service",
+          "quantity": "6.04 kgal",
+          "rate": "$5.00",
+          "amount": "$30.18"
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$6.00",
+          "amount": "$6.00"
+        },
+        {
+          "service": "Trash",
+          "meter": "1 cart",
+          "charge": "Per cart",
+          "quantity": "1 cart",
+          "rate": "$15.00",
+          "amount": "$15.00"
+        },
+        {
+          "service": "Trash",
+          "meter": "—",
+          "charge": "Base · per cart",
+          "quantity": "1",
+          "rate": "$3.00",
+          "amount": "$3.00"
+        },
+        {
+          "service": "Electric",
+          "meter": "—",
+          "charge": "Usage\nEst.",
+          "quantity": "501.64 kWh",
+          "rate": "$0.1245",
+          "amount": "$62.45"
+        },
+        {
+          "service": "Electric",
+          "meter": "—",
+          "charge": "Base\nNo base set",
+          "quantity": "—",
+          "rate": "Not set",
+          "amount": "$0.00"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10442E",
+          "charge": "Usage\nEst.",
+          "quantity": "8.02 kgal",
+          "rate": "Tiered",
+          "amount": "$29.82"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10442E",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$8.00",
+          "amount": "$8.00"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10443E",
+          "charge": "Usage\nEst.",
+          "quantity": "6.59 kgal",
+          "rate": "Tiered",
+          "amount": "$23.39"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10443E",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$8.00",
+          "amount": "$8.00"
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Share of service",
+          "quantity": "5.84 kgal",
+          "rate": "$5.00",
+          "amount": "$29.21"
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$6.00",
+          "amount": "$6.00"
+        },
+        {
+          "service": "Trash",
+          "meter": "1 cart",
+          "charge": "Per cart",
+          "quantity": "1 cart",
+          "rate": "$15.00",
+          "amount": "$15.00"
+        },
+        {
+          "service": "Trash",
+          "meter": "—",
+          "charge": "Base · per cart",
+          "quantity": "1",
+          "rate": "$3.00",
+          "amount": "$3.00"
+        }
+      ],
+      "subtotal": "$621.75",
+      "tax": [
+        {
+          "label": "Tax Local · 2.00% of taxable charges",
+          "amount": "$12.44"
+        }
+      ],
+      "one_time_charges": null,
+      "total": "$634.19",
+      "groups": 3
+    },
+    "sent": {
+      "run_id": "01a0f63a-44ff-791a-adf7-cd4f44c09fe5",
+      "invoice_id": "01a0f63a-509e-74e3-bde7-2096f9014652",
+      "invoice_no": "BL-2609-000006",
+      "total": "634.1900",
+      "currency": "USD",
+      "due_date": "2026-10-22",
+      "status": "issued",
+      "delivery": "queued",
+      "delivery_choice": "email",
+      "reads": "locked",
+      "created": true,
+      "unavailable": [
+        {
+          "code": "paper_is_always_queued_for_a_bill",
+          "br_ref": "BR-BIL-036",
+          "detail": "print is the floor for every bill and the queue owner adds it whatever was chosen, so 'email' queues email AND paper, exactly as 'email_and_paper' does. The choice is recorded as the clerk's intent; no rule lets a bill go out without its paper copy."
+        }
+      ]
+    },
+    "replay_send": {
+      "status": 200,
+      "created": false,
+      "invoice_no": "BL-2609-000006"
+    },
+    "replay_draft": {
+      "status": 409,
+      "code": "BIZ-IDEMPOTENT"
+    },
+    "sent_text": "✓\nBill BL-2609-000006 sent\nTotal\n$634.19\nDue\n10/22/2026\nDelivery\nEmail · queued\nMeter reads\nLocked\nView bill\nNew one-time bill"
+  },
+  "7": {
+    "case": 7,
+    "kind": "penalty",
+    "account": "Unit F",
+    "review": {
+      "lines": [
+        {
+          "service": "Electric",
+          "meter": "—",
+          "charge": "Usage\nEst.",
+          "quantity": "700 kWh",
+          "rate": "$0.1245",
+          "amount": "$87.15"
+        },
+        {
+          "service": "Electric",
+          "meter": "—",
+          "charge": "Base\nNo base set",
+          "quantity": "—",
+          "rate": "Not set",
+          "amount": "$0.00"
+        },
+        {
+          "service": "Electric",
+          "meter": "—",
+          "charge": "Base\nNo base set",
+          "quantity": "—",
+          "rate": "Not set",
+          "amount": "$0.00"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10442F",
+          "charge": "Usage\nEst.",
+          "quantity": "13.9 kgal",
+          "rate": "Tiered",
+          "amount": "$54.62"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10442F",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$3.87",
+          "amount": "$3.87"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10442F",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$4.13",
+          "amount": "$4.13"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10443F",
+          "charge": "Usage\nEst.",
+          "quantity": "10.6 kgal",
+          "rate": "Tiered",
+          "amount": "$40.18"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10443F",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$3.87",
+          "amount": "$3.87"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10443F",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$4.13",
+          "amount": "$4.13"
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Share of service",
+          "quantity": "4.74 kgal",
+          "rate": "$5.00",
+          "amount": "$23.71"
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Share of service",
+          "quantity": "5.06 kgal",
+          "rate": "$5.00",
+          "amount": "$25.29"
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$2.90",
+          "amount": "$2.90"
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$3.10",
+          "amount": "$3.10"
+        },
+        {
+          "service": "Trash",
+          "meter": "1 cart",
+          "charge": "Per cart",
+          "quantity": "1 cart",
+          "rate": "$15.00",
+          "amount": "$7.26"
+        },
+        {
+          "service": "Trash",
+          "meter": "1 cart",
+          "charge": "Per cart",
+          "quantity": "1 cart",
+          "rate": "$15.00",
+          "amount": "$7.74"
+        },
+        {
+          "service": "Trash",
+          "meter": "—",
+          "charge": "Base · per cart",
+          "quantity": "1",
+          "rate": "$1.45",
+          "amount": "$1.45"
+        },
+        {
+          "service": "Trash",
+          "meter": "—",
+          "charge": "Base · per cart",
+          "quantity": "1",
+          "rate": "$1.55",
+          "amount": "$1.55"
+        },
+        {
+          "service": "Electric",
+          "meter": "—",
+          "charge": "Usage\nEst.",
+          "quantity": "1,020 kWh",
+          "rate": "$0.1245",
+          "amount": "$126.99"
+        },
+        {
+          "service": "Electric",
+          "meter": "—",
+          "charge": "Base\nNo base set",
+          "quantity": "—",
+          "rate": "Not set",
+          "amount": "$0.00"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10442F",
+          "charge": "Usage\nEst.",
+          "quantity": "16.3 kgal",
+          "rate": "Tiered",
+          "amount": "$67.10"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10442F",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$8.00",
+          "amount": "$8.00"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10443F",
+          "charge": "Usage\nEst.",
+          "quantity": "9.6 kgal",
+          "rate": "Tiered",
+          "amount": "$36.95"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10443F",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$8.00",
+          "amount": "$8.00"
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Share of service",
+          "quantity": "10.36 kgal",
+          "rate": "$5.00",
+          "amount": "$51.80"
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$6.00",
+          "amount": "$6.00"
+        },
+        {
+          "service": "Trash",
+          "meter": "1 cart",
+          "charge": "Per cart",
+          "quantity": "1 cart",
+          "rate": "$15.00",
+          "amount": "$15.00"
+        },
+        {
+          "service": "Trash",
+          "meter": "—",
+          "charge": "Base · per cart",
+          "quantity": "1",
+          "rate": "$3.00",
+          "amount": "$3.00"
+        },
+        {
+          "service": "Electric",
+          "meter": "—",
+          "charge": "Usage\nEst.",
+          "quantity": "890 kWh",
+          "rate": "$0.1245",
+          "amount": "$110.81"
+        },
+        {
+          "service": "Electric",
+          "meter": "—",
+          "charge": "Base\nNo base set",
+          "quantity": "—",
+          "rate": "Not set",
+          "amount": "$0.00"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10442F",
+          "charge": "Usage\nEst.",
+          "quantity": "14.2 kgal",
+          "rate": "Tiered",
+          "amount": "$57.65"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10442F",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$8.00",
+          "amount": "$8.00"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10443F",
+          "charge": "Usage\nEst.",
+          "quantity": "9.3 kgal",
+          "rate": "Tiered",
+          "amount": "$35.60"
+        },
+        {
+          "service": "Water",
+          "meter": "W-10443F",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$8.00",
+          "amount": "$8.00"
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Share of service",
+          "quantity": "9.4 kgal",
+          "rate": "$5.00",
+          "amount": "$47.00"
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$6.00",
+          "amount": "$6.00"
+        },
+        {
+          "service": "Trash",
+          "meter": "1 cart",
+          "charge": "Per cart",
+          "quantity": "1 cart",
+          "rate": "$15.00",
+          "amount": "$15.00"
+        },
+        {
+          "service": "Trash",
+          "meter": "—",
+          "charge": "Base · per cart",
+          "quantity": "1",
+          "rate": "$3.00",
+          "amount": "$3.00"
+        },
+        {
+          "service": "Tamper fee",
+          "meter": "—",
+          "charge": "Fee · TAMPER",
+          "quantity": "1",
+          "rate": "$250.00",
+          "amount": "$250.00"
+        }
+      ],
+      "subtotal": "$884.85",
+      "tax": [
+        {
+          "label": "Tax Local · 2.00% of taxable charges",
+          "amount": "$17.70"
+        }
+      ],
+      "one_time_charges": "$250.00",
+      "total": "$1,152.55",
+      "groups": 4
+    },
+    "sent": {
+      "run_id": "01a0f63a-8f5e-7d8f-aed0-29fb53d424f2",
+      "invoice_id": "01a0f63a-9a69-7a30-a45c-9f69d61da2e6",
+      "invoice_no": "BL-2609-000007",
+      "total": "1152.5500",
+      "currency": "USD",
+      "due_date": "2026-10-22",
+      "status": "issued",
+      "delivery": "queued",
+      "delivery_choice": "email",
+      "reads": "locked",
+      "created": true,
+      "unavailable": [
+        {
+          "code": "paper_is_always_queued_for_a_bill",
+          "br_ref": "BR-BIL-036",
+          "detail": "print is the floor for every bill and the queue owner adds it whatever was chosen, so 'email' queues email AND paper, exactly as 'email_and_paper' does. The choice is recorded as the clerk's intent; no rule lets a bill go out without its paper copy."
+        }
+      ]
+    },
+    "replay_send": {
+      "status": 200,
+      "created": false,
+      "invoice_no": "BL-2609-000007"
+    },
+    "replay_draft": {
+      "status": 409,
+      "code": "BIZ-IDEMPOTENT"
+    },
+    "sent_text": "✓\nBill BL-2609-000007 sent\nTotal\n$1,152.55\nDue\n10/22/2026\nDelivery\nEmail · queued\nMeter reads\nLocked\nView bill\nNew one-time bill"
+  },
+  "8": {
+    "case": 8,
+    "kind": "fee",
+    "account": "Unit H",
+    "review": {
+      "lines": [
+        {
+          "service": "Reconnection fee",
+          "meter": "—",
+          "charge": "Fee · RECON",
+          "quantity": "1",
+          "rate": "$75.00",
+          "amount": "$75.00"
+        }
+      ],
+      "subtotal": "$75.00",
+      "tax": [
+        {
+          "label": "Tax Local · 2.00% of taxable charges",
+          "amount": "$1.50"
+        }
+      ],
+      "one_time_charges": null,
+      "total": "$76.50",
+      "groups": 1
+    },
+    "sent": {
+      "run_id": "01a0f63a-c2e8-75f4-b395-ac1d61a3fa88",
+      "invoice_id": "01a0f63a-c301-78a3-8868-11ed0df0b914",
+      "invoice_no": "BL-2610-000008",
+      "total": "76.5000",
+      "currency": "USD",
+      "due_date": "2026-10-22",
+      "status": "issued",
+      "delivery": "queued",
+      "delivery_choice": "email",
+      "reads": "locked",
+      "created": true,
+      "unavailable": [
+        {
+          "code": "paper_is_always_queued_for_a_bill",
+          "br_ref": "BR-BIL-036",
+          "detail": "print is the floor for every bill and the queue owner adds it whatever was chosen, so 'email' queues email AND paper, exactly as 'email_and_paper' does. The choice is recorded as the clerk's intent; no rule lets a bill go out without its paper copy."
+        }
+      ]
+    },
+    "replay_send": {
+      "status": 200,
+      "created": false,
+      "invoice_no": "BL-2610-000008"
+    },
+    "replay_draft": {
+      "status": 409,
+      "code": "BIZ-IDEMPOTENT"
+    },
+    "sent_text": "✓\nBill BL-2610-000008 sent\nTotal\n$76.50\nDue\n10/22/2026\nDelivery\nEmail · queued\nMeter reads\nLocked\nView bill\nNew one-time bill"
+  }
+}

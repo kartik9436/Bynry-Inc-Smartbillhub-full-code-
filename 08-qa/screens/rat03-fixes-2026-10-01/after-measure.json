@@ -1,0 +1,212 @@
+{
+  "battery-edit-1-basics": {
+    "fields": 6,
+    "sentences": 8,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "What are you doing?",
+      "A new price, from a date.",
+      "Name, service, unit and customer class.",
+      "Internal only — never shown to a customer.",
+      "This schedule is already in force, so its service cannot change.",
+      "Set in Settings as kW. Every price uses it.",
+      "Blank prices every class. The base follows the class."
+    ]
+  },
+  "battery-edit-1-basics-open": {
+    "fields": 6,
+    "sentences": 8,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "What are you doing?",
+      "A new price, from a date.",
+      "Name, service, unit and customer class.",
+      "Internal only — never shown to a customer.",
+      "This schedule is already in force, so its service cannot change.",
+      "Set in Settings as kW. Every price uses it.",
+      "Blank prices every class. The base follows the class."
+    ]
+  },
+  "battery-edit-2-sizes": {
+    "fields": 8,
+    "sentences": 6,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "What are you doing?",
+      "A new price, from a date.",
+      "What this schedule charges per connection size.",
+      "This code has one amount. Every size shows it.",
+      "Blank is not zero. That size has no minimum."
+    ]
+  },
+  "battery-edit-3-structure": {
+    "fields": 4,
+    "sentences": 8,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "What are you doing?",
+      "A new price, from a date.",
+      "Pick the shape of the formula, then fill in its numbers.",
+      "One structure per schedule. Changing it replaces the numbers below.",
+      "Optional floor for what this formula can produce.",
+      "One price for every unit used.",
+      "Type the amount exactly as it should be stored. It is sent unchanged; the server checks the limits."
+    ]
+  },
+  "battery-edit-4-effective": {
+    "fields": 12,
+    "sentences": 4,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "What are you doing?",
+      "A new price, from a date.",
+      "Who this change reaches, and by how much."
+    ]
+  },
+  "battery-edit-5-review": {
+    "fields": 1,
+    "sentences": 7,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "What are you doing?",
+      "A new price, from a date.",
+      "What each size pays before a drop is used.",
+      "The floor for each connection size.",
+      "The floor every bill on this schedule meets.",
+      "What each block of usage costs."
+    ]
+  },
+  "water-edit-1-basics": {
+    "fields": 6,
+    "sentences": 8,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "What are you doing?",
+      "A new price, from a date.",
+      "Name, service, unit and customer class.",
+      "Internal only — never shown to a customer.",
+      "This schedule is already in force, so its service cannot change.",
+      "Set in Settings as kgal. Every price uses it.",
+      "Blank prices every class. The base follows the class."
+    ]
+  },
+  "water-edit-1-basics-open": {
+    "fields": 6,
+    "sentences": 8,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "What are you doing?",
+      "A new price, from a date.",
+      "Name, service, unit and customer class.",
+      "Internal only — never shown to a customer.",
+      "This schedule is already in force, so its service cannot change.",
+      "Set in Settings as kgal. Every price uses it.",
+      "Blank prices every class. The base follows the class."
+    ]
+  },
+  "water-edit-2-sizes": {
+    "fields": 11,
+    "sentences": 6,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "What are you doing?",
+      "A new price, from a date.",
+      "What this schedule charges per connection size.",
+      "This code has one amount. Every size shows it.",
+      "Blank is not zero. That size has no minimum."
+    ]
+  },
+  "water-edit-3-structure": {
+    "fields": 12,
+    "sentences": 10,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "What are you doing?",
+      "A new price, from a date.",
+      "Pick the shape of the formula, then fill in its numbers.",
+      "One structure per schedule. Changing it replaces the numbers below.",
+      "Optional floor for what this formula can produce.",
+      "Blocks of usage, each priced. Every unit prices through them.",
+      "Leave the last To blank. That block has no upper limit.",
+      "Add a size that prices differently.",
+      "Block prices set for a single connection size are saved, and bills do not use them yet — every size is still billed at the standard block prices."
+    ]
+  },
+  "water-edit-4-effective": {
+    "fields": 12,
+    "sentences": 4,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "What are you doing?",
+      "A new price, from a date.",
+      "Who this change reaches, and by how much."
+    ]
+  },
+  "water-edit-5-review": {
+    "fields": 1,
+    "sentences": 7,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "What are you doing?",
+      "A new price, from a date.",
+      "What each size pays before a drop is used.",
+      "The floor for each connection size.",
+      "The floor every bill on this schedule meets.",
+      "What each block of usage costs."
+    ]
+  },
+  "battery-new-1-basics": {
+    "fields": 5,
+    "sentences": 6,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "Name, service, unit and customer class.",
+      "Internal only — never shown to a customer.",
+      "A schedule prices exactly one service, and this cannot be changed later.",
+      "Set in Settings as kW. Every price uses it.",
+      "Blank prices every class. The base follows the class."
+    ]
+  },
+  "battery-new-2-sizes": {
+    "fields": 3,
+    "sentences": 4,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "What this schedule charges per connection size.",
+      "This code has one amount. Every size shows it.",
+      "Blank is not zero. That size has no minimum."
+    ]
+  },
+  "battery-new-3-structure": {
+    "fields": 3,
+    "sentences": 6,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "Pick the shape of the formula, then fill in its numbers.",
+      "One structure per schedule. Changing it replaces the numbers below.",
+      "Optional floor for what this formula can produce.",
+      "One price for every unit used.",
+      "Type the amount exactly as it should be stored. It is sent unchanged; the server checks the limits."
+    ]
+  },
+  "battery-new-4-effective": {
+    "fields": 11,
+    "sentences": 2,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "Who this change reaches, and by how much."
+    ]
+  },
+  "battery-new-5-review": {
+    "fields": 0,
+    "sentences": 6,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "What each size pays before a drop is used.",
+      "The floor for each connection size.",
+      "The floor every bill on this schedule meets.",
+      "What each block of usage costs.",
+      "Nothing in force to compare against."
+    ]
+  }
+}

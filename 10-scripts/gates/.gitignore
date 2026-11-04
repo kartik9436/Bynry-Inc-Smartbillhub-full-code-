@@ -1,0 +1,14 @@
+# The runner's per-machine record of the last run's results (2026-09-10).
+#
+# NOT COMMITTED, and the reason is in run_gates.py's own comment beside
+# RECORD_PATH: several lanes run the suite in one shared tree, so a committed
+# record would be rewritten whole by every run — hard-won law 11's
+# whole-file-write hazard on a file that changes on every run rather than on
+# every edit, where a pathspec commit publishes whatever another lane's run
+# left there and a re-derived blob reverts one recorded four minutes ago.
+#
+# It gates nothing. No gate reads it, no verdict depends on it, and deleting
+# it costs exactly one run's comparison — which the next run then says out
+# loud rather than reporting zero changes.
+last-run.json
+last-run.json.tmp

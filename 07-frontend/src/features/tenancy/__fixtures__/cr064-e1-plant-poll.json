@@ -1,0 +1,376 @@
+{
+  "id": "0191d3c0-0000-7000-8000-0000000000cc",
+  "kind": "tenancy.sample_data_plant",
+  "status": "running",
+  "progress": {
+    "done": 7,
+    "total": 18
+  },
+  "checkpoint": "Meter reads",
+  "result_link": null,
+  "error": null,
+  "steps": [
+    {
+      "position": 1,
+      "key": "identity:seed_sample_records",
+      "module": "identity",
+      "block": "seed_sample_records",
+      "label": "Sample staff users (Billing Clerk + Executive, invitation-pending)",
+      "tables": [
+        "users",
+        "tenant_memberships"
+      ],
+      "outcome": "seeded",
+      "count": 1,
+      "reason_code": null,
+      "error_code": null,
+      "failure_class": null,
+      "root_block": null,
+      "root_label": null,
+      "detail": null,
+      "finished_at": "2026-09-02T18:06:27.755342+00:00"
+    },
+    {
+      "position": 2,
+      "key": "rating:seed_sample_records",
+      "module": "rating",
+      "block": "seed_sample_records",
+      "label": "Plans & rates",
+      "tables": [
+        "rate_plans",
+        "plan_services",
+        "tariffs"
+      ],
+      "outcome": "seeded",
+      "count": 1,
+      "reason_code": null,
+      "error_code": null,
+      "failure_class": null,
+      "root_block": null,
+      "root_label": null,
+      "detail": null,
+      "finished_at": "2026-09-02T18:06:27.758262+00:00"
+    },
+    {
+      "position": 3,
+      "key": "metering:seed_sample_records",
+      "module": "metering",
+      "block": "seed_sample_records",
+      "label": "Premises, units & service points",
+      "tables": [
+        "premises",
+        "units",
+        "service_points"
+      ],
+      "outcome": "seeded",
+      "count": 1,
+      "reason_code": null,
+      "error_code": null,
+      "failure_class": null,
+      "root_block": null,
+      "root_label": null,
+      "detail": null,
+      "finished_at": "2026-09-02T18:06:27.768017+00:00"
+    },
+    {
+      "position": 4,
+      "key": "assets:seed_sample_records",
+      "module": "assets",
+      "block": "seed_sample_records",
+      "label": "Meters",
+      "tables": [
+        "assets",
+        "asset_assignments"
+      ],
+      "outcome": "seeded",
+      "count": 1,
+      "reason_code": null,
+      "error_code": null,
+      "failure_class": null,
+      "root_block": null,
+      "root_label": null,
+      "detail": null,
+      "finished_at": "2026-09-02T18:06:27.770290+00:00"
+    },
+    {
+      "position": 5,
+      "key": "customers:seed_sample_records",
+      "module": "customers",
+      "block": "seed_sample_records",
+      "label": "Accounts, customers & service agreements",
+      "tables": [
+        "accounts",
+        "customers",
+        "customer_accounts",
+        "contacts",
+        "addresses",
+        "service_agreements"
+      ],
+      "outcome": "seeded",
+      "count": 1,
+      "reason_code": null,
+      "error_code": null,
+      "failure_class": null,
+      "root_block": null,
+      "root_label": null,
+      "detail": null,
+      "finished_at": "2026-09-02T18:06:27.772726+00:00"
+    },
+    {
+      "position": 6,
+      "key": "rating:seed_sample_enrolments",
+      "module": "rating",
+      "block": "seed_sample_enrolments",
+      "label": "The Municipal discount, granted to the municipal account",
+      "tables": [
+        "discount_enrolments"
+      ],
+      "outcome": "seeded",
+      "count": 1,
+      "reason_code": null,
+      "error_code": null,
+      "failure_class": null,
+      "root_block": null,
+      "root_label": null,
+      "detail": null,
+      "finished_at": "2026-09-02T18:06:27.775544+00:00"
+    },
+    {
+      "position": 7,
+      "key": "metering:seed_sample_reads",
+      "module": "metering",
+      "block": "seed_sample_reads",
+      "label": "Meter reads",
+      "tables": [
+        "meter_reads"
+      ],
+      "outcome": "failed",
+      "count": 0,
+      "reason_code": "exception",
+      "error_code": "SD-DB-ERROR",
+      "failure_class": "root",
+      "root_block": null,
+      "root_label": null,
+      "detail": "ProgrammingError: relation \"meter_reads\" does not exist LINE 1: SELECT 1 AS \"a\" FROM \"meter_reads\" INNER JOIN \"assets\" ON (\"... ^",
+      "finished_at": "2026-09-02T18:06:27.789654+00:00"
+    },
+    {
+      "position": 8,
+      "key": "billing:seed_sample_records",
+      "module": "billing",
+      "block": "seed_sample_records",
+      "label": "Bills, first cycle (June — issued and mostly paid)",
+      "tables": [
+        "invoices",
+        "invoice_lines"
+      ],
+      "outcome": "seeded",
+      "count": 1,
+      "reason_code": null,
+      "error_code": null,
+      "failure_class": null,
+      "root_block": null,
+      "root_label": null,
+      "detail": null,
+      "finished_at": "2026-09-02T18:06:27.796561+00:00"
+    },
+    {
+      "position": 9,
+      "key": "payments:seed_sample_records",
+      "module": "payments",
+      "block": "seed_sample_records",
+      "label": "Payments, deposits and the bank statement",
+      "tables": [
+        "payments",
+        "allocations"
+      ],
+      "outcome": "seeded",
+      "count": 1,
+      "reason_code": null,
+      "error_code": null,
+      "failure_class": null,
+      "root_block": null,
+      "root_label": null,
+      "detail": null,
+      "finished_at": "2026-09-02T18:06:27.798881+00:00"
+    },
+    {
+      "position": 10,
+      "key": "payments:seed_sample_refund",
+      "module": "payments",
+      "block": "seed_sample_refund",
+      "label": "A refund (requested, approved, issued, cleared — spec §4 case 14)",
+      "tables": [
+        "refunds"
+      ],
+      "outcome": "seeded",
+      "count": 1,
+      "reason_code": null,
+      "error_code": null,
+      "failure_class": null,
+      "root_block": null,
+      "root_label": null,
+      "detail": null,
+      "finished_at": "2026-09-02T18:06:27.800978+00:00"
+    },
+    {
+      "position": 11,
+      "key": "billing:seed_sample_correction",
+      "module": "billing",
+      "block": "seed_sample_correction",
+      "label": "An overcharge, corrected (restatement — spec §4 case 15)",
+      "tables": [
+        "correction_cases",
+        "correction_case_bills",
+        "invoices",
+        "invoice_lines"
+      ],
+      "outcome": "seeded",
+      "count": 1,
+      "reason_code": null,
+      "error_code": null,
+      "failure_class": null,
+      "root_block": null,
+      "root_label": null,
+      "detail": null,
+      "finished_at": "2026-09-02T18:06:27.806121+00:00"
+    },
+    {
+      "position": 12,
+      "key": "metering:seed_sample_second_cycle_reads",
+      "module": "metering",
+      "block": "seed_sample_second_cycle_reads",
+      "label": "Meter reads for the second cycle (walked after the first bill)",
+      "tables": [
+        "meter_reads"
+      ],
+      "outcome": "seeded",
+      "count": 1,
+      "reason_code": null,
+      "error_code": null,
+      "failure_class": null,
+      "root_block": null,
+      "root_label": null,
+      "detail": null,
+      "finished_at": "2026-09-02T18:06:27.809455+00:00"
+    },
+    {
+      "position": 13,
+      "key": "billing:seed_sample_second_cycle",
+      "module": "billing",
+      "block": "seed_sample_second_cycle",
+      "label": "Bills, second cycle (July — billed after the money above)",
+      "tables": [
+        "invoices",
+        "invoice_lines"
+      ],
+      "outcome": "seeded",
+      "count": 1,
+      "reason_code": null,
+      "error_code": null,
+      "failure_class": null,
+      "root_block": null,
+      "root_label": null,
+      "detail": null,
+      "finished_at": "2026-09-02T18:06:27.813278+00:00"
+    },
+    {
+      "position": 14,
+      "key": "metering:seed_sample_next_cycle_reads",
+      "module": "metering",
+      "block": "seed_sample_next_cycle_reads",
+      "label": "Meter reads for the cycle YOU run (the third month's walk)",
+      "tables": [
+        "meter_reads"
+      ],
+      "outcome": "seeded",
+      "count": 1,
+      "reason_code": null,
+      "error_code": null,
+      "failure_class": null,
+      "root_block": null,
+      "root_label": null,
+      "detail": null,
+      "finished_at": "2026-09-02T18:06:27.816348+00:00"
+    },
+    {
+      "position": 15,
+      "key": "payments:seed_sample_cycle_collections",
+      "module": "payments",
+      "block": "seed_sample_cycle_collections",
+      "label": "Collections against the second cycle (paid, part-paid, unpaid, overpaid)",
+      "tables": [
+        "payments",
+        "allocations"
+      ],
+      "outcome": "seeded",
+      "count": 1,
+      "reason_code": null,
+      "error_code": null,
+      "failure_class": null,
+      "root_block": null,
+      "root_label": null,
+      "detail": null,
+      "finished_at": "2026-09-02T18:06:27.819517+00:00"
+    },
+    {
+      "position": 16,
+      "key": "customers:seed_sample_payment_plans",
+      "module": "customers",
+      "block": "seed_sample_payment_plans",
+      "label": "Payment plan (live, mid-schedule — spec §4 case 6)",
+      "tables": [
+        "payment_plans",
+        "payment_plan_installments"
+      ],
+      "outcome": "seeded",
+      "count": 1,
+      "reason_code": null,
+      "error_code": null,
+      "failure_class": null,
+      "root_block": null,
+      "root_label": null,
+      "detail": null,
+      "finished_at": "2026-09-02T18:06:27.822510+00:00"
+    },
+    {
+      "position": 17,
+      "key": "payments:seed_sample_plan_payments",
+      "module": "payments",
+      "block": "seed_sample_plan_payments",
+      "label": "Payment-plan money (down payment + paid instalments)",
+      "tables": [
+        "payments",
+        "allocations"
+      ],
+      "outcome": "seeded",
+      "count": 1,
+      "reason_code": null,
+      "error_code": null,
+      "failure_class": null,
+      "root_block": null,
+      "root_label": null,
+      "detail": null,
+      "finished_at": "2026-09-02T18:06:27.825684+00:00"
+    },
+    {
+      "position": 18,
+      "key": "customers:seed_sample_wizard_parks",
+      "module": "customers",
+      "block": "seed_sample_wizard_parks",
+      "label": "A parked move-in (Waiting on — S17.2)",
+      "tables": [
+        "wizard_parks"
+      ],
+      "outcome": "seeded",
+      "count": 1,
+      "reason_code": null,
+      "error_code": null,
+      "failure_class": null,
+      "root_block": null,
+      "root_label": null,
+      "detail": null,
+      "finished_at": "2026-09-02T18:06:27.829030+00:00"
+    }
+  ]
+}

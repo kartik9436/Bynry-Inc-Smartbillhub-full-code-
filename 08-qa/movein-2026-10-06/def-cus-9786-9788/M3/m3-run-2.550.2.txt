@@ -1,0 +1,130 @@
+
+── M3 · Residential · Senior/Low-income · person — Electric, Gas · assistance discount with evidence · part payment
+  PASS  M3 · Units     · U-00006 is offered as vacant before the move-in
+  PASS  M3 · Units     · step 1 lists Electric
+  PASS  M3 · Units     · step 1 lists Gas
+  PASS  M3 · Assets    · step 1 asks an opening read for E-M3
+  PASS  M3 · Assets    · step 1 asks an opening read for G-M3
+  PASS  M3 · Accounts  · Search customer ID answers "new"
+  PASS  M3 · Accounts  · no match block is drawn for a new person
+  PASS  M3 · Accounts  · the assistance_evidence document is uploaded on the customer step
+  PASS  M3 · Payments  · Fees total reads $175.00 — $175.00
+  PASS  M3 · Payments  · no fee row is taxed at move-in (no Taxable column, no tax row)
+  PASS  M3 · Payments  · the Discounts list offers the plan's CAP — Choose a discount | CAP / low-income credit
+  PASS  M3 · Payments  · the Discounts list offers no automatic discount
+  [M3] discount options: Choose a discount | CAP / low-income credit
+  PASS  M3 · Payments  · step 3 says $75.00 goes on the first bill — $75.00 goes on the first bill.
+  NOTE  M3 · Complete warned deposit_carry_forward_unavailable: no deposit was carried forward from an earlier account
+  PASS  M3 · Accounts  · Move-in completed prints no raw server code
+  PASS  M3 · Messages  · Move-in completed counts the queued welcome (not 0 queued) — reads "3 queued"
+  PASS  M3 · Accounts  · Move-in completed names an MVI- number — MVI-26-0007
+2026-10-06 08:30:11,910 INFO apps.billing.resolution_switch ruled path served R3, R4 for account AC-2026-00057
+  PASS  M3 · Accounts  · one move record MVI-26-0007 exists
+  PASS  M3 · Accounts  · the move record is a move-in
+  PASS  M3 · Accounts  · the move-in is dated as typed
+  PASS  M3 · Accounts  · the account is active
+  PASS  M3 · Accounts  · the account opens on the move-in date
+  PASS  M3 · Accounts  · the account type is the one the clerk picked
+  PASS  M3 · Accounts  · the sub-type is the one the clerk picked
+  PASS  M3 · Accounts  · the account is on the case's unit
+  PASS  M3 · Accounts  · exactly one customer holds the account
+  PASS  M3 · Accounts  · the customer's name is as typed
+  PASS  M3 · Accounts  · the customer is a person/company as picked
+  PASS  M3 · Accounts  · a NEW customer holds this one account only (nothing was linked)
+  PASS  M3 · Accounts  · one agreement per started service
+  PASS  M3 · Accounts  · every agreement starts on the move-in date
+  PASS  M3 · Units     · the unit stores no status or occupancy (it is derived)
+  PASS  M3 · Units     · the unit now has exactly one open account (reads Occupied)
+  PASS  M3 · Assets    · an opening read for each meter the clerk read, and none other
+  PASS  M3 · Assets    · E-M3's opening read is 8905 as typed
+  PASS  M3 · Assets    · E-M3's opening read is in kWh, the meter's own unit
+  PASS  M3 · Assets    · E-M3's opening read is dated the move-in date
+  PASS  M3 · Assets    · E-M3's opening read is committed
+  PASS  M3 · Assets    · G-M3's opening read is 1541 as typed
+  PASS  M3 · Assets    · G-M3's opening read is in ccf, the meter's own unit
+  PASS  M3 · Assets    · G-M3's opening read is dated the move-in date
+  PASS  M3 · Assets    · G-M3's opening read is committed
+  PASS  M3 · Assets    · the move-in wrote no asset status (meter status is derived) — 0 asset audit rows read since the move
+  PASS  M3 · Payments  · the fee lines are the plan's deposit and connection charge
+  PASS  M3 · Payments  · no tax was charged on any move-in fee (OQ-BIL-12788 (a))
+  PASS  M3 · Payments  · the payments total $100.00
+  PASS  M3 · Payments  · every payment's tender is cash
+  PASS  M3 · Payments  · the payments' purposes are as the rule splits them
+  PASS  M3 · Payments  · a part payment below the deposit takes NO deposit (never taken partly)
+  PASS  M3 · Payments  · every payment wrote audit_log (hard rule 7)
+  PASS  M3 · Accounts  · the move-in wrote audit_log account.moved_in
+  PASS  M3 · Payments  · every journal entry for the account balances DR = CR (hard rule 5) — 0 entries read, 1 payment(s) not journaled yet (PY-261010-0086; a check journals when it clears)
+  PASS  M3 · Billing   · the first-bill preview prices (every started service has what it needs)
+  PASS  M3 · Billing   · the first bill carries the move-in's fee lines
+  PASS  M3 · Billing   · no fee or deposit line on the first bill is taxable
+  PASS  M3 · Billing   · the deposit NOT taken at move-in is on the first bill ($150.00)
+  PASS  M3 · Billing   · the first bill carries each move-in fee line at its recorded amount
+  PASS  M3 · Payments  · the clerk's CAP claim is ENROLLED at Complete (PO 2026-10-05 (b))
+  PASS  M3 · Payments  · CAP is enrolled on or before the move-in date (covers the first bill's first day)
+  PASS  M3 · Payments  · CAP was enrolled by the Billing Clerk herself (no System Admin)
+  PASS  M3 · Payments  · CAP's enrolment waits for verification exactly when the programme asks proof
+  PASS  M3 · Accounts  · the uploaded cap-award-letter.pdf is on the account, in its KYC folder (BR-CUS-073/036)
+  PASS  M3 · Route     · every service point of the unit is on a route (2 points)
+  PASS  M3 · Route     · every service point of the unit is on a billing cycle (2 points)
+  PASS  M3 · Route     · the unit holds a place in its route's walk order
+  PASS  M3 · Work      · one work order per field-visit row
+  PASS  M3 · Messages  · the move-in's welcome is queued (3 rows)
+  PASS  M3 · Messages  · a receipt is queued for each payment (3 rows for 1 payments)
+  PASS  M3 · Messages  · no message is marked sent (BR-NOT-013: queued is never sent)
+  NOTE  M3 · first bill · usage · electric usage tier 1 (0-500 kWh) · 81.68
+  NOTE  M3 · first bill · base · electric base charge · 18.00
+  NOTE  M3 · first bill · usage · gas usage · 67.28
+  NOTE  M3 · first bill · base · gas base charge · 9.00
+  NOTE  M3 · first bill · deposit · Security deposit · 150.00
+  NOTE  M3 · first bill · fee · Connection charge · 25.00
+  NOTE  M3 · first bill · tax · Tax Local · 3.52
+  PASS  M3 · Units     · /premises/units/01a1101d-84a3-792b-809b-c6a78982740b opens (h1 drawn, no error page)
+  PASS  M3 · Units     · the unit reads Occupied
+  PASS  M3 · Units     · the unit names account AC-2026-00057
+  PASS  M3 · Units     · the unit names the account holder (AC-2026-00057 · Harold Whitfield)
+  PASS  M3 · Assets    · /assets/01a1101d-8545-7a08-9e37-4c83f91382eb opens (h1 drawn, no error page)
+  PASS  M3 · Assets    · E-M3 is on account AC-2026-00057
+  PASS  M3 · Assets    · E-M3 reads Installed (derived, the move-in wrote no status)
+  PASS  M3 · Assets    · E-M3 names the account holder (AC-2026-00057 · Harold Whitfield)
+  PASS  M3 · Assets    · /assets/01a1101d-8545-7a08-9e37-4c83f91382eb?tab=reads opens (h1 drawn, no error page)
+  PASS  M3 · Assets    · E-M3's Reads tab shows the opening read 8905
+  PASS  M3 · Assets    · E-M3's Reads tab shows it in kWh
+  PASS  M3 · Assets    · /assets/01a1101d-85a5-789e-830a-d6e54c4e104a opens (h1 drawn, no error page)
+  PASS  M3 · Assets    · G-M3 is on account AC-2026-00057
+  PASS  M3 · Assets    · G-M3 reads Installed (derived, the move-in wrote no status)
+  PASS  M3 · Assets    · G-M3 names the account holder (AC-2026-00057 · Harold Whitfield)
+  PASS  M3 · Assets    · /assets/01a1101d-85a5-789e-830a-d6e54c4e104a?tab=reads opens (h1 drawn, no error page)
+  PASS  M3 · Assets    · G-M3's Reads tab shows the opening read 1541
+  PASS  M3 · Assets    · G-M3's Reads tab shows it in ccf
+  PASS  M3 · Accounts  · /accounts/01a11055-9783-7f31-b3c5-4ccd4dd1b1c1 opens (h1 drawn, no error page)
+  PASS  M3 · Accounts  · the account shows Harold Whitfield
+  PASS  M3 · Accounts  · the account shows Residential
+  PASS  M3 · Accounts  · the account lists Electric
+  PASS  M3 · Accounts  · the account lists Gas
+  PASS  M3 · Accounts  · the account's title is the account holder Harold Whitfield — title reads "Harold Whitfield"
+  PASS  M3 · Payments  · /accounts/01a11055-9783-7f31-b3c5-4ccd4dd1b1c1?tab=payments opens (h1 drawn, no error page)
+  PASS  M3 · Payments  · payment PY-261010-0086 ($100.00) is listed
+  PASS  M3 · Billing   · /moves/MVI-26-0007?tab=billing opens (h1 drawn, no error page)
+  PASS  M3 · Billing   · the move's Billing tab lists DEPOSIT
+  PASS  M3 · Billing   · the move's Billing tab lists CONN
+  PASS  M3 · Billing   · the fees total $175.00
+  PASS  M3 · Route     · /reads/routes/01a1101d-8e9a-726d-9ad4-f894e605bd2b opens (h1 drawn, no error page)
+  PASS  M3 · Route     · route RT-006 is the unit's (Matrix walk)
+  PASS  M3 · Messages  · /moves/MVI-26-0007?tab=messages opens (h1 drawn, no error page)
+  PASS  M3 · Messages  · the move's Messages tab lists the welcome
+  PASS  M3 · Accounts  · /moves/MVI-26-0007 opens (h1 drawn, no error page)
+  PASS  M3 · Accounts  · the move-in record reads MVI-26-0007
+  PASS  M3 · Accounts  · the move-in record names AC-2026-00057
+  PASS  M3 · Assets    · the move-in record no longer reads 'Waiting on a read' (every meter read)
+  PASS  M3 · Payments  · part payment: Still to collect reads $150.00 (the deposit is never taken partly) — STILL TO COLLECT
+$150.00
+  PASS  M3 · Payments  · part payment: the move's Billing tab shows $100.00 paid
+  PASS  M3 · Accounts  · /accounts/01a11055-9783-7f31-b3c5-4ccd4dd1b1c1?tab=documents opens (h1 drawn, no error page)
+  PASS  M3 · Accounts  · the account's Documents tab lists the assistance evidence
+  PASS  M3 · Billing   · /plans-rates/discounts/01a11016-4012-7be9-84f3-e965ee479f8e?tab=accounts opens (h1 drawn, no error page)
+  PASS  M3 · Billing   · CAP / low-income credit's Accounts tab lists AC-2026-00057
+  PASS  M3 · Billing   · AC-2026-00057's CAP / low-income credit enrolment reads Pending (proof asked, not yet verified)
+
+── summary
+  M3: 113 PASS · 0 FAIL
+ALL PASS

@@ -1,0 +1,376 @@
+<title>Rate Schedules Redesign</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: same product frame as the One-Time Bill mock-up — page head, 3-step rail, main column + sticky summary. SMARTBillHub tokens (07-frontend tokens.css): light-only, square corners, 4px spacing scale. */
+:root{
+  --bg:#f3f2f2; --surface:#ffffff; --panel:#eae9e9; --text:#201e1d; --muted:#605d5d; --faint:#9b9797;
+  --line:#d7d3d3; --accent:#ec3013; --accent-ink:#ae1800; --accent-soft:#fff2ef;
+  --ok:#0f6e3a; --ok-soft:#e6f4ec; --warn:#a65d0a; --warn-soft:#fdf0d8; --bad:#a81600; --bad-soft:#fde4df; --info:#1d4ea8; --info-soft:#e6eefb;
+  --font:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --t-xs:11px; --t-sm:12px; --t-base:13px; --t-md:14px; --t-body:15px; --t-h4:20px; --t-h2:32px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:var(--t-body);line-height:1.55;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:20px 48px;display:flex;flex-direction:column;gap:20px}
+h1,h2,h3{font-weight:800;letter-spacing:-.015em;line-height:1.12;margin:0;text-wrap:balance}
+h1{font-size:var(--t-h2)} h2{font-size:var(--t-h4)} h3{font-size:var(--t-md);font-weight:700}
+.kicker{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.num{font-variant-numeric:tabular-nums}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.demo{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 12px;border:1px dashed var(--faint);font-size:var(--t-sm);color:var(--muted)}
+.demo b{color:var(--text)}
+.chipbtn{border:1px solid var(--line);background:var(--surface);padding:4px 10px;cursor:pointer;font-size:var(--t-sm)}
+.chipbtn[aria-pressed="true"]{border-color:var(--text);font-weight:600}
+.head{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:flex-end}
+.crumb{font-size:var(--t-sm);color:var(--muted)}
+.crumb button{border:0;background:none;padding:0;color:var(--muted);cursor:pointer;font-size:var(--t-sm);text-decoration:underline}
+.tabs{display:flex;gap:24px;border-bottom:1px solid var(--line);overflow-x:auto}
+.tabs button{border:0;background:none;padding:8px 0;cursor:pointer;font-size:var(--t-md);white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--accent);box-shadow:inset 0 -2px 0 var(--accent);font-weight:600}
+.rail{display:flex;border:1px solid var(--line);background:var(--surface)}
+.rail button{flex:1;display:flex;align-items:center;gap:10px;padding:12px 16px;border:0;background:transparent;cursor:pointer;text-align:left;border-right:1px solid var(--line);min-width:0}
+.rail button:last-child{border-right:0}
+.rail .n{width:24px;height:24px;display:grid;place-items:center;border:1.5px solid var(--faint);font-size:var(--t-sm);font-weight:700;flex:none}
+.rail button[data-state="current"]{box-shadow:inset 0 -3px 0 var(--accent)}
+.rail button[data-state="current"] .n{background:var(--accent);border-color:var(--accent);color:#fff}
+.rail button[data-state="done"] .n{background:var(--text);border-color:var(--text);color:#fff}
+.rail .lbl{font-size:var(--t-md);font-weight:600}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:20px;align-items:start}
+@media (max-width:960px){.grid{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--surface);border:1px solid var(--line);padding:20px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.panel-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.stack{display:flex;flex-direction:column;gap:20px;min-width:0}
+.aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px)}
+.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.fields.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:720px){.fields,.fields.two{grid-template-columns:minmax(0,1fr)}}
+.f{display:flex;flex-direction:column;gap:4px;min-width:0}
+.f label,.f .lab{font-size:var(--t-base);font-weight:600}
+.f .req{color:var(--accent)}
+.f input,.f select,.f textarea{border:1px solid var(--line);background:var(--surface);padding:8px 10px;min-height:38px;width:100%;font-size:var(--t-md)}
+.f input[readonly],.f select[disabled]{background:var(--bg);color:var(--muted)}
+.f .help{font-size:var(--t-sm);color:var(--muted)}
+.f .msg{font-size:var(--t-sm);color:var(--bad);font-weight:600}
+.span3{grid-column:1/-1}
+.ticks{display:flex;flex-wrap:wrap;gap:8px 24px}
+.tick{display:flex;gap:8px;align-items:center;font-size:var(--t-md);font-weight:600}
+.tick input{width:16px;height:16px;accent-color:var(--accent)}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:720px){.facts{grid-template-columns:minmax(0,1fr)}}
+.fact{border:1px solid var(--line);background:var(--bg);padding:10px 12px;display:flex;flex-direction:column;gap:2px}
+.fact span{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.fact b{font-size:var(--t-md)}
+.ms{position:relative}
+.ms-btn{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid var(--line);background:var(--surface);min-height:38px;padding:4px 10px;width:100%;cursor:pointer;text-align:left}
+.ms-tags{display:flex;flex-wrap:wrap;gap:4px}
+.ms-tag{background:var(--panel);font-size:var(--t-sm);font-weight:600;padding:2px 8px}
+.ms-ph{color:var(--faint);font-size:var(--t-md)}
+.ms-caret{color:var(--muted);font-size:14px}
+.ms ul{position:absolute;top:calc(100% + 2px);left:0;right:0;z-index:5;background:var(--surface);border:1px solid var(--text);box-shadow:0 12px 32px rgba(45,43,43,.22);margin:0;padding:4px 0;list-style:none}
+.ms li label{display:flex;gap:10px;align-items:center;padding:8px 12px;cursor:pointer;font-size:var(--t-md)}
+.ms li label:hover{background:var(--accent-soft)}
+.ms li input{width:16px;height:16px;accent-color:var(--accent)}
+.combo{position:relative}
+.combo ul{position:absolute;top:calc(100% + 2px);left:0;right:0;z-index:6;background:var(--surface);border:1px solid var(--text);box-shadow:0 12px 32px rgba(45,43,43,.22);max-height:260px;overflow:auto;margin:0;padding:0;list-style:none}
+.combo li{padding:8px 12px;display:flex;justify-content:space-between;gap:12px;cursor:pointer;border-bottom:1px solid var(--line);font-size:var(--t-md)}
+.combo li:last-child{border-bottom:0}
+.combo li:hover,.combo li[aria-selected="true"]{background:var(--accent-soft)}
+.combo li[aria-disabled="true"]{color:var(--faint);cursor:default;background:none}
+.combo li .sub{color:var(--muted);font-size:var(--t-sm)}
+.combo .empty{padding:10px 12px;color:var(--muted);font-size:var(--t-base)}
+td select{border:1px solid var(--line);padding:6px 8px;min-height:32px;background:var(--surface);font-size:var(--t-md);min-width:120px}
+.tw{overflow-x:auto;border:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;font-size:var(--t-base)}
+th{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;font-weight:600;background:var(--bg);padding:8px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+tbody tr:last-child td{border-bottom:0}
+td.r,th.r{text-align:right}
+tr.click{cursor:pointer} tr.click:hover td{background:var(--bg)}
+td input{border:1px solid var(--line);padding:6px 8px;width:110px;font-size:var(--t-md);text-align:right}
+td input.err{border-color:var(--bad);background:var(--bad-soft)}
+td input.zero{border-color:var(--warn);background:var(--warn-soft)}
+td.ro{background:var(--bg);color:var(--muted)}
+.ns{color:var(--faint);font-size:var(--t-sm)}
+.x{border:0;background:none;cursor:pointer;color:var(--muted);font-size:18px;line-height:1;padding:2px 6px}
+.x:hover{color:var(--bad)}
+.tfoot{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:10px 12px;border-top:1px solid var(--line)}
+.tfoot select{border:1px solid var(--line);padding:4px 8px;min-height:30px;background:var(--surface)}
+.pill{display:inline-block;font-size:var(--t-xs);font-weight:700;padding:2px 8px;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.p-ok{background:var(--ok-soft);color:var(--ok)} .p-warn{background:var(--warn-soft);color:var(--warn)}
+.p-off{background:var(--panel);color:var(--muted)} .p-bad{background:var(--bad-soft);color:var(--bad)} .p-info{background:var(--info-soft);color:var(--info)}
+.p-base{background:var(--text);color:#fff}
+.note{display:flex;gap:10px;padding:10px 12px;font-size:var(--t-base);align-items:flex-start}
+.note.warn{background:var(--warn-soft);color:var(--warn)} .note.bad{background:var(--bad-soft);color:var(--bad)} .note.ok{background:var(--ok-soft);color:var(--ok)} .note.info{background:var(--info-soft);color:var(--info)}
+.btn{border:1px solid var(--text);background:var(--surface);padding:0 18px;min-height:40px;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.danger{background:var(--bad);border-color:var(--bad);color:#fff}
+.btn.sm{min-height:30px;padding:0 10px;font-size:12px}
+.btn.link{border:0;background:none;color:var(--accent-ink);padding:0;min-height:0;text-decoration:underline}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:16px}
+.actions .right{display:flex;gap:8px;flex-wrap:wrap}
+.sum{display:flex;flex-direction:column;gap:6px;font-size:var(--t-base)}
+.sum .row{display:flex;justify-content:space-between;gap:12px}
+.sum .row span:first-child{color:var(--muted)}
+.big{font-size:26px;font-weight:800;line-height:1.1;overflow-wrap:anywhere}
+.hr{border-top:1px solid var(--line)}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);padding:12px 16px;display:flex;flex-direction:column;gap:2px}
+.kpi b{font-size:22px;font-weight:800}
+@media (max-width:720px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.acct{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;border:1px solid var(--line);background:var(--bg);padding:12px 16px;margin:0}
+.acct div{display:flex;flex-direction:column;min-width:0}
+.acct dt{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.acct dd{margin:0;font-size:var(--t-md);font-weight:600;overflow-wrap:anywhere}
+@media (max-width:720px){.acct{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.chg{color:var(--accent-ink);font-weight:700}
+@media (prefers-reduced-motion:no-preference){.panel{animation:in .18s ease-out}@keyframes in{from{opacity:.4;transform:translateY(3px)}to{opacity:1;transform:none}}}
+.ibtn{border:0;background:transparent;color:var(--accent-ink);padding:4px;cursor:pointer;display:inline-flex}.ibtn.box{border:1px solid var(--line);color:var(--text);padding:8px}.acts{white-space:nowrap}.newcol{background:var(--warn-soft)}th.newcol{box-shadow:inset 0 -2px 0 var(--warn)}b.code{color:var(--accent-ink);font-weight:500}
+</style>
+
+<style>
+.newcol{background:var(--warn-soft)} th.newcol{box-shadow:inset 0 -2px 0 var(--warn)}
+b.code{color:var(--accent-ink);font-weight:500}
+.ibtn{border:0;background:transparent;color:var(--accent-ink);padding:4px;cursor:pointer;display:inline-flex}
+.ibtn.box{border:1px solid var(--line);color:var(--text);padding:8px}
+.acts{white-space:nowrap}
+.seg{display:inline-flex;border:1px solid var(--line)}
+.seg button{border:0;background:var(--surface);padding:8px 14px;cursor:pointer;font-size:var(--t-md)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:#fff;font-weight:600}
+td input,td select{border:1px solid var(--line);background:var(--surface);padding:4px 8px;min-height:32px;width:100%;font-size:var(--t-md)}
+td.ro{background:var(--bg);color:var(--muted)}
+td.r input{text-align:right}
+.sub{font-size:var(--t-sm);color:var(--muted)}
+.tou th,.tou td{padding-left:6px;padding-right:6px}.tou input[type=time]{max-width:112px}.tou select{max-width:110px}
+</style>
+<div class="wrap">
+  <div class="demo" role="group" aria-label="Demo controls">
+    <b>Design mock-up · example data</b>
+    <span>Screen:</span>
+    <button class="chipbtn" data-scr="list">List</button>
+    <button class="chipbtn" data-scr="view">View details</button>
+    <button class="chipbtn" data-scr="add">Add</button>
+    <button class="chipbtn" data-scr="edit">Edit</button>
+    <span>Example:</span>
+    <select id="exPick" class="chipbtn" aria-label="Example schedule" style="padding:4px 8px"></select>
+    <span>Minimum: per size (option A, awaiting your answer)</span>
+  </div>
+  <div id="screen" class="stack"></div>
+</div>
+<script>
+(()=>{
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const money=v=>v===""||v==null?"":"$"+Number(v).toFixed(2);
+const rate=v=>v===""||v==null?"":"$"+Number(v).toFixed(4);
+const STRUCT={flat:"Flat",tiered:"Tiered",tou:"Time-of-use",demand:"Demand",seasonal:"Seasonal",capacity:"Capacity",pct:"Percent of another service",base:"Base only"};
+const SVC={water:{n:"Water",asset:"Meter",units:["kgal","CCF"],codes:["BASE-W"],sizes:["5/8\"","3/4\"","1\"","1½\"","2\""]},
+ sewer:{n:"Sewer",asset:"—",units:["kgal","CCF"],codes:["BASE-S"],sizes:[]},
+ electric:{n:"Electric",asset:"Meter",units:["kWh","kW"],codes:["BASE-E"],sizes:["100 A","200 A","400 A"]},
+ trash:{n:"Trash",asset:"Cart / Dumpster",units:["cart"],codes:["BASE-T"],sizes:["CART-35","CART-64","CART-96","DUMP-2","DUMP-4","DUMP-6","DUMP-8"]},
+ battery:{n:"Battery",asset:"Behind-the-meter battery",units:["kW"],codes:["BASE-BAT"],sizes:["BAT-5","BAT-10","BAT-15","BAT-20","BAT-25","BAT-30"]}};
+const CODEBASE={"BASE-W":{"5/8\"":"8.00","3/4\"":"8.00","1\"":"11.50","1½\"":"18.00","2\"":"28.00"},"BASE-S":{"All sizes":"9.00"},"BASE-E":{"100 A":"12.00","200 A":"18.00","400 A":"30.00"},
+ "BASE-T":{"CART-35":"9.00","CART-64":"12.00","CART-96":"","DUMP-2":"40.00","DUMP-4":"60.00","DUMP-6":"80.00","DUMP-8":"100.00"},"BASE-BAT":{"BAT-5":"5.00","BAT-10":"5.00","BAT-15":"5.00","BAT-20":"5.00","BAT-25":"5.00","BAT-30":"5.00"}};
+const CODEVER={"BASE-W":{"1\"":["v2","09/01/2026"],"*":["v1","01/01/2026"]},"BASE-S":{"*":["v1","07/01/2025"]},"BASE-E":{"*":["v1","03/01/2026"]},"BASE-T":{"*":["v1","01/01/2026"]},"BASE-BAT":{"*":["v1","06/01/2026"]}};
+const codeVer=(c,z)=>{const m=CODEVER[c]||{};return m[z]||m["*"]||["v1","01/01/2026"]};
+const CLASSES=["Every class","Residential","Commercial","Industrial"];
+const R=o=>Object.assign({cls:"Every class",unit:"",code:"",rows:[],usage:{},ver:"v1",from:"01/01/2026",to:"",plans:[],units:0,status:"In force",next:"",ref:"",auth:"",subOn:"",apprOn:"",apprBy:""},o);
+const sz=(svc,mins)=>{const s=SVC[svc].sizes.length?SVC[svc].sizes:["All sizes"];return s.map((z,i)=>({size:z,min:(mins||[])[i]||""}))};
+const EX={
+ "W-RES":R({name:"Water — Residential",svc:"water",unit:"kgal",cls:"Residential",st:"tiered",code:"BASE-W",rows:sz("water",["8.00","8.00","11.50","",""]),usage:{tiers:[["0","5","4.4096"],["5","15","5.2100"],["15","","6.1000"]]},ver:"v3",from:"01/01/2026",next:"v4 · 01/01/2027",plans:[["Residential standard",1102],["Residential senior",138],["Small commercial",66,"Commercial"]],units:1306,ref:"Docket 25-114",auth:"City council",apprOn:"11/18/2025"}),
+ "SEWER":R({name:"Sewer — Every class",svc:"sewer",unit:"kgal",st:"flat",code:"BASE-S",rows:sz("sewer"),usage:{flat:"6.2500"},ver:"v2",from:"07/01/2025",plans:[["Residential standard",1102],["Small commercial",66]],units:1290}),
+ "BATT":R({name:"Sample — Battery capacity",svc:"battery",unit:"kW",st:"capacity",code:"BASE-BAT",rows:sz("battery"),usage:{cap:"3.0000"},ver:"v1",from:"06/01/2026",plans:[["Sample — Residential",75],["Sample — Commercial",4]],units:79}),
+ "E-TOU":R({name:"Electric — Residential time-of-use",svc:"electric",unit:"kWh",cls:"Residential",st:"tou",code:"BASE-E",rows:sz("electric"),usage:{tou:[["On-peak","Weekday","14:00","19:00","0.2100"],["Off-peak","Weekday","19:00","14:00","0.0900"],["Off-peak","Weekend","00:00","24:00","0.0900"],["Off-peak","Holiday","00:00","24:00","0.0900"]]},ver:"v1",from:"03/01/2026",plans:[["Residential TOU",212]],units:212}),
+ "E-DEM":R({name:"Electric — Commercial demand",svc:"electric",unit:"kWh",cls:"Commercial",st:"demand",code:"BASE-E",rows:sz("electric",["","25.00","40.00"]),usage:{energy:"0.0700",demand:"12.5000",win:"Weekdays 12:00–20:00",pf:"0.90",pfrate:"0.5000"},ver:"v2",from:"01/01/2026",plans:[["Large commercial",18]],units:18}),
+ "W-SEAS":R({name:"Water — Irrigation seasonal",svc:"water",unit:"kgal",cls:"Commercial",st:"seasonal",code:"BASE-W",rows:sz("water").slice(2),usage:{seasons:[["Summer","05/01","09/30","5.8000"],["Winter","10/01","04/30","4.2000"]]},ver:"v1",from:"05/01/2026",plans:[["Irrigation",41]],units:41}),
+ "TRASH":R({name:"Trash — Carts and dumpsters",svc:"trash",unit:"cart",st:"capacity",code:"BASE-T",rows:sz("trash"),usage:{cap:"15.0000"},ver:"v1",from:"01/01/2026",plans:[["Residential standard",1102],["Small commercial",66]],units:1188}),
+ "SEW-PCT":R({name:"Sewer — 80% of water",svc:"sewer",unit:"kgal",cls:"Residential",st:"pct",code:"BASE-S",rows:sz("sewer"),usage:{of:"Water",pct:"80.00"},ver:"v1",from:"01/01/2026",plans:[["Residential standard",1102]],units:1102})};
+const LIST=Object.keys(EX);
+const S={scr:"list",ex:"W-RES",step:0,view:"overview",filter:"all",q:"",d:null,intent:"change",combo:false,cq:"",saved:false,err:{},from:"",to:"",why:"",reason:""};
+const fd=v=>{if(!v)return"—";const[y,m,d]=v.split("-");return`${m}/${d}/${y}`};
+const clone=o=>JSON.parse(JSON.stringify(o));
+const D=()=>S.d;
+const baseOf=(d,z)=>(CODEBASE[d.code]||{})[z];
+function exOpts(){document.getElementById("exPick").innerHTML=LIST.map(k=>`<option value="${k}" ${k===S.ex?"selected":""}>${EX[k].name} · ${STRUCT[EX[k].st]}</option>`).join("")}
+const ICO={edit:'<path d="M4 20h4L19 9l-4-4L4 16v4z"/>',off:'<path d="M12 3v8M6.3 6.3a8 8 0 1 0 11.4 0"/>',copy:'<path d="M8 8h12v12H8zM4 4h12v2M4 4v12h2"/>'};
+const ico=(k,l)=>`<button class="ibtn" aria-label="${l}" title="${l}"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICO[k]}</svg></button>`;
+const priced=d=>d.rows.filter(r=>baseOf(d,r.size)).length;
+
+/* ---------- LIST ---------- */
+function listScreen(){
+ const svcs=["all","water","sewer","electric","trash","battery"];
+ const rows=LIST.map(k=>[k,EX[k]]).filter(([,e])=>(S.filter==="all"||e.svc===S.filter)&&e.name.toLowerCase().includes(S.q.toLowerCase()));
+ return `<header class="head"><div><h1>Plans &amp; Rates</h1><div class="crumb" style="margin-top:4px">4 plans · ${LIST.length} rate schedules · 30 charge codes · 6 discounts · 4 taxes &amp; fees</div></div><div style="display:flex;gap:8px"><button class="btn">History</button><button class="btn primary" data-scr="add">+ New rate schedule</button></div></header>
+ <nav class="tabs" aria-label="Plans & Rates"><button>Plans</button><button aria-selected="true">Rate schedules</button><button>Charge codes</button><button>Discounts</button><button>Taxes &amp; fees</button></nav>
+ <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><div class="f" style="flex:1;min-width:220px;max-width:460px"><input id="q" placeholder="Search rate schedule" value="${esc(S.q)}" aria-label="Search rate schedules"></div>
+ ${svcs.map(s=>`<button class="chipbtn" data-filter="${s}" aria-pressed="${S.filter===s}">${s==="all"?"All · "+LIST.length:SVC[s].n}</button>`).join("")}<button class="chipbtn">+ Filter ▾</button></div>
+ <div class="tw"><table><thead><tr><th>Schedule ▲</th><th>Service</th><th>Structure</th><th class="newcol">Customer class</th><th class="newcol">Base code</th><th class="r">Sizes</th><th>Effective</th><th class="r">Plans</th><th class="r">Accounts</th><th>Status</th><th>Actions</th></tr></thead><tbody>
+ ${rows.map(([k,e])=>`<tr class="click" tabindex="0" data-open="${k}"><td><b class="code">${e.name}</b></td><td>${SVC[e.svc].n}</td><td>${STRUCT[e.st]}</td><td class="newcol">${e.cls}</td><td class="newcol">${e.code}</td><td class="r num">${SVC[e.svc].sizes.length?priced(e)+" of "+e.rows.length:"—"}</td><td class="num">${e.from}</td><td class="r num">${e.plans.length}</td><td class="r num">${e.units.toLocaleString()}</td><td><span class="pill p-ok">${e.status}</span>${e.next?' <span class="pill p-warn">Scheduled</span>':""}</td><td class="acts">${ico("edit","Edit")}${ico("copy","Duplicate")}${ico("off","Retire")}</td></tr>`).join("")||'<tr><td colspan="11" class="crumb">No schedule found.</td></tr>'}
+ </tbody></table></div><div class="crumb">1–${rows.length} of ${rows.length}</div>`;}
+
+/* ---------- tables shared by view, wizard, review ---------- */
+function baseTable(d,edit){
+ const s=SVC[d.svc],used=d.rows.map(r=>r.size),free=(s.sizes.length?s.sizes:["All sizes"]).filter(z=>!used.includes(z));
+ const body=d.rows.map((r,i)=>{const b=baseOf(d,r.size);return `<tr><td class="num">${i+1}</td><td class="ro">${s.n}</td><td class="ro">${s.asset}</td>
+  <td>${edit&&s.sizes.length?`<select data-ri="${i}" data-c="size">${[r.size,...free].map(z=>`<option ${z===r.size?"selected":""}>${esc(z)}</option>`).join("")}</select>`:esc(r.size)}</td>
+  <td class="ro r num">${b?money(b):'<span class="pill p-warn">Not priced</span>'}</td>
+  <td class="r">${edit?`<input data-ri="${i}" data-c="min" inputmode="decimal" value="${esc(r.min)}" placeholder="None" aria-label="Minimum ${esc(r.size)}">`:`<span class="num">${r.min?money(r.min):"None"}</span>`}</td>
+  ${edit?`<td><button class="x" data-del="${i}" aria-label="Remove ${esc(r.size)}">×</button></td>`:""}</tr>`}).join("");
+ const un=d.rows.filter(r=>!baseOf(d,r.size)).length;
+ return `<div class="tw"><table><thead><tr><th>#</th><th>Utility service</th><th>Asset</th><th>Size</th><th class="r">Base charge</th><th class="r">Minimum</th>${edit?"<th></th>":""}</tr></thead><tbody>${body||'<tr><td colspan="7" class="crumb">No rows yet.</td></tr>'}</tbody></table>
+ ${edit?`<div class="tfoot"><button class="btn sm" id="addRow" ${free.length?"":"disabled"}>+ Add row</button>${free.length?"":'<span class="crumb">Every size is used.</span>'}<span class="crumb" style="margin-left:auto">Base set on ${d.code}.</span></div>`:""}</div>
+ ${un?`<div class="note warn"><b>${un} of ${d.rows.length} not priced.</b>&nbsp;Billed $0.00 with a warning.</div>`:""}`;}
+function usageTable(d,edit){
+ const u=d.usage,inp=(k,v,l,i,c)=>edit?`<input data-u="${k}" ${i!=null?`data-ui="${i}" data-uc="${c}"`:""} value="${esc(v)}" aria-label="${l}">`:esc(v);
+ const tbl=(head,rows,key,cols,multi=edit&&!key.endsWith("1"))=>`<div class="tw"><table><thead><tr><th>#</th>${head.map((h,j)=>`<th class="${cols&&cols[j]==="r"?"r":""}">${h}</th>`).join("")}${multi?"<th></th>":""}</tr></thead><tbody>${rows.map((r,i)=>`<tr><td class="num">${i+1}</td>${r.map((v,c)=>`<td class="${cols&&cols[c]==="r"?"r num":""}">${edit?inp(key,v,head[c],i,c):(cols&&cols[c]==="r"?rate(v):esc(v)||(c===1&&key==="tiers"?"and above":""))}</td>`).join("")}${multi?`<td><button class="x" data-udel="${key}:${i}" aria-label="Remove row">×</button></td>`:""}</tr>`).join("")}</tbody></table>${multi?`<div class="tfoot"><button class="btn sm" data-uadd="${key}">+ Add row</button></div>`:""}</div>`;
+ switch(d.st){
+  case "flat":return tbl(["Price per "+d.unit],[[u.flat]],"flat1",["r"]);
+  case "tiered":return tbl([`From (${d.unit})`,`To (${d.unit})`,"Price per "+d.unit],u.tiers,"tiers",["","","r"]);
+  case "seasonal":{const md=v=>{const[m,dd]=(v||"").split("/");return m?`2026-${m}-${dd}`:""};
+   return `<div class="tw"><table><thead><tr><th>#</th><th>Season</th><th>Starts</th><th>Ends</th><th class="r">Price per ${d.unit}</th>${edit?"<th></th>":""}</tr></thead><tbody>${u.seasons.map((r,i)=>`<tr><td class="num">${i+1}</td>
+   <td>${edit?`<input data-u="seasons" data-ui="${i}" data-uc="0" value="${esc(r[0])}" aria-label="Season">`:esc(r[0])}</td>
+   ${[1,2].map(c=>`<td>${edit?`<input type="date" data-md="1" data-u="seasons" data-ui="${i}" data-uc="${c}" value="${md(r[c])}" aria-label="${c===1?"Starts":"Ends"}">`:`<span class="num">${r[c]}</span>`}</td>`).join("")}
+   <td class="r ${edit?"":"num"}">${edit?`<input data-u="seasons" data-ui="${i}" data-uc="3" value="${esc(r[3])}" aria-label="Price">`:rate(r[3])}</td>${edit?`<td><button class="x" data-udel="seasons:${i}" aria-label="Remove row">×</button></td>`:""}</tr>`).join("")}</tbody></table>${edit?'<div class="tfoot"><button class="btn sm" data-uadd="seasons">+ Add row</button><span class="crumb" style="margin-left:auto">Repeats every year.</span></div>':""}</div>`;}
+  case "tou":{const W=["On-peak","Mid-peak","Off-peak"],DY=["Weekday","Weekend","Holiday"],dsel=(v,o,i,c,l)=>`<select data-u="tou" data-ui="${i}" data-uc="${c}" aria-label="${l}">${o.map(x=>`<option ${x===v?"selected":""}>${x}</option>`).join("")}</select>`;
+   return `<div class="tw"><table class="tou"><thead><tr><th>#</th><th>Window</th><th>Days</th><th>Starts</th><th>Ends</th><th>Register</th><th class="r">Price per ${d.unit}</th>${edit?"<th></th>":""}</tr></thead><tbody>${u.tou.map((r,i)=>`<tr><td class="num">${i+1}</td>
+   <td>${edit?dsel(r[0],W,i,0,"Window"):r[0]}</td><td>${edit?dsel(r[1],DY,i,1,"Days"):r[1]}</td>
+   <td>${edit?`<input type="time" data-u="tou" data-ui="${i}" data-uc="2" value="${r[2]==="24:00"?"23:59":r[2]}" aria-label="Starts">`:r[2]}</td><td>${edit?`<input type="time" data-u="tou" data-ui="${i}" data-uc="3" value="${r[3]==="24:00"?"23:59":r[3]}" aria-label="Ends">`:r[3]}</td>
+   <td class="ro">${r[0]}</td><td class="r ${edit?"":"num"}">${edit?`<input data-u="tou" data-ui="${i}" data-uc="4" value="${esc(r[4])}" aria-label="Price">`:rate(r[4])}</td>${edit?`<td><button class="x" data-udel="tou:${i}" aria-label="Remove row">×</button></td>`:""}</tr>`).join("")}</tbody></table>${edit?'<div class="tfoot"><button class="btn sm" data-uadd="tou">+ Add row</button></div>':""}</div>`;}
+  case "capacity":return tbl(["Price per "+d.unit],[[u.cap]],"cap1",["r"]);
+  case "demand":return tbl(["Energy per kWh","Demand per kW","Peak window","Power factor below","Charge per kVAR"],[[u.energy,u.demand,u.win,u.pf,u.pfrate]],"dem1",["r","r","","",'r']);
+  case "pct":return tbl(["Of service","Percent"],[[u.of,u.pct+"%"]],"pct1");
+  default:return '<p class="crumb">Base charge only. No usage price.</p>';}}
+
+/* ---------- VIEW ---------- */
+const GL={water:"4110 — Water",sewer:"4120 — Sewer",electric:"4140 — Electric",trash:"4130 — Trash",battery:"4165 — Battery"};
+const plural=(n,w)=>`${n.toLocaleString()} ${w}${n===1?"":"s"}`;
+function chart(d){const t=d.st==="tiered"?d.usage.tiers.map((r,i)=>[r[1]?`${r[0]}–${r[1]} ${d.unit}`:`${r[0]} ${d.unit} and above`,"Tier "+(i+1),r[2]]):d.st==="seasonal"?d.usage.seasons.map(r=>[`${r[1]}–${r[2]}`,r[0],r[3]]):d.st==="tou"?d.usage.tou.map(r=>[`${r[2]}–${r[3]}`,`${r[0]} · ${r[1]}`,r[4]]):null;
+ if(!t)return usageTable(d,false);const mx=Math.max(...t.map(r=>+r[2]||0))||1;
+ return `<div style="display:flex;gap:20px;align-items:flex-end;overflow-x:auto;padding-top:8px">${t.map(r=>`<div style="display:flex;flex-direction:column;align-items:center;gap:4px;min-width:96px"><b class="num" style="font-size:13px">${rate(r[2])}</b><div style="width:48px;height:${Math.round(120*(+r[2]||0)/mx)}px;background:var(--accent)"></div><span class="crumb">${esc(r[0])}</span><span class="crumb" style="color:var(--faint)">${esc(r[1])}</span></div>`).join("")}</div>`}
+function viewScreen(){const d=EX[S.ex],s=SVC[d.svc];
+ const tabs=[["overview","Overview"],["matrix","Rates"],["plans","Plans"],["audit","Audit"]];
+ if(!tabs.some(t=>t[0]===S.view))S.view="overview";
+ const f=(t,v)=>`<div class="fact"><span>${t}</span><b>${v}</b></div>`;
+ const W=[62,20,9,5,2,1,1].slice(0,d.rows.length),WS=W.reduce((x,y)=>x+y,0);const acct=i=>{const v=W.map(w=>Math.floor(d.units*w/WS));v[0]+=d.units-v.reduce((x,y)=>x+y,0);return v[i].toLocaleString()};
+ let body="";
+ const dd=(t,v)=>`<div><dt>${t}</dt><dd>${v}</dd></div>`;
+ if(S.view==="overview")body=`<section class="panel"><div class="panel-h"><h2>Details</h2></div><dl class="acct">${dd("Structure",STRUCT[d.st])+dd("Service",s.n)+dd("Customer class",d.cls)+dd("Unit",d.unit)+dd("Base charge code",d.code)+dd("Minimum","Per size")+dd("GL account",GL[d.svc])+dd("Currency","USD")+dd("Effective from",d.from)+dd("Effective to",d.to||"No end")+(d.ref?dd("Regulator reference",d.ref):"")}</dl>
+  <div class="panel-h"><h2>Billing rules</h2></div><dl class="acct">${dd("Part month","Cut down by days")+dd("Rounding","To the cent")+dd("Price change","New version from a date")+dd("Mistake","Corrected version, same dates")+dd("Retire","Stops new bills")}</dl></section>`;
+ else if(S.view==="matrix")body=`<section class="panel"><div class="panel-h"><h2>Base charges</h2><span class="kicker">From <a class="btn link" href="https://claude.ai/artifact/LJHtSjScCXLNED1ohxMDSM" target="_blank" rel="noopener" title="Open ${d.code} in Charge codes">${d.code} ↗</a></span></div><div class="tw"><table><thead><tr><th>#</th><th>Size</th><th class="r">Base charge</th><th class="r">Minimum</th><th class="r">Units</th><th>Version</th><th>From</th><th>To</th></tr></thead><tbody>
+  ${d.rows.map((r,i)=>{const b=baseOf(d,r.size);return `<tr><td class="num">${i+1}</td><td>${esc(r.size)}</td><td class="r num">${b?money(b):'<span class="pill p-warn">Not priced</span>'}</td><td class="r num">${r.min?money(r.min):"None"}</td><td class="r num">${acct(i)}</td><td>${b?codeVer(d.code,r.size)[0]:"—"}</td><td class="num">${b?codeVer(d.code,r.size)[1]:"—"}</td><td>${b?"No end":"—"}</td></tr>`}).join("")}</tbody></table></div></section>
+  <section class="panel"><div class="panel-h"><h2>Usage charges</h2><span class="kicker">Method · ${STRUCT[d.st]}</span></div>${usageTable(d,false)}</section>`;
+ else if(S.view==="plans")body=`<section class="panel"><div class="panel-h"><h2>Plans using this schedule</h2></div><div class="tw"><table><thead><tr><th>Plan</th><th>Code</th><th>Customer class</th><th>Status</th><th class="r">Units</th></tr></thead><tbody>${d.plans.map((p,i)=>{const pc=p[2]||d.cls,diff=d.cls!=="Every class"&&pc!==d.cls;return `<tr><td>${p[0]}</td><td class="num">${["RES-STD","RES-SEN","COM-SM","IRR"][i%4]}</td><td>${pc}${diff?' <span class="pill p-warn">Class differs</span>':""}</td><td><span class="pill p-ok">Published</span></td><td class="r num">${p[1].toLocaleString()}</td></tr>`}).join("")}</tbody></table></div></section>`;
+ else body=`<section class="panel"><div class="panel-h"><h2>Audit</h2></div><div class="tw"><table><thead><tr><th>Version</th><th>Effective from</th><th>Effective to</th><th>Filed as</th><th>What changed</th><th>By</th><th>Status</th></tr></thead><tbody>
+  ${d.next?`<tr><td>v4</td><td class="num">01/01/2027</td><td>—</td><td>Docket 26-201</td><td>Tier 2 $5.2100 → $5.4000</td><td>Vijay Bikkad</td><td><span class="pill p-warn">Scheduled</span></td></tr>`:""}
+  <tr><td>${d.ver}</td><td class="num">${d.from}</td><td class="num">${d.next?"12/31/2026":"—"}</td><td>${d.ref||"—"}</td><td>${d.st==="flat"?"Fixes v1: $6.2500":d.ver==="v1"?"Created":"Tier 1 $4.2000 → $4.4096"}</td><td>Vijay Bikkad</td><td><span class="pill p-ok">In force</span></td></tr>
+  ${d.ver!=="v1"&&d.st!=="flat"?`<tr><td>v${Number(d.ver.slice(1))-1}</td><td class="num">01/01/2025</td><td class="num">12/31/2025</td><td>—</td><td>Created</td><td>Setup</td><td><span class="pill p-off">Ended</span></td></tr>`:""}
+  ${d.st==="flat"?`<tr><td>v1</td><td class="num">${d.from}</td><td class="num">—</td><td>—</td><td>Price typed $6.5200</td><td>Vijay Bikkad</td><td><span class="pill p-warn">Corrected</span></td></tr>`:""}</tbody></table></div></section>`;
+ return `<header class="head"><div><div class="crumb"><button data-scr="list">← Plans &amp; Rates</button></div><div class="kicker" style="margin-top:8px;color:var(--accent-ink)">Rate schedule · ${s.n} · ${STRUCT[d.st]} · ${d.ver}</div><h1>${d.name}</h1><div style="display:flex;gap:8px;margin-top:6px;align-items:center;flex-wrap:wrap"><span class="pill p-ok">${d.status==="In force"?"Active":d.status}</span><span class="crumb">In force from ${d.from} · no end</span></div></div>
+  <div style="display:flex;gap:8px"><button class="btn">Duplicate</button><button class="btn primary" data-scr="edit">Edit</button><button class="btn">Retire</button></div></header>
+ ${d.next?`<div class="note warn"><b>Change scheduled.</b>&nbsp;New prices start 01/01/2027.</div>`:""}
+ <div class="kpis"><div class="kpi"><span class="kicker">In force</span><b class="num">${d.ver}</b><span class="crumb">since ${d.from}</span></div><div class="kpi"><span class="kicker">Units</span><b class="num">${d.units.toLocaleString()}</b><span class="crumb">on ${plural(d.plans.length,"plan")}</span></div><div class="kpi"><span class="kicker">Sizes priced</span><b class="num">${s.sizes.length?priced(d)+" of "+d.rows.length:"One amount"}</b></div><div class="kpi"><span class="kicker">Next change</span><b class="num" style="font-size:18px">${d.next||"None"}</b></div></div>
+ <nav class="tabs" role="tablist">${tabs.map(([k,l])=>`<button role="tab" data-view="${k}" aria-selected="${S.view===k}">${l}</button>`).join("")}</nav>${body}`;}
+
+/* ---------- ADD / EDIT ---------- */
+const STEPS=["Details","Pricing","Review"];
+function sel(id,label,opts,val,locked,help){return `<div class="f"><label for="${id}">${label} <span class="req">*</span></label><select id="${id}" ${locked?"disabled":""}>${opts.map(o=>Array.isArray(o)?`<option value="${o[0]}" ${o[0]===val?"selected":""}>${o[1]}</option>`:`<option ${o===val?"selected":""}>${o}</option>`).join("")}</select>${help?`<span class="help">${help}</span>`:""}</div>`}
+function codeCombo(d){const q=S.cq.trim().toLowerCase(),items=(SVC[d.svc].codes).filter(c=>!q||c.toLowerCase().includes(q));
+ return `<div class="f"><label for="codeQ">Base charge code <span class="req">*</span></label><div class="combo"><div class="ms-btn" style="padding:0 10px;cursor:text"><input id="codeQ" role="combobox" aria-expanded="${S.combo}" aria-controls="codeList" autocomplete="off" placeholder="Search codes" value="${esc(S.combo?S.cq:d.code)}" style="border:0;min-height:36px;padding:0;flex:1"><span class="ms-caret" aria-hidden="true">▾</span></div>
+ <ul id="codeList" role="listbox" ${S.combo?"":"hidden"}>${items.length?items.map(c=>`<li role="option" data-pick="${c}"><span><b>${c}</b> · ${SVC[d.svc].n} base charge</span></li>`).join(""):'<li class="empty" aria-disabled="true">No code found.</li>'}</ul></div>${S.err.code?'<span class="msg">Pick a base charge code.</span>':""}</div>`}
+function step1(){const d=D(),edit=S.scr==="edit",live=edit;
+ return `${edit?`<section class="panel"><div class="panel-h"><h2>This edit</h2></div><div class="seg" role="group" aria-label="What are you doing?"><button data-intent="change" aria-pressed="${S.intent==="change"}">Change the rate</button><button data-intent="correct" aria-pressed="${S.intent==="correct"}">Fix an error</button></div><span class="crumb">${S.intent==="change"?"New prices from a date.":"Corrects the version in force."}</span></section>`:""}
+ <section class="panel"><div class="panel-h"><h2>Schedule</h2></div><div class="fields">
+  <div class="f"><label for="nm">Schedule name <span class="req">*</span></label><input id="nm" value="${esc(d.name)}">${S.err.name?'<span class="msg">Add a name.</span>':'<span class="help">Never shown to customers.</span>'}</div>
+  ${sel("svc","Service",Object.entries(SVC).map(([k,v])=>[k,v.n]),d.svc,live,live?"Locked once in force.":"")}
+  ${sel("unit","Unit",SVC[d.svc].units,d.unit,false)}
+  ${sel("cls","Customer class",CLASSES,d.cls,false)}
+  <div class="f"><label for="st">Structure <span class="req">*</span></label><select id="st" ${edit&&S.intent==="correct"?"disabled":""}>${Object.entries(STRUCT).map(([k,v])=>k==="base"?`<option value="base" disabled>Base only — not available yet</option>`:`<option value="${k}" ${k===d.st?"selected":""}>${v}</option>`).join("")}</select></div>
+  ${codeCombo(d)}</div></section>
+ ${act(false)}`;}
+function step2(){const d=D();
+ return `<section class="panel"><div class="panel-h"><h2>Base rates</h2><span class="kicker">${d.code} · ${priced(d)} of ${d.rows.length} priced</span></div>${baseTable(d,true)}</section>
+ <section class="panel"><div class="panel-h"><h2>Usage rates</h2><span class="kicker">${STRUCT[d.st]}</span></div>${usageTable(d,true)}</section>${act(true)}`;}
+function step3(){const d=D(),edit=S.scr==="edit",o=EX[S.ex],s=SVC[d.svc];
+ const ch=[];if(edit){d.rows.forEach(r=>{const a=o.rows.find(x=>x.size===r.size);if(!a)ch.push(["Minimum · "+r.size,"No row",r.min?money(r.min):"None"]);else if(a.min!==r.min)ch.push(["Minimum · "+r.size,a.min?money(a.min):"None",r.min?money(r.min):"None"])});
+  JSON.stringify(o.usage)!==JSON.stringify(d.usage)&&ch.push(["Usage rates","In force","Changed"]);if(o.name!==d.name)ch.push(["Name",o.name,d.name]);if(o.cls!==d.cls)ch.push(["Customer class",o.cls,d.cls])}
+ const dd=(t,v)=>`<div><dt>${t}</dt><dd>${v}</dd></div>`;
+ return `<section class="panel"><div class="panel-h"><h2>Schedule</h2></div><dl class="acct">${dd("Name",esc(d.name))+dd("Service",s.n)+dd("Unit",d.unit)+dd("Customer class",d.cls)+dd("Structure",STRUCT[d.st])+dd("Base charge code",d.code||"—")}</dl></section>
+ <section class="panel"><div class="panel-h"><h2>Prices</h2></div>${baseTable(d,false)}${usageTable(d,false)}</section>
+ ${edit?`<section class="panel"><div class="panel-h"><h2>What changes</h2><span class="kicker">${ch.length} changes</span></div><div class="tw"><table><thead><tr><th>Item</th><th>Now</th><th>New</th></tr></thead><tbody>${ch.length?ch.map(r=>`<tr><td>${r[0]}</td><td class="num">${r[1]}</td><td class="num chg">${r[2]}</td></tr>`).join(""):'<tr><td colspan="3" class="crumb">Nothing changed yet.</td></tr>'}</tbody></table></div></section>`:""}
+ <section class="panel"><div class="panel-h"><h2>${edit&&S.intent==="correct"?"Correction":"When"}</h2></div><div class="fields">
+  ${edit&&S.intent==="correct"?`<div class="f span3"><label for="reason">Reason <span class="req">*</span></label><textarea id="reason" rows="2" placeholder="Wrong tier 2 price typed">${esc(S.reason)}</textarea>${S.err.reason?'<span class="msg">Add a reason.</span>':""}</div><div class="note info span3">12 bills sent at the old price. Re-bill from Billing.</div>`:
+  `<div class="f"><label for="from">Effective from <span class="req">*</span></label><input id="from" type="date" value="${S.from}">${S.err.from?'<span class="msg">Pick a date.</span>':'<span class="help">Bills dated on or after.</span>'}</div>
+  <div class="f"><label for="to">Effective to</label><input id="to" type="date" value="${S.to}" min="${S.from}"><span class="help">Blank means no end.</span></div><div></div>
+  ${edit?`<div class="f span3"><label for="why">What changed <span class="req">*</span></label><textarea id="why" rows="2" placeholder="Board approved new tiers">${esc(S.why)}</textarea>${S.err.why?'<span class="msg">Add what changed.</span>':""}</div>`:""}
+  <div class="ticks span3"><label class="tick"><input type="checkbox"> Tell customers 30 days ahead</label><label class="tick"><input type="checkbox"> Show on public rate page</label></div>`}</div></section>
+ ${edit&&S.intent==="correct"?"":`<section class="panel"><div class="panel-h"><h2>Regulator filing</h2><span class="kicker">Optional</span></div><div class="fields">
+  <div class="f"><label for="ref">Reference</label><input id="ref" value="${esc(d.ref)}" placeholder="Docket 25-114"></div>
+  <div class="f"><label for="auth">Authority</label><input id="auth" value="${esc(d.auth)}" placeholder="City council"></div>
+  <div class="f"><label for="apprBy">Approved by</label><input id="apprBy" value="${esc(d.apprBy)}"></div>
+  <div class="f"><label for="subOn">Submitted on</label><input id="subOn" type="date"></div>
+  <div class="f"><label for="apprOn">Approved on</label><input id="apprOn" type="date"></div></div></section>`}
+ ${S.saved?`<div class="note ok"><b>${esc(d.name)} ${edit?(S.intent==="correct"?"corrected":"saved as new version"):"created"}.</b>${S.intent==="correct"&&edit?"":`&nbsp;Effective ${fd(S.from)}${S.to?" to "+fd(S.to):""}.`}</div>`:""}
+ <div class="actions"><button class="btn" data-back>Back</button><div class="right"><button class="btn">Save draft</button><button class="btn primary" data-save>${!edit?"Create rate schedule":S.intent==="correct"?"Save correction":"Create new version"}</button></div></div>`;}
+function act(back){return `<div class="actions">${back?'<button class="btn" data-back>Back</button>':"<span></span>"}<div class="right"><button class="btn primary" data-next>Continue</button></div></div>`;}
+function summary(){const d=D(),s=SVC[d.svc],edit=S.scr==="edit";
+ return `<div class="kicker">${edit?"Editing":"New rate schedule"}</div><div class="big" style="font-size:20px">${esc(d.name)||"—"}</div>
+ <div class="sum"><div class="row"><span>Service</span><span>${s.n}</span></div><div class="row"><span>Structure</span><span>${STRUCT[d.st]}</span></div><div class="row"><span>Unit</span><span>${d.unit}</span></div><div class="row"><span>Customer class</span><span>${d.cls}</span></div><div class="row"><span>Base code</span><span>${d.code||"—"}</span></div>${edit?`<div class="row"><span>Version</span><span>${S.intent==="correct"?d.ver+" (corrected)":"v"+(Number(d.ver.slice(1))+1)}</span></div>`:""}</div>
+ <div class="hr"></div><div class="sum"><div class="row"><span>Sizes priced</span><span class="num">${s.sizes.length?priced(d)+" of "+d.rows.length:"One amount"}</span></div>${edit?`<div class="row"><span>Accounts affected</span><span class="num">${d.units.toLocaleString()} · ${d.plans.length} plans</span></div>`:""}</div>
+ <div class="crumb">${S.saved?"Saved.":"Nothing saved yet."}</div>`;}
+function wizScreen(){const add=S.scr==="add",d=D();
+ return `<header class="head"><div><div class="crumb"><button data-scr="list">Plans &amp; Rates › Rate schedules</button>${add?"":` › <button data-scr="view">${esc(EX[S.ex].name)}</button>`}</div><h1>${add?"New rate schedule":"Edit "+esc(EX[S.ex].name)}</h1></div><div style="display:flex;gap:8px"><button class="btn" data-scr="${add?"list":"view"}">Cancel</button></div></header>
+ <nav class="rail" aria-label="Steps">${STEPS.map((s,i)=>{const st=i<S.step?"done":i===S.step?"current":"todo";return `<button data-go="${i}" data-state="${st}" aria-current="${i===S.step?"step":"false"}"><span class="n">${st==="done"?"✓":i+1}</span><span class="lbl">${s}</span></button>`}).join("")}</nav>
+ <div class="grid"><main class="stack">${[step1,step2,step3][S.step]()}</main><aside class="aside"><div class="panel">${summary()}</div></aside></div>`;}
+
+/* ---------- state ---------- */
+function newDraft(){return R({name:"",svc:"water",unit:"kgal",st:"tiered",code:"",rows:sz("water").slice(0,3),usage:{tiers:[["0","5",""],["5","",""]]},plans:[],units:0})}
+function go(scr){S.scr=scr;S.step=0;S.combo=false;S.cq="";S.saved=false;S.err={};S.why="";S.reason="";S.intent="change";S.to="";
+ if(scr==="add"){S.d=newDraft();S.from="2026-11-01"}if(scr==="edit"){S.d=clone(EX[S.ex]);S.from="2027-01-01"}if(scr==="view")S.view="overview";render()}
+function setSvc(k){const d=D();d.svc=k;d.unit=SVC[k].units[0];d.code="";d.rows=sz(k).slice(0,Math.min(3,Math.max(1,SVC[k].sizes.length)));}
+function setSt(k){const d=D();d.st=k;d.usage={flat:{flat:""},tiered:{tiers:[["0","",""]]},seasonal:{seasons:[["Summer","05/01","09/30",""],["Winter","10/01","04/30",""]]},tou:{tou:[["On-peak","Weekday","14:00","19:00",""],["Off-peak","Weekday","19:00","14:00",""]]},capacity:{cap:""},demand:{energy:"",demand:"",win:"",pf:"",pfrate:""},pct:{of:"Water",pct:""},base:{}}[k]}
+function render(){exOpts();document.querySelectorAll('.demo [data-scr]').forEach(b=>b.setAttribute("aria-pressed",b.dataset.scr===S.scr));
+ document.getElementById("screen").innerHTML=S.scr==="list"?listScreen():S.scr==="view"?viewScreen():wizScreen()}
+function check(){const d=D();S.err={};if(S.step===0){if(!d.name.trim())S.err.name=1;if(!d.code)S.err.code=1}return !Object.keys(S.err).length}
+document.addEventListener("click",e=>{const t=e.target;
+ const sc=t.closest("[data-scr]");if(sc){go(sc.dataset.scr);return}
+ const op=t.closest("[data-open]");if(op&&!t.closest(".ibtn")){S.ex=op.dataset.open;go("view");return}
+ const f=t.closest("[data-filter]");if(f){S.filter=f.dataset.filter;render();return}
+ const v=t.closest("[data-view]");if(v){S.view=v.dataset.view;render();return}
+ const it=t.closest("[data-intent]");if(it){S.intent=it.dataset.intent;render();return}
+ if(t.closest("[data-next]")){if(check()){S.step++;S.combo=false}render();return}
+ if(t.closest("[data-back]")){S.step--;S.saved=false;render();return}
+ const g=t.closest("[data-go]");if(g){const n=+g.dataset.go;if(n<=S.step||check()){S.step=n}render();return}
+ if(t.id==="codeQ"){S.combo=true;render();document.getElementById("codeQ").focus();return}
+ const pk=t.closest("[data-pick]");if(pk){D().code=pk.dataset.pick;S.combo=false;S.cq="";S.err.code=0;render();return}
+ if(S.combo&&!t.closest(".combo")){S.combo=false;render()}
+ if(t.id==="addRow"){const d=D(),s=SVC[d.svc],used=d.rows.map(r=>r.size),free=(s.sizes.length?s.sizes:["All sizes"]).filter(z=>!used.includes(z));if(free[0])d.rows.push({size:free[0],min:""});render();return}
+ const dl=t.closest("[data-del]");if(dl){D().rows.splice(+dl.dataset.del,1);render();return}
+ const ua=t.closest("[data-uadd]");if(ua){const u=D().usage,k=ua.dataset.uadd;if(Array.isArray(u[k]))u[k].push(u[k][0].map(()=>""));render();return}
+ const ud=t.closest("[data-udel]");if(ud){const [k,i]=ud.dataset.udel.split(":");const u=D().usage;if(Array.isArray(u[k])&&u[k].length>1)u[k].splice(+i,1);render();return}
+ if(t.closest("[data-save]")){const edit=S.scr==="edit";S.err={};if(edit&&S.intent==="correct"){if(!S.reason.trim())S.err.reason=1}else{if(!S.from)S.err.from=1;if(edit&&!S.why.trim())S.err.why=1}S.saved=!Object.keys(S.err).length;render();return}
+});
+document.addEventListener("change",e=>{const t=e.target,d=D();
+ if(t.id==="exPick"){S.ex=t.value;go(S.scr==="list"?"view":S.scr);return}
+ if(!d)return;
+ if(t.id==="svc"){setSvc(t.value);render();return}
+ if(t.id==="st"){setSt(t.value);render();return}
+ if(t.id==="unit"){d.unit=t.value;render();return}
+ if(t.id==="cls"){d.cls=t.value;render();return}
+ if(t.dataset.ri&&t.dataset.c==="size"){d.rows[+t.dataset.ri].size=t.value;render();return}
+ if(t.tagName==="SELECT"&&t.dataset.u){const u=d.usage[t.dataset.u];u[+t.dataset.ui][+t.dataset.uc]=t.value;render();return}
+});
+document.addEventListener("input",e=>{const t=e.target,d=D();
+ if(t.id==="q"){S.q=t.value;render();const q=document.getElementById("q");q.focus();q.setSelectionRange(q.value.length,q.value.length);return}
+ if(t.id==="codeQ"){S.cq=t.value;S.combo=true;const l=document.getElementById("codeList");render();const c=document.getElementById("codeQ");c.focus();c.setSelectionRange(c.value.length,c.value.length);return}
+ if(!d)return;
+ if(t.id==="nm"){d.name=t.value;return}
+ if(t.dataset.ri&&t.dataset.c==="min"){d.rows[+t.dataset.ri].min=t.value.trim();return}
+ if(t.dataset.u){const u=d.usage,k=t.dataset.u;let v=t.value;if(t.dataset.md&&v){const[,m,dd]=v.split("-");v=m+"/"+dd}if(Array.isArray(u[k]))u[k][+t.dataset.ui][+t.dataset.uc]=v;return}
+ if(t.id==="from"){S.from=t.value;return}if(t.id==="to"){S.to=t.value;return}if(t.id==="why"){S.why=t.value;return}if(t.id==="reason"){S.reason=t.value;return}
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&S.combo){S.combo=false;S.cq="";render()}});
+render();
+})();
+</script>

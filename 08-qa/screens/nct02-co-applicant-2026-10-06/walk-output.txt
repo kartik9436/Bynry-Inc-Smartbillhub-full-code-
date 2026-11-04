@@ -1,0 +1,41 @@
+  PASS  Kyle Mark's application saved — 200 {"token":"94086d1e-7937-493f-9483-28638c9820f9","address_as_given":"Haustin Towers 2","address_unit_as_given":"Apt-12","address_city_as_given":"Austin","address_postal_code_as_given":"78701","service_
+  PASS  the photo ID is attached on its requirement — 200 {"token":"94086d1e-7937-493f-9483-28638c9820f9","address_as_given":"Haustin Towers 2","address_unit_as_given":"Apt-12","address_city_as_given":"Austin","address
+  PASS  Kyle Mark's application sent — 200 SR-26-0009
+  PASS  Approve opens New Connect on the raised build — http://127.0.0.1:5838/brazosbend/connections/new?build=01a111c0-245a-7add-b9de-14bb377a50be
+  PASS  owner name arrived — Kyle Mark
+  PASS  DEF-CUS-9834 the photo ID reads its requirement's type (Proof of identity), not Anything else — Documents Filled from request SR-26-0009. DOCUMENT REQUIRED FILE UPLOADED BY STATE ACTIONS Proof of identity No kyle-photo-id.pdf · PDF · 2 KB Kyle Mark (applicant) · 10/06/2026 Attaching one Document type* Contract Identity Payment Correspondence File Drop a file here Choose a file What it proves D
+  PASS  DEF-CUS-9834 Uploaded by reads Kyle Mark (applicant) — Kyle Mark (applicant) · 10/06/2026
+      shot /home/user/SMARTBillHub/.claude/worktrees/agent-a3fc1e36bde2dd64a/08-qa/screens/nct02-co-applicant-2026-10-06/1-step1-documents-applicant.png
+  PASS  DEF-CUS-9830 only Full name is required for the co-applicant — nc_co_owner_name
+      shot /home/user/SMARTBillHub/.claude/worktrees/agent-a3fc1e36bde2dd64a/08-qa/screens/nct02-co-applicant-2026-10-06/1-step1-co-applicant-name-only.png
+  PASS  DEF-CUS-9835 State is the utility's own (TX) for a portal request — TX
+      shot /home/user/SMARTBillHub/.claude/worktrees/agent-a3fc1e36bde2dd64a/08-qa/screens/nct02-co-applicant-2026-10-06/2-step2-address-state.png
+        premise type: Apartment complex
+        plan: Residential Standard
+  PASS  DEF-CUS-9836 Taxes summary reads <count> · <total>% total — Taxes 2 · 2.00% total Expand▾
+  PASS  DEF-CUS-9836 Discounts summary reads names, not codes — Discounts 0 Expand▾
+  PASS  DEF-CUS-9836 the Discounts table reads names — None
+      shot /home/user/SMARTBillHub/.claude/worktrees/agent-a3fc1e36bde2dd64a/08-qa/screens/nct02-co-applicant-2026-10-06/2-step2-this-plan-taxes-discounts.png
+  PASS  DEF-CUS-9836 Discounts summary on a plan with discounts reads names — Discounts 3 · Autopay discount 0.50% · Municipal account 20.00% · Paperless billing $1.00 Expand▾
+  PASS  DEF-CUS-9836 its Discounts table reads names — DISCOUNT VALUE HOW PROOF Autopay discount ↗ 0.50% Automatic No Municipal account ↗ 20.00% Automatic No Paperless billing ↗ $1.00 Automatic No
+        plan with discounts: Taxes "Taxes 2 · 2.00% total Collapse▴" · Discounts 3 · Autopay discount 0.50% · Municipal account 20.00% · Paperless billing $1.00 Expand▾
+      shot /home/user/SMARTBillHub/.claude/worktrees/agent-a3fc1e36bde2dd64a/08-qa/screens/nct02-co-applicant-2026-10-06/2-step2-this-plan-with-discounts.png
+  PASS  a plan with discounts was found to photograph
+        step units: The units
+      shot /home/user/SMARTBillHub/.claude/worktrees/agent-a3fc1e36bde2dd64a/08-qa/screens/nct02-co-applicant-2026-10-06/3-units.png
+        step charges: Charges
+      shot /home/user/SMARTBillHub/.claude/worktrees/agent-a3fc1e36bde2dd64a/08-qa/screens/nct02-co-applicant-2026-10-06/3-charges.png
+      shot /home/user/SMARTBillHub/.claude/worktrees/agent-a3fc1e36bde2dd64a/08-qa/screens/nct02-co-applicant-2026-10-06/5-review.png
+        review button: Create connection ✓
+        after Create: http://127.0.0.1:5838/brazosbend/connections/new?build=01a111c0-245a-7add-b9de-14bb377a50be&step=5 :: CREATED CON-26-0129 Units 1 Meters 1 Plan assignments 1 Nothing on the quote to charge. No sub-meter links. Open the connection →
+      shot /home/user/SMARTBillHub/.claude/worktrees/agent-a3fc1e36bde2dd64a/08-qa/screens/nct02-co-applicant-2026-10-06/5-after-create.png
+  PASS  the build opened Kyle's account — 200 AC-2026-00054
+  PASS  the account is found by its number — {"count":75,"next":"http://127.0.0.1:5838/api/brazosbend/accounts?page=2&search=AC-2026-00054","previous":null,"results":[{"id":"01a111c0-aff7-769e-86c9-20be40c
+  PASS  DEF-CUS-9830 Maria is a co-owner on Kyle's new account — [{"kind":"co_owner","full_name":"Maria Mark","email":null,"phone":null}]
+  PASS  her blank email and phone stayed blank
+  PASS  no identifier is served on the account read
+  PASS  DEF-CUS-9837 the account page's Co-applicant group names Maria Mark — CO-APPLICANT Full name Maria Mark Email — Phone —
+      shot /home/user/SMARTBillHub/.claude/worktrees/agent-a3fc1e36bde2dd64a/08-qa/screens/nct02-co-applicant-2026-10-06/6-account-co-applicant.png
+      shot /home/user/SMARTBillHub/.claude/worktrees/agent-a3fc1e36bde2dd64a/08-qa/screens/nct02-co-applicant-2026-10-06/6-account-page.png
+
+ALL PASS

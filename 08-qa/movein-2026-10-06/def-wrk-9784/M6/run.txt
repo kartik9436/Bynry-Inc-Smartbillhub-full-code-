@@ -1,0 +1,177 @@
+
+── M6 · Industrial · Light industrial · company — Electric, Gas, Water, Solar (inverter behind the meter) · two work orders
+  PASS  M6 · Units     · U-00009 is offered as vacant before the move-in
+  PASS  M6 · Units     · step 1 lists Electric
+  PASS  M6 · Units     · step 1 lists Gas
+  PASS  M6 · Units     · step 1 lists Water
+  PASS  M6 · Units     · step 1 lists Solar
+  PASS  M6 · Assets    · step 1 asks an opening read for E-M6
+  PASS  M6 · Assets    · step 1 asks an opening read for G-M6
+  PASS  M6 · Assets    · step 1 asks an opening read for W-M6
+  PASS  M6 · Work      · the Work order list offers "Opening read"
+  PASS  M6 · Work      · the Work order list offers "Reconnect visit"
+  PASS  M6 · Accounts  · Search customer ID answers "new"
+  PASS  M6 · Accounts  · no match block is drawn for a new person
+  PASS  M6 · Payments  · Fees total reads $525.00 — $525.00
+  PASS  M6 · Payments  · no fee row is taxed at move-in (no Taxable column, no tax row)
+  NOTE  M6 · Complete warned deposit_carry_forward_unavailable: no deposit was carried forward from an earlier account
+  NOTE  M6 · Complete warned deposit_payment_has_not_cleared: 
+  PASS  M6 · Accounts  · Move-in completed prints no raw server code
+  PASS  M6 · Messages  · Move-in completed counts the queued welcome (not 0 queued) — reads "3 queued"
+  PASS  M6 · Accounts  · Move-in completed names an MVI- number — MVI-26-0007
+2026-10-06 07:27:05,457 INFO apps.billing.resolution_switch ruled path served R3, R4 for account AC-2026-00057
+  PASS  M6 · Accounts  · one move record MVI-26-0007 exists
+  PASS  M6 · Accounts  · the move record is a move-in
+  PASS  M6 · Accounts  · the move-in is dated as typed
+  PASS  M6 · Accounts  · the account is active
+  PASS  M6 · Accounts  · the account opens on the move-in date
+  PASS  M6 · Accounts  · the account type is the one the clerk picked
+  PASS  M6 · Accounts  · the sub-type is the one the clerk picked
+  PASS  M6 · Accounts  · the account is on the case's unit
+  PASS  M6 · Accounts  · exactly one customer holds the account
+  PASS  M6 · Accounts  · the customer's name is as typed
+  PASS  M6 · Accounts  · the customer is a person/company as picked
+  PASS  M6 · Accounts  · a NEW customer holds this one account only (nothing was linked)
+  PASS  M6 · Accounts  · one agreement per started service
+  PASS  M6 · Accounts  · every agreement starts on the move-in date
+  PASS  M6 · Units     · the unit stores no status or occupancy (it is derived)
+  PASS  M6 · Units     · the unit now has exactly one open account (reads Occupied)
+  PASS  M6 · Assets    · an opening read for each meter the clerk read, and none other
+  PASS  M6 · Assets    · E-M6's opening read is 52400 as typed
+  PASS  M6 · Assets    · E-M6's opening read is in kWh, the meter's own unit
+  PASS  M6 · Assets    · E-M6's opening read is dated the move-in date
+  PASS  M6 · Assets    · E-M6's opening read is committed
+  PASS  M6 · Assets    · G-M6's opening read is 7725 as typed
+  PASS  M6 · Assets    · G-M6's opening read is in ccf, the meter's own unit
+  PASS  M6 · Assets    · G-M6's opening read is dated the move-in date
+  PASS  M6 · Assets    · G-M6's opening read is committed
+  PASS  M6 · Assets    · W-M6's opening read is 205.5 as typed
+  PASS  M6 · Assets    · W-M6's opening read is in kgal, the meter's own unit
+  PASS  M6 · Assets    · W-M6's opening read is dated the move-in date
+  PASS  M6 · Assets    · W-M6's opening read is committed
+  PASS  M6 · Assets    · the move-in wrote no asset status (meter status is derived) — 0 asset audit rows read since the move
+  PASS  M6 · Payments  · the fee lines are the plan's deposit and connection charge
+  PASS  M6 · Payments  · no tax was charged on any move-in fee (OQ-BIL-12788 (a))
+  PASS  M6 · Payments  · the payments total $525.00
+  PASS  M6 · Payments  · the payments total the fees (paid in full)
+  PASS  M6 · Payments  · every payment's tender is cash
+  PASS  M6 · Payments  · the deposit is paid as a deposit-purpose payment
+  PASS  M6 · Payments  · every payment wrote audit_log (hard rule 7)
+  PASS  M6 · Accounts  · the move-in wrote audit_log account.moved_in
+  PASS  M6 · Payments  · every journal entry for the account balances DR = CR (hard rule 5) — 0 entries read, 2 payment(s) not journaled yet (PY-261010-0086, PY-261010-0087; a check journals when it clears)
+  PASS  M6 · Billing   · the first-bill preview prices (every started service has what it needs)
+  PASS  M6 · Billing   · the first bill carries the move-in's fee lines
+  PASS  M6 · Billing   · no fee or deposit line on the first bill is taxable
+  PASS  M6 · Billing   · a deposit paid at move-in is not billed again on the first bill
+  PASS  M6 · Billing   · the first bill carries each move-in fee line at its recorded amount
+  PASS  M6 · Billing   · every tax line on the first bill names a tax (2 tax lines read)
+  PASS  M6 · Billing   · the first bill carries NO City of Cedar Ford utility tax (not this account's class)
+  PASS  M6 · Billing   · the first bill carries TX State Utility Tax
+  PASS  M6 · Billing   · the first bill carries Local · Bexar County
+  PASS  M6 · Billing   · the first bill carries the solar service (the plan's solar charge)
+  FAIL  M6 · Billing   · the first bill carries no line for sewer, a service the account did not start — [DEF-BIL-9793] [('sewer usage — 90.00% of water volume', '38.25'), ('sewer base charge', '9.00')]
+  PASS  M6 · Assets    · PV-M6 still stands under E-M6 (the move-in moved no equipment)
+  PASS  M6 · Assets    · PV-M6 (not a read device) carries no opening read
+  PASS  M6 · Route     · every service point of the unit is on a route (4 points)
+  PASS  M6 · Route     · every service point of the unit is on a billing cycle (4 points)
+  PASS  M6 · Route     · the unit holds a place in its route's walk order
+  PASS  M6 · Work      · one work order per field-visit row
+  PASS  M6 · Work      · WO-0053 is raised from the move-in
+  PASS  M6 · Work      · WO-0053 carries the template Opening read
+  PASS  M6 · Work      · WO-0053 is for meter E-M6
+  PASS  M6 · Work      · WO-0053 is due on the move-in date
+  PASS  M6 · Work      · WO-0053's window is the one picked (utility time)
+  PASS  M6 · Work      · WO-0053 is assigned to a technician
+  PASS  M6 · Work      · WO-0053 carries no labour yet (labour comes from arrived/finished times)
+  PASS  M6 · Work      · WO-0054 is raised from the move-in
+  PASS  M6 · Work      · WO-0054 carries the template Reconnect visit
+  PASS  M6 · Work      · WO-0054 is for meter G-M6
+  PASS  M6 · Work      · WO-0054 is due on the move-in date
+  PASS  M6 · Work      · WO-0054's window is the one picked (utility time)
+  PASS  M6 · Work      · WO-0054 is assigned to a technician
+  PASS  M6 · Work      · WO-0054 carries no labour yet (labour comes from arrived/finished times)
+  PASS  M6 · Messages  · the move-in's welcome is queued (3 rows)
+  PASS  M6 · Messages  · a receipt is queued for each payment (6 rows for 2 payments)
+  PASS  M6 · Messages  · no message is marked sent (BR-NOT-013: queued is never sent)
+  NOTE  M6 · first bill · usage · electric usage · 127.50
+  NOTE  M6 · first bill · base · electric base charge · 630.00
+  NOTE  M6 · first bill · usage · gas usage · 97.75
+  NOTE  M6 · first bill · base · gas base charge · 10.56
+  NOTE  M6 · first bill · usage · solar usage · 112.00
+  NOTE  M6 · first bill · base · solar base charge · 0.00
+  NOTE  M6 · first bill · usage · water usage · 44.20
+  NOTE  M6 · first bill · base · water base charge · 63.75
+  NOTE  M6 · first bill · usage · sewer usage — 90.00% of water volume · 38.25
+  NOTE  M6 · first bill · base · sewer base charge · 9.00
+  NOTE  M6 · first bill · fee · Connection charge · 25.00
+  NOTE  M6 · first bill · tax · Tax Local · 22.66
+  NOTE  M6 · first bill · tax · Tax Texas State · 70.81
+  PASS  M6 · Units     · /premises/units/01a11006-8972-7390-8cb6-482050f2d633 opens (h1 drawn, no error page)
+  PASS  M6 · Units     · the unit reads Occupied
+  PASS  M6 · Units     · the unit names account AC-2026-00057
+  PASS  M6 · Units     · the unit names the account holder (AC-2026-00057 · Foundry Works Fabrication Inc.)
+  PASS  M6 · Assets    · /assets/01a11006-8af5-74f8-afa1-f64c642689d6 opens (h1 drawn, no error page)
+  PASS  M6 · Assets    · E-M6 is on account AC-2026-00057
+  PASS  M6 · Assets    · E-M6 reads Installed (derived, the move-in wrote no status)
+  PASS  M6 · Assets    · E-M6 names the account holder (AC-2026-00057 · Foundry Works Fabrication Inc.)
+  PASS  M6 · Assets    · /assets/01a11006-8af5-74f8-afa1-f64c642689d6?tab=reads opens (h1 drawn, no error page)
+  PASS  M6 · Assets    · E-M6's Reads tab shows the opening read 52400
+  PASS  M6 · Assets    · E-M6's Reads tab shows it in kWh
+  PASS  M6 · Assets    · /assets/01a11006-8bae-7ac9-8a87-f905d7cbe0da opens (h1 drawn, no error page)
+  PASS  M6 · Assets    · G-M6 is on account AC-2026-00057
+  PASS  M6 · Assets    · G-M6 reads Installed (derived, the move-in wrote no status)
+  PASS  M6 · Assets    · G-M6 names the account holder (AC-2026-00057 · Foundry Works Fabrication Inc.)
+  PASS  M6 · Assets    · /assets/01a11006-8bae-7ac9-8a87-f905d7cbe0da?tab=reads opens (h1 drawn, no error page)
+  PASS  M6 · Assets    · G-M6's Reads tab shows the opening read 7725
+  PASS  M6 · Assets    · G-M6's Reads tab shows it in ccf
+  PASS  M6 · Assets    · /assets/01a11006-8c7e-748c-b2e1-2393b7d2c71e opens (h1 drawn, no error page)
+  PASS  M6 · Assets    · W-M6 is on account AC-2026-00057
+  PASS  M6 · Assets    · W-M6 reads Installed (derived, the move-in wrote no status)
+  PASS  M6 · Assets    · W-M6 names the account holder (AC-2026-00057 · Foundry Works Fabrication Inc.)
+  PASS  M6 · Assets    · /assets/01a11006-8c7e-748c-b2e1-2393b7d2c71e?tab=reads opens (h1 drawn, no error page)
+  PASS  M6 · Assets    · W-M6's Reads tab shows the opening read 205.5
+  PASS  M6 · Assets    · W-M6's Reads tab shows it in kgal
+  PASS  M6 · Accounts  · /accounts/01a1101b-a78c-7fdd-8957-e3204454af13 opens (h1 drawn, no error page)
+  PASS  M6 · Accounts  · the account shows Foundry Works Fabrication Inc.
+  PASS  M6 · Accounts  · the account shows Industrial
+  PASS  M6 · Accounts  · the account lists Electric
+  PASS  M6 · Accounts  · the account lists Gas
+  PASS  M6 · Accounts  · the account lists Solar
+  PASS  M6 · Accounts  · the account lists Water
+  PASS  M6 · Accounts  · the account's title is the account holder Foundry Works Fabrication Inc. — title reads "Foundry Works Fabrication Inc."
+  PASS  M6 · Payments  · /accounts/01a1101b-a78c-7fdd-8957-e3204454af13?tab=payments opens (h1 drawn, no error page)
+  PASS  M6 · Payments  · payment PY-261010-0086 ($500.00) is listed
+  PASS  M6 · Payments  · payment PY-261010-0087 ($25.00) is listed
+  PASS  M6 · Billing   · /moves/MVI-26-0007?tab=billing opens (h1 drawn, no error page)
+  PASS  M6 · Billing   · the move's Billing tab lists DEPOSIT
+  PASS  M6 · Billing   · the move's Billing tab lists CONN
+  PASS  M6 · Billing   · the fees total $525.00
+  PASS  M6 · Payments  · a deposit paid in full reads as taken, nothing still to collect — STILL TO COLLECT
+$0.00
+  PASS  M6 · Route     · /reads/routes/01a11006-917a-7dc2-8110-11ac94471030 opens (h1 drawn, no error page)
+  PASS  M6 · Route     · route RT-006 is the unit's (Matrix walk)
+  PASS  M6 · Work      · /work/orders/WO-0053 opens (h1 drawn, no error page)
+  PASS  M6 · Work      · WO-0053 shows its template's type Re-read
+  PASS  M6 · Work      · WO-0053 names the account AC-2026-00057
+  PASS  M6 · Work      · WO-0053 names the meter E-M6
+  PASS  M6 · Work      · WO-0053 is on the technician's day (10/10/2026)
+  PASS  M6 · Work      · /work/orders/WO-0054 opens (h1 drawn, no error page)
+  PASS  M6 · Work      · WO-0054 shows its template's type Disconnection/Reconnection
+  PASS  M6 · Work      · WO-0054 names the account AC-2026-00057
+  PASS  M6 · Work      · WO-0054 names the meter G-M6
+  PASS  M6 · Work      · WO-0054 is on the technician's day (10/10/2026)
+  PASS  M6 · Messages  · /moves/MVI-26-0007?tab=messages opens (h1 drawn, no error page)
+  PASS  M6 · Messages  · the move's Messages tab lists the welcome
+  PASS  M6 · Accounts  · /moves/MVI-26-0007 opens (h1 drawn, no error page)
+  PASS  M6 · Accounts  · the move-in record reads MVI-26-0007
+  PASS  M6 · Accounts  · the move-in record names AC-2026-00057
+  PASS  M6 · Assets    · the move-in record no longer reads 'Waiting on a read' (every meter read)
+  PASS  M6 · Assets    · /assets/01a11006-8d46-7b27-b48c-714d44a3e853 opens (h1 drawn, no error page)
+  PASS  M6 · Assets    · PV-M6 names the meter it stands behind (E-M6)
+  PASS  M6 · Work      · /moves/MVI-26-0007?tab=work opens (h1 drawn, no error page)
+  PASS  M6 · Work      · the move's Work tab lists WO-0053 (Opening read)
+  PASS  M6 · Work      · the move's Work tab lists WO-0054 (Reconnect visit)
+
+── summary
+  M6: 153 PASS · 1 FAIL
+1 FAIL

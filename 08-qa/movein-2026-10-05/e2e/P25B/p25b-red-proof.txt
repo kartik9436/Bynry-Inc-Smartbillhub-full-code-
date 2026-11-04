@@ -1,0 +1,11 @@
+P25B red proofs on 2.549.9 — each key check broken in memory, read against the case's committed database (PostgreSQL 16), then restored
+
+BROKEN (p25-new-date):
+  FAIL  DATE: the account now opens on 2026-10-16 — expected '2026-10-16', read '2026-10-15'
+RESTORED:
+  PASS  DATE: the account now opens on 2026-10-15
+
+BROKEN (p25-proration):
+  FAIL  DATE: the first bill's prorated base charges move with the date (from 2026-10-10: $40.26; from 2026-10-15: $40.26) — $40.26 → $40.26
+RESTORED:
+  PASS  DATE: the first bill's prorated base charges move with the date (from 2026-10-10: $48.00; from 2026-10-15: $40.26)

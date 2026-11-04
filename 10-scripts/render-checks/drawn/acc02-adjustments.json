@@ -1,0 +1,23 @@
+{
+ "tab": "adjustments",
+ "note": "Transcribed from 04-docs/05-modules/03-customers/blueprint/02-account-detail.md — ACC-T09, the EXTRACTED TEXT, not from looking at the picture, so anybody can re-check it against the source.",
+ "drawn": {
+  "toolbar": "All · Filter ▾ · ⚲ Search · Columns ▾ · ⇩ Export · New adjustment",
+  "footer": "1–3 of 3 · Rows per page 50 ‹ ›"
+ },
+ "groups": [
+  {
+   "col": "left",
+   "slug": "adjustments",
+   "heading": "ADJUSTMENTS",
+   "table": [
+    "DATE",
+    "ADJUSTMENT #",
+    "REASON",
+    "APPLIED TO",
+    "AMOUNT",
+    "APPROVED BY"
+   ]
+  }
+ ]
+}

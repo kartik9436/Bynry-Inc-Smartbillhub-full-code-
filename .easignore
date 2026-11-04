@@ -1,0 +1,31 @@
+# What EAS Build uploads for the field app (field-app/ and the shared/ code it
+# imports). With this file present EAS ignores .gitignore, so the usual
+# ignores are repeated here. Without it the first build uploaded the whole
+# monorepo — 1.6 GB of blueprints, the web app and the server.
+/04-docs/
+/05-prototype/
+/06-backend/
+# The field app reads its words from the web catalogues (one set of eleven
+# languages for both apps), so 07-frontend is excluded EXCEPT its locales.
+/07-frontend/*
+!/07-frontend/src/
+/07-frontend/src/*
+!/07-frontend/src/i18n/
+/07-frontend/src/i18n/*
+!/07-frontend/src/i18n/locales/
+/08-qa/
+/09-infra/
+/10-scripts/
+/11-change-management/
+/12-governance/
+/scratchpad/
+*.pdf
+node_modules/
+__pycache__/
+.env
+.env.local
+*.pem
+.DS_Store
+field-app/secrets/
+field-app/android/
+field-app/ios/

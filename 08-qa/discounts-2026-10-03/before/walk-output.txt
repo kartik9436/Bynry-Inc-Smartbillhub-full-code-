@@ -1,0 +1,1063 @@
+signed in as dana@brazosbendutilities.com
+DISCOUNTS SERVED: 6 [["AUTOPAY","active","0.50%",0],["CAP","active","25.00",0],["MILITARY","draft","10.00%",0],["MUNICIPAL","active","20.00%",1],["PAPERLESS","active","1.00",0],["SENIOR","active","15.00%",0]]
+
+=== l01-list.png — list as it opens (D14–D18)
+Plans & Rates
+6 plans · 9 rate schedules · 31 charge codes · 6 discounts · 2 taxes & fees · effective 10/01/2026
+History
++ New discount
+Plans
+Rate schedules
+Charge codes
+Discounts
+Taxes & fees
+A discount is an overlay: it reduces what a customer pays without changing the plan's rates. Attaching one to a plan makes it available; the account's enrollment is what grants it.
+All
++ Filter
+▾
+CODE
+▲
+	DISCOUNT	TYPE	VALUE	ELIGIBILITY	VERIFICATION	PLANS	ENROLLED	STATUS	ACTIONS
+AUTOPAY	Autopay discount	Percentage	0.50%	Autopay enrolled	Automatic	1	0	Active	
+CAP	CAP / low-income credit	Fixed amount	25.00	Program enrolment	Agency file · monthly	0	0	Active	
+MILITARY	Veteran discount	Percentage	10.00%	Veteran ID	One-time proof at enrollment	0	0	Draft	
+MUNICIPAL	Municipal account	Percentage	20.00%	Government account	Automatic	1	1	Active	
+PAPERLESS	Paperless billing	Fixed amount	1.00	E-bill on	Automatic	1	0	Active	
+SENIOR	Senior discount	Percentage	15.00%	Age 65+	Annual recertification	0	0	Active	
+1–6 of 6
+Rows per page
+50
+100
+200
+500
+1000
+‹
+›
+LIST COLUMNS: ["Code▲","Discount","Type","Value","Eligibility","Verification","Plans","Enrolled","Status","Actions"]
+ROW ACTION CONTROLS: [["AUTOPAY","New version"],["CAP","New version"],["MILITARY","New version"]]
+TOOLBAR BUTTONS: ["History","+ New discount","Plans","Rate schedules","Charge codes","Discounts","Taxes & fees","All","↑ [DISABLED]","↓","↑","↓","↑","↓","↑","↓","↑","↓","↑","↓","↑","↓","↑","↓","↑","↓","↑","↓ [DISABLED]","Reset table","Code▲","Discount","New version","New version","New version","New version","New version","New version","‹ [DISABLED]","› [DISABLED]"]
+
+=== w01-step1-basics.png — step 1 as it opens (D1 D2 D8 D10 D13)
+← Plans & Rates
+NEW DISCOUNT
+Define an overlay.
+1
+Basics & type
+2
+Value
+3
+Eligibility & verification
+4
+Effective & approval
+5
+Review
+STEP 1 OF 5
+Basics & type
+Code*
+Uppercased on save. Example: SENIOR.
+Bill line label*
+What the customer reads.
+Program owner
+Team or agency that runs it.
+Funding source
+Who pays for the subsidy.
+Assistance filing
+Include in the regulator's assistance report.
+Type*
+Percentage — A share of the scope.
+Fixed amount — A flat sum off.
+Rate override — Bills from another schedule.
+Charge waiver — Removes the whole charge.
+Usage allowance — Free units before pricing.
+Cancel
+Continue
+  #discount-code: input[type=text]
+  #discount-name: input[type=text]
+  #discount-owner: input[type=text]
+  #discount-funding: input[type=text]
+  #discount-assistance-filing: input[type=checkbox]
+  #discount-type: select[type=select-one]
+  type options: ["Percentage — A share of the scope.","Fixed amount — A flat sum off.","Rate override — Bills from another schedule.","Charge waiver — Removes the whole charge.","Usage allowance — Free units before pricing."]
+
+=== w02-step2-value.png — step 2 Value as it opens (D3 D4 D5 D6 D12)
+← Plans & Rates
+NEW DISCOUNT
+Define an overlay.
+1
+Basics & type
+2
+Value
+3
+Eligibility & verification
+4
+Effective & approval
+5
+Review
+STEP 2 OF 5
+Value
+Percentage points*
+Applies to
+Subtotal before taxes
+One service
+Usage charges only
+Base charges only
+Named charge codes
+All services
+Specific services
+What the reduction is taken from. It never changes the rate itself.
+CAPS
+Blank means uncapped. Zero grants nothing.
+Cap per bill
+Type the amount exactly as it should be stored. It is sent unchanged; the server checks the limits.
+Cap per year
+Type the amount exactly as it should be stored. It is sent unchanged; the server checks the limits.
+Lifetime cap
+Type the amount exactly as it should be stored. It is sent unchanged; the server checks the limits.
+Bill floor
+Blank means no floor. Zero allows a zero bill.
+Stacking precedence
+Lower runs first.
+Stacks with others
+Exclusivity group
+Same group cannot both apply. Blank unless one excludes another.
+Cancel
+Back
+Continue
+  #discount-value: input[type=text]
+  #discount-currency: (absent)
+  #discount-scope: select[type=select-one]
+  #discount-cap-per-bill: input[type=text]
+  #discount-cap-per-year: input[type=text]
+  #discount-cap-lifetime: input[type=text]
+  #discount-floor: input[type=text]
+  #discount-precedence: input[type=text]
+  #discount-stacks: input[type=checkbox]
+  #discount-exclusivity: input[type=text]
+  currency value: (absent)
+  scope options: ["Subtotal before taxes","One service","Usage charges only","Base charges only","Named charge codes","All services","Specific services"]
+
+=== w03-step2-filled.png — step 2 filled: 15, currency typed by hand
+
+=== w04-step3-eligibility.png — step 3 Eligibility as it opens (D7 D10 D11)
+← Plans & Rates
+NEW DISCOUNT
+Define an overlay.
+1
+Basics & type
+2
+Value
+3
+Eligibility & verification
+4
+Effective & approval
+5
+Review
+STEP 3 OF 5
+Eligibility & proof
+Who qualifies
+Shown in the Discounts list. Example: Age 65 or over.
+Enrollment*
+Automatic — no application
+Apply and approve
+Apply and approve, with proof
+Verification
+One-time proof at enrollment
+Annual recertification
+Agency file · monthly
+Automatic
+How often it is checked.
+Recertify every (months)
+Blank if it never expires.
+Notice (days)
+Grace (days)
+If recertification lapses
+Notify, then drop the enrollment
+Drop the enrollment silently
+Never expires
+Cancel
+Back
+Continue
+  #discount-eligibility-summary: textarea[type=textarea]
+  #discount-enrolment: select[type=select-one]
+  #discount-verification: select[type=select-one]
+  #discount-recert-months: input[type=text]
+  #discount-recert-notice: input[type=text]
+  #discount-recert-grace: input[type=text]
+  #discount-lapse: select[type=select-one]
+  #discount-proof-before: (absent)
+  enrolment options: ["Automatic — no application","Apply and approve","Apply and approve, with proof"]
+
+=== w05-step4-effective.png — step 4 Effective & approval as it opens (D1 D10)
+← Plans & Rates
+NEW DISCOUNT
+Define an overlay.
+1
+Basics & type
+2
+Value
+3
+Eligibility & verification
+4
+Effective & approval
+5
+Review
+STEP 4 OF 5
+Dates & approval
+Available, not granted. Saving enrolls nobody.
+Effective from
+Effective to
+Blank end date means no end.
+Budget cap
+Blank means no ceiling.
+Budget period
+Monthly
+Annual
+Lifetime
+Budget runs out
+Suspend the discount
+Refuse new enrollments
+Keep granting and go over budget
+Only Suspend changes the status automatically.
+Cancel
+Back
+Continue
+  #discount-effective-from: input[type=date]
+  #discount-effective-to: input[type=date]
+  #discount-budget-cap: input[type=text]
+  #discount-budget-period: select[type=select-one]
+  #discount-exhaustion: select[type=select-one]
+
+=== w06-step5-review.png — step 5 Review (D9)
+← Plans & Rates
+NEW DISCOUNT
+Define an overlay.
+1
+Basics & type
+2
+Value
+3
+Eligibility & verification
+4
+Effective & approval
+5
+Review
+STEP 5 OF 5
+Review
+Nothing here reduces a bill yet. This saves a draft.
+CODE
+WALKPCT
+BILL LINE LABEL
+Walk senior discount
+TYPE
+Percentage
+VALUE
+15
+APPLIES TO
+Subtotal before taxes
+ENROLLMENT
+Apply and approve
+VERIFICATION
+One-time proof at enrollment
+STACKING PRECEDENCE
+Saves as a draft.
+Submit for approval
+Activate
+Cancel
+Back
+Create discount
+REVIEW BUTTONS: ["1Basics & type","2Value","3Eligibility & verification","4Effective & approval","5Review [DISABLED]","Submit for approval [DISABLED]","Activate [DISABLED]","Cancel","Back","Create discount"]
+pressing: Create discount
+SAVED -> http://127.0.0.1:8592/brazosbend/plans-rates/discounts
+
+=== w07-after-save.png — after saving the new discount
+Plans & Rates
+6 plans · 9 rate schedules · 31 charge codes · 7 discounts · 2 taxes & fees · effective 10/01/2026
+History
++ New discount
+Plans
+Rate schedules
+Charge codes
+Discounts
+Taxes & fees
+A discount is an overlay: it reduces what a customer pays without changing the plan's rates. Attaching one to a plan makes it available; the account's enrollment is what grants it.
+All
++ Filter
+▾
+CODE
+▲
+	DISCOUNT	TYPE	VALUE	ELIGIBILITY	VERIFICATION	PLANS	ENROLLED	STATUS	ACTIONS
+AUTOPAY	Autopay discount	Percentage	0.50%	Autopay enrolled	Automatic	1	0	Active	
+CAP	CAP / low-income credit	Fixed amount	25.00	Program enrolment	Agency file · monthly	0	0	Active	
+MILITARY	Veteran discount	Percentage	10.00%	Veteran ID	One-time proof at enrollment	0	0	Draft	
+MUNICIPAL	Municipal account	Percentage	20.00%	Government account	Automatic	1	1	Active	
+PAPERLESS	Paperless billing	Fixed amount	1.00	E-bill on	Automatic	1	0	Active	
+SENIOR	Senior discount	Percentage	15.00%	Age 65+	Annual recertification	0	0	Active	
+WALKPCT	Walk senior discount	Percentage	15.00%	Age 65 or over	One-time proof at enrollment	0	0	Draft	
+1–7 of 7
+Rows per page
+50
+100
+200
+500
+1000
+‹
+›
+WALK DISCOUNT stored as: {"code":"WALKPCT","status":"draft","currency":"USD","value":"15.00%"}
+
+=== d01-autopay-overview.png — details · AUTOPAY (Active, Automatic, on Sample — Residential) · Overview (D19–D28 D30 D33 D34)
+← Plans & Rates
+DISCOUNT · AUTOPAY · PERCENTAGE · V1
+Autopay discount
+Active
+Effective from: 08/01/2026 · A discount is an overlay, not a cloned rate: it references the plan's normal schedules and reduces what is owed. The bill shows the full tariff amount and the reduction as its own line, so the subsidy granted is reportable.
+Fix this version
+Duplicate
+Edit
+Retire
+Overview
+Plans
+Audit
+Submitted and approved by the same person. Recorded here so it is on the record rather than inferred.
+PLANS USING IT
+1
+ENROLLED ACCOUNTS
+0
+accounts with an open enrollment
+OFFERED TO
+75
+75 units on a plan carrying it
+TYPE
+Percentage · Subtotal before taxes
+WHAT IT IS
+DISCOUNT
+Autopay discount
+TYPE
+Percentage
+PROGRAM OWNER
+Billing
+FUNDING SOURCE
+Rate-payer funded
+WHAT IT IS WORTH
+VALUE
+0.50%
+APPLIES TO
+Subtotal before taxes
+SERVICES
+All services
+CAP PER BILL
+—
+CAP PER YEAR
+—
+LIFETIME CAP
+—
+BILL FLOOR
+0.00
+STACKING PRECEDENCE
+40
+BUDGET CAP
+2383.00
+BUDGET REMAINING
+2383.00
+GRANTED TO DATE
+0.00
+WHO QUALIFIES
+Nothing works out a month's subsidy for one program, or how many customers qualify.
+ELIGIBILITY
+Autopay enrolled
+ENROLLMENT
+Automatic
+VERIFICATION
+Automatic
+ACCEPTED PROOF
+—
+RECERTIFICATION
+Never expires
+EFFECTIVE TO
+—
+DETAIL BUTTONS: ["Fix this version","Duplicate [DISABLED]","Edit","Retire [DISABLED]","Overview","Plans","Audit"]
+TABS: ["Overview","Plans","Audit"]
+
+=== d02-autopay-plans.png — details · AUTOPAY · Plans tab (D23 D29)
+← Plans & Rates
+DISCOUNT · AUTOPAY · PERCENTAGE · V1
+Autopay discount
+Active
+Effective from: 08/01/2026 · A discount is an overlay, not a cloned rate: it references the plan's normal schedules and reduces what is owed. The bill shows the full tariff amount and the reduction as its own line, so the subsidy granted is reportable.
+Fix this version
+Duplicate
+Edit
+Retire
+Overview
+Plans
+Audit
+Submitted and approved by the same person. Recorded here so it is on the record rather than inferred.
+PLANS USING IT
+1
+ENROLLED ACCOUNTS
+0
+accounts with an open enrollment
+OFFERED TO
+75
+75 units on a plan carrying it
+TYPE
+Percentage · Subtotal before taxes
+Plans
+The tile above counts the plans that carry this definition. Naming them one by one needs a read that does not exist yet.
+
+=== d03-autopay-audit.png — details · AUTOPAY · Audit tab (D23 D31 D32)
+← Plans & Rates
+DISCOUNT · AUTOPAY · PERCENTAGE · V1
+Autopay discount
+Active
+Effective from: 08/01/2026 · A discount is an overlay, not a cloned rate: it references the plan's normal schedules and reduces what is owed. The bill shows the full tariff amount and the reduction as its own line, so the subsidy granted is reportable.
+Fix this version
+Duplicate
+Edit
+Retire
+Overview
+Plans
+Audit
+Submitted and approved by the same person. Recorded here so it is on the record rather than inferred.
+PLANS USING IT
+1
+ENROLLED ACCOUNTS
+0
+accounts with an open enrollment
+OFFERED TO
+75
+75 units on a plan carrying it
+TYPE
+Percentage · Subtotal before taxes
+AUDIT
+VERSION	EFFECTIVE	VALUE	WHY IT CHANGED	
+DISCARD DRAFT
+V1	08/01/2026	0.50%	First recorded	
+DATED
+Bills always use the version in force on the usage date.
+
+=== d04-cap-overview.png — details · CAP (fixed amount, budget) · Overview (D27)
+← Plans & Rates
+DISCOUNT · CAP · FIXED AMOUNT · V1
+CAP / low-income credit
+Active
+Effective from: 08/01/2026 · A discount is an overlay, not a cloned rate: it references the plan's normal schedules and reduces what is owed. The bill shows the full tariff amount and the reduction as its own line, so the subsidy granted is reportable.
+Fix this version
+Duplicate
+Edit
+Retire
+Overview
+Plans
+Audit
+Submitted and approved by the same person. Recorded here so it is on the record rather than inferred.
+PLANS USING IT
+0
+ENROLLED ACCOUNTS
+0
+accounts with an open enrollment
+OFFERED TO
+0
+0 units on a plan carrying it
+TYPE
+Fixed amount · Subtotal before taxes
+WHAT IT IS
+DISCOUNT
+CAP / low-income credit
+TYPE
+Fixed amount
+PROGRAM OWNER
+City assistance programme
+FUNDING SOURCE
+City programme
+WHAT IT IS WORTH
+VALUE
+25.00
+APPLIES TO
+Subtotal before taxes
+SERVICES
+All services
+CAP PER BILL
+—
+CAP PER YEAR
+—
+LIFETIME CAP
+—
+BILL FLOOR
+0.00
+STACKING PRECEDENCE
+20
+BUDGET CAP
+11400.00
+BUDGET REMAINING
+11400.00
+GRANTED TO DATE
+0.00
+WHO QUALIFIES
+Nothing works out a month's subsidy for one program, or how many customers qualify.
+ELIGIBILITY
+Program enrolment
+ENROLLMENT
+Apply and approve, with proof
+VERIFICATION
+Agency file · monthly
+ACCEPTED PROOF
+Program award letter · Agency file
+RECERTIFICATION
+Every 1 month
+EFFECTIVE TO
+—
+
+=== d05-municipal-overview.png — details · MUNICIPAL (1 enrolled) · Overview — nowhere names the account (D30)
+← Plans & Rates
+DISCOUNT · MUNICIPAL · PERCENTAGE · V1
+Municipal account
+Active
+Effective from: 08/01/2026 · A discount is an overlay, not a cloned rate: it references the plan's normal schedules and reduces what is owed. The bill shows the full tariff amount and the reduction as its own line, so the subsidy granted is reportable.
+Fix this version
+Duplicate
+Edit
+Retire
+Overview
+Plans
+Audit
+Submitted and approved by the same person. Recorded here so it is on the record rather than inferred.
+PLANS USING IT
+1
+ENROLLED ACCOUNTS
+1
+accounts with an open enrollment
+OFFERED TO
+75
+75 units on a plan carrying it
+TYPE
+Percentage · Subtotal before taxes
+WHAT IT IS
+DISCOUNT
+Municipal account
+TYPE
+Percentage
+PROGRAM OWNER
+Customer service
+FUNDING SOURCE
+Rate-payer funded
+WHAT IT IS WORTH
+VALUE
+20.00%
+APPLIES TO
+Subtotal before taxes
+SERVICES
+All services
+CAP PER BILL
+—
+CAP PER YEAR
+—
+LIFETIME CAP
+—
+BILL FLOOR
+0.00
+STACKING PRECEDENCE
+60
+BUDGET CAP
+—
+BUDGET REMAINING
+—
+GRANTED TO DATE
+0.00
+WHO QUALIFIES
+Nothing works out a month's subsidy for one program, or how many customers qualify.
+ELIGIBILITY
+Government account
+ENROLLMENT
+Automatic
+VERIFICATION
+Automatic
+ACCEPTED PROOF
+—
+RECERTIFICATION
+Never expires
+EFFECTIVE TO
+—
+
+=== d06-military-draft.png — details · MILITARY (Draft) · buttons on a draft (D22)
+← Plans & Rates
+DISCOUNT · MILITARY · PERCENTAGE · V1
+Veteran discount
+Draft
+Effective from: 08/01/2026 · A discount is an overlay, not a cloned rate: it references the plan's normal schedules and reduces what is owed. The bill shows the full tariff amount and the reduction as its own line, so the subsidy granted is reportable.
+Submit for approval
+Activate
+Duplicate
+Edit
+Retire
+Overview
+Plans
+Audit
+This filing was never submitted, so no second-approval check ran — and a discount with no budget cap always needs one.
+PLANS USING IT
+0
+ENROLLED ACCOUNTS
+0
+accounts with an open enrollment
+OFFERED TO
+0
+0 units on a plan carrying it
+TYPE
+Percentage · Subtotal before taxes
+WHAT IT IS
+DISCOUNT
+Veteran discount
+TYPE
+Percentage
+PROGRAM OWNER
+Customer service
+FUNDING SOURCE
+Rate-payer funded
+WHAT IT IS WORTH
+VALUE
+10.00%
+APPLIES TO
+Subtotal before taxes
+SERVICES
+All services
+CAP PER BILL
+—
+CAP PER YEAR
+—
+LIFETIME CAP
+—
+BILL FLOOR
+0.00
+STACKING PRECEDENCE
+50
+BUDGET CAP
+—
+BUDGET REMAINING
+—
+GRANTED TO DATE
+0.00
+WHO QUALIFIES
+Nothing works out a month's subsidy for one program, or how many customers qualify.
+ELIGIBILITY
+Veteran ID
+ENROLLMENT
+Apply and approve, with proof
+VERIFICATION
+One-time proof at enrollment
+ACCEPTED PROOF
+Veteran ID
+RECERTIFICATION
+Never expires
+EFFECTIVE TO
+—
+DRAFT DETAIL BUTTONS: ["Submit for approval","Activate","Duplicate [DISABLED]","Edit","Retire [DISABLED]","Overview","Plans","Audit"]
+
+=== d07-walk-draft.png — details · the walk's new discount right after saving (D33)
+← Plans & Rates
+DISCOUNT · WALKPCT · PERCENTAGE · V1
+Walk senior discount
+Draft
+Effective from: 11/01/2026 · A discount is an overlay, not a cloned rate: it references the plan's normal schedules and reduces what is owed. The bill shows the full tariff amount and the reduction as its own line, so the subsidy granted is reportable.
+Submit for approval
+Activate
+Duplicate
+Edit
+Retire
+Overview
+Plans
+Audit
+This filing was never submitted, so no second-approval check ran — and a discount with no budget cap always needs one.
+PLANS USING IT
+0
+ENROLLED ACCOUNTS
+0
+accounts with an open enrollment
+OFFERED TO
+0
+0 units on a plan carrying it
+TYPE
+Percentage · Subtotal before taxes
+WHAT IT IS
+DISCOUNT
+Walk senior discount
+TYPE
+Percentage
+PROGRAM OWNER
+Customer service
+FUNDING SOURCE
+Rate-payer funded
+WHAT IT IS WORTH
+VALUE
+15.00%
+APPLIES TO
+Subtotal before taxes
+SERVICES
+All services
+CAP PER BILL
+—
+CAP PER YEAR
+—
+LIFETIME CAP
+—
+BILL FLOOR
+0.00
+STACKING PRECEDENCE
+100
+BUDGET CAP
+—
+BUDGET REMAINING
+—
+GRANTED TO DATE
+0.00
+WHO QUALIFIES
+Nothing works out a month's subsidy for one program, or how many customers qualify.
+ELIGIBILITY
+Age 65 or over
+ENROLLMENT
+Apply and approve
+VERIFICATION
+One-time proof at enrollment
+ACCEPTED PROOF
+—
+RECERTIFICATION
+Never expires
+EFFECTIVE TO
+—
+NEW DRAFT DETAIL BUTTONS: ["Submit for approval","Activate","Duplicate [DISABLED]","Edit","Retire [DISABLED]","Overview","Plans","Audit"]
+LIVE DETAIL BUTTONS (edit doors): ["Fix this version","Duplicate [DISABLED]","Edit","Retire [DISABLED]","Overview","Plans","Audit"]
+EDIT OPENS -> http://127.0.0.1:8592/brazosbend/plans-rates/discounts/01a1009f-59ba-715b-a4e1-54abe6c3c746/edit
+
+=== e01-edit-opens.png — Edit pressed on live AUTOPAY — step 1 (D35)
+← Plans & Rates
+EDIT DISCOUNT
+Draft a new version of AUTOPAY.
+1
+Basics & type
+2
+Value
+3
+Eligibility & verification
+4
+Effective & approval
+5
+Review
+STEP 1 OF 5
+Basics & type
+Identity fields cannot change here.
+Code*
+Uppercased on save. Example: SENIOR.
+Bill line label*
+What the customer reads.
+Program owner
+Team or agency that runs it.
+Funding source
+Who pays for the subsidy.
+Type*
+Percentage — A share of the scope.
+Fixed amount — A flat sum off.
+Rate override — Bills from another schedule.
+Charge waiver — Removes the whole charge.
+Usage allowance — Free units before pricing.
+Cancel
+Continue
+EDIT step 2: value disabled = false · value = 0.50
+
+=== e02-edit-value.png — Edit · step 2 on a live discount: value editable (D36)
+← Plans & Rates
+EDIT DISCOUNT
+Draft a new version of AUTOPAY.
+1
+Basics & type
+2
+Value
+3
+Eligibility & verification
+4
+Effective & approval
+5
+Review
+STEP 2 OF 5
+Value
+Percentage points*
+0.75 is a 0.75% reduction
+Applies to
+Subtotal before taxes
+One service
+Usage charges only
+Base charges only
+Named charge codes
+All services
+Specific services
+What the reduction is taken from. It never changes the rate itself.
+CAPS
+Blank means uncapped. Zero grants nothing.
+Cap per bill
+Type the amount exactly as it should be stored. It is sent unchanged; the server checks the limits.
+Cap per year
+Type the amount exactly as it should be stored. It is sent unchanged; the server checks the limits.
+Lifetime cap
+Type the amount exactly as it should be stored. It is sent unchanged; the server checks the limits.
+Bill floor
+Blank means no floor. Zero allows a zero bill.
+Stacking precedence
+Lower runs first.
+Stacks with others
+Exclusivity group
+Same group cannot both apply. Blank unless one excludes another.
+Cancel
+Back
+Continue
+EDIT step 4: effective_from = 2026-08-01 disabled=false · effective_to =  disabled=false
+
+=== e03-edit-dates.png — Edit · dates step of a new version: the OLD start pre-filled, nothing about the old version's end (D37)
+← Plans & Rates
+EDIT DISCOUNT
+Draft a new version of AUTOPAY.
+1
+Basics & type
+2
+Value
+3
+Eligibility & verification
+4
+Effective & approval
+5
+Review
+STEP 4 OF 5
+Dates & approval
+Available, not granted. Saving enrolls nobody.
+Effective from
+Effective to
+Blank end date means no end.
+Budget cap
+Blank means no ceiling.
+Budget period
+Monthly
+Annual
+Lifetime
+Budget runs out
+Suspend the discount
+Refuse new enrollments
+Keep granting and go over budget
+Only Suspend changes the status automatically.
+Reason for change*
+Printed on the Versions tab.
+Cancel
+Back
+Continue
+
+=== e04-edit-review.png — Edit · review of the new version: fields only, no old → new, no bill example (D37 D38)
+← Plans & Rates
+EDIT DISCOUNT
+Draft a new version of AUTOPAY.
+1
+Basics & type
+2
+Value
+3
+Eligibility & verification
+4
+Effective & approval
+5
+Review
+STEP 5 OF 5
+Review
+Nothing here reduces a bill yet. This saves a draft.
+CODE
+AUTOPAY
+BILL LINE LABEL
+Autopay discount
+TYPE
+Percentage
+VALUE
+0.75
+IN FORCE NOW
+0.50%
+APPLIES TO
+Subtotal before taxes
+ENROLLMENT
+Automatic — no application
+VERIFICATION
+Automatic
+STACKING PRECEDENCE
+40
+Saves as a draft.
+Submit for approval
+Activate
+Cancel
+Back
+Save new version
+EDIT REVIEW BUTTONS: ["1Basics & type","2Value","3Eligibility & verification","4Effective & approval","5Review [DISABLED]","Submit for approval [DISABLED]","Activate [DISABLED]","Cancel","Back","Save new version"]
+FIX OPENS -> http://127.0.0.1:8592/brazosbend/plans-rates/discounts/01a1009f-59ba-715b-a4e1-54abe6c3c746/edit?correct=1
+
+=== e05-fix-opens.png — Fix this version pressed on live AUTOPAY (D35)
+← Plans & Rates
+EDIT DISCOUNT
+Draft a new version of AUTOPAY.
+1
+Basics & type
+2
+Value
+3
+Eligibility & verification
+4
+Effective & approval
+5
+Review
+STEP 1 OF 5
+Basics & type
+Identity fields cannot change here.
+Code*
+Uppercased on save. Example: SENIOR.
+Bill line label*
+What the customer reads.
+Program owner
+Team or agency that runs it.
+Funding source
+Who pays for the subsidy.
+Type*
+Percentage — A share of the scope.
+Fixed amount — A flat sum off.
+Rate override — Bills from another schedule.
+Charge waiver — Removes the whole charge.
+Usage allowance — Free units before pricing.
+Cancel
+Continue
+
+=== e06-fix-value.png — Fix this version · step 2: value typed over, no reason asked yet (D38)
+
+=== e07-fix-dates.png — Fix this version · dates step: dates locked, reason asked here
+← Plans & Rates
+EDIT DISCOUNT
+Draft a new version of AUTOPAY.
+1
+Basics & type
+2
+Value
+3
+Eligibility & verification
+4
+Effective & approval
+5
+Review
+STEP 4 OF 5
+Dates & approval
+Available, not granted. Saving enrolls nobody.
+Effective from
+A correction keeps these dates.
+Effective to
+A correction keeps these dates.
+Budget cap
+Blank means no ceiling.
+Budget period
+Monthly
+Annual
+Lifetime
+Budget runs out
+Suspend the discount
+Refuse new enrollments
+Keep granting and go over budget
+Only Suspend changes the status automatically.
+Reason for correction*
+Say what was wrong. The dates do not move.
+Bills already sent keep their discount.
+Cancel
+Back
+Continue
+
+=== e08-fix-review.png — Fix this version · review: no before → after, no bill example (D38)
+← Plans & Rates
+EDIT DISCOUNT
+Draft a new version of AUTOPAY.
+1
+Basics & type
+2
+Value
+3
+Eligibility & verification
+4
+Effective & approval
+5
+Review
+STEP 5 OF 5
+Review
+Nothing here reduces a bill yet. This saves a draft.
+CODE
+AUTOPAY
+BILL LINE LABEL
+Autopay discount
+TYPE
+Percentage
+VALUE
+0.05
+IN FORCE NOW
+0.50%
+APPLIES TO
+Subtotal before taxes
+ENROLLMENT
+Automatic — no application
+VERIFICATION
+Automatic
+STACKING PRECEDENCE
+40
+Saves as a draft.
+Submit for approval
+Activate
+Cancel
+Back
+Save new version
+FIX REVIEW BUTTONS: ["1Basics & type","2Value","3Eligibility & verification","4Effective & approval","5Review [DISABLED]","Submit for approval [DISABLED]","Activate [DISABLED]","Cancel","Back","Save new version"]
+FIXED step 2: #discount-currency = input[type=text] · value =  · maxlength = null
+
+=== w08-fixed-step2-currency.png — step 2 of a FIXED amount: currency is a three-letter text box (D3 D4)
+← Plans & Rates
+NEW DISCOUNT
+Define an overlay.
+1
+Basics & type
+2
+Value
+3
+Eligibility & verification
+4
+Effective & approval
+5
+Review
+STEP 2 OF 5
+Value
+Amount off*
+Type the amount exactly as it should be stored. It is sent unchanged; the server checks the limits.
+Currency
+Three letters, the bill's currency.
+Applies to
+Subtotal before taxes
+One service
+Usage charges only
+Base charges only
+Named charge codes
+All services
+Specific services
+What the reduction is taken from. It never changes the rate itself.
+CAPS
+Blank means uncapped. Zero grants nothing.
+Cap per bill
+Type the amount exactly as it should be stored. It is sent unchanged; the server checks the limits.
+Cap per year
+Type the amount exactly as it should be stored. It is sent unchanged; the server checks the limits.
+Lifetime cap
+Type the amount exactly as it should be stored. It is sent unchanged; the server checks the limits.
+Bill floor
+Blank means no floor. Zero allows a zero bill.
+Stacking precedence
+Lower runs first.
+Stacks with others
+Exclusivity group
+Same group cannot both apply. Blank unless one excludes another.
+Cancel
+Back
+Continue
+FIXED step 2 after typing CAD into the currency box: CAD
+
+=== w09-fixed-currency-cad.png — currency box accepts another utility's currency, typed by hand (D4)
+AUTOPAY detail facts: {"enrolment_mode":"automatic","enrolled":0,"offered_units":75,"plans":1}
+AUTOPAY detail keys: id,code,name,type,value,value_display,allowance_unit,currency,eligibility,verification,plans,enrolled,status,programme_owner,funding_source,gl_account_id,gl_account_code,gl_account_name,applies_to,effective_from,version_no,version_status,version_id,report_in_assistance_filing,funding_exhausted_at,granted_to_date,granted_to_date_display,offered_units,effective_to,applies_to_service,applies_to_services,applies_to_charge_codes,cap_per_bill,cap_per_bill_display,cap_per_year,cap_per_year_display,cap_lifetime,cap_lifetime_display,bill_floor_amount,bill_floor_amount_display,stacking_precedence,stacks_with_others,exclusivity_group,enrolment_mode,proof_required,accepted_proof_kinds,proof_before_first_reduction,recertification_months,recertification_notice_days,recertification_grace_days,lapse_behaviour,budget_cap,budget_cap_display,budget_period,exhaustion_behaviour,budget_remaining,budget_remaining_display,second_approval_required,second_approval_threshold,second_approval_threshold_display,self_approved,change_reason,version_submitted,version_corrects,version_correction_reason
+probe account: AC-2026-00053 01a1009f-b769-7191-ab3f-c3fb68ad7031
+POST /accounts/{id}/discounts {programme_id: SENIOR}: 500 {"code":"SYS-INTERNAL","message_key":"errors.sys-internal","params":{},"field_errors":[],"br_ref":null,"trace_id":"3a0de084f2534e26b4809f90bf852e43"}

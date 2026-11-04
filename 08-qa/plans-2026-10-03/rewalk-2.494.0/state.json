@@ -1,0 +1,195 @@
+{
+  "plans": {
+    "PW-RES": "01a105da-7a9b-7df0-bd7f-b0f6451a781d",
+    "PW-MUNI": "01a105da-f732-7c18-9c51-9ef84c626c9a",
+    "PW-COM": "01a105db-72cc-703e-b5ee-9299de321810",
+    "PW-FIRE": "01a105db-996f-7169-b216-e8c342109cb9"
+  },
+  "review": {
+    "PW-RES": "← Plans New plan Save draft & exit ✓ Details ✓ Services ✓ Charges ✓ Billing 5 Review Plan Edit Plan name Plan walk · Residential Code PW-RES Customer classes Residential Description Water, sewer and trash for homes in Brazos Bend. Intended for Owner-occupied premises Notes Customer class is Residential W Water GL 4110 Edit Rate schedule Residential Water — Inclining tiers V1 from 08/01/2026 Base charges BASE-W · Water base service — residential V1 from 01/01/2000 Outside city +25% BASE CHARGES BASE CHARGE MINIMUM Every size $8.00 $15.00 USAGE CHARGES · BLOCK (PER MONTH) RATE 0 kgal – 5 kgal $4.00 per kgal 5 kgal – 15 kgal $6.50 per kgal Over 15 kgal $8.00 per kgal S Sewer GL 4120 Edit Rate schedule Sample — Sewer (% of water) V1 from 08/01/2026 Base charges BASE-S · Sewer base charge V1 from 01/01/2000 Outside city +25% BASE CHARGES BASE CHARGE MINIMUM Every size $9.00 — USAGE CHARGES · SHARE OF ANOTHER SERVICE RATE Each month $5.00 per kgal Share of Water 90.00% T Trash GL 4130 Edit Rate schedule Sample — Trash (monthly, not measured) V1 from 08/01/2026 Base charges BASE-T · Trash base charge V1 from 01/01/2000 Outside city Same price BASE CHARGES BASE CHARGE MINIMUM Every size $0.00 — USAGE CHARGES · FLAT (PER MONTH) RATE Each month $15.00 per cart Charge codes Edit CODE PRICED BY CLASS OR SIZE AMOUNT GL WHEN LATE · Late payment fee V1 Percentage Everyone 1.50% · min $5.00 4200 · Late-fee revenue After the due date RECON · Reconnection fee V1 from 01/01/2000 One amount Everyone $75.00 4610 · Disconnection & reconnection fees Once Taxes 2.00% combined Edit TAX RATE WHAT IS TAXED GL TX State Utility Tax V1 Texas Comptroller of Public Accounts Not charged to this plan's classes 6.25% Usage and base charges 2200-02 · Tax payable — TX State Utility Tax Local · Bexar County V1 Bexar County Tax Office 2.00% Usage and base charges 2200-01 · Tax payable — Local · Bexar County Deposits Edit DEPOSIT PRICED BY CLASS OR SIZE AMOUNT GL DEP-SIZE · Security deposit by meter size V1 from 08/01/2026 Size Water 5/8\" Water 2\" $150.00 $600.00 — Discounts Edit DISCOUNT VALUE OFFERED FROM OFFERED UNTIL GL ENROLLED SENIOR · Senior discount V1 from 08/01/2026 15.00% 11/01/2026 No end 4760 · Customer discounts (contra-revenue) 0 AUTOPAY · Autopay discount V1 from 08/01/2026 0.50% 11/01/2026 10/31/2027 4760 · Customer discounts (contra-revenue) 0 Billing terms Edit Monthly base charges $17.00 Minimum bill $10.00 Budget billing Not offered Dates Starts* Ends Leave empty if it has no end. Back Save as draft Publish plan THIS PLAN $17.00 monthly base charges W S T Name Plan walk · Residential Code PW-RES Classes Residential Services 3 Charge codes 2 Taxes 2.00% Discounts 2 Minimum bill $10.00",
+    "PW-COM": "← Plans New plan Save draft & exit ✓ Details ✓ Services ✓ Charges ✓ Billing 5 Review Plan Edit Plan name Plan walk · Commercial Code PW-COM Customer classes Commercial Description Water and sewer for shops and offices. Intended for At least 25 kW of demand Notes — W Water GL 4110 Edit Rate schedule Sample — Commercial water (flat) V1 from 08/01/2026 Base charges BASE-W-COM · Water base service — commercial V1 from 01/01/2000 Outside city Same price BASE CHARGES BASE CHARGE MINIMUM Every size $15.00 — USAGE CHARGES · FLAT (PER MONTH) RATE Each month $5.20 per kgal S Sewer GL 4120 Edit Rate schedule Sample — Sewer (% of water) V1 from 08/01/2026 Base charges BASE-S · Sewer base charge V1 from 01/01/2000 Outside city Same price BASE CHARGES BASE CHARGE MINIMUM Every size $9.00 — USAGE CHARGES · SHARE OF ANOTHER SERVICE RATE Each month $5.00 per kgal Share of Water 90.00% Charge codes Edit CODE PRICED BY CLASS OR SIZE AMOUNT GL WHEN LATE-CL · Late fee by class V1 from 08/01/2026 Customer class Commercial Residential 2.00% · min $10.00 1.50% · min $5.00 — After the due date Taxes 2.00% combined Edit TAX RATE WHAT IS TAXED GL Local · Bexar County V1 Bexar County Tax Office 2.00% Usage and base charges 2200-01 · Tax payable — Local · Bexar County Deposits Edit DEPOSIT PRICED BY CLASS OR SIZE AMOUNT GL DEPOSIT · Security deposit V1 from 08/01/2026 Customer class Commercial Residential $300.00 $150.00 — Discounts Edit No discounts. Billing terms Edit Monthly base charges $24.00 Minimum bill $25.00 Budget billing Not offered Dates Starts* Ends Leave empty if it has no end. Back Save as draft Publish plan THIS PLAN $24.00 monthly base charges W S Name Plan walk · Commercial Code PW-COM Classes Commercial Services 2 Charge codes 1 Taxes 2.00% Discounts 0 Minimum bill $25.00",
+    "PW-FIRE": "← Plans New plan Save draft & exit ✓ Details ✓ Services ✓ Charges ✓ Billing 5 Review Plan Edit Plan name Plan walk · Fire Code PW-FIRE Customer classes Commercial, Industrial Description — Intended for — Notes — F Fire GL 4155 Edit Rate schedule Sample — Fire capacity V1 from 08/01/2026 Base charges BASE-FIRE · Fire base charge V1 from 01/01/2000 Outside city Same price BASE CHARGES BASE CHARGE MINIMUM Every size $0.00 — USAGE CHARGES · PER LINE, PER MONTH RATE Fire line 2\" $12.00 per connection Fire line 4\" $30.00 per connection Fire line 6\" $60.00 per connection Fire line 8\" $100.00 per connection Fire line 10\" $160.00 per connection Fire line 12\" $230.00 per connection All sizes $0.00 per connection Charge codes Edit CODE PRICED BY CLASS OR SIZE AMOUNT GL WHEN LATE · Late payment fee V1 Percentage Everyone 1.50% · min $5.00 4200 · Late-fee revenue After the due date Taxes Edit No taxes. Deposits Edit No deposits. Discounts Edit No discounts. Billing terms Edit Monthly base charges $0.00 Minimum bill None Budget billing Not offered Dates Starts* Ends Leave empty if it has no end. Back Save as draft Publish plan THIS PLAN $0.00 monthly base charges F Name Plan walk · Fire Code PW-FIRE Classes Commercial, Industrial Services 1 Charge codes 1 Taxes None Discounts 0 Minimum bill —"
+  },
+  "asOfText": "← Plans Plan walk · ResidentialPW-RES Published V1 Residential · 11/01/2026 – No end Edit More ▾ Overview Services3 Charges Billing Units3 Audit Priced as of Today Collapse all ▴ W Water GL 4110 Edit Rate schedule Residential Water — Inclining tiers V2 from 01/01/2027 Base charges BASE-W · Water base service — residential V1 from 01/01/2000 Outside city +25.00% Hide sizes and blocks ▴ BASE CHARGES BASE CHARGE MINIMUM Every size $8.00 $15.00 USAGE CHARGES · BLOCK (PER MONTH) RATE 0 kgal – 5 kgal $4.40 per kgal 5 kgal – 15 kgal $7.15 per kgal Over 15 kgal $8.80 per kgal S Sewer GL 4120 Edit Rate schedule Sample — Sewer (% of water) V1 from 08/01/2026 Base charges BASE-S · Sewer base charge V1 from 01/01/2000 Outside city +25.00% Hide sizes and blocks ▴ BASE CHARGES BASE CHARGE MINIMUM Every size $9.00 — USAGE CHARGES · SHARE OF ANOTHER SERVICE RATE Each month $5.00 per kgal Share of Water 90.00% T Trash GL 4130 Edit Rate schedule Sample — Trash (monthly, not measured) V1 from 08/01/2026 Base charges BASE-T · Trash base charge V1 from 01/01/2000 Outside city Same price Hide sizes and blocks ▴ BASE CHARGES BASE CHARGE MINIMUM Every size $0.00 — USAGE CHARGES · FLAT (PER MONTH) RATE Each month $15.00 per cart Monthly base charges $17.00 Outside-city surcharge 25.00% on Water, Sewer",
+  "bills": {
+    "dec-ruth": "01a105de-c6a4-709d-af2b-ea0bb1adab22",
+    "jan-ruth": "01a105de-d2e2-7256-a0fc-2d1e1fe279d1",
+    "dec-carl": "01a105de-c6bd-73d7-9975-2c16de153887",
+    "jan-carl": "01a105de-d2fb-7544-a7d5-da5637d30aea"
+  },
+  "expect": {
+    "dec-ruth": [
+      "94.35",
+      "20.00",
+      "19.50"
+    ],
+    "jan-ruth": [
+      "98.38",
+      "22.00",
+      "21.45"
+    ],
+    "dec-carl": [
+      "117.94",
+      "25.00",
+      "24.38"
+    ],
+    "jan-carl": [
+      "122.97",
+      "27.50",
+      "26.81"
+    ]
+  },
+  "billText": {
+    "dec-ruth": "← Billing BILL · CYCLE BILL BL-2612-000101 Issued Ruth Alvarez · 11 Pecan Walk Way, Main, Katy TX 77494 · AC-2026-00054 $94.35 due 01/21/2027 · billed 12/30/2026 for 12/01/2026 – 12/31/2026 · Plans walk View the bill as sent Fix this bill Document Charges Sent2 Corrections0 Audit AMOUNT Previous balance $0.00 Payments received $0.00 Current charges $94.35 Total due $94.35 BY SERVICE SERVICE LINES AMOUNT Water 3 $47.50 Sewer 2 $45.00 Charged to the bill, not to a service Tax 1 $1.85 These add up to the bill's total. EVERY CHARGE DESCRIPTION USAGE RATE AMOUNT TAXABLE WATER water usage tier 1 (0-5 kgal) 4110 — Water usage · Residential Water — Inclining tiers · from 2026-08-01 5 kgal $4.00 $20.00 Yes water usage tier 2 (5-15 kgal) 4110 — Water usage · Residential Water — Inclining tiers · from 2026-08-01 3 kgal $6.50 $19.50 Yes water base charge 4115 — Water base · Residential Water — Inclining tiers · from 2026-08-01 — — $8.00 Yes SEWER sewer usage — 90.00% of water volume 4120 — Sewer · Sample — Sewer (% of water) · from 2026-08-01 7.2 kgal $5.00 $36.00 Yes sewer base charge 4120 — Sewer · Sample — Sewer (% of water) · from 2026-08-01 — — $9.00 Yes TAXES & FEES Tax Local · Bexar County Tax · Bexar County Tax Office · 2200-01 — Tax payable — Local · Bexar County — $0.02 $1.85 — Subtotal $92.50 Tax $1.85 Total $94.35 The accounting code on each line is the one that was recorded when the bill was issued. Changing the mapping later never changes an old bill. TAX PAID TO DESCRIPTION AMOUNT Bexar County Tax Office Tax Local · Bexar County $1.85 Total tax $1.85 These add up to the tax. A tax is charged on the bill, not on one service. Nothing records which service a tax belongs to.",
+    "jan-ruth": "← Billing BILL · CYCLE BILL BL-2701-000104 Issued Ruth Alvarez · 11 Pecan Walk Way, Main, Katy TX 77494 · AC-2026-00054 $98.38 due 02/21/2027 · billed 01/30/2027 for 01/01/2027 – 01/31/2027 · Plans walk View the bill as sent Fix this bill Document Charges Sent2 Corrections0 Audit AMOUNT Previous balance $94.35 Payments received $0.00 Current charges $98.38 Total due $192.73 BY SERVICE SERVICE LINES AMOUNT Water 3 $51.45 Sewer 2 $45.00 Charged to the bill, not to a service Tax 1 $1.93 These add up to the bill's total. EVERY CHARGE DESCRIPTION USAGE RATE AMOUNT TAXABLE WATER water usage tier 1 (0-5 kgal) 4110 — Water usage · Residential Water — Inclining tiers · from 2027-01-01 5 kgal $4.40 $22.00 Yes water usage tier 2 (5-15 kgal) 4110 — Water usage · Residential Water — Inclining tiers · from 2027-01-01 3 kgal $7.15 $21.45 Yes water base charge 4115 — Water base · Residential Water — Inclining tiers · from 2027-01-01 — — $8.00 Yes SEWER sewer usage — 90.00% of water volume 4120 — Sewer · Sample — Sewer (% of water) · from 2026-08-01 7.2 kgal $5.00 $36.00 Yes sewer base charge 4120 — Sewer · Sample — Sewer (% of water) · from 2026-08-01 — — $9.00 Yes TAXES & FEES Tax Local · Bexar County Tax · Bexar County Tax Office · 2200-01 — Tax payable — Local · Bexar County — $0.02 $1.93 — Subtotal $96.45 Tax $1.93 Total $98.38 The accounting code on each line is the one that was recorded when the bill was issued. Changing the mapping later never changes an old bill. TAX PAID TO DESCRIPTION AMOUNT Bexar County Tax Office Tax Local · Bexar County $1.93 Total tax $1.93 These add up to the tax. A tax is charged on the bill, not on one service. Nothing records which service a tax belongs to.",
+    "dec-carl": "← Billing BILL · CYCLE BILL BL-2612-000102 Issued Carl Jensen · 13 Pecan Walk Way, Main, Katy TX 77494 · AC-2026-00055 $117.94 due 01/21/2027 · billed 12/30/2026 for 12/01/2026 – 12/31/2026 · Plans walk View the bill as sent Fix this bill Document Charges Sent2 Corrections0 Audit AMOUNT Previous balance $0.00 Payments received $0.00 Current charges $117.94 Total due $117.94 BY SERVICE SERVICE LINES AMOUNT Water 3 $59.38 Sewer 2 $56.25 Charged to the bill, not to a service Tax 1 $2.31 These add up to the bill's total. EVERY CHARGE DESCRIPTION USAGE RATE AMOUNT TAXABLE WATER water usage tier 1 (0-5 kgal) 4110 — Water usage · Residential Water — Inclining tiers · from 2026-08-01 5 kgal $5.00 $25.00 Yes water usage tier 2 (5-15 kgal) 4110 — Water usage · Residential Water — Inclining tiers · from 2026-08-01 3 kgal $8.125 $24.38 Yes water base charge 4115 — Water base · Residential Water — Inclining tiers · from 2026-08-01 — — $10.00 Yes SEWER sewer usage — 90.00% of water volume 4120 — Sewer · Sample — Sewer (% of water) · from 2026-08-01 7.2 kgal $6.25 $45.00 Yes sewer base charge 4120 — Sewer · Sample — Sewer (% of water) · from 2026-08-01 — — $11.25 Yes TAXES & FEES Tax Local · Bexar County Tax · Bexar County Tax Office · 2200-01 — Tax payable — Local · Bexar County — $0.02 $2.31 — Subtotal $115.63 Tax $2.31 Total $117.94 The accounting code on each line is the one that was recorded when the bill was issued. Changing the mapping later never changes an old bill. TAX PAID TO DESCRIPTION AMOUNT Bexar County Tax Office Tax Local · Bexar County $2.31 Total tax $2.31 These add up to the tax. A tax is charged on the bill, not on one service. Nothing records which service a tax belongs to.",
+    "jan-carl": "← Billing BILL · CYCLE BILL BL-2701-000105 Issued Carl Jensen · 13 Pecan Walk Way, Main, Katy TX 77494 · AC-2026-00055 $122.97 due 02/21/2027 · billed 01/30/2027 for 01/01/2027 – 01/31/2027 · Plans walk View the bill as sent Fix this bill Document Charges Sent2 Corrections0 Audit AMOUNT Previous balance $117.94 Payments received $0.00 Current charges $122.97 Total due $240.91 BY SERVICE SERVICE LINES AMOUNT Water 3 $64.31 Sewer 2 $56.25 Charged to the bill, not to a service Tax 1 $2.41 These add up to the bill's total. EVERY CHARGE DESCRIPTION USAGE RATE AMOUNT TAXABLE WATER water usage tier 1 (0-5 kgal) 4110 — Water usage · Residential Water — Inclining tiers · from 2027-01-01 5 kgal $5.50 $27.50 Yes water usage tier 2 (5-15 kgal) 4110 — Water usage · Residential Water — Inclining tiers · from 2027-01-01 3 kgal $8.9375 $26.81 Yes water base charge 4115 — Water base · Residential Water — Inclining tiers · from 2027-01-01 — — $10.00 Yes SEWER sewer usage — 90.00% of water volume 4120 — Sewer · Sample — Sewer (% of water) · from 2026-08-01 7.2 kgal $6.25 $45.00 Yes sewer base charge 4120 — Sewer · Sample — Sewer (% of water) · from 2026-08-01 — — $11.25 Yes TAXES & FEES Tax Local · Bexar County Tax · Bexar County Tax Office · 2200-01 — Tax payable — Local · Bexar County — $0.02 $2.41 — Subtotal $120.56 Tax $2.41 Total $122.97 The accounting code on each line is the one that was recorded when the bill was issued. Changing the mapping later never changes an old bill. TAX PAID TO DESCRIPTION AMOUNT Bexar County Tax Office Tax Local · Bexar County $2.41 Total tax $2.41 These add up to the tax. A tax is charged on the bill, not on one service. Nothing records which service a tax belongs to."
+  },
+  "billApi": {
+    "dec-ruth": {
+      "total": "94.350000",
+      "lines": [
+        [
+          "usage",
+          "water usage tier 1 (0-5 kgal)",
+          "20.000000"
+        ],
+        [
+          "usage",
+          "water usage tier 2 (5-15 kgal)",
+          "19.500000"
+        ],
+        [
+          "base",
+          "water base charge",
+          "8.000000"
+        ],
+        [
+          "usage",
+          "sewer usage — 90.00% of water volume",
+          "36.000000"
+        ],
+        [
+          "base",
+          "sewer base charge",
+          "9.000000"
+        ],
+        [
+          "tax",
+          "Tax Local · Bexar County",
+          "1.850000"
+        ]
+      ]
+    },
+    "jan-ruth": {
+      "total": "98.380000",
+      "lines": [
+        [
+          "usage",
+          "water usage tier 1 (0-5 kgal)",
+          "22.000000"
+        ],
+        [
+          "usage",
+          "water usage tier 2 (5-15 kgal)",
+          "21.450000"
+        ],
+        [
+          "base",
+          "water base charge",
+          "8.000000"
+        ],
+        [
+          "usage",
+          "sewer usage — 90.00% of water volume",
+          "36.000000"
+        ],
+        [
+          "base",
+          "sewer base charge",
+          "9.000000"
+        ],
+        [
+          "tax",
+          "Tax Local · Bexar County",
+          "1.930000"
+        ]
+      ]
+    },
+    "dec-carl": {
+      "total": "117.940000",
+      "lines": [
+        [
+          "usage",
+          "water usage tier 1 (0-5 kgal)",
+          "25.000000"
+        ],
+        [
+          "usage",
+          "water usage tier 2 (5-15 kgal)",
+          "24.380000"
+        ],
+        [
+          "base",
+          "water base charge",
+          "10.000000"
+        ],
+        [
+          "usage",
+          "sewer usage — 90.00% of water volume",
+          "45.000000"
+        ],
+        [
+          "base",
+          "sewer base charge",
+          "11.250000"
+        ],
+        [
+          "tax",
+          "Tax Local · Bexar County",
+          "2.310000"
+        ]
+      ]
+    },
+    "jan-carl": {
+      "total": "122.970000",
+      "lines": [
+        [
+          "usage",
+          "water usage tier 1 (0-5 kgal)",
+          "27.500000"
+        ],
+        [
+          "usage",
+          "water usage tier 2 (5-15 kgal)",
+          "26.810000"
+        ],
+        [
+          "base",
+          "water base charge",
+          "10.000000"
+        ],
+        [
+          "usage",
+          "sewer usage — 90.00% of water volume",
+          "45.000000"
+        ],
+        [
+          "base",
+          "sewer base charge",
+          "11.250000"
+        ],
+        [
+          "tax",
+          "Tax Local · Bexar County",
+          "2.410000"
+        ]
+      ]
+    }
+  },
+  "depAccounts": {
+    "U-00006": "AC-2026-00057",
+    "U-00008": "AC-2026-00058",
+    "U-00011": "AC-2026-00059"
+  }
+}

@@ -1,0 +1,21 @@
+name: Spec open question
+description: An UNKNOWN/PLACEHOLDER that blocks or shapes a build task (routes to product/finance)
+labels: [open-question]
+body:
+  - type: input
+    id: ref
+    attributes: { label: "A17 / B-doc reference", placeholder: "A17 #1 / B4 late-fee grace days" }
+    validations: { required: true }
+  - type: textarea
+    id: question
+    attributes: { label: The question, exactly }
+    validations: { required: true }
+  - type: dropdown
+    id: rank
+    attributes:
+      label: Rank
+      options: [Blocking, Important, Deferrable]
+    validations: { required: true }
+  - type: input
+    id: owner
+    attributes: { label: Decision owner, placeholder: "finance / product" }

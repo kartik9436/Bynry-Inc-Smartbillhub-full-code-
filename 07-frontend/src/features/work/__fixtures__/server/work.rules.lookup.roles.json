@@ -1,0 +1,112 @@
+{
+  "roles": [
+    {
+      "code": "system_admin",
+      "name": "System Admin"
+    },
+    {
+      "code": "billing_clerk",
+      "name": "Billing Clerk"
+    },
+    {
+      "code": "executive",
+      "name": "Executive"
+    },
+    {
+      "code": "field_technician",
+      "name": "Field technician"
+    }
+  ],
+  "permissions": [
+    {
+      "code": "settings_lookups",
+      "label": "Settings & lookup tables",
+      "cells": {
+        "system_admin": "Full",
+        "billing_clerk": "—",
+        "executive": "View",
+        "field_technician": "—"
+      }
+    },
+    {
+      "code": "user_management",
+      "label": "User management",
+      "cells": {
+        "system_admin": "Full",
+        "billing_clerk": "—",
+        "executive": "—",
+        "field_technician": "—"
+      }
+    },
+    {
+      "code": "plans_rates",
+      "label": "Plans & Rates",
+      "cells": {
+        "system_admin": "Full",
+        "billing_clerk": "View",
+        "executive": "View",
+        "field_technician": "—"
+      }
+    },
+    {
+      "code": "premises_accounts",
+      "label": "Premises / Accounts",
+      "cells": {
+        "system_admin": "Full",
+        "billing_clerk": "Full",
+        "executive": "View",
+        "field_technician": "—"
+      }
+    },
+    {
+      "code": "reads_billing_runs",
+      "label": "Reads & Billing runs",
+      "cells": {
+        "system_admin": "Full",
+        "billing_clerk": "Full",
+        "executive": "View",
+        "field_technician": "—"
+      }
+    },
+    {
+      "code": "payments_record",
+      "label": "Payments (record)",
+      "cells": {
+        "system_admin": "Full",
+        "billing_clerk": "Full",
+        "executive": "View",
+        "field_technician": "—"
+      }
+    },
+    {
+      "code": "adjustment_approval",
+      "label": "Adjustment / write-off approval",
+      "cells": {
+        "system_admin": "Approve",
+        "billing_clerk": "Request",
+        "executive": "Approve",
+        "field_technician": "—"
+      }
+    },
+    {
+      "code": "finance_reconcile_export",
+      "label": "Finance / reconcile / export",
+      "cells": {
+        "system_admin": "Full",
+        "billing_clerk": "—",
+        "executive": "Full",
+        "field_technician": "—"
+      }
+    },
+    {
+      "code": "reports",
+      "label": "Reports",
+      "cells": {
+        "system_admin": "Full",
+        "billing_clerk": "Run",
+        "executive": "Full",
+        "field_technician": "—"
+      }
+    }
+  ]
+}

@@ -1,0 +1,2731 @@
+{
+  "W1": {
+    "steps": [
+      {
+        "name": "address step answers",
+        "ok": true,
+        "detail": "WE SERVE THIS ADDRESS"
+      },
+      {
+        "name": "services the address takes",
+        "ok": true,
+        "detail": "water"
+      },
+      {
+        "name": "two files attached on step 3",
+        "ok": true,
+        "detail": "w1-lease.pdf, w1-photo-id.png"
+      },
+      {
+        "name": "check-and-send restates services",
+        "ok": true,
+        "detail": "Water"
+      },
+      {
+        "name": "paperless box arrives unticked",
+        "ok": true,
+        "detail": "unticked"
+      },
+      {
+        "name": "sent",
+        "ok": true,
+        "detail": "200 SR-26-0009"
+      },
+      {
+        "name": "on the clerk's request list",
+        "ok": true,
+        "detail": "SR-26-0009 NOT YET CLASSIFIED Lena Ortiz 14 Alder Run, Katy, TX 77494 10/01/2026 Customer portal 0d — Submitted "
+      },
+      {
+        "name": "request detail: applicant, contact, services",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "request detail: date of birth shown",
+        "ok": true,
+        "detail": "04/12/1988"
+      },
+      {
+        "name": "clerk opens w1-lease.pdf",
+        "ok": true,
+        "detail": "200 application/pdf 223B"
+      },
+      {
+        "name": "clerk opens w1-photo-id.png",
+        "ok": true,
+        "detail": "200 image/png 70B"
+      },
+      {
+        "name": "correction saved and shown (applicant_name)",
+        "ok": true,
+        "detail": "Lena Ortiz → Lena M. Ortiz"
+      },
+      {
+        "name": "clerk picks the property and unit",
+        "ok": true,
+        "detail": "14 Alder Run · U-00002 · Main"
+      },
+      {
+        "name": "request shows the matched premises and unit",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "clerk records the search (no prior customer)",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "approved as move_in",
+        "ok": true,
+        "detail": "/sixrivers/move-ins/new?request=01a0faf2-ce3c-7c74-a750-fd9cc0cf4802"
+      },
+      {
+        "name": "move-in opens on the request's unit",
+        "ok": true,
+        "detail": "14 Alder Run · U-00002"
+      },
+      {
+        "name": "move-in services",
+        "ok": true,
+        "detail": "Water"
+      },
+      {
+        "name": "move-in customer kind prefilled",
+        "ok": true,
+        "detail": "person"
+      },
+      {
+        "name": "move-in class prefilled from the request",
+        "ok": true,
+        "detail": "residential"
+      },
+      {
+        "name": "move-in date of birth prefilled",
+        "ok": true,
+        "detail": "04/12/1988"
+      },
+      {
+        "name": "move-in date prefilled from the request",
+        "ok": true,
+        "detail": "10/23/2026"
+      },
+      {
+        "name": "move-in opening reading(s) entered",
+        "ok": true,
+        "detail": "1 meter(s)"
+      },
+      {
+        "name": "move-in complete",
+        "ok": true,
+        "detail": "AC-2026-00061 · C-00059"
+      },
+      {
+        "name": "clerk's account page shows it Active",
+        "ok": true,
+        "detail": "AC-2026-00061"
+      },
+      {
+        "name": "request page after fulfilment",
+        "ok": true,
+        "detail": "Approved → Move-in MVI-26-0004"
+      },
+      {
+        "name": "new customer enrols on number + ZIP + name and signs in",
+        "ok": true,
+        "detail": "AC-2026-00061 · 77494 · Ortiz"
+      },
+      {
+        "name": "portal: My accounts lists the new account",
+        "ok": true,
+        "detail": "AC-2026-00061"
+      },
+      {
+        "name": "portal: my requests shows the application",
+        "ok": true,
+        "detail": "SR-26-0009"
+      }
+    ],
+    "walk": {
+      "id": "W1",
+      "prem": "A",
+      "addr": "14 Alder Run",
+      "unit": "",
+      "unitLabel": "Main",
+      "who": {
+        "kind": "person",
+        "first": "Lena",
+        "last": "Ortiz",
+        "dob": "1988-04-12",
+        "name": "Lena Ortiz"
+      },
+      "email": "lena.ortiz@example.test",
+      "phone": "(281) 555-0301",
+      "services": [
+        "water"
+      ],
+      "link": null,
+      "master": false,
+      "cls": "residential",
+      "fix": "name",
+      "fixTo": "Lena M. Ortiz"
+    },
+    "shots": [
+      "W1-01-portal-sent.png",
+      "W1-02-clerk-documents.png",
+      "W1-03-approve.png",
+      "W1-04-move-in-review.png",
+      "W1-05-move-in-done.png",
+      "W1-06-clerk-account.png",
+      "W1-06-portal-accounts.png"
+    ],
+    "request_id": "01a0faf2-ce3c-7c74-a750-fd9cc0cf4802",
+    "reference": "SR-26-0009",
+    "token": "248e73a9-aafa-4f40-b826-0544d04b8ee3",
+    "files": [
+      "w1-lease.pdf",
+      "w1-photo-id.png"
+    ],
+    "start": "2026-10-23",
+    "corrected": {
+      "field": "applicant_name",
+      "from": "Lena Ortiz",
+      "to": "Lena M. Ortiz"
+    },
+    "approved_as": "move_in",
+    "landed": "http://127.0.0.1:8462/sixrivers/move-ins/new?request=01a0faf2-ce3c-7c74-a750-fd9cc0cf4802",
+    "account_no": "AC-2026-00061",
+    "portal_login": "w1.login@example.test"
+  },
+  "W2": {
+    "steps": [
+      {
+        "name": "address step answers",
+        "ok": true,
+        "detail": "WE SERVE THIS ADDRESS"
+      },
+      {
+        "name": "services the address takes",
+        "ok": true,
+        "detail": "battery,fire,sewer,solar,trash,water"
+      },
+      {
+        "name": "two files attached on step 3",
+        "ok": true,
+        "detail": "w2-lease.pdf, w2-photo-id.png"
+      },
+      {
+        "name": "check-and-send restates services",
+        "ok": true,
+        "detail": "Water, Sewer, Trash, Solar, Battery, Fire"
+      },
+      {
+        "name": "paperless box arrives unticked",
+        "ok": true,
+        "detail": "unticked"
+      },
+      {
+        "name": "sent",
+        "ok": true,
+        "detail": "200 SR-26-0010"
+      },
+      {
+        "name": "on the clerk's request list",
+        "ok": true,
+        "detail": "SR-26-0010 NOT YET CLASSIFIED Marcus Bell 16 Alder Run, Katy, TX 77494 10/01/2026 Customer portal 0d — Submitted "
+      },
+      {
+        "name": "request detail: applicant, contact, services",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "request detail: date of birth shown",
+        "ok": true,
+        "detail": "03/21/1979"
+      },
+      {
+        "name": "clerk opens w2-lease.pdf",
+        "ok": true,
+        "detail": "200 application/pdf 223B"
+      },
+      {
+        "name": "clerk opens w2-photo-id.png",
+        "ok": true,
+        "detail": "200 image/png 70B"
+      },
+      {
+        "name": "correction saved and shown (requested_start)",
+        "ok": true,
+        "detail": "2026-10-23 → 2026-10-30"
+      },
+      {
+        "name": "clerk picks the property and unit",
+        "ok": true,
+        "detail": "16 Alder Run · U-00003 · Main"
+      },
+      {
+        "name": "request shows the matched premises and unit",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "clerk links the customer on file",
+        "ok": true,
+        "detail": "Marcus Bell"
+      },
+      {
+        "name": "approved as move_in",
+        "ok": true,
+        "detail": "/sixrivers/move-ins/new?request=01a0faf3-7cb7-7d26-9269-a27a967f024b"
+      },
+      {
+        "name": "move-in opens on the request's unit",
+        "ok": true,
+        "detail": "16 Alder Run · U-00003"
+      },
+      {
+        "name": "move-in services",
+        "ok": true,
+        "detail": "Water,Sewer,Trash,Fire,Solar,Battery"
+      },
+      {
+        "name": "move-in customer kind prefilled",
+        "ok": true,
+        "detail": "person"
+      },
+      {
+        "name": "move-in class prefilled from the request",
+        "ok": true,
+        "detail": "commercial"
+      },
+      {
+        "name": "move-in date of birth prefilled",
+        "ok": true,
+        "detail": "03/21/1979"
+      },
+      {
+        "name": "move-in date prefilled from the request",
+        "ok": true,
+        "detail": "10/30/2026"
+      },
+      {
+        "name": "move-in opening reading(s) entered",
+        "ok": true,
+        "detail": "1 meter(s)"
+      },
+      {
+        "name": "move-in complete",
+        "ok": true,
+        "detail": "AC-2026-00062 · C-00053"
+      },
+      {
+        "name": "clerk's account page shows it Active",
+        "ok": true,
+        "detail": "AC-2026-00062"
+      },
+      {
+        "name": "request page after fulfilment",
+        "ok": true,
+        "detail": "Approved → Move-in MVI-26-0006"
+      },
+      {
+        "name": "linked customer signs in with their existing login",
+        "ok": true,
+        "detail": "marcus.bell@example.test"
+      },
+      {
+        "name": "portal: My accounts lists the new account",
+        "ok": true,
+        "detail": "AC-2026-00062"
+      },
+      {
+        "name": "portal: my requests shows the application",
+        "ok": true,
+        "detail": "SR-26-0010"
+      }
+    ],
+    "walk": {
+      "id": "W2",
+      "prem": "A",
+      "addr": "16 Alder Run",
+      "unit": "",
+      "unitLabel": "Main",
+      "who": {
+        "kind": "person",
+        "first": "Marcus",
+        "last": "Bell",
+        "dob": "1979-03-21",
+        "name": "Marcus Bell"
+      },
+      "email": "marcus.applies@example.test",
+      "phone": "(281) 555-0302",
+      "services": [
+        "water",
+        "sewer",
+        "trash",
+        "solar",
+        "battery",
+        "fire"
+      ],
+      "link": "Marcus Bell",
+      "master": false,
+      "cls": "commercial",
+      "fix": "date"
+    },
+    "shots": [
+      "W2-01-portal-sent.png",
+      "W2-02-clerk-documents.png",
+      "W2-03-approve.png",
+      "W2-04-move-in-review.png",
+      "W2-05-move-in-done.png",
+      "W2-06-clerk-account.png",
+      "W2-06-portal-accounts.png"
+    ],
+    "request_id": "01a0faf3-7cb7-7d26-9269-a27a967f024b",
+    "reference": "SR-26-0010",
+    "token": "88e3fee9-b24a-49fa-9f76-4ca417bce87a",
+    "files": [
+      "w2-lease.pdf",
+      "w2-photo-id.png"
+    ],
+    "start": "2026-10-23",
+    "corrected": {
+      "field": "requested_start",
+      "from": "2026-10-23",
+      "to": "2026-10-30"
+    },
+    "approved_as": "move_in",
+    "landed": "http://127.0.0.1:8462/sixrivers/move-ins/new?request=01a0faf3-7cb7-7d26-9269-a27a967f024b",
+    "account_no": "AC-2026-00062"
+  },
+  "W3": {
+    "steps": [
+      {
+        "name": "address step answers",
+        "ok": true,
+        "detail": "WE SERVE THIS ADDRESS"
+      },
+      {
+        "name": "services the address takes",
+        "ok": true,
+        "detail": "sewer"
+      },
+      {
+        "name": "two files attached on step 3",
+        "ok": true,
+        "detail": "w3-lease.pdf, w3-photo-id.png"
+      },
+      {
+        "name": "check-and-send restates services",
+        "ok": true,
+        "detail": "Sewer"
+      },
+      {
+        "name": "paperless box arrives unticked",
+        "ok": true,
+        "detail": "unticked"
+      },
+      {
+        "name": "sent",
+        "ok": true,
+        "detail": "200 SR-26-0011"
+      },
+      {
+        "name": "on the clerk's request list",
+        "ok": true,
+        "detail": "SR-26-0011 NOT YET CLASSIFIED Alder Bakry LLC 18 Alder Run, Katy, TX 77494 10/01/2026 Customer portal 0d — Submitted "
+      },
+      {
+        "name": "request detail: applicant, contact, services",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "request detail: Tax ID last four shown",
+        "ok": true,
+        "detail": "•••• 0003"
+      },
+      {
+        "name": "clerk opens w3-lease.pdf",
+        "ok": true,
+        "detail": "200 application/pdf 223B"
+      },
+      {
+        "name": "clerk opens w3-photo-id.png",
+        "ok": true,
+        "detail": "200 image/png 70B"
+      },
+      {
+        "name": "correction saved and shown (applicant_name)",
+        "ok": true,
+        "detail": "Alder Bakry LLC → Alder Bakery LLC"
+      },
+      {
+        "name": "clerk picks the property and unit",
+        "ok": true,
+        "detail": "18 Alder Run · U-00004 · Main"
+      },
+      {
+        "name": "request shows the matched premises and unit",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "clerk records the search (no prior customer)",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "approved as move_in",
+        "ok": true,
+        "detail": "/sixrivers/move-ins/new?request=01a0faf4-29e1-7ca6-8bfb-1ae81ac526c1"
+      },
+      {
+        "name": "clerk adds a common area (Laundry) so the master has shared space",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "master account created",
+        "ok": true,
+        "detail": "AC-2026-00063"
+      },
+      {
+        "name": "clerk's account page shows it Active",
+        "ok": true,
+        "detail": "AC-2026-00063"
+      },
+      {
+        "name": "request page after fulfilment",
+        "ok": true,
+        "detail": "Approved → Move-in MVI-26-0008"
+      },
+      {
+        "name": "new customer enrols on number + ZIP + name and signs in",
+        "ok": true,
+        "detail": "AC-2026-00063 · 77494 · Alder Bakery LLC"
+      },
+      {
+        "name": "portal: My accounts lists the new account",
+        "ok": true,
+        "detail": "AC-2026-00063"
+      },
+      {
+        "name": "portal: my requests shows the application",
+        "ok": true,
+        "detail": "SR-26-0011"
+      }
+    ],
+    "walk": {
+      "id": "W3",
+      "prem": "A",
+      "addr": "18 Alder Run",
+      "unit": "",
+      "unitLabel": "Main",
+      "who": {
+        "kind": "business",
+        "company": "Alder Bakry LLC",
+        "tax": "74-2000003",
+        "name": "Alder Bakry LLC"
+      },
+      "email": "books@alderbakery.test",
+      "phone": "(281) 555-0303",
+      "services": [
+        "sewer"
+      ],
+      "link": null,
+      "master": true,
+      "cls": "institutional",
+      "fix": "name",
+      "fixTo": "Alder Bakery LLC"
+    },
+    "shots": [
+      "W3-01-portal-sent.png",
+      "W3-02-clerk-documents.png",
+      "W3-03-approve.png",
+      "W3-04-master-form.png",
+      "W3-05-master-done.png",
+      "W3-06-clerk-account.png",
+      "W3-06-portal-accounts.png"
+    ],
+    "request_id": "01a0faf4-29e1-7ca6-8bfb-1ae81ac526c1",
+    "reference": "SR-26-0011",
+    "token": "926c3d98-050e-4014-8ff8-401dbb1f59ed",
+    "files": [
+      "w3-lease.pdf",
+      "w3-photo-id.png"
+    ],
+    "start": "2026-10-23",
+    "corrected": {
+      "field": "applicant_name",
+      "from": "Alder Bakry LLC",
+      "to": "Alder Bakery LLC"
+    },
+    "approved_as": "move_in",
+    "landed": "http://127.0.0.1:8462/sixrivers/move-ins/new?request=01a0faf4-29e1-7ca6-8bfb-1ae81ac526c1",
+    "account_no": "AC-2026-00063",
+    "portal_login": "w3.login@example.test"
+  },
+  "W4": {
+    "steps": [
+      {
+        "name": "address step answers",
+        "ok": true,
+        "detail": "WE SERVE THIS ADDRESS"
+      },
+      {
+        "name": "services the address takes",
+        "ok": true,
+        "detail": "battery,fire,sewer,solar,trash,water"
+      },
+      {
+        "name": "two files attached on step 3",
+        "ok": true,
+        "detail": "w4-lease.pdf, w4-photo-id.png"
+      },
+      {
+        "name": "check-and-send restates services",
+        "ok": true,
+        "detail": "Water, Sewer, Trash, Solar, Battery, Fire"
+      },
+      {
+        "name": "paperless box arrives unticked",
+        "ok": true,
+        "detail": "unticked"
+      },
+      {
+        "name": "sent",
+        "ok": true,
+        "detail": "200 SR-26-0012"
+      },
+      {
+        "name": "on the clerk's request list",
+        "ok": true,
+        "detail": "SR-26-0012 NOT YET CLASSIFIED Alder Freight Co 20 Alder Run, Katy, TX 77494 10/01/2026 Customer portal 0d — Submitted "
+      },
+      {
+        "name": "request detail: applicant, contact, services",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "request detail: Tax ID last four shown",
+        "ok": true,
+        "detail": "•••• 0004"
+      },
+      {
+        "name": "clerk opens w4-lease.pdf",
+        "ok": true,
+        "detail": "200 application/pdf 223B"
+      },
+      {
+        "name": "clerk opens w4-photo-id.png",
+        "ok": true,
+        "detail": "200 image/png 70B"
+      },
+      {
+        "name": "correction saved and shown (requested_start)",
+        "ok": true,
+        "detail": "2026-10-23 → 2026-10-30"
+      },
+      {
+        "name": "clerk picks the property and unit",
+        "ok": true,
+        "detail": "20 Alder Run · U-00005 · Main"
+      },
+      {
+        "name": "request shows the matched premises and unit",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "clerk links the customer on file",
+        "ok": true,
+        "detail": "Alder Freight Co"
+      },
+      {
+        "name": "approved as move_in",
+        "ok": true,
+        "detail": "/sixrivers/move-ins/new?request=01a0faf4-c41a-7d1c-9229-5d9606f5f74c"
+      },
+      {
+        "name": "move-in opens on the request's unit",
+        "ok": true,
+        "detail": "20 Alder Run · U-00005"
+      },
+      {
+        "name": "move-in services",
+        "ok": true,
+        "detail": "Water,Sewer,Trash,Fire,Solar,Battery"
+      },
+      {
+        "name": "move-in customer kind prefilled",
+        "ok": true,
+        "detail": "company"
+      },
+      {
+        "name": "move-in class prefilled from the request",
+        "ok": true,
+        "detail": "industrial"
+      },
+      {
+        "name": "move-in date prefilled from the request",
+        "ok": true,
+        "detail": "10/30/2026"
+      },
+      {
+        "name": "move-in opening reading(s) entered",
+        "ok": true,
+        "detail": "1 meter(s)"
+      },
+      {
+        "name": "move-in complete",
+        "ok": true,
+        "detail": "AC-2026-00064 · C-00054"
+      },
+      {
+        "name": "clerk's account page shows it Active",
+        "ok": true,
+        "detail": "AC-2026-00064"
+      },
+      {
+        "name": "request page after fulfilment",
+        "ok": true,
+        "detail": "Approved → Move-in MVI-26-0010"
+      },
+      {
+        "name": "linked customer signs in with their existing login",
+        "ok": true,
+        "detail": "ap@alderfreight.test"
+      },
+      {
+        "name": "portal: My accounts lists the new account",
+        "ok": true,
+        "detail": "AC-2026-00064"
+      },
+      {
+        "name": "portal: my requests shows the application",
+        "ok": true,
+        "detail": "SR-26-0012"
+      }
+    ],
+    "walk": {
+      "id": "W4",
+      "prem": "A",
+      "addr": "20 Alder Run",
+      "unit": "",
+      "unitLabel": "Main",
+      "who": {
+        "kind": "business",
+        "company": "Alder Freight Co",
+        "tax": "74-1000004",
+        "name": "Alder Freight Co"
+      },
+      "email": "ap@alderfreight.test",
+      "phone": "(281) 555-0304",
+      "services": [
+        "water",
+        "sewer",
+        "trash",
+        "solar",
+        "battery",
+        "fire"
+      ],
+      "link": "Alder Freight Co",
+      "master": false,
+      "cls": "industrial",
+      "fix": "date"
+    },
+    "shots": [
+      "W4-01-portal-sent.png",
+      "W4-02-clerk-documents.png",
+      "W4-03-approve.png",
+      "W4-04-move-in-review.png",
+      "W4-05-move-in-done.png",
+      "W4-06-clerk-account.png",
+      "W4-06-portal-accounts.png"
+    ],
+    "request_id": "01a0faf4-c41a-7d1c-9229-5d9606f5f74c",
+    "reference": "SR-26-0012",
+    "token": "b596bb17-09d7-4090-bb53-c7f71613554c",
+    "files": [
+      "w4-lease.pdf",
+      "w4-photo-id.png"
+    ],
+    "start": "2026-10-23",
+    "corrected": {
+      "field": "requested_start",
+      "from": "2026-10-23",
+      "to": "2026-10-30"
+    },
+    "approved_as": "move_in",
+    "landed": "http://127.0.0.1:8462/sixrivers/move-ins/new?request=01a0faf4-c41a-7d1c-9229-5d9606f5f74c",
+    "account_no": "AC-2026-00064"
+  },
+  "W5": {
+    "steps": [
+      {
+        "name": "address step answers",
+        "ok": true,
+        "detail": "WE SERVE THIS ADDRESS"
+      },
+      {
+        "name": "services the address takes",
+        "ok": true,
+        "detail": "trash"
+      },
+      {
+        "name": "two files attached on step 3",
+        "ok": true,
+        "detail": "w5-lease.pdf, w5-photo-id.png"
+      },
+      {
+        "name": "check-and-send restates services",
+        "ok": true,
+        "detail": "Trash"
+      },
+      {
+        "name": "paperless box arrives unticked",
+        "ok": true,
+        "detail": "unticked"
+      },
+      {
+        "name": "sent",
+        "ok": true,
+        "detail": "200 SR-26-0013"
+      },
+      {
+        "name": "on the clerk's request list",
+        "ok": true,
+        "detail": "SR-26-0013 NOT YET CLASSIFIED Nadia Rahmen 400 Heron Court, Katy, TX 77494 · Unit 2 10/01/2026 Customer portal 0d — Submitted "
+      },
+      {
+        "name": "request detail: applicant, contact, services",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "request detail: date of birth shown",
+        "ok": true,
+        "detail": "11/02/1985"
+      },
+      {
+        "name": "clerk opens w5-lease.pdf",
+        "ok": true,
+        "detail": "200 application/pdf 223B"
+      },
+      {
+        "name": "clerk opens w5-photo-id.png",
+        "ok": true,
+        "detail": "200 image/png 70B"
+      },
+      {
+        "name": "correction saved and shown (applicant_name)",
+        "ok": true,
+        "detail": "Nadia Rahmen → Nadia Rahman"
+      },
+      {
+        "name": "clerk picks the property and unit",
+        "ok": true,
+        "detail": "400 Heron Court · U-00007 · Unit 2"
+      },
+      {
+        "name": "request shows the matched premises and unit",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "clerk links the customer on file",
+        "ok": true,
+        "detail": "Nadia Rahman"
+      },
+      {
+        "name": "approved as move_in",
+        "ok": true,
+        "detail": "/sixrivers/move-ins/new?request=01a0faf5-799b-7d63-a4e8-942e7aa2fcc7"
+      },
+      {
+        "name": "move-in opens on the request's unit",
+        "ok": true,
+        "detail": "400 Heron Court · U-00007"
+      },
+      {
+        "name": "move-in services",
+        "ok": true,
+        "detail": "Trash"
+      },
+      {
+        "name": "move-in customer kind prefilled",
+        "ok": true,
+        "detail": "person"
+      },
+      {
+        "name": "move-in class prefilled from the request",
+        "ok": true,
+        "detail": "municipal"
+      },
+      {
+        "name": "move-in date of birth prefilled",
+        "ok": true,
+        "detail": "11/02/1985"
+      },
+      {
+        "name": "move-in date prefilled from the request",
+        "ok": true,
+        "detail": "10/23/2026"
+      },
+      {
+        "name": "move-in complete",
+        "ok": true,
+        "detail": "AC-2026-00065 · C-00055"
+      },
+      {
+        "name": "clerk's account page shows it Active",
+        "ok": true,
+        "detail": "AC-2026-00065"
+      },
+      {
+        "name": "request page after fulfilment",
+        "ok": true,
+        "detail": "Approved → Move-in MVI-26-0012"
+      },
+      {
+        "name": "linked customer signs in with their existing login",
+        "ok": true,
+        "detail": "nadia.rahman@example.test"
+      },
+      {
+        "name": "portal: My accounts lists the new account",
+        "ok": true,
+        "detail": "AC-2026-00065"
+      },
+      {
+        "name": "portal: my requests shows the application",
+        "ok": true,
+        "detail": "SR-26-0013"
+      }
+    ],
+    "walk": {
+      "id": "W5",
+      "prem": "B",
+      "addr": "400 Heron Court",
+      "unit": "Unit 2",
+      "unitLabel": "Unit 2",
+      "who": {
+        "kind": "person",
+        "first": "Nadia",
+        "last": "Rahmen",
+        "dob": "1985-11-02",
+        "name": "Nadia Rahmen"
+      },
+      "email": "nadia.applies@example.test",
+      "phone": "(281) 555-0305",
+      "services": [
+        "trash"
+      ],
+      "link": "Nadia Rahman",
+      "master": false,
+      "cls": "municipal",
+      "fix": "name",
+      "fixTo": "Nadia Rahman"
+    },
+    "shots": [
+      "W5-01-portal-sent.png",
+      "W5-02-clerk-documents.png",
+      "W5-03-approve.png",
+      "W5-04-move-in-review.png",
+      "W5-05-move-in-done.png",
+      "W5-06-clerk-account.png",
+      "W5-06-portal-accounts.png"
+    ],
+    "request_id": "01a0faf5-799b-7d63-a4e8-942e7aa2fcc7",
+    "reference": "SR-26-0013",
+    "token": "98eb2a43-d1f2-472e-a1ed-7aebca4e822b",
+    "files": [
+      "w5-lease.pdf",
+      "w5-photo-id.png"
+    ],
+    "start": "2026-10-23",
+    "corrected": {
+      "field": "applicant_name",
+      "from": "Nadia Rahmen",
+      "to": "Nadia Rahman"
+    },
+    "approved_as": "move_in",
+    "landed": "http://127.0.0.1:8462/sixrivers/move-ins/new?request=01a0faf5-799b-7d63-a4e8-942e7aa2fcc7",
+    "account_no": "AC-2026-00065"
+  },
+  "W6": {
+    "steps": [
+      {
+        "name": "address step answers",
+        "ok": true,
+        "detail": "WE SERVE THIS ADDRESS"
+      },
+      {
+        "name": "services the address takes",
+        "ok": true,
+        "detail": "battery,fire,sewer,solar,trash,water"
+      },
+      {
+        "name": "two files attached on step 3",
+        "ok": true,
+        "detail": "w6-lease.pdf, w6-photo-id.png"
+      },
+      {
+        "name": "check-and-send restates services",
+        "ok": true,
+        "detail": "Water, Sewer, Trash, Solar, Battery, Fire"
+      },
+      {
+        "name": "paperless box arrives unticked",
+        "ok": true,
+        "detail": "unticked"
+      },
+      {
+        "name": "sent",
+        "ok": true,
+        "detail": "200 SR-26-0014"
+      },
+      {
+        "name": "on the clerk's request list",
+        "ok": true,
+        "detail": "SR-26-0014 NOT YET CLASSIFIED Owen Price 402 Heron Court, Katy, TX 77494 · Unit 2 10/01/2026 Customer portal 0d — Submitted "
+      },
+      {
+        "name": "request detail: applicant, contact, services",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "request detail: date of birth shown",
+        "ok": true,
+        "detail": "06/30/1992"
+      },
+      {
+        "name": "clerk opens w6-lease.pdf",
+        "ok": true,
+        "detail": "200 application/pdf 223B"
+      },
+      {
+        "name": "clerk opens w6-photo-id.png",
+        "ok": true,
+        "detail": "200 image/png 70B"
+      },
+      {
+        "name": "correction saved and shown (requested_start)",
+        "ok": true,
+        "detail": "2026-10-23 → 2026-10-30"
+      },
+      {
+        "name": "clerk picks the property and unit",
+        "ok": true,
+        "detail": "402 Heron Court · U-00010 · Unit 2"
+      },
+      {
+        "name": "request shows the matched premises and unit",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "clerk records the search (no prior customer)",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "approved as move_in",
+        "ok": true,
+        "detail": "/sixrivers/move-ins/new?request=01a0faf6-2aa1-7f2e-bc06-f766ec8fe77c"
+      },
+      {
+        "name": "move-in opens on the request's unit",
+        "ok": true,
+        "detail": "402 Heron Court · U-00010"
+      },
+      {
+        "name": "move-in services",
+        "ok": true,
+        "detail": "Water,Sewer,Trash,Fire,Solar,Battery"
+      },
+      {
+        "name": "move-in customer kind prefilled",
+        "ok": true,
+        "detail": "person"
+      },
+      {
+        "name": "move-in class prefilled from the request",
+        "ok": true,
+        "detail": "agricultural"
+      },
+      {
+        "name": "move-in date of birth prefilled",
+        "ok": true,
+        "detail": "06/30/1992"
+      },
+      {
+        "name": "move-in date prefilled from the request",
+        "ok": true,
+        "detail": "10/30/2026"
+      },
+      {
+        "name": "move-in opening reading(s) entered",
+        "ok": true,
+        "detail": "1 meter(s)"
+      },
+      {
+        "name": "move-in complete",
+        "ok": true,
+        "detail": "AC-2026-00066 · C-00061"
+      },
+      {
+        "name": "clerk's account page shows it Active",
+        "ok": true,
+        "detail": "AC-2026-00066"
+      },
+      {
+        "name": "request page after fulfilment",
+        "ok": true,
+        "detail": "Approved → Move-in MVI-26-0014"
+      },
+      {
+        "name": "new customer enrols on number + ZIP + name and signs in",
+        "ok": true,
+        "detail": "AC-2026-00066 · 77494 · Price"
+      },
+      {
+        "name": "portal: My accounts lists the new account",
+        "ok": true,
+        "detail": "AC-2026-00066"
+      },
+      {
+        "name": "portal: my requests shows the application",
+        "ok": true,
+        "detail": "SR-26-0014"
+      }
+    ],
+    "walk": {
+      "id": "W6",
+      "prem": "B",
+      "addr": "402 Heron Court",
+      "unit": "Unit 2",
+      "unitLabel": "Unit 2",
+      "who": {
+        "kind": "person",
+        "first": "Owen",
+        "last": "Price",
+        "dob": "1992-06-30",
+        "name": "Owen Price"
+      },
+      "email": "owen.price@example.test",
+      "phone": "(281) 555-0306",
+      "services": [
+        "water",
+        "sewer",
+        "trash",
+        "solar",
+        "battery",
+        "fire"
+      ],
+      "link": null,
+      "master": false,
+      "cls": "agricultural",
+      "fix": "date"
+    },
+    "shots": [
+      "W6-01-portal-sent.png",
+      "W6-02-clerk-documents.png",
+      "W6-03-approve.png",
+      "W6-04-move-in-review.png",
+      "W6-05-move-in-done.png",
+      "W6-06-clerk-account.png",
+      "W6-06-portal-accounts.png"
+    ],
+    "request_id": "01a0faf6-2aa1-7f2e-bc06-f766ec8fe77c",
+    "reference": "SR-26-0014",
+    "token": "7d1f47b5-e2b0-471d-93f8-cf8da944e04f",
+    "files": [
+      "w6-lease.pdf",
+      "w6-photo-id.png"
+    ],
+    "start": "2026-10-23",
+    "corrected": {
+      "field": "requested_start",
+      "from": "2026-10-23",
+      "to": "2026-10-30"
+    },
+    "approved_as": "move_in",
+    "landed": "http://127.0.0.1:8462/sixrivers/move-ins/new?request=01a0faf6-2aa1-7f2e-bc06-f766ec8fe77c",
+    "account_no": "AC-2026-00066",
+    "portal_login": "w6.login@example.test"
+  },
+  "W7": {
+    "steps": [
+      {
+        "name": "address step answers",
+        "ok": true,
+        "detail": "WE SERVE THIS ADDRESS"
+      },
+      {
+        "name": "services the address takes",
+        "ok": true,
+        "detail": "fire"
+      },
+      {
+        "name": "two files attached on step 3",
+        "ok": true,
+        "detail": "w7-lease.pdf, w7-photo-id.png"
+      },
+      {
+        "name": "check-and-send restates services",
+        "ok": true,
+        "detail": "Fire"
+      },
+      {
+        "name": "paperless box arrives unticked",
+        "ok": true,
+        "detail": "unticked"
+      },
+      {
+        "name": "sent",
+        "ok": true,
+        "detail": "200 SR-26-0015"
+      },
+      {
+        "name": "on the clerk's request list",
+        "ok": true,
+        "detail": "SR-26-0015 NOT YET CLASSIFIED Heron Fire Suply Inc 404 Heron Court, Katy, TX 77494 · Unit 3 10/01/2026 Customer portal 0d — Submitted "
+      },
+      {
+        "name": "request detail: applicant, contact, services",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "request detail: Tax ID last four shown",
+        "ok": true,
+        "detail": "•••• 0007"
+      },
+      {
+        "name": "clerk opens w7-lease.pdf",
+        "ok": true,
+        "detail": "200 application/pdf 223B"
+      },
+      {
+        "name": "clerk opens w7-photo-id.png",
+        "ok": true,
+        "detail": "200 image/png 70B"
+      },
+      {
+        "name": "correction saved and shown (applicant_name)",
+        "ok": true,
+        "detail": "Heron Fire Suply Inc → Heron Fire Supply Inc"
+      },
+      {
+        "name": "clerk picks the property and unit",
+        "ok": true,
+        "detail": "404 Heron Court · U-00014 · Unit 3"
+      },
+      {
+        "name": "request shows the matched premises and unit",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "clerk records the search (no prior customer)",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "approved as move_in",
+        "ok": true,
+        "detail": "/sixrivers/move-ins/new?request=01a0faf6-e90e-702b-8988-c3b47e974b69"
+      },
+      {
+        "name": "move-in opens on the request's unit",
+        "ok": true,
+        "detail": "404 Heron Court · U-00014"
+      },
+      {
+        "name": "move-in services",
+        "ok": true,
+        "detail": "Fire"
+      },
+      {
+        "name": "move-in customer kind prefilled",
+        "ok": true,
+        "detail": "company"
+      },
+      {
+        "name": "move-in class prefilled from the request",
+        "ok": true,
+        "detail": "builder_developer"
+      },
+      {
+        "name": "move-in date prefilled from the request",
+        "ok": true,
+        "detail": "10/23/2026"
+      },
+      {
+        "name": "move-in complete",
+        "ok": true,
+        "detail": "AC-2026-00067 · C-00062"
+      },
+      {
+        "name": "clerk's account page shows it Active",
+        "ok": true,
+        "detail": "AC-2026-00067"
+      },
+      {
+        "name": "request page after fulfilment",
+        "ok": true,
+        "detail": "Approved → Move-in MVI-26-0016"
+      },
+      {
+        "name": "new customer enrols on number + ZIP + name and signs in",
+        "ok": true,
+        "detail": "AC-2026-00067 · 77494 · Heron Fire Supply Inc"
+      },
+      {
+        "name": "portal: My accounts lists the new account",
+        "ok": true,
+        "detail": "AC-2026-00067"
+      },
+      {
+        "name": "portal: my requests shows the application",
+        "ok": true,
+        "detail": "SR-26-0015"
+      }
+    ],
+    "walk": {
+      "id": "W7",
+      "prem": "B",
+      "addr": "404 Heron Court",
+      "unit": "Unit 3",
+      "unitLabel": "Unit 3",
+      "who": {
+        "kind": "business",
+        "company": "Heron Fire Suply Inc",
+        "tax": "74-2000007",
+        "name": "Heron Fire Suply Inc"
+      },
+      "email": "office@heronfire.test",
+      "phone": "(281) 555-0307",
+      "services": [
+        "fire"
+      ],
+      "link": null,
+      "master": false,
+      "cls": "builder_developer",
+      "fix": "name",
+      "fixTo": "Heron Fire Supply Inc"
+    },
+    "shots": [
+      "W7-01-portal-sent.png",
+      "W7-02-clerk-documents.png",
+      "W7-03-approve.png",
+      "W7-04-move-in-review.png",
+      "W7-05-move-in-done.png",
+      "W7-06-clerk-account.png",
+      "W7-06-portal-accounts.png"
+    ],
+    "request_id": "01a0faf6-e90e-702b-8988-c3b47e974b69",
+    "reference": "SR-26-0015",
+    "token": "0f0204e4-10e2-4082-b68f-ac88d4994da6",
+    "files": [
+      "w7-lease.pdf",
+      "w7-photo-id.png"
+    ],
+    "start": "2026-10-23",
+    "corrected": {
+      "field": "applicant_name",
+      "from": "Heron Fire Suply Inc",
+      "to": "Heron Fire Supply Inc"
+    },
+    "approved_as": "move_in",
+    "landed": "http://127.0.0.1:8462/sixrivers/move-ins/new?request=01a0faf6-e90e-702b-8988-c3b47e974b69",
+    "account_no": "AC-2026-00067",
+    "portal_login": "w7.login@example.test"
+  },
+  "W8": {
+    "steps": [
+      {
+        "name": "address step answers",
+        "ok": true,
+        "detail": "WE SERVE THIS ADDRESS"
+      },
+      {
+        "name": "services the address takes",
+        "ok": true,
+        "detail": "battery,fire,sewer,solar,trash,water"
+      },
+      {
+        "name": "two files attached on step 3",
+        "ok": true,
+        "detail": "w8-lease.pdf, w8-photo-id.png"
+      },
+      {
+        "name": "check-and-send restates services",
+        "ok": true,
+        "detail": "Water, Sewer, Trash, Solar, Battery, Fire"
+      },
+      {
+        "name": "paperless box arrives unticked",
+        "ok": true,
+        "detail": "unticked"
+      },
+      {
+        "name": "sent",
+        "ok": true,
+        "detail": "200 SR-26-0016"
+      },
+      {
+        "name": "on the clerk's request list",
+        "ok": true,
+        "detail": "SR-26-0016 NOT YET CLASSIFIED Heron Court Partners LLC 406 Heron Court, Katy, TX 77494 · Unit 1 10/01/2026 Customer portal 0d — Submitted "
+      },
+      {
+        "name": "request detail: applicant, contact, services",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "request detail: Tax ID last four shown",
+        "ok": true,
+        "detail": "•••• 0008"
+      },
+      {
+        "name": "clerk opens w8-lease.pdf",
+        "ok": true,
+        "detail": "200 application/pdf 223B"
+      },
+      {
+        "name": "clerk opens w8-photo-id.png",
+        "ok": true,
+        "detail": "200 image/png 70B"
+      },
+      {
+        "name": "correction saved and shown (requested_start)",
+        "ok": true,
+        "detail": "2026-10-23 → 2026-10-30"
+      },
+      {
+        "name": "clerk picks the property and unit",
+        "ok": true,
+        "detail": "406 Heron Court · U-00015 · Unit 1"
+      },
+      {
+        "name": "request shows the matched premises and unit",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "clerk links the customer on file",
+        "ok": true,
+        "detail": "Heron Court Partners LLC"
+      },
+      {
+        "name": "approved as move_in",
+        "ok": true,
+        "detail": "/sixrivers/move-ins/new?request=01a0faf7-a41a-7b12-a539-f4633beb2dd1"
+      },
+      {
+        "name": "clerk adds a common area (Laundry) so the master has shared space",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "master account created",
+        "ok": true,
+        "detail": "AC-2026-00068"
+      },
+      {
+        "name": "clerk's account page shows it Active",
+        "ok": true,
+        "detail": "AC-2026-00068"
+      },
+      {
+        "name": "request page after fulfilment",
+        "ok": true,
+        "detail": "Approved → Move-in MVI-26-0018"
+      },
+      {
+        "name": "linked customer signs in with their existing login",
+        "ok": true,
+        "detail": "ops@heroncourt.test"
+      },
+      {
+        "name": "portal: My accounts lists the new account",
+        "ok": true,
+        "detail": "AC-2026-00068"
+      },
+      {
+        "name": "portal: my requests shows the application",
+        "ok": true,
+        "detail": "SR-26-0016"
+      }
+    ],
+    "walk": {
+      "id": "W8",
+      "prem": "B",
+      "addr": "406 Heron Court",
+      "unit": "Unit 1",
+      "unitLabel": "Unit 1",
+      "who": {
+        "kind": "business",
+        "company": "Heron Court Partners LLC",
+        "tax": "74-1000008",
+        "name": "Heron Court Partners LLC"
+      },
+      "email": "ops.applies@heroncourt.test",
+      "phone": "(281) 555-0308",
+      "services": [
+        "water",
+        "sewer",
+        "trash",
+        "solar",
+        "battery",
+        "fire"
+      ],
+      "link": "Heron Court Partners LLC",
+      "master": true,
+      "cls": "commercial",
+      "fix": "date"
+    },
+    "shots": [
+      "W8-01-portal-sent.png",
+      "W8-02-clerk-documents.png",
+      "W8-03-approve.png",
+      "W8-04-master-form.png",
+      "W8-05-master-done.png",
+      "W8-06-clerk-account.png",
+      "W8-06-portal-accounts.png"
+    ],
+    "request_id": "01a0faf7-a41a-7b12-a539-f4633beb2dd1",
+    "reference": "SR-26-0016",
+    "token": "27b4095d-c2c1-4a8a-b060-aac857e85eb9",
+    "files": [
+      "w8-lease.pdf",
+      "w8-photo-id.png"
+    ],
+    "start": "2026-10-23",
+    "corrected": {
+      "field": "requested_start",
+      "from": "2026-10-23",
+      "to": "2026-10-30"
+    },
+    "approved_as": "move_in",
+    "landed": "http://127.0.0.1:8462/sixrivers/move-ins/new?request=01a0faf7-a41a-7b12-a539-f4633beb2dd1",
+    "account_no": "AC-2026-00068"
+  },
+  "W9": {
+    "steps": [
+      {
+        "name": "address step answers",
+        "ok": true,
+        "detail": "a person will look at it"
+      },
+      {
+        "name": "ticked services (address not held)",
+        "ok": true,
+        "detail": "solar"
+      },
+      {
+        "name": "two files attached on step 3",
+        "ok": true,
+        "detail": "w9-lease.pdf, w9-photo-id.png"
+      },
+      {
+        "name": "check-and-send restates services",
+        "ok": true,
+        "detail": "Solar"
+      },
+      {
+        "name": "paperless box arrives unticked",
+        "ok": true,
+        "detail": "unticked"
+      },
+      {
+        "name": "sent",
+        "ok": true,
+        "detail": "200 SR-26-0017"
+      },
+      {
+        "name": "on the clerk's request list",
+        "ok": true,
+        "detail": "SR-26-0017 NOT YET CLASSIFIED Priya Naer 77 Juniper Bend 10/01/2026 Customer portal 0d — Submitted "
+      },
+      {
+        "name": "request detail: applicant, contact, services",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "request detail: date of birth shown",
+        "ok": true,
+        "detail": "01/15/1990"
+      },
+      {
+        "name": "clerk opens w9-lease.pdf",
+        "ok": true,
+        "detail": "200 application/pdf 223B"
+      },
+      {
+        "name": "clerk opens w9-photo-id.png",
+        "ok": true,
+        "detail": "200 image/png 70B"
+      },
+      {
+        "name": "correction saved and shown (applicant_name)",
+        "ok": true,
+        "detail": "Priya Naer → Priya Nair"
+      },
+      {
+        "name": "clerk records the search (no prior customer)",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "approved as new_connection",
+        "ok": true,
+        "detail": "/sixrivers/connections/new?build=01a0faf8-6c62-757d-a113-6504fe196126"
+      },
+      {
+        "name": "build owner prefilled from the request",
+        "ok": true,
+        "detail": "Priya Nair"
+      },
+      {
+        "name": "build step 1: new customer",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "build step 2: services already carried from the request",
+        "ok": true,
+        "detail": "solar"
+      },
+      {
+        "name": "build step 3: device and size offered to the clerk",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "build created",
+        "ok": true,
+        "detail": "CON-26-0129"
+      },
+      {
+        "name": "move-in: clerk picks the new unit",
+        "ok": true,
+        "detail": "77 Juniper Bend · 1"
+      },
+      {
+        "name": "move-in services",
+        "ok": true,
+        "detail": "Solar"
+      },
+      {
+        "name": "move-in customer kind prefilled",
+        "ok": true,
+        "detail": "person"
+      },
+      {
+        "name": "move-in class prefilled from the request",
+        "ok": true,
+        "detail": "residential"
+      },
+      {
+        "name": "move-in date of birth prefilled",
+        "ok": true,
+        "detail": "01/15/1990"
+      },
+      {
+        "name": "move-in date prefilled from the request",
+        "ok": true,
+        "detail": "10/23/2026"
+      },
+      {
+        "name": "move-in complete",
+        "ok": true,
+        "detail": "AC-2026-00070 · C-00063"
+      },
+      {
+        "name": "clerk's account page shows it Active",
+        "ok": true,
+        "detail": "AC-2026-00070"
+      },
+      {
+        "name": "request page after fulfilment",
+        "ok": true,
+        "detail": "Approved → Build CON-26-0129"
+      },
+      {
+        "name": "new customer enrols on number + ZIP + name and signs in",
+        "ok": true,
+        "detail": "AC-2026-00070 · 77494 · Nair"
+      },
+      {
+        "name": "portal: My accounts lists the new account",
+        "ok": true,
+        "detail": "AC-2026-00070"
+      },
+      {
+        "name": "portal: my requests shows the application",
+        "ok": true,
+        "detail": "SR-26-0017"
+      }
+    ],
+    "walk": {
+      "id": "W9",
+      "prem": "C",
+      "addr": "77 Juniper Bend",
+      "unit": "",
+      "unitLabel": "1",
+      "who": {
+        "kind": "person",
+        "first": "Priya",
+        "last": "Naer",
+        "dob": "1990-01-15",
+        "name": "Priya Naer"
+      },
+      "email": "priya.nair@example.test",
+      "phone": "(281) 555-0309",
+      "services": [
+        "solar"
+      ],
+      "link": null,
+      "master": false,
+      "cls": "residential",
+      "fix": "name",
+      "fixTo": "Priya Nair"
+    },
+    "shots": [
+      "W9-01-portal-sent.png",
+      "W9-02-clerk-documents.png",
+      "W9-03-approve.png",
+      "W9-04-build-units.png",
+      "W9-05-build-review.png",
+      "W9-04-move-in-review.png",
+      "W9-05-move-in-done.png",
+      "W9-06-clerk-account.png",
+      "W9-06-portal-accounts.png"
+    ],
+    "request_id": "01a0faf8-3f88-7df6-b2ec-790f929d1413",
+    "reference": "SR-26-0017",
+    "token": "be96cfef-c346-4685-ae10-bdcba8f50c43",
+    "files": [
+      "w9-lease.pdf",
+      "w9-photo-id.png"
+    ],
+    "start": "2026-10-23",
+    "corrected": {
+      "field": "applicant_name",
+      "from": "Priya Naer",
+      "to": "Priya Nair"
+    },
+    "approved_as": "new_connection",
+    "landed": "http://127.0.0.1:8462/sixrivers/connections/new?build=01a0faf8-6c62-757d-a113-6504fe196126",
+    "connection": "CON-26-0129",
+    "build_owner_account": "AC-2026-00069",
+    "account_no": "AC-2026-00070",
+    "portal_login": "w9.login@example.test"
+  },
+  "W10": {
+    "steps": [
+      {
+        "name": "address step answers",
+        "ok": true,
+        "detail": "a person will look at it"
+      },
+      {
+        "name": "ticked services (address not held)",
+        "ok": true,
+        "detail": "water,sewer,trash,solar,battery,fire"
+      },
+      {
+        "name": "two files attached on step 3",
+        "ok": true,
+        "detail": "w10-lease.pdf, w10-photo-id.png"
+      },
+      {
+        "name": "check-and-send restates services",
+        "ok": true,
+        "detail": "Water, Sewer, Trash, Solar, Battery, Fire"
+      },
+      {
+        "name": "paperless box arrives unticked",
+        "ok": true,
+        "detail": "unticked"
+      },
+      {
+        "name": "sent",
+        "ok": true,
+        "detail": "200 SR-26-0018"
+      },
+      {
+        "name": "on the clerk's request list",
+        "ok": true,
+        "detail": "SR-26-0018 NOT YET CLASSIFIED Tomas Vega 79 Juniper Bend 10/01/2026 Customer portal 0d — Submitted "
+      },
+      {
+        "name": "request detail: applicant, contact, services",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "request detail: date of birth shown",
+        "ok": true,
+        "detail": "08/08/1983"
+      },
+      {
+        "name": "clerk opens w10-lease.pdf",
+        "ok": true,
+        "detail": "200 application/pdf 224B"
+      },
+      {
+        "name": "clerk opens w10-photo-id.png",
+        "ok": true,
+        "detail": "200 image/png 70B"
+      },
+      {
+        "name": "correction saved and shown (requested_start)",
+        "ok": true,
+        "detail": "2026-10-23 → 2026-10-30"
+      },
+      {
+        "name": "clerk links the customer on file",
+        "ok": true,
+        "detail": "Tomas Vega"
+      },
+      {
+        "name": "approved as new_connection",
+        "ok": true,
+        "detail": "/sixrivers/connections/new?build=01a0faf9-71a2-7c8c-b511-cf0730fc1934"
+      },
+      {
+        "name": "build owner prefilled from the request",
+        "ok": true,
+        "detail": "Tomas Vega"
+      },
+      {
+        "name": "build step 1 already names the linked customer",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "build step 2: services already carried from the request",
+        "ok": true,
+        "detail": "water,sewer,trash,solar,battery,fire"
+      },
+      {
+        "name": "build step 3: device and size offered to the clerk",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "build created",
+        "ok": true,
+        "detail": "CON-26-0130"
+      },
+      {
+        "name": "move-in: clerk picks the new unit",
+        "ok": true,
+        "detail": "79 Juniper Bend · 1"
+      },
+      {
+        "name": "move-in services",
+        "ok": true,
+        "detail": "Water,Battery,Fire,Sewer,Solar,Trash"
+      },
+      {
+        "name": "move-in customer kind prefilled",
+        "ok": true,
+        "detail": "person"
+      },
+      {
+        "name": "move-in class prefilled from the request",
+        "ok": true,
+        "detail": "municipal"
+      },
+      {
+        "name": "move-in date of birth prefilled",
+        "ok": true,
+        "detail": "08/08/1983"
+      },
+      {
+        "name": "move-in date prefilled from the request",
+        "ok": true,
+        "detail": "10/30/2026"
+      },
+      {
+        "name": "move-in opening reading(s) entered",
+        "ok": true,
+        "detail": "1 meter(s)"
+      },
+      {
+        "name": "move-in complete",
+        "ok": true,
+        "detail": "AC-2026-00072 · C-00057"
+      },
+      {
+        "name": "clerk's account page shows it Active",
+        "ok": true,
+        "detail": "AC-2026-00072"
+      },
+      {
+        "name": "request page after fulfilment",
+        "ok": true,
+        "detail": "Approved → Build CON-26-0130"
+      },
+      {
+        "name": "linked customer signs in with their existing login",
+        "ok": true,
+        "detail": "tomas.vega@example.test"
+      },
+      {
+        "name": "portal: My accounts lists the new account",
+        "ok": true,
+        "detail": "AC-2026-00072"
+      },
+      {
+        "name": "portal: my requests shows the application",
+        "ok": true,
+        "detail": "SR-26-0018"
+      }
+    ],
+    "walk": {
+      "id": "W10",
+      "prem": "C",
+      "addr": "79 Juniper Bend",
+      "unit": "",
+      "unitLabel": "1",
+      "who": {
+        "kind": "person",
+        "first": "Tomas",
+        "last": "Vega",
+        "dob": "1983-08-08",
+        "name": "Tomas Vega"
+      },
+      "email": "tomas.applies@example.test",
+      "phone": "(281) 555-0310",
+      "services": [
+        "water",
+        "sewer",
+        "trash",
+        "solar",
+        "battery",
+        "fire"
+      ],
+      "link": "Tomas Vega",
+      "master": false,
+      "cls": "municipal",
+      "fix": "date"
+    },
+    "shots": [
+      "W10-01-portal-sent.png",
+      "W10-02-clerk-documents.png",
+      "W10-03-approve.png",
+      "W10-04-build-units.png",
+      "W10-05-build-review.png",
+      "W10-04-move-in-review.png",
+      "W10-05-move-in-done.png",
+      "W10-06-clerk-account.png",
+      "W10-06-portal-accounts.png"
+    ],
+    "request_id": "01a0faf9-3f4a-76e9-a9ac-9deeeddf0625",
+    "reference": "SR-26-0018",
+    "token": "d8de8a62-ad85-4ac2-88fd-3ea21223c4bc",
+    "files": [
+      "w10-lease.pdf",
+      "w10-photo-id.png"
+    ],
+    "start": "2026-10-23",
+    "corrected": {
+      "field": "requested_start",
+      "from": "2026-10-23",
+      "to": "2026-10-30"
+    },
+    "approved_as": "new_connection",
+    "landed": "http://127.0.0.1:8462/sixrivers/connections/new?build=01a0faf9-71a2-7c8c-b511-cf0730fc1934",
+    "connection": "CON-26-0130",
+    "build_owner_account": "AC-2026-00071",
+    "account_no": "AC-2026-00072"
+  },
+  "W11": {
+    "steps": [
+      {
+        "name": "address step answers",
+        "ok": true,
+        "detail": "a person will look at it"
+      },
+      {
+        "name": "ticked services (address not held)",
+        "ok": true,
+        "detail": "battery"
+      },
+      {
+        "name": "two files attached on step 3",
+        "ok": true,
+        "detail": "w11-lease.pdf, w11-photo-id.png"
+      },
+      {
+        "name": "check-and-send restates services",
+        "ok": true,
+        "detail": "Battery"
+      },
+      {
+        "name": "paperless box arrives unticked",
+        "ok": true,
+        "detail": "unticked"
+      },
+      {
+        "name": "sent",
+        "ok": true,
+        "detail": "200 SR-26-0019"
+      },
+      {
+        "name": "on the clerk's request list",
+        "ok": true,
+        "detail": "SR-26-0019 NOT YET CLASSIFIED Kestrel Energy Coop 81 Juniper Bend 10/01/2026 Customer portal 0d — Submitted "
+      },
+      {
+        "name": "request detail: applicant, contact, services",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "request detail: Tax ID last four shown",
+        "ok": true,
+        "detail": "•••• 0011"
+      },
+      {
+        "name": "clerk opens w11-lease.pdf",
+        "ok": true,
+        "detail": "200 application/pdf 224B"
+      },
+      {
+        "name": "clerk opens w11-photo-id.png",
+        "ok": true,
+        "detail": "200 image/png 70B"
+      },
+      {
+        "name": "correction saved and shown (applicant_name)",
+        "ok": true,
+        "detail": "Kestrel Energy Coop → Kestrel Energy Co-op"
+      },
+      {
+        "name": "clerk links the customer on file",
+        "ok": true,
+        "detail": "Kestrel Energy Co-op"
+      },
+      {
+        "name": "approved as new_connection",
+        "ok": true,
+        "detail": "/sixrivers/connections/new?build=01a0fafa-6119-734e-901c-deb6d0001dfa"
+      },
+      {
+        "name": "build owner prefilled from the request",
+        "ok": true,
+        "detail": "Kestrel Energy Co-op"
+      },
+      {
+        "name": "build step 1 already names the linked customer",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "build step 2: services already carried from the request",
+        "ok": true,
+        "detail": "battery"
+      },
+      {
+        "name": "build step 3: device and size offered to the clerk",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "build created",
+        "ok": true,
+        "detail": "CON-26-0131"
+      },
+      {
+        "name": "owner's master account opened by the build",
+        "ok": true,
+        "detail": "AC-2026-00073"
+      },
+      {
+        "name": "clerk's account page shows it Active",
+        "ok": true,
+        "detail": "AC-2026-00073"
+      },
+      {
+        "name": "request page after fulfilment",
+        "ok": true,
+        "detail": "Approved → Build CON-26-0131"
+      },
+      {
+        "name": "linked customer signs in with their existing login",
+        "ok": true,
+        "detail": "office@kestrel.test"
+      },
+      {
+        "name": "portal: My accounts lists the new account",
+        "ok": true,
+        "detail": "AC-2026-00073"
+      },
+      {
+        "name": "portal: my requests shows the application",
+        "ok": true,
+        "detail": "SR-26-0019"
+      }
+    ],
+    "walk": {
+      "id": "W11",
+      "prem": "C",
+      "addr": "81 Juniper Bend",
+      "unit": "",
+      "unitLabel": "1",
+      "who": {
+        "kind": "business",
+        "company": "Kestrel Energy Coop",
+        "tax": "74-1000011",
+        "name": "Kestrel Energy Coop"
+      },
+      "email": "office.applies@kestrel.test",
+      "phone": "(281) 555-0311",
+      "services": [
+        "battery"
+      ],
+      "link": "Kestrel Energy Co-op",
+      "master": true,
+      "cls": "agricultural",
+      "fix": "name",
+      "fixTo": "Kestrel Energy Co-op"
+    },
+    "shots": [
+      "W11-01-portal-sent.png",
+      "W11-02-clerk-documents.png",
+      "W11-03-approve.png",
+      "W11-04-build-units.png",
+      "W11-05-build-review.png",
+      "W11-06-clerk-account.png",
+      "W11-06-portal-accounts.png"
+    ],
+    "request_id": "01a0fafa-3075-715e-9bfd-55b159fbc529",
+    "reference": "SR-26-0019",
+    "token": "3914cf4f-d679-4313-aa62-64be105e922c",
+    "files": [
+      "w11-lease.pdf",
+      "w11-photo-id.png"
+    ],
+    "start": "2026-10-23",
+    "corrected": {
+      "field": "applicant_name",
+      "from": "Kestrel Energy Coop",
+      "to": "Kestrel Energy Co-op"
+    },
+    "approved_as": "new_connection",
+    "landed": "http://127.0.0.1:8462/sixrivers/connections/new?build=01a0fafa-6119-734e-901c-deb6d0001dfa",
+    "connection": "CON-26-0131",
+    "account_no": "AC-2026-00073"
+  },
+  "W12": {
+    "steps": [
+      {
+        "name": "address step answers",
+        "ok": true,
+        "detail": "a person will look at it"
+      },
+      {
+        "name": "ticked services (address not held)",
+        "ok": true,
+        "detail": "water,sewer,trash,solar,battery,fire"
+      },
+      {
+        "name": "two files attached on step 3",
+        "ok": true,
+        "detail": "w12-lease.pdf, w12-photo-id.png"
+      },
+      {
+        "name": "check-and-send restates services",
+        "ok": true,
+        "detail": "Water, Sewer, Trash, Solar, Battery, Fire"
+      },
+      {
+        "name": "paperless box arrives unticked",
+        "ok": true,
+        "detail": "unticked"
+      },
+      {
+        "name": "sent",
+        "ok": true,
+        "detail": "200 SR-26-0020"
+      },
+      {
+        "name": "on the clerk's request list",
+        "ok": true,
+        "detail": "SR-26-0020 NOT YET CLASSIFIED Juniper Foods Co 83 Juniper Bend 10/01/2026 Customer portal 0d — Submitted "
+      },
+      {
+        "name": "request detail: applicant, contact, services",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "request detail: Tax ID last four shown",
+        "ok": true,
+        "detail": "•••• 0012"
+      },
+      {
+        "name": "clerk opens w12-lease.pdf",
+        "ok": true,
+        "detail": "200 application/pdf 224B"
+      },
+      {
+        "name": "clerk opens w12-photo-id.png",
+        "ok": true,
+        "detail": "200 image/png 70B"
+      },
+      {
+        "name": "correction saved and shown (requested_start)",
+        "ok": true,
+        "detail": "2026-10-23 → 2026-10-30"
+      },
+      {
+        "name": "clerk records the search (no prior customer)",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "approved as new_connection",
+        "ok": true,
+        "detail": "/sixrivers/connections/new?build=01a0fafb-0fd7-7d31-a596-ddb97e2ed0e8"
+      },
+      {
+        "name": "build owner prefilled from the request",
+        "ok": true,
+        "detail": "Juniper Foods Co"
+      },
+      {
+        "name": "build step 1: new customer",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "build step 2: services already carried from the request",
+        "ok": true,
+        "detail": "water,sewer,trash,solar,battery,fire"
+      },
+      {
+        "name": "build step 3: device and size offered to the clerk",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "build created",
+        "ok": true,
+        "detail": "CON-26-0132"
+      },
+      {
+        "name": "move-in: clerk picks the new unit",
+        "ok": true,
+        "detail": "83 Juniper Bend · 1"
+      },
+      {
+        "name": "move-in services",
+        "ok": true,
+        "detail": "Water,Battery,Fire,Sewer,Solar,Trash"
+      },
+      {
+        "name": "move-in customer kind prefilled",
+        "ok": true,
+        "detail": "company"
+      },
+      {
+        "name": "move-in class prefilled from the request",
+        "ok": true,
+        "detail": "industrial"
+      },
+      {
+        "name": "move-in date prefilled from the request",
+        "ok": true,
+        "detail": "10/30/2026"
+      },
+      {
+        "name": "move-in opening reading(s) entered",
+        "ok": true,
+        "detail": "1 meter(s)"
+      },
+      {
+        "name": "move-in complete",
+        "ok": true,
+        "detail": "AC-2026-00075 · C-00064"
+      },
+      {
+        "name": "clerk's account page shows it Active",
+        "ok": true,
+        "detail": "AC-2026-00075"
+      },
+      {
+        "name": "request page after fulfilment",
+        "ok": true,
+        "detail": "Approved → Build CON-26-0132"
+      },
+      {
+        "name": "new customer enrols on number + ZIP + name and signs in",
+        "ok": true,
+        "detail": "AC-2026-00075 · 77494 · Juniper Foods Co"
+      },
+      {
+        "name": "portal: My accounts lists the new account",
+        "ok": true,
+        "detail": "AC-2026-00075"
+      },
+      {
+        "name": "portal: my requests shows the application",
+        "ok": true,
+        "detail": "SR-26-0020"
+      }
+    ],
+    "walk": {
+      "id": "W12",
+      "prem": "C",
+      "addr": "83 Juniper Bend",
+      "unit": "",
+      "unitLabel": "1",
+      "who": {
+        "kind": "business",
+        "company": "Juniper Foods Co",
+        "tax": "74-2000012",
+        "name": "Juniper Foods Co"
+      },
+      "email": "ap@juniperfoods.test",
+      "phone": "(281) 555-0312",
+      "services": [
+        "water",
+        "sewer",
+        "trash",
+        "solar",
+        "battery",
+        "fire"
+      ],
+      "link": null,
+      "master": false,
+      "cls": "industrial",
+      "fix": "date"
+    },
+    "shots": [
+      "W12-01-portal-sent.png",
+      "W12-02-clerk-documents.png",
+      "W12-03-approve.png",
+      "W12-04-build-units.png",
+      "W12-05-build-review.png",
+      "W12-04-move-in-review.png",
+      "W12-05-move-in-done.png",
+      "W12-06-clerk-account.png",
+      "W12-06-portal-accounts.png"
+    ],
+    "request_id": "01a0fafa-def0-75f2-9d7d-332a51694757",
+    "reference": "SR-26-0020",
+    "token": "506b2ebb-2ca1-4234-aec4-53c0d645cfe6",
+    "files": [
+      "w12-lease.pdf",
+      "w12-photo-id.png"
+    ],
+    "start": "2026-10-23",
+    "corrected": {
+      "field": "requested_start",
+      "from": "2026-10-23",
+      "to": "2026-10-30"
+    },
+    "approved_as": "new_connection",
+    "landed": "http://127.0.0.1:8462/sixrivers/connections/new?build=01a0fafb-0fd7-7d31-a596-ddb97e2ed0e8",
+    "connection": "CON-26-0132",
+    "build_owner_account": "AC-2026-00074",
+    "account_no": "AC-2026-00075",
+    "portal_login": "w12.login@example.test"
+  },
+  "W13": {
+    "steps": [
+      {
+        "name": "address step answers",
+        "ok": true,
+        "detail": "WE SERVE THIS ADDRESS"
+      },
+      {
+        "name": "services the address takes",
+        "ok": true,
+        "detail": "battery,fire,sewer,solar,trash,water"
+      },
+      {
+        "name": "two files attached on step 3",
+        "ok": true,
+        "detail": "w13-lease.pdf, w13-photo-id.png"
+      },
+      {
+        "name": "check-and-send restates services",
+        "ok": true,
+        "detail": "Water, Sewer, Trash, Solar, Battery, Fire"
+      },
+      {
+        "name": "paperless box arrives unticked",
+        "ok": true,
+        "detail": "unticked"
+      },
+      {
+        "name": "sent",
+        "ok": true,
+        "detail": "200 SR-26-0021"
+      },
+      {
+        "name": "on the clerk's request list",
+        "ok": true,
+        "detail": "SR-26-0021 NOT YET CLASSIFIED Sam Okafor 88 Riverbend Way, Katy, TX 77494 10/02/2026 Customer portal 0d — Submitted "
+      },
+      {
+        "name": "request detail: applicant, contact, services",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "request detail: date of birth shown",
+        "ok": true,
+        "detail": "02/02/1991"
+      },
+      {
+        "name": "clerk opens w13-lease.pdf",
+        "ok": true,
+        "detail": "200 application/pdf 224B"
+      },
+      {
+        "name": "clerk opens w13-photo-id.png",
+        "ok": true,
+        "detail": "200 image/png 70B"
+      },
+      {
+        "name": "the legacy government class is not offered on a new request",
+        "ok": true,
+        "detail": "residential, commercial, industrial, agricultural, institutional, municipal, builder_developer"
+      },
+      {
+        "name": "request declined and says so",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "customer's Track page shows the refusal",
+        "ok": true,
+        "detail": "WHERE IT STANDS Reference SR-26-0021 Reported 10/02/2026 00:00 Now REFUSED The status and the dates. No account details, no names, no balances — a reference is not a login."
+      },
+      {
+        "name": "a refused request offers no Add a document",
+        "ok": true,
+        "detail": "not offered"
+      }
+    ],
+    "walk": {
+      "id": "W13",
+      "prem": "A",
+      "addr": "88 Riverbend Way",
+      "unit": "",
+      "who": {
+        "kind": "person",
+        "first": "Sam",
+        "last": "Okafor",
+        "dob": "1991-02-02",
+        "name": "Sam Okafor"
+      },
+      "email": "w13@example.test",
+      "phone": "(281) 555-0399",
+      "services": [
+        "water",
+        "sewer",
+        "trash",
+        "solar",
+        "battery",
+        "fire"
+      ],
+      "link": null,
+      "master": false,
+      "cls": "residential"
+    },
+    "shots": [
+      "W13-01-portal-sent.png",
+      "W13-02-clerk-documents.png",
+      "W13-03-refuse.png",
+      "W13-04-refused.png",
+      "W13-05-portal-track.png"
+    ],
+    "request_id": "01a0fafb-d830-7ee4-9e3d-4a3b4e594248",
+    "reference": "SR-26-0021",
+    "token": "ed8da2cf-40b5-449c-8b47-60e6a33f110b",
+    "files": [
+      "w13-lease.pdf",
+      "w13-photo-id.png"
+    ],
+    "start": "2026-10-23"
+  },
+  "W14": {
+    "steps": [
+      {
+        "name": "address step answers",
+        "ok": true,
+        "detail": "WE SERVE THIS ADDRESS"
+      },
+      {
+        "name": "services the address takes",
+        "ok": true,
+        "detail": "battery,fire,sewer,solar,trash,water"
+      },
+      {
+        "name": "two files attached on step 3",
+        "ok": true,
+        "detail": "w14-lease.pdf, w14-photo-id.png"
+      },
+      {
+        "name": "check-and-send restates services",
+        "ok": true,
+        "detail": "Water, Sewer, Trash, Solar, Battery, Fire"
+      },
+      {
+        "name": "paperless box arrives unticked",
+        "ok": true,
+        "detail": "unticked"
+      },
+      {
+        "name": "sent",
+        "ok": true,
+        "detail": "200 SR-26-0022"
+      },
+      {
+        "name": "on the clerk's request list",
+        "ok": true,
+        "detail": "SR-26-0022 NOT YET CLASSIFIED Ama Boateng 88 Riverbend Way, Katy, TX 77494 10/02/2026 Customer portal 0d — Submitted "
+      },
+      {
+        "name": "request detail: applicant, contact, services",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "request detail: date of birth shown",
+        "ok": true,
+        "detail": "02/02/1991"
+      },
+      {
+        "name": "clerk opens w14-lease.pdf",
+        "ok": true,
+        "detail": "200 application/pdf 224B"
+      },
+      {
+        "name": "clerk opens w14-photo-id.png",
+        "ok": true,
+        "detail": "200 image/png 70B"
+      },
+      {
+        "name": "clerk asks for more",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "customer's Track page says more is needed",
+        "ok": true,
+        "detail": "WHERE IT STANDS Reference SR-26-0022 Reported 10/02/2026 00:00 Now MORE INFO NEEDED The status and the dates. No account details, no names, no balances — a reference is not a login."
+      },
+      {
+        "name": "customer's Track page offers Add a document",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "customer sends a second document from the portal",
+        "ok": true,
+        "detail": "w14-second-id.png"
+      },
+      {
+        "name": "the sent application's upload door refuses a second file",
+        "ok": true,
+        "detail": "409"
+      },
+      {
+        "name": "clerk sees a second document from the customer",
+        "ok": true,
+        "detail": "3 file(s) on the request"
+      },
+      {
+        "name": "clerk opens w14-second-id.png",
+        "ok": true,
+        "detail": "200 image/png"
+      },
+      {
+        "name": "the request shows the customer replied",
+        "ok": true,
+        "detail": "Customer replied"
+      }
+    ],
+    "walk": {
+      "id": "W14",
+      "prem": "A",
+      "addr": "88 Riverbend Way",
+      "unit": "",
+      "who": {
+        "kind": "person",
+        "first": "Ama",
+        "last": "Boateng",
+        "dob": "1991-02-02",
+        "name": "Ama Boateng"
+      },
+      "email": "w14@example.test",
+      "phone": "(281) 555-0399",
+      "services": [
+        "water",
+        "sewer",
+        "trash",
+        "solar",
+        "battery",
+        "fire"
+      ],
+      "link": null,
+      "master": false,
+      "cls": "residential"
+    },
+    "shots": [
+      "W14-01-portal-sent.png",
+      "W14-02-clerk-documents.png",
+      "W14-03-more-info.png",
+      "W14-04-portal-track.png",
+      "W14-05-portal-sent-document.png",
+      "W14-06-clerk-documents.png",
+      "W14-07-clerk-history.png"
+    ],
+    "request_id": "01a0fafc-17d6-747f-8ed5-1bace5010467",
+    "reference": "SR-26-0022",
+    "token": "a6a446df-0e16-4df4-84d8-c48825301fa4",
+    "files": [
+      "w14-lease.pdf",
+      "w14-photo-id.png"
+    ],
+    "start": "2026-10-23"
+  },
+  "W15": {
+    "steps": [
+      {
+        "name": "a start date under three working days is refused",
+        "ok": true,
+        "detail": "typed 2026-10-05; draft holds ''"
+      }
+    ],
+    "shots": [
+      "W15-01-start-too-soon.png"
+    ]
+  },
+  "W16": {
+    "steps": [
+      {
+        "name": "an application with no address step cannot be sent",
+        "ok": true,
+        "detail": "404 errors.not-found step="
+      },
+      {
+        "name": "the screen does not offer to carry on without an address",
+        "ok": true,
+        "detail": "Continue held"
+      }
+    ],
+    "shots": [
+      "W16-01-no-address.png"
+    ]
+  },
+  "W17": {
+    "steps": [
+      {
+        "name": "a closed tab keeps the draft",
+        "ok": true,
+        "detail": "Kofi | Mensah | kofi.mensah@example.test · Picked up where you left off"
+      }
+    ],
+    "shots": [
+      "W17-01-draft-kept.png"
+    ]
+  },
+  "W18": {
+    "steps": [
+      {
+        "name": "another utility cannot see the request — request detail",
+        "ok": true,
+        "detail": "status 404, reference not shown"
+      },
+      {
+        "name": "another utility cannot see the request — request list search",
+        "ok": true,
+        "detail": "status 200, reference not shown"
+      },
+      {
+        "name": "another utility cannot see the request — screen",
+        "ok": true,
+        "detail": "page opened, reference not shown"
+      },
+      {
+        "name": "another utility cannot see the request — guest draft by token",
+        "ok": true,
+        "detail": "status 404, reference not shown"
+      }
+    ],
+    "shots": [
+      "W18-01-other-utility.png"
+    ]
+  },
+  "W19": {
+    "steps": [
+      {
+        "name": "a file that is not PDF, JPG or PNG is refused by name",
+        "ok": true,
+        "detail": "notes.png: use PDF, JPG, PNG."
+      },
+      {
+        "name": "nothing was stored for the refused file",
+        "ok": true,
+        "detail": "0 row(s)"
+      }
+    ],
+    "shots": [
+      "W19-01-wrong-type.png"
+    ]
+  },
+  "W20": {
+    "steps": [
+      {
+        "name": "a file over 10 MB is refused by name",
+        "ok": true,
+        "detail": "scan-11mb.pdf is over 10 MB."
+      },
+      {
+        "name": "nothing was stored for the refused file",
+        "ok": true,
+        "detail": "0 row(s)"
+      }
+    ],
+    "shots": [
+      "W20-01-too-big.png"
+    ]
+  },
+  "W21": {
+    "steps": [
+      {
+        "name": "another utility cannot list the documents",
+        "ok": true,
+        "detail": "status 404"
+      },
+      {
+        "name": "another utility cannot open the documents",
+        "ok": true,
+        "detail": "status 404"
+      }
+    ],
+    "shots": [
+      "W21-01-other-utility.png"
+    ]
+  }
+}

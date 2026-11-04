@@ -1,0 +1,47 @@
+ok   en    nav: Dashboard · Plans & Rates · Premises · Assets · Accounts · Reads · Billing · Payments · Work · Finance · Runbooks · Reports · Settings
+      heading: Reads | crumbs: Reads | search: Search
+      user menu: My profile · Change password · Two-factor authentication · Sign out
+
+ok   de    nav: Dashboard · Tarife & Preise · Objekte · Anlagen · Konten · Ablesungen · Abrechnung · Zahlungen · Außendienst · Finanzen · Abläufe · Berichte · Einstellungen
+      heading: Ablesungen | crumbs: Ablesungen | search: Suchen
+      user menu: Mein Profil · Passwort ändern · Zwei-Faktor-Anmeldung · Abmelden
+      same word in this language (decided): Dashboard
+
+ok   es    nav: Panel · Planes y tarifas · Inmuebles · Activos · Cuentas · Lecturas · Facturación · Pagos · Trabajos · Finanzas · Procedimientos · Informes · Configuración
+      heading: Lecturas | crumbs: Lecturas | search: Buscar
+      user menu: Mi perfil · Cambiar contraseña · Verificación en dos pasos · Cerrar sesión
+
+ok   es-MX nav: Panel · Planes y tarifas · Inmuebles · Activos · Cuentas · Lecturas · Facturación · Pagos · Trabajos · Finanzas · Procedimientos · Reportes · Configuración
+      heading: Lecturas | crumbs: Lecturas | search: Buscar
+      user menu: Mi perfil · Cambiar contraseña · Verificación en dos pasos · Cerrar sesión
+
+ok   fr-FR nav: Tableau de bord · Forfaits et tarifs · Locaux · Actifs · Comptes · Relevés · Facturation · Paiements · Interventions · Finances · Procédures · Rapports · Paramètres
+      heading: Relevés | crumbs: Relevés | search: Rechercher
+      user menu: Mon profil · Changer le mot de passe · Double authentification · Se déconnecter
+      same word in this language (decided): Notifications
+
+ok   hi    nav: डैशबोर्ड · प्लान और दरें · परिसर · एसेट · खाते · रीडिंग · बिलिंग · भुगतान · कार्य · वित्त · रनबुक · रिपोर्टें · सेटिंग्स
+      heading: रीडिंग | crumbs: रीडिंग | search: खोजें
+      user menu: मेरी प्रोफ़ाइल · पासवर्ड बदलें · दो-कारक प्रमाणीकरण · साइन आउट
+
+ok   id-ID nav: Dasbor · Paket & Tarif · Tempat · Aset · Akun · Pembacaan · Penagihan · Pembayaran · Pekerjaan · Keuangan · Prosedur · Laporan · Pengaturan
+      heading: Pembacaan | crumbs: Pembacaan | search: Cari
+      user menu: Profil saya · Ubah kata sandi · Otentikasi dua faktor · Keluar
+
+ok   it-IT nav: Cruscotto · Piani e tariffe · Locali · Cespiti · Conti · Letture · Fatturazione · Pagamenti · Lavori · Finanza · Procedure · Rapporti · Impostazioni
+      heading: Letture | crumbs: Letture | search: Cerca
+      user menu: Il mio profilo · Cambia password · Verifica in due passaggi · Esci
+
+ok   ja-JP nav: ダッシュボード · プランと料金 · 敷地 · 資産 · アカウント · 検針 · 請求 · 入金 · 作業 · 財務 · ランブック · レポート · 設定
+      heading: 検針 | crumbs: 検針 | search: 検索
+      user menu: プロフィール · パスワード変更 · 二要素認証 · サインアウト
+
+ok   ko-KR nav: 대시보드 · 요금제 및 요금 · 건물 · 자산 · 계정 · 검침 · 청구 · 결제 · 작업 · 재무 · 런북 · 보고서 · 설정
+      heading: 검침 | crumbs: 검침 | search: 검색
+      user menu: 내 프로필 · 비밀번호 변경 · 이중 인증 · 로그아웃
+
+ok   pt-BR nav: Painel · Planos e Tarifas · Instalações · Ativos · Contas · Leituras · Faturamento · Pagamentos · Serviços de campo · Finanças · Procedimentos · Relatórios · Configurações
+      heading: Leituras | crumbs: Leituras | search: Pesquisar
+      user menu: Meu perfil · Alterar senha · Verificação em 2 etapas · Sair
+
+all eleven frames clean

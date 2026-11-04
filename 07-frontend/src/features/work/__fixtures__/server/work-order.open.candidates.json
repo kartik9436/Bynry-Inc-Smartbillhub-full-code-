@@ -1,0 +1,132 @@
+{
+  "count": 7,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "kind": "person",
+      "id": "01a106a9-8c16-7d5d-9cf3-12cc6488b2bf",
+      "name": "M. Chen",
+      "advice": {
+        "skill": {
+          "name": "Meter I"
+        },
+        "has_skill": true,
+        "area_match": false,
+        "off_that_day": false,
+        "jobs_that_day": 0,
+        "certifications_lapsed": []
+      },
+      "best_fit": true
+    },
+    {
+      "kind": "person",
+      "id": "01a106a9-8bd1-7d66-a2ec-95f0ed172c97",
+      "name": "R. Patel",
+      "advice": {
+        "skill": {
+          "name": "Meter I"
+        },
+        "has_skill": true,
+        "area_match": false,
+        "off_that_day": false,
+        "jobs_that_day": 0,
+        "certifications_lapsed": []
+      },
+      "best_fit": false
+    },
+    {
+      "kind": "person",
+      "id": "01a106a9-8b7e-7fe1-8ada-c85b4529ceec",
+      "name": "D. Ortiz",
+      "advice": {
+        "skill": {
+          "name": "Meter I"
+        },
+        "has_skill": true,
+        "area_match": true,
+        "off_that_day": false,
+        "jobs_that_day": 1,
+        "certifications_lapsed": []
+      },
+      "best_fit": false
+    },
+    {
+      "kind": "person",
+      "id": "01a106a9-8c6e-7760-95ce-28d39221d427",
+      "name": "J. Okoro",
+      "advice": {
+        "skill": {
+          "name": "Meter I"
+        },
+        "has_skill": false,
+        "area_match": false,
+        "off_that_day": false,
+        "jobs_that_day": 0,
+        "certifications_lapsed": [
+          {
+            "name": "First aid / CPR · 2-yr",
+            "expired_on": "2026-09-22"
+          }
+        ]
+      },
+      "best_fit": false
+    },
+    {
+      "kind": "crew",
+      "id": "01a106a9-8b6b-7f3e-a3ab-13f476480441",
+      "name": "Field crew B",
+      "advice": {
+        "skill": {
+          "name": "Meter I"
+        },
+        "has_skill": true,
+        "area_match": false,
+        "off_that_day": false,
+        "jobs_that_day": 0,
+        "certifications_lapsed": []
+      },
+      "best_fit": false,
+      "members": 2
+    },
+    {
+      "kind": "crew",
+      "id": "01a106a9-8b5f-7ae6-ba24-2005f66aa083",
+      "name": "Field crew A",
+      "advice": {
+        "skill": {
+          "name": "Meter I"
+        },
+        "has_skill": false,
+        "area_match": false,
+        "off_that_day": false,
+        "jobs_that_day": 0,
+        "certifications_lapsed": []
+      },
+      "best_fit": false,
+      "members": 2
+    },
+    {
+      "kind": "contractor",
+      "id": "01a106a9-8b72-745c-a3af-c55cbc9dfe37",
+      "name": "Redline Meter Services",
+      "advice": {
+        "skill": {
+          "name": "Meter I"
+        },
+        "has_skill": true,
+        "area_match": false,
+        "off_that_day": false,
+        "jobs_that_day": 0,
+        "certifications_lapsed": []
+      },
+      "best_fit": false,
+      "members": 0
+    }
+  ],
+  "skill": {
+    "id": "01a106a6-e35d-7da4-8d6a-051afcad8aa3",
+    "name": "Meter I"
+  },
+  "on": "2026-10-05"
+}

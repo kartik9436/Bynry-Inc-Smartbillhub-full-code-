@@ -1,0 +1,816 @@
+{
+  "count": 15,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": "01a106a7-5b2b-7173-bd46-5f2df8eadab6",
+      "order_no": "WO-0016",
+      "type": "Meter set",
+      "premise": {
+        "id": "01a106a7-4b09-7e2c-9243-b1c34b11ec19",
+        "premise_no": "P-00062",
+        "address": "14 Willow Bend"
+      },
+      "service": "electric",
+      "state": "planned",
+      "outcome": null,
+      "mode": "our_crew",
+      "is_gate": false,
+      "connection": {
+        "id": "01a106a7-5ae4-73bf-93fb-15a9ee695d3f",
+        "connection_no": "CON-26-0121",
+        "home": {
+          "kind": "premises",
+          "id": "01a106a7-4b09-7e2c-9243-b1c34b11ec19"
+        }
+      },
+      "account": null,
+      "raised_at": "2026-10-04T11:23:13.579785+00:00",
+      "priority": {
+        "id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e",
+        "code": "NORMAL",
+        "name": "Normal",
+        "colour": "info",
+        "rank": 3
+      },
+      "technician": null,
+      "due_at": "2026-10-07T11:23:13.574645+00:00",
+      "window_start": null,
+      "window_end": null,
+      "dispatch_state": "queued",
+      "source": null,
+      "source_ref": null,
+      "area": {
+        "id": "01a106a6-e1c3-7eba-beda-f5ac33caa690",
+        "code": "IND",
+        "name": "Industrial corridor"
+      },
+      "technician_acceptance": null,
+      "hold": null,
+      "accepted": null,
+      "sla": {
+        "due_at": "2026-10-07T11:23:13.574645+00:00",
+        "target": "priority",
+        "at_risk": false
+      }
+    },
+    {
+      "id": "01a106a7-5b58-7db7-a885-6cf84f3080b8",
+      "order_no": "WO-0018",
+      "type": "Tap and service line",
+      "premise": {
+        "id": "01a106a7-4b09-7e2c-9243-b1c34b11ec19",
+        "premise_no": "P-00062",
+        "address": "14 Willow Bend"
+      },
+      "service": "water",
+      "state": "planned",
+      "outcome": null,
+      "mode": "our_crew",
+      "is_gate": false,
+      "connection": {
+        "id": "01a106a7-5ae4-73bf-93fb-15a9ee695d3f",
+        "connection_no": "CON-26-0121",
+        "home": {
+          "kind": "premises",
+          "id": "01a106a7-4b09-7e2c-9243-b1c34b11ec19"
+        }
+      },
+      "account": null,
+      "raised_at": "2026-10-04T11:23:13.624711+00:00",
+      "priority": {
+        "id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e",
+        "code": "NORMAL",
+        "name": "Normal",
+        "colour": "info",
+        "rank": 3
+      },
+      "technician": {
+        "kind": "person",
+        "name": "R. Patel",
+        "slug": "r-patel"
+      },
+      "due_at": "2026-10-07T11:23:13.620329+00:00",
+      "window_start": null,
+      "window_end": null,
+      "dispatch_state": "en_route",
+      "source": null,
+      "source_ref": null,
+      "area": {
+        "id": "01a106a6-e1c3-7eba-beda-f5ac33caa690",
+        "code": "IND",
+        "name": "Industrial corridor"
+      },
+      "technician_acceptance": {
+        "state": "pending",
+        "at": null,
+        "reason": null
+      },
+      "hold": null,
+      "accepted": null,
+      "sla": {
+        "due_at": "2026-10-07T11:23:13.620329+00:00",
+        "target": "priority",
+        "at_risk": false
+      }
+    },
+    {
+      "id": "01a106a7-5b63-7df4-bf30-3cf3b3dd92b8",
+      "order_no": "WO-0019",
+      "type": "Meter set",
+      "premise": {
+        "id": "01a106a7-4b09-7e2c-9243-b1c34b11ec19",
+        "premise_no": "P-00062",
+        "address": "14 Willow Bend"
+      },
+      "service": "water",
+      "state": "planned",
+      "outcome": null,
+      "mode": "our_crew",
+      "is_gate": false,
+      "connection": {
+        "id": "01a106a7-5ae4-73bf-93fb-15a9ee695d3f",
+        "connection_no": "CON-26-0121",
+        "home": {
+          "kind": "premises",
+          "id": "01a106a7-4b09-7e2c-9243-b1c34b11ec19"
+        }
+      },
+      "account": null,
+      "raised_at": "2026-10-04T11:23:13.636329+00:00",
+      "priority": {
+        "id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e",
+        "code": "NORMAL",
+        "name": "Normal",
+        "colour": "info",
+        "rank": 3
+      },
+      "technician": null,
+      "due_at": "2026-10-07T11:23:13.632408+00:00",
+      "window_start": null,
+      "window_end": null,
+      "dispatch_state": "queued",
+      "source": null,
+      "source_ref": null,
+      "area": {
+        "id": "01a106a6-e1c3-7eba-beda-f5ac33caa690",
+        "code": "IND",
+        "name": "Industrial corridor"
+      },
+      "technician_acceptance": null,
+      "hold": null,
+      "accepted": null,
+      "sla": {
+        "due_at": "2026-10-07T11:23:13.632408+00:00",
+        "target": "priority",
+        "at_risk": false
+      }
+    },
+    {
+      "id": "01a106a7-5c71-7d2a-81e7-29328acfbe06",
+      "order_no": "WO-0022",
+      "type": "Site inspection & mark-out",
+      "premise": {
+        "id": "01a106a7-4f10-765a-83ff-8eba09209d8f",
+        "premise_no": "P-00067",
+        "address": "Kestrel Park ph. 2"
+      },
+      "service": "water",
+      "state": "planned",
+      "outcome": null,
+      "mode": "our_crew",
+      "is_gate": false,
+      "connection": {
+        "id": "01a106a7-5b7d-7e58-b1c1-de718fb9a07a",
+        "connection_no": "CON-26-0122",
+        "home": {
+          "kind": "premises",
+          "id": "01a106a7-4f10-765a-83ff-8eba09209d8f"
+        }
+      },
+      "account": null,
+      "raised_at": "2026-10-04T11:23:13.905422+00:00",
+      "priority": {
+        "id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e",
+        "code": "NORMAL",
+        "name": "Normal",
+        "colour": "info",
+        "rank": 3
+      },
+      "technician": {
+        "kind": "person",
+        "name": "D. Ortiz",
+        "slug": "d-ortiz"
+      },
+      "due_at": "2026-10-07T11:23:13.901410+00:00",
+      "window_start": null,
+      "window_end": null,
+      "dispatch_state": "on_hold",
+      "source": null,
+      "source_ref": null,
+      "area": {
+        "id": "01a106a6-e1c2-7112-8014-d49719318b9a",
+        "code": "EAST",
+        "name": "East district"
+      },
+      "technician_acceptance": {
+        "state": "pending",
+        "at": null,
+        "reason": null
+      },
+      "hold": {
+        "reason": {
+          "code": "WEATHER",
+          "name": "Weather"
+        },
+        "expected_return_on": null,
+        "since": "2026-10-04T12:29:58.696787+00:00"
+      },
+      "accepted": null,
+      "sla": {
+        "due_at": "2026-10-07T11:23:14.169766+00:00",
+        "target": "priority",
+        "at_risk": false
+      }
+    },
+    {
+      "id": "01a106a7-5c7f-73f4-8d18-c7062e51f793",
+      "order_no": "WO-0023",
+      "type": "Tap and service line",
+      "premise": {
+        "id": "01a106a7-4f10-765a-83ff-8eba09209d8f",
+        "premise_no": "P-00067",
+        "address": "Kestrel Park ph. 2"
+      },
+      "service": "water",
+      "state": "planned",
+      "outcome": null,
+      "mode": "our_crew",
+      "is_gate": false,
+      "connection": {
+        "id": "01a106a7-5b7d-7e58-b1c1-de718fb9a07a",
+        "connection_no": "CON-26-0122",
+        "home": {
+          "kind": "premises",
+          "id": "01a106a7-4f10-765a-83ff-8eba09209d8f"
+        }
+      },
+      "account": null,
+      "raised_at": "2026-10-04T11:23:13.920400+00:00",
+      "priority": {
+        "id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e",
+        "code": "NORMAL",
+        "name": "Normal",
+        "colour": "info",
+        "rank": 3
+      },
+      "technician": null,
+      "due_at": "2026-10-07T11:23:13.916039+00:00",
+      "window_start": null,
+      "window_end": null,
+      "dispatch_state": "queued",
+      "source": null,
+      "source_ref": null,
+      "area": {
+        "id": "01a106a6-e1c2-7112-8014-d49719318b9a",
+        "code": "EAST",
+        "name": "East district"
+      },
+      "technician_acceptance": null,
+      "hold": null,
+      "accepted": null,
+      "sla": {
+        "due_at": "2026-10-07T11:23:13.916039+00:00",
+        "target": "priority",
+        "at_risk": false
+      }
+    },
+    {
+      "id": "01a106a7-5c8e-75ee-a9f1-01d83bb677d7",
+      "order_no": "WO-0024",
+      "type": "Meter set",
+      "premise": {
+        "id": "01a106a7-4f10-765a-83ff-8eba09209d8f",
+        "premise_no": "P-00067",
+        "address": "Kestrel Park ph. 2"
+      },
+      "service": "water",
+      "state": "planned",
+      "outcome": null,
+      "mode": "our_crew",
+      "is_gate": false,
+      "connection": {
+        "id": "01a106a7-5b7d-7e58-b1c1-de718fb9a07a",
+        "connection_no": "CON-26-0122",
+        "home": {
+          "kind": "premises",
+          "id": "01a106a7-4f10-765a-83ff-8eba09209d8f"
+        }
+      },
+      "account": null,
+      "raised_at": "2026-10-04T11:23:13.934561+00:00",
+      "priority": {
+        "id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e",
+        "code": "NORMAL",
+        "name": "Normal",
+        "colour": "info",
+        "rank": 3
+      },
+      "technician": null,
+      "due_at": "2026-10-07T11:23:13.930561+00:00",
+      "window_start": null,
+      "window_end": null,
+      "dispatch_state": "queued",
+      "source": null,
+      "source_ref": null,
+      "area": {
+        "id": "01a106a6-e1c2-7112-8014-d49719318b9a",
+        "code": "EAST",
+        "name": "East district"
+      },
+      "technician_acceptance": null,
+      "hold": null,
+      "accepted": null,
+      "sla": {
+        "due_at": "2026-10-07T11:23:13.930561+00:00",
+        "target": "priority",
+        "at_risk": false
+      }
+    },
+    {
+      "id": "01a106a7-5cf1-7374-8a16-b92658d89cf0",
+      "order_no": "WO-0025",
+      "type": "Service drop",
+      "premise": {
+        "id": "01a106a7-4e96-786c-9fb4-1308875464c6",
+        "premise_no": "P-00066",
+        "address": "12 Harbour View"
+      },
+      "service": "electric",
+      "state": "planned",
+      "outcome": null,
+      "mode": "our_crew",
+      "is_gate": false,
+      "connection": {
+        "id": "01a106a7-5cd2-78ec-8742-ba1680d60d6f",
+        "connection_no": "CON-26-0124",
+        "home": {
+          "kind": "premises",
+          "id": "01a106a7-4e96-786c-9fb4-1308875464c6"
+        }
+      },
+      "account": null,
+      "raised_at": "2026-10-04T11:23:14.034097+00:00",
+      "priority": {
+        "id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e",
+        "code": "NORMAL",
+        "name": "Normal",
+        "colour": "info",
+        "rank": 3
+      },
+      "technician": {
+        "kind": "person",
+        "name": "M. Chen",
+        "slug": "m-chen"
+      },
+      "due_at": "2026-10-07T11:23:14.029997+00:00",
+      "window_start": null,
+      "window_end": null,
+      "dispatch_state": "scheduled",
+      "source": null,
+      "source_ref": null,
+      "area": {
+        "id": "01a106a6-e1c8-7c6a-b791-89ef08ca02e1",
+        "code": "NORTH-NW",
+        "name": "NW"
+      },
+      "technician_acceptance": {
+        "state": "pending",
+        "at": null,
+        "reason": null
+      },
+      "hold": null,
+      "accepted": null,
+      "sla": {
+        "due_at": "2026-10-07T11:23:14.029997+00:00",
+        "target": "priority",
+        "at_risk": false
+      }
+    },
+    {
+      "id": "01a106a7-5cfd-7353-9a45-13258faefbdb",
+      "order_no": "WO-0026",
+      "type": "Meter set",
+      "premise": {
+        "id": "01a106a7-4e96-786c-9fb4-1308875464c6",
+        "premise_no": "P-00066",
+        "address": "12 Harbour View"
+      },
+      "service": "electric",
+      "state": "planned",
+      "outcome": null,
+      "mode": "our_crew",
+      "is_gate": false,
+      "connection": {
+        "id": "01a106a7-5cd2-78ec-8742-ba1680d60d6f",
+        "connection_no": "CON-26-0124",
+        "home": {
+          "kind": "premises",
+          "id": "01a106a7-4e96-786c-9fb4-1308875464c6"
+        }
+      },
+      "account": null,
+      "raised_at": "2026-10-04T11:23:14.045755+00:00",
+      "priority": {
+        "id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e",
+        "code": "NORMAL",
+        "name": "Normal",
+        "colour": "info",
+        "rank": 3
+      },
+      "technician": null,
+      "due_at": "2026-10-07T11:23:14.041617+00:00",
+      "window_start": null,
+      "window_end": null,
+      "dispatch_state": "queued",
+      "source": null,
+      "source_ref": null,
+      "area": {
+        "id": "01a106a6-e1c8-7c6a-b791-89ef08ca02e1",
+        "code": "NORTH-NW",
+        "name": "NW"
+      },
+      "technician_acceptance": null,
+      "hold": null,
+      "accepted": null,
+      "sla": {
+        "due_at": "2026-10-07T11:23:14.041617+00:00",
+        "target": "priority",
+        "at_risk": false
+      }
+    },
+    {
+      "id": "01a106a7-5d08-7c93-b57b-5847cb975ab6",
+      "order_no": "WO-0027",
+      "type": "Site inspection & mark-out",
+      "premise": {
+        "id": "01a106a7-4e96-786c-9fb4-1308875464c6",
+        "premise_no": "P-00066",
+        "address": "12 Harbour View"
+      },
+      "service": "water",
+      "state": "planned",
+      "outcome": null,
+      "mode": "our_crew",
+      "is_gate": false,
+      "connection": {
+        "id": "01a106a7-5cd2-78ec-8742-ba1680d60d6f",
+        "connection_no": "CON-26-0124",
+        "home": {
+          "kind": "premises",
+          "id": "01a106a7-4e96-786c-9fb4-1308875464c6"
+        }
+      },
+      "account": null,
+      "raised_at": "2026-10-04T11:23:14.057218+00:00",
+      "priority": {
+        "id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e",
+        "code": "NORMAL",
+        "name": "Normal",
+        "colour": "info",
+        "rank": 3
+      },
+      "technician": null,
+      "due_at": "2026-10-07T11:23:14.053218+00:00",
+      "window_start": null,
+      "window_end": null,
+      "dispatch_state": "queued",
+      "source": null,
+      "source_ref": null,
+      "area": {
+        "id": "01a106a6-e1c8-7c6a-b791-89ef08ca02e1",
+        "code": "NORTH-NW",
+        "name": "NW"
+      },
+      "technician_acceptance": null,
+      "hold": null,
+      "accepted": null,
+      "sla": {
+        "due_at": "2026-10-07T11:23:14.053218+00:00",
+        "target": "priority",
+        "at_risk": false
+      }
+    },
+    {
+      "id": "01a106a7-5d16-7cc3-910d-6dcffe4ab29b",
+      "order_no": "WO-0028",
+      "type": "Tap and service line",
+      "premise": {
+        "id": "01a106a7-4e96-786c-9fb4-1308875464c6",
+        "premise_no": "P-00066",
+        "address": "12 Harbour View"
+      },
+      "service": "water",
+      "state": "planned",
+      "outcome": null,
+      "mode": "our_crew",
+      "is_gate": false,
+      "connection": {
+        "id": "01a106a7-5cd2-78ec-8742-ba1680d60d6f",
+        "connection_no": "CON-26-0124",
+        "home": {
+          "kind": "premises",
+          "id": "01a106a7-4e96-786c-9fb4-1308875464c6"
+        }
+      },
+      "account": null,
+      "raised_at": "2026-10-04T11:23:14.071102+00:00",
+      "priority": {
+        "id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e",
+        "code": "NORMAL",
+        "name": "Normal",
+        "colour": "info",
+        "rank": 3
+      },
+      "technician": null,
+      "due_at": "2026-10-07T11:23:14.067127+00:00",
+      "window_start": null,
+      "window_end": null,
+      "dispatch_state": "queued",
+      "source": null,
+      "source_ref": null,
+      "area": {
+        "id": "01a106a6-e1c8-7c6a-b791-89ef08ca02e1",
+        "code": "NORTH-NW",
+        "name": "NW"
+      },
+      "technician_acceptance": null,
+      "hold": null,
+      "accepted": null,
+      "sla": {
+        "due_at": "2026-10-07T11:23:14.067127+00:00",
+        "target": "priority",
+        "at_risk": false
+      }
+    },
+    {
+      "id": "01a106a7-5d22-7666-aef6-3cdf069cf3ab",
+      "order_no": "WO-0029",
+      "type": "Meter set",
+      "premise": {
+        "id": "01a106a7-4e96-786c-9fb4-1308875464c6",
+        "premise_no": "P-00066",
+        "address": "12 Harbour View"
+      },
+      "service": "water",
+      "state": "planned",
+      "outcome": null,
+      "mode": "our_crew",
+      "is_gate": false,
+      "connection": {
+        "id": "01a106a7-5cd2-78ec-8742-ba1680d60d6f",
+        "connection_no": "CON-26-0124",
+        "home": {
+          "kind": "premises",
+          "id": "01a106a7-4e96-786c-9fb4-1308875464c6"
+        }
+      },
+      "account": null,
+      "raised_at": "2026-10-04T11:23:14.082789+00:00",
+      "priority": {
+        "id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e",
+        "code": "NORMAL",
+        "name": "Normal",
+        "colour": "info",
+        "rank": 3
+      },
+      "technician": null,
+      "due_at": "2026-10-07T11:23:14.078677+00:00",
+      "window_start": null,
+      "window_end": null,
+      "dispatch_state": "queued",
+      "source": null,
+      "source_ref": null,
+      "area": {
+        "id": "01a106a6-e1c8-7c6a-b791-89ef08ca02e1",
+        "code": "NORTH-NW",
+        "name": "NW"
+      },
+      "technician_acceptance": null,
+      "hold": null,
+      "accepted": null,
+      "sla": {
+        "due_at": "2026-10-07T11:23:14.078677+00:00",
+        "target": "priority",
+        "at_risk": false
+      }
+    },
+    {
+      "id": "01a106a7-5db1-7eb5-8e9f-165718be097b",
+      "order_no": "WO-0033",
+      "type": "Tap and service line",
+      "premise": {
+        "id": "01a106a7-4b60-7562-b9a1-45efd2cc691b",
+        "premise_no": "P-00063",
+        "address": "8 Quarry Lane"
+      },
+      "service": "water",
+      "state": "planned",
+      "outcome": null,
+      "mode": "our_crew",
+      "is_gate": false,
+      "connection": {
+        "id": "01a106a7-5d33-7713-90c1-0bcb5f64d8fb",
+        "connection_no": "CON-26-0126",
+        "home": {
+          "kind": "premises",
+          "id": "01a106a7-4b60-7562-b9a1-45efd2cc691b"
+        }
+      },
+      "account": null,
+      "raised_at": "2026-10-04T11:23:14.225909+00:00",
+      "priority": {
+        "id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e",
+        "code": "NORMAL",
+        "name": "Normal",
+        "colour": "info",
+        "rank": 3
+      },
+      "technician": null,
+      "due_at": "2026-10-07T11:23:14.221446+00:00",
+      "window_start": null,
+      "window_end": null,
+      "dispatch_state": "queued",
+      "source": null,
+      "source_ref": null,
+      "area": {
+        "id": "01a106a6-e1c1-7ac2-a21e-479ae7f2eb55",
+        "code": "DTWN",
+        "name": "Downtown"
+      },
+      "technician_acceptance": null,
+      "hold": null,
+      "accepted": null,
+      "sla": {
+        "due_at": "2026-10-07T11:23:14.221446+00:00",
+        "target": "priority",
+        "at_risk": false
+      }
+    },
+    {
+      "id": "01a106a7-5dbe-74fe-97da-ce8e4e6d98ac",
+      "order_no": "WO-0034",
+      "type": "Meter set",
+      "premise": {
+        "id": "01a106a7-4b60-7562-b9a1-45efd2cc691b",
+        "premise_no": "P-00063",
+        "address": "8 Quarry Lane"
+      },
+      "service": "water",
+      "state": "planned",
+      "outcome": null,
+      "mode": "our_crew",
+      "is_gate": false,
+      "connection": {
+        "id": "01a106a7-5d33-7713-90c1-0bcb5f64d8fb",
+        "connection_no": "CON-26-0126",
+        "home": {
+          "kind": "premises",
+          "id": "01a106a7-4b60-7562-b9a1-45efd2cc691b"
+        }
+      },
+      "account": null,
+      "raised_at": "2026-10-04T11:23:14.238661+00:00",
+      "priority": {
+        "id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e",
+        "code": "NORMAL",
+        "name": "Normal",
+        "colour": "info",
+        "rank": 3
+      },
+      "technician": null,
+      "due_at": "2026-10-07T11:23:14.234285+00:00",
+      "window_start": null,
+      "window_end": null,
+      "dispatch_state": "queued",
+      "source": null,
+      "source_ref": null,
+      "area": {
+        "id": "01a106a6-e1c1-7ac2-a21e-479ae7f2eb55",
+        "code": "DTWN",
+        "name": "Downtown"
+      },
+      "technician_acceptance": null,
+      "hold": null,
+      "accepted": null,
+      "sla": {
+        "due_at": "2026-10-07T11:23:14.234285+00:00",
+        "target": "priority",
+        "at_risk": false
+      }
+    },
+    {
+      "id": "01a106a7-5e55-7794-94b6-10d055f67320",
+      "order_no": "WO-0039",
+      "type": "Meter set",
+      "premise": {
+        "id": "01a106a7-4e09-7695-b890-a183cccbde95",
+        "premise_no": "P-00064",
+        "address": "240 Sable Court"
+      },
+      "service": "water",
+      "state": "planned",
+      "outcome": null,
+      "mode": "our_crew",
+      "is_gate": false,
+      "connection": {
+        "id": "01a106a7-5dda-7b32-8684-5ba4e87d4dd6",
+        "connection_no": "CON-26-0128",
+        "home": {
+          "kind": "premises",
+          "id": "01a106a7-4e09-7695-b890-a183cccbde95"
+        }
+      },
+      "account": null,
+      "raised_at": "2026-10-04T11:23:14.389742+00:00",
+      "priority": {
+        "id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e",
+        "code": "NORMAL",
+        "name": "Normal",
+        "colour": "info",
+        "rank": 3
+      },
+      "technician": null,
+      "due_at": "2026-10-07T11:23:14.385472+00:00",
+      "window_start": null,
+      "window_end": null,
+      "dispatch_state": "queued",
+      "source": null,
+      "source_ref": null,
+      "area": {
+        "id": "01a106a6-e1c8-7c6a-b791-89ef08ca02e1",
+        "code": "NORTH-NW",
+        "name": "NW"
+      },
+      "technician_acceptance": null,
+      "hold": null,
+      "accepted": null,
+      "sla": {
+        "due_at": "2026-10-07T11:23:14.385472+00:00",
+        "target": "priority",
+        "at_risk": false
+      }
+    },
+    {
+      "id": "01a106e4-2ad5-7a9a-8a92-886d9205a50f",
+      "order_no": "WO-0041",
+      "type": "Meter exchange — residential",
+      "premise": {
+        "id": "01a106a7-2b05-7dd5-be94-ea3e264227f4",
+        "premise_no": "P-00007",
+        "address": "101 Silver Creek Rd"
+      },
+      "service": "water",
+      "state": "planned",
+      "outcome": null,
+      "mode": "our_crew",
+      "is_gate": false,
+      "connection": null,
+      "account": {
+        "id": "01a106a7-757b-7c50-9586-5eac8366194e",
+        "account_no": "AC-2026-00001"
+      },
+      "raised_at": "2026-10-04T12:29:38.901925+00:00",
+      "priority": null,
+      "technician": {
+        "kind": "person",
+        "name": "D. Ortiz",
+        "slug": "d-ortiz"
+      },
+      "due_at": null,
+      "window_start": "2026-10-05T09:00:00+00:00",
+      "window_end": "2026-10-05T12:00:00+00:00",
+      "dispatch_state": "scheduled",
+      "source": "dispatcher",
+      "source_ref": null,
+      "area": {
+        "id": "01a106a6-e1c8-7c6a-b791-89ef08ca02e1",
+        "code": "NORTH-NW",
+        "name": "NW"
+      },
+      "technician_acceptance": {
+        "state": "pending",
+        "at": null,
+        "reason": null
+      },
+      "hold": null,
+      "accepted": null,
+      "sla": {
+        "due_at": "2026-10-07T12:29:38.901925+00:00",
+        "target": "default",
+        "at_risk": false
+      }
+    }
+  ]
+}

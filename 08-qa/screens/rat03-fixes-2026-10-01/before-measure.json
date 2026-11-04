@@ -1,0 +1,273 @@
+{
+  "battery-edit-1-basics": {
+    "fields": 6,
+    "sentences": 9,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "What are you doing?",
+      "A new price, from a date.",
+      "Name, service, unit and customer class.",
+      "Internal only — never shown to a customer.",
+      "This schedule is already in force, so its service cannot change.",
+      "Set in Settings as kW. Every price uses it.",
+      "Blank prices every class. The base follows the class.",
+      "Blank uses the declared base."
+    ]
+  },
+  "battery-edit-1-basics-open": {
+    "fields": 6,
+    "sentences": 9,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "What are you doing?",
+      "A new price, from a date.",
+      "Name, service, unit and customer class.",
+      "Internal only — never shown to a customer.",
+      "This schedule is already in force, so its service cannot change.",
+      "Set in Settings as kW. Every price uses it.",
+      "Blank prices every class. The base follows the class.",
+      "Blank uses the declared base."
+    ]
+  },
+  "battery-edit-2-sizes": {
+    "fields": 10,
+    "sentences": 7,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "What are you doing?",
+      "A new price, from a date.",
+      "What this schedule charges per connection size.",
+      "This code has one amount. Every size shows it.",
+      "Every size is priced.",
+      "Blank is not zero. That size has no minimum."
+    ]
+  },
+  "battery-edit-3-structure": {
+    "fields": 4,
+    "sentences": 8,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "What are you doing?",
+      "A new price, from a date.",
+      "Pick the shape of the formula, then fill in its numbers.",
+      "One structure per schedule. Changing it replaces the numbers below.",
+      "Optional floor for what this formula can produce.",
+      "One price for every unit used.",
+      "Type the amount exactly as it should be stored. It is sent unchanged; the server checks the limits."
+    ]
+  },
+  "battery-edit-4-effective": {
+    "fields": 12,
+    "sentences": 16,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "What are you doing?",
+      "A new price, from a date.",
+      "Who this change reaches, and by how much.",
+      "The worst case is unknown. Second approval cannot be judged.",
+      "Where the sign-off came from. All of it is optional.",
+      "For example a state utility commission or a city council.",
+      "When the filing went to the authority.",
+      "When the authority signed it off. The effective date starts the pricing.",
+      "The person at the authority — not a user of this system.",
+      "When this pricing starts, and the regulator reference behind it.",
+      "A draft can be saved without one; activating cannot.",
+      "Leave blank to run until the next version starts.",
+      "Optional, e.g. a docket or resolution number.",
+      "Such as v3 or 2027-A. Blank numbers versions in date order.",
+      "Required: this version changes pricing already billing."
+    ]
+  },
+  "battery-edit-5-review": {
+    "fields": 1,
+    "sentences": 13,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "What are you doing?",
+      "A new price, from a date.",
+      "Check what will be stored, then activate.",
+      "The worst case is unknown. Second approval cannot be judged.",
+      "What each size pays before a drop is used.",
+      "The charge code owns this price. Changing it takes effect immediately.",
+      "The floor for each connection size.",
+      "Per-size floors are not billed yet. Billing reads the minimum bill below.",
+      "The floor every bill on this schedule meets.",
+      "What each block of usage costs.",
+      "The change against each figure is worked out on the previous step.",
+      "This stores from the effective date. Already-billed amounts never change."
+    ]
+  },
+  "water-edit-1-basics": {
+    "fields": 6,
+    "sentences": 9,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "What are you doing?",
+      "A new price, from a date.",
+      "Name, service, unit and customer class.",
+      "Internal only — never shown to a customer.",
+      "This schedule is already in force, so its service cannot change.",
+      "Set in Settings as kgal. Every price uses it.",
+      "Blank prices every class. The base follows the class.",
+      "Blank uses the declared base."
+    ]
+  },
+  "water-edit-1-basics-open": {
+    "fields": 6,
+    "sentences": 9,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "What are you doing?",
+      "A new price, from a date.",
+      "Name, service, unit and customer class.",
+      "Internal only — never shown to a customer.",
+      "This schedule is already in force, so its service cannot change.",
+      "Set in Settings as kgal. Every price uses it.",
+      "Blank prices every class. The base follows the class.",
+      "Blank uses the declared base."
+    ]
+  },
+  "water-edit-2-sizes": {
+    "fields": 13,
+    "sentences": 7,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "What are you doing?",
+      "A new price, from a date.",
+      "What this schedule charges per connection size.",
+      "This code has one amount. Every size shows it.",
+      "Every size is priced.",
+      "Blank is not zero. That size has no minimum."
+    ]
+  },
+  "water-edit-3-structure": {
+    "fields": 12,
+    "sentences": 10,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "What are you doing?",
+      "A new price, from a date.",
+      "Pick the shape of the formula, then fill in its numbers.",
+      "One structure per schedule. Changing it replaces the numbers below.",
+      "Optional floor for what this formula can produce.",
+      "Blocks of usage, each priced. Every unit prices through them.",
+      "Leave the last To blank. That block has no upper limit.",
+      "Add a size that prices differently.",
+      "Block prices set for a single connection size are saved, and bills do not use them yet — every size is still billed at the standard block prices."
+    ]
+  },
+  "water-edit-4-effective": {
+    "fields": 12,
+    "sentences": 16,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "What are you doing?",
+      "A new price, from a date.",
+      "Who this change reaches, and by how much.",
+      "The worst case is unknown. Second approval cannot be judged.",
+      "Where the sign-off came from. All of it is optional.",
+      "For example a state utility commission or a city council.",
+      "When the filing went to the authority.",
+      "When the authority signed it off. The effective date starts the pricing.",
+      "The person at the authority — not a user of this system.",
+      "When this pricing starts, and the regulator reference behind it.",
+      "A draft can be saved without one; activating cannot.",
+      "Leave blank to run until the next version starts.",
+      "Optional, e.g. a docket or resolution number.",
+      "Such as v3 or 2027-A. Blank numbers versions in date order.",
+      "Required: this version changes pricing already billing."
+    ]
+  },
+  "water-edit-5-review": {
+    "fields": 1,
+    "sentences": 13,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "What are you doing?",
+      "A new price, from a date.",
+      "Check what will be stored, then activate.",
+      "The worst case is unknown. Second approval cannot be judged.",
+      "What each size pays before a drop is used.",
+      "The charge code owns this price. Changing it takes effect immediately.",
+      "The floor for each connection size.",
+      "Per-size floors are not billed yet. Billing reads the minimum bill below.",
+      "The floor every bill on this schedule meets.",
+      "What each block of usage costs.",
+      "The change against each figure is worked out on the previous step.",
+      "This stores from the effective date. Already-billed amounts never change."
+    ]
+  },
+  "battery-new-1-basics": {
+    "fields": 5,
+    "sentences": 7,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "Name, service, unit and customer class.",
+      "Internal only — never shown to a customer.",
+      "A schedule prices exactly one service, and this cannot be changed later.",
+      "Set in Settings as kW. Every price uses it.",
+      "Blank prices every class. The base follows the class.",
+      "Blank uses the declared base."
+    ]
+  },
+  "battery-new-2-sizes": {
+    "fields": 5,
+    "sentences": 4,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "What this schedule charges per connection size.",
+      "This code has one amount. Every size shows it.",
+      "Blank is not zero. That size has no minimum."
+    ]
+  },
+  "battery-new-3-structure": {
+    "fields": 3,
+    "sentences": 6,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "Pick the shape of the formula, then fill in its numbers.",
+      "One structure per schedule. Changing it replaces the numbers below.",
+      "Optional floor for what this formula can produce.",
+      "One price for every unit used.",
+      "Type the amount exactly as it should be stored. It is sent unchanged; the server checks the limits."
+    ]
+  },
+  "battery-new-4-effective": {
+    "fields": 11,
+    "sentences": 14,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "Who this change reaches, and by how much.",
+      "The worst case is unknown. Second approval cannot be judged.",
+      "Where the sign-off came from. All of it is optional.",
+      "For example a state utility commission or a city council.",
+      "When the filing went to the authority.",
+      "When the authority signed it off. The effective date starts the pricing.",
+      "The person at the authority — not a user of this system.",
+      "When this pricing starts, and the regulator reference behind it.",
+      "A draft can be saved without one; activating cannot.",
+      "Leave blank to run until the next version starts.",
+      "Optional, e.g. a docket or resolution number.",
+      "Such as v3 or 2027-A. Blank numbers versions in date order.",
+      "Shown against this version in the rate's history."
+    ]
+  },
+  "battery-new-5-review": {
+    "fields": 0,
+    "sentences": 12,
+    "sentenceText": [
+      "One formula for one service. Customers never see this name.",
+      "Check what will be stored, then activate.",
+      "The worst case is unknown. Second approval cannot be judged.",
+      "What each size pays before a drop is used.",
+      "The charge code owns this price. Changing it takes effect immediately.",
+      "The floor for each connection size.",
+      "Per-size floors are not billed yet. Billing reads the minimum bill below.",
+      "The floor every bill on this schedule meets.",
+      "What each block of usage costs.",
+      "Nothing in force to compare against.",
+      "The change against each figure is worked out on the previous step.",
+      "This stores from the effective date. Already-billed amounts never change."
+    ]
+  }
+}

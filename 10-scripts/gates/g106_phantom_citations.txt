@@ -1,0 +1,29 @@
+# G106 — OQ/DEF ids CITED IN SOURCE CODE that no register ever issued.
+#
+# ⚠ THIS LIST MAY ONLY EVER SHRINK. A phantom citation NOT named here fails the
+# merge; each of these was already live when G106 was written (2026-09-05,
+# DEF-GOV-4014) and failing on all of them would have made the gate red from
+# birth, which is how a guard gets disabled instead of obeyed.
+#
+# A citation is how a rule is looked up. Every line below is a reader sent to an
+# id that does not exist — so the way to remove a line is to find what the note
+# MEANT and cite that, exactly as DEF-CWP-3728 was recovered from DEF-CWP-3647.
+#
+# Format: <id>  <count>  <first site>
+
+DEF-626  x15  07-frontend/src/api/endpoints.ts:6013
+OQ-260  x10  06-backend/apps/notifications/catalogs.py:1361
+OQ-CWP-1565  x6  07-frontend/src/portal/api/portalClient.ts:699
+DEF-CWP-3646  x4  06-backend/apps/portal/guest_api.py:339
+OQ-CWP-1564  x4  07-frontend/src/portal/api/portalClient.ts:716
+DEF-CWP-3648  x2  07-frontend/src/features/tenancy/SettingsCustomerPortalTab.test.tsx:177
+DEF-1816  x1  06-backend/apps/billing/resolution_shadow.py:7
+DEF-2530  x1  06-backend/apps/notifications/reprint_api.py:442
+DEF-2696  x1  07-frontend/src/features/metering/RoutesCyclesPage.tsx:658
+DEF-3465  x1  07-frontend/src/routing/screenIds.test.tsx:318
+DEF-643  x1  06-backend/apps/work/templates_svc.py:133
+DEF-BIL-3727  x1  07-frontend/src/features/billing/BillRunWizard.test.tsx:1630
+DEF-CWP-3647  x1  07-frontend/src/portal/routing/screenIds.ts:73
+DEF-CWP-3779  x1  06-backend/apps/portal/management/commands/seed_portal_demo.py:19
+DEF-CWP-3780  x1  06-backend/apps/metering/sample_data.py:4047
+OQ-CWP-1640  x1  06-backend/apps/portal/seams/customers_seam.py:1198

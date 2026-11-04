@@ -1,0 +1,13 @@
+{
+  "database": "127.0.0.1, test_sbh_gate_iso_35c0ad362a8f3115",
+  "errors": 0,
+  "failed": 0,
+  "failing_cases": [],
+  "migration_digest": "35c0ad362a8f3115",
+  "passed": 352,
+  "role": "sbh_iso_a9f",
+  "skipped": 0,
+  "summary": "352 passed, 18733 deselected, 18 warnings in 1724.26s (0:28:44)",
+  "taken_on": "2026-10-02 12:30 UTC",
+  "vendor_skips": 0
+}

@@ -1,0 +1,164 @@
+{
+  "order_id": "01a106a7-5c71-7d2a-81e7-29328acfbe06",
+  "order_no": "WO-0022",
+  "template_id": "01a106a7-4a3f-70cc-b36c-41fd45bd3c86",
+  "template_version": 2,
+  "safety": [
+    {
+      "id": "01a106a9-9ab4-773f-bdfe-149ec611194e",
+      "seq": 1,
+      "text": "Locate and mark every buried service before any dig",
+      "is_mandatory": true,
+      "ticked_at": null,
+      "ticked_by": null,
+      "ticked_by_name": null
+    },
+    {
+      "id": "01a106a9-9ab4-773a-9366-5d37f43db190",
+      "seq": 2,
+      "text": "Hi-vis on for the whole of the walk-over",
+      "is_mandatory": true,
+      "ticked_at": null,
+      "ticked_by": null,
+      "ticked_by_name": null
+    }
+  ],
+  "safety_lock": {
+    "locked": true,
+    "remaining": 2,
+    "first_outstanding": "Locate and mark every buried service before any dig",
+    "ticked": 0,
+    "total": 2,
+    "mandatory_total": 2
+  },
+  "tasks": [
+    {
+      "id": "01a106a9-9ab6-7edb-9a92-3b3d9ff037b6",
+      "seq": 1,
+      "title": "Walk the route with the customer's plan",
+      "instruction": null,
+      "est_minutes": 20,
+      "photo_required": false,
+      "is_mandatory": true,
+      "ticked_at": null,
+      "ticked_by": null,
+      "ticked_by_name": null,
+      "photo_attachment_id": null
+    },
+    {
+      "id": "01a106a9-9ab6-795b-a81c-3ca88c5e1fc5",
+      "seq": 2,
+      "title": "Paint-mark the main and the proposed tap",
+      "instruction": null,
+      "est_minutes": 20,
+      "photo_required": true,
+      "is_mandatory": true,
+      "ticked_at": null,
+      "ticked_by": null,
+      "ticked_by_name": null,
+      "photo_attachment_id": null
+    },
+    {
+      "id": "01a106a9-9ab6-74bb-ac51-a1228b6a8893",
+      "seq": 3,
+      "title": "Note the surface to be reinstated",
+      "instruction": null,
+      "est_minutes": 10,
+      "photo_required": true,
+      "is_mandatory": true,
+      "ticked_at": null,
+      "ticked_by": null,
+      "ticked_by_name": null,
+      "photo_attachment_id": null
+    },
+    {
+      "id": "01a106a9-9ab6-7158-91b6-fe25f698561a",
+      "seq": 4,
+      "title": "Photograph the mark-out from both ends",
+      "instruction": null,
+      "est_minutes": 5,
+      "photo_required": true,
+      "is_mandatory": true,
+      "ticked_at": null,
+      "ticked_by": null,
+      "ticked_by_name": null,
+      "photo_attachment_id": null
+    }
+  ],
+  "tasks_total": 4,
+  "tasks_ticked": 0,
+  "tasks_est_minutes": 55,
+  "readings": [
+    {
+      "id": "01a106a9-9abb-7630-a9e4-2abb185ebdf0",
+      "seq": 1,
+      "prompt": "Depth to main",
+      "unit_of_measure": "in",
+      "min_value": "18.0000",
+      "max_value": "96.0000",
+      "required": true,
+      "photo_required": false,
+      "posts_as_meter_read": false,
+      "value": null,
+      "kind": "number",
+      "value_text": null,
+      "captured_at": null,
+      "photo_attachment_id": null,
+      "in_range": null
+    },
+    {
+      "id": "01a106a9-9abb-7654-9b68-b7375255b3ad",
+      "seq": 2,
+      "prompt": "Distance from the main to the meter pit",
+      "unit_of_measure": "ft",
+      "min_value": "0.0000",
+      "max_value": "500.0000",
+      "required": true,
+      "photo_required": false,
+      "posts_as_meter_read": false,
+      "value": null,
+      "kind": "number",
+      "value_text": null,
+      "captured_at": null,
+      "photo_attachment_id": null,
+      "in_range": null
+    }
+  ],
+  "materials": [
+    {
+      "id": "01a106a9-9ab9-7307-8c60-d76535536d73",
+      "part_id": "01a106a9-8ce7-7c47-9892-2c3563bae995",
+      "part_no": "TAPE-PTFE",
+      "part_name": "PTFE thread tape",
+      "planned_qty": "1.0000",
+      "used_qty": null,
+      "unit_of_measure": "roll",
+      "unplanned": false
+    }
+  ],
+  "help": [
+    {
+      "id": "01a106a9-9abd-7a1f-8471-84cca94f70cd",
+      "seq": 1,
+      "kind": "note",
+      "label": "Call the one-call centre 48 hours ahead",
+      "ref": null
+    },
+    {
+      "id": "01a106a9-9abd-7ae6-854b-1ccdd378ae0c",
+      "seq": 2,
+      "kind": "phone",
+      "label": "One-call centre",
+      "ref": "811"
+    }
+  ],
+  "details": {
+    "access_notes": null,
+    "hazards": null,
+    "gate_code": null,
+    "show_account_summary": true,
+    "show_asset_card": true,
+    "show_access_notes": true,
+    "show_appointment": true
+  }
+}

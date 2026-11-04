@@ -1,0 +1,646 @@
+<title>One Page Per Build</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+:root{
+  --page:#eceaea; --ink:#201e1d; --ink-2:#5b5654; --line:#d4d0cf; --card:#f7f6f6;
+  --accent:#ec3013; --accent-soft:#fff2ef; --q:#8a5a00; --q-soft:#fff4d6; --bug:#1f5fa8; --bug-soft:#e5eefa;
+  --del:#a81600; --del-soft:#fde4df; --ok:#1e6b3a; --ok-soft:#e2f3e8;
+  /* product screen tokens (tokens.css) stay light in both themes: the drawing depicts the product */
+  --s-bg:#f3f2f2; --s-surface:#eae9e9; --s-text:#201e1d; --s-muted:#6d6866; --s-line:#cfcbca; --s-side:#1c1a19;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --page:#181615; --ink:#efeceb; --ink-2:#b3adab; --line:#3a3533; --card:#221f1e;
+    --accent-soft:#3a1c16; --q:#f0c25a; --q-soft:#3a2e10; --bug:#8fb8ec; --bug-soft:#172a42;
+    --del:#ff9783; --del-soft:#3d1a14; --ok:#8fd4a8; --ok-soft:#15301f; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --page:#181615; --ink:#efeceb; --ink-2:#b3adab; --line:#3a3533; --card:#221f1e;
+  --accent-soft:#3a1c16; --q:#f0c25a; --q-soft:#3a2e10; --bug:#8fb8ec; --bug-soft:#172a42;
+  --del:#ff9783; --del-soft:#3d1a14; --ok:#8fd4a8; --ok-soft:#15301f; color-scheme: dark;
+}
+*{box-sizing:border-box}
+body{background:var(--page);color:var(--ink);font-family:"Archivo",system-ui,sans-serif;line-height:1.5;margin:0;padding-inline:clamp(16px,3vw,40px);padding-block:28px 64px}
+.wrap{max-width:1360px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+h1,h2,h3{text-wrap:balance;margin:0}
+h1{font-weight:800;font-size:clamp(28px,4vw,40px);letter-spacing:-.01em}
+.lede{color:var(--ink-2);max-width:70ch;margin:6px 0 0}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.legend{display:flex;flex-wrap:wrap;gap:10px 18px;font-size:13px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);background:var(--page);z-index:5;padding-block:8px 0}
+.tab{font:inherit;font-weight:700;font-size:14px;padding:9px 14px;border:1px solid transparent;border-bottom:none;border-radius:6px 6px 0 0;background:none;color:var(--ink-2);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--card);color:var(--ink);border-color:var(--line)}
+.tab:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tab .n{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:4px;background:var(--line);color:var(--ink);font-size:12px;margin-right:6px}
+.tab[aria-selected="true"] .n{background:var(--accent);color:#fff}
+.panel{display:flex;flex-direction:column;gap:22px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.meta div{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px;font-size:14px}
+.meta b{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin-bottom:2px}
+/* markers */
+.m{display:inline-flex;align-items:center;font:600 11px/1 "JetBrains Mono",ui-monospace,monospace;padding:3px 6px;border-radius:4px;margin-left:6px;vertical-align:middle;white-space:nowrap}
+.m.b{background:var(--bug-soft);color:var(--bug)}
+.m.q{background:var(--q-soft);color:var(--q)}
+.m.new{background:var(--ok-soft);color:var(--ok)}
+/* screen frame */
+.frame-scroll{overflow-x:auto;border-radius:10px;border:1px solid var(--line);box-shadow:0 8px 28px rgba(0,0,0,.08)}
+.screen{min-width:1120px;display:grid;grid-template-columns:200px 1fr;background:var(--s-bg);color:var(--s-text);font-size:13px}
+.side{background:var(--s-side);color:#d9d5d4;padding:14px 12px;display:flex;flex-direction:column;gap:6px}
+.brand{font-weight:800;color:#fff;font-size:15px;display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.brand i{width:10px;height:10px;background:var(--accent);display:inline-block}
+.side .nav{padding:6px 8px;border-radius:4px;font-size:12.5px}
+.side .nav.on{background:#2e2b2a;color:#fff}
+.side .ver{margin-top:auto;font-size:11px;color:#8d8785}
+.main{padding:18px 26px 20px;display:flex;flex-direction:column;gap:14px}
+.back{color:var(--accent);font-weight:700;font-size:12.5px}
+.s-eyebrow{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--accent)}
+.s-title{font-weight:800;font-size:30px;letter-spacing:-.01em;line-height:1.1}
+.s-sub{color:var(--s-muted);font-size:11.5px}
+.rail{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--s-line);border-bottom:1px solid var(--s-line)}
+.rail div{display:flex;align-items:center;gap:10px;padding:12px 14px;font-weight:700;border-right:1px solid var(--s-line)}
+.rail div:last-child{border-right:none}
+.rail span{display:inline-grid;place-items:center;width:22px;height:22px;background:#dcd8d7;font-size:11.5px}
+.rail .done span{background:var(--s-text);color:#fff}
+.rail .on{color:var(--accent)}
+.rail .on span{background:var(--accent);color:#fff}
+.sec{background:var(--s-surface);border:1px solid var(--s-line);padding:14px 16px;display:flex;flex-direction:column;gap:12px}
+.sec h4{margin:0;font-size:15px;font-weight:800}
+.sec h5{margin:0;font-size:12.5px;font-weight:800;color:var(--s-text)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px 18px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px 18px}
+.f{display:flex;flex-direction:column;gap:4px}
+.f label{font-size:11.5px;color:#3d3937}
+.f label .req{color:var(--accent)}
+.in{height:32px;border:1px solid var(--s-line);background:#f6f5f5;display:flex;align-items:center;justify-content:space-between;padding:0 10px;font-size:12.5px;color:var(--s-text)}
+.in.ph{color:#8f8a88}
+.in.dd::after{content:"▾";font-size:11px;color:#6d6866}
+.in.srch::after{content:"⌕";font-size:13px;color:#6d6866}
+.in.dis{opacity:.5}
+.chk{display:flex;align-items:center;gap:8px;font-size:12.5px}
+.chk i{width:14px;height:14px;border:1px solid #8f8a88;background:#fff;display:inline-grid;place-items:center;font-style:normal;font-size:10px}
+.chk i.on{background:var(--s-text);color:#fff;border-color:var(--s-text)}
+table.t{width:100%;border-collapse:collapse;font-size:12px}
+table.t th{text-align:left;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;padding:7px 8px;border-bottom:1px solid var(--s-line)}
+table.t td{padding:6px 8px;border-bottom:1px solid var(--s-line);vertical-align:middle}
+table.t td .in{height:26px;font-size:11.5px}
+table.t tr.grp td{background:#e2e0df;font-weight:800;font-size:11.5px}
+table.t td.num,table.t th.num{text-align:right;font-variant-numeric:tabular-nums}
+.x{color:var(--accent);font-weight:800;text-align:center;width:28px}
+.btn{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 13px;font-weight:800;font-size:12.5px;border:1px solid var(--s-text);background:transparent;color:var(--s-text)}
+.btn.p{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.ghost{border-color:var(--s-line)}
+.btn.dis{opacity:.45}
+.row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.foot{display:flex;justify-content:space-between;align-items:center;padding-top:6px}
+.card-found{border:1px solid var(--s-line);background:#f6f5f5;padding:10px 12px;display:grid;grid-template-columns:repeat(3,1fr);gap:4px 16px;font-size:12px}
+.card-found b{display:block;font-size:10.5px;color:var(--s-muted);font-weight:600}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px 18px;font-size:12.5px}
+.facts div{border-left:2px solid var(--s-line);padding-left:9px}
+.facts b{display:block;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--s-muted);font-weight:700;margin-bottom:1px}
+.warn{background:#fde4df;border-left:3px solid #e0341a;padding:7px 10px;font-size:12px;color:#7c1405}
+.sum{display:grid;grid-template-columns:repeat(7,1fr);border:1px solid var(--s-line);background:#f6f5f5}
+.sum div{padding:9px 11px;border-right:1px solid var(--s-line);font-size:11px;color:var(--s-muted)}
+.sum div:last-child{border-right:none}
+.sum b{display:block;font-size:14px;color:var(--s-text);font-variant-numeric:tabular-nums}
+.badges{display:flex;gap:4px}
+.badges i{font-style:normal;width:20px;height:20px;display:inline-grid;place-items:center;font-size:10.5px;font-weight:800;color:#fff}
+.totals{display:grid;grid-template-columns:1fr auto;gap:4px 24px;justify-self:end;margin-left:auto;font-size:12.5px;min-width:320px}
+.totals .big{font-size:16px;font-weight:800}
+.totals span:nth-child(even){text-align:right;font-variant-numeric:tabular-nums}
+.coll{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--s-line);background:#f6f5f5;padding:9px 12px;font-size:12.5px}
+.coll b{font-weight:800}
+.coll .edit{color:var(--accent);font-weight:800}
+.chipn{font-size:10.5px;color:var(--s-muted)}
+/* notes below each screen */
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.note{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+.note h3{font-size:15px;margin-bottom:8px}
+.note ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:5px;font-size:14px}
+.note li s{color:var(--del);text-decoration-thickness:1px}
+.qtable{width:100%;border-collapse:collapse;font-size:14px}
+.qtable th,.qtable td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.qtable th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.tbl-scroll{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:8px}
+.foot-note{font-size:13px;color:var(--ink-2)}
+@media (prefers-reduced-motion: no-preference){.tab{transition:background .15s}}
+</style><style>
+.pill{display:inline-flex;align-items:center;padding:2px 8px;font-size:11px;font-weight:800;background:#dcd8d7;color:var(--s-text)}
+.pill.warn-pill{background:#ffe0d9;color:#7c1405}
+a.lnk{color:var(--accent);font-weight:700;text-decoration:none}
+.ph{border-bottom:1px solid var(--s-line);padding-bottom:0;margin-bottom:4px}
+.ph-back{color:var(--accent);font-weight:700;font-size:12.5px;margin-bottom:8px}
+.ph-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+.ph-kicker{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--accent);text-transform:uppercase}
+.ph-title{font-weight:800;font-size:30px;letter-spacing:-.01em;line-height:1.12}
+.ph-rollup{font-size:12px;color:var(--s-muted);margin-top:3px;display:flex;align-items:center;flex-wrap:wrap;gap:2px}
+.ph-actions{display:flex;gap:8px;flex-shrink:0;padding-top:12px;position:relative}
+.menu{position:absolute;top:46px;right:132px;width:250px;background:#fff;border:1px solid var(--s-line);box-shadow:0 10px 26px rgba(0,0,0,.16);z-index:9}
+.menu div{padding:9px 12px;font-size:12.5px;border-bottom:1px solid #efeeee}
+.menu div:last-child{border-bottom:none}
+.menu div.off{color:#9b9694}
+.menu div.off em{display:block;font-style:normal;font-size:10.5px;color:#9b9694}
+.menu div.danger{color:#a81600;font-weight:700}
+.mask{position:absolute;inset:0;background:rgba(32,30,29,.45);display:flex;align-items:flex-start;justify-content:center;padding-top:90px;z-index:20}
+.modal{background:var(--s-bg);border:1px solid var(--s-line);width:520px;box-shadow:0 18px 50px rgba(0,0,0,.28)}
+.modal .mh{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;border-bottom:1px solid var(--s-line)}
+.modal .mh b{font-size:15px;font-weight:800}
+.modal .mb{padding:14px 16px;display:flex;flex-direction:column;gap:11px}
+.modal .mf{display:flex;justify-content:flex-end;gap:8px;padding:12px 16px;border-top:1px solid var(--s-line)}
+.stage{position:relative}
+.tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.tile{background:var(--s-surface);border:1px solid var(--s-line);padding:11px 13px;cursor:pointer}
+.tile.on{border-color:var(--accent);box-shadow:inset 0 -2px 0 var(--accent)}
+.tile b{display:block;font-size:22px;font-weight:800;line-height:1.1}
+.tile span{font-size:11px;color:var(--s-muted)}
+.toolbar{display:flex;gap:8px;align-items:center}
+.toolbar .grow{flex:1}
+.views{display:flex;gap:4px}
+.views span{padding:6px 11px;font-size:12px;font-weight:700;border:1px solid var(--s-line);background:#f6f5f5;color:var(--s-muted)}
+.views span.on{background:var(--s-text);color:#fff;border-color:var(--s-text)}
+.pager{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--s-muted);padding-top:8px}
+.menu .hd{background:#f3f2f2;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:800;color:var(--s-muted)}
+.ph-tabs{display:flex;gap:2px;margin-top:14px}
+.ph-tabs span{padding:9px 14px;font-size:12.5px;font-weight:700;color:var(--s-muted);border-bottom:2px solid transparent}
+.ph-tabs span.on{color:var(--s-text);border-bottom-color:var(--accent)}
+.ph-tabs span.off{opacity:.4}
+</style>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Accounts &middot; New Connect &middot; the build detail page &middot; redesign draft v2</div>
+    <h1>One page per build</h1>
+    <p class="lede">Redrawn to the product&rsquo;s own detail structure: the shared page header &mdash; back link, kicker, title, roll-up line, actions &mdash; then the tab bar, then one tab&rsquo;s content. The same shape as the account detail page. Nothing here is built yet.</p>
+  </header>
+  <div class="legend">
+    <span><span class="m b">NEW</span> new on this page</span>
+    <span><span class="m q">?</span> waits on your answer</span>
+    <span style="color:var(--ok)">The eight acts already exist in the code</span>
+  </div>
+  <div class="tabs" role="tablist" aria-label="Views">
+    <button class="tab" role="tab" id="t-list" aria-controls="list" aria-selected="false">List</button>
+    <button class="tab" role="tab" id="t-overview" aria-controls="overview" aria-selected="true">Overview tab</button>
+    <button class="tab" role="tab" id="t-units" aria-controls="units" aria-selected="false">Units tab</button>
+    <button class="tab" role="tab" id="t-work" aria-controls="work" aria-selected="false">Work tab</button>
+    <button class="tab" role="tab" id="t-charges" aria-controls="charges" aria-selected="false">Charges tab</button>
+    <button class="tab" role="tab" id="t-documents" aria-controls="documents" aria-selected="false">Documents tab</button>
+    <button class="tab" role="tab" id="t-messages" aria-controls="messages" aria-selected="false">Messages tab</button>
+    <button class="tab" role="tab" id="t-history" aria-controls="history" aria-selected="false">Audit tab</button>
+    <button class="tab" role="tab" id="t-resend" aria-controls="resend" aria-selected="false">Resend</button>
+    <button class="tab" role="tab" id="t-takepay" aria-controls="takepay" aria-selected="false">Take payment</button>
+    <button class="tab" role="tab" id="t-draft" aria-controls="draft" aria-selected="false">A draft build</button>
+    <button class="tab" role="tab" id="t-struct" aria-controls="struct" aria-selected="false">The structure</button>
+    <button class="tab" role="tab" id="t-actions" aria-controls="actions" aria-selected="false">Every action</button>
+  </div>
+
+  <section class="panel" id="overview" role="tabpanel" aria-labelledby="t-overview">
+    <div class="frame-scroll"><div class="screen">
+      <aside class="side"><div class="brand"><i></i>SMARTBillHub</div><div class="nav">Dashboard</div><div class="nav">Plans &amp; Rates</div><div class="nav">Premises</div><div class="nav">Assets</div><div class="nav on">Accounts</div><div class="nav">Reads</div><div class="nav">Billing</div><div class="nav">Payments</div><div class="nav">Work</div><div class="nav">Finance</div><div class="nav">Settings</div><div class="ver">v2.x</div></aside>
+      <div class="main">
+        <div class="ph">
+          <div class="ph-back">&larr; New connects</div>
+          <div class="ph-top">
+            <div class="ph-id">
+              <div class="ph-kicker">B-2026-00042 &middot; SR-2026-00311</div>
+              <div class="ph-title">New Highland Park</div>
+              <div class="ph-rollup">1200 Main St, Ottumwa, IA 58245 &middot; 3 units &middot; raised 12 Sep by Dana Whitfield
+                <span class="badges" style="margin-left:6px"><i style="background:#1f5fa8">W</i><i style="background:#3b6e3b">S</i><i style="background:#555">T</i><i style="background:#a81600">F</i></span>
+                <span class="pill warn-pill" style="margin-left:6px">Partly activated</span>
+              </div>
+            </div>
+            <div class="ph-actions">
+              <button class="btn" type="button">More &#9662;</button>
+              <button class="btn p" type="button">Raise order</button>
+            </div>
+          </div>
+          <nav class="ph-tabs" aria-label="Build">
+            <span class="on">Overview</span><span>Units</span><span>Work</span><span>Charges</span><span>Documents</span><span>Messages</span><span>Audit</span>
+          </nav>
+        </div>
+
+        <div class="sum" style="grid-template-columns:repeat(5,1fr)">
+          <div>Scope<b>A new premise</b></div>
+          <div>Mode<b>Our crew did it</b></div>
+          <div>Target<b>15 Oct 2026</b></div>
+          <div>Waiting on<b>Fire marshal</b></div>
+          <div>Open for<b>16 days</b></div>
+        </div>
+
+        <div class="sec"><h4>What this build made</h4>
+          <table class="t"><thead><tr><th>What</th><th class="num">How many</th><th>Named</th><th>State</th></tr></thead>
+            <tbody>
+              <tr><td>Customer</td><td class="num">1</td><td><a class="lnk">C-00010 &middot; Jonas Janssen</a></td><td>Active</td></tr>
+              <tr><td>Account</td><td class="num">1</td><td><a class="lnk">AC-2026-00011</a></td><td>Active</td></tr>
+              <tr><td>Premises</td><td class="num">1</td><td><a class="lnk">New Highland Park</a></td><td>Active</td></tr>
+              <tr><td>Units</td><td class="num">3</td><td>1, 2, 15</td><td>2 active &middot; 1 awaiting</td></tr>
+              <tr><td>Meters fitted</td><td class="num">2 of 3</td><td>&mdash;</td><td>1 awaiting fit</td></tr>
+              <tr><td>Plan assignments</td><td class="num">3</td><td>Residential City Plan</td><td>Active</td></tr>
+              <tr><td>Work orders</td><td class="num">4</td><td>&mdash;</td><td>3 done &middot; 1 open</td></tr>
+              <tr><td>One-time charges</td><td class="num">$1,035.00</td><td><a class="lnk">INV-2026-00318</a></td><td>$535.00 due 28 Oct</td></tr>
+            </tbody></table>
+          <div class="chipn">Each row opens the thing it names. The counts are facts, not links to a copy of it.</div>
+        </div>
+
+        <div class="grid2">
+          <div class="sec"><h4>Outstanding</h4>
+            <table class="t"><thead><tr><th>What</th><th>Since</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Fire marshal inspection not attended</td><td>6 days</td><td class="x">&times;</td></tr>
+                <tr><td>Unit 15 meter not fitted</td><td>6 days</td><td class="x">&times;</td></tr>
+              </tbody></table>
+          </div>
+          <div class="sec"><h4>What happens next</h4>
+            <table class="t"><thead><tr><th>When</th><th>What</th><th>Where</th></tr></thead>
+              <tbody>
+                <tr><td>15 Oct 2026</td><td>Service starts on completion</td><td>Premises</td></tr>
+                <tr><td>28 Oct 2026</td><td>$535.00 falls due</td><td>Account &rsaquo; Bills</td></tr>
+              </tbody></table>
+          </div>
+        </div>
+      </div>
+    </div></div>
+    <div class="notes">
+      <div class="note"><h3>The header, part by part</h3><ul>
+        <li><b>Back link</b> to the list it came from.</li>
+        <li><b>Kicker</b>: the build number and the request it came from &mdash; the two numbers a clerk reads out.</li>
+        <li><b>Title</b>: the premise name, because that is what people call the build.</li>
+        <li><b>Roll-up</b>: address, unit count, who raised it and when, the service chips, the state.</li>
+        <li><b>Actions</b>: a <b>More</b> menu holding the other seven acts, and one primary act. No Open premises or Open account &mdash; the Overview table already links both, and a link in two places is one that goes stale in one of them.</li>
+        <li><b>Tabs</b> sit in the header, as on every other detail page.</li>
+      </ul></div>
+      <div class="note"><h3>Why the acts moved into More</h3><ul>
+        <li>Eight buttons in a row is not the product&rsquo;s header. One primary act plus a menu is.</li><li><b>Every act is one or two words</b>, on your instruction of 28 Sep.</li>
+        <li>In the menu: Hold, Release, Waiting on, Add service, Mark outstanding, Close outstanding, Cancel build.</li>
+        <li>A greyed item says why, from the same check the server uses.</li>
+        <li><span class="m q">?</span> Say if you would rather the primary act were something other than <b>Raise order</b>.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <section class="panel" id="charges" role="tabpanel" aria-labelledby="t-charges" hidden>
+    <div class="frame-scroll"><div class="screen">
+      <aside class="side"><div class="brand"><i></i>SMARTBillHub</div><div class="nav">Dashboard</div><div class="nav">Plans &amp; Rates</div><div class="nav">Premises</div><div class="nav">Assets</div><div class="nav on">Accounts</div><div class="nav">Reads</div><div class="nav">Billing</div><div class="nav">Payments</div><div class="nav">Work</div><div class="nav">Finance</div><div class="nav">Settings</div><div class="ver">v2.x</div></aside>
+      <div class="main">
+        <div class="ph">
+          <div class="ph-back">&larr; New connects</div>
+          <div class="ph-top">
+            <div class="ph-id">
+              <div class="ph-kicker">B-2026-00042 &middot; SR-2026-00311</div>
+              <div class="ph-title">New Highland Park</div>
+              <div class="ph-rollup">1200 Main St, Ottumwa, IA 58245 &middot; 3 units &middot; raised 12 Sep by Dana Whitfield
+                <span class="badges" style="margin-left:6px"><i style="background:#1f5fa8">W</i><i style="background:#3b6e3b">S</i><i style="background:#555">T</i><i style="background:#a81600">F</i></span>
+                <span class="pill warn-pill" style="margin-left:6px">Partly activated</span>
+              </div>
+            </div>
+            <div class="ph-actions">
+              <button class="btn" type="button">More &#9662;</button>
+              <button class="btn p" type="button">Take payment</button>
+            </div>
+          </div>
+          <nav class="ph-tabs" aria-label="Build">
+            <span>Overview</span><span>Units</span><span>Work</span><span class="on">Charges</span><span>Documents</span><span>Messages</span><span>Audit</span>
+          </nav>
+        </div>
+
+        <div class="sum" style="grid-template-columns:repeat(4,1fr)">
+          <div>Charged<b>$1,035.00</b></div>
+          <div>Paid<b>$500.00</b></div>
+          <div>Outstanding<b>$535.00</b></div>
+          <div>Due<b>28 Oct 2026</b></div>
+        </div>
+
+        <div class="sec"><h4>The invoice</h4>
+          <div class="facts">
+            <div><b>Invoice</b><a class="lnk">INV-2026-00318</a></div>
+            <div><b>Billed to</b><a class="lnk">AC-2026-00011 &middot; Jonas Janssen</a></div>
+            <div><b>Raised</b>28 Sep 2026, on create</div>
+            <div><b>Terms</b>30 days</div>
+          </div>
+          <table class="t"><thead><tr><th>Charge</th><th>Basis</th><th class="num">Qty</th><th class="num">Each</th><th class="num">Amount</th></tr></thead>
+            <tbody>
+              <tr><td>CONN &middot; Connection fee</td><td>per unit</td><td class="num">3</td><td class="num">$45.00</td><td class="num">$135.00</td></tr>
+              <tr><td>SAME-DAY &middot; Same-day service</td><td>per unit</td><td class="num">3</td><td class="num">$50.00</td><td class="num">$150.00</td></tr>
+              <tr><td>TAMPER &middot; Tamper fee</td><td>per unit</td><td class="num">3</td><td class="num">$250.00</td><td class="num">$750.00</td></tr>
+            </tbody></table>
+        </div>
+
+        <div class="sec"><h4>Paid so far</h4>
+          <table class="t"><thead><tr><th>When</th><th>How</th><th>Reference</th><th class="num">Amount</th><th></th></tr></thead>
+            <tbody><tr><td>28 Sep 2026</td><td>Cheque</td><td>4471</td><td class="num">$500.00</td><td><a class="lnk">Open</a></td></tr></tbody></table>
+          <div class="chipn">Payments are the account&rsquo;s. This lists the ones raised by this build and opens each where it lives.</div>
+        </div>
+      </div>
+    </div></div>
+    <div class="notes"><div class="note"><h3>The rule this tab keeps</h3><ul>
+      <li><b>Money lives with the payer.</b> This tab states the figures and links to the account&rsquo;s bills and payments.</li>
+      <li>It does not re-implement the ledger. That duplication is why the old detail page was deleted.</li>
+      <li>No figure is multiplied or rounded on this screen; each is shown as the server states it.</li>
+      <li>The tab exists at all only because a build now writes an invoice at creation &mdash; your ruling of 28 Sep.</li>
+    </ul></div></div>
+  </section>
+
+  <section class="panel" id="units" role="tabpanel" aria-labelledby="t-units" hidden>
+    <div class="frame-scroll"><div class="screen">
+      <aside class="side"><div class="brand"><i></i>SMARTBillHub</div><div class="nav">Dashboard</div><div class="nav">Plans &amp; Rates</div><div class="nav">Premises</div><div class="nav">Assets</div><div class="nav on">Accounts</div><div class="nav">Reads</div><div class="nav">Billing</div><div class="nav">Payments</div><div class="nav">Work</div><div class="nav">Finance</div><div class="nav">Settings</div><div class="ver">v2.x</div></aside>
+      <div class="main">
+        <div class="ph">
+          <div class="ph-back">&larr; New connects</div>
+          <div class="ph-top">
+            <div class="ph-id">
+              <div class="ph-kicker">B-2026-00042 · SR-2026-00311</div>
+              <div class="ph-title">New Highland Park</div>
+              <div class="ph-rollup">1200 Main St, Ottumwa, IA 58245 · 3 units · raised 12 Sep by Dana Whitfield<span class="badges" style="margin-left:6px"><i style="background:#1f5fa8">W</i><i style="background:#3b6e3b">S</i><i style="background:#555">T</i><i style="background:#a81600">F</i></span><span class="pill warn-pill" style="margin-left:6px">Partly activated</span></div>
+            </div>
+            <div class="ph-actions"><button class="btn" type="button">More &#9662;</button><button class="btn p" type="button">Raise order</button><div class="menu"><div class="hd">Move it along</div><div>Hold</div><div class="off">Release<em>Not on hold</em></div><div>Waiting on</div><div class="hd">Change what is built</div><div>Add service</div><div class="hd">Say what is blocking</div><div>Mark outstanding</div><div>Close outstanding</div><div class="hd">End it</div><div class="danger">Cancel build</div></div></div>
+          </div>
+          <nav class="ph-tabs" aria-label="Build"><span>Overview</span><span class="on">Units</span><span>Work</span><span>Charges</span><span>Documents</span><span>Messages</span><span>Audit</span></nav>
+        </div>
+
+        <div class="sum" style="grid-template-columns:repeat(4,1fr)"><div>Units<b>3</b></div><div>Service points<b>12</b></div><div>Meters fitted<b>2 of 3</b></div><div>Occupancy<b>Vacant, service off</b></div></div>
+
+        <div class="sec"><h4>Units and service points</h4>
+          <table class="t"><thead><tr><th>Unit</th><th>Kind</th><th>Service</th><th>Asset</th><th>Size</th><th class="num">Qty</th><th>Work order</th><th>Occupancy</th><th>State</th></tr></thead>
+            <tbody>
+              <tr class="grp"><td colspan="9">Unit 1 · Dwelling · <a class="lnk">open unit</a></td></tr>
+              <tr><td>1</td><td>Dwelling</td><td>Water</td><td><a class="lnk">Meter M-4471</a></td><td>Water 1"</td><td class="num">1</td><td><a class="lnk">WO-1180</a></td><td>Vacant, service off</td><td>Active</td></tr>
+              <tr><td></td><td></td><td>Sewer</td><td>—</td><td>—</td><td class="num">1</td><td><a class="lnk">WO-1181</a></td><td>Vacant, service off</td><td>Active</td></tr>
+              <tr><td></td><td></td><td>Trash</td><td><a class="lnk">Cart C-2290</a></td><td>35-gallon cart</td><td class="num">2</td><td><a class="lnk">WO-1182</a></td><td>Vacant, service off</td><td>Active</td></tr>
+              <tr><td></td><td></td><td>Fire</td><td>Fire line</td><td>Fire line 6"</td><td class="num">1</td><td><a class="lnk">WO-1183</a></td><td>Vacant, service off</td><td style="color:#a81600">Awaiting</td></tr>
+              <tr class="grp"><td colspan="9">Unit 2 · Dwelling · 4 service points · <a class="lnk">open unit</a></td></tr>
+              <tr class="grp"><td colspan="9">Unit 15 · Dwelling · 4 service points · <a class="lnk">open unit</a></td></tr>
+            </tbody></table>
+          <div class="chipn">Read-only. The order&rsquo;s state and crew are on the Work tab, not repeated here. A unit or an asset is changed where it lives.</div>
+        </div>
+      </div>
+    </div></div>
+    <div class="notes"><div class="note"><h3>Units tab</h3><ul><li>The same nine columns as step 3 of the wizard, grouped by unit, so a clerk reads one shape in both places.</li><li>Every asset, order and unit is a link out.</li><li><b>State</b> is the extra column the wizard has no use for: what actually happened to each service point.</li><li>Changing a unit happens on the unit, not here. This tab reports.</li></ul></div></div>
+  </section>
+
+  <section class="panel" id="work" role="tabpanel" aria-labelledby="t-work" hidden>
+    <div class="frame-scroll"><div class="screen">
+      <aside class="side"><div class="brand"><i></i>SMARTBillHub</div><div class="nav">Dashboard</div><div class="nav">Plans &amp; Rates</div><div class="nav">Premises</div><div class="nav">Assets</div><div class="nav on">Accounts</div><div class="nav">Reads</div><div class="nav">Billing</div><div class="nav">Payments</div><div class="nav">Work</div><div class="nav">Finance</div><div class="nav">Settings</div><div class="ver">v2.x</div></aside>
+      <div class="main">
+        <div class="ph">
+          <div class="ph-back">&larr; New connects</div>
+          <div class="ph-top">
+            <div class="ph-id">
+              <div class="ph-kicker">B-2026-00042 · SR-2026-00311</div>
+              <div class="ph-title">New Highland Park</div>
+              <div class="ph-rollup">1200 Main St, Ottumwa, IA 58245 · 3 units · raised 12 Sep by Dana Whitfield<span class="badges" style="margin-left:6px"><i style="background:#1f5fa8">W</i><i style="background:#3b6e3b">S</i><i style="background:#555">T</i><i style="background:#a81600">F</i></span><span class="pill warn-pill" style="margin-left:6px">Partly activated</span></div>
+            </div>
+            <div class="ph-actions"><button class="btn" type="button">More &#9662;</button><button class="btn p" type="button">Raise order</button></div>
+          </div>
+          <nav class="ph-tabs" aria-label="Build"><span>Overview</span><span>Units</span><span class="on">Work</span><span>Charges</span><span>Documents</span><span>Messages</span><span>Audit</span></nav>
+        </div>
+
+        <div class="sum" style="grid-template-columns:repeat(4,1fr)"><div>Orders<b>4</b></div><div>Done<b>3</b></div><div>Open<b>1</b></div><div>Target<b>15 Oct 2026</b></div></div>
+
+        <div class="sec"><h4>Work orders</h4>
+          <table class="t"><thead><tr><th>Order</th><th>What</th><th>Service</th><th>Unit</th><th>Crew</th><th>Technician</th><th>Target</th><th>State</th><th></th></tr></thead>
+            <tbody>
+              <tr><td><a class="lnk">WO-1180</a></td><td>Site inspection &amp; mark-out</td><td>Water</td><td>1</td><td>Meter crew</td><td>Ray Alvarez · (641) 555-2210</td><td>2 Oct</td><td>Done 2 Oct</td><td><a class="lnk">Open</a></td></tr>
+              <tr><td><a class="lnk">WO-1181</a></td><td>Tap and connection inspection</td><td>Sewer</td><td>1</td><td>Meter crew</td><td>Ray Alvarez · (641) 555-2210</td><td>2 Oct</td><td>Done 3 Oct</td><td><a class="lnk">Open</a></td></tr>
+              <tr><td><a class="lnk">WO-1182</a></td><td>Container delivery</td><td>Trash</td><td>1</td><td>City Waste</td><td>Contractor · no technician named</td><td>6 Oct</td><td>Done 6 Oct</td><td><a class="lnk">Open</a></td></tr>
+              <tr><td><a class="lnk">WO-1183</a></td><td>Fire marshal inspection</td><td>Fire</td><td>All</td><td style="color:#a81600">Not assigned</td><td style="color:#a81600">Nobody holds this</td><td>10 Oct</td><td style="color:#a81600">Open · 6 days</td><td><a class="lnk">Open</a></td></tr>
+            </tbody></table>
+          <div class="warn">Nothing can pass until the fire marshal attends.</div>
+        </div>
+      </div>
+    </div></div>
+    <div class="notes"><div class="note"><h3>Work tab</h3><ul><li><b>Crew and technician are separate facts.</b> A crew can hold an order with nobody named on it yet, and that is exactly the fire-marshal row.</li><li>An unassigned order is red in both places, because it is the thing stopping the build.</li><li>The orders this build raised, and only those. The account&rsquo;s own Work tab lists everything at the address.</li><li>Each row opens in Work; nothing about an order is edited here.</li><li>The red line is the build&rsquo;s gate, the same fact the Overview tab states.</li><li><b>Raise order</b> is in the header, because it creates something rather than reporting it.</li></ul></div></div>
+  </section>
+
+  <section class="panel" id="documents" role="tabpanel" aria-labelledby="t-documents" hidden>
+    <div class="frame-scroll"><div class="screen">
+      <aside class="side"><div class="brand"><i></i>SMARTBillHub</div><div class="nav">Dashboard</div><div class="nav">Plans &amp; Rates</div><div class="nav">Premises</div><div class="nav">Assets</div><div class="nav on">Accounts</div><div class="nav">Reads</div><div class="nav">Billing</div><div class="nav">Payments</div><div class="nav">Work</div><div class="nav">Finance</div><div class="nav">Settings</div><div class="ver">v2.x</div></aside>
+      <div class="main">
+        <div class="ph">
+          <div class="ph-back">&larr; New connects</div>
+          <div class="ph-top">
+            <div class="ph-id">
+              <div class="ph-kicker">B-2026-00042 · SR-2026-00311</div>
+              <div class="ph-title">New Highland Park</div>
+              <div class="ph-rollup">1200 Main St, Ottumwa, IA 58245 · 3 units · raised 12 Sep by Dana Whitfield<span class="badges" style="margin-left:6px"><i style="background:#1f5fa8">W</i><i style="background:#3b6e3b">S</i><i style="background:#555">T</i><i style="background:#a81600">F</i></span><span class="pill warn-pill" style="margin-left:6px">Partly activated</span></div>
+            </div>
+            <div class="ph-actions"><button class="btn" type="button">More &#9662;</button><button class="btn p" type="button">Add document</button></div>
+          </div>
+          <nav class="ph-tabs" aria-label="Build"><span>Overview</span><span>Units</span><span>Work</span><span>Charges</span><span class="on">Documents</span><span>Messages</span><span>Audit</span></nav>
+        </div>
+
+        <div class="sec"><h4>Documents</h4>
+          <table class="t"><thead><tr><th>Document</th><th>Required</th><th>File</th><th>Document number</th><th>Uploaded by</th><th>When</th><th>State</th><th></th></tr></thead>
+            <tbody>
+              <tr><td>Contract</td><td>No</td><td><a class="lnk">contract-signed.pdf</a> · 74 KB</td><td>&bull;&bull;&bull;&bull; 2291</td><td>Dana Whitfield</td><td>12 Sep, 10:20</td><td>Verified</td><td class="x">×</td></tr>
+              <tr><td>Proof of ownership</td><td>Yes</td><td><a class="lnk">deed.pdf</a> · 220 KB</td><td>—</td><td>Dana Whitfield</td><td>12 Sep, 10:22</td><td></td><td class="x">×</td></tr>
+              <tr><td>Gov-ID</td><td>Yes</td><td><a class="lnk">licence.jpg</a> · 88 KB</td><td>&bull;&bull;&bull;&bull; 4471</td><td>Dana Whitfield</td><td>12 Sep, 10:24</td><td style="color:#a81600">Rejected</td><td class="x">×</td></tr>
+            </tbody></table>
+          <div class="row"><button class="btn" type="button">Add document</button><button class="btn ghost" type="button">Verify</button><button class="btn ghost" type="button">Reject</button></div>
+        </div>
+      </div>
+    </div></div>
+    <div class="notes"><div class="note"><h3>Documents tab</h3><ul><li>The shared document component, the one move-in, service requests and the transfer wizard already use.</li><li><b>Uploaded by</b> and <b>When</b> are real here, unlike on the wizard, because the files are filed once the build exists.</li><li><b>State</b> is blank until a reviewer decides: verified or rejected, no third word.</li><li>Verify and reject are a reviewer&rsquo;s acts, greyed for everyone else.</li></ul></div></div>
+  </section>
+
+  <section class="panel" id="messages" role="tabpanel" aria-labelledby="t-messages" hidden>
+    <div class="frame-scroll"><div class="screen">
+      <aside class="side"><div class="brand"><i></i>SMARTBillHub</div><div class="nav">Dashboard</div><div class="nav">Plans &amp; Rates</div><div class="nav">Premises</div><div class="nav">Assets</div><div class="nav on">Accounts</div><div class="nav">Reads</div><div class="nav">Billing</div><div class="nav">Payments</div><div class="nav">Work</div><div class="nav">Finance</div><div class="nav">Settings</div><div class="ver">v2.x</div></aside>
+      <div class="main">
+        <div class="ph">
+          <div class="ph-back">&larr; New connects</div>
+          <div class="ph-top">
+            <div class="ph-id">
+              <div class="ph-kicker">B-2026-00042 · SR-2026-00311</div>
+              <div class="ph-title">New Highland Park</div>
+              <div class="ph-rollup">1200 Main St, Ottumwa, IA 58245 · 3 units · raised 12 Sep by Dana Whitfield<span class="badges" style="margin-left:6px"><i style="background:#1f5fa8">W</i><i style="background:#3b6e3b">S</i><i style="background:#555">T</i><i style="background:#a81600">F</i></span><span class="pill warn-pill" style="margin-left:6px">Partly activated</span></div>
+            </div>
+            <div class="ph-actions"><button class="btn" type="button">More &#9662;</button><button class="btn p" type="button">Resend</button></div>
+          </div>
+          <nav class="ph-tabs" aria-label="Build"><span>Overview</span><span>Units</span><span>Work</span><span>Charges</span><span>Documents</span><span class="on">Messages</span><span>Audit</span></nav>
+        </div>
+
+        <div class="sec"><h4>What went out</h4>
+          <table class="t"><thead><tr><th>Message</th><th>To</th><th>Channel</th><th>Template</th><th>When</th><th>State</th><th></th></tr></thead>
+            <tbody>
+              <tr><td>Build confirmed</td><td>Jonas Janssen</td><td>Email</td><td><a class="lnk">Build confirmed v3</a></td><td>12 Sep, 10:31</td><td>Sent</td><td><a class="lnk">Resend</a></td></tr>
+              <tr><td>The contract</td><td>Jonas Janssen</td><td>Print</td><td><a class="lnk">Contract v2</a></td><td>12 Sep, 10:31</td><td>Printed</td><td><a class="lnk">Resend</a></td></tr>
+              <tr><td>Quote and what is owed</td><td>Jonas Janssen</td><td>Email · Print</td><td>—</td><td>—</td><td style="color:#a81600">Not sent</td><td><a class="lnk">Resend</a></td></tr>
+            </tbody></table>
+          <div class="chipn">A message with no published wording was never sent. Resend uses the wording published today.</div>
+        </div>
+      </div>
+    </div></div>
+    <div class="notes"><div class="note"><h3>Messages tab</h3><ul><li>What this build actually sent, when, and on which channel &mdash; not what it intended to send.</li><li><b>Resend</b> is new. It is refused when the utility has published no wording for that message.</li><li>The template name links to the version that was used, so a clerk can see what the customer read.</li></ul></div></div>
+  </section>
+
+  <section class="panel" id="history" role="tabpanel" aria-labelledby="t-history" hidden>
+    <div class="frame-scroll"><div class="screen">
+      <aside class="side"><div class="brand"><i></i>SMARTBillHub</div><div class="nav">Dashboard</div><div class="nav">Plans &amp; Rates</div><div class="nav">Premises</div><div class="nav">Assets</div><div class="nav on">Accounts</div><div class="nav">Reads</div><div class="nav">Billing</div><div class="nav">Payments</div><div class="nav">Work</div><div class="nav">Finance</div><div class="nav">Settings</div><div class="ver">v2.x</div></aside>
+      <div class="main">
+        <div class="ph">
+          <div class="ph-back">&larr; New connects</div>
+          <div class="ph-top">
+            <div class="ph-id">
+              <div class="ph-kicker">B-2026-00042 · SR-2026-00311</div>
+              <div class="ph-title">New Highland Park</div>
+              <div class="ph-rollup">1200 Main St, Ottumwa, IA 58245 · 3 units · raised 12 Sep by Dana Whitfield<span class="badges" style="margin-left:6px"><i style="background:#1f5fa8">W</i><i style="background:#3b6e3b">S</i><i style="background:#555">T</i><i style="background:#a81600">F</i></span><span class="pill warn-pill" style="margin-left:6px">Partly activated</span></div>
+            </div>
+            <div class="ph-actions"><button class="btn" type="button">More &#9662;</button><button class="btn p" type="button">Raise order</button></div>
+          </div>
+          <nav class="ph-tabs" aria-label="Build"><span>Overview</span><span>Units</span><span>Work</span><span>Charges</span><span>Documents</span><span>Messages</span><span class="on">Audit</span></nav>
+        </div>
+
+        <div class="sec"><h4>Audit</h4>
+          <table class="t"><thead><tr><th>When</th><th>Who</th><th>What</th><th>Detail</th></tr></thead>
+            <tbody>
+              <tr><td>28 Sep, 09:14</td><td>Dana Whitfield</td><td>Payment recorded</td><td>$500.00 · cheque 4471</td></tr>
+              <tr><td>28 Sep, 09:14</td><td>Dana Whitfield</td><td>Invoice raised</td><td>INV-2026-00318 · $1,035.00 · due 28 Oct</td></tr>
+              <tr><td>22 Sep, 16:02</td><td>Ray Alvarez</td><td>Marked outstanding</td><td>Fire marshal inspection not attended</td></tr>
+              <tr><td>18 Sep, 11:40</td><td>Dana Whitfield</td><td>Waiting on</td><td>Fire marshal</td></tr>
+              <tr><td>12 Sep, 10:31</td><td>Dana Whitfield</td><td>Build created</td><td>3 units · 12 service points · 4 orders</td></tr>
+              <tr><td>12 Sep, 09:58</td><td>Dana Whitfield</td><td>Raised from request</td><td><a class="lnk">SR-2026-00311</a></td></tr>
+            </tbody></table>
+        </div>
+      </div>
+    </div></div>
+    <div class="notes"><div class="note"><h3>Audit tab</h3><ul><li>Read-only, newest first. Every money act appears here because every money act is audited.</li><li><b>Called Audit</b>, the name the account and template pages already use for the same thing.</li><li>It shows this build&rsquo;s trail. The account keeps its own, and the premises keeps its own.</li><li>Rows are kept as long as the audit log keeps them, which is a retention policy rather than forever &mdash; the screen does not claim otherwise.</li></ul></div></div>
+  </section>
+
+  <section class="panel" id="resend" role="tabpanel" aria-labelledby="t-resend" hidden>
+    <div class="frame-scroll"><div class="screen stage">
+      <aside class="side"><div class="brand"><i></i>SMARTBillHub</div><div class="nav">Dashboard</div><div class="nav">Plans &amp; Rates</div><div class="nav">Premises</div><div class="nav">Assets</div><div class="nav on">Accounts</div><div class="nav">Reads</div><div class="nav">Billing</div><div class="nav">Payments</div><div class="nav">Work</div><div class="nav">Finance</div><div class="nav">Settings</div><div class="ver">v2.x</div></aside>
+      <div class="main">
+        <div class="ph"><div class="ph-back">&larr; New connects</div><div class="ph-top"><div class="ph-id"><div class="ph-kicker">B-2026-00042 · SR-2026-00311</div><div class="ph-title">New Highland Park</div><div class="ph-rollup">1200 Main St, Ottumwa, IA 58245 · 3 units · raised 12 Sep by Dana Whitfield<span class="badges" style="margin-left:6px"><i style="background:#1f5fa8">W</i><i style="background:#3b6e3b">S</i><i style="background:#555">T</i><i style="background:#a81600">F</i></span><span class="pill warn-pill" style="margin-left:6px">Partly activated</span></div></div><div class="ph-actions"><button class="btn" type="button">More &#9662;</button><button class="btn p" type="button">Resend</button></div></div><nav class="ph-tabs" aria-label="Build"><span>Overview</span><span>Units</span><span>Work</span><span>Charges</span><span>Documents</span><span class="on">Messages</span><span>Audit</span></nav></div>
+
+        <div class="sec"><h4>What went out</h4><table class="t"><thead><tr><th>Message</th><th>To</th><th>Channel</th><th>Template</th><th>When</th><th>State</th><th></th></tr></thead><tbody><tr style="outline:2px solid var(--accent);outline-offset:-2px"><td>Build confirmed</td><td>Jonas Janssen</td><td>Email</td><td><a class="lnk">Build confirmed v3</a></td><td>12 Sep, 10:31</td><td>Sent</td><td><a class="lnk">Resend</a></td></tr><tr><td>The contract</td><td>Jonas Janssen</td><td>Print</td><td><a class="lnk">Contract v2</a></td><td>12 Sep, 10:31</td><td>Printed</td><td><a class="lnk">Resend</a></td></tr><tr><td>Quote and what is owed</td><td>Jonas Janssen</td><td>Email · Print</td><td>—</td><td>—</td><td style="color:#a81600">Not sent</td><td style="color:#9b9694">Resend</td></tr></tbody></table></div>
+      </div>
+      <div class="mask"><div class="modal"><div class="mh"><b>Resend</b><span style="color:var(--s-muted)">×</span></div><div class="mb"><div class="facts" style="grid-template-columns:repeat(2,1fr)"><div><b>Message</b>Build confirmed</div><div><b>To</b>Jonas Janssen</div><div><b>Channel</b>Email · jonas@example.com</div><div><b>Last sent</b>12 Sep, 10:31</div></div><div class="f"><label>Template</label><div class="in dd">Build confirmed v4 · published today</div></div><div class="warn">Sent again now. The customer gets a second copy.</div></div><div class="mf"><button class="btn" type="button">Cancel</button><button class="btn p" type="button">Resend</button></div></div></div>
+    </div></div>
+    <div class="notes"><div class="note"><h3>Pressing Resend</h3><ul><li>Opened from the <b>Resend</b> link on a row, not from the header: it acts on one message.</li><li><b>It offers the wording published today</b>, which may differ from what the customer first received. The dialog says which version.</li><li>The consequence is stated in six words, because a second copy reaches a real customer.</li><li>The third row&rsquo;s Resend is dead, not red: the utility has published no wording, so there is nothing to send.</li></ul></div></div>
+  </section>
+
+  <section class="panel" id="takepay" role="tabpanel" aria-labelledby="t-takepay" hidden>
+    <div class="frame-scroll"><div class="screen stage">
+      <aside class="side"><div class="brand"><i></i>SMARTBillHub</div><div class="nav">Dashboard</div><div class="nav">Plans &amp; Rates</div><div class="nav">Premises</div><div class="nav">Assets</div><div class="nav on">Accounts</div><div class="nav">Reads</div><div class="nav">Billing</div><div class="nav">Payments</div><div class="nav">Work</div><div class="nav">Finance</div><div class="nav">Settings</div><div class="ver">v2.x</div></aside>
+      <div class="main">
+        <div class="ph"><div class="ph-back">&larr; New connects</div><div class="ph-top"><div class="ph-id"><div class="ph-kicker">B-2026-00042 · SR-2026-00311</div><div class="ph-title">New Highland Park</div><div class="ph-rollup">1200 Main St, Ottumwa, IA 58245 · 3 units · raised 12 Sep by Dana Whitfield<span class="badges" style="margin-left:6px"><i style="background:#1f5fa8">W</i><i style="background:#3b6e3b">S</i><i style="background:#555">T</i><i style="background:#a81600">F</i></span><span class="pill warn-pill" style="margin-left:6px">Partly activated</span></div></div><div class="ph-actions"><button class="btn" type="button">More &#9662;</button><button class="btn p" type="button">Take payment</button></div></div><nav class="ph-tabs" aria-label="Build"><span>Overview</span><span>Units</span><span>Work</span><span class="on">Charges</span><span>Documents</span><span>Messages</span><span>Audit</span></nav></div>
+
+        <div class="sum" style="grid-template-columns:repeat(4,1fr)"><div>Charged<b>$1,035.00</b></div><div>Paid<b>$500.00</b></div><div>Outstanding<b>$535.00</b></div><div>Due<b>28 Oct 2026</b></div></div><div class="sec"><h4>The invoice</h4><div class="facts"><div><b>Invoice</b><a class="lnk">INV-2026-00318</a></div><div><b>Billed to</b><a class="lnk">AC-2026-00011 · Jonas Janssen</a></div><div><b>Raised</b>28 Sep 2026, on create</div><div><b>Terms</b>30 days</div></div></div>
+      </div>
+      <div class="mask"><div class="modal"><div class="mh"><b>Take payment</b><span style="color:var(--s-muted)">×</span></div><div class="mb"><div class="facts" style="grid-template-columns:repeat(2,1fr)"><div><b>Against</b>INV-2026-00318</div><div><b>Account</b>AC-2026-00011 · Jonas Janssen</div><div><b>Outstanding</b>$535.00</div><div><b>Due</b>28 Oct 2026</div></div><div class="grid2"><div class="f"><label>Payment type <span class="req">*</span></label><div class="in dd">Cheque</div></div><div class="f"><label>Amount <span class="req">*</span></label><div class="in">$535.00</div></div><div class="f"><label>Payment date <span class="req">*</span></label><div class="in">28/09/2026</div></div><div class="f"><label>Cheque number <span class="req">*</span></label><div class="in ph">Type it</div></div></div><div class="chipn">The reference box follows the type: cheque number, card reference, or transfer reference. Cash asks for none.</div><div class="warn">Posted to the books. It cannot be edited after.</div></div><div class="mf"><button class="btn" type="button">Cancel</button><button class="btn p" type="button">Take payment</button></div></div></div>
+    </div></div>
+    <div class="notes"><div class="note"><h3>Pressing Take payment</h3><ul><li>Opened from <b>Take payment</b> on the Charges tab. The payment is recorded against the <b>account</b>, which is where money lives.</li><li><b>Amount arrives filled with what is outstanding</b> and can be changed. A short payment is allowed; an overpayment is refused.</li><li>The reference box changes with the type, and cash asks for none.</li><li>The consequence line is there because a posted payment cannot be edited afterwards, only corrected by a new row.</li><li><span class="m q">?</span> Should a short payment be allowed here, or only the full amount?</li></ul></div></div>
+  </section>
+
+  <section class="panel" id="list" role="tabpanel" aria-labelledby="t-list" hidden>
+    <div class="frame-scroll"><div class="screen">
+      <aside class="side"><div class="brand"><i></i>SMARTBillHub</div><div class="nav">Dashboard</div><div class="nav">Plans &amp; Rates</div><div class="nav">Premises</div><div class="nav">Assets</div><div class="nav on">Accounts</div><div class="nav">Reads</div><div class="nav">Billing</div><div class="nav">Payments</div><div class="nav">Work</div><div class="nav">Finance</div><div class="nav">Settings</div><div class="ver">v2.x</div></aside>
+      <div class="main">
+        <div class="row" style="justify-content:space-between;align-items:center"><div><div class="s-eyebrow">ACCOUNTS</div><div class="s-title">New connects</div></div><div class="row"><button class="btn" type="button">Export</button><button class="btn p" type="button">New connect</button></div></div>
+
+        <div class="tiles"><div class="tile on"><b>7</b><span>Open</span></div><div class="tile"><b>3</b><span>Waiting on someone</span></div><div class="tile"><b>2</b><span>Partly activated</span></div><div class="tile"><b>9</b><span>Units awaiting</span></div><div class="tile"><b>$4,210</b><span>Owed on open builds</span></div></div>
+
+                <div class="toolbar"><div class="in srch grow" style="max-width:640px">Build, premise, address, customer, request&hellip;</div><button class="btn ghost" type="button">Filter &#9662;</button><button class="btn ghost" type="button">Columns &#9662;</button></div>
+
+        <div class="sec" style="padding:0;border:none;background:transparent"><table class="t"><thead><tr><th style="width:26px"><div class="chk"><i>&nbsp;</i></div></th><th>Build</th><th>Premise</th><th>Customer</th><th class="num">Units</th><th>Services</th><th class="num">Orders</th><th class="num">Due</th><th>Target</th><th>State</th><th>Aging</th><th></th></tr></thead><tbody><tr><td><div class="chk"><i>&nbsp;</i></div></td><td><a class="lnk">B-2026-00042</a></td><td>New Highland Park<div class="chipn">1200 Main St, Ottumwa</div></td><td><a class="lnk">Jonas Janssen</a><div class="chipn">AC-2026-00011</div></td><td class="num">3</td><td><span class="badges"><i style="background:#1f5fa8">W</i><i style="background:#3b6e3b">S</i><i style="background:#555">T</i><i style="background:#a81600">F</i></span></td><td class="num">3 of 4</td><td class="num">$535.00</td><td>15 Oct</td><td><span class="pill warn-pill">Partly activated</span></td><td>16 days</td><td><a class="lnk">&#8942;</a></td></tr><tr><td><div class="chk"><i>&nbsp;</i></div></td><td><a class="lnk">B-2026-00051</a> <span class="pill">Draft</span></td><td>12 Elm St<div class="chipn">Ottumwa</div></td><td><a class="lnk">Jonas Janssen</a><div class="chipn">no account yet</div></td><td class="num">2</td><td><span class="badges"><i style="background:#1f5fa8">W</i><i style="background:#3b6e3b">S</i></span></td><td class="num">—</td><td class="num">—</td><td>—</td><td><span class="pill">Parked · step 3</span></td><td>1 day</td><td><a class="lnk">&#8942;</a></td></tr><tr><td><div class="chk"><i>&nbsp;</i></div></td><td><a class="lnk">B-2026-00038</a></td><td>Riverside Court<div class="chipn">44 Water St, Ottumwa</div></td><td><a class="lnk">Ridge Property LLC</a><div class="chipn">AC-2026-00051</div></td><td class="num">26</td><td><span class="badges"><i style="background:#1f5fa8">W</i><i style="background:#3b6e3b">S</i><i style="background:#555">T</i></span></td><td class="num">12 of 18</td><td class="num">$3,675.00</td><td>3 Nov</td><td><span class="pill warn-pill">Waiting · fire marshal</span></td><td style="color:#a81600">41 days</td><td><a class="lnk">&#8942;</a></td></tr><tr><td><div class="chk"><i>&nbsp;</i></div></td><td><a class="lnk">B-2026-00035</a></td><td>8 Oak Lane<div class="chipn">Ottumwa</div></td><td><a class="lnk">Teresa Muller</a><div class="chipn">AC-2026-00053</div></td><td class="num">1</td><td><span class="badges"><i style="background:#1f5fa8">W</i></span></td><td class="num">2 of 2</td><td class="num">$0.00</td><td>done 21 Sep</td><td><span class="pill" style="background:#e2f3e8;color:#1e6b3a">Active</span></td><td>—</td><td><a class="lnk">&#8942;</a></td></tr></tbody></table><div class="pager"><span>1 to 4 of 7</span><div class="row"><button class="btn ghost dis" type="button">Back</button><button class="btn ghost" type="button">Next</button><div class="in dd" style="width:92px">25 a page</div></div></div></div>
+      </div>
+    </div></div>
+    <div class="notes"><div class="note"><h3>The list, revamped</h3><ul><li><b>Every build number opens its own page.</b> A draft opens the draft page, which is what changes from today.</li><li><b>The tiles filter.</b> Clicking one narrows the table, which is what four counts sitting above a table should do.</li><li><b>No saved-view chips.</b> State is a filter, and the same choice in two controls is how two screens end up disagreeing. Open, Drafts, Waiting, Done and Cancelled all live under <b>Filter</b>.</li><li><b>Money is on the list</b> for the first time, because a build now raises an invoice. Due is what is still owed.</li><li><b>Aging goes red past a threshold</b>, the same as the Accounts list. 41 days is the one to look at.</li><li><b>Columns</b> chooses the rest: charged, mode, scope, raised by, request number, last event.</li><li><b>The row menu</b> holds Hold, Waiting on and Cancel build; the tick boxes do the same in bulk.</li><li>Search covers build, premise, address, customer and request number. It already does; the placeholder now says so.</li><li>The table, filters, sorting and paging are the ones the Accounts list already uses, and paging is done by the server.</li></ul></div></div>
+  </section>
+
+  <section class="panel" id="draft" role="tabpanel" aria-labelledby="t-draft" hidden>
+    <div class="frame-scroll"><div class="screen">
+      <aside class="side"><div class="brand"><i></i>SMARTBillHub</div><div class="nav">Dashboard</div><div class="nav">Plans &amp; Rates</div><div class="nav">Premises</div><div class="nav">Assets</div><div class="nav on">Accounts</div><div class="nav">Reads</div><div class="nav">Billing</div><div class="nav">Payments</div><div class="nav">Work</div><div class="nav">Finance</div><div class="nav">Settings</div><div class="ver">v2.x</div></aside>
+      <div class="main">
+        <div class="ph">
+          <div class="ph-back">&larr; New connects</div>
+          <div class="ph-top">
+            <div class="ph-id">
+              <div class="ph-kicker">B-2026-00051 &middot; draft</div>
+              <div class="ph-title">12 Elm St</div>
+              <div class="ph-rollup">Ottumwa, IA &middot; started 27 Sep by Dana Whitfield <span class="pill" style="margin-left:6px">Parked</span></div>
+            </div>
+            <div class="ph-actions"><button class="btn" type="button">More &#9662;</button><button class="btn p" type="button">Carry on</button></div>
+          </div>
+          <nav class="ph-tabs" aria-label="Build">
+            <span class="on">Overview</span><span class="off">Units</span><span class="off">Work</span><span class="off">Charges</span><span>Documents</span><span class="off">Messages</span><span>Audit</span>
+          </nav>
+        </div>
+        <div class="sum" style="grid-template-columns:repeat(3,1fr)">
+          <div>Reached<b>Step 3 of 5 &middot; Units</b></div>
+          <div>Parked because<b>Waiting on the owner&rsquo;s gov-ID</b></div>
+          <div>Parked<b>27 Sep, 16:40</b></div>
+        </div>
+        <div class="sec"><h4>What has been answered</h4>
+          <div class="coll"><span><b>Customer</b> &middot; Jonas Janssen &middot; new &middot; gov-ID missing</span><span class="edit">Edit &rsaquo;</span></div>
+          <div class="coll"><span><b>Premise</b> &middot; 12 Elm St, Ottumwa, IA &middot; New units at an existing premise</span><span class="edit">Edit &rsaquo;</span></div>
+          <div class="coll"><span><b>Units</b> &middot; 2 units &middot; 6 service points &middot; not finished</span><span class="edit">Edit &rsaquo;</span></div>
+          <div class="coll" style="opacity:.5"><span><b>Charges</b> &middot; not reached</span><span></span></div>
+          <div class="coll" style="opacity:.5"><span><b>Review</b> &middot; not reached</span><span></span></div>
+        </div>
+      </div>
+    </div></div>
+    <div class="notes"><div class="note"><h3>A draft keeps the same shape</h3><ul>
+      <li>The same header and the same tab bar, so the page never rearranges itself under a clerk.</li>
+      <li>Tabs with nothing behind them yet are shown but not selectable, because nothing has been created.</li>
+      <li>The primary act is <b>Carry on</b>; the menu holds Re-park and Cancel build.</li>
+      
+      <li><span class="m q">?</span> Should a draft&rsquo;s row in the list open this page, or go straight into the wizard as it does today?</li>
+    </ul></div></div>
+  </section>
+
+  <section class="panel" id="struct" role="tabpanel" aria-labelledby="t-struct" hidden>
+    <div class="tbl-scroll"><table class="qtable">
+      <thead><tr><th>Part</th><th>What it holds</th><th>Same as</th></tr></thead>
+      <tbody>
+        <tr><td><b>Back link</b></td><td>&larr; New connects</td><td>Every detail page</td></tr>
+        <tr><td><b>Kicker</b></td><td>Build number &middot; the request it came from</td><td>The account page&rsquo;s account number &middot; customer number</td></tr>
+        <tr><td><b>Title</b></td><td>The premise name</td><td>The account page&rsquo;s account name</td></tr>
+        <tr><td><b>Roll-up line</b></td><td>Address, units, who raised it, service chips, state</td><td>The account page&rsquo;s address chain and service chips</td></tr>
+        <tr><td><b>Actions</b></td><td>A More menu and one primary act</td><td>The shared header&rsquo;s leading, secondary and primary actions</td></tr>
+        <tr><td><b>Tab bar</b></td><td>Overview &middot; Units &middot; Work &middot; Charges &middot; Documents &middot; Messages &middot; Audit</td><td>The account page&rsquo;s Overview &middot; Bills &middot; Payments &middot; Credits</td></tr>
+        <tr><td><b>Tab content</b></td><td>Tiles, then panels, then tables</td><td>Every other tab in the product</td></tr>
+      </tbody>
+    </table></div>
+    <div class="notes"><div class="note"><h3>What this costs</h3><ul>
+      <li><b>It reverses a ruling of 4 September</b> that deleted a 1,464-line detail page and said a build has one destination, the premises and the account. Your ruling supersedes it, and the supersession gets written down.</li>
+      <li><b>A merge check exists to stop this page coming back.</b> It is amended deliberately, citing the new ruling, never switched off.</li>
+      <li><b>The address already exists</b> as a redirect, so every old link keeps working; it stops redirecting.</li>
+      <li><b>Five links repoint</b>: the list&rsquo;s eye, the wizard&rsquo;s completion, the Orders tab&rsquo;s cell, the approval queue&rsquo;s cell and its eye.</li>
+      <li><b>The panels already exist</b> in one shared file the premises and account pages both compose. This page composes the same ones.</li>
+    </ul></div></div>
+  </section>
+
+  <section class="panel" id="actions" role="tabpanel" aria-labelledby="t-actions" hidden>
+    <div class="tbl-scroll"><table class="qtable">
+      <thead><tr><th>Action</th><th>Where</th><th>Exists today</th><th>Refused when</th></tr></thead>
+      <tbody>
+        <tr><td>Raise order</td><td>Header, primary</td><td>Yes</td><td>Build cancelled</td></tr>
+        <tr><td>Hold &middot; Release</td><td>Header, More</td><td>Yes</td><td>Already held &middot; not held</td></tr>
+        <tr><td>Waiting on</td><td>Header, More</td><td>Yes</td><td>Needs a sentence typed</td></tr>
+        <tr><td>Add service</td><td>Header, More</td><td>Yes</td><td>The address does not offer it</td></tr>
+        <tr><td>Mark outstanding · Close outstanding</td><td>Header, More</td><td>Yes</td><td>Needs a sentence &middot; nothing outstanding</td></tr>
+        <tr><td>Cancel build</td><td>Header, More</td><td>Yes</td><td>Already active or cancelled</td></tr>
+        <tr><td>Open premises &middot; Open account</td><td><b>Overview tab</b>, in the table</td><td>Yes, as links</td><td>Draft: neither exists yet</td></tr>
+        <tr><td>Open — unit, asset, order, invoice, payment</td><td>In the tables</td><td>Yes, elsewhere</td><td>&mdash;</td></tr>
+        <tr><td>Add document · Verify · Reject</td><td>Documents tab</td><td>Yes, shared component</td><td>Reviewer role only</td></tr>
+        <tr><td>Resend</td><td>Messages tab</td><td><b>New</b> <span class="m b">NEW</span></td><td>Nothing published to send</td></tr>
+        <tr><td>Take payment</td><td>Charges tab, primary</td><td><b>New</b> <span class="m b">NEW</span> &mdash; opens the account&rsquo;s payment screen</td><td>Nothing due</td></tr>
+        <tr><td>Carry on · Re-park · Cancel</td><td>Draft header</td><td>Yes</td><td>Not a draft</td></tr>
+      </tbody>
+    </table></div>
+    <p class="foot-note">Figures are examples from the PO&rsquo;s own screenshots. The acts are the ones already implemented for the build panels; nothing was invented.</p>
+  </section>
+</div>
+
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  function show(id){tabs.forEach(function(t){var on=t.getAttribute('aria-controls')===id;t.setAttribute('aria-selected',on?'true':'false');document.getElementById(t.getAttribute('aria-controls')).hidden=!on;});}
+  tabs.forEach(function(t){t.addEventListener('click',function(){var id=t.getAttribute('aria-controls');show(id);try{history.replaceState(null,'','#'+id)}catch(e){}});});
+  var h=(location.hash||'').slice(1);
+  if(h&&document.getElementById(h)&&document.getElementById(h).getAttribute('role')==='tabpanel')show(h);
+})();
+</script>

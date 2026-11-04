@@ -1,0 +1,25 @@
+# ── 10-scripts/gates/backend_suite_scope.txt ──────────────────────────────
+# The slice of 06-backend/tests that `prove_backend_suite.py` RUNS and `G135`
+# reads a receipt for. Paths are relative to 06-backend/.
+#
+# ⚠ **THIS IS NOT THE WHOLE SUITE AND IT DOES NOT PRETEND TO BE.**
+# 06-backend/tests holds ~1,295 files. G135 prints how many are NOT in scope
+# beside how many are, because a declared blind spot with no NUMBER attached is
+# indistinguishable from an empty one (CLAUDE.md hard-won law 7, fifth shape).
+#
+# ⚠ **IT IS MEANT TO GROW.** Adding a file is one line here and a fresh
+# receipt. Removing one needs a reason written beside it.
+#
+# THE FIRST ENTRIES ARE `DEF-RAT-6980`'s OWN NEIGHBOURHOOD — the 28 tests that
+# were RED on the branch for four days while every lane that touched rating saw
+# a green run, because a lane running ONE file sees green:
+# test_br_rat_088_base_charge_gate.py passes 7/7 beside
+# test_br_rat_088_base_migration.py failing 17/17, and neither gates a merge.
+
+tests/test_br_rat_088_base_migration.py
+tests/test_br_rat_088_base_charge_gate.py
+tests/test_br_rat_091_rate_change_impact.py
+tests/test_def_438_parity.py
+tests/test_def455_def254_base_codes_and_tax_silence.py
+tests/test_br_rat_1040_plan_base_total.py
+tests/test_def_498_def_493_charge_code_recurrence.py

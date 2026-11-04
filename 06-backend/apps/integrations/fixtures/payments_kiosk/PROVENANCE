@@ -1,0 +1,30 @@
+A REDACTED CAPTURE, not an emitter's output, and the difference matters — CR-069 §12's
+phase-5 exit test says the replay is "demonstrated by replaying a real captured payload",
+so these two files are the vendor's own sample with its identifiers replaced by the ones
+US-INT-044 §4 uses (K-88231 · $42.10 · CASH · ACC-1048; the return K-88231 · RETURN · R01).
+No customer name, no card number, no address and no key material is present, and none was
+in the sample: the kiosk network's notification carries an account NUMBER and nothing that
+identifies a person.
+
+⚠ THE FIELD NAMES ARE THIS LANE'S READING AND ARE DECLARED AS DATA, NOT BAKED INTO CODE.
+The specification section naming the JSON fields could not be read here (EP-INT-13 records
+the same about its risk-flag section), and US-INT-044 §4 gives the payload as words rather
+than as keys. `eventId` is what `manifests/payments_kiosk.py` declares in
+`Idempotency.key_field`, so the day the real specification is read it is ONE LINE of data
+and no code anywhere. Recorded in 12-governance/02-decision-log.md, 2026-09-06.
+
+⚠ EVERY FIELD BELOW EXCEPT `eventId` IS UNREAD BY THIS PRODUCT TODAY, ON PURPOSE. The door
+persists the envelope RAW (BR-INT-021) and stops (BR-INT-058); reading `amount`, `tender`,
+`accountNumber` or `riskFlag` and turning them into a payment is Runbooks' half and is not
+built. They are in the capture because they were in the capture — a fixture trimmed to what
+today's code happens to read is a fixture that cannot catch tomorrow's regression.
+
+⚠ `riskFlag: "review"` IS DELIBERATELY IN THE HAPPY-PATH PAYMENT. OQ-INT-1486 was ruled
+option (a) on 2026-09-04 — accept, and show the flag on the payment for a clerk — so the
+notification that must be ACCEPTED without hesitation is exactly the one carrying a flag.
+A fixture whose flag lived only in an unhappy-path file would let a later "hold the flagged
+ones" change pass every test.
+
+Recorded 2026-09-06 by the CR-069 wave N lane (the door half). Re-record ONLY when the
+vendor's real specification arrives, in the same commit as the manifest's `key_field`, and
+say so here.

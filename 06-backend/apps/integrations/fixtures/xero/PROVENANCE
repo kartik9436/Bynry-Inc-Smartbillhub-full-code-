@@ -1,0 +1,2 @@
+NO RECORDED FIXTURE — NOT A SUPPORTED FORMAT (BR-INT-033).
+The codec `xero` is registered BY NAME ONLY so a manifest may cite it and a picker may offer it. Its first real file is recorded from Xero on connect day, by wave J (the remembered export target), and its encoder or decoder lands in the same commit. Nothing in this folder is a sample somebody typed: a typed sample would make the conformance kit say *supported* about a format nothing reads.

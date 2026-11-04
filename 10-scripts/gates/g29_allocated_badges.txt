@@ -1,0 +1,355 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# THE ALLOCATED SCREEN BADGES — the THIRD authority G29 reads, beside A1 and r10
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# ⚠ ⚠ ⚠  READ THIS FIRST, OR YOU WILL WASTE AN HOUR HUNTING THE PROTOTYPE.
+#
+#   ***NONE OF THE IDS IN THIS FILE ARE IN r10.***
+#
+# A screenshot of `05-prototype/r10-2026-08-16/SMARTBillHub.dc.html` will never
+# show `WRK-19`, `BIL-06`, `SET-16` or any other id below, and its `sid()`
+# function has no branch that emits one. If you go looking for them there and
+# find nothing, the prototype is not wrong and the map is not wrong — THIS FILE
+# is where they are defined, and it is the only place they are defined.
+#
+# ───────────────────────────────────────────────────────────────────────────
+# WHY THIS FILE EXISTS (PO instruction 2026-09-03; decision log, same day)
+# ───────────────────────────────────────────────────────────────────────────
+# The Product Owner: *"We need unique screen ID - on every screen"*.
+#
+# Measured before anything was built: G29 reported **103 screens across 110
+# routes, 68 carrying the r10 badge the visible tag renders — so 35 SCREENS
+# SHOWED NOTHING AT ALL.** 23 of them had no id from either authority; 12 had an
+# A1 `S`-id but no r10 badge, and the tag deliberately renders nothing for those
+# because of the ruling below.
+#
+# A lane reported that there were only two roads and both broke something:
+#
+#   (a) RENDER THE A1 `S`-ID where there is no r10 badge. That reverses the PO's
+#       own ruling of 2026-08-19, in that ruling's own words: *"Keep S series for
+#       your reference for User and Product manager reference assign tags that
+#       are visible on screen those should be as per modules how we are using in
+#       r10"*. DECLINED.
+#
+#   (b) WIDEN G29 to accept an id no authority defines. That guts the one check
+#       standing between us and the expensive failure: *"an invented id renders
+#       on a screen, a PO photographs it, a defect is filed against it, and no
+#       document anywhere can say what it is."* DECLINED.
+#
+# THE THIRD ROAD, TAKEN: the 2026-08-19 ruling says the tag follows *"modules how
+# we are using in r10"* — **that is a SCHEME, not a closed list of the ids r10
+# happened to draw.** r10 is a frozen prototype and cannot grow new badges, so
+# the allocation authority has to be a file we own. This is that file.
+#
+# **G29 IS NOT WEAKENED. It still refuses an id no authority defines — it gains
+# an authority, it does not lose a check.** An id must appear in A1, in r10's own
+# `sid()`, or HERE. Nowhere else, and never nowhere at all.
+#
+# **No `S`-id is ever rendered**, so the 2026-08-19 ruling stands untouched.
+#
+# ───────────────────────────────────────────────────────────────────────────
+# THE GRAMMAR — three capitals, a hyphen, a number; a dot for a sub-view
+# ───────────────────────────────────────────────────────────────────────────
+# r10's sixteen prefixes and the highest number it draws for each are the
+# grammar, and new numbers continue it rather than restarting:
+#
+#     WRK 18 · SET 15 · PRM 8 · AST 8 · ACC 6 · PAY 5 · FIN 5 · RDS 4
+#     BIL 4 · ONB 4 · PLN 3 · RAT 3 · CHG 2 · RPT 2 · DSH 1 · WFL 1
+#
+# A DOTTED SUB-ID NEEDS NO ROW HERE. `PLN-01.charges` is r10's own convention —
+# the parent is the screen and the suffix is data — and G29 validates a dotted id
+# against its PARENT. So `FIN-01.taxes` is lawful the moment `FIN-01` is (r10
+# draws it), and `SET-16.retention` is lawful because `SET-16` is allocated
+# below. Prefer a sub-id over a new number wherever a route is plainly a child of
+# a badged screen: it consumes no number and it reads as what it is.
+#
+# ───────────────────────────────────────────────────────────────────────────
+# TWO KINDS OF ROW, AND THE DIFFERENCE MATTERS
+# ───────────────────────────────────────────────────────────────────────────
+# **ADOPTED** — a document in THIS REPOSITORY already specified this id, in this
+# grammar, and the only thing missing was an authority G29 would accept. Fourteen
+# of the thirty-five are this, and one of them proves the whole point:
+# `06-rating/09-screen-inventory.md` records a lane writing `r10: "DIS-02"` and
+# **G29 correctly refusing it** — *"that is not a badge r10 draws"* — so `DIS-02`
+# *"stays the TICKET vocabulary … rather than becoming a badge"*. It is a badge
+# now, and nothing about it was invented.
+#
+# **MINTED** — nothing specified one, so this file allocates it, continuing r10's
+# numbering for that prefix.
+#
+# ───────────────────────────────────────────────────────────────────────────
+# FORMAT — `<ID>` then whitespace then free text. G29 reads the FIRST FIELD only.
+# ───────────────────────────────────────────────────────────────────────────
+
+# ── ADOPTED · already specified by a document in this repository ────────────
+SET-06D   /:tenant/settings/reference-data/routes-cycles/routes/:routeId  — the route detail, numbered in B17 §4 and in the CR-029 record
+SET-07D   /:tenant/settings/reference-data/routes-cycles/cycles/:cycleId  — the cycle detail, B17 §4, same source as the route detail above
+TAX-02    /:tenant/plans-rates/taxes-fees/new  — the four-step tax wizard; CR-013 part 4 names TAX-02 as the specified id and r10 emits it nowhere
+DIS-02    /:tenant/plans-rates/discounts/new  — the five-step discount wizard; 04-docs/05-modules/06-rating/09-screen-inventory.md §18 row 12, which records G29 refusing this exact string for want of an authority
+PLN-04    /:tenant/accounts/:accountId/change-plan  — CR-013 part 5 and 06-rating/09-screen-inventory.md §18 row 16 number it the sixteenth Plans & Rates surface
+REQ-01    /:tenant/requests  — the Requests list; B18 §5.3
+REQ-02    /:tenant/requests/:requestId  — the request detail and its six tabs; B18 §5.3
+REQ-03    /:tenant/requests/new  — the six-step capture form; B18 §5.3
+NCT-01    /:tenant/connections/new  — the eight-step New Connect wizard; B18 §5.4
+NCT-02    /:tenant/connections/:connectionId  — the build's own detail page; B18 §5.4. RETIRED by CR-070 wave O on 2026-09-04, when the page was deleted and the address became a redirect, and RE-ALLOCATED by CR-151-BRC09 §6a on 2026-09-28, when the page came back at the same address
+TRF-02    /:tenant/transfers/new  — the five-step transfer wizard; B18 §5.7.7 (TRF-01 is the list)
+DSC-02    /:tenant/disconnects/new  — the five-step disconnect wizard; B18 §5.8.7 (DSC-01 is the list)
+
+# ── MINTED · nothing specified one; allocated here, continuing r10's numbering ──
+ONB-05    /signin-help  — the public sign-in help page. ONB is the onboarding/auth family and r10 draws ONB-01..04
+DSH-02    /:tenant/checklist  — the post-signup checklist. A1's own S62 addendum calls it a *"Dashboard surface"*, and r10 draws DSH-01
+SET-16    /:tenant/audit-log  — the audit-log viewer, reached from Settings → Security. r10 draws SET-01..15
+ACC-07    /:tenant/customers  — the customers list, a sibling of the accounts list ACC-01. r10 draws ACC-01..06
+BIL-05    /:tenant/billing/bills/:invoiceId  — the bill detail. A1 draws the LIST (S30) and no detail screen; r10 draws BIL-01..04
+BIL-06    /:tenant/billing/pending  — the pending-billing queue (US-BIL-006, *"hold is not forget"*)
+BIL-07    /:tenant/billing/print  — the print hand-over: the PDF set and the manifest a print vendor receives (CR-053 task 13)
+PAY-06    /:tenant/payments/collections  — the collections ladder board. A1's S70 is the collections RULES in Settings, which is a different screen
+RPT-03    /:tenant/reports/customer-statement  — the customer statement (CR-060 C16 / T17), designed after A1 was extracted. r10 draws RPT-01..02
+WRK-20    /:tenant/work/awaiting-approval  — the approval queue (Work-009, CR-070 wave B). r10 draws WRK-01..18 and 01-overview.md §6 reads — for this screen, so the id is MINTED rather than borrowed
+
+# ── MINTED · the one id r10 COMPUTES and never DECLARES (DEF-3480) ──────────
+#
+# r10 builds the payments tab id as `map[s.payTab] || 'PAY-' + s.payTab`, and its
+# Summary tab sets `payTab: 'summary'` — so the prototype really does draw
+# `PAY-summary` on screen, and declares it nowhere a reader can find. G29 was
+# right to refuse it: a computed string is not a definition. Allocating it here
+# makes it a definition without inventing anything, and it is deliberately the
+# string r10 itself computes rather than a tidier new number, so the running
+# prototype and the running product agree.
+PAY-summary   /:tenant/payments  — the Payments Summary tab, the tab a clerk lands on
+
+# ── MINTED · `CR-136-BRC07` `P2.6`'s two Counter screens (2026-09-23) ───────
+#
+# The blueprint tags all six Counter frames `S-NEW · PAY-N`, which is a
+# PLACEHOLDER rather than an id: `PAY-N` is the document saying *a new payments
+# badge goes here*. Two of the six are SCREENS (3·1 the list, 3·2 one till);
+# the other four are MODALS over them and take no badge of their own, exactly
+# as the estimate-read precedent leaves a dialog unbadged.
+#
+# The row above for `/:tenant/payments/:tab` says these are *"allocated by the
+# wave that BUILDS its screen — Counter and Settlements in phase 2"*, and this
+# is that wave.
+#
+# ⚠ **THE FREE NUMBERS ARE `PAY-04` AND `PAY-07`, AND THIS LANE'S FIRST PICK
+# WAS WRONG.** `screenIds.ts` says of the three unbadged payments tabs that
+# *"`PAY-03`/`PAY-04`/`PAY-05` would be badges invented for drawings r10 never
+# made"*, and that is true of 04 and **false of the other two**. r10's own id
+# function is `{record:'PAY-01', outstanding:'PAY-02', deposits:'PAY-03',
+# imports:'PAY-05'}`, so `PAY-03` is Finance → Deposits (S37, and this map
+# already gives it `PAY-03.import` as a sub-view) and `PAY-05` is the payments
+# Imports tab's the day somebody claims it. Taking either would have put two
+# screens on one badge — which a bug report cannot describe, and which nothing
+# in this repository checks across the two authorities. **Grep the map before
+# minting, not after.** `PAY-06` is the collections ladder.
+#
+# `imports` still carries no badge and `PAY-05` is not claimed here: that is a
+# gap `P1.5` left, FILED rather than fixed in passing, because a badge for a
+# screen this lane did not build is the invention this register exists to
+# refuse.
+PAY-04    /:tenant/payments/counter  — 3·1 Counters, the supervisor's list of every till, open and closed
+PAY-07    /:tenant/payments/counter/:counterCode  — 3·2 Your counter, one clerk's till and what it has taken
+
+# ── MINTED · `CR-139-BRC07` `P5.7`'s two Settlements screens (2026-09-23) ───
+#
+# The blueprint tags both frames `S-NEW · PAY-P`, which is a PLACEHOLDER in
+# exactly the sense `PAY-N` is above: the document saying *a new payments badge
+# goes here*. Both frames ARE screens — 5·1 the list of payouts and 5·2 one
+# payout with the payments inside it — and neither is a modal, because p072's
+# step 3 says a settlement has no actions at all.
+#
+# The `/:tenant/payments/:tab` row said these were *"allocated by the wave that
+# BUILDS its screen — Counter and Settlements in phase 2"*, and this is that
+# wave (phase 5 by the board's numbering; the sentence is about the screen, not
+# the phase number).
+#
+# ⚠ **THE MAP WAS GREPPED BEFORE MINTING, WHICH IS THE BLOCK ABOVE'S OWN
+# INSTRUCTION AND THE THING ITS AUTHOR GOT WRONG FIRST TIME.** r10's id
+# function is `{record:'PAY-01', outstanding:'PAY-02', deposits:'PAY-03',
+# imports:'PAY-05'}`, `PAY-06` is the collections ladder and `PAY-04`/`PAY-07`
+# are the two rows above, so the lowest free pair is `PAY-08` and `PAY-09`.
+# `PAY-05` is still the Imports tab's the day somebody claims it and is NOT
+# taken here — a badge for a screen this lane did not build is the invention
+# this register exists to refuse.
+PAY-08    /:tenant/payments/settlements  — 5·1 Settlements, one row per provider payout
+PAY-09    /:tenant/payments/settlements/:settlementRef  — 5·2 Settlement, one payout and the payments inside it
+
+# ── MINTED · CR-069's six screens (S141–S146), allocated 2026-09-03 by the wave D lane ──
+#
+# CR-069 §9 allocated the A1 ids S141–S146 (recorded in A1's addendum the same
+# day). The visible badges follow the module scheme the 2026-08-19 ruling names,
+# and the execution plan's B7 says the allocation is performed by the first lane
+# to mount one of the six — wave D mounted S143 first, so all six are taken here
+# at once, so that waves B, C, P and R inherit numbers rather than mint them.
+INT-01    /:tenant/settings/integrations  — S141 Connect / Manage, the modal over the grid (wave B)
+INT-02    /:tenant/settings/integrations/:key  — S142 Connection detail: living with a connection (wave C)
+INT-03    /:tenant/settings/integrations/:key/mappings  — S143 Mappings: their words for our things, and the GIS queue (wave D)
+INT-04    /:tenant/settings/integrations/:key/access  — S144 Who has been reading: the serve surface (wave R)
+INT-05    /:tenant/customers/:accountId/consents  — S145 Consent, the staff view (conditional, OQ-INT-1482)
+INT-06    /portal/consents/:requestId  — S146 Consent, the customer decides (conditional, OQ-INT-1482)
+CWP-069   /:tenant/settings/reference-data/customer-portal  — Portal settings · Overview, a STAFF screen the customer-portal blueprint numbered in its own series (CR-068 §9 row B1; PO 2026-09-03 "You can assign number CWP-nnn")
+CWP-070   /:tenant/settings/reference-data/customer-portal/branding  — Portal settings · Branding (CR-068 §9 row B2), same series, same ruling
+# CR-068 wave D (2026-09-04). ⚠ WITHOUT THESE THE TAG LIES: the badge is matched
+# by ROUTE, so the two new Configure segments and the Reference-data card all
+# showed `CWP-069` — the Overview's id — on screens that are not the Overview.
+# It was found by LOOKING at a walkthrough screenshot, which is the only thing
+# that could find it (law 6), and it is exactly what the PO's "we need unique
+# screen ID - on every screen" is for.
+CWP-071   /:tenant/settings/reference-data/customer-portal/help  — Help and answers (CR-068 §9 row B3), the list
+CWP-073   /:tenant/settings/reference-data/customer-portal/tips  — Tips (CR-068 §9 row B5)
+
+# ── MINTED · CR-069's six screens (S141–S146), allocated 2026-09-03 by the wave D lane ──
+#
+# CR-069 §9 allocated the A1 ids S141–S146 (recorded in A1's addendum the same
+# day). The visible badges follow the module scheme the 2026-08-19 ruling names,
+# and the execution plan's B7 says the allocation is performed by the first lane
+# to mount one of the six — wave D mounted S143 first, so all six are taken here
+# at once, so that waves B, C, P and R inherit numbers rather than mint them.
+INT-01    /:tenant/settings/integrations  — S141 Connect / Manage, the modal over the grid (wave B)
+INT-02    /:tenant/settings/integrations/:key  — S142 Connection detail: living with a connection (wave C)
+INT-03    /:tenant/settings/integrations/:key/mappings  — S143 Mappings: their words for our things, and the GIS queue (wave D)
+INT-04    /:tenant/settings/integrations/:key/access  — S144 Who has been reading: the serve surface (wave R)
+INT-05    /:tenant/customers/:accountId/consents  — S145 Consent, the staff view (conditional, OQ-INT-1482)
+INT-06    /portal/consents/:requestId  — S146 Consent, the customer decides (conditional, OQ-INT-1482)
+
+# ── MINTED · CR-070 wave J's two phone screens, allocated 2026-09-05 ──
+#
+# r10 draws WRK-01..18 for the dispatcher's DESKTOP and does not draw the phone
+# at all — the execution plan says so in its own words for wave J: *"the pack
+# does not draw the phone"*. So these two are minted the way WRK-19 (templates)
+# and WRK-20 (the approval queue) were, rather than borrowed from a drawing that
+# does not exist. A1 allocates nothing: its reserved S61–S90 band is exhausted,
+# which is REPORTED and not invented.
+WRK-21    /:tenant/work/mobile  — Today on the phone (Work-010, CR-070 wave J). Also /work/mobile/week: one screen, two horizons
+WRK-22    /:tenant/work/mobile/jobs/:orderId  — the job on the phone (Work-011, CR-070 wave J): safety first, then the work
+# CR-070 wave K adds the three panes a technician fills in — readings, the
+# photographs, and the signature or the refusal. They are ONE badge because
+# they are one screen in the product's vocabulary (`Work-012`) shown a pane at
+# a time on a phone; three badges would invite three screens and three opinions
+# about when a job may close. Minted for the same reason as WRK-21/22 above:
+# r10 does not draw the phone.
+WRK-23    /:tenant/work/mobile/jobs/:orderId/readings  — what the phone sends back (Work-012, CR-070 wave K). Also /photos and /signature: one screen, three panes
+
+# CR-070 wave M adds the ASSETS DOOR — the one form a clerk standing on a meter
+# raises a job from (`Work-028`, `US-WRK-038`, `BR-WRK-056`). MINTED, not
+# borrowed: r10 draws WRK-01..18 for the dispatcher's own screens and draws no
+# raise form hosted on an asset, so there is no drawing to borrow from — the
+# same reason WRK-20..23 were minted.
+#
+# ⚠ **IT IS DELIBERATELY NOT `WRK-19`.** That id was minted on 2026-09-03 for
+# the blank templates page and RETIRED in wave D when `Work-013` took r10's own
+# `WRK-04`; reusing a retired badge would make an old citation land on a screen
+# it never named. The rules LIST and its five-step builder take r10's OWN
+# `WRK-06` and `WRK-13` (01-overview.md §6) and are borrowed, so they add no
+# row here.
+WRK-24    /:tenant/assets/:assetId/work-orders/new  — the Assets door (Work-028, CR-070 wave M): one form, four ways in
+
+# CR-168-BRC10 §30 (lane BOARDS, 2026-10-05) — the At risk board leaves the
+# Performance tab and becomes a tab of its own, right after Orders, by the PO's
+# answer (1): *"(b) Make At risk its own tab next to Orders"*. r10 draws no
+# at-risk screen to borrow a badge from, so it is MINTED, the next after
+# `WRK-24`. Never `WRK-19` (retired, see above).
+WRK-25    /:tenant/work/at-risk  — At risk, its own tab next to Orders (CR-168-BRC10 §30): open jobs near or past their promise
+
+# CR-187-BRC10 (EP-WRK-11, 2026-10-21) — the office side of the native field
+# app. r10 predates the field app and draws none of it, so the badge is MINTED,
+# the next after `WRK-25`. One screen (`Work-034`), three panes, three
+# addresses, ONE badge — the shape `WRK-23` takes for the phone's three panes.
+WRK-26    /:tenant/work/field  — From the field (Work-034): finished jobs to accept, orders raised on site, alerts. Also /raised and /alerts: one screen, three panes
+
+# ── CR-075 · Runbooks (2026-09-06) — FOUR BADGES, MINTED ─────────────────────
+# The runbooks module is new and r10 draws none of it: the prototype predates
+# `CR-075` by three weeks and has no runbooks screen at all, so there is no
+# drawing to borrow from — the same reason `WRK-20`…`WRK-24` were minted.
+#
+# ⚠ **AND A1 CANNOT SUPPLY THEM EITHER, WHICH IS WHY EVERY RUNBOOKS ROW IN
+# `screenIds.ts` CARRIES `a1: null`.** The runbooks source document numbers
+# these screens `S148`–`S155`; A1's canonical range stops at `S114` and A1
+# declares no row for any of them. Minting an A1 id would renumber a vocabulary
+# CLAUDE.md says is never renumbered, and `g29_screen_ids.py` refuses it by
+# name. The `RBS-` ids are the module's own and come from
+# `04-docs/05-modules/17-runbooks/08-screen-layouts.md`'s table, which is the
+# authority a reader looks them up in.
+#
+# Registered by the wave D `D3`/`D4` lane. `RBS-004` and `RBS-006` are wave C's
+# screens; they shipped without a `screenIds.ts` row and are added in the same
+# commit, because a half-registered module is a badge that can name the wrong
+# screen.
+RBS-002   /:tenant/runbooks/templates        — the shipped library (US-RBS-018, CR-075 wave D task D3)
+RBS-003   /:tenant/runbooks/mine             — My runbooks, the configured list (US-RBS-003, task D4)
+RBS-004   /:tenant/runbooks/:key             — one runbook, seven tabs (US-RBS-016, wave C task C3)
+RBS-006   /:tenant/runbooks/:key/runs/:runId — one run's frozen result (wave C task C2)
+# Registered by the wave I `I6` lane, in the same commit as the route. ⚠ Before
+# this line the badge over `/runbooks/runs` read **RBS-004.runs** — the setup
+# screen for the runbook whose key is `runs` — because `screenIds.ts` is walked
+# in ORDER and `:key` matched first. The router was right and the badge was
+# wrong, and the badge is what the Product Owner reads off a screenshot to say
+# which screen has a problem (CR-016 addendum). Found by the wave's own
+# walkthrough looking at a picture, which is the only thing that could.
+RBS-008   /:tenant/runbooks/runs             — run history across every runbook (US-RBS-007, CR-075 wave I task I6)
+# Registered by the CR-092 `AST-B-12` lane, in the same commit as the route.
+# ⚠ **r10 DRAWS NO EDIT SCREEN AT ALL, and that is the reason rather than an
+# oversight in the prototype:** in r10 correcting an asset was a DIALOG on the
+# registry, and a dialog carries no badge — `sid()` emits AST-01..08 and has no
+# branch for a ninth. The PO ruled the dialog out on 2026-09-11 ("this should
+# be form and not modal"), so the screen that replaces it needs an id no
+# authority had yet allocated. `AST-09` is the next free number in the module's
+# own run and is the badge the CR-092 remedy drawing (screen 14) already shows.
+AST-09    /:tenant/assets/:assetId/edit      — Edit one asset, a full page (CR-092 AST-B-12, PO 2026-09-11)
+# ⚠ **`RBS-007` WAS MISSING FROM THIS FILE FOR FIVE DAYS AND G29 WAS RED FOR
+# ALL OF THEM (`DEF-RBS-5110`).** The route landed in `df1ade52e` on
+# 2026-09-07 with the badge already rendering; the wave registered RBS-002,
+# -003, -004 and -006 above and this one fell out. The badge is NOT invented
+# here — `04-docs/05-modules/17-runbooks/01-overview.md` line 445 names it
+# ("RBS-007 · Work list"), which is the same authority every other RBS row is
+# transcribed from — so this is the transcription that was skipped, not a new
+# allocation. Registered by the CR-092 `AST-B-12` lane, which met the failure
+# while adding the row above and dated it with `git log -S` rather than calling
+# it pre-existing and walking past (hard-won law 7, habit 1).
+RBS-007   /:tenant/runbooks/work             — the runbook work list (US-RBS-005, CR-075 wave G)
+# ⚠ **`RBS-001` WAS MISSING FROM THIS FILE FROM 2026-09-06 TO 2026-10-02, THE
+# SAME SKIPPED TRANSCRIPTION AS `RBS-007` ABOVE.** The Runbooks home landed in
+# `19e446875` declaring `data-screen="RBS-001"` with no `screenIds.ts` row at
+# all; 2.445.10 (`DEF-SHL-6047`) registered the row with `r10: null` and a
+# reason naming this file, so the home showed no badge. Not a new allocation:
+# `04-docs/05-modules/17-runbooks/01-overview.md` line 439 names it
+# ("RBS-001 · Runbooks home"), the authority every RBS row is transcribed from.
+RBS-001   /:tenant/runbooks                  — the Runbooks home, the landing screen (US-RBS-003, CR-075 wave D task D2)
+# ── MINTED · CR-110-BRC04 wave A (2026-09-16) — the connector SET-UP screen ──
+# `INT-07` is the next free number in the integrations module's own run
+# (`INT-01`…`INT-06` were allocated by CR-069 §9), which is the `AST-09`
+# precedent: *"the next free number in the module's own run"*.
+#
+# ⚠ **r10 DRAWS NO SUCH SCREEN AT ALL**, and that is the reason rather than an
+# oversight in the prototype: in r10 setting a connector up was a DIALOG over
+# the grid, and a dialog carries no badge. The Integration Blueprint draws it
+# as a full page with its own address on all 28 of its `CFG-nn` frames, and the
+# PO ruled on 2026-09-16 that the blueprint owns layout, copy, flows and states
+# for any module that has one. So the screen needs an id no authority had yet
+# allocated, and this is it.
+#
+# The A1 id `S147` is allocated by `CR-110-BRC04` and recorded in A1's own
+# addendum in the same commit — the `S141`–`S146` pattern, not a mint here.
+INT-07    /:tenant/settings/connectors/:providerKey/configure  — S147 Connector set-up: one form rendered 28 ways from the manifest (CR-110-BRC04 wave A)
+
+# ── CR-125-BRC07 · THE DISCONNECT CASE RECORD ───────────────────────────────
+# Blueprint `02 Accounts Menu Blueprint.pdf` p143, whose own red banner read
+# *"TODAY: no disconnect case page exists"*. It did not: no route, no
+# component, no endpoint.
+#
+# ⚠ **r10 DRAWS NO SUCH SCREEN**, and that is the reason rather than an
+# oversight: r10's disconnect surface is the LIST (`DSC-01`) and the five-step
+# wizard (`DSC-02`), and a case you could open and read back existed nowhere.
+# The Accounts blueprint draws it as a full page with its own address, and
+# `DEF-GOV-5248` gives the blueprint layout, copy, flows and states for any
+# module that has one — so the screen needs an id no authority had allocated.
+#
+# ⚠ **`DSC-03` IS r10's OWN GRAMMAR CONTINUED, NOT A NEW ONE**: `DSC-01` is the
+# list and `DSC-02` is the wizard, so the record is the third screen of that
+# family and takes the next number. A1 allocates nothing for S90's second half
+# (decision D1 — S82–S90 still read *"remain reserved"*), which is why this is
+# a mint here and not an A1 row.
+DSC-03    /:tenant/disconnects/:ref  — one disconnection case, read back; blueprint p143, three actions (PO 2026-09-20: "too many actions - keep critical ones")
+# CR-170-BRC10 (lane PWD, 2026-10-05) — the forgot-password page. ONB is the onboarding/auth family; ONB-05 is /signin-help, so this is the next number.
+ONB-06    /:tenant/forgot-password  — the public forgot-password page (BR-IDN-023 as amended 2026-10-05): ask your System Admin, no contact shown
+# CR-188-BRC10 (lane STAFF-INVITE, 2026-10-22) — the set-password page an emailed one-time sign-in link opens. Next ONB number.
+ONB-07    /:tenant/set-password  — the public set-password page (CR-188-BRC10): a staff invitation or reset link sets the person's own password once

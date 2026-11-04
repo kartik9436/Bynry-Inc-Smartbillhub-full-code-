@@ -1,0 +1,5 @@
+-- broken:
+51 PASS 1 FAIL
+  FAIL the payments' purposes are as the rule splits them — expected [('deposit', '100.00')], read [('prepay', '100.00')]
+-- restored:
+52 PASS 0 FAIL

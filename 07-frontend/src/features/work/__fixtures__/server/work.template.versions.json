@@ -1,0 +1,23 @@
+{
+  "template_no": "ST-0001",
+  "name": "Service drop",
+  "versions": [
+    {
+      "version": 2,
+      "published_at": "2026-10-04T11:25:37.720617+00:00",
+      "published_by": "01a106a6-df9f-772d-9fa6-ec19cc03577c",
+      "change_note": "Sample content: tasks, parts, readings and safety steps",
+      "orders_raised": 1,
+      "status": "current"
+    },
+    {
+      "version": 1,
+      "published_at": "2026-10-04T11:23:09.205927+00:00",
+      "published_by": "01a106a6-df9f-772d-9fa6-ec19cc03577c",
+      "change_note": "First publish",
+      "orders_raised": 0,
+      "status": "superseded"
+    }
+  ],
+  "orders_raised": 1
+}

@@ -1,0 +1,78 @@
+{
+  "base": "http://127.0.0.1:5235",
+  "api": "http://127.0.0.1:8103",
+  "findings": [
+    {
+      "surface": "upload POST",
+      "shows": "HTTP 201",
+      "detail": "{\"logo_file_id\":\"sha256:5539e85c0ccdebc741b61409ae78a76051f5903a990b8fd891b5008555030059\",\"content_type\":\"image/png\",\"size_bytes\":562}"
+    },
+    {
+      "surface": "Settings › Company › Brand",
+      "shows": "a BROKEN image",
+      "detail": "/api/brazosbend/settings/company/logo/file"
+    },
+    {
+      "surface": "App header",
+      "shows": "a BROKEN image",
+      "detail": "/api/brazosbend/settings/company/logo/file"
+    },
+    {
+      "surface": "Bill layout (screen)",
+      "shows": "no logo drawn on the chooser",
+      "detail": "http://127.0.0.1:8103/api/brazosbend/bill-templates/layouts/standard-letter-v1/preview.pdf"
+    },
+    {
+      "surface": "Customer portal settings",
+      "shows": "no image — text only: \"Logo On file Doing business as Brazos Bend Utilities Brand color\"",
+      "detail": ""
+    },
+    {
+      "surface": "Customer portal",
+      "shows": "no logo and no mark drawn",
+      "detail": ""
+    },
+    {
+      "surface": "Generated bill (PDF)",
+      "shows": "NO image in the PDF",
+      "detail": "HTTP 200 18445 bytes"
+    }
+  ],
+  "logoRequests": [
+    {
+      "url": "http://127.0.0.1:5235/api/brazosbend/settings/company/logo/file",
+      "status": 200,
+      "type": "text/html; charset=utf-8",
+      "etag": "",
+      "cache": ""
+    },
+    {
+      "url": "http://127.0.0.1:5235/api/brazosbend/settings/company/logo/file",
+      "status": 200,
+      "type": "text/html; charset=utf-8",
+      "etag": "",
+      "cache": ""
+    },
+    {
+      "url": "http://127.0.0.1:8103/api/brazosbend/settings/company/logo",
+      "status": 201,
+      "type": "application/json",
+      "etag": "",
+      "cache": ""
+    },
+    {
+      "url": "http://127.0.0.1:5235/api/brazosbend/settings/company/logo/file",
+      "status": 200,
+      "type": "text/html; charset=utf-8",
+      "etag": "",
+      "cache": ""
+    },
+    {
+      "url": "http://127.0.0.1:5235/api/brazosbend/settings/company/logo/file",
+      "status": 200,
+      "type": "text/html; charset=utf-8",
+      "etag": "",
+      "cache": ""
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+# ⚠ DISABLED, LIKE EVERY WORKFLOW IN THIS FOLDER (PO ruling 2026-09-04 — see README.md).
+# GitHub reads only `.yml` / `.yaml`, so this file queues nothing and bills nothing.
+# Turning it on is `git mv field-app-eas.yml.disabled field-app-eas.yml` AND the PO lifting
+# the 2026-09-04 ruling for this one file — it is written now so the pipeline is reviewable
+# before the first store build, not because anything runs it.
+#
+# T-57 (CR-187-BRC10). The native field app (`field-app/`, Expo SDK 53) is built by EAS
+# (Expo Application Services), never by the Docker build (decision log 2026-10-21, twelve
+# conflicts, #12). Release and rollback: 04-docs/05-modules/18-field-app/15-release-and-rollback.md.
+#
+# SIGNING KEYS LIVE IN CI SECRETS AND IN EAS, NEVER ON A LAPTOP (Security §4 "Store builds").
+# Repository secrets this file reads — each supplied by the PO / their Apple and Google admins:
+#   EXPO_TOKEN                               an EAS robot-user access token (expo.dev → Access tokens)
+#   EXPO_UPDATES_CODE_SIGNING_PRIVATE_KEY    PEM private key that signs every over-the-air update;
+#                                            its certificate is committed at field-app/certs/certificate.pem
+#   GOOGLE_SERVICE_INFO_PLIST                base64 of the Firebase iOS config (Crashlytics)
+#   GOOGLE_SERVICES_JSON                     base64 of the Firebase Android config (Crashlytics)
+#   EXPO_PUBLIC_POSTHOG_KEY                  the PostHog project key (analytics + flags)
+#   EXPO_PUBLIC_POSTHOG_HOST                 the PostHog host (self-hosted or cloud)
+# Held by EAS (expo.dev → Credentials), not by this repository:
+#   the iOS distribution certificate + provisioning profile (with the Critical Alerts capability),
+#   the App Store Connect API key used by `eas submit`,
+#   the Android upload keystore (Google Play App Signing holds the app-signing key itself),
+#   the Google Play service-account JSON used by `eas submit`.
+name: field-app-eas
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "build | update"
+        required: true
+        default: build
+        type: choice
+        options: [build, update]
+      profile:
+        description: "development | preview | production"
+        required: true
+        default: preview
+        type: choice
+        options: [development, preview, production]
+      platform:
+        description: "ios | android | all (build only)"
+        required: false
+        default: all
+        type: choice
+        options: [ios, android, all]
+      message:
+        description: "update message (update only) — name the version, e.g. 2.591.0"
+        required: false
+        default: ""
+
+# One release at a time per profile: two update publishes racing on one channel is how
+# a handset gets the older of the two.
+concurrency:
+  group: field-app-eas-${{ inputs.profile }}
+  cancel-in-progress: false
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: field-app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: field-app/package-lock.json
+      # ci, not install: build exactly what the lockfile pins.
+      - run: npm ci
+      - run: npx tsc --noEmit
+      - run: npx jest -w 2
+      # G35: the product version in field-app/package.json must equal the web and server
+      # literals (decision log 2026-10-21, conflict #4) — a store build at a version the
+      # rest of the product never shipped cannot be named in a defect report.
+      - run: python3 ../10-scripts/gates/g35_version_lockstep.py
+
+  eas:
+    needs: checks
+    runs-on: ubuntu-latest
+    environment: field-app-${{ inputs.profile }}
+    defaults:
+      run:
+        working-directory: field-app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: field-app/package-lock.json
+      - uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      - run: npm ci
+      - name: Firebase config files (never committed)
+        env:
+          GOOGLE_SERVICE_INFO_PLIST: ${{ secrets.GOOGLE_SERVICE_INFO_PLIST }}
+          GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
+        run: |
+          # Fail closed (hard-won law 3): a store build without crash reporting is a build
+          # nobody can diagnose, so a missing secret stops the run rather than shipping blind.
+          test -n "$GOOGLE_SERVICE_INFO_PLIST" || { echo "GOOGLE_SERVICE_INFO_PLIST secret missing"; exit 1; }
+          test -n "$GOOGLE_SERVICES_JSON" || { echo "GOOGLE_SERVICES_JSON secret missing"; exit 1; }
+          echo "$GOOGLE_SERVICE_INFO_PLIST" | base64 -d > GoogleService-Info.plist
+          echo "$GOOGLE_SERVICES_JSON" | base64 -d > google-services.json
+      - name: Build
+        if: inputs.action == 'build'
+        env:
+          EXPO_PUBLIC_POSTHOG_KEY: ${{ secrets.EXPO_PUBLIC_POSTHOG_KEY }}
+          EXPO_PUBLIC_POSTHOG_HOST: ${{ secrets.EXPO_PUBLIC_POSTHOG_HOST }}
+        run: eas build --profile "${{ inputs.profile }}" --platform "${{ inputs.platform }}" --non-interactive --no-wait
+      - name: Over-the-air update (JavaScript only)
+        if: inputs.action == 'update'
+        env:
+          EXPO_PUBLIC_POSTHOG_KEY: ${{ secrets.EXPO_PUBLIC_POSTHOG_KEY }}
+          EXPO_PUBLIC_POSTHOG_HOST: ${{ secrets.EXPO_PUBLIC_POSTHOG_HOST }}
+          EXPO_UPDATES_CODE_SIGNING_PRIVATE_KEY: ${{ secrets.EXPO_UPDATES_CODE_SIGNING_PRIVATE_KEY }}
+          # Passed through the environment, never pasted into the script: an input is text
+          # a person typed, and `${{ }}` inside `run:` would execute it as shell.
+          MESSAGE: ${{ inputs.message }}
+          CHANNEL: ${{ inputs.profile }}
+        run: |
+          test -n "$MESSAGE" || { echo "an update message naming the version is required"; exit 1; }
+          test -n "$EXPO_UPDATES_CODE_SIGNING_PRIVATE_KEY" || { echo "updates are signed; the private key secret is missing"; exit 1; }
+          umask 077
+          mkdir -p ../.signing && printf '%s' "$EXPO_UPDATES_CODE_SIGNING_PRIVATE_KEY" > ../.signing/private-key.pem
+          # The runtime version is the native fingerprint (app.json), so this update is
+          # served only to binaries whose native layer matches the one it was made against.
+          eas update --channel "$CHANNEL" --message "$MESSAGE" \
+            --private-key-path ../.signing/private-key.pem --non-interactive
+          rm -f ../.signing/private-key.pem

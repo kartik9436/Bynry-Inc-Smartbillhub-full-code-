@@ -1,0 +1,22 @@
+=== 04-new-1-details-empty-contract.png — step 1 Details, empty
+=== 05-new-1-details-errors-contract.png — Continue on empty: each missing box named
+=== 06-new-1-classes-dropdown-contract.png — Customer classes dropdown, Every customer class first
+=== 07-new-1-details-filled-contract.png — step 1 filled
+=== 08-new-2-services-filled-contract.png — step 2 services with schedule, base, minimum
+=== 09-new-2-services-row-added-contract.png — empty service row added
+=== 10-new-2-services-row-error-contract.png — empty row refused by name
+=== 11-new-2-services-all-added-contract.png — fire picked; + Add service greyed, All added.
+=== 12-new-2-surcharge-on-contract.png — outside-city surcharge on, Surcharge tick per row
+=== 13-new-3-charges-filled-contract.png — step 3 charge codes (LATE pre-filled) and taxes
+=== 14-new-3-tax-added-contract.png — third tax added, All added.
+=== 15-new-3-charges-error-contract.png — empty charge-code row refused
+=== 16-new-3-row-removed-contract.png — empty row removed with ×
+=== 17-new-4-billing-filled-contract.png — step 4 deposits, discounts, budget billing, minimum bill
+=== 18-new-4-discount-added-contract.png — second discount with offered from
+=== 19-new-4-billing-error-contract.png — empty deposit row refused
+=== 20-new-5-review-top-contract.png — Review, top of page
+=== 21-new-5-review-contract.png — Review, full page ending in Save as draft · Publish plan
+=== 22-new-6-published-contract.png — published
+POSTED (publish): {"details":{"name":"Residential City Plan","code":"RCP","description":"Water, sewer, trash and fire for homes inside the city.","customer_classes":["c-res"],"intended_for":{"cap_proof":false,"min_demand_25kw":false,"owner_occupied":false},"notes":[{"attribute":"customer_class","operator":"is","value":"Residential"}]},"services":[{"service":"water","schedule":"s-w","surcharged":true},{"service":"sewer","schedule":"s-s","surcharged":true},{"service":"trash","schedule":"s-t","surcharged":false},{"service":"fire","schedule":"s-f","surcharged":false}],"outside_city_percent":"25","charge_codes":[{"charge":"cc-late"},{"charge":"cc-recon"}],"taxes":[{"tax":"t-st"},{"tax":"t-bx"},{"tax":"t-cf"}],"deposits":[{"charge":"d-dep"}],"discounts":[{"discount":"ds-sen","offered_from":"2026-09-01","offered_until":"2026-10-31"},{"discount":"ds-auto","offered_from":"2026-11-01","offered_until":null}],"budget_billing":false,"effective_from":"2026-11-01","effective_to":null,"publish":true,"minimum_bill_amount":"10"}
+=== 23-new-6-saved-draft-contract.png — saved as a draft
+POSTED (draft): {"details":{"name":"Residential City Plan","code":"RCP","description":null,"customer_classes":[],"intended_for":{"cap_proof":false,"min_demand_25kw":false,"owner_occupied":false},"notes":[]},"services":[{"service":"water","schedule":"s-w","surcharged":false},{"service":"sewer","schedule":"s-s","surcharged":false},{"service":"trash","schedule":"s-t","surcharged":false}],"outside_city_percent":null,"charge_codes":[{"charge":"cc-late"}],"taxes":[],"deposits":[],"discounts":[],"budget_billing":false,"effective_from":null,"effective_to":null,"publish":false}

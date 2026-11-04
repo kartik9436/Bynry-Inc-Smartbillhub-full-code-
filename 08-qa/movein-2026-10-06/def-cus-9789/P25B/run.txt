@@ -1,0 +1,139 @@
+
+── P25B · P4.25 (proration) · a copy of M1, then Change move-in date 10/10/2026 → 10/15/2026
+  PASS  P25B · Units     · U-00004 is offered as vacant before the move-in
+  PASS  P25B · Units     · step 1 lists Electric
+  PASS  P25B · Units     · step 1 lists Water
+  PASS  P25B · Units     · step 1 lists Sewer
+  PASS  P25B · Units     · step 1 lists Trash
+  PASS  P25B · Assets    · step 1 asks an opening read for E-M1
+  PASS  P25B · Work      · the Work order list offers "Opening read"
+  PASS  P25B · Accounts  · Search customer ID answers "new"
+  PASS  P25B · Accounts  · no match block is drawn for a new person
+  PASS  P25B · Payments  · Fees total reads $175.00 — $175.00
+  PASS  P25B · Payments  · no fee row is taxed at move-in (no Taxable column, no tax row)
+  NOTE  P25B · Complete warned deposit_carry_forward_unavailable: no deposit was carried forward from an earlier account
+  NOTE  P25B · Complete warned deposit_payment_has_not_cleared: 
+  PASS  P25B · Accounts  · Move-in completed prints no raw server code
+  PASS  P25B · Messages  · Move-in completed counts the queued welcome (not 0 queued) — reads "3 queued"
+  PASS  P25B · Accounts  · Move-in completed names an MVI- number — MVI-26-0007
+2026-10-06 08:25:47,724 INFO apps.billing.resolution_switch ruled path skipped trash for account AC-2026-00057: billed one line per size
+2026-10-06 08:25:47,724 INFO apps.billing.resolution_switch ruled path served R3, R4 for account AC-2026-00057
+  PASS  P25B · Accounts  · one move record MVI-26-0007 exists
+  PASS  P25B · Accounts  · the move record is a move-in
+  PASS  P25B · Accounts  · the move-in is dated as typed
+  PASS  P25B · Accounts  · the account is active
+  PASS  P25B · Accounts  · the account opens on the move-in date
+  PASS  P25B · Accounts  · the account type is the one the clerk picked
+  PASS  P25B · Accounts  · the sub-type is the one the clerk picked
+  PASS  P25B · Accounts  · the account is on the case's unit
+  PASS  P25B · Accounts  · exactly one customer holds the account
+  PASS  P25B · Accounts  · the customer's name is as typed
+  PASS  P25B · Accounts  · the customer is a person/company as picked
+  PASS  P25B · Accounts  · a NEW customer holds this one account only (nothing was linked)
+  PASS  P25B · Accounts  · one agreement per started service
+  PASS  P25B · Accounts  · every agreement starts on the move-in date
+  PASS  P25B · Units     · the unit stores no status or occupancy (it is derived)
+  PASS  P25B · Units     · the unit now has exactly one open account (reads Occupied)
+  PASS  P25B · Assets    · an opening read for each meter the clerk read, and none other
+  PASS  P25B · Assets    · E-M1's opening read is 4300 as typed
+  PASS  P25B · Assets    · E-M1's opening read is in kWh, the meter's own unit
+  PASS  P25B · Assets    · E-M1's opening read is dated the move-in date
+  PASS  P25B · Assets    · E-M1's opening read is committed
+  PASS  P25B · Assets    · the move-in wrote no asset status (meter status is derived) — 0 asset audit rows read since the move
+  PASS  P25B · Payments  · the fee lines are the plan's deposit and connection charge
+  PASS  P25B · Payments  · no tax was charged on any move-in fee (OQ-BIL-12788 (a))
+  PASS  P25B · Payments  · the payments total $175.00
+  PASS  P25B · Payments  · the payments total the fees (paid in full)
+  PASS  P25B · Payments  · every payment carries check number 2041
+  PASS  P25B · Payments  · every payment's tender is check
+  PASS  P25B · Payments  · the deposit is paid as a deposit-purpose payment
+  PASS  P25B · Payments  · every payment wrote audit_log (hard rule 7)
+  PASS  P25B · Accounts  · the move-in wrote audit_log account.moved_in
+  PASS  P25B · Payments  · every journal entry for the account balances DR = CR (hard rule 5) — 0 entries read, 2 payment(s) not journaled yet (PY-261010-0086, PY-261010-0087; a check journals when it clears)
+  PASS  P25B · Billing   · the first-bill preview prices (every started service has what it needs)
+  PASS  P25B · Billing   · the first bill carries the move-in's fee lines
+  PASS  P25B · Billing   · no fee or deposit line on the first bill is taxable
+  PASS  P25B · Billing   · a deposit paid at move-in is not billed again on the first bill
+  PASS  P25B · Billing   · the first bill carries each move-in fee line at its recorded amount
+  PASS  P25B · Route     · every service point of the unit is on a route (4 points)
+  PASS  P25B · Route     · every service point of the unit is on a billing cycle (4 points)
+  PASS  P25B · Route     · the unit holds a place in its route's walk order
+  PASS  P25B · Work      · one work order per field-visit row
+  PASS  P25B · Work      · WO-0053 is raised from the move-in
+  PASS  P25B · Work      · WO-0053 carries the template Opening read
+  PASS  P25B · Work      · WO-0053 is for meter W-M1
+  PASS  P25B · Work      · WO-0053 is due on the move-in date
+  PASS  P25B · Work      · WO-0053's window is the one picked (utility time)
+  PASS  P25B · Work      · WO-0053 is assigned to a technician
+  PASS  P25B · Work      · WO-0053 carries no labour yet (labour comes from arrived/finished times)
+  PASS  P25B · Messages  · the move-in's welcome is queued (3 rows)
+  PASS  P25B · Messages  · a receipt is queued for each payment (6 rows for 2 payments)
+  PASS  P25B · Messages  · no message is marked sent (BR-NOT-013: queued is never sent)
+  NOTE  P25B · first bill · usage · electric usage tier 1 (0-500 kWh) · 82.50
+  NOTE  P25B · first bill · base · electric base charge · 27.00
+  NOTE  P25B · first bill · usage · trash - 1 × Trash 96-gallon cart · 22.50
+  NOTE  P25B · first bill · usage · water usage tier 1 (0-5 kgal) · 31.80
+  NOTE  P25B · first bill · usage · water usage tier 2 (5-15 kgal) · 37.21
+  NOTE  P25B · first bill · base · water base charge · 12.00
+  NOTE  P25B · first bill · usage · sewer usage — 90.00% of water volume · 38.70
+  NOTE  P25B · first bill · base · sewer base charge · 9.00
+  NOTE  P25B · first bill · fee · Connection charge · 25.00
+  NOTE  P25B · first bill · tax · Tax Local · 5.21
+  PASS  P25B · Units     · /premises/units/01a11048-eb73-7263-8276-a4ce0bcd3225 opens (h1 drawn, no error page)
+  PASS  P25B · Units     · the unit reads Occupied
+  PASS  P25B · Units     · the unit names account AC-2026-00057
+  PASS  P25B · Units     · the unit names the account holder (AC-2026-00057 · Avery Collins)
+  PASS  P25B · Assets    · /assets/01a11048-ebd8-7388-b862-38cfefe1d4fe opens (h1 drawn, no error page)
+  PASS  P25B · Assets    · E-M1 is on account AC-2026-00057
+  PASS  P25B · Assets    · E-M1 reads Installed (derived, the move-in wrote no status)
+  PASS  P25B · Assets    · E-M1 names the account holder (AC-2026-00057 · Avery Collins)
+  PASS  P25B · Assets    · /assets/01a11048-ebd8-7388-b862-38cfefe1d4fe?tab=reads opens (h1 drawn, no error page)
+  PASS  P25B · Assets    · E-M1's Reads tab shows the opening read 4300
+  PASS  P25B · Assets    · E-M1's Reads tab shows it in kWh
+  PASS  P25B · Accounts  · /accounts/01a11051-891e-7552-a81d-de088622c4ec opens (h1 drawn, no error page)
+  PASS  P25B · Accounts  · the account shows Avery Collins
+  PASS  P25B · Accounts  · the account shows Residential
+  PASS  P25B · Accounts  · the account lists Electric
+  PASS  P25B · Accounts  · the account lists Sewer
+  PASS  P25B · Accounts  · the account lists Trash
+  PASS  P25B · Accounts  · the account lists Water
+  PASS  P25B · Accounts  · the account's title is the account holder Avery Collins — title reads "Avery Collins"
+  PASS  P25B · Payments  · /accounts/01a11051-891e-7552-a81d-de088622c4ec?tab=payments opens (h1 drawn, no error page)
+  PASS  P25B · Payments  · payment PY-261010-0086 ($150.00) is listed
+  PASS  P25B · Payments  · payment PY-261010-0087 ($25.00) is listed
+  PASS  P25B · Billing   · /moves/MVI-26-0007?tab=billing opens (h1 drawn, no error page)
+  PASS  P25B · Billing   · the move's Billing tab lists DEPOSIT
+  PASS  P25B · Billing   · the move's Billing tab lists CONN
+  PASS  P25B · Billing   · the fees total $175.00
+  PASS  P25B · Billing   · each payment is dated the day the clerk typed (10/10/2026)
+  PASS  P25B · Payments  · a deposit paid in full reads as taken, nothing still to collect — STILL TO COLLECT
+$0.00
+  PASS  P25B · Route     · /reads/routes/01a11048-f353-7dca-91b2-e769fd1475e4 opens (h1 drawn, no error page)
+  PASS  P25B · Route     · route RT-006 is the unit's (Matrix walk)
+  PASS  P25B · Work      · /work/orders/WO-0053 opens (h1 drawn, no error page)
+  PASS  P25B · Work      · WO-0053 shows its template's type Re-read
+  PASS  P25B · Work      · WO-0053 names the account AC-2026-00057
+  PASS  P25B · Work      · WO-0053 names the meter W-M1
+  PASS  P25B · Work      · WO-0053 is on the technician's day (10/10/2026)
+  PASS  P25B · Messages  · /moves/MVI-26-0007?tab=messages opens (h1 drawn, no error page)
+  PASS  P25B · Messages  · the move's Messages tab lists the welcome
+  PASS  P25B · Accounts  · /moves/MVI-26-0007 opens (h1 drawn, no error page)
+  PASS  P25B · Accounts  · the move-in record reads MVI-26-0007
+  PASS  P25B · Accounts  · the move-in record names AC-2026-00057
+  PASS  P25B · Assets    · the move-in record reads 'Waiting on a read' (W-M1 left unread)
+  PASS  P25B · Accounts  · the details view reads the new move-in date 10/15/2026 — 10/15/2026 10/10/2026 10/15/2026 10/06/2026
+  PASS  P25B · Accounts  · after a reload the details view reads the new move-in date 10/15/2026 — chip "Waiting on a read Moved in 10/15/2026 41 Larkspur Lane · U-00004 · Unit 1" · dates on screen: 10/15/2026 10/10/2026 10/15/2026 10/06/2026
+  PASS  P25B · Accounts  · the Move-ins list dates MVI-26-0007 10/15/2026 — MVI-26-0007	
+2026-10-06 08:26:25,940 INFO apps.billing.resolution_switch ruled path skipped trash for account AC-2026-00057: billed one line per size
+2026-10-06 08:26:25,940 INFO apps.billing.resolution_switch ruled path served R3, R4 for account AC-2026-00057
+  PASS  P25B · Accounts  · DATE: the account now opens on 2026-10-15
+  PASS  P25B · Accounts  · DATE: every agreement now starts on 2026-10-15 (4 agreements)
+  PASS  P25B · Accounts  · DATE: the move record keeps the date it was made with (never updated)
+  PASS  P25B · Accounts  · DATE: the change wrote audit_log on the account
+  PASS  P25B · Billing   · DATE: the first bill's prorated base charges move with the date (from 2026-10-10: $48.00; from 2026-10-15: $40.26)
+  PASS  P25B · Accounts  · /accounts/01a11051-891e-7552-a81d-de088622c4ec opens (h1 drawn, no error page)
+  PASS  P25B · Accounts  · the account reads opened 10/15/2026
+
+── summary
+  P25B: 116 PASS · 0 FAIL
+ALL PASS

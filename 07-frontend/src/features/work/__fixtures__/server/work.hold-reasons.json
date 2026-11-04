@@ -1,0 +1,34 @@
+{
+  "results": [
+    {
+      "code": "WEATHER",
+      "name": "Weather",
+      "active": true,
+      "rank": 1
+    },
+    {
+      "code": "WAITING_PART",
+      "name": "Waiting for a part",
+      "active": true,
+      "rank": 2
+    },
+    {
+      "code": "CUSTOMER_NOT_HOME",
+      "name": "Customer not home",
+      "active": true,
+      "rank": 3
+    },
+    {
+      "code": "ACCESS_REFUSED",
+      "name": "Access refused",
+      "active": true,
+      "rank": 4
+    },
+    {
+      "code": "OTHER",
+      "name": "Other",
+      "active": true,
+      "rank": 5
+    }
+  ]
+}

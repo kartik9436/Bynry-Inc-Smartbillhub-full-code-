@@ -1,0 +1,569 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>One-Time Bill Redesign</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: product app frame — page head, 3-step rail, main column + sticky summary. SMARTBillHub tokens (07-frontend tokens.css): light-only, square corners, 4px spacing scale. */
+:root{
+  --bg:#f3f2f2; --surface:#ffffff; --panel:#eae9e9; --text:#201e1d; --muted:#605d5d; --faint:#9b9797;
+  --line:#d7d3d3; --accent:#ec3013; --accent-ink:#ae1800; --accent-soft:#fff2ef;
+  --ok:#0f6e3a; --ok-soft:#e6f4ec; --warn:#a65d0a; --warn-soft:#fdf0d8; --bad:#a81600; --bad-soft:#fde4df; --info:#1d4ea8; --info-soft:#e6eefb;
+  --s-electric:#ec3013; --s-water:#1e6b8f; --s-gas:#c47a1d; --s-sewer:#5a5555; --s-trash:#3a6b3d; --s-fire:#8f1f14;
+  --font:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --t-xs:11px; --t-sm:12px; --t-base:13px; --t-md:14px; --t-body:15px; --t-h4:20px; --t-h2:32px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:var(--t-body);line-height:1.55;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:20px 48px;display:flex;flex-direction:column;gap:20px}
+h1,h2,h3{font-weight:800;letter-spacing:-.015em;line-height:1.12;margin:0;text-wrap:balance}
+h1{font-size:var(--t-h2)} h2{font-size:var(--t-h4)} h3{font-size:var(--t-md);font-weight:700}
+.kicker{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.num{font-variant-numeric:tabular-nums}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* demo strip */
+.demo{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 12px;border:1px dashed var(--faint);font-size:var(--t-sm);color:var(--muted)}
+.demo b{color:var(--text)}
+.chipbtn{border:1px solid var(--line);background:var(--surface);padding:4px 10px;cursor:pointer;font-size:var(--t-sm)}
+.chipbtn[aria-pressed="true"]{border-color:var(--text);font-weight:600}
+
+/* page head */
+.head{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:flex-end}
+.crumb{font-size:var(--t-sm);color:var(--muted)}
+
+/* kind cards */
+.kinds{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.kind{background:var(--surface);border:1px solid var(--line);padding:12px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:4px;min-width:0}
+.kind strong{font-size:var(--t-md)}
+.kind span{font-size:var(--t-sm);color:var(--muted)}
+.kind[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 3px 0 var(--accent)}
+@media (max-width:900px){.kinds{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:480px){.kinds{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* rail */
+.rail{display:flex;gap:0;border:1px solid var(--line);background:var(--surface)}
+.rail button{flex:1;display:flex;align-items:center;gap:10px;padding:12px 16px;border:0;background:transparent;cursor:pointer;text-align:left;border-right:1px solid var(--line);min-width:0}
+.rail button:last-child{border-right:0}
+.rail .n{width:24px;height:24px;display:grid;place-items:center;border:1.5px solid var(--faint);font-size:var(--t-sm);font-weight:700;flex:none}
+.rail button[data-state="current"]{box-shadow:inset 0 -3px 0 var(--accent)}
+.rail button[data-state="current"] .n{background:var(--accent);border-color:var(--accent);color:#fff}
+.rail button[data-state="done"] .n{background:var(--text);border-color:var(--text);color:#fff}
+.rail button[disabled]{cursor:default;color:var(--faint)}
+.rail .lbl{font-size:var(--t-md);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:640px){.rail .lbl{display:none}.rail button{justify-content:center}}
+
+/* layout */
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:20px;align-items:start}
+@media (max-width:960px){.grid{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--surface);border:1px solid var(--line);padding:20px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.panel-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.stack{display:flex;flex-direction:column;gap:20px;min-width:0}
+.aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px)}
+
+/* forms */
+.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.fields.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:720px){.fields,.fields.two{grid-template-columns:minmax(0,1fr)}}
+.f{display:flex;flex-direction:column;gap:4px;min-width:0}
+.f label{font-size:var(--t-base);font-weight:600}
+.f .req{color:var(--accent)}
+.f input,.f select,.f textarea{border:1px solid var(--line);background:var(--surface);padding:8px 10px;min-height:38px;width:100%;font-size:var(--t-md)}
+.f input[readonly]{background:var(--bg);color:var(--muted)}
+.f .help{font-size:var(--t-sm);color:var(--muted)}
+.f.err input,.f.err select{border-color:var(--bad);background:var(--bad-soft)}
+.f .msg{font-size:var(--t-sm);color:var(--bad);font-weight:600;display:none}
+.f.err .msg{display:block}
+.span2{grid-column:span 2} .span3{grid-column:1/-1}
+@media (max-width:720px){.span2{grid-column:auto}}
+
+/* account card */
+.acct{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;border:1px solid var(--line);background:var(--bg);padding:12px 16px}
+.acct div{display:flex;flex-direction:column;min-width:0}
+.acct dt{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.acct dd{margin:0;font-size:var(--t-md);font-weight:600;overflow-wrap:anywhere}
+@media (max-width:720px){.acct{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* tables */
+.tw{overflow-x:auto;border:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;font-size:var(--t-base)}
+th{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;font-weight:600;background:var(--bg);padding:8px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr:last-child td{border-bottom:0}
+td.r,th.r{text-align:right}
+td input{border:1px solid var(--line);padding:6px 8px;width:120px;font-size:var(--t-md)}
+td input.err{border-color:var(--bad);background:var(--bad-soft)}
+tr.muted td{color:var(--faint)}
+.svc{display:inline-flex;align-items:center;gap:8px;font-weight:600}
+.dot{width:10px;height:10px;flex:none}
+.tot td{font-weight:700;background:var(--bg)}
+
+/* pills */
+.pill{display:inline-block;font-size:var(--t-xs);font-weight:700;padding:2px 8px;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.p-ok{background:var(--ok-soft);color:var(--ok)} .p-warn{background:var(--warn-soft);color:var(--warn)}
+.p-off{background:var(--panel);color:var(--muted)} .p-bad{background:var(--bad-soft);color:var(--bad)} .p-info{background:var(--info-soft);color:var(--info)}
+
+/* notes */
+.note{display:flex;gap:10px;padding:10px 12px;font-size:var(--t-base);align-items:flex-start}
+.note.warn{background:var(--warn-soft);color:var(--warn)} .note.bad{background:var(--bad-soft);color:var(--bad)} .note.ok{background:var(--ok-soft);color:var(--ok)} .note.info{background:var(--info-soft);color:var(--info)}
+.note b{color:inherit}
+.note ul{margin:4px 0 0;padding-left:18px}
+
+/* buttons */
+.btn{border:1px solid var(--text);background:var(--surface);padding:0 18px;min-height:40px;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.danger{background:var(--bad);border-color:var(--bad);color:#fff}
+.btn.sm{min-height:30px;padding:0 10px;font-size:12px}
+.btn.link{border:0;background:none;color:var(--accent-ink);padding:0;min-height:0;text-decoration:underline}
+.actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:16px}
+.actions .right{display:flex;gap:8px;flex-wrap:wrap}
+
+/* summary */
+.sum{display:flex;flex-direction:column;gap:6px;font-size:var(--t-base)}
+.sum .row{display:flex;justify-content:space-between;gap:12px}
+.sum .row span:first-child{color:var(--muted)}
+.big{font-size:26px;font-weight:800;line-height:1.1}
+.hr{border-top:1px solid var(--line)}
+
+/* bill preview */
+.bill{border:1px solid var(--line);background:var(--surface)}
+.bill-h{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:16px 20px;border-bottom:3px solid var(--text)}
+.bill-h .meta{display:grid;grid-template-columns:auto auto;gap:2px 16px;font-size:var(--t-base)}
+.bill-h .meta span:nth-child(odd){color:var(--muted)}
+.sendcard{border-top:3px solid var(--text)}
+.sendtop{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-end}
+.sendamt{text-align:right}
+.muted-s{font-size:var(--t-base);color:var(--muted)}
+.ack{display:flex;gap:10px;align-items:center;font-weight:600;font-size:var(--t-md)}
+.ack input{width:18px;height:18px;accent-color:var(--accent)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.done{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.done .check{width:44px;height:44px;background:var(--ok);color:#fff;display:grid;place-items:center;font-size:24px;font-weight:800}
+.row-add{align-self:flex-start}
+.periods{display:flex;flex-direction:column;gap:8px}
+.prow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;gap:8px;align-items:end}
+@media (prefers-reduced-motion:no-preference){.panel,.bill{animation:in .18s ease-out}@keyframes in{from{opacity:.4;transform:translateY(3px)}to{opacity:1;transform:none}}}
+
+details.panel>summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+details.panel>summary::-webkit-details-marker{display:none}
+details.panel>summary .sumr{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+details.panel>summary .chev{width:28px;height:28px;border:1px solid var(--line);display:grid;place-items:center;font-size:14px;transition:transform .15s}
+details.panel[open]>summary .chev{transform:rotate(180deg)}
+details.panel:not([open]){gap:0}
+.combo{position:relative}
+.combo .cin{display:flex;align-items:center;border:1px solid var(--line);background:var(--surface)}
+.combo .cin input{border:0;flex:1;min-width:0}
+.combo .cin .caret{padding:0 12px;color:var(--muted);font-size:14px;pointer-events:none}
+.combo ul{position:absolute;top:calc(100% + 2px);left:0;right:0;z-index:5;background:var(--surface);border:1px solid var(--text);box-shadow:0 12px 32px rgba(45,43,43,.22);max-height:280px;overflow:auto;margin:0;padding:0;list-style:none}
+.combo li{padding:8px 12px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;cursor:pointer;border-bottom:1px solid var(--line)}
+.combo li:last-child{border-bottom:0}
+.combo li .nm{font-weight:600;font-size:var(--t-md)}
+.combo li .sub{grid-column:1/-1;font-size:var(--t-sm);color:var(--muted)}
+.combo li[aria-selected="true"]{background:var(--accent-soft)}
+.combo li mark{background:none;color:var(--accent-ink);font-weight:700}
+.combo .empty{padding:10px 12px;color:var(--muted);font-size:var(--t-base)}
+.billt tr.grp td{background:var(--panel);font-weight:700;font-size:var(--t-sm);text-transform:uppercase;letter-spacing:.06em;padding:6px 12px}
+.billt tr.foot td{color:var(--muted)}
+.billt td:nth-child(3){white-space:nowrap}
+.period-block{display:flex;flex-direction:column;gap:8px}
+.period-block h3{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.matrix td,.matrix th{text-align:center}
+.matrix td:first-child,.matrix th:first-child{text-align:left;font-weight:600}
+.yes{color:var(--ok);font-weight:700}.no{color:var(--faint)}
+.cmp-kind{display:flex;flex-direction:column;gap:12px;border-top:3px solid var(--text);padding-top:16px}
+.cmp-kind>.kh{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
+.grid.one{grid-template-columns:minmax(0,1fr)}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:720px){.facts{grid-template-columns:minmax(0,1fr)}}
+.fact{border:1px solid var(--line);background:var(--bg);padding:10px 12px;display:flex;flex-direction:column;gap:2px}
+.fact span{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.fact b{font-size:var(--t-md)}
+</style></head><body>
+
+<div class="wrap">
+  <div class="demo" role="group" aria-label="Demo controls">
+    <b>Design mock-up · example data</b>
+    <span>View:</span>
+    <button class="chipbtn" id="v-flow" aria-pressed="true">Walk through</button>
+    <button class="chipbtn" id="v-cmp" aria-pressed="false">Compare kinds</button>
+    <span>State:</span>
+    <button class="chipbtn" id="d-normal" aria-pressed="true">Normal</button>
+    <button class="chipbtn" id="d-problems" aria-pressed="false">Problems on step 1</button>
+    <button class="chipbtn" id="d-dup" aria-pressed="false">Already billed</button>
+  </div>
+
+  <header class="head">
+    <div><div class="crumb">Billing › Bills</div><h1 id="pageTitle">One-time bill</h1></div>
+    <button class="btn sm" id="restart">Start over</button>
+  </header>
+
+  <div class="kinds" id="kinds" role="group" aria-label="Kind of bill"></div>
+  <nav class="rail" id="rail" aria-label="Steps"></nav>
+  <div id="dupBox" hidden></div>
+
+  <div class="grid" id="grid">
+    <main class="stack" id="main"></main>
+    <aside class="aside" id="aside"><div class="panel" id="summary"></div></aside>
+  </div>
+</div>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const money=v=>(v<0?"−$":"$")+Math.abs(v).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,",");
+const r2=v=>Math.round((v+Number.EPSILON)*100)/100;
+const fmtD=s=>{if(!s||s==="—")return "—";const d=new Date(s+"T00:00:00");return isNaN(d)?"—":d.toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"});};
+const fmtN=(v,dp)=>v.toLocaleString("en-US",{minimumFractionDigits:dp,maximumFractionDigits:dp});
+
+const KINDS=[
+  {id:"interim",name:"Interim",use:"Mid-cycle bill"},
+  {id:"first",name:"First bill",use:"Missed at move-in"},
+  {id:"final",name:"Final",use:"Move-out"},
+  {id:"backbill",name:"Catch-up",use:"Missed periods"},
+  {id:"penalty",name:"Penalty / theft",use:"Tamper or theft"},
+  {id:"fee",name:"Fee",use:"One charge code"},
+];
+const STEPS=["Account","Services","Review","Send"];
+const REASONS=[["","Choose a reason"],["MISSED","Missed billing cycle"],["METER-FAULT","Meter fault found"],["THEFT","Theft of service"],["TAMPER","Meter tampering"]];
+const CHARGES=[["","Choose a charge"],["RECON","Reconnection fee",75],["NSF","Returned payment",30],["MTEST","Meter test",40],["TAMPER","Tamper charge",250]];
+const ACCTS=[
+  {name:"Maria Alvarez",no:"AC-2026-00042",addr:"1408 Elm St · Unit A",plan:"Residential Standard",status:"Active",bal:142.18},
+  {name:"Luis Alvarez",no:"AC-2026-00117",addr:"22 Birch Ct",plan:"Residential Standard",status:"Active",bal:0},
+  {name:"Alvarez Hardware LLC",no:"AC-2026-00388",addr:"900 Main St · Suite 2",plan:"Small Commercial",status:"Active",bal:612.40},
+  {name:"Maria Alvarez",no:"AC-2025-01904",addr:"61 Oak Ave",plan:"Residential Standard",status:"Closed",bal:0},
+  {name:"Dana Brooks",no:"AC-2026-00043",addr:"1408 Elm St · Unit B",plan:"Residential Standard",status:"Active",bal:58.02},
+  {name:"Omar Haddad",no:"AC-2026-00219",addr:"14 Elmwood Dr",plan:"Residential Standard",status:"Pending",bal:0},
+];
+let ACCT=ACCTS[0];
+
+/* meters: two water meters on one service (PO 2026-09-30: two lines) */
+const METERS=[
+  {svc:"water",no:"W-10442",unit:"kgal",dp:1,prev:482.3,prevOn:"2026-08-31",mi:479.8,miOn:true,billed:482.3},
+  {svc:"water",no:"W-10443",unit:"kgal",dp:1,prev:130.6,prevOn:"2026-08-31",mi:null,miOn:false,billed:130.6},
+  {svc:"electric",no:"E-55120",unit:"kWh",dp:0,prev:18420,prevOn:"2026-08-31",mi:18105,miOn:true,billed:18420},
+];
+const S={kind:"interim",step:0,view:"flow",problems:false,dup:false,sent:false,ack:false,
+  billDate:"2026-09-30",days:"21",from:"2026-09-01",to:"2026-09-30",moveIn:"2026-09-12",moveOut:"2026-09-18",
+  reason:"MISSED",charge:"RECON",penCharge:"TAMPER",path:"collect",
+  periods:[["2026-06-01","2026-06-30"],["2026-07-01","2026-07-31"],["2026-08-01","2026-08-31"]],
+  open:{},q:"Maria Alvarez",combo:false,hi:0,reads:{"W-10442":"488.4","W-10443":"134.9","E-55120":"19030"},
+  miTyped:{"W-10443":"128.9"}, lastRead:{"W-10442":"488.4","W-10443":"134.9","E-55120":"19030"}};
+
+const isSub=k=>k==="backbill"||k==="penalty";
+const dueDate=()=>{const d=new Date(S.billDate+"T00:00:00");const n=parseInt(S.days,10);if(isNaN(d)||isNaN(n))return "—";d.setDate(d.getDate()+n);return d.toISOString().slice(0,10);};
+const tiered=k=>r2(Math.min(k,5)*3.25+Math.max(k-5,0)*4.50);
+
+/* usage per meter for single-window kinds */
+function startOf(m,k){if(k==="first"){return m.miOn?m.mi:(parseFloat(S.miTyped[m.no]));}if(k==="final")return m.billed;return m.prev;}
+function useOf(m,k){const v=parseFloat(S.reads[m.no]);const st=startOf(m,k);if(isNaN(v)||isNaN(st))return null;return r2(v-st);}
+/* catch-up / penalty per-period usage (example figures) */
+const PER={ "W-10442":[3.1,2.9,3.2], "W-10443":[2.4,2.3,2.5], "E-55120":[610,622,608] };
+const EST={backbill:{1:["W-10443"]},penalty:{}};
+
+const SVCNAME={water:"Water",electric:"Electric",trash:"Trash",sewer:"Sewer"};
+function lines(k){
+  k=k||S.kind; const L=[];
+  const add=o=>L.push(Object.assign({tax:true},o));
+  if(k==="fee"){const c=CHARGES.find(c=>c[0]===S.charge);if(c&&c[2])add({grp:"Charges",kind:`Fee · ${c[0]}`,d:c[1],qty:"1",rate:money(c[2]),a:c[2],tax:true});return L;}
+  const fac=k==="final"?18/30:1, pr=fac!==1?" · prorated 18/30":"";
+  const svcBlock=(grp,wUse,eUse,est)=>{let wTot=0;
+    METERS.filter(m=>m.svc==="water").forEach(m=>{const u=Math.max(wUse(m),0);const a=tiered(u);wTot+=a;
+      add({grp,svc:"water",meter:m.no,kind:"Usage",qty:`${fmtN(u,1)} kgal`,rate:"Tiered",a,est:est.includes(m.no)});
+      add({grp,svc:"water",meter:m.no,kind:"Base"+pr,qty:"1",rate:"$8.00",a:r2(8*fac)});});
+    const e=Math.max(eUse,0);
+    add({grp,svc:"electric",meter:"E-55120",kind:"Usage",qty:`${fmtN(e,0)} kWh`,rate:"$0.1245",a:r2(e*0.1245)});
+    add({grp,svc:"trash",meter:"1 cart",kind:"Per cart",qty:"1 cart",rate:"$15.00",a:r2(15*fac)});
+    add({grp,svc:"trash",meter:"1 cart",kind:"Base · per cart"+pr,qty:"1",rate:"$3.00",a:r2(3*fac)});
+    add({grp,svc:"sewer",meter:"—",kind:"40% of water",qty:money(r2(wTot)),rate:"40%",a:r2(wTot*0.4)});
+    add({grp,svc:"sewer",meter:"—",kind:"Base"+pr,qty:"1",rate:"$6.00",a:r2(6*fac)});};
+  if(isSub(k)){
+    S.periods.forEach((p,i)=>{const lab=new Date(p[0]+"T00:00:00").toLocaleDateString("en-US",{month:"short",year:"numeric"});
+      svcBlock(lab,m=>PER[m.no][i]??2.5,PER["E-55120"][i]??600,EST[k][i]||[]);});
+    add({grp:"Standing",svc:"electric",meter:"E-55120",kind:"Base",qty:"—",rate:"Not set",a:0,warn:true});
+    if(k==="penalty"){const c=CHARGES.find(c=>c[0]===S.penCharge);if(c&&c[2])add({grp:"Other charges",kind:`Fee · ${c[0]}`,d:c[1],qty:"1",rate:money(c[2]),a:c[2],tax:false});}
+    return L;
+  }
+  const grp=k==="first"?"Sep 12 – Sep 30":k==="final"?"Sep 1 – Sep 18":"Sep 1 – Sep 30";
+  svcBlock(grp,m=>useOf(m,k)??0,useOf(METERS[2],k)??0,[]);
+  add({grp,svc:"electric",meter:"E-55120",kind:"Base",qty:"—",rate:"Not set",a:0,warn:true});
+  if(k==="first"){add({grp:"Move-in charges",kind:"Deposit",d:"Security deposit",qty:"1",rate:"$150.00",a:150,tax:false});add({grp:"Move-in charges",kind:"Fee · CONN",d:"Connection charge",qty:"1",rate:"$45.00",a:45,tax:false});}
+  return L;
+}
+function totals(k){const L=lines(k);const sub=r2(L.reduce((s,l)=>s+l.a,0));const taxable=r2(L.filter(l=>l.tax).reduce((s,l)=>s+l.a,0));const tax=r2(taxable*0.02);return {L,sub,tax,total:r2(sub+tax)};}
+
+/* ---------- shared bits ---------- */
+const dot=svc=>`<span class="dot" style="background:var(--s-${svc})"></span>`;
+function field(id,label,html,o={}){const e=S.problems&&o.err&&S.view==="flow";return `<div class="f ${e?"err":""} ${o.cls||""}"><label for="${id}">${label}${o.req?' <span class="req">*</span>':""}</label>${html}${o.help?`<span class="help">${o.help}</span>`:""}<span class="msg" role="alert">${o.err||""}</span></div>`;}
+const sel=(id,opts,val)=>`<select id="${id}">${opts.map(o=>`<option value="${o[0]}" ${o[0]===val?"selected":""}>${o[2]?`${o[1]} · ${money(o[2])}`:o[1]}</option>`).join("")}</select>`;
+const need={interim:"Needed · every meter",first:"Needed · move-in + new",final:"Needed · final reading",backbill:"Needed · last period only",penalty:"Not needed",fee:""};
+
+/* ---------- account search ---------- */
+function matches(){const q=S.q.trim().toLowerCase();return ACCTS.filter(a=>!q||[a.name,a.no,a.addr].join(" ").toLowerCase().includes(q));}
+function hl(t){const q=S.q.trim();if(!q)return t;const i=t.toLowerCase().indexOf(q.toLowerCase());return i<0?t:t.slice(0,i)+"<mark>"+t.slice(i,i+q.length)+"</mark>"+t.slice(i+q.length);}
+function comboItems(){const m=matches();if(!m.length)return '<li class="empty" role="option" aria-disabled="true">No account found.</li>';
+  return m.map((a,i)=>`<li role="option" id="opt-${i}" data-acct="${ACCTS.indexOf(a)}" aria-selected="${i===S.hi}"><span class="nm">${hl(a.name)}</span><span class="pill ${a.status==="Active"?"p-ok":"p-off"}">${a.status}</span><span class="sub num">${hl(a.no)} · ${hl(a.addr)}</span></li>`).join("");}
+function refreshCombo(){const ul=$("#acct-list"),inp=$("#f-acct");if(!ul)return;ul.innerHTML=comboItems();ul.hidden=!S.combo;inp.setAttribute("aria-expanded",String(S.combo));const on=ul.querySelector('[aria-selected="true"]');if(on){inp.setAttribute("aria-activedescendant",on.id);on.scrollIntoView({block:"nearest"});}}
+function pick(i){ACCT=ACCTS[i];S.q=ACCT.name;S.combo=false;render();}
+
+/* ---------- step 1 ---------- */
+function step1(){
+  const k=S.kind; let when="";
+  if(k==="fee"){
+    when=field("f-charge","Charge code",sel("f-charge",CHARGES,S.problems?"":S.charge),{req:1,help:"Amount comes from the code.",err:"Choose a charge code.",cls:"span2"});
+  } else if(isSub(k)){
+    const rs=REASONS.filter(r=>k==="penalty"?["","THEFT","TAMPER"].includes(r[0]):["","MISSED","METER-FAULT"].includes(r[0]));
+    const rv=S.problems?"":(rs.some(r=>r[0]===S.reason)?S.reason:rs[1][0]);
+    when=`<div class="f span3"><label>Missed periods <span class="req">*</span></label><div class="periods">${S.periods.map((p,i)=>`<div class="prow"><div class="f"><label for="pf${i}">From</label><input id="pf${i}" type="date" value="${p[0]}"></div><div class="f ${S.problems&&i===1?"err":""}"><label for="pt${i}">To</label><input id="pt${i}" type="date" value="${S.problems&&i===1?"2026-06-15":p[1]}"><span class="msg">Ends before it starts.</span></div><button class="btn sm" data-rm="${i}" aria-label="Remove period ${i+1}">Remove</button></div>`).join("")}</div><button class="btn sm row-add" id="addp">Add period</button><span class="help">${S.periods.length} months · limit 12</span></div>`
+      +field("f-reason","Reason",sel("f-reason",rs,rv),{req:1,err:"Choose a reason."});
+    if(k==="penalty") when+=field("f-pcharge","Charge code",sel("f-pcharge",CHARGES.filter(c=>["","TAMPER"].includes(c[0])),S.penCharge),{help:"Optional. Amount from the code."});
+  } else {
+    const fromL=k==="first"?"Move-in date":"From", toL=k==="final"?"Move-out date":"To";
+    const fromV=k==="first"?S.moveIn:S.from, toV=k==="final"?S.moveOut:S.to;
+    when=field("f-from",fromL,`<input id="f-from" type="date" value="${fromV}" ${k==="first"?"readonly":""}>`,{req:1,help:k==="first"?"From the account.":""})
+       +field("f-to",toL,`<input id="f-to" type="date" value="${S.problems?"2026-08-20":toV}">`,{req:1,err:"Ends before it starts."})+"<div></div>";
+  }
+  return `<section class="panel"><div class="panel-h"><h2>Account</h2></div>
+    <div class="f"><label for="f-acct">Find account <span class="req">*</span></label>
+      <div class="combo"><div class="cin"><input id="f-acct" role="combobox" aria-expanded="${S.combo?"true":"false"}" aria-controls="acct-list" aria-autocomplete="list" autocomplete="off" value="${S.q}" placeholder="Type to search"><span class="caret" aria-hidden="true">▾</span></div>
+      <ul id="acct-list" role="listbox" ${S.combo?"":"hidden"}>${comboItems()}</ul></div>
+      <span class="help">Name, account no. or address.</span></div>
+    <dl class="acct"><div><dt>Customer</dt><dd>${ACCT.name}</dd></div><div><dt>Account</dt><dd class="num">${ACCT.no}</dd></div><div><dt>Address</dt><dd>${ACCT.addr}</dd></div><div><dt>Plan</dt><dd>${ACCT.plan}</dd></div><div><dt>Status</dt><dd><span class="pill p-ok">${ACCT.status}</span></dd></div><div><dt>Balance</dt><dd class="num">${money(ACCT.bal)}</dd></div><div><dt>Cycle</dt><dd>Monthly · 21 days</dd></div><div><dt>Last bill</dt><dd class="num">Aug 31, 2026</dd></div></dl></section>
+  <section class="panel"><div class="panel-h"><h2>${k==="fee"?"Charge":"Period"}</h2></div><div class="fields">${when}</div></section>
+  <section class="panel"><div class="panel-h"><h2>Dates</h2></div><div class="fields">
+    ${field("f-bill","Bill date",`<input id="f-bill" type="date" value="${S.billDate}">`,{req:1})}
+    ${field("f-days","Days to pay",`<input id="f-days" type="number" min="0" value="${S.problems&&S.view==="flow"?"":S.days}">`,{req:1,help:"From the cycle. Change if needed.",err:"Enter days to pay."})}
+    ${field("f-due","Due date",`<input id="f-due" value="${S.problems?"—":fmtD(dueDate())}" readonly>`)}
+  </div></section>${actions(false,"Continue")}`;
+}
+
+/* ---------- step 2 pieces ---------- */
+function coll(id,title,right,body){const open=S.open[id]!==false;return `<details class="panel" data-coll="${id}" ${open?"open":""}><summary><h2>${title}</h2><span class="sumr"><span class="kicker">${right}</span><span class="chev" aria-hidden="true">▾</span></span></summary>${body}</details>`;}
+function servicesPanel(k){
+  const rows=[
+    ["water","Water","2 meters · W-10442, W-10443","Billed · 2 meters","p-ok","2 lines · usage + base each"],
+    ["electric","Electric","Meter E-55120","Billed · base $0.00","p-warn","Usage + $0.00 base"],
+    ["trash","Trash","1 cart · 96 gal","Billed · 1 cart","p-ok","Cart × rate + base per cart"],
+    ["sewer","Sewer","No asset needed","Billed · follows water","p-info","40% of water + base"],
+    ["gas","Gas","No meter","Not in service","p-off","No line · $0"],
+    ["fire","Fire","No asset","Not in service","p-off","No line · $0"],
+    ["broadband","Broadband","Router R-2201","Not taken","p-off","No line"],
+  ];
+  return coll("svc","Services","4 billed · 2 not in service · 1 not taken",`<div class="tw"><table><thead><tr><th>Service</th><th>Asset</th><th>Status</th><th>On the bill</th></tr></thead><tbody>${rows.map(r=>`<tr class="${r[4]==="p-off"?"muted":""}"><td><span class="svc">${dot(r[0]==="broadband"?"sewer":r[0])}${r[1]}</span></td><td>${r[2]}</td><td><span class="pill ${r[4]}">${r[3]}</span></td><td>${r[5]}</td></tr>`).join("")}</tbody></table></div>
+  ${lines(k).some(l=>l.warn)?'<div class="note warn"><b>1 warning.</b>&nbsp;No base charge for Electric. Billed $0.00.</div>':""}`);
+}
+function readingsPanel(k){
+  const hdr=`<div class="panel-h"><h2>Readings</h2><span class="pill ${k==="penalty"?"p-off":"p-info"}">${need[k]}</span></div>`;
+  if(isSub(k)) return `<section class="panel">${hdr}${S.periods.map((p,i)=>periodBlock(k,p,i)).join("")}<span class="muted-s">${k==="penalty"?"Assessed reads come from Meter Reads.":"Saved to Meter Reads. Earlier gaps are estimated."}</span></section>`;
+  const prevLbl=k==="first"?"Move-in reading":k==="final"?"Last billed":"Previous";
+  const dLbl=k==="final"?"Move-out date":"New read date", nLbl=k==="final"?"Final reading":"New reading";
+  const rows=METERS.map(m=>{
+    let prevCell, prevOn;
+    if(k==="first"){prevOn=fmtD(S.moveIn);prevCell=m.miOn?fmtN(m.mi,m.dp):`<input id="mi-${m.no}" class="num" inputmode="decimal" value="${S.miTyped[m.no]||""}" aria-label="Move-in reading ${m.no}">`;}
+    else {prevOn=fmtD(m.prevOn);prevCell=fmtN(k==="final"?m.billed:m.prev,m.dp);}
+    const u=useOf(m,k), bad=u!==null&&u<0;
+    const status=u===null?'<span class="pill p-off">Waiting</span>':bad?'<span class="pill p-bad">Below last reading</span>':'<span class="pill p-ok">Accepted</span>';
+    const dCell=k==="final"?`<span class="num">${fmtD(S.moveOut)}</span>`:`<input id="rd-${m.no}" type="date" value="${S.to}" aria-label="New read date ${m.no}">`;
+    return `<tr><td><span class="svc">${dot(m.svc)}${m.no}</span> <span class="muted-s">${m.unit}</span></td><td class="r num">${prevCell}${k==="first"&&!m.miOn?'<div class="pill p-warn" style="margin-top:4px">None on file</div>':""}</td><td class="num">${prevOn}</td><td>${dCell}</td><td><input id="r-${m.no}" class="num ${bad?"err":""}" inputmode="decimal" value="${S.reads[m.no]}" aria-label="${nLbl} ${m.no}"></td><td class="r num">${u===null||bad?"—":fmtN(u,m.dp)+" "+m.unit}</td><td>${status}</td></tr>`;}).join("");
+  return `<section class="panel">${hdr}<div class="tw"><table><thead><tr><th>Meter</th><th class="r">${prevLbl}</th><th>Read on</th><th>${dLbl}</th><th>${nLbl} <span style="color:var(--accent)">*</span></th><th class="r">Usage</th><th>Check</th></tr></thead><tbody>${rows}</tbody></table></div>
+  <span class="muted-s">Saved to Meter Reads. Multi-register meter? <button class="btn link" type="button">Use full readings screen</button></span></section>`;
+}
+function periodBlock(k,p,i){
+  const last=i===S.periods.length-1, pen=k==="penalty";
+  const rows=METERS.map(m=>{const u=PER[m.no][i]??(m.svc==="water"?2.5:600);const est=(EST[k][i]||[]).includes(m.no);
+    const start=m.svc==="water"?(m.no==="W-10442"?473.2+i*3:124.0+i*2.4):17200+i*615;
+    const endVal=r2(start+u);
+    const endCell=(!pen&&last)?`<input id="lr-${m.no}" class="num" inputmode="decimal" value="${fmtN(endVal,m.dp).replace(/,/g,"")}" aria-label="End reading ${m.no}">`:(est?"—":fmtN(endVal,m.dp));
+    const st=pen?'<span class="pill p-warn">Assessed</span>':est?'<span class="pill p-warn">Estimated</span>':'<span class="pill p-ok">Actual</span>';
+    return `<tr><td><span class="svc">${dot(m.svc)}${m.no}</span></td><td class="r num">${fmtN(start,m.dp)}</td><td class="num">${fmtD(p[0])}</td><td class="r num">${endCell}</td><td class="num">${(!pen&&last)?`<input id="lrd-${m.no}" type="date" value="${p[1]}" aria-label="End read date ${m.no}">`:fmtD(p[1])}</td><td class="r num">${fmtN(u,m.dp)} ${m.unit}</td><td>${st}</td></tr>`;}).join("");
+  return `<div class="period-block"><h3>${fmtD(p[0])} – ${fmtD(p[1])} ${last&&!pen?'<span class="pill p-info">Enter reading</span>':""}</h3><div class="tw"><table><thead><tr><th>Meter</th><th class="r">Start reading</th><th>Start date</th><th class="r">End reading</th><th>End date</th><th class="r">Usage</th><th>Reading</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
+}
+function ratesPanel(k){
+  const L=lines(k), sum=f=>r2(L.filter(f).reduce((a,l)=>a+l.a,0));
+  const sub=isSub(k), fin=k==="final";
+  const ver=(a,b)=>sub?`${a} → ${b} <span class="pill p-info">Split Aug 15</span>`:b;
+  const baseNote=fin?" · prorated 18/30":"";
+  const rows=[
+    {svc:"water",who:"Water · W-10442",type:"Tiered",rate:"$3.25 / kgal to 5 kgal<br>$4.50 / kgal above",base:`$8.00 · BASE-W${baseNote}`,min:"None",v:ver("Water v3","Water v4"),amt:sum(l=>l.meter==="W-10442")},
+    {svc:"water",who:"Water · W-10443",type:"Tiered",rate:"$3.25 / kgal to 5 kgal<br>$4.50 / kgal above",base:`$8.00 · BASE-W${baseNote}`,min:"None",v:ver("Water v3","Water v4"),amt:sum(l=>l.meter==="W-10443")},
+    {svc:"electric",who:"Electric · E-55120",type:"Flat",rate:"$0.1245 / kWh",base:'<span class="pill p-warn">Not set · $0.00</span>',min:"None",v:"Electric v7",amt:sum(l=>l.svc==="electric")},
+    {svc:"trash",who:"Trash · 1 cart",type:"Per asset",rate:"$15.00 / cart",base:"$3.00 per cart · BASE-T",min:"None",v:"Trash v2",amt:sum(l=>l.svc==="trash")},
+    {svc:"sewer",who:"Sewer",type:"% of service",rate:"40% of water usage",base:`$6.00 · BASE-S${baseNote}`,min:"$10.00",v:"Sewer v3",amt:sum(l=>l.svc==="sewer")},
+  ];
+  const off=[["gas","Gas · no meter"],["fire","Fire · no asset"]];
+  return coll("rates","Rates",`${ACCT.plan}${sub?" · per period":""} · ${money(sum(l=>!!l.svc))}`,`<div class="tw"><table><thead><tr><th>Service / meter</th><th>Rate type</th><th>Usage rate</th><th>Base charge</th><th>Minimum</th><th>Price version</th><th class="r">Amount</th></tr></thead><tbody>
+  ${rows.map(r=>`<tr><td><span class="svc">${dot(r.svc)}${r.who}</span></td><td>${r.type}</td><td class="num">${r.rate}</td><td class="num">${r.base}</td><td class="num">${r.min}</td><td>${r.v}</td><td class="r num">${money(r.amt)}</td></tr>`).join("")}
+  ${off.map(o=>`<tr class="muted"><td><span class="svc">${dot(o[0])}${o[1]}</span></td><td colspan="5">No rate used</td><td class="r num">$0.00</td></tr>`).join("")}
+  <tr class="tot"><td colspan="6">Before tax</td><td class="r num">${money(sum(l=>!!l.svc))}</td></tr>
+  </tbody></table></div>`);
+}
+function periodsPanel(k){
+  const rows=S.periods.map((p,i)=>{const days=Math.round((new Date(p[1])-new Date(p[0]))/864e5)+1;const split=i===S.periods.length-1;const est=(EST[k][i]||[]).length>0;
+    return `<tr><td class="num">${fmtD(p[0])} – ${fmtD(p[1])}</td><td class="r num">${days}</td><td>${split?"Water v3 → v4 · Elec v7":"Water v3 · Elec v7"}</td><td>${k==="penalty"?'<span class="pill p-warn">Assessed</span>':est?'<span class="pill p-warn">Estimated</span>':'<span class="pill p-ok">Actual</span>'}</td><td>${split?'<span class="pill p-info">Split Aug 15 · price change</span>':"—"}</td></tr>`;}).join("");
+  return `<section class="panel"><div class="panel-h"><h2>Periods</h2><span class="kicker">${S.periods.length} periods</span></div><div class="tw"><table><thead><tr><th>Period</th><th class="r">Days</th><th>Price version</th><th>Reading</th><th>Note</th></tr></thead><tbody>${rows}</tbody></table></div></section>`;
+}
+function moveInPanel(){return coll("movein","Move-in charges","Deposit + fees · $195.00",`
+  <div class="facts"><div class="fact"><span>Move-in date</span><b class="num">${fmtD(S.moveIn)}</b></div><div class="fact"><span>Deposit asked</span><b class="num">$150.00</b></div><div class="fact"><span>Already paid</span><b class="num">$0.00</b></div></div>
+  <div class="tw"><table><thead><tr><th>Charge</th><th>Type</th><th>Basis</th><th class="r">Amount</th></tr></thead><tbody><tr><td>Security deposit</td><td>Deposit</td><td>$150.00 asked − $0.00 paid</td><td class="r num">$150.00</td></tr><tr><td>Connection charge</td><td>Fee</td><td>Code CONN</td><td class="r num">$45.00</td></tr><tr class="tot"><td colspan="3">Move-in total</td><td class="r num">$195.00</td></tr></tbody></table></div>`);}
+function settlementPanel(){
+  const t=totals("final").total, dep=100, intr=1.24, rem=r2(t+ACCT.bal-dep-intr);
+  const opt=(v,l)=>`<label style="display:flex;gap:8px;align-items:center"><input type="radio" name="path" value="${v}" ${S.path===v?"checked":""}> ${l}</label>`;
+  return `<section class="panel"><div class="panel-h"><h2>Settlement</h2><span class="kicker">Deposit applied first</span></div><div class="tw"><table><tbody>
+   <tr><td>This final bill</td><td class="r num">${money(t)}</td></tr><tr><td>Balance brought forward</td><td class="r num">${money(ACCT.bal)}</td></tr>
+   <tr><td>Deposit held</td><td class="r num">${money(-dep)}</td></tr><tr><td>Deposit interest</td><td class="r num">${money(-intr)}</td></tr>
+   <tr class="tot"><td>${rem<0?"Refund due":"Left to pay"}</td><td class="r num">${money(Math.abs(rem))}</td></tr></tbody></table></div>
+   <fieldset style="border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:6px"><legend class="kicker" style="margin-bottom:6px">How to settle</legend>${opt("collect","Collect")}${opt("plan","Payment plan")}${opt("transfer","Move to landlord account")}</fieldset></section>`;}
+function evidencePanel(){return `<section class="panel"><div class="panel-h"><h2>Evidence</h2></div><div class="fields two"><div class="f"><label for="f-ev">What was found</label><textarea id="f-ev" rows="3">Bypass fitted at meter E-55120. Photos taken Aug 29.</textarea></div><div class="f"><label for="f-file">Photos or report</label><input id="f-file" type="file"><span class="help">Optional.</span></div></div><div class="note info">Needs approval before it is sent.</div></section>`;}
+function chargePanel(k){
+  const code=k==="fee"?S.charge:S.penCharge; const c=CHARGES.find(x=>x[0]===code)||CHARGES[1];
+  return `<section class="panel"><div class="panel-h"><h2>Charge</h2><span class="kicker">${k==="fee"?"No usage":"Optional"}</span></div>
+  <div class="tw"><table><thead><tr><th>Code</th><th>Charge</th><th class="r">Amount</th><th>Tax</th></tr></thead><tbody><tr><td class="num">${c[0]}</td><td>${c[1]}</td><td class="r num">${money(c[2])}</td><td>${k==="fee"?"Taxable · 2.00%":"None"}</td></tr></tbody></table></div>
+  ${k==="fee"?`<div class="f"><label for="f-note">Note on the bill</label><input id="f-note" value="Reconnected Sep 30 after non-payment cut"></div>`:""}</section>`;}
+function step2Body(k){
+  if(k==="fee") return chargePanel(k);
+  let h=servicesPanel(k)+ratesPanel(k);
+  if(k==="first") h+=moveInPanel();
+  h+=readingsPanel(k);
+  if(isSub(k)) h+=periodsPanel(k);
+  if(k==="final") h+=settlementPanel();
+  if(k==="penalty") h+=evidencePanel()+chargePanel(k);
+  return h;
+}
+function step2(){return step2Body(S.kind)+actions(true,"Continue");}
+
+/* ---------- step 3 / 4 ---------- */
+function groups(L){const out=[];L.forEach(l=>{let g=out.find(x=>x.name===l.grp);if(!g){g={name:l.grp,rows:[],sum:0};out.push(g);}g.rows.push(l);g.sum=r2(g.sum+l.a);});return out;}
+function billPreview(){
+  const {L,sub,tax,total}=totals(); const k=KINDS.find(x=>x.id===S.kind);
+  const per=S.kind==="fee"?"":isSub(S.kind)?fmtD(S.periods[0][0])+" – "+fmtD(S.periods.at(-1)[1]):S.kind==="first"?fmtD(S.moveIn)+" – "+fmtD(S.to):S.kind==="final"?fmtD(S.from)+" – "+fmtD(S.moveOut):fmtD(S.from)+" – "+fmtD(S.to);
+  return `<div class="bill"><div class="bill-h"><div><div class="kicker">${k.name} bill · draft</div><h2 style="margin-top:4px">${ACCT.name}</h2><div class="muted-s">${ACCT.no} · ${ACCT.addr}</div></div>
+    <div class="meta num"><span>Bill date</span><span>${fmtD(S.billDate)}</span><span>Due date</span><span><b>${fmtD(dueDate())}</b></span>${per?`<span>Period</span><span>${per}</span>`:""}</div></div>
+    <div class="tw" style="border:0"><table class="billt"><thead><tr><th>Service</th><th>Meter / asset</th><th>Charge</th><th class="r">Quantity</th><th class="r">Rate</th><th class="r">Amount</th></tr></thead><tbody>
+    ${groups(L).map(g=>`<tr class="grp"><td colspan="5">${g.name}</td><td class="r num">${money(g.sum)}</td></tr>`+g.rows.map(l=>`<tr><td>${l.svc?`<span class="svc" style="font-weight:500">${dot(l.svc)}${SVCNAME[l.svc]}</span>`:l.d}</td><td class="num">${l.meter||"—"}</td><td>${l.kind}${l.warn?' <span class="pill p-warn">No base set</span>':""}${l.est?' <span class="pill p-warn">Est.</span>':""}</td><td class="r num">${l.qty}</td><td class="r num">${l.rate}</td><td class="r num">${money(l.a)}</td></tr>`).join("")).join("")}
+    <tr class="foot"><td colspan="5">Subtotal</td><td class="r num">${money(sub)}</td></tr><tr class="foot"><td colspan="5">Utility tax · 2.00% of taxable charges</td><td class="r num">${money(tax)}</td></tr>
+    <tr class="tot"><td colspan="5">Total due</td><td class="r num">${money(total)}</td></tr></tbody></table></div></div>
+    ${L.some(l=>l.warn)?'<div class="note warn"><b>1 warning.</b>&nbsp;No base charge for Electric. Billed $0.00.</div>':""}`;
+}
+function step3(){return `<section class="panel"><div class="panel-h"><h2>The bill</h2><span class="kicker">As it will print</span></div>${billPreview()}</section>
+  <section class="panel"><div class="panel-h"><h2>Delivery</h2></div><div class="fields"><div class="f"><label for="f-dl">Send by</label><select id="f-dl"><option>Email · m.alvarez@example.com</option><option>Paper</option><option>Email and paper</option></select></div></div></section>
+  <div class="actions"><button class="btn" data-back>Back</button><div class="right"><button class="btn" id="draft">Save draft</button><button class="btn primary" data-next>Continue</button></div></div>`;}
+function step4(){
+  const T=totals(), t=T.total;
+  if(S.sent) return `<section class="panel done"><div class="check" aria-hidden="true">✓</div><h2>Bill BL-2609-000318 sent</h2>
+    <div class="sum" style="width:100%;max-width:420px"><div class="row"><span>Total</span><b class="num">${money(t)}</b></div><div class="row"><span>Due</span><b class="num">${fmtD(dueDate())}</b></div><div class="row"><span>Delivery</span><b>Email · queued</b></div><div class="row"><span>Meter reads</span><b>Locked</b></div></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary">View bill</button><button class="btn" id="again">New one-time bill</button></div></section>`;
+  const k=KINDS.find(x=>x.id===S.kind);
+  return `<section class="panel sendcard"><div class="sendtop"><div><div class="kicker">${k.name} bill · ${ACCT.no}</div><h2 style="margin-top:4px">${ACCT.name}</h2><div class="muted-s">${ACCT.addr}</div></div>
+    <div class="sendamt"><div class="kicker">Total due</div><div class="big num">${money(t)}</div><div class="muted-s num">Due ${fmtD(dueDate())}</div></div></div>
+    <div class="tw"><table><tbody><tr><td>Bill date</td><td class="r num">${fmtD(S.billDate)}</td></tr><tr><td>Days to pay</td><td class="r num">${S.days}</td></tr><tr><td>Lines</td><td class="r num">${T.L.length}</td></tr><tr><td>Send by</td><td class="r">Email</td></tr>
+    <tr><td>Warnings</td><td class="r">${T.L.some(l=>l.warn)?'<span class="pill p-warn">1 · Electric base $0.00</span>':'<span class="pill p-ok">None</span>'}</td></tr></tbody></table></div>
+    ${S.kind==="penalty"?'<div class="note info">Approved by R. Chen · Sep 30</div>':""}
+    <div class="note bad"><div><b>Final once sent.</b> Changes need a credit note.</div></div>
+    <label class="ack"><input type="checkbox" id="ack" ${S.ack?"checked":""}> I checked the amounts</label>
+    <div class="actions"><button class="btn" data-back>Back</button><div class="right"><button class="btn" id="draft">Save draft</button><button class="btn danger" id="sendYes" ${S.ack?"":"disabled"}>Send ${money(t)} bill</button></div></div></section>`;
+}
+function actions(back,label){return `<div class="actions">${back?'<button class="btn" data-back>Back</button>':"<span></span>"}<div class="right"><button class="btn primary" data-next>${label}</button></div></div>`;}
+
+/* ---------- compare view ---------- */
+const MATRIX=[
+  ["Services table",1,1,1,1,1,0],
+  ["Rates table",1,1,1,"Per period","Per period",0],
+  ["Move-in charges (deposit + fees)",0,1,0,0,0,0],
+  ["Readings",["Every meter"],["Move-in + new"],["Final reading"],["Per period · last entered"],["Read-only · assessed"],0],
+  ["Reading rows","Per meter","Per meter","Per meter","Per meter per period","Per meter per period",0],
+  ["Previous reading","Last on file","Move-in (typed if none)","Last billed","Period start","Period start",0],
+  ["New read date","Clerk","Clerk","Move-out, fixed","Last period","—",0],
+  ["Periods table",0,0,0,1,1,0],
+  ["Settlement",0,0,1,0,0,0],
+  ["Evidence",0,0,0,0,1,0],
+  ["Charge line",0,0,0,0,"Optional","Only content"],
+];
+function compareView(){
+  const cell=v=>v===1?'<span class="yes">✔</span>':v===0?'<span class="no">—</span>':Array.isArray(v)?v[0]:v;
+  const m=`<section class="panel"><div class="panel-h"><h2>Step 2 · what changes by kind</h2></div><div class="tw"><table class="matrix"><thead><tr><th>Section</th>${KINDS.map(k=>`<th>${k.name}</th>`).join("")}</tr></thead><tbody>${MATRIX.map(r=>`<tr><td>${r[0]}</td>${r.slice(1).map(v=>`<td>${cell(v)}</td>`).join("")}</tr>`).join("")}
+  <tr class="tot"><td>Example total</td>${KINDS.map(k=>`<td class="num">${money(totals(k.id).total)}</td>`).join("")}</tr></tbody></table></div></section>`;
+  const keep=S.kind;
+  const blocks=KINDS.map(k=>{S.kind=k.id;const h=`<section class="cmp-kind" id="cmp-${k.id}"><div class="kh"><h2>${k.name}</h2><span class="kicker">Step 2 · Services · ${need[k.id]||"Charge only"}</span></div>${step2Body(k.id)}</section>`;return h;}).join("");
+  S.kind=keep;
+  return m+blocks;
+}
+
+/* ---------- render ---------- */
+function renderProblems(){
+  if(!S.problems||S.step!==0||S.view!=="flow") return "";
+  const items=S.kind==="fee"?["Choose a charge code.","Enter days to pay."]:isSub(S.kind)?["Period 2 ends before it starts.","Choose a reason.","Enter days to pay."]:["The period ends before it starts.","Enter days to pay."];
+  return `<div class="note bad" role="alert"><div><b>Fix ${items.length} things to continue.</b><ul>${items.map(i=>`<li>${i}</li>`).join("")}</ul></div></div>`;
+}
+function renderSummary(){
+  const {sub,tax,total,L}=totals(); const k=KINDS.find(x=>x.id===S.kind);
+  $("#summary").innerHTML=`<div class="kicker">${k.name}</div><div class="big num">${money(total)}</div>
+   <div class="sum"><div class="row"><span>Charges</span><span class="num">${money(sub)}</span></div><div class="row"><span>Tax</span><span class="num">${money(tax)}</span></div><div class="row"><span>Lines</span><span class="num">${L.length}</span></div></div>
+   <div class="hr"></div><div class="sum"><div class="row"><span>Bill date</span><span class="num">${fmtD(S.billDate)}</span></div><div class="row"><span>Due</span><span class="num">${S.problems&&S.step===0?"—":fmtD(dueDate())}</span></div></div>
+   ${S.kind!=="fee"?`<div class="hr"></div><div class="sum"><div class="row"><span>Billed</span><span class="pill p-ok">4 services</span></div><div class="row"><span>Not in service</span><span class="pill p-off">2 · no line</span></div><div class="row"><span>Not taken</span><span class="pill p-off">1</span></div><div class="row"><span>Warnings</span><span class="pill p-warn">1</span></div></div>`:""}
+   <div class="muted-s">${S.sent?"Sent.":"Nothing saved yet."}</div>`;
+}
+function render(){
+  const cmp=S.view==="cmp";
+  $("#kinds").hidden=cmp; $("#rail").hidden=cmp; $("#aside").hidden=cmp; $("#grid").classList.toggle("one",cmp); $("#restart").hidden=cmp;
+  $("#pageTitle").textContent=cmp?"One-time bill · compare kinds":"One-time bill";
+  $("#kinds").innerHTML=KINDS.map(k=>`<button class="kind" data-k="${k.id}" aria-pressed="${S.kind===k.id}"><strong>${k.name}</strong><span>${k.use}</span></button>`).join("");
+  $("#rail").innerHTML=STEPS.map((s,i)=>{const st=S.sent||i<S.step?"done":i===S.step?"current":"todo";return `<button data-go="${i}" data-state="${st}" ${i>S.step||S.sent?"disabled":""} aria-current="${i===S.step?"step":"false"}"><span class="n">${st==="done"?"✓":i+1}</span><span class="lbl">${s}</span></button>`;}).join("");
+  const dup=$("#dupBox"); if(S.dup&&!cmp){dup.hidden=false;dup.innerHTML=`<div class="note bad" role="alert"><div><b>Already billed for this period.</b> BL-2609-000211 · Sep 18, 2026 · by J. Ortiz.&nbsp;<button class="btn link" type="button">Open that bill</button></div></div>`;} else dup.hidden=true;
+  $("#main").innerHTML=cmp?compareView():renderProblems()+[step1,step2,step3,step4][S.step]();
+  if(!cmp) renderSummary();
+}
+function refreshKeepFocus(){const a=document.activeElement;const id=a&&a.id;const pos=a&&a.selectionStart;render();if(id){const el=document.getElementById(id);if(el){el.focus();try{el.setSelectionRange(pos,pos)}catch(_){}}}}
+let rt;const soon=()=>{clearTimeout(rt);rt=setTimeout(refreshKeepFocus,400);};
+function press(ids,on){ids.forEach(x=>$("#"+x).setAttribute("aria-pressed",String(x===on)));}
+
+document.addEventListener("click",e=>{
+  const li=e.target.closest("#acct-list li[data-acct]");if(li){pick(+li.dataset.acct);return;}
+  if(!e.target.closest(".combo")&&S.combo){S.combo=false;refreshCombo();}
+  const t=e.target.closest("button"); if(!t) return;
+  if(t.dataset.k){S.kind=t.dataset.k;S.step=0;S.sent=false;S.ack=false;render();return;}
+  if(t.dataset.go!==undefined){if(!t.disabled){S.step=+t.dataset.go;render();}return;}
+  if(t.hasAttribute("data-next")){if(S.problems&&S.step===0){render();window.scrollTo({top:0,behavior:"smooth"});return;}S.step=Math.min(3,S.step+1);render();return;}
+  if(t.hasAttribute("data-back")){S.step=Math.max(0,S.step-1);render();return;}
+  if(t.dataset.rm!==undefined){if(S.periods.length>1)S.periods.splice(+t.dataset.rm,1);render();return;}
+  switch(t.id){
+    case "addp":{const d=new Date(S.periods.at(-1)[1]+"T00:00:00");d.setDate(d.getDate()+1);const s=d.toISOString().slice(0,10);d.setMonth(d.getMonth()+1);d.setDate(d.getDate()-1);S.periods.push([s,d.toISOString().slice(0,10)]);render();break;}
+    case "sendYes":if(!t.disabled){S.sent=true;render();}break;
+    case "draft":t.textContent="Draft saved · BL-2609-000318";t.disabled=true;break;
+    case "again":case "restart":ACCT=ACCTS[0];S.q=ACCT.name;S.ack=false;S.step=0;S.sent=false;S.problems=false;S.dup=false;press(["d-normal","d-problems","d-dup"],"d-normal");render();break;
+    case "d-normal":S.problems=false;S.dup=false;press(["d-normal","d-problems","d-dup"],t.id);render();break;
+    case "d-problems":S.problems=true;S.dup=false;S.view="flow";S.step=0;S.sent=false;press(["d-normal","d-problems","d-dup"],t.id);press(["v-flow","v-cmp"],"v-flow");render();break;
+    case "d-dup":S.dup=true;S.problems=false;S.view="flow";press(["d-normal","d-problems","d-dup"],t.id);press(["v-flow","v-cmp"],"v-flow");render();break;
+    case "v-flow":S.view="flow";press(["v-flow","v-cmp"],t.id);render();break;
+    case "v-cmp":S.view="cmp";press(["v-flow","v-cmp"],t.id);render();break;
+  }
+});
+document.addEventListener("input",e=>{
+  const id=e.target.id||"";
+  if(id==="f-acct"){S.q=e.target.value;S.combo=true;S.hi=0;refreshCombo();return;}
+  if(id.startsWith("r-")){S.reads[id.slice(2)]=e.target.value;soon();}
+  else if(id.startsWith("mi-")){S.miTyped[id.slice(3)]=e.target.value;soon();}
+  else if(id==="f-bill"){S.billDate=e.target.value;const d=$("#f-due");if(d)d.value=fmtD(dueDate());renderSummary();}
+  else if(id==="f-days"){S.days=e.target.value;const d=$("#f-due");if(d)d.value=fmtD(dueDate());renderSummary();}
+  else if(id==="f-to"){if(S.kind==="final")S.moveOut=e.target.value;else S.to=e.target.value;}
+  else if(id==="f-from"){S.from=e.target.value;}
+  else if(id.startsWith("pf")){S.periods[+id.slice(2)][0]=e.target.value;}
+  else if(id.startsWith("pt")){S.periods[+id.slice(2)][1]=e.target.value;}
+});
+document.addEventListener("change",e=>{
+  const id=e.target.id;
+  if(id==="f-charge"){S.charge=e.target.value;renderSummary();}
+  else if(id==="f-pcharge"){S.penCharge=e.target.value;renderSummary();}
+  else if(id==="f-reason"){S.reason=e.target.value;}
+  else if(id==="ack"){S.ack=e.target.checked;const b=$("#sendYes");if(b)b.disabled=!S.ack;}
+  else if(e.target.name==="path"){S.path=e.target.value;}
+});
+document.addEventListener("focusin",e=>{if(e.target.id==="f-acct"){S.combo=true;refreshCombo();e.target.select();}});
+document.addEventListener("keydown",e=>{if(e.target.id!=="f-acct")return;const n=matches().length;
+  if(e.key==="ArrowDown"){e.preventDefault();S.combo=true;S.hi=Math.min(n-1,S.hi+1);refreshCombo();}
+  else if(e.key==="ArrowUp"){e.preventDefault();S.hi=Math.max(0,S.hi-1);refreshCombo();}
+  else if(e.key==="Enter"&&S.combo&&n){e.preventDefault();pick(ACCTS.indexOf(matches()[S.hi]));}
+  else if(e.key==="Escape"){S.combo=false;refreshCombo();}});
+document.addEventListener("toggle",e=>{const d=e.target;if(d.dataset&&d.dataset.coll)S.open[d.dataset.coll]=d.open;},true);
+render();
+})();
+</script>
+</body></html>

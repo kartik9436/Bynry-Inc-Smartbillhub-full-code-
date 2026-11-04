@@ -1,0 +1,17 @@
+CR-171-BRC10 lane MVI-E2E-2 - M4's key checks shown to go RED, then restored (law 7).
+Method: a throwaway copy of 10-scripts/cr171_e2e_matrix_readback.py with ONE expected value changed, run
+against the committed M4 move (MVI-26-0007, build 2.549.0, PostgreSQL 16, world restored from the post-setup dump);
+the copy deleted afterwards. The [DEF-BIL-9751] FAIL is today's known behaviour, present in every run.
+
+== M4 red 1: Northgate expected to hold a second account on file it does not have (the link lost / a new customer made)
+<                      "accounts_on_file": ["AC-2026-00056"]},
+  FAIL Accounts · LINKED: the returning customer holds her accounts on file AND this one — expected ['AC-2026-00056', 'AC-2026-00057', 'AC-2026-00099'], read ['AC-2026-00056', 'AC-2026-00057']
+  FAIL Billing · a deposit paid at move-in is not billed again on the first bill — [DEF-BIL-9751] [('Security deposit', '300.00')]
+   55 PASS · 2 FAIL
+== M4 red 2: an owner's share typed 60 expected as 55
+  FAIL Billing · a deposit paid at move-in is not billed again on the first bill — [DEF-BIL-9751] [('Security deposit', '300.00')]
+  FAIL Accounts · Hal Brennan is an owner/officer, Managing member, 55.000000%, signs yes — expected ('officer', 'Managing member', '55.000000', True), read ('officer', 'Managing member', '60.000000', True)
+   55 PASS · 2 FAIL
+== M4 restored
+  FAIL Billing · a deposit paid at move-in is not billed again on the first bill — [DEF-BIL-9751] [('Security deposit', '300.00')]
+   56 PASS · 1 FAIL

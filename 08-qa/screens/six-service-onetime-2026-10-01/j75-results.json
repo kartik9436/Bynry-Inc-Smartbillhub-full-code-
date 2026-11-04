@@ -1,0 +1,1396 @@
+{
+  "1": {
+    "case": 1,
+    "kind": "interim",
+    "account": "Unit 1",
+    "review": {
+      "lines": [
+        {
+          "service": "Water",
+          "meter": "—",
+          "charge": "Usage",
+          "quantity": "12 kgal",
+          "rate": "Tiered",
+          "amount": "$65.50",
+          "breakdown": ""
+        },
+        {
+          "service": "Water",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$8.00",
+          "amount": "$8.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Share of service",
+          "quantity": "10.8 kgal",
+          "rate": "$5.00",
+          "amount": "$54.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$9.00",
+          "amount": "$9.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Trash",
+          "meter": "3 cart",
+          "charge": "Per cart\nTrash 35-gallon cart × 1 · no base price · $10.00 each\nTrash 96-gallon cart × 2 · base $3.00 · $15.00 each",
+          "quantity": "3 cart",
+          "rate": "—",
+          "amount": "$46.00",
+          "breakdown": "Trash 35-gallon cart × 1 · no base price · $10.00 each Trash 96-gallon cart × 2 · base $3.00 · $15.00 each"
+        },
+        {
+          "service": "Solar",
+          "meter": "14 kW",
+          "charge": "Per kW",
+          "quantity": "14 kW",
+          "rate": "$14.00",
+          "amount": "$196.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Solar",
+          "meter": "—",
+          "charge": "Base · per kW\nSolar panel 2 kW × 1 · base $1.00\nSolar panel 4 kW × 1 · base $2.00\nSolar panel 8 kW × 1 · base $3.00",
+          "quantity": "1",
+          "rate": "$6.00",
+          "amount": "$6.00",
+          "breakdown": "Solar panel 2 kW × 1 · base $1.00 Solar panel 4 kW × 1 · base $2.00 Solar panel 8 kW × 1 · base $3.00"
+        },
+        {
+          "service": "Battery",
+          "meter": "10 kW",
+          "charge": "Per kW",
+          "quantity": "10 kW",
+          "rate": "$3.00",
+          "amount": "$30.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Battery",
+          "meter": "—",
+          "charge": "Base · per kW\nBattery 10 kW × 1 · base $4.00",
+          "quantity": "1",
+          "rate": "$4.00",
+          "amount": "$4.00",
+          "breakdown": "Battery 10 kW × 1 · base $4.00"
+        },
+        {
+          "service": "Fire",
+          "meter": "3 connection",
+          "charge": "Per connection\nFire line 2\" × 2 · base $0.00 · $12.00 each\nFire line 6\" × 1 · base $0.00 · $60.00 each",
+          "quantity": "3 connection",
+          "rate": "—",
+          "amount": "$84.00",
+          "breakdown": "Fire line 2\" × 2 · base $0.00 · $12.00 each Fire line 6\" × 1 · base $0.00 · $60.00 each"
+        }
+      ],
+      "subtotal": "$502.50",
+      "tax": [
+        {
+          "label": "Tax Local · 2.00% of taxable charges",
+          "amount": "$10.05"
+        }
+      ],
+      "one_time_charges": null,
+      "total": "$512.55",
+      "groups": 1,
+      "warnings": "1 warning. BASE-T has no price for CART-35. Billed $0.00."
+    },
+    "sent": {
+      "run_id": "01a0f73d-68e9-7fe5-9b40-3dd1ef7d1469",
+      "invoice_id": "01a0f73d-6cff-7229-949a-181f7d0c2267",
+      "invoice_no": "BL-2609-000001",
+      "total": "512.5500",
+      "currency": "USD",
+      "due_date": "2026-10-22",
+      "status": "issued",
+      "delivery": "queued",
+      "delivery_choice": "email",
+      "reads": "locked",
+      "created": true,
+      "unavailable": [
+        {
+          "code": "paper_is_always_queued_for_a_bill",
+          "br_ref": "BR-BIL-036",
+          "detail": "print is the floor for every bill and the queue owner adds it whatever was chosen, so 'email' queues email AND paper, exactly as 'email_and_paper' does. The choice is recorded as the clerk's intent; no rule lets a bill go out without its paper copy."
+        }
+      ]
+    },
+    "replay_send": {
+      "status": 200,
+      "created": false,
+      "invoice_no": "BL-2609-000001"
+    },
+    "replay_draft": {
+      "status": 409,
+      "code": "BIZ-IDEMPOTENT"
+    },
+    "sent_text": "✓\nBill BL-2609-000001 sent\nTotal\n$512.55\nDue\n10/22/2026\nDelivery\nEmail · queued\nMeter reads\nLocked\nView bill\nNew one-time bill"
+  },
+  "2": {
+    "case": 2,
+    "kind": "interim",
+    "account": "Unit 2",
+    "review": {
+      "lines": [
+        {
+          "service": "Water",
+          "meter": "—",
+          "charge": "Usage\nEst.",
+          "quantity": "6 kgal",
+          "rate": "Tiered",
+          "amount": "$26.50",
+          "breakdown": ""
+        },
+        {
+          "service": "Water",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$8.00",
+          "amount": "$8.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Share of service",
+          "quantity": "5.4 kgal",
+          "rate": "$5.00",
+          "amount": "$27.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$9.00",
+          "amount": "$9.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Trash",
+          "meter": "1 cart",
+          "charge": "Per cart\nTrash 4 cu-yd dumpster × 1 · base $10.00 · $85.00 each",
+          "quantity": "1 cart",
+          "rate": "$95.00",
+          "amount": "$95.00",
+          "breakdown": "Trash 4 cu-yd dumpster × 1 · base $10.00 · $85.00 each"
+        },
+        {
+          "service": "Battery",
+          "meter": "15 kW",
+          "charge": "Per kW",
+          "quantity": "15 kW",
+          "rate": "$3.00",
+          "amount": "$45.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Battery",
+          "meter": "—",
+          "charge": "Base · per kW\nBattery 15 kW × 1 · no base price",
+          "quantity": "1",
+          "rate": "$0.00",
+          "amount": "$0.00",
+          "breakdown": "Battery 15 kW × 1 · no base price"
+        }
+      ],
+      "subtotal": "$210.50",
+      "tax": [
+        {
+          "label": "Tax Local · 2.00% of taxable charges",
+          "amount": "$4.21"
+        }
+      ],
+      "one_time_charges": null,
+      "total": "$214.71",
+      "groups": 1,
+      "warnings": "2 warnings. BASE-BAT has no price for BAT-15. Billed $0.00. 1 reading estimated."
+    },
+    "sent": {
+      "run_id": "01a0f73d-9599-7020-b3cb-ccc3ef04a15a",
+      "invoice_id": "01a0f73d-986c-7228-a812-c81ea592ba19",
+      "invoice_no": "BL-2609-000002",
+      "total": "214.7100",
+      "currency": "USD",
+      "due_date": "2026-10-22",
+      "status": "issued",
+      "delivery": "queued",
+      "delivery_choice": "email",
+      "reads": "locked",
+      "created": true,
+      "unavailable": [
+        {
+          "code": "paper_is_always_queued_for_a_bill",
+          "br_ref": "BR-BIL-036",
+          "detail": "print is the floor for every bill and the queue owner adds it whatever was chosen, so 'email' queues email AND paper, exactly as 'email_and_paper' does. The choice is recorded as the clerk's intent; no rule lets a bill go out without its paper copy."
+        }
+      ]
+    },
+    "replay_send": {
+      "status": 200,
+      "created": false,
+      "invoice_no": "BL-2609-000002"
+    },
+    "replay_draft": {
+      "status": 409,
+      "code": "BIZ-IDEMPOTENT"
+    },
+    "sent_text": "✓\nBill BL-2609-000002 sent\nTotal\n$214.71\nDue\n10/22/2026\nDelivery\nEmail · queued\nMeter reads\nLocked\nView bill\nNew one-time bill"
+  },
+  "3": {
+    "case": 3,
+    "kind": "first",
+    "account": "Unit 3",
+    "review": {
+      "lines": [
+        {
+          "service": "Water",
+          "meter": "—",
+          "charge": "Usage",
+          "quantity": "8.6 kgal",
+          "rate": "Tiered",
+          "amount": "$47.99",
+          "breakdown": ""
+        },
+        {
+          "service": "Water",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$5.07",
+          "amount": "$5.07",
+          "breakdown": ""
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Share of service",
+          "quantity": "7.74 kgal",
+          "rate": "$5.00",
+          "amount": "$38.70",
+          "breakdown": ""
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$5.70",
+          "amount": "$5.70",
+          "breakdown": ""
+        },
+        {
+          "service": "Trash",
+          "meter": "1 cart",
+          "charge": "Per cart\nTrash 64-gallon cart × 1 · base $2.00 · $12.00 each",
+          "quantity": "1 cart",
+          "rate": "$8.87",
+          "amount": "$8.87",
+          "breakdown": "Trash 64-gallon cart × 1 · base $2.00 · $12.00 each"
+        },
+        {
+          "service": "Solar",
+          "meter": "6 kW",
+          "charge": "Per kW",
+          "quantity": "6 kW",
+          "rate": "$14.00",
+          "amount": "$53.20",
+          "breakdown": ""
+        },
+        {
+          "service": "Solar",
+          "meter": "—",
+          "charge": "Base · per kW\nSolar panel 6 kW × 1 · no base price",
+          "quantity": "1",
+          "rate": "$0.00",
+          "amount": "$0.00",
+          "breakdown": "Solar panel 6 kW × 1 · no base price"
+        },
+        {
+          "service": "Battery",
+          "meter": "5 kW",
+          "charge": "Per kW",
+          "quantity": "5 kW",
+          "rate": "$3.00",
+          "amount": "$9.50",
+          "breakdown": ""
+        },
+        {
+          "service": "Battery",
+          "meter": "—",
+          "charge": "Base · per kW\nBattery 5 kW × 1 · base $2.00",
+          "quantity": "1",
+          "rate": "$1.27",
+          "amount": "$1.27",
+          "breakdown": "Battery 5 kW × 1 · base $2.00"
+        },
+        {
+          "service": "Fire",
+          "meter": "1 connection",
+          "charge": "Per connection\nFire line 4\" × 1 · base $0.00 · $30.00 each",
+          "quantity": "1 connection",
+          "rate": "$19.00",
+          "amount": "$19.00",
+          "breakdown": "Fire line 4\" × 1 · base $0.00 · $30.00 each"
+        },
+        {
+          "service": "Security deposit",
+          "meter": "—",
+          "charge": "Deposit",
+          "quantity": "—",
+          "rate": "—",
+          "amount": "$150.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Connection fee",
+          "meter": "—",
+          "charge": "Fee · CONN",
+          "quantity": "1",
+          "rate": "$45.00",
+          "amount": "$45.00",
+          "breakdown": ""
+        }
+      ],
+      "subtotal": "$189.30",
+      "tax": [
+        {
+          "label": "Tax Local · 2.00% of taxable charges",
+          "amount": "$3.79"
+        }
+      ],
+      "one_time_charges": "$195.00",
+      "total": "$388.09",
+      "groups": 2,
+      "warnings": "1 warning. BASE-SOL has no price for SOL-P6. Billed $0.00."
+    },
+    "sent": {
+      "run_id": "01a0f73d-d1df-710a-bc0c-55c8551bd0bd",
+      "invoice_id": "01a0f73d-d516-798e-9760-c8e38fb98787",
+      "invoice_no": "BL-2609-000003",
+      "total": "388.0900",
+      "currency": "USD",
+      "due_date": "2026-10-22",
+      "status": "issued",
+      "delivery": "queued",
+      "delivery_choice": "email",
+      "reads": "locked",
+      "created": true,
+      "unavailable": [
+        {
+          "code": "paper_is_always_queued_for_a_bill",
+          "br_ref": "BR-BIL-036",
+          "detail": "print is the floor for every bill and the queue owner adds it whatever was chosen, so 'email' queues email AND paper, exactly as 'email_and_paper' does. The choice is recorded as the clerk's intent; no rule lets a bill go out without its paper copy."
+        }
+      ]
+    },
+    "replay_send": {
+      "status": 200,
+      "created": false,
+      "invoice_no": "BL-2609-000003"
+    },
+    "replay_draft": {
+      "status": 409,
+      "code": "BIZ-IDEMPOTENT"
+    },
+    "sent_text": "✓\nBill BL-2609-000003 sent\nTotal\n$388.09\nDue\n10/22/2026\nDelivery\nEmail · queued\nMeter reads\nLocked\nView bill\nNew one-time bill"
+  },
+  "4": {
+    "case": 4,
+    "kind": "final",
+    "account": "Unit 4",
+    "review": {
+      "lines": [
+        {
+          "service": "Water",
+          "meter": "—",
+          "charge": "Usage",
+          "quantity": "4.2 kgal",
+          "rate": "Tiered",
+          "amount": "$19.80",
+          "breakdown": ""
+        },
+        {
+          "service": "Water",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$4.80",
+          "amount": "$4.80",
+          "breakdown": ""
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Share of service",
+          "quantity": "3.78 kgal",
+          "rate": "$5.00",
+          "amount": "$18.90",
+          "breakdown": ""
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$5.40",
+          "amount": "$5.40",
+          "breakdown": ""
+        },
+        {
+          "service": "Trash",
+          "meter": "1 cart",
+          "charge": "Per cart\nTrash 96-gallon cart × 1 · base $3.00 · $15.00 each",
+          "quantity": "1 cart",
+          "rate": "$10.80",
+          "amount": "$10.80",
+          "breakdown": "Trash 96-gallon cart × 1 · base $3.00 · $15.00 each"
+        },
+        {
+          "service": "Solar",
+          "meter": "4 kW",
+          "charge": "Per kW",
+          "quantity": "4 kW",
+          "rate": "$14.00",
+          "amount": "$33.60",
+          "breakdown": ""
+        },
+        {
+          "service": "Solar",
+          "meter": "—",
+          "charge": "Base · per kW\nSolar panel 4 kW × 1 · base $2.00",
+          "quantity": "1",
+          "rate": "$1.20",
+          "amount": "$1.20",
+          "breakdown": "Solar panel 4 kW × 1 · base $2.00"
+        },
+        {
+          "service": "Battery",
+          "meter": "10 kW",
+          "charge": "Per kW",
+          "quantity": "10 kW",
+          "rate": "$3.00",
+          "amount": "$18.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Battery",
+          "meter": "—",
+          "charge": "Base · per kW\nBattery 10 kW × 1 · base $4.00",
+          "quantity": "1",
+          "rate": "$2.40",
+          "amount": "$2.40",
+          "breakdown": "Battery 10 kW × 1 · base $4.00"
+        },
+        {
+          "service": "Fire",
+          "meter": "1 connection",
+          "charge": "Per connection\nFire line 2\" × 1 · base $0.00 · $12.00 each",
+          "quantity": "1 connection",
+          "rate": "$7.20",
+          "amount": "$7.20",
+          "breakdown": "Fire line 2\" × 1 · base $0.00 · $12.00 each"
+        }
+      ],
+      "subtotal": "$122.10",
+      "tax": [
+        {
+          "label": "Tax Local · 2.00% of taxable charges",
+          "amount": "$2.44"
+        }
+      ],
+      "one_time_charges": null,
+      "total": "$124.54",
+      "groups": 1,
+      "warnings": ""
+    },
+    "sent": {
+      "run_id": "01a0f73e-1314-7ba9-9976-29dbd9d2394d",
+      "invoice_id": "01a0f73e-15f4-7d46-8c72-2d8fa9adcf3a",
+      "invoice_no": "BL-2609-000004",
+      "total": "124.5400",
+      "currency": "USD",
+      "due_date": "2026-10-22",
+      "status": "issued",
+      "delivery": "queued",
+      "delivery_choice": "email",
+      "reads": "locked",
+      "created": true,
+      "unavailable": [
+        {
+          "code": "paper_is_always_queued_for_a_bill",
+          "br_ref": "BR-BIL-036",
+          "detail": "print is the floor for every bill and the queue owner adds it whatever was chosen, so 'email' queues email AND paper, exactly as 'email_and_paper' does. The choice is recorded as the clerk's intent; no rule lets a bill go out without its paper copy."
+        }
+      ]
+    },
+    "replay_send": {
+      "status": 200,
+      "created": false,
+      "invoice_no": "BL-2609-000004"
+    },
+    "replay_draft": {
+      "status": 409,
+      "code": "BIZ-IDEMPOTENT"
+    },
+    "sent_text": "✓\nBill BL-2609-000004 sent\nTotal\n$124.54\nDue\n10/22/2026\nDelivery\nEmail · queued\nMeter reads\nLocked\nView bill\nNew one-time bill"
+  },
+  "5": {
+    "case": 5,
+    "kind": "final",
+    "account": "Unit 5",
+    "review": {
+      "lines": [
+        {
+          "service": "Water",
+          "meter": "—",
+          "charge": "Usage",
+          "quantity": "4.2 kgal",
+          "rate": "Tiered",
+          "amount": "$19.80",
+          "breakdown": ""
+        },
+        {
+          "service": "Water",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$4.80",
+          "amount": "$4.80",
+          "breakdown": ""
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Share of service",
+          "quantity": "3.78 kgal",
+          "rate": "$5.00",
+          "amount": "$18.90",
+          "breakdown": ""
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$5.40",
+          "amount": "$5.40",
+          "breakdown": ""
+        },
+        {
+          "service": "Trash",
+          "meter": "1 cart",
+          "charge": "Per cart\nTrash 96-gallon cart × 1 · base $3.00 · $15.00 each",
+          "quantity": "1 cart",
+          "rate": "$10.80",
+          "amount": "$10.80",
+          "breakdown": "Trash 96-gallon cart × 1 · base $3.00 · $15.00 each"
+        },
+        {
+          "service": "Solar",
+          "meter": "4 kW",
+          "charge": "Per kW",
+          "quantity": "4 kW",
+          "rate": "$14.00",
+          "amount": "$33.60",
+          "breakdown": ""
+        },
+        {
+          "service": "Solar",
+          "meter": "—",
+          "charge": "Base · per kW\nSolar panel 4 kW × 1 · base $2.00",
+          "quantity": "1",
+          "rate": "$1.20",
+          "amount": "$1.20",
+          "breakdown": "Solar panel 4 kW × 1 · base $2.00"
+        },
+        {
+          "service": "Battery",
+          "meter": "10 kW",
+          "charge": "Per kW",
+          "quantity": "10 kW",
+          "rate": "$3.00",
+          "amount": "$18.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Battery",
+          "meter": "—",
+          "charge": "Base · per kW\nBattery 10 kW × 1 · base $4.00",
+          "quantity": "1",
+          "rate": "$2.40",
+          "amount": "$2.40",
+          "breakdown": "Battery 10 kW × 1 · base $4.00"
+        },
+        {
+          "service": "Fire",
+          "meter": "1 connection",
+          "charge": "Per connection\nFire line 2\" × 1 · base $0.00 · $12.00 each",
+          "quantity": "1 connection",
+          "rate": "$7.20",
+          "amount": "$7.20",
+          "breakdown": "Fire line 2\" × 1 · base $0.00 · $12.00 each"
+        }
+      ],
+      "subtotal": "$122.10",
+      "tax": [
+        {
+          "label": "Tax Local · 2.00% of taxable charges",
+          "amount": "$2.44"
+        }
+      ],
+      "one_time_charges": null,
+      "total": "$124.54",
+      "groups": 1,
+      "warnings": ""
+    },
+    "sent": {
+      "run_id": "01a0f73e-54ca-75bb-81f0-15239531f34a",
+      "invoice_id": "01a0f73e-57d0-7d84-8193-39f82744940b",
+      "invoice_no": "BL-2609-000005",
+      "total": "124.5400",
+      "currency": "USD",
+      "due_date": "2026-10-22",
+      "status": "issued",
+      "delivery": "queued",
+      "delivery_choice": "email",
+      "reads": "locked",
+      "created": true,
+      "unavailable": [
+        {
+          "code": "paper_is_always_queued_for_a_bill",
+          "br_ref": "BR-BIL-036",
+          "detail": "print is the floor for every bill and the queue owner adds it whatever was chosen, so 'email' queues email AND paper, exactly as 'email_and_paper' does. The choice is recorded as the clerk's intent; no rule lets a bill go out without its paper copy."
+        }
+      ]
+    },
+    "replay_send": {
+      "status": 200,
+      "created": false,
+      "invoice_no": "BL-2609-000005"
+    },
+    "replay_draft": {
+      "status": 409,
+      "code": "BIZ-IDEMPOTENT"
+    },
+    "sent_text": "✓\nBill BL-2609-000005 sent\nTotal\n$124.54\nDue\n10/22/2026\nDelivery\nEmail · queued\nMeter reads\nLocked\nView bill\nNew one-time bill"
+  },
+  "6": {
+    "case": 6,
+    "kind": "backbill",
+    "account": "Unit 6",
+    "review": {
+      "lines": [
+        {
+          "service": "Water",
+          "meter": "—",
+          "charge": "Usage",
+          "quantity": "7 kgal",
+          "rate": "Tiered",
+          "amount": "$33.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Water",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$8.00",
+          "amount": "$8.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Share of service",
+          "quantity": "6.3 kgal",
+          "rate": "$5.00",
+          "amount": "$31.50",
+          "breakdown": ""
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$9.00",
+          "amount": "$9.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Trash",
+          "meter": "1 cart",
+          "charge": "Per cart\nTrash 96-gallon cart × 1 · base $3.00 · $15.00 each",
+          "quantity": "1 cart",
+          "rate": "$18.00",
+          "amount": "$18.00",
+          "breakdown": "Trash 96-gallon cart × 1 · base $3.00 · $15.00 each"
+        },
+        {
+          "service": "Solar",
+          "meter": "2 kW",
+          "charge": "Per kW",
+          "quantity": "2 kW",
+          "rate": "$14.00",
+          "amount": "$28.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Solar",
+          "meter": "—",
+          "charge": "Base · per kW\nSolar panel 2 kW × 1 · base $1.00",
+          "quantity": "1",
+          "rate": "$1.00",
+          "amount": "$1.00",
+          "breakdown": "Solar panel 2 kW × 1 · base $1.00"
+        },
+        {
+          "service": "Battery",
+          "meter": "5 kW",
+          "charge": "Per kW",
+          "quantity": "5 kW",
+          "rate": "$3.00",
+          "amount": "$15.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Battery",
+          "meter": "—",
+          "charge": "Base · per kW\nBattery 5 kW × 1 · base $2.00",
+          "quantity": "1",
+          "rate": "$2.00",
+          "amount": "$2.00",
+          "breakdown": "Battery 5 kW × 1 · base $2.00"
+        },
+        {
+          "service": "Fire",
+          "meter": "1 connection",
+          "charge": "Per connection\nFire line 2\" × 1 · base $0.00 · $12.00 each",
+          "quantity": "1 connection",
+          "rate": "$12.00",
+          "amount": "$12.00",
+          "breakdown": "Fire line 2\" × 1 · base $0.00 · $12.00 each"
+        },
+        {
+          "service": "Water",
+          "meter": "—",
+          "charge": "Usage",
+          "quantity": "8 kgal",
+          "rate": "Tiered",
+          "amount": "$39.50",
+          "breakdown": ""
+        },
+        {
+          "service": "Water",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$8.00",
+          "amount": "$8.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Share of service",
+          "quantity": "7.2 kgal",
+          "rate": "$5.00",
+          "amount": "$36.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$9.00",
+          "amount": "$9.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Trash",
+          "meter": "1 cart",
+          "charge": "Per cart\nTrash 96-gallon cart × 1 · base $3.00 · $15.00 each",
+          "quantity": "1 cart",
+          "rate": "$18.00",
+          "amount": "$18.00",
+          "breakdown": "Trash 96-gallon cart × 1 · base $3.00 · $15.00 each"
+        },
+        {
+          "service": "Solar",
+          "meter": "2 kW",
+          "charge": "Per kW",
+          "quantity": "2 kW",
+          "rate": "$14.00",
+          "amount": "$28.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Solar",
+          "meter": "—",
+          "charge": "Base · per kW\nSolar panel 2 kW × 1 · base $1.00",
+          "quantity": "1",
+          "rate": "$1.00",
+          "amount": "$1.00",
+          "breakdown": "Solar panel 2 kW × 1 · base $1.00"
+        },
+        {
+          "service": "Battery",
+          "meter": "5 kW",
+          "charge": "Per kW",
+          "quantity": "5 kW",
+          "rate": "$3.00",
+          "amount": "$15.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Battery",
+          "meter": "—",
+          "charge": "Base · per kW\nBattery 5 kW × 1 · base $2.00",
+          "quantity": "1",
+          "rate": "$2.00",
+          "amount": "$2.00",
+          "breakdown": "Battery 5 kW × 1 · base $2.00"
+        },
+        {
+          "service": "Fire",
+          "meter": "1 connection",
+          "charge": "Per connection\nFire line 2\" × 1 · base $0.00 · $12.00 each",
+          "quantity": "1 connection",
+          "rate": "$12.00",
+          "amount": "$12.00",
+          "breakdown": "Fire line 2\" × 1 · base $0.00 · $12.00 each"
+        },
+        {
+          "service": "Water",
+          "meter": "—",
+          "charge": "Usage",
+          "quantity": "7.5 kgal",
+          "rate": "Tiered",
+          "amount": "$36.25",
+          "breakdown": ""
+        },
+        {
+          "service": "Water",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$8.00",
+          "amount": "$8.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Share of service",
+          "quantity": "6.75 kgal",
+          "rate": "$5.00",
+          "amount": "$33.75",
+          "breakdown": ""
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$9.00",
+          "amount": "$9.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Trash",
+          "meter": "1 cart",
+          "charge": "Per cart\nTrash 96-gallon cart × 1 · base $3.00 · $15.00 each",
+          "quantity": "1 cart",
+          "rate": "$18.00",
+          "amount": "$18.00",
+          "breakdown": "Trash 96-gallon cart × 1 · base $3.00 · $15.00 each"
+        },
+        {
+          "service": "Solar",
+          "meter": "2 kW",
+          "charge": "Per kW",
+          "quantity": "2 kW",
+          "rate": "$14.00",
+          "amount": "$28.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Solar",
+          "meter": "—",
+          "charge": "Base · per kW\nSolar panel 2 kW × 1 · base $1.00",
+          "quantity": "1",
+          "rate": "$1.00",
+          "amount": "$1.00",
+          "breakdown": "Solar panel 2 kW × 1 · base $1.00"
+        },
+        {
+          "service": "Battery",
+          "meter": "5 kW",
+          "charge": "Per kW",
+          "quantity": "5 kW",
+          "rate": "$3.00",
+          "amount": "$15.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Battery",
+          "meter": "—",
+          "charge": "Base · per kW\nBattery 5 kW × 1 · base $2.00",
+          "quantity": "1",
+          "rate": "$2.00",
+          "amount": "$2.00",
+          "breakdown": "Battery 5 kW × 1 · base $2.00"
+        },
+        {
+          "service": "Fire",
+          "meter": "1 connection",
+          "charge": "Per connection\nFire line 2\" × 1 · base $0.00 · $12.00 each",
+          "quantity": "1 connection",
+          "rate": "$12.00",
+          "amount": "$12.00",
+          "breakdown": "Fire line 2\" × 1 · base $0.00 · $12.00 each"
+        }
+      ],
+      "subtotal": "$489.00",
+      "tax": [
+        {
+          "label": "Tax Local · 2.00% of taxable charges",
+          "amount": "$9.78"
+        }
+      ],
+      "one_time_charges": null,
+      "total": "$498.78",
+      "groups": 3,
+      "warnings": ""
+    },
+    "sent": {
+      "run_id": "01a0f73e-a6d3-7b36-86f4-cd0c1acc15b9",
+      "invoice_id": "01a0f73e-aec5-7284-8be9-8bbaaaaa6eb5",
+      "invoice_no": "BL-2609-000006",
+      "total": "498.7800",
+      "currency": "USD",
+      "due_date": "2026-10-22",
+      "status": "issued",
+      "delivery": "queued",
+      "delivery_choice": "email",
+      "reads": "locked",
+      "created": true,
+      "unavailable": [
+        {
+          "code": "paper_is_always_queued_for_a_bill",
+          "br_ref": "BR-BIL-036",
+          "detail": "print is the floor for every bill and the queue owner adds it whatever was chosen, so 'email' queues email AND paper, exactly as 'email_and_paper' does. The choice is recorded as the clerk's intent; no rule lets a bill go out without its paper copy."
+        }
+      ]
+    },
+    "replay_send": {
+      "status": 200,
+      "created": false,
+      "invoice_no": "BL-2609-000006"
+    },
+    "replay_draft": {
+      "status": 409,
+      "code": "BIZ-IDEMPOTENT"
+    },
+    "sent_text": "✓\nBill BL-2609-000006 sent\nTotal\n$498.78\nDue\n10/22/2026\nDelivery\nEmail · queued\nMeter reads\nLocked\nView bill\nNew one-time bill"
+  },
+  "7": {
+    "case": 7,
+    "kind": "penalty",
+    "account": "Unit 7",
+    "review": {
+      "lines": [
+        {
+          "service": "Water",
+          "meter": "—",
+          "charge": "Usage",
+          "quantity": "10 kgal",
+          "rate": "Tiered",
+          "amount": "$52.50",
+          "breakdown": ""
+        },
+        {
+          "service": "Water",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$8.00",
+          "amount": "$8.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Share of service",
+          "quantity": "9 kgal",
+          "rate": "$5.00",
+          "amount": "$45.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$9.00",
+          "amount": "$9.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Trash",
+          "meter": "1 cart",
+          "charge": "Per cart\nTrash 64-gallon cart × 1 · base $2.00 · $12.00 each",
+          "quantity": "1 cart",
+          "rate": "$14.00",
+          "amount": "$14.00",
+          "breakdown": "Trash 64-gallon cart × 1 · base $2.00 · $12.00 each"
+        },
+        {
+          "service": "Solar",
+          "meter": "6 kW",
+          "charge": "Per kW",
+          "quantity": "6 kW",
+          "rate": "$14.00",
+          "amount": "$84.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Solar",
+          "meter": "—",
+          "charge": "Base · per kW\nSolar panel 2 kW × 1 · base $1.00\nSolar panel 4 kW × 1 · base $2.00",
+          "quantity": "1",
+          "rate": "$3.00",
+          "amount": "$3.00",
+          "breakdown": "Solar panel 2 kW × 1 · base $1.00 Solar panel 4 kW × 1 · base $2.00"
+        },
+        {
+          "service": "Battery",
+          "meter": "10 kW",
+          "charge": "Per kW",
+          "quantity": "10 kW",
+          "rate": "$3.00",
+          "amount": "$30.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Battery",
+          "meter": "—",
+          "charge": "Base · per kW\nBattery 10 kW × 1 · base $4.00",
+          "quantity": "1",
+          "rate": "$4.00",
+          "amount": "$4.00",
+          "breakdown": "Battery 10 kW × 1 · base $4.00"
+        },
+        {
+          "service": "Fire",
+          "meter": "1 connection",
+          "charge": "Per connection\nFire line 4\" × 1 · base $0.00 · $30.00 each",
+          "quantity": "1 connection",
+          "rate": "$30.00",
+          "amount": "$30.00",
+          "breakdown": "Fire line 4\" × 1 · base $0.00 · $30.00 each"
+        },
+        {
+          "service": "Water",
+          "meter": "—",
+          "charge": "Usage",
+          "quantity": "11 kgal",
+          "rate": "Tiered",
+          "amount": "$59.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Water",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$8.00",
+          "amount": "$8.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Share of service",
+          "quantity": "9.9 kgal",
+          "rate": "$5.00",
+          "amount": "$49.50",
+          "breakdown": ""
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$9.00",
+          "amount": "$9.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Trash",
+          "meter": "1 cart",
+          "charge": "Per cart\nTrash 64-gallon cart × 1 · base $2.00 · $12.00 each",
+          "quantity": "1 cart",
+          "rate": "$14.00",
+          "amount": "$14.00",
+          "breakdown": "Trash 64-gallon cart × 1 · base $2.00 · $12.00 each"
+        },
+        {
+          "service": "Solar",
+          "meter": "6 kW",
+          "charge": "Per kW",
+          "quantity": "6 kW",
+          "rate": "$14.00",
+          "amount": "$84.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Solar",
+          "meter": "—",
+          "charge": "Base · per kW\nSolar panel 2 kW × 1 · base $1.00\nSolar panel 4 kW × 1 · base $2.00",
+          "quantity": "1",
+          "rate": "$3.00",
+          "amount": "$3.00",
+          "breakdown": "Solar panel 2 kW × 1 · base $1.00 Solar panel 4 kW × 1 · base $2.00"
+        },
+        {
+          "service": "Battery",
+          "meter": "10 kW",
+          "charge": "Per kW",
+          "quantity": "10 kW",
+          "rate": "$3.00",
+          "amount": "$30.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Battery",
+          "meter": "—",
+          "charge": "Base · per kW\nBattery 10 kW × 1 · base $4.00",
+          "quantity": "1",
+          "rate": "$4.00",
+          "amount": "$4.00",
+          "breakdown": "Battery 10 kW × 1 · base $4.00"
+        },
+        {
+          "service": "Fire",
+          "meter": "1 connection",
+          "charge": "Per connection\nFire line 4\" × 1 · base $0.00 · $30.00 each",
+          "quantity": "1 connection",
+          "rate": "$30.00",
+          "amount": "$30.00",
+          "breakdown": "Fire line 4\" × 1 · base $0.00 · $30.00 each"
+        },
+        {
+          "service": "Water",
+          "meter": "—",
+          "charge": "Usage",
+          "quantity": "9 kgal",
+          "rate": "Tiered",
+          "amount": "$46.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Water",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$8.00",
+          "amount": "$8.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Share of service",
+          "quantity": "8.1 kgal",
+          "rate": "$5.00",
+          "amount": "$40.50",
+          "breakdown": ""
+        },
+        {
+          "service": "Sewer",
+          "meter": "—",
+          "charge": "Base",
+          "quantity": "1",
+          "rate": "$9.00",
+          "amount": "$9.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Trash",
+          "meter": "1 cart",
+          "charge": "Per cart\nTrash 64-gallon cart × 1 · base $2.00 · $12.00 each",
+          "quantity": "1 cart",
+          "rate": "$14.00",
+          "amount": "$14.00",
+          "breakdown": "Trash 64-gallon cart × 1 · base $2.00 · $12.00 each"
+        },
+        {
+          "service": "Solar",
+          "meter": "6 kW",
+          "charge": "Per kW",
+          "quantity": "6 kW",
+          "rate": "$14.00",
+          "amount": "$84.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Solar",
+          "meter": "—",
+          "charge": "Base · per kW\nSolar panel 2 kW × 1 · base $1.00\nSolar panel 4 kW × 1 · base $2.00",
+          "quantity": "1",
+          "rate": "$3.00",
+          "amount": "$3.00",
+          "breakdown": "Solar panel 2 kW × 1 · base $1.00 Solar panel 4 kW × 1 · base $2.00"
+        },
+        {
+          "service": "Battery",
+          "meter": "10 kW",
+          "charge": "Per kW",
+          "quantity": "10 kW",
+          "rate": "$3.00",
+          "amount": "$30.00",
+          "breakdown": ""
+        },
+        {
+          "service": "Battery",
+          "meter": "—",
+          "charge": "Base · per kW\nBattery 10 kW × 1 · base $4.00",
+          "quantity": "1",
+          "rate": "$4.00",
+          "amount": "$4.00",
+          "breakdown": "Battery 10 kW × 1 · base $4.00"
+        },
+        {
+          "service": "Fire",
+          "meter": "1 connection",
+          "charge": "Per connection\nFire line 4\" × 1 · base $0.00 · $30.00 each",
+          "quantity": "1 connection",
+          "rate": "$30.00",
+          "amount": "$30.00",
+          "breakdown": "Fire line 4\" × 1 · base $0.00 · $30.00 each"
+        },
+        {
+          "service": "Tamper fee",
+          "meter": "—",
+          "charge": "Fee · TAMPER",
+          "quantity": "1",
+          "rate": "$250.00",
+          "amount": "$250.00",
+          "breakdown": ""
+        }
+      ],
+      "subtotal": "$838.50",
+      "tax": [
+        {
+          "label": "Tax Local · 2.00% of taxable charges",
+          "amount": "$16.77"
+        }
+      ],
+      "one_time_charges": "$250.00",
+      "total": "$1,105.27",
+      "groups": 4,
+      "warnings": ""
+    },
+    "sent": {
+      "run_id": "01a0f73e-eb9b-7287-9437-c09935066a67",
+      "invoice_id": "01a0f73e-f375-70b3-a511-d32e657063f3",
+      "invoice_no": "BL-2609-000007",
+      "total": "1105.2700",
+      "currency": "USD",
+      "due_date": "2026-10-22",
+      "status": "issued",
+      "delivery": "queued",
+      "delivery_choice": "email",
+      "reads": "locked",
+      "created": true,
+      "unavailable": [
+        {
+          "code": "paper_is_always_queued_for_a_bill",
+          "br_ref": "BR-BIL-036",
+          "detail": "print is the floor for every bill and the queue owner adds it whatever was chosen, so 'email' queues email AND paper, exactly as 'email_and_paper' does. The choice is recorded as the clerk's intent; no rule lets a bill go out without its paper copy."
+        }
+      ]
+    },
+    "replay_send": {
+      "status": 200,
+      "created": false,
+      "invoice_no": "BL-2609-000007"
+    },
+    "replay_draft": {
+      "status": 409,
+      "code": "BIZ-IDEMPOTENT"
+    },
+    "sent_text": "✓\nBill BL-2609-000007 sent\nTotal\n$1,105.27\nDue\n10/22/2026\nDelivery\nEmail · queued\nMeter reads\nLocked\nView bill\nNew one-time bill"
+  },
+  "8": {
+    "case": 8,
+    "kind": "fee",
+    "account": "Unit 8",
+    "review": {
+      "lines": [
+        {
+          "service": "Reconnection fee",
+          "meter": "—",
+          "charge": "Fee · RECON",
+          "quantity": "1",
+          "rate": "$75.00",
+          "amount": "$75.00",
+          "breakdown": ""
+        }
+      ],
+      "subtotal": "$75.00",
+      "tax": [],
+      "one_time_charges": null,
+      "total": "$75.00",
+      "groups": 1,
+      "warnings": ""
+    },
+    "sent": {
+      "run_id": "01a0f73f-1dd6-748b-9d50-ede40a1f5a2b",
+      "invoice_id": "01a0f73f-1ded-71ff-b549-cac1f4a12a3d",
+      "invoice_no": "BL-2610-000008",
+      "total": "75.0000",
+      "currency": "USD",
+      "due_date": "2026-10-22",
+      "status": "issued",
+      "delivery": "queued",
+      "delivery_choice": "email",
+      "reads": "locked",
+      "created": true,
+      "unavailable": [
+        {
+          "code": "paper_is_always_queued_for_a_bill",
+          "br_ref": "BR-BIL-036",
+          "detail": "print is the floor for every bill and the queue owner adds it whatever was chosen, so 'email' queues email AND paper, exactly as 'email_and_paper' does. The choice is recorded as the clerk's intent; no rule lets a bill go out without its paper copy."
+        }
+      ]
+    },
+    "replay_send": {
+      "status": 200,
+      "created": false,
+      "invoice_no": "BL-2610-000008"
+    },
+    "replay_draft": {
+      "status": 409,
+      "code": "BIZ-IDEMPOTENT"
+    },
+    "sent_text": "✓\nBill BL-2610-000008 sent\nTotal\n$75.00\nDue\n10/22/2026\nDelivery\nEmail · queued\nMeter reads\nLocked\nView bill\nNew one-time bill"
+  }
+}

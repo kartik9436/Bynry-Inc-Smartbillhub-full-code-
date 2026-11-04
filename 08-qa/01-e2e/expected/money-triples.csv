@@ -1,0 +1,246 @@
+shape,bill_type,payment,taxable,tax,total,paid,outstanding,credit,next_late_fee,notes
+flat,cycle,full,89.00,8.41,97.41,97.41,0.00,0.00,0.00,
+flat,cycle,partial60,89.00,8.41,97.41,58.45,38.96,0.00,5.00,
+flat,cycle,over150,89.00,8.41,97.41,146.12,0.00,48.71,0.00,
+flat,cycle,nsf,89.00,8.41,97.41,0.00,127.41,0.00,5.00,
+flat,cycle,none,89.00,8.41,97.41,0.00,97.41,0.00,5.00,
+flat,first,full,57.42,5.42,237.84,237.84,0.00,0.00,0.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+flat,first,partial60,57.42,5.42,237.84,142.70,95.14,0.00,5.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+flat,first,over150,57.42,5.42,237.84,356.76,0.00,118.92,0.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+flat,first,nsf,57.42,5.42,237.84,0.00,267.84,0.00,5.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+flat,first,none,57.42,5.42,237.84,0.00,237.84,0.00,5.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+flat,final,full,51.68,4.88,56.56,56.56,0.00,0.00,0.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+flat,final,partial60,51.68,4.88,56.56,33.94,22.62,0.00,5.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+flat,final,over150,51.68,4.88,56.56,84.84,0.00,28.28,0.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+flat,final,nsf,51.68,4.88,56.56,0.00,86.56,0.00,5.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+flat,final,none,51.68,4.88,56.56,0.00,56.56,0.00,5.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+flat,rebill,full,69.75,6.60,76.35,76.35,0.00,0.00,0.00,credit note -97.41; customer delta 21.06 (BR-BIL-014)
+flat,rebill,partial60,69.75,6.60,76.35,45.81,30.54,0.00,5.00,credit note -97.41; customer delta 21.06 (BR-BIL-014)
+flat,rebill,over150,69.75,6.60,76.35,114.53,0.00,38.18,0.00,credit note -97.41; customer delta 21.06 (BR-BIL-014)
+flat,rebill,nsf,69.75,6.60,76.35,0.00,106.35,0.00,5.00,credit note -97.41; customer delta 21.06 (BR-BIL-014)
+flat,rebill,none,69.75,6.60,76.35,0.00,76.35,0.00,5.00,credit note -97.41; customer delta 21.06 (BR-BIL-014)
+flat,backbill,full,267.00,25.23,292.23,292.23,0.00,0.00,0.00,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+flat,backbill,partial60,267.00,25.23,292.23,175.34,116.89,0.00,5.00,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+flat,backbill,over150,267.00,25.23,292.23,438.35,0.00,146.12,0.00,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+flat,backbill,nsf,267.00,25.23,292.23,0.00,322.23,0.00,5.00,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+flat,backbill,none,267.00,25.23,292.23,0.00,292.23,0.00,5.00,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+flat,penalty,full,38.50,3.65,542.15,542.15,0.00,0.00,0.00,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+flat,penalty,partial60,38.50,3.65,542.15,325.29,216.86,0.00,5.00,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+flat,penalty,over150,38.50,3.65,542.15,813.23,0.00,271.08,0.00,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+flat,penalty,nsf,38.50,3.65,542.15,0.00,572.15,0.00,8.58,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+flat,penalty,none,38.50,3.65,542.15,0.00,542.15,0.00,8.13,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+flat,budget,full,89.00,8.41,97.41,97.41,0.00,0.00,0.00,level 97; variance -0.41 (BR-BIL-017)
+flat,budget,partial60,89.00,8.41,97.41,58.45,38.96,0.00,5.00,level 97; variance -0.41 (BR-BIL-017)
+flat,budget,over150,89.00,8.41,97.41,146.12,0.00,48.71,0.00,level 97; variance -0.41 (BR-BIL-017)
+flat,budget,nsf,89.00,8.41,97.41,0.00,127.41,0.00,5.00,level 97; variance -0.41 (BR-BIL-017)
+flat,budget,none,89.00,8.41,97.41,0.00,97.41,0.00,5.00,level 97; variance -0.41 (BR-BIL-017)
+tiered,cycle,full,63.30,5.99,69.29,69.29,0.00,0.00,0.00,
+tiered,cycle,partial60,63.30,5.99,69.29,41.57,27.72,0.00,5.00,
+tiered,cycle,over150,63.30,5.99,69.29,103.94,0.00,34.65,0.00,
+tiered,cycle,nsf,63.30,5.99,69.29,0.00,99.29,0.00,5.00,
+tiered,cycle,none,63.30,5.99,69.29,0.00,69.29,0.00,5.00,
+tiered,first,full,40.83,3.86,219.69,219.69,0.00,0.00,0.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+tiered,first,partial60,40.83,3.86,219.69,131.81,87.88,0.00,5.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+tiered,first,over150,40.83,3.86,219.69,329.54,0.00,109.85,0.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+tiered,first,nsf,40.83,3.86,219.69,0.00,249.69,0.00,5.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+tiered,first,none,40.83,3.86,219.69,0.00,219.69,0.00,5.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+tiered,final,full,36.75,3.48,40.23,40.23,0.00,0.00,0.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+tiered,final,partial60,36.75,3.48,40.23,24.14,16.09,0.00,5.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+tiered,final,over150,36.75,3.48,40.23,60.35,0.00,20.12,0.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+tiered,final,nsf,36.75,3.48,40.23,0.00,70.23,0.00,5.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+tiered,final,none,36.75,3.48,40.23,0.00,40.23,0.00,5.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+tiered,rebill,full,58.30,5.51,63.81,63.81,0.00,0.00,0.00,credit note -69.29; customer delta 5.48 (BR-BIL-014)
+tiered,rebill,partial60,58.30,5.51,63.81,38.29,25.52,0.00,5.00,credit note -69.29; customer delta 5.48 (BR-BIL-014)
+tiered,rebill,over150,58.30,5.51,63.81,95.72,0.00,31.91,0.00,credit note -69.29; customer delta 5.48 (BR-BIL-014)
+tiered,rebill,nsf,58.30,5.51,63.81,0.00,93.81,0.00,5.00,credit note -69.29; customer delta 5.48 (BR-BIL-014)
+tiered,rebill,none,58.30,5.51,63.81,0.00,63.81,0.00,5.00,credit note -69.29; customer delta 5.48 (BR-BIL-014)
+tiered,backbill,full,189.90,17.97,207.87,207.87,0.00,0.00,0.00,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+tiered,backbill,partial60,189.90,17.97,207.87,124.72,83.15,0.00,5.00,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+tiered,backbill,over150,189.90,17.97,207.87,311.81,0.00,103.94,0.00,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+tiered,backbill,nsf,189.90,17.97,207.87,0.00,237.87,0.00,5.00,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+tiered,backbill,none,189.90,17.97,207.87,0.00,207.87,0.00,5.00,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+tiered,penalty,full,19.75,1.87,521.62,521.62,0.00,0.00,0.00,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+tiered,penalty,partial60,19.75,1.87,521.62,312.97,208.65,0.00,5.00,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+tiered,penalty,over150,19.75,1.87,521.62,782.43,0.00,260.81,0.00,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+tiered,penalty,nsf,19.75,1.87,521.62,0.00,551.62,0.00,8.27,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+tiered,penalty,none,19.75,1.87,521.62,0.00,521.62,0.00,7.82,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+tiered,budget,full,63.30,5.99,69.29,69.29,0.00,0.00,0.00,level 69; variance -0.29 (BR-BIL-017)
+tiered,budget,partial60,63.30,5.99,69.29,41.57,27.72,0.00,5.00,level 69; variance -0.29 (BR-BIL-017)
+tiered,budget,over150,63.30,5.99,69.29,103.94,0.00,34.65,0.00,level 69; variance -0.29 (BR-BIL-017)
+tiered,budget,nsf,63.30,5.99,69.29,0.00,99.29,0.00,5.00,level 69; variance -0.29 (BR-BIL-017)
+tiered,budget,none,63.30,5.99,69.29,0.00,69.29,0.00,5.00,level 69; variance -0.29 (BR-BIL-017)
+tou,cycle,full,100.60,9.51,110.11,110.11,0.00,0.00,0.00,
+tou,cycle,partial60,100.60,9.51,110.11,66.07,44.04,0.00,5.00,
+tou,cycle,over150,100.60,9.51,110.11,165.17,0.00,55.06,0.00,
+tou,cycle,nsf,100.60,9.51,110.11,0.00,140.11,0.00,5.00,
+tou,cycle,none,100.60,9.51,110.11,0.00,110.11,0.00,5.00,
+tou,first,full,64.89,6.14,246.03,246.03,0.00,0.00,0.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+tou,first,partial60,64.89,6.14,246.03,147.62,98.41,0.00,5.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+tou,first,over150,64.89,6.14,246.03,369.05,0.00,123.02,0.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+tou,first,nsf,64.89,6.14,246.03,0.00,276.03,0.00,5.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+tou,first,none,64.89,6.14,246.03,0.00,246.03,0.00,5.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+tou,final,full,58.42,5.52,63.94,63.94,0.00,0.00,0.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+tou,final,partial60,58.42,5.52,63.94,38.36,25.58,0.00,5.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+tou,final,over150,58.42,5.52,63.94,95.91,0.00,31.97,0.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+tou,final,nsf,58.42,5.52,63.94,0.00,93.94,0.00,5.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+tou,final,none,58.42,5.52,63.94,0.00,63.94,0.00,5.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+tou,rebill,full,94.00,8.89,102.89,102.89,0.00,0.00,0.00,credit note -110.11; customer delta 7.22 (BR-BIL-014)
+tou,rebill,partial60,94.00,8.89,102.89,61.73,41.16,0.00,5.00,credit note -110.11; customer delta 7.22 (BR-BIL-014)
+tou,rebill,over150,94.00,8.89,102.89,154.34,0.00,51.45,0.00,credit note -110.11; customer delta 7.22 (BR-BIL-014)
+tou,rebill,nsf,94.00,8.89,102.89,0.00,132.89,0.00,5.00,credit note -110.11; customer delta 7.22 (BR-BIL-014)
+tou,rebill,none,94.00,8.89,102.89,0.00,102.89,0.00,5.00,credit note -110.11; customer delta 7.22 (BR-BIL-014)
+tou,backbill,full,301.80,28.53,330.33,330.33,0.00,0.00,0.00,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+tou,backbill,partial60,301.80,28.53,330.33,198.20,132.13,0.00,5.00,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+tou,backbill,over150,301.80,28.53,330.33,495.50,0.00,165.17,0.00,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+tou,backbill,nsf,301.80,28.53,330.33,0.00,360.33,0.00,5.40,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+tou,backbill,none,301.80,28.53,330.33,0.00,330.33,0.00,5.00,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+tou,penalty,full,44.30,4.19,548.49,548.49,0.00,0.00,0.00,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+tou,penalty,partial60,44.30,4.19,548.49,329.09,219.40,0.00,5.00,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+tou,penalty,over150,44.30,4.19,548.49,822.74,0.00,274.25,0.00,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+tou,penalty,nsf,44.30,4.19,548.49,0.00,578.49,0.00,8.68,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+tou,penalty,none,44.30,4.19,548.49,0.00,548.49,0.00,8.23,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+tou,budget,full,100.60,9.51,110.11,110.11,0.00,0.00,0.00,level 110; variance -0.11 (BR-BIL-017)
+tou,budget,partial60,100.60,9.51,110.11,66.07,44.04,0.00,5.00,level 110; variance -0.11 (BR-BIL-017)
+tou,budget,over150,100.60,9.51,110.11,165.17,0.00,55.06,0.00,level 110; variance -0.11 (BR-BIL-017)
+tou,budget,nsf,100.60,9.51,110.11,0.00,140.11,0.00,5.00,level 110; variance -0.11 (BR-BIL-017)
+tou,budget,none,100.60,9.51,110.11,0.00,110.11,0.00,5.00,level 110; variance -0.11 (BR-BIL-017)
+tou_demand,cycle,full,677.40,64.01,741.41,741.41,0.00,0.00,0.00,
+tou_demand,cycle,partial60,677.40,64.01,741.41,444.85,296.56,0.00,5.00,
+tou_demand,cycle,over150,677.40,64.01,741.41,1112.12,0.00,370.71,0.00,
+tou_demand,cycle,nsf,677.40,64.01,741.41,0.00,771.41,0.00,11.57,
+tou_demand,cycle,none,677.40,64.01,741.41,0.00,741.41,0.00,11.12,
+tou_demand,first,full,484.90,45.83,705.73,705.73,0.00,0.00,0.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+tou_demand,first,partial60,484.90,45.83,705.73,423.44,282.29,0.00,5.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+tou_demand,first,over150,484.90,45.83,705.73,1058.60,0.00,352.87,0.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+tou_demand,first,nsf,484.90,45.83,705.73,0.00,735.73,0.00,11.04,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+tou_demand,first,none,484.90,45.83,705.73,0.00,705.73,0.00,10.59,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+tou_demand,final,full,449.90,42.52,492.42,492.42,0.00,0.00,0.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+tou_demand,final,partial60,449.90,42.52,492.42,295.45,196.97,0.00,5.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+tou_demand,final,over150,449.90,42.52,492.42,738.63,0.00,246.21,0.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+tou_demand,final,nsf,449.90,42.52,492.42,0.00,522.42,0.00,7.84,deposit credit 153.50 applies; settlement path per BR-BIL-013
+tou_demand,final,none,449.90,42.52,492.42,0.00,492.42,0.00,7.39,deposit credit 153.50 applies; settlement path per BR-BIL-013
+tou_demand,rebill,full,637.03,60.19,697.22,697.22,0.00,0.00,0.00,credit note -741.41; customer delta 44.19 (BR-BIL-014)
+tou_demand,rebill,partial60,637.03,60.19,697.22,418.33,278.89,0.00,5.00,credit note -741.41; customer delta 44.19 (BR-BIL-014)
+tou_demand,rebill,over150,637.03,60.19,697.22,1045.83,0.00,348.61,0.00,credit note -741.41; customer delta 44.19 (BR-BIL-014)
+tou_demand,rebill,nsf,637.03,60.19,697.22,0.00,727.22,0.00,10.91,credit note -741.41; customer delta 44.19 (BR-BIL-014)
+tou_demand,rebill,none,637.03,60.19,697.22,0.00,697.22,0.00,10.46,credit note -741.41; customer delta 44.19 (BR-BIL-014)
+tou_demand,backbill,full,2032.20,192.03,2224.23,2224.23,0.00,0.00,0.00,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+tou_demand,backbill,partial60,2032.20,192.03,2224.23,1334.54,889.69,0.00,13.35,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+tou_demand,backbill,over150,2032.20,192.03,2224.23,3336.35,0.00,1112.12,0.00,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+tou_demand,backbill,nsf,2032.20,192.03,2224.23,0.00,2254.23,0.00,33.81,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+tou_demand,backbill,none,2032.20,192.03,2224.23,0.00,2224.23,0.00,33.36,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+tou_demand,penalty,full,314.70,29.74,844.44,844.44,0.00,0.00,0.00,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+tou_demand,penalty,partial60,314.70,29.74,844.44,506.66,337.78,0.00,5.07,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+tou_demand,penalty,over150,314.70,29.74,844.44,1266.66,0.00,422.22,0.00,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+tou_demand,penalty,nsf,314.70,29.74,844.44,0.00,874.44,0.00,13.12,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+tou_demand,penalty,none,314.70,29.74,844.44,0.00,844.44,0.00,12.67,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+tou_demand,budget,full,677.40,64.01,741.41,741.41,0.00,0.00,0.00,level 741; variance -0.41 (BR-BIL-017)
+tou_demand,budget,partial60,677.40,64.01,741.41,444.85,296.56,0.00,5.00,level 741; variance -0.41 (BR-BIL-017)
+tou_demand,budget,over150,677.40,64.01,741.41,1112.12,0.00,370.71,0.00,level 741; variance -0.41 (BR-BIL-017)
+tou_demand,budget,nsf,677.40,64.01,741.41,0.00,771.41,0.00,11.57,level 741; variance -0.41 (BR-BIL-017)
+tou_demand,budget,none,677.40,64.01,741.41,0.00,741.41,0.00,11.12,level 741; variance -0.41 (BR-BIL-017)
+seasonal,cycle,full,94.72,8.95,103.67,103.67,0.00,0.00,0.00,
+seasonal,cycle,partial60,94.72,8.95,103.67,62.20,41.47,0.00,5.00,
+seasonal,cycle,over150,94.72,8.95,103.67,155.51,0.00,51.84,0.00,
+seasonal,cycle,nsf,94.72,8.95,103.67,0.00,133.67,0.00,5.00,
+seasonal,cycle,none,94.72,8.95,103.67,0.00,103.67,0.00,5.00,
+seasonal,first,full,61.10,5.77,241.87,241.87,0.00,0.00,0.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+seasonal,first,partial60,61.10,5.77,241.87,145.12,96.75,0.00,5.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+seasonal,first,over150,61.10,5.77,241.87,362.81,0.00,120.94,0.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+seasonal,first,nsf,61.10,5.77,241.87,0.00,271.87,0.00,5.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+seasonal,first,none,61.10,5.77,241.87,0.00,241.87,0.00,5.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+seasonal,final,full,55.00,5.20,60.20,60.20,0.00,0.00,0.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+seasonal,final,partial60,55.00,5.20,60.20,36.12,24.08,0.00,5.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+seasonal,final,over150,55.00,5.20,60.20,90.30,0.00,30.10,0.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+seasonal,final,nsf,55.00,5.20,60.20,0.00,90.20,0.00,5.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+seasonal,final,none,55.00,5.20,60.20,0.00,60.20,0.00,5.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+seasonal,rebill,full,91.20,8.61,99.81,99.81,0.00,0.00,0.00,credit note -103.67; customer delta 3.86 (BR-BIL-014)
+seasonal,rebill,partial60,91.20,8.61,99.81,59.89,39.92,0.00,5.00,credit note -103.67; customer delta 3.86 (BR-BIL-014)
+seasonal,rebill,over150,91.20,8.61,99.81,149.72,0.00,49.91,0.00,credit note -103.67; customer delta 3.86 (BR-BIL-014)
+seasonal,rebill,nsf,91.20,8.61,99.81,0.00,129.81,0.00,5.00,credit note -103.67; customer delta 3.86 (BR-BIL-014)
+seasonal,rebill,none,91.20,8.61,99.81,0.00,99.81,0.00,5.00,credit note -103.67; customer delta 3.86 (BR-BIL-014)
+seasonal,backbill,full,284.16,26.85,311.01,311.01,0.00,0.00,0.00,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+seasonal,backbill,partial60,284.16,26.85,311.01,186.61,124.40,0.00,5.00,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+seasonal,backbill,over150,284.16,26.85,311.01,466.52,0.00,155.51,0.00,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+seasonal,backbill,nsf,284.16,26.85,311.01,0.00,341.01,0.00,5.12,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+seasonal,backbill,none,284.16,26.85,311.01,0.00,311.01,0.00,5.00,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+seasonal,penalty,full,41.36,3.91,545.27,545.27,0.00,0.00,0.00,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+seasonal,penalty,partial60,41.36,3.91,545.27,327.16,218.11,0.00,5.00,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+seasonal,penalty,over150,41.36,3.91,545.27,817.91,0.00,272.64,0.00,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+seasonal,penalty,nsf,41.36,3.91,545.27,0.00,575.27,0.00,8.63,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+seasonal,penalty,none,41.36,3.91,545.27,0.00,545.27,0.00,8.18,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+seasonal,budget,full,94.72,8.95,103.67,103.67,0.00,0.00,0.00,level 104; variance 0.33 (BR-BIL-017)
+seasonal,budget,partial60,94.72,8.95,103.67,62.20,41.47,0.00,5.00,level 104; variance 0.33 (BR-BIL-017)
+seasonal,budget,over150,94.72,8.95,103.67,155.51,0.00,51.84,0.00,level 104; variance 0.33 (BR-BIL-017)
+seasonal,budget,nsf,94.72,8.95,103.67,0.00,133.67,0.00,5.00,level 104; variance 0.33 (BR-BIL-017)
+seasonal,budget,none,94.72,8.95,103.67,0.00,103.67,0.00,5.00,level 104; variance 0.33 (BR-BIL-017)
+capacity,cycle,full,129.00,12.19,141.19,141.19,0.00,0.00,0.00,
+capacity,cycle,partial60,129.00,12.19,141.19,84.71,56.48,0.00,5.00,
+capacity,cycle,over150,129.00,12.19,141.19,211.79,0.00,70.60,0.00,
+capacity,cycle,nsf,129.00,12.19,141.19,0.00,171.19,0.00,5.00,
+capacity,cycle,none,129.00,12.19,141.19,0.00,141.19,0.00,5.00,
+capacity,first,full,83.23,7.86,266.09,266.09,0.00,0.00,0.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+capacity,first,partial60,83.23,7.86,266.09,159.65,106.44,0.00,5.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+capacity,first,over150,83.23,7.86,266.09,399.14,0.00,133.05,0.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+capacity,first,nsf,83.23,7.86,266.09,0.00,296.09,0.00,5.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+capacity,first,none,83.23,7.86,266.09,0.00,266.09,0.00,5.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+capacity,final,full,74.91,7.08,81.99,81.99,0.00,0.00,0.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+capacity,final,partial60,74.91,7.08,81.99,49.19,32.80,0.00,5.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+capacity,final,over150,74.91,7.08,81.99,122.99,0.00,41.00,0.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+capacity,final,nsf,74.91,7.08,81.99,0.00,111.99,0.00,5.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+capacity,final,none,74.91,7.08,81.99,0.00,81.99,0.00,5.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+capacity,rebill,full,109.75,10.38,120.13,120.13,0.00,0.00,0.00,credit note -141.19; customer delta 21.06 (BR-BIL-014)
+capacity,rebill,partial60,109.75,10.38,120.13,72.08,48.05,0.00,5.00,credit note -141.19; customer delta 21.06 (BR-BIL-014)
+capacity,rebill,over150,109.75,10.38,120.13,180.20,0.00,60.07,0.00,credit note -141.19; customer delta 21.06 (BR-BIL-014)
+capacity,rebill,nsf,109.75,10.38,120.13,0.00,150.13,0.00,5.00,credit note -141.19; customer delta 21.06 (BR-BIL-014)
+capacity,rebill,none,109.75,10.38,120.13,0.00,120.13,0.00,5.00,credit note -141.19; customer delta 21.06 (BR-BIL-014)
+capacity,backbill,full,387.00,36.57,423.57,423.57,0.00,0.00,0.00,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+capacity,backbill,partial60,387.00,36.57,423.57,254.14,169.43,0.00,5.00,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+capacity,backbill,over150,387.00,36.57,423.57,635.36,0.00,211.79,0.00,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+capacity,backbill,nsf,387.00,36.57,423.57,0.00,453.57,0.00,6.80,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+capacity,backbill,none,387.00,36.57,423.57,0.00,423.57,0.00,6.35,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+capacity,penalty,full,38.50,3.65,542.15,542.15,0.00,0.00,0.00,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+capacity,penalty,partial60,38.50,3.65,542.15,325.29,216.86,0.00,5.00,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+capacity,penalty,over150,38.50,3.65,542.15,813.23,0.00,271.08,0.00,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+capacity,penalty,nsf,38.50,3.65,542.15,0.00,572.15,0.00,8.58,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+capacity,penalty,none,38.50,3.65,542.15,0.00,542.15,0.00,8.13,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+capacity,budget,full,129.00,12.19,141.19,141.19,0.00,0.00,0.00,level 141; variance -0.19 (BR-BIL-017)
+capacity,budget,partial60,129.00,12.19,141.19,84.71,56.48,0.00,5.00,level 141; variance -0.19 (BR-BIL-017)
+capacity,budget,over150,129.00,12.19,141.19,211.79,0.00,70.60,0.00,level 141; variance -0.19 (BR-BIL-017)
+capacity,budget,nsf,129.00,12.19,141.19,0.00,171.19,0.00,5.00,level 141; variance -0.19 (BR-BIL-017)
+capacity,budget,none,129.00,12.19,141.19,0.00,141.19,0.00,5.00,level 141; variance -0.19 (BR-BIL-017)
+mixed,cycle,full,221.90,20.97,242.87,242.87,0.00,0.00,0.00,
+mixed,cycle,partial60,221.90,20.97,242.87,145.72,97.15,0.00,5.00,
+mixed,cycle,over150,221.90,20.97,242.87,364.31,0.00,121.44,0.00,
+mixed,cycle,nsf,221.90,20.97,242.87,0.00,272.87,0.00,5.00,
+mixed,cycle,none,221.90,20.97,242.87,0.00,242.87,0.00,5.00,
+mixed,first,full,143.14,13.53,331.67,331.67,0.00,0.00,0.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+mixed,first,partial60,143.14,13.53,331.67,199.00,132.67,0.00,5.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+mixed,first,over150,143.14,13.53,331.67,497.51,0.00,165.84,0.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+mixed,first,nsf,143.14,13.53,331.67,0.00,361.67,0.00,5.43,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+mixed,first,none,143.14,13.53,331.67,0.00,331.67,0.00,5.00,deposit 150.00 + CONN 25.00 non-taxable (BR-BIL-012)
+mixed,final,full,128.85,12.18,141.03,141.03,0.00,0.00,0.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+mixed,final,partial60,128.85,12.18,141.03,84.62,56.41,0.00,5.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+mixed,final,over150,128.85,12.18,141.03,211.55,0.00,70.52,0.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+mixed,final,nsf,128.85,12.18,141.03,0.00,171.03,0.00,5.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+mixed,final,none,128.85,12.18,141.03,0.00,141.03,0.00,5.00,deposit credit 153.50 applies; settlement path per BR-BIL-013
+mixed,rebill,full,215.30,20.35,235.65,235.65,0.00,0.00,0.00,credit note -242.87; customer delta 7.22 (BR-BIL-014)
+mixed,rebill,partial60,215.30,20.35,235.65,141.39,94.26,0.00,5.00,credit note -242.87; customer delta 7.22 (BR-BIL-014)
+mixed,rebill,over150,215.30,20.35,235.65,353.48,0.00,117.83,0.00,credit note -242.87; customer delta 7.22 (BR-BIL-014)
+mixed,rebill,nsf,215.30,20.35,235.65,0.00,265.65,0.00,5.00,credit note -242.87; customer delta 7.22 (BR-BIL-014)
+mixed,rebill,none,215.30,20.35,235.65,0.00,235.65,0.00,5.00,credit note -242.87; customer delta 7.22 (BR-BIL-014)
+mixed,backbill,full,665.70,62.91,728.61,728.61,0.00,0.00,0.00,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+mixed,backbill,partial60,665.70,62.91,728.61,437.17,291.44,0.00,5.00,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+mixed,backbill,over150,665.70,62.91,728.61,1092.92,0.00,364.31,0.00,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+mixed,backbill,nsf,665.70,62.91,728.61,0.00,758.61,0.00,11.38,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+mixed,backbill,none,665.70,62.91,728.61,0.00,728.61,0.00,10.93,"3 months, period-labeled groups, per-version pricing (BR-BIL-018)"
+mixed,penalty,full,64.05,6.05,570.10,570.10,0.00,0.00,0.00,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+mixed,penalty,partial60,64.05,6.05,570.10,342.06,228.04,0.00,5.00,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+mixed,penalty,over150,64.05,6.05,570.10,855.15,0.00,285.05,0.00,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+mixed,penalty,nsf,64.05,6.05,570.10,0.00,600.10,0.00,9.00,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+mixed,penalty,none,64.05,6.05,570.10,0.00,570.10,0.00,8.55,assessed reads 50% + TAMPER 500.00 non-taxable (BR-BIL-019)
+mixed,budget,full,221.90,20.97,242.87,242.87,0.00,0.00,0.00,level 243; variance 0.13 (BR-BIL-017)
+mixed,budget,partial60,221.90,20.97,242.87,145.72,97.15,0.00,5.00,level 243; variance 0.13 (BR-BIL-017)
+mixed,budget,over150,221.90,20.97,242.87,364.31,0.00,121.44,0.00,level 243; variance 0.13 (BR-BIL-017)
+mixed,budget,nsf,221.90,20.97,242.87,0.00,272.87,0.00,5.00,level 243; variance 0.13 (BR-BIL-017)
+mixed,budget,none,221.90,20.97,242.87,0.00,242.87,0.00,5.00,level 243; variance 0.13 (BR-BIL-017)

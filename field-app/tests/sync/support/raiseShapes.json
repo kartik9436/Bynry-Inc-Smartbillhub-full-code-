@@ -1,0 +1,35 @@
+{
+  "fromHome": {
+    "key": "{key}",
+    "template_id": "{template_id}",
+    "template_version": "{template_version}",
+    "premises_id": "{premises_id}",
+    "urgency": "normal",
+    "note": "Hydrant leaking at the kerb",
+    "captured_at": "{captured_at}",
+    "location": {
+      "lat": 30.2612,
+      "lng": -97.7431,
+      "accuracy_m": 4,
+      "fix_at": "{fix_at}"
+    }
+  },
+  "fromJob": {
+    "key": "{key}",
+    "template_id": "{template_id}",
+    "template_version": "{template_version}",
+    "carried_from": "{carried_from}",
+    "premises_id": "{premises_id}",
+    "account_id": "{account_id}",
+    "asset_id": "{asset_id}",
+    "urgency": "same_day",
+    "note": "Second leak at the meter pit",
+    "captured_at": "{captured_at}",
+    "location": {
+      "lat": 30.2612,
+      "lng": -97.7431,
+      "accuracy_m": 4,
+      "fix_at": "{fix_at}"
+    }
+  }
+}

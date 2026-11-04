@@ -1,0 +1,28 @@
+{
+  "can_close": false,
+  "blocking": [
+    {
+      "kind": "missing_required_photo",
+      "scope": "task",
+      "id": "01a106a9-9ab6-795b-a81c-3ca88c5e1fc5",
+      "prompt": "Paint-mark the main and the proposed tap"
+    },
+    {
+      "kind": "missing_required_photo",
+      "scope": "task",
+      "id": "01a106a9-9ab6-74bb-ac51-a1228b6a8893",
+      "prompt": "Note the surface to be reinstated"
+    },
+    {
+      "kind": "missing_required_photo",
+      "scope": "task",
+      "id": "01a106a9-9ab6-7158-91b6-fe25f698561a",
+      "prompt": "Photograph the mark-out from both ends"
+    }
+  ],
+  "flagged": [],
+  "readings_captured": 0,
+  "readings_total": 2,
+  "required_photos_taken": 0,
+  "required_photos_total": 3
+}

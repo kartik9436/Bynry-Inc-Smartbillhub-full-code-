@@ -1,0 +1,22 @@
+# G19 register — catalogue copy that names an environment and is NOT YET FIXED.
+#
+# THIS IS A DEFECT BACKLOG, NOT A PERMISSION LIST. Every line is a real finding
+# with a real defect row, parked because the fix belongs to another lane — never
+# because the string is acceptable. (A string that merely LOOKS like a host and
+# is not one belongs in `ALLOWED` inside g19_env_hostnames.py, with its reason.)
+#
+# The three properties that keep this from becoming a silencer are the ones
+# 10-scripts/03-golden-verify.py states for KNOWN_DEFECTS:
+#   NARROW    keyed on the exact catalogue KEY. A host in any other string fails.
+#   LOUD      the parked count is printed in G19's one-line detail on every run,
+#             in the table run_gates.py prints. It is never hidden.
+#   EXPIRING  when the copy stops naming a host, this line is STALE and G19
+#             FAILS until it is deleted — in the same diff that fixed the copy.
+# G19 also checks that the cited DEF row EXISTS and is not already fixed/closed.
+#
+# One entry per line, four fields:
+#   <catalogue key> <DEF-###> <YYYY-MM-DD parked> <reason, and what closes it>
+#
+# Adding a line is a process event — the daily PO batch, like human_owned.txt and
+# partition_exceptions.txt. You are recording that shipped copy is wrong.
+

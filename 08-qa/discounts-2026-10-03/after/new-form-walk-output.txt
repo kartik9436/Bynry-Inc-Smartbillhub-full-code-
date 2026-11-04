@@ -1,0 +1,21 @@
+POST /discounts STUBBED in the browser
+signed in as dana@brazosbendutilities.com — form-options STUBBED in the browser (README values)
+GET /discounts/form-options answered 200 (browser stub)
+=== 05-new-1-details-pct.png + 05-new-1-details-pct-side-by-side.png — percentage, Limits closed
+=== 06-new-1-limits-open.png + 06-new-1-limits-open-side-by-side.png — Limits open
+=== 07-new-1-details-fixed.png + 07-new-1-details-fixed-side-by-side.png — fixed amount, 4 limits set
+=== 08-new-1-type-rate-override.png + 08-new-1-type-rate-override-side-by-side.png — type rate_override
+=== 09-new-1-type-charge-waiver.png + 09-new-1-type-charge-waiver-side-by-side.png — type charge_waiver
+=== 10-new-1-type-usage-allowance.png + 10-new-1-type-usage-allowance-side-by-side.png — type usage_allowance
+=== 11-new-1-applies-service.png + 11-new-1-applies-service-side-by-side.png — applies to one service
+=== 12-new-1-applies-codes.png + 12-new-1-applies-codes-side-by-side.png — named charge codes, list open
+=== 13-new-1-errors.png + 13-new-1-errors-side-by-side.png — empty, Continue pressed
+=== 14-new-1-value-over-100.png + 14-new-1-value-over-100-side-by-side.png — 150% refused
+  enrollment options: ["Automatic [DISABLED]","Apply and approve"]
+=== 15-new-2-eligibility.png + 15-new-2-eligibility-side-by-side.png — Eligibility filled
+=== 16-new-2-errors.png + 16-new-2-errors-side-by-side.png — who missing, ends before starts
+=== 17-new-3-review.png + 17-new-3-review-side-by-side.png — Review
+POST /discounts -> 201 {"id":"stub","name":"Senior discount"}
+  body sent: {"code":"SENIOR","name":"Senior discount","funding_source":"Rate-payer funded","report_in_assistance_filing":true,"discount_type":"percentage","applies_to":"whole_bill","stacks_with_others":true,"proof_required":true,"proof_before_first_reduction":true,"program_owner":"billing","exclusivity_group":"none","eligibility":"age_65_or_over","enrolment_mode":"apply_and_approve","verification_method":"annual_recertification","lapse_behaviour":"notify_then_drop","budget_period":"annual","exhaustion_behaviour":"suspend","effective_from":"2026-11-01","recertification_months":12,"recertification_notice_days":30,"recertification_grace_days":15,"value":"15","currency":"USD"}
+SAVED: Senior discount saved as a draft
+=== 18-new-4-saved.png + 18-new-4-saved-side-by-side.png — saved as a draft

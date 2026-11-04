@@ -1,0 +1,44 @@
+{
+ "tab": "plan",
+ "note": "ACC-T05, transcribed from 04-docs/05-modules/03-customers/blueprint/02-account-detail.md lines 773–860 — the EXTRACTED TEXT, not from looking at the picture. ⚠ THE ADDRESS IS `?tab=plan`, NOT `?tab=paymentplan`: the blueprint records that a link built by guessing from the label lands on Overview. Three groups down one column: what is running now with the three arrears facts and the one control; every earlier plan; and how the shown plan ran, instalment by instalment.",
+ "groups": [
+  {
+   "col": "left",
+   "slug": "plan-now",
+   "heading": "NO PLAN IS RUNNING",
+   "trailing": "None live",
+   "rows": [
+    "Arrears now",
+    "Oldest unpaid",
+    "Dunning so far"
+   ],
+   "note": "The drawing reads `No plan is running   None live` on one line — the same shape the Overview's `HISTORY   All bills →` takes, which this spec format already models as a heading with a trailing control. The heading therefore states the live-plan state and the trailing carries it; with a plan running they read `A plan is running` and the paid-of-total. The drawn hint under the three facts — *all three are on the account today — this is the account a plan is for* — is NOT on the screen: it is RATIONALE and B14 rule 33 puts that at zero words. `Propose a payment plan` is the one drawn control and it opens S24."
+  },
+  {
+   "col": "left",
+   "slug": "plan-history",
+   "heading": "EARLIER PLANS ON THIS ACCOUNT",
+   "table": [
+    "PLAN #",
+    "OPENED",
+    "SPREAD",
+    "INSTALMENTS",
+    "OUTCOME"
+   ],
+   "note": "PLAN # is drawn and no plan carries one: `PaymentPlan` has an id and no number, and B14 rule 31 forbids a database id being the visible value of a field, so the cell states the absence. SPREAD and INSTALMENTS come off the plan's own rows (`4 × $321.00`), OUTCOME off its status and closing date."
+  },
+  {
+   "col": "left",
+   "slug": "plan-instalments",
+   "heading": "HOW IT RAN",
+   "table": [
+    "#",
+    "DUE",
+    "INSTALMENT",
+    "PAID ON",
+    "STATUS"
+   ],
+   "note": "The drawing heads this `PP-2512-0004 — how it ran`. The number is dropped for the same reason the PLAN # cell states an absence — no plan has one — so the heading is the half that is true. The drawn hint beneath it, *kept in full — which is worth a clerk knowing before refusing a second one*, is RATIONALE and is not on the screen (B14 rule 33). The group renders on every account rather than only when a plan is selected: the drawn structure of this tab is three groups, and a group that comes and goes is one the census can only ever report as missing."
+  }
+ ]
+}

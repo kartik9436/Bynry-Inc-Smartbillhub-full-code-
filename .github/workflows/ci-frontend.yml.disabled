@@ -1,0 +1,51 @@
+name: ci-frontend
+on:
+  push: { paths: ["07-frontend/**", ".github/workflows/ci-frontend.yml"] }
+  pull_request: { paths: ["07-frontend/**"] }
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # working-directory was `frontend` until 2026-08-10 — the pre-rename path
+    # (09-infra/02 §10.12). ci-backend.yml was fixed to 06-backend at the rename;
+    # this file was missed, so every step ran in a directory that does not exist.
+    defaults:
+      run:
+        working-directory: 07-frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: 07-frontend/package-lock.json
+      - name: Install
+        # ci, not install: the lockfile is committed and CI must build what it pins.
+        run: npm ci
+      - name: Lint
+        # DEF-339 — `npm run lint` RAN IN NO WORKFLOW AT ALL until 2026-08-19.
+        # gates.yml installs Python only; this job ran build + vitest. So every
+        # ESLint rule in `.eslintrc.cjs` — including `no-explicit-any`, which
+        # B8 describes as "CI-gated" — was enforced by nothing but the habit of
+        # running it locally. Hard-won law 1: a comment claiming a guarantee is
+        # not the guarantee.
+        #
+        # It is wired here rather than deferred because the tree was already
+        # clean when it landed: `npm run lint` passed with zero errors at
+        # v2.29.5, so this adds a check without adding a backlog. That is the
+        # cheapest moment to close a hole and the reason it was closed now.
+        #
+        # ⚠ IT IS THE EDITOR'S HALF, NOT THE WHOLE CHECK. ESLint never opens a
+        # `.css` file, and this workflow only runs on `07-frontend/**` paths, so
+        # the type-scale rule ALSO exists as
+        # `10-scripts/gates/g34_type_scale_escape.py`, which gates.yml runs on
+        # every push to every path.
+        run: npm run lint
+      - name: Typecheck + build
+        run: npm run build
+      - name: Unit tests
+        run: npm test
+      - name: Static-server + /api pass-through tests
+        # server.mjs joins the SPA and the API on one origin (there is no ALB).
+        # Its 404-on-/api and cookie-passthrough behaviours are security
+        # properties, so they are gated like any other.
+        run: npm run test:server

@@ -1,0 +1,104 @@
+# G105 — portal screens that do NOT compose a piece 08-screen-layouts.md names
+# for them, as measured at the branch tip on 2026-09-05.
+#
+# ⚠ THIS FILE IS THE WORKLIST audit row D14 ASKS FOR (DEF-CWP-3989), in the
+# drawing's own vocabulary, in one place. It is worth more than the gate.
+#
+# RATCHET: the count MAY FALL and MAY NEVER RISE. A screen that starts
+# composing its piece must be DELETED from here in the SAME commit — G105
+# fails on a baselined divergence that is already paid off, because a ratchet
+# that keeps claiming settled debt is a check nobody re-reads.
+#
+# One line per `CWP-### <Piece>`, with WHY it is owed. Written out rather than
+# counted, so that closing one is a deliberate act and a new arrival cannot
+# hide behind a round number (the G40 discipline).
+#
+# ⚠ **REBUILT 2026-09-05 (`DEF-CWP-4018`), AND THE PREVIOUS VERSION OF THIS
+#   FILE IS THE REASON THE GATE'S NEW SELFTEST HAS A CLAUSE ABOUT IT.** It held
+#   sixteen lines, seven of them saying seven lists owed `DataTable` under the
+#   heading *"all eight portal lists draw `MiniTable`, which is none of those"*.
+#   **That sentence was already false when it was written.** Six of those seven
+#   screens draw `PortalListTable` — the portal's own realisation of the
+#   drawing's T5, with a toolbar, a search box, sortable headings, row icons
+#   and a footer — landed in three commits (92d01c20, 2a9c39ea, 5d276442) that
+#   are all OLDER than the gate. The gate matched JSX tag names raw, and no
+#   portal screen renders a tag called `DataTable`, so the debt could never
+#   have been paid off by doing the right thing. `ALIAS` in the gate now
+#   resolves a drawing name to the name the portal builds it under.
+#
+#   The gate also read a screen's HEADING only, which is 49 assertions and
+#   42 of the 378 (screen, piece) pairs the drawing states. It now reads the
+#   BODY too — 229 assertions over 50 screens and 37 distinct pieces — which
+#   is where nine of the twenty-five lines below come from.
+
+# ── The row of controls. The drawing gives these screens a `ButtonRow`; each
+#    renders its buttons directly into the card instead. The kit piece exists
+#    and is composed by other portal screens, so each is an import and a
+#    wrapper. Smallest group of real work in this file.
+CWP-003 ButtonRow          # Quick pay · check and pay — drawing: `ButtonRow` *Pay $142.18 ✓*
+CWP-013 ButtonRow          # Where you can walk in
+CWP-015 ButtonRow          # Front door — the split card's two controls
+CWP-016 ButtonRow          # Find my account
+CWP-024 ButtonRow          # My details
+CWP-030 ButtonRow          # Why is this bill different?
+CWP-047 ButtonRow          # Start service · about you
+CWP-060 ButtonRow          # One answer — the in-text actions *See my bill* · *Compare in Usage*
+
+# ── Two panels of EQUAL width. The drawing's T4 is `TwoEqual`; these compose
+#    `TwoCol`, which is 62/35. Both panels are present, in the right order,
+#    with the right contents — only the split differs, which is why every
+#    existing test passes on them. `TwoEqual` IS in the kit and IS composed by
+#    two other portal screens, so each is a one-word change once somebody rules
+#    that the two panels are equal-weight.
+#    ⚠ **CWP-024 AND CWP-032 WERE HERE AND HAVE BEEN DELETED, WHICH IS THE
+#      RATCHET WORKING RATHER THAN THE BASELINE BEING EDITED.** The layout
+#      lane landed `TwoEqual` on `MyDetails.tsx` and `FinalBill.tsx` while
+#      this commit was being built; the gate went RED on the push with *'2
+#      baselined divergence(s) are now composed'* and named both files. That
+#      is the fall a ratchet is for, and it is the first time this one has
+#      fallen. Five remain.
+CWP-030 TwoEqual           # Why is this bill different? — and half the screen is absent besides (audit 8)
+CWP-040 TwoEqual           # Automatic payment
+CWP-044 TwoEqual           # Level pay
+CWP-045 TwoEqual           # Credits and refunds
+CWP-052 TwoEqual           # Stop or restart service
+
+# ── The main column's panel. The drawing distinguishes the main column's
+#    `Card` from the rail's `Panel`; `HelpPage.tsx` serves both these screens
+#    and draws four `Panel`s and no `Card` at all.
+#    ⚠ `Panel` was very nearly aliased to `Card` while this gate was being
+#    fixed, on the authority of DEF-CWP-3966's sentence *"the spec's Panel is
+#    the kit's Card"*. It is not: `src/components/Panel.tsx` exists and these
+#    two screens render it. The alias would have excused exactly these lines.
+
+# ── The chart. The drawing calls it `ChartPanel`; the kit builds it as
+#    `UsageBars` (DEF-CWP-3966 got this half right, and the gate resolves it).
+CWP-044 UsageBars          # Level pay — right `ChartPanel` **THIS MONTH, EITHER WAY**
+CWP-066 UsageBars          # Level pay standing — main `ChartPanel` **WHAT YOU PAID AGAINST WHAT YOU USED**
+
+# ── The row of big numbers, and the table under it.
+CWP-065 MiniTable          # Your account — drawing: `Panel` **YOUR SERVICES** `MiniTable` Service / On since / Billed on
+
+# ── PAID OFF AND DELETED 2026-09-19 (`DEF-CWP-5747`'s lane, which did not build
+#    any of them). `CWP-011 Card`, `CWP-060 Card`, `CWP-066 KpiRow` and
+#    `CWP-066 KpiTile` were already composed AT THE BRANCH TIP — dated by
+#    running `divergences()` and `furniture()` there, not assumed. G105 could
+#    not say so, because it reports NEW findings before PAID ones and there were
+#    two new findings standing in front of them. Removing those two (a search
+#    box this gate could not see, and a drawing phrase split by a line wrap) is
+#    what let the ratchet finally collect its own debt. The list may only ever
+#    shrink, which is why four lines leave here and none arrives.
+
+# ── The rail.
+CWP-033 TwoCol             # Usage — the three service panels run full-width down a very long page (audit 9)
+
+# ── The shared list, and it is now ONE screen rather than seven. The other six
+#    were paid off before this gate was written; see the rebuild note above.
+CWP-039 PortalListTable    # Your payment methods — the drawing wants the T5 table with ✎ − icons and no footer; the screen draws `MiniTable`, which the inventory defines as having no toolbar and no footer
+
+# ── The answer card. PAID OFF 2026-09-05 and deleted here, which is the ratchet
+#    working rather than the baseline being edited: `CWP-028 AttachedAnswerCard`
+#    was composed by the portal lane, this gate went red with "1 baselined
+#    divergence(s) are now composed", and `G40` stopped reporting the same
+#    component as dead UI in the same breath — two checks, one finding, cleared
+#    together. Third fall of this ratchet (CWP-024 and CWP-032 were the first two).

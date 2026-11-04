@@ -1,0 +1,19 @@
+# G100 — CWP screens allowed to have NOTHING in the product pointing at them.
+#
+# ⚠ THIS FILE IS EMPTY OF ROWS ON PURPOSE, AND THAT IS THE POINT. On 2026-09-05
+# twenty-six of the portal's fifty screens were in this position and none of
+# them was here, because nobody was keeping a list — which is `DEF-CWP-3954`.
+# All fifty are pointed at now, so an entry below is a NEW claim that somebody
+# has to defend, not a backlog to work through.
+#
+# The only legitimate reason is a screen a customer is SENT to rather than
+# navigates to — a capability link minted by a form and delivered by email, a
+# one-time address. `CWP-047` looked like one and is NOT: `CWP-008`'s *Apply*
+# button mints the draft and navigates straight there, so the product does
+# point at it and G100 sees it.
+#
+# Format:  CWP-###   <the reason, in a sentence a person can check>
+#
+# A row here does NOT excuse the screen from the walkthrough's crawl. That
+# reports every screen no ANCHOR reaches and is meant to be read by a human;
+# this file only stops the merge gate.

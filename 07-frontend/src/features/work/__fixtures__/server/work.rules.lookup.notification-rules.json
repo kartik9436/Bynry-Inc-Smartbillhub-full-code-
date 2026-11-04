@@ -1,0 +1,3126 @@
+{
+  "results": [
+    {
+      "key": "bill_ready",
+      "category": "billing",
+      "audience": "customer",
+      "channels": [
+        "email",
+        "sms",
+        "portal"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "email": "email_bill_ready",
+        "sms": "sms_bill_ready"
+      },
+      "trigger_blocked_by": null,
+      "source_type": null,
+      "timing_key": "on_issue",
+      "has_ladder": false,
+      "staff_recipient_policy": null,
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": true,
+          "template_code": "email_bill_ready",
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        },
+        {
+          "channel": "portal",
+          "enabled": true,
+          "template_code": null,
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-PAY-017",
+            "channel": "portal",
+            "deferred_until": null,
+            "detail": "portal dispatch is switched off for this tenant, so its rows rest `queued`. Nothing is lost and nothing is sent."
+          }
+        },
+        {
+          "channel": "sms",
+          "enabled": true,
+          "template_code": "sms_bill_ready",
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-PAY-017",
+            "channel": "sms",
+            "deferred_until": "v1.1",
+            "detail": "sms dispatch is DEFERRED to v1.1. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send."
+          }
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 198,
+        "documents": 99,
+        "held": 0,
+        "suppressed": 0,
+        "by_channel": {
+          "email": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          },
+          "sms": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          },
+          "portal": {
+            "queued": 99,
+            "held": 0,
+            "suppressed": 0
+          },
+          "pdf_print": {
+            "queued": 99,
+            "held": 0,
+            "suppressed": 0
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": true,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": null
+      }
+    },
+    {
+      "key": "bill_corrected",
+      "category": "billing",
+      "audience": "customer",
+      "channels": [
+        "email"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "email": "email_corrected_bill"
+      },
+      "trigger_blocked_by": null,
+      "source_type": null,
+      "timing_key": "on_correction",
+      "has_ladder": false,
+      "staff_recipient_policy": null,
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": true,
+          "template_code": "email_corrected_bill",
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 1,
+        "documents": 1,
+        "held": 0,
+        "suppressed": 0,
+        "by_channel": {
+          "email": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          },
+          "pdf_print": {
+            "queued": 1,
+            "held": 0,
+            "suppressed": 0
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": true,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": null
+      }
+    },
+    {
+      "key": "statement_ready",
+      "category": "billing",
+      "audience": "customer",
+      "channels": [
+        "email"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "email": "email_statement"
+      },
+      "trigger_blocked_by": "OQ-1160",
+      "source_type": null,
+      "timing_key": "on_statement_run",
+      "has_ladder": false,
+      "staff_recipient_policy": null,
+      "enabled": false,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": true,
+          "template_code": "email_statement",
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": 0,
+        "by_channel": {
+          "email": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": null
+      }
+    },
+    {
+      "key": "payment_received",
+      "category": "payments",
+      "audience": "customer",
+      "channels": [
+        "email",
+        "sms"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "email": "email_payment_receipt",
+        "sms": "sms_payment_received"
+      },
+      "trigger_blocked_by": null,
+      "source_type": "payment",
+      "timing_key": "immediate",
+      "has_ladder": false,
+      "staff_recipient_policy": null,
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": true,
+          "template_code": "email_payment_receipt",
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        },
+        {
+          "channel": "sms",
+          "enabled": true,
+          "template_code": "sms_payment_received",
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-PAY-017",
+            "channel": "sms",
+            "deferred_until": "v1.1",
+            "detail": "sms dispatch is DEFERRED to v1.1. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send."
+          }
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 249,
+        "documents": 83,
+        "held": 0,
+        "suppressed": 0,
+        "by_channel": {
+          "email": {
+            "queued": 83,
+            "held": 0,
+            "suppressed": 0
+          },
+          "sms": {
+            "queued": 83,
+            "held": 0,
+            "suppressed": 0
+          },
+          "pdf_print": {
+            "queued": 83,
+            "held": 0,
+            "suppressed": 0
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": true,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": null
+      }
+    },
+    {
+      "key": "payment_failed",
+      "category": "payments",
+      "audience": "customer",
+      "channels": [
+        "email",
+        "sms"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "email": "email_payment_failed"
+      },
+      "trigger_blocked_by": null,
+      "source_type": null,
+      "timing_key": "immediate_then_retry",
+      "has_ladder": false,
+      "staff_recipient_policy": null,
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": true,
+          "template_code": "email_payment_failed",
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        },
+        {
+          "channel": "sms",
+          "enabled": false,
+          "template_code": null,
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-PAY-017",
+            "channel": "sms",
+            "deferred_until": "v1.1",
+            "detail": "sms dispatch is DEFERRED to v1.1. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send."
+          }
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": 0,
+        "by_channel": {
+          "email": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          },
+          "sms": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": null
+      }
+    },
+    {
+      "key": "refund_issued",
+      "category": "payments",
+      "audience": "customer",
+      "channels": [
+        "email"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "email": "email_refund_issued"
+      },
+      "trigger_blocked_by": null,
+      "source_type": "payment",
+      "timing_key": "on_refund_issued",
+      "has_ladder": false,
+      "staff_recipient_policy": null,
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": true,
+          "template_code": "email_refund_issued",
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 2,
+        "documents": 1,
+        "held": 0,
+        "suppressed": 0,
+        "by_channel": {
+          "email": {
+            "queued": 1,
+            "held": 0,
+            "suppressed": 0
+          },
+          "pdf_print": {
+            "queued": 1,
+            "held": 0,
+            "suppressed": 0
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": true,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": null
+      }
+    },
+    {
+      "key": "credit_issued",
+      "category": "payments",
+      "audience": "customer",
+      "channels": [
+        "email"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "email": "email_credit_issued"
+      },
+      "trigger_blocked_by": null,
+      "source_type": "payment",
+      "timing_key": "on_credit_raised",
+      "has_ladder": false,
+      "staff_recipient_policy": null,
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": true,
+          "template_code": "email_credit_issued",
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": 0,
+        "by_channel": {
+          "email": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": null
+      }
+    },
+    {
+      "key": "autopay_enrolled",
+      "category": "payments",
+      "audience": "customer",
+      "channels": [
+        "email"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "email": "email_autopay"
+      },
+      "trigger_blocked_by": "OQ-1162",
+      "source_type": null,
+      "timing_key": "on_autopay_enrolled",
+      "has_ladder": false,
+      "staff_recipient_policy": null,
+      "enabled": false,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": true,
+          "template_code": "email_autopay",
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": 0,
+        "by_channel": {
+          "email": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": null
+      }
+    },
+    {
+      "key": "past_due_reminder",
+      "category": "collections",
+      "audience": "customer",
+      "channels": [
+        "email",
+        "sms"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "email": "email_past_due",
+        "sms": "sms_past_due"
+      },
+      "trigger_blocked_by": null,
+      "source_type": null,
+      "timing_key": "ladder",
+      "has_ladder": true,
+      "staff_recipient_policy": null,
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": true,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": true,
+          "template_code": "email_past_due",
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        },
+        {
+          "channel": "sms",
+          "enabled": true,
+          "template_code": "sms_past_due",
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-PAY-017",
+            "channel": "sms",
+            "deferred_until": "v1.1",
+            "detail": "sms dispatch is DEFERRED to v1.1. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send."
+          }
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": 0,
+        "by_channel": {
+          "email": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          },
+          "sms": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": null
+      }
+    },
+    {
+      "key": "disconnect_notice",
+      "category": "collections",
+      "audience": "customer",
+      "channels": [
+        "pdf_print",
+        "email"
+      ],
+      "unavailable_channels": [
+        {
+          "channel": "mail",
+          "reason": "'Mail' on a disconnect notice means PHYSICAL POST, which is a fulfilment vendor and not a channel flag. The platform's paper channel is `pdf_print` — it RENDERS the letter; who franks and posts it is an integration nobody has chosen (BR-NOT-013: no adapter on any channel, print included)."
+        }
+      ],
+      "template_classes": {
+        "pdf_print": "disconnect_notice_10_day",
+        "sms": "sms_disconnect"
+      },
+      "trigger_blocked_by": null,
+      "source_type": null,
+      "timing_key": "ladder",
+      "has_ladder": true,
+      "staff_recipient_policy": null,
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": false,
+          "template_code": null,
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        },
+        {
+          "channel": "pdf_print",
+          "enabled": true,
+          "template_code": "disconnect_notice_10_day",
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "provider_status_unknown",
+            "br_ref": "BR-NOT-005",
+            "channel": "pdf_print",
+            "detail": "apps.integrations.services.dispatch_outbound_batch is not published, or integrations cannot report a connection state, or no pdf_print provider can be connected on this platform yet, so pdf_print rows rest `queued`. This is the PLATFORM having no adapter, not the tenant having no provider — the two are counted apart so a utility is never told to fix a connection that is not theirs to fix. Nothing is sent through a shared sender in the meantime (A15 addendum: the utility's OWN address, always)."
+          }
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": 0,
+        "by_channel": {
+          "pdf_print": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          },
+          "email": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": null
+      }
+    },
+    {
+      "key": "high_usage_alert",
+      "category": "collections",
+      "audience": "customer",
+      "channels": [
+        "email",
+        "sms"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {},
+      "trigger_blocked_by": "OQ-262",
+      "source_type": null,
+      "timing_key": "high_usage_threshold",
+      "has_ladder": false,
+      "staff_recipient_policy": null,
+      "enabled": false,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": false,
+          "template_code": null,
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        },
+        {
+          "channel": "sms",
+          "enabled": false,
+          "template_code": null,
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-PAY-017",
+            "channel": "sms",
+            "deferred_until": "v1.1",
+            "detail": "sms dispatch is DEFERRED to v1.1. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send."
+          }
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": 0,
+        "by_channel": {
+          "email": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          },
+          "sms": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": null
+      }
+    },
+    {
+      "key": "payment_plan_instalment_missed",
+      "category": "collections",
+      "audience": "customer",
+      "channels": [
+        "email"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "email": "plan_notice_missed"
+      },
+      "trigger_blocked_by": null,
+      "source_type": "plan",
+      "timing_key": "day_after_missed_instalment",
+      "has_ladder": false,
+      "staff_recipient_policy": null,
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": true,
+          "template_code": "plan_notice_missed",
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": 0,
+        "by_channel": {
+          "email": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": null
+      }
+    },
+    {
+      "key": "payment_plan_instalment_upcoming",
+      "category": "collections",
+      "audience": "customer",
+      "channels": [
+        "email"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "email": "plan_notice_upcoming"
+      },
+      "trigger_blocked_by": null,
+      "source_type": "plan",
+      "timing_key": "days_before_instalment",
+      "has_ladder": false,
+      "staff_recipient_policy": null,
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": true,
+          "template_code": "plan_notice_upcoming",
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": 0,
+        "by_channel": {
+          "email": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": null
+      }
+    },
+    {
+      "key": "payment_plan_voided",
+      "category": "collections",
+      "audience": "customer",
+      "channels": [
+        "email"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "email": "plan_notice_void"
+      },
+      "trigger_blocked_by": "OQ-1163",
+      "source_type": null,
+      "timing_key": "on_plan_voided",
+      "has_ladder": false,
+      "staff_recipient_policy": null,
+      "enabled": false,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": true,
+          "template_code": "plan_notice_void",
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": 0,
+        "by_channel": {
+          "email": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": null
+      }
+    },
+    {
+      "key": "write_off_approved",
+      "category": "collections",
+      "audience": "customer",
+      "channels": [
+        "pdf_print"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "pdf_print": "writeoff_notice"
+      },
+      "trigger_blocked_by": null,
+      "source_type": "notice",
+      "timing_key": "on_write_off_approved",
+      "has_ladder": false,
+      "staff_recipient_policy": null,
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "pdf_print",
+          "enabled": true,
+          "template_code": "writeoff_notice",
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "provider_status_unknown",
+            "br_ref": "BR-NOT-005",
+            "channel": "pdf_print",
+            "detail": "apps.integrations.services.dispatch_outbound_batch is not published, or integrations cannot report a connection state, or no pdf_print provider can be connected on this platform yet, so pdf_print rows rest `queued`. This is the PLATFORM having no adapter, not the tenant having no provider — the two are counted apart so a utility is never told to fix a connection that is not theirs to fix. Nothing is sent through a shared sender in the meantime (A15 addendum: the utility's OWN address, always)."
+          }
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": 0,
+        "by_channel": {
+          "pdf_print": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": null
+      }
+    },
+    {
+      "key": "appointment_window",
+      "category": "field_work",
+      "audience": "customer",
+      "channels": [
+        "sms",
+        "email"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "email": "service_appointment"
+      },
+      "trigger_blocked_by": "OQ-249",
+      "source_type": null,
+      "timing_key": "on_scheduling",
+      "has_ladder": false,
+      "staff_recipient_policy": null,
+      "enabled": false,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": true,
+          "template_code": "service_appointment",
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        },
+        {
+          "channel": "sms",
+          "enabled": false,
+          "template_code": null,
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-PAY-017",
+            "channel": "sms",
+            "deferred_until": "v1.1",
+            "detail": "sms dispatch is DEFERRED to v1.1. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send."
+          }
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": 0,
+        "by_channel": {
+          "sms": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          },
+          "email": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": null
+      }
+    },
+    {
+      "key": "technician_on_the_way",
+      "category": "field_work",
+      "audience": "customer",
+      "channels": [
+        "sms"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {},
+      "trigger_blocked_by": "OQ-249",
+      "source_type": null,
+      "timing_key": "eta_push",
+      "has_ladder": false,
+      "staff_recipient_policy": null,
+      "enabled": false,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "sms",
+          "enabled": false,
+          "template_code": null,
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-PAY-017",
+            "channel": "sms",
+            "deferred_until": "v1.1",
+            "detail": "sms dispatch is DEFERRED to v1.1. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send."
+          }
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": 0,
+        "by_channel": {
+          "sms": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": null
+      }
+    },
+    {
+      "key": "completion_receipt",
+      "category": "field_work",
+      "audience": "customer",
+      "channels": [
+        "email"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "email": "service_work_completed"
+      },
+      "trigger_blocked_by": "OQ-249",
+      "source_type": null,
+      "timing_key": "on_completion",
+      "has_ladder": false,
+      "staff_recipient_policy": null,
+      "enabled": false,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": true,
+          "template_code": "service_work_completed",
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": 0,
+        "by_channel": {
+          "email": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": null
+      }
+    },
+    {
+      "key": "door_hanger_left",
+      "category": "field_work",
+      "audience": "customer",
+      "channels": [
+        "pdf_print"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "pdf_print": "service_door_hanger"
+      },
+      "trigger_blocked_by": "OQ-249",
+      "source_type": null,
+      "timing_key": "on_field_visit",
+      "has_ladder": false,
+      "staff_recipient_policy": null,
+      "enabled": false,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "pdf_print",
+          "enabled": true,
+          "template_code": "service_door_hanger",
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "provider_status_unknown",
+            "br_ref": "BR-NOT-005",
+            "channel": "pdf_print",
+            "detail": "apps.integrations.services.dispatch_outbound_batch is not published, or integrations cannot report a connection state, or no pdf_print provider can be connected on this platform yet, so pdf_print rows rest `queued`. This is the PLATFORM having no adapter, not the tenant having no provider — the two are counted apart so a utility is never told to fix a connection that is not theirs to fix. Nothing is sent through a shared sender in the meantime (A15 addendum: the utility's OWN address, always)."
+          }
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": 0,
+        "by_channel": {
+          "pdf_print": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": null
+      }
+    },
+    {
+      "key": "planned_outage_notice",
+      "category": "field_work",
+      "audience": "customer",
+      "channels": [
+        "email",
+        "sms"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "email": "service_outage_notice"
+      },
+      "trigger_blocked_by": "OQ-1161",
+      "source_type": null,
+      "timing_key": "before_planned_outage",
+      "has_ladder": false,
+      "staff_recipient_policy": null,
+      "enabled": false,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": true,
+          "template_code": "service_outage_notice",
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        },
+        {
+          "channel": "sms",
+          "enabled": false,
+          "template_code": null,
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-PAY-017",
+            "channel": "sms",
+            "deferred_until": "v1.1",
+            "detail": "sms dispatch is DEFERRED to v1.1. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send."
+          }
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": 0,
+        "by_channel": {
+          "email": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          },
+          "sms": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": null
+      }
+    },
+    {
+      "key": "billing_run_completed",
+      "category": "staff_system",
+      "audience": "staff",
+      "channels": [
+        "in_app",
+        "email"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "in_app": "staff_bulk_summary"
+      },
+      "trigger_blocked_by": null,
+      "source_type": "bulk_action",
+      "timing_key": "on_run_finished",
+      "has_ladder": false,
+      "staff_recipient_policy": "Sent to the user who started the action; failures also reach every active System Admin (PO 2026-08-17, BR-NOT-021 — OQ-261 closed).",
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": false,
+          "template_code": null,
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        },
+        {
+          "channel": "in_app",
+          "enabled": true,
+          "template_code": "staff_bulk_summary",
+          "language_mode": "auto",
+          "dispatchable": true,
+          "dispatch_problem": null
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 2,
+        "documents": 2,
+        "held": 0,
+        "suppressed": null,
+        "by_channel": {
+          "in_app": {
+            "queued": 2,
+            "held": 0,
+            "suppressed": null
+          },
+          "email": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": null
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": true,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": "A message this utility switched off entirely leaves no row to record it on, and this event's messages are not the kind that always print (BR-NOT-024 makes print the floor on bills, receipts, notices and plan letters — not on this). So the switch IS working; what cannot be counted is how many times it fired."
+      }
+    },
+    {
+      "key": "reconciliation_exceptions",
+      "category": "staff_system",
+      "audience": "staff",
+      "channels": [
+        "in_app",
+        "email"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "in_app": "staff_bulk_summary"
+      },
+      "trigger_blocked_by": null,
+      "source_type": "bulk_action",
+      "timing_key": "on_exception",
+      "has_ladder": false,
+      "staff_recipient_policy": "Sent to the user who started the action; failures also reach every active System Admin (PO 2026-08-17, BR-NOT-021 — OQ-261 closed).",
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": false,
+          "template_code": null,
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        },
+        {
+          "channel": "in_app",
+          "enabled": true,
+          "template_code": "staff_bulk_summary",
+          "language_mode": "auto",
+          "dispatchable": true,
+          "dispatch_problem": null
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": null,
+        "by_channel": {
+          "in_app": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": null
+          },
+          "email": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": null
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": "A message this utility switched off entirely leaves no row to record it on, and this event's messages are not the kind that always print (BR-NOT-024 makes print the floor on bills, receipts, notices and plan letters — not on this). So the switch IS working; what cannot be counted is how many times it fired."
+      }
+    },
+    {
+      "key": "counter_left_open",
+      "category": "staff_system",
+      "audience": "staff",
+      "channels": [
+        "in_app",
+        "email"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "in_app": "staff_bulk_summary"
+      },
+      "trigger_blocked_by": null,
+      "source_type": "bulk_action",
+      "timing_key": "end_of_banking_day",
+      "has_ladder": false,
+      "staff_recipient_policy": "Sent to the user who started the action; failures also reach every active System Admin (PO 2026-08-17, BR-NOT-021 — OQ-261 closed).",
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": false,
+          "template_code": null,
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        },
+        {
+          "channel": "in_app",
+          "enabled": true,
+          "template_code": "staff_bulk_summary",
+          "language_mode": "auto",
+          "dispatchable": true,
+          "dispatch_problem": null
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": null,
+        "by_channel": {
+          "in_app": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": null
+          },
+          "email": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": null
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": "A message this utility switched off entirely leaves no row to record it on, and this event's messages are not the kind that always print (BR-NOT-024 makes print the floor on bills, receipts, notices and plan letters — not on this). So the switch IS working; what cannot be counted is how many times it fired."
+      }
+    },
+    {
+      "key": "scheduled_report_ready",
+      "category": "staff_system",
+      "audience": "staff",
+      "channels": [
+        "email"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "email": "email_scheduled_report"
+      },
+      "trigger_blocked_by": null,
+      "source_type": "report",
+      "timing_key": "on_run_finished",
+      "has_ladder": false,
+      "staff_recipient_policy": "Sent to the user who started the action; failures also reach every active System Admin (PO 2026-08-17, BR-NOT-021 — OQ-261 closed).",
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": true,
+          "template_code": "email_scheduled_report",
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": null,
+        "by_channel": {
+          "email": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": null
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": "A message this utility switched off entirely leaves no row to record it on, and this event's messages are not the kind that always print (BR-NOT-024 makes print the floor on bills, receipts, notices and plan letters — not on this). So the switch IS working; what cannot be counted is how many times it fired."
+      }
+    },
+    {
+      "key": "sla_breach",
+      "category": "staff_system",
+      "audience": "staff",
+      "channels": [
+        "in_app",
+        "email"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "in_app": "staff_field_work"
+      },
+      "trigger_blocked_by": null,
+      "source_type": "field_work",
+      "timing_key": "on_sla_breach",
+      "has_ladder": false,
+      "staff_recipient_policy": "Sent to the user who started the action; failures also reach every active System Admin (PO 2026-08-17, BR-NOT-021 — OQ-261 closed).",
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": false,
+          "template_code": null,
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        },
+        {
+          "channel": "in_app",
+          "enabled": true,
+          "template_code": "staff_field_work",
+          "language_mode": "auto",
+          "dispatchable": true,
+          "dispatch_problem": null
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": null,
+        "by_channel": {
+          "in_app": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": null
+          },
+          "email": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": null
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": "A message this utility switched off entirely leaves no row to record it on, and this event's messages are not the kind that always print (BR-NOT-024 makes print the floor on bills, receipts, notices and plan letters — not on this). So the switch IS working; what cannot be counted is how many times it fired."
+      }
+    },
+    {
+      "key": "work_job_not_assigned",
+      "category": "field_work",
+      "audience": "staff",
+      "channels": [
+        "in_app"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "in_app": "staff_field_work"
+      },
+      "trigger_blocked_by": null,
+      "source_type": "field_work",
+      "timing_key": "on_escalation",
+      "has_ladder": false,
+      "staff_recipient_policy": "Sent to the user who started the action; failures also reach every active System Admin (PO 2026-08-17, BR-NOT-021 — OQ-261 closed).",
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "in_app",
+          "enabled": true,
+          "template_code": "staff_field_work",
+          "language_mode": "auto",
+          "dispatchable": true,
+          "dispatch_problem": null
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": null,
+        "by_channel": {
+          "in_app": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": null
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": "A message this utility switched off entirely leaves no row to record it on, and this event's messages are not the kind that always print (BR-NOT-024 makes print the floor on bills, receipts, notices and plan letters — not on this). So the switch IS working; what cannot be counted is how many times it fired."
+      }
+    },
+    {
+      "key": "work_job_not_accepted",
+      "category": "field_work",
+      "audience": "staff",
+      "channels": [
+        "in_app"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "in_app": "staff_field_work"
+      },
+      "trigger_blocked_by": null,
+      "source_type": "field_work",
+      "timing_key": "on_escalation",
+      "has_ladder": false,
+      "staff_recipient_policy": "Sent to the user who started the action; failures also reach every active System Admin (PO 2026-08-17, BR-NOT-021 — OQ-261 closed).",
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "in_app",
+          "enabled": true,
+          "template_code": "staff_field_work",
+          "language_mode": "auto",
+          "dispatchable": true,
+          "dispatch_problem": null
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": null,
+        "by_channel": {
+          "in_app": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": null
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": "A message this utility switched off entirely leaves no row to record it on, and this event's messages are not the kind that always print (BR-NOT-024 makes print the floor on bills, receipts, notices and plan letters — not on this). So the switch IS working; what cannot be counted is how many times it fired."
+      }
+    },
+    {
+      "key": "work_job_running_late",
+      "category": "field_work",
+      "audience": "staff",
+      "channels": [
+        "in_app"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "in_app": "staff_field_work"
+      },
+      "trigger_blocked_by": null,
+      "source_type": "field_work",
+      "timing_key": "on_escalation",
+      "has_ladder": false,
+      "staff_recipient_policy": "Sent to the user who started the action; failures also reach every active System Admin (PO 2026-08-17, BR-NOT-021 — OQ-261 closed).",
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "in_app",
+          "enabled": true,
+          "template_code": "staff_field_work",
+          "language_mode": "auto",
+          "dispatchable": true,
+          "dispatch_problem": null
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": null,
+        "by_channel": {
+          "in_app": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": null
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": "A message this utility switched off entirely leaves no row to record it on, and this event's messages are not the kind that always print (BR-NOT-024 makes print the floor on bills, receipts, notices and plan letters — not on this). So the switch IS working; what cannot be counted is how many times it fired."
+      }
+    },
+    {
+      "key": "work_hold_overdue",
+      "category": "field_work",
+      "audience": "staff",
+      "channels": [
+        "in_app"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "in_app": "staff_field_work"
+      },
+      "trigger_blocked_by": null,
+      "source_type": "field_work",
+      "timing_key": "on_escalation",
+      "has_ladder": false,
+      "staff_recipient_policy": "Sent to the user who started the action; failures also reach every active System Admin (PO 2026-08-17, BR-NOT-021 — OQ-261 closed).",
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "in_app",
+          "enabled": true,
+          "template_code": "staff_field_work",
+          "language_mode": "auto",
+          "dispatchable": true,
+          "dispatch_problem": null
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": null,
+        "by_channel": {
+          "in_app": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": null
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": "A message this utility switched off entirely leaves no row to record it on, and this event's messages are not the kind that always print (BR-NOT-024 makes print the floor on bills, receipts, notices and plan letters — not on this). So the switch IS working; what cannot be counted is how many times it fired."
+      }
+    },
+    {
+      "key": "work_job_failed",
+      "category": "field_work",
+      "audience": "staff",
+      "channels": [
+        "in_app"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "in_app": "staff_field_work"
+      },
+      "trigger_blocked_by": null,
+      "source_type": "field_work",
+      "timing_key": "on_escalation",
+      "has_ladder": false,
+      "staff_recipient_policy": "Sent to the user who started the action; failures also reach every active System Admin (PO 2026-08-17, BR-NOT-021 — OQ-261 closed).",
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "in_app",
+          "enabled": true,
+          "template_code": "staff_field_work",
+          "language_mode": "auto",
+          "dispatchable": true,
+          "dispatch_problem": null
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": null,
+        "by_channel": {
+          "in_app": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": null
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": "A message this utility switched off entirely leaves no row to record it on, and this event's messages are not the kind that always print (BR-NOT-024 makes print the floor on bills, receipts, notices and plan letters — not on this). So the switch IS working; what cannot be counted is how many times it fired."
+      }
+    },
+    {
+      "key": "work_approval_overdue",
+      "category": "field_work",
+      "audience": "staff",
+      "channels": [
+        "in_app"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "in_app": "staff_field_work"
+      },
+      "trigger_blocked_by": null,
+      "source_type": "field_work",
+      "timing_key": "on_escalation",
+      "has_ladder": false,
+      "staff_recipient_policy": "Sent to the user who started the action; failures also reach every active System Admin (PO 2026-08-17, BR-NOT-021 — OQ-261 closed).",
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "in_app",
+          "enabled": true,
+          "template_code": "staff_field_work",
+          "language_mode": "auto",
+          "dispatchable": true,
+          "dispatch_problem": null
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": null,
+        "by_channel": {
+          "in_app": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": null
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": "A message this utility switched off entirely leaves no row to record it on, and this event's messages are not the kind that always print (BR-NOT-024 makes print the floor on bills, receipts, notices and plan letters — not on this). So the switch IS working; what cannot be counted is how many times it fired."
+      }
+    },
+    {
+      "key": "certificate_expiring",
+      "category": "field_work",
+      "audience": "staff",
+      "channels": [
+        "in_app"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "in_app": "staff_field_work"
+      },
+      "trigger_blocked_by": null,
+      "source_type": "field_work",
+      "timing_key": "before_certificate_expiry",
+      "has_ladder": false,
+      "staff_recipient_policy": "Sent to the user who started the action; failures also reach every active System Admin (PO 2026-08-17, BR-NOT-021 — OQ-261 closed).",
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "in_app",
+          "enabled": true,
+          "template_code": "staff_field_work",
+          "language_mode": "auto",
+          "dispatchable": true,
+          "dispatch_problem": null
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": null,
+        "by_channel": {
+          "in_app": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": null
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": "A message this utility switched off entirely leaves no row to record it on, and this event's messages are not the kind that always print (BR-NOT-024 makes print the floor on bills, receipts, notices and plan letters — not on this). So the switch IS working; what cannot be counted is how many times it fired."
+      }
+    },
+    {
+      "key": "technician_day",
+      "category": "field_work",
+      "audience": "staff",
+      "channels": [
+        "in_app"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "in_app": "staff_field_work"
+      },
+      "trigger_blocked_by": null,
+      "source_type": "field_work",
+      "timing_key": "start_of_day",
+      "has_ladder": false,
+      "staff_recipient_policy": "Sent to the user who started the action; failures also reach every active System Admin (PO 2026-08-17, BR-NOT-021 — OQ-261 closed).",
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "in_app",
+          "enabled": true,
+          "template_code": "staff_field_work",
+          "language_mode": "auto",
+          "dispatchable": true,
+          "dispatch_problem": null
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": null,
+        "by_channel": {
+          "in_app": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": null
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": "A message this utility switched off entirely leaves no row to record it on, and this event's messages are not the kind that always print (BR-NOT-024 makes print the floor on bills, receipts, notices and plan letters — not on this). So the switch IS working; what cannot be counted is how many times it fired."
+      }
+    },
+    {
+      "key": "daily_digest",
+      "category": "staff_system",
+      "audience": "staff",
+      "channels": [
+        "in_app",
+        "email"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {},
+      "trigger_blocked_by": "OQ-262",
+      "source_type": null,
+      "timing_key": "daily_at",
+      "has_ladder": false,
+      "staff_recipient_policy": "Sent to the user who started the action; failures also reach every active System Admin (PO 2026-08-17, BR-NOT-021 — OQ-261 closed).",
+      "enabled": false,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": false,
+          "template_code": null,
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        },
+        {
+          "channel": "in_app",
+          "enabled": false,
+          "template_code": null,
+          "language_mode": "auto",
+          "dispatchable": true,
+          "dispatch_problem": null
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": 0,
+        "by_channel": {
+          "in_app": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          },
+          "email": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": null
+      }
+    },
+    {
+      "key": "security_alerts",
+      "category": "staff_system",
+      "audience": "staff",
+      "channels": [
+        "in_app",
+        "email"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {},
+      "trigger_blocked_by": "OQ-262",
+      "source_type": null,
+      "timing_key": "on_security_event",
+      "has_ladder": false,
+      "staff_recipient_policy": "Sent to the user who started the action; failures also reach every active System Admin (PO 2026-08-17, BR-NOT-021 — OQ-261 closed).",
+      "enabled": false,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": false,
+          "template_code": null,
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        },
+        {
+          "channel": "in_app",
+          "enabled": false,
+          "template_code": null,
+          "language_mode": "auto",
+          "dispatchable": true,
+          "dispatch_problem": null
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": 0,
+        "by_channel": {
+          "in_app": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          },
+          "email": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": null
+      }
+    },
+    {
+      "key": "move_in_welcome",
+      "category": "account_lifecycle",
+      "audience": "customer",
+      "channels": [
+        "email"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "email": "email_welcome"
+      },
+      "trigger_blocked_by": null,
+      "source_type": "move",
+      "timing_key": "on_move_in",
+      "has_ladder": false,
+      "staff_recipient_policy": null,
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": true,
+          "template_code": "email_welcome",
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": 0,
+        "by_channel": {
+          "email": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": null
+      }
+    },
+    {
+      "key": "move_out_final_bill",
+      "category": "account_lifecycle",
+      "audience": "customer",
+      "channels": [
+        "email"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "email": "email_move_out_final"
+      },
+      "trigger_blocked_by": null,
+      "source_type": "move",
+      "timing_key": "on_move_out",
+      "has_ladder": false,
+      "staff_recipient_policy": null,
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": true,
+          "template_code": "email_move_out_final",
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 2,
+        "documents": 1,
+        "held": 0,
+        "suppressed": 0,
+        "by_channel": {
+          "email": {
+            "queued": 1,
+            "held": 0,
+            "suppressed": 0
+          },
+          "pdf_print": {
+            "queued": 1,
+            "held": 0,
+            "suppressed": 0
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": true,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": null
+      }
+    },
+    {
+      "key": "account_closed",
+      "category": "account_lifecycle",
+      "audience": "customer",
+      "channels": [
+        "email"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "email": "email_account_closed"
+      },
+      "trigger_blocked_by": null,
+      "source_type": "account",
+      "timing_key": "on_account_closed",
+      "has_ladder": false,
+      "staff_recipient_policy": null,
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": true,
+          "template_code": "email_account_closed",
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": 0,
+        "by_channel": {
+          "email": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": null
+      }
+    },
+    {
+      "key": "deposit_received",
+      "category": "account_lifecycle",
+      "audience": "customer",
+      "channels": [
+        "email"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "email": "email_deposit"
+      },
+      "trigger_blocked_by": null,
+      "source_type": "account",
+      "timing_key": "on_deposit_cleared",
+      "has_ladder": false,
+      "staff_recipient_policy": null,
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": true,
+          "template_code": "email_deposit",
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": 0,
+        "by_channel": {
+          "email": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": null
+      }
+    },
+    {
+      "key": "rate_plan_changed",
+      "category": "account_lifecycle",
+      "audience": "customer",
+      "channels": [
+        "email"
+      ],
+      "unavailable_channels": [],
+      "template_classes": {
+        "email": "email_plan_change"
+      },
+      "trigger_blocked_by": null,
+      "source_type": "account",
+      "timing_key": "on_rate_plan_changed",
+      "has_ladder": false,
+      "staff_recipient_policy": null,
+      "enabled": true,
+      "customer_scope": "all_contacts",
+      "service_scope": "all",
+      "plan_class": "all",
+      "skip_accounts_on_payment_plan": false,
+      "trigger_mode": "immediate",
+      "offset_days": null,
+      "fixed_time": null,
+      "quiet_hours_mode": "respect",
+      "failure_policy": "retry_3_days_then_email",
+      "channel_rules": [
+        {
+          "channel": "email",
+          "enabled": true,
+          "template_code": "email_plan_change",
+          "language_mode": "auto",
+          "dispatchable": false,
+          "dispatch_problem": {
+            "code": "channel_dispatch_deferred",
+            "br_ref": "BR-BIL-016",
+            "channel": "email",
+            "deferred_until": "W6",
+            "detail": "email dispatch is DEFERRED to W6. Rows for this channel are written from day one and rest `queued`; only the SEND defers (US-NOT-003). No provider is contacted and none is looked for — a queued row on a deferred channel is the correct finished state, not a failed send.",
+            "sender_source": {
+              "mode": "platform_esp_pending",
+              "configured": false,
+              "route_br_ref": "BR-NOT-013 · BR-NOT-023 · CR-009 C-12",
+              "detail": "No sender is set up for this utility yet — a mail server and a from-address are the minimum. Until one is, email has nowhere to go: the shared sender that would otherwise cover it is not built either."
+            }
+          }
+        }
+      ],
+      "staff_recipient": null,
+      "last_30_days": {
+        "queued": 0,
+        "documents": 0,
+        "held": 0,
+        "suppressed": 0,
+        "by_channel": {
+          "email": {
+            "queued": 0,
+            "held": 0,
+            "suppressed": 0
+          }
+        },
+        "window_days": 30,
+        "since": "2026-09-05",
+        "until": "2026-10-04",
+        "ever_attributed": false,
+        "not_reported": {
+          "delivered": "Nobody is reporting deliveries back to us yet, because sending is not switched on. Every message below was written and is waiting; a 'delivered' figure would mean a provider had confirmed it, and there is no provider on any channel.",
+          "bounced": "A bounce is reported by an email provider, and there is no email provider connected. A zero here would read as 'nothing bounced' when the truth is that nothing has been sent to bounce."
+        },
+        "suppressed_unavailable_reason": null
+      }
+    }
+  ],
+  "count": 40,
+  "categories": [
+    "billing",
+    "payments",
+    "collections",
+    "field_work",
+    "staff_system",
+    "account_lifecycle"
+  ],
+  "dispatch_runs_in_this_release": true,
+  "dispatchable_channels": [
+    "in_app"
+  ],
+  "no_dispatcher_reason": "In-app messages are delivered today — they arrive in the bell straight away. Print, email and text messages are written and queued and you can read every one of them here, but sending is not switched on yet, so none of them leaves the building. Switching a rule on for one of those three decides what will be queued when sending arrives.",
+  "delivery_counts_available": false,
+  "queue_counts_available": true,
+  "queue_counts_window_days": 30,
+  "delivery_counts_reason": "Nobody is reporting these back to us yet, because sending is not switched on. A zero here would look like every message had failed, which is not what is happening.",
+  "requirement_claims_event_count": 16,
+  "built_event_count": 40,
+  "coverage": {
+    "built_event_count": 40,
+    "requirement_claims_event_count": 16,
+    "seeded_wording_without_rule_count": 10,
+    "seeded_wording_without_rule": [
+      "new_connect_confirmed",
+      "new_connect_quote",
+      "service_request_acknowledgement",
+      "service_request_acknowledgement_fee",
+      "service_request_approved",
+      "service_request_more_info",
+      "service_request_refused",
+      "transfer_field_visit_sms",
+      "transfer_to_buyer",
+      "transfer_to_seller"
+    ],
+    "teardown_claims_seeded_wording_without_rule_count": 16,
+    "writer_reached_without_rule": {
+      "dunning": "notifications.notices.generate_reminder resolves it (BR-NOT-008's two reminder stages). The `past_due_reminder` event offers email and SMS and has no print switch, so no rule governs this printed class — but a writer does send it.",
+      "receipt": "apps.payments.receipts pins it by code when a payment is recorded. The `payment_received` event offers email only, so this printed receipt is outside every rule and inside a live flow.",
+      "disconnect_notice_5_day": "notifications.notices.generate_disconnect_notice resolves it through TIER_TO_CLASS at BR-NOT-014's second tier. The `disconnect_notice` event names the first tier's class, and one event rules the ladder.",
+      "disconnect_notice_48_hour": "the same writer at BR-NOT-014's final tier — see the entry above.",
+      "account_message": "customers.communication_api.account_communication queues it — the Communication dialog on an account (ACC-S16). The writer is a CLERK and not a flow, so no SET-12 rule governs it and none should: a utility may not switch off its own staff's typing."
+    },
+    "teardown_reconciliation": {
+      "teardown_count": 16,
+      "adopted_since_teardown": {
+        "email_welcome": "move_in_welcome",
+        "email_move_out_final": "move_out_final_bill",
+        "plan_notice_missed": "payment_plan_instalment_missed",
+        "plan_notice_upcoming": "payment_plan_instalment_upcoming",
+        "sms_payment_received": "payment_received",
+        "email_refund_issued": "refund_issued",
+        "email_credit_issued": "credit_issued",
+        "writeoff_notice": "write_off_approved",
+        "email_account_closed": "account_closed",
+        "email_deposit": "deposit_received",
+        "email_plan_change": "rate_plan_changed",
+        "email_statement": "statement_ready",
+        "service_outage_notice": "planned_outage_notice",
+        "email_autopay": "autopay_enrolled",
+        "plan_notice_void": "payment_plan_voided",
+        "service_door_hanger": "door_hanger_left"
+      },
+      "adopted_since_teardown_count": 16,
+      "derived_count_now": 10,
+      "reconciles": false
+    }
+  }
+}

@@ -1,0 +1,184 @@
+{
+  "count": 13,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "at": "2026-10-04T12:29:35.918759+00:00",
+      "by": {
+        "name": "Dana Whitfield"
+      },
+      "act": "replaced",
+      "collection": "help",
+      "version": null,
+      "summary": {
+        "rows": 3,
+        "collection": "help"
+      }
+    },
+    {
+      "at": "2026-10-04T12:29:35.912675+00:00",
+      "by": {
+        "name": "Dana Whitfield"
+      },
+      "act": "replaced",
+      "collection": "tasks",
+      "version": null,
+      "summary": {
+        "rows": 6,
+        "collection": "tasks"
+      }
+    },
+    {
+      "at": "2026-10-04T11:25:37.720028+00:00",
+      "by": {
+        "name": "Dana Whitfield"
+      },
+      "act": "published",
+      "collection": null,
+      "version": 2,
+      "summary": {
+        "version": 2,
+        "template_no": "ST-0001"
+      }
+    },
+    {
+      "at": "2026-10-04T11:25:37.703754+00:00",
+      "by": {
+        "name": "Dana Whitfield"
+      },
+      "act": "replaced",
+      "collection": "asset-types",
+      "version": null,
+      "summary": {
+        "rows": 1,
+        "collection": "asset-types"
+      }
+    },
+    {
+      "at": "2026-10-04T11:25:37.694234+00:00",
+      "by": {
+        "name": "Dana Whitfield"
+      },
+      "act": "replaced",
+      "collection": "help",
+      "version": null,
+      "summary": {
+        "rows": 2,
+        "collection": "help"
+      }
+    },
+    {
+      "at": "2026-10-04T11:25:37.684723+00:00",
+      "by": {
+        "name": "Dana Whitfield"
+      },
+      "act": "replaced",
+      "collection": "readings",
+      "version": null,
+      "summary": {
+        "rows": 1,
+        "collection": "readings"
+      }
+    },
+    {
+      "at": "2026-10-04T11:25:37.675735+00:00",
+      "by": {
+        "name": "Dana Whitfield"
+      },
+      "act": "replaced",
+      "collection": "materials",
+      "version": null,
+      "summary": {
+        "rows": 2,
+        "collection": "materials"
+      }
+    },
+    {
+      "at": "2026-10-04T11:25:37.659395+00:00",
+      "by": {
+        "name": "Dana Whitfield"
+      },
+      "act": "replaced",
+      "collection": "tasks",
+      "version": null,
+      "summary": {
+        "rows": 6,
+        "collection": "tasks"
+      }
+    },
+    {
+      "at": "2026-10-04T11:25:37.611274+00:00",
+      "by": {
+        "name": "Dana Whitfield"
+      },
+      "act": "replaced",
+      "collection": "safety",
+      "version": null,
+      "summary": {
+        "rows": 3,
+        "collection": "safety"
+      }
+    },
+    {
+      "at": "2026-10-04T11:25:37.455577+00:00",
+      "by": {
+        "name": "Dana Whitfield"
+      },
+      "act": "updated",
+      "collection": null,
+      "version": null,
+      "summary": {
+        "name": "Service drop",
+        "scope": "per_premise"
+      }
+    },
+    {
+      "at": "2026-10-04T11:23:09.205123+00:00",
+      "by": {
+        "name": "Dana Whitfield"
+      },
+      "act": "published",
+      "collection": null,
+      "version": 1,
+      "summary": {
+        "version": 1,
+        "template_no": "ST-0001"
+      }
+    },
+    {
+      "at": "2026-10-04T11:23:09.188207+00:00",
+      "by": {
+        "name": "Dana Whitfield"
+      },
+      "act": "replaced",
+      "collection": "details",
+      "version": null,
+      "summary": {
+        "show_asset_card": true,
+        "show_appointment": true,
+        "show_access_notes": true,
+        "signature_required": true,
+        "show_account_summary": true,
+        "refusal_reason_required": true,
+        "door_hanger_on_no_answer": true
+      }
+    },
+    {
+      "at": "2026-10-04T11:23:09.178752+00:00",
+      "by": {
+        "name": "Dana Whitfield"
+      },
+      "act": "created",
+      "collection": null,
+      "version": 0,
+      "summary": {
+        "name": "Service drop",
+        "scope": "per_premise",
+        "version": 0
+      }
+    }
+  ],
+  "template_no": "ST-0001",
+  "name": "Service drop"
+}

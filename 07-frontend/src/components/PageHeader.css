@@ -1,0 +1,186 @@
+/* US-SHL-020 / BR-SHL-044 — the one page-header layout. */
+
+/* ⚠ THE COMPONENT'S OWN ROOT CLASS, DECLARED HERE SINCE 2026-08-22 (CR-018
+   long tail, W14) — AND IT NEVER WAS BEFORE. `.page-header` is the handle eight
+   unit suites and one e2e spec select on, and the ONLY file that declared it was
+   `features/assets/assets.css`, through `.ast-page .page-header` — a descendant
+   rule belonging to a different feature. Deleting that stylesheet took the
+   SHARED component's class undeclared and turned G31 red on PageHeader.tsx, a
+   file the assets migration never touched. So the declaration moves to the file
+   that owns the component. Net class count is unchanged: one declaration site
+   replaces another.
+
+   It sets NOTHING, deliberately. The layout lives on the children below, and
+   any property added here would move pixels on every screen in the product —
+   CR-018 §6's bar. When PageHeader itself migrates to Route B this rule goes
+   with the file and the handle becomes a `data-` attribute, the way DownloadButton
+   and the toast did. */
+.page-header {
+}
+.page-header-back {
+  display: inline-block;
+  margin-bottom: var(--space-2);
+  font-weight: 600;
+  color: var(--color-accent-text); /* Group A decision 2 (2026-10-23) */
+}
+.page-header-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+/* ⚠ **DEF-3482 (PO 2026-09-03, on the account detail screen): *"on this screen
+   Buttons are misplaced - as per UI rule, we have all Buttons on Top right"*.**
+
+   DEF-966 already fixed WHERE the action row lands once it wraps — `margin-left:
+   auto` on `.page-header-actions` puts a lone wrapped line hard right instead
+   of hard left. It did not stop it WRAPPING, and B14 rule 2 says *right-aligned
+   actions* in a page head whose other named parts are the kicker, the title and
+   the subtitle: a row of buttons on a line of its own BELOW the roll-up is not
+   the top right of anything.
+
+   **The cause is a flex BASIS, not an alignment.** This block had no `flex`
+   declaration, so it sized from its content — and its content is the identity
+   chain plus one service chip per service. On ACC-02 that is an address, a unit,
+   a city, a since-date and SIX chips carrying meter numbers, which is wider than
+   any laptop; the actions could not fit beside it and wrapped, every time, on
+   the screens with the most to say. `flex: 1 1 16rem` lets this column shrink
+   and take what is left after the actions, so the roll-up wraps INSIDE its own
+   column and the buttons stay on the title's line. `min-width: 0` was already
+   here and is what makes that shrink legal.
+
+   Paired with `flex-wrap` on `.page-header-actions` below, which is the other
+   half: a screen with six actions puts them on two right-aligned rows rather
+   than pushing the title out of the way. */
+.page-header-id {
+  min-width: 0;
+  flex: 1 1 16rem;
+}
+.page-header-rollup {
+  margin-top: 0.25rem;
+  /* DEF-312 — `--ink-muted` is declared nowhere, so #666 shipped; it is NOT
+     the design system's muted ink, and this file's own header forbids hex. */
+  /* Portal a11y Group A F-01 (2026-10-23): the 55% ink mix read 3.66:1 on
+     #f3f2f2 and 3.78 on white; secondary text is grey-600 (5.00 / 5.58). */
+  color: var(--color-neutral-600);
+}
+/* Always present, even when empty — a row that comes and goes between tabs
+   would shift the title on every click (TC-3). */
+/* ⚠ DEF-966 (CR-043 finding 7, PO 2026-08-27: *"buttons position is not as per
+   UI rule it should be top right corner"*). `.page-header-top` above is
+   `space-between` + `flex-wrap: wrap`, and those two together right-align the
+   second child ONLY while both children fit on one line. The moment the title
+   and its rollup are wide enough to push the actions onto a line of their own,
+   that line holds ONE item — and `space-between` puts a lone item hard LEFT.
+   B14 rule 2 (`BR-SHL-044`, RATIFIED) says *right-aligned actions*, with no
+   "unless it wraps" clause, so this was the shared header breaking a ratified
+   rule on every detail page whose header is wide. ACC-02, whose header does not
+   wrap, is the counter-example that proved the mechanism.
+
+   `margin-left: auto` pushes this child to the right of whatever line it lands
+   on, wrapped or not, so the two cases stop disagreeing. It is set here and not
+   by changing `justify-content` on the parent because the parent's rule is what
+   keeps the title hard LEFT, which is also B14 rule 2.
+
+   B14 rule 21 is untouched: `.page-header-actions` is a class this stylesheet
+   already declares, so no class is added and the migration list is not
+   consulted (DEF-974 — a Tailwind utility in an unmigrated file renders as
+   nothing at all). */
+.page-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  /* DEF-3482 — `flex-shrink: 0` stayed: a button that shrinks breaks its own
+     label. What changes is that the ROW may wrap. ACC-02 carries six worded
+     actions (Adjust · Move-out · Activate · Move-in · Close out · Record
+     payment), and on a narrow viewport the honest shape is two right-aligned
+     rows of buttons in the top-right corner, not one row that shoves the title
+     off the screen. `justify-content: flex-end` is what keeps the SECOND row
+     right-aligned; `margin-left: auto` (DEF-966) only ever positioned the box
+     itself. */
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  min-height: 1px;
+  margin-left: auto;
+}
+/* ⚠ **DEF-3481 (PO 2026-09-03): *"toolkit is got atatched the Tab line , tehre
+   is no seperations - this is problem on many screens"*.** The tab strip ended
+   at its own 1px underline and declared NOTHING below it, so whatever the
+   screen drew next began at that line. On every tabbed LIST screen the next
+   thing is `.table-toolbar`, which sets `margin-bottom` and no `margin-top` —
+   so the search box, the All chip and `+ Filter` sat welded to the tab
+   underline and read as a second row of the tab strip rather than as the
+   table's own controls.
+
+   **The gap belongs HERE and not on the toolbar**, which is why one rule fixes
+   "many screens": the tab strip is the thing that ends, and it ends the same
+   way whatever follows it — a toolbar, a KPI strip, a panel grid or nothing at
+   all. Putting the margin on `.table-toolbar` instead would separate the
+   toolbar from a tab strip AND from every non-tabbed header above it, which is
+   a different change to a different set of screens.
+
+   It collapses rather than doubling: `.page-header` sets no padding or border,
+   `.page-header-explainer` below declares `margin-top: var(--space-4)`, and
+   adjacent margins in a block container collapse to the larger — so a header
+   WITH an explainer keeps exactly the rhythm it had, and a header without one
+   gains the separation the PO asked for. Every `*-page` root that hosts a
+   header is a plain block with padding (`.cus-page`, `.pay-page`, `.met-page`,
+   `.fin-page`), so nothing here lands in a flex `gap` and adds to it.
+
+   B14 rule 21 is untouched: this adds a DECLARATION to a class the stylesheet
+   already owns, not a class. G31's ceiling does not move and the file is not
+   on `route-b-migrated.txt`, so no utility is written here (DEF-974). */
+.page-header-tabs {
+  display: flex;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-divider);
+}
+/* B14 rule 5 (CR-016 / DEF-311) — `font: inherit` took `body`'s 15px, so the
+   product's tab strip was a FIFTH button size that no rule ever declared.
+   14px is the default tier. */
+/* ⚠ **THE `a` HALF LANDED 2026-09-05 (`DEF-WRK-3955`) AND IS THE WHOLE POINT
+   OF THE SELECTOR.** `PageHeaderTab.to` lets a strip draw a real `<Link>` for a
+   tab that navigates, and a routed tab that were styled anywhere else would be
+   a SECOND visual answer to the question this rule already answers — which is
+   the defect that brought it here (Work hand-rolled a boxed strip because the
+   kit could only make buttons). One rule, both elements, so the two shapes
+   cannot drift a pixel apart.
+
+   `text-decoration: none` is the one declaration a `<button>` never needed:
+   Preflight sets `text-decoration: inherit` on anchors, which resolves to none
+   here today — and a rule that is correct only while a base sheet stays the
+   way it is, is hard-won law 1's shape. It is stated.
+
+   B14 rule 21 is untouched: these are DECLARATIONS on a class the stylesheet
+   already owns, not a new class, so G31's ceiling (470, and the count is AT it)
+   does not move. */
+.page-header-tabs button,
+.page-header-tabs a {
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: var(--text-btn);
+  color: inherit;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+.page-header-tabs button.active,
+.page-header-tabs a.active {
+  color: var(--color-accent-text); /* Group A decision 2 (2026-10-23) */
+  border-bottom-color: var(--color-accent);
+  font-weight: 600;
+}
+.page-header-explainer {
+  margin: var(--space-4) 0 0;
+  /* r10 UI-RULES rule 18 — 66% of the content width, not half. Was 60ch. */
+  max-width: var(--desc-measure);
+  /* DEF-312 — `--ink-muted` is declared nowhere, so #666 shipped; it is NOT
+     the design system's muted ink, and this file's own header forbids hex. */
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+}

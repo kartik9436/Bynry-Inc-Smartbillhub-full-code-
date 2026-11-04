@@ -1,0 +1,483 @@
+{
+  "recorded_from": "http://127.0.0.1:8073/api/brazosbend/",
+  "signed_in_as": "dana@brazosbendutilities.com",
+  "regenerate": "10-scripts/cr168_capture_work_shapes.py",
+  "reads": [
+    {
+      "name": "work-orders.list",
+      "path": "work-orders?page=1&per=100",
+      "status": 200,
+      "empty_body": false,
+      "rows": 15
+    },
+    {
+      "name": "work-orders.list.complete",
+      "path": "work-orders?page=1&per=100&status=complete",
+      "status": 200,
+      "empty_body": false,
+      "rows": 27
+    },
+    {
+      "name": "work-orders.awaiting-approval",
+      "path": "work-orders/awaiting-approval?page=1&per=50",
+      "status": 200,
+      "empty_body": false,
+      "rows": 4
+    },
+    {
+      "name": "work-orders.map",
+      "path": "work-orders/map",
+      "status": 200,
+      "empty_body": false,
+      "rows": 15
+    },
+    {
+      "name": "work.hold-reasons",
+      "path": "work/hold-reasons",
+      "status": 200,
+      "empty_body": false,
+      "rows": 5
+    },
+    {
+      "name": "work.raise-options",
+      "path": "work/raise-options",
+      "status": 200,
+      "empty_body": false,
+      "rows": null
+    },
+    {
+      "name": "work.kpis",
+      "path": "work/kpis",
+      "status": 200,
+      "empty_body": false,
+      "rows": null
+    },
+    {
+      "name": "work.areas",
+      "path": "work/areas",
+      "status": 200,
+      "empty_body": false,
+      "rows": 7
+    },
+    {
+      "name": "custom-fields.work-orders",
+      "path": "custom-fields?entity=work_orders&screen=WORK_DETAIL&mode=view",
+      "status": 200,
+      "empty_body": false,
+      "rows": null
+    },
+    {
+      "name": "work-order.open",
+      "path": "work-orders/01a106e4-2ad5-7a9a-8a92-886d9205a50f",
+      "status": 200,
+      "empty_body": false,
+      "rows": null
+    },
+    {
+      "name": "work-order.open.audit",
+      "path": "work-orders/01a106e4-2ad5-7a9a-8a92-886d9205a50f/audit",
+      "status": 200,
+      "empty_body": false,
+      "rows": 1
+    },
+    {
+      "name": "work-order.open.checklist",
+      "path": "work-orders/01a106e4-2ad5-7a9a-8a92-886d9205a50f/checklist",
+      "status": 200,
+      "empty_body": false,
+      "rows": null
+    },
+    {
+      "name": "work-order.open.attachments",
+      "path": "work-orders/01a106e4-2ad5-7a9a-8a92-886d9205a50f/attachments",
+      "status": 200,
+      "empty_body": false,
+      "rows": 0
+    },
+    {
+      "name": "work-order.open.close-readiness",
+      "path": "work-orders/01a106e4-2ad5-7a9a-8a92-886d9205a50f/close-readiness",
+      "status": 200,
+      "empty_body": false,
+      "rows": null
+    },
+    {
+      "name": "work-order.held",
+      "path": "work-orders/01a106a7-5c71-7d2a-81e7-29328acfbe06",
+      "status": 200,
+      "empty_body": false,
+      "rows": null
+    },
+    {
+      "name": "work-order.held.audit",
+      "path": "work-orders/01a106a7-5c71-7d2a-81e7-29328acfbe06/audit",
+      "status": 200,
+      "empty_body": false,
+      "rows": 3
+    },
+    {
+      "name": "work-order.held.checklist",
+      "path": "work-orders/01a106a7-5c71-7d2a-81e7-29328acfbe06/checklist",
+      "status": 200,
+      "empty_body": false,
+      "rows": null
+    },
+    {
+      "name": "work-order.held.attachments",
+      "path": "work-orders/01a106a7-5c71-7d2a-81e7-29328acfbe06/attachments",
+      "status": 200,
+      "empty_body": false,
+      "rows": 0
+    },
+    {
+      "name": "work-order.held.close-readiness",
+      "path": "work-orders/01a106a7-5c71-7d2a-81e7-29328acfbe06/close-readiness",
+      "status": 200,
+      "empty_body": false,
+      "rows": null
+    },
+    {
+      "name": "work-order.completed",
+      "path": "work-orders/01a106e4-2de6-7ed1-a638-a5b43a7ae3b3",
+      "status": 200,
+      "empty_body": false,
+      "rows": null
+    },
+    {
+      "name": "work-order.completed.audit",
+      "path": "work-orders/01a106e4-2de6-7ed1-a638-a5b43a7ae3b3/audit",
+      "status": 200,
+      "empty_body": false,
+      "rows": 2
+    },
+    {
+      "name": "work-order.completed.checklist",
+      "path": "work-orders/01a106e4-2de6-7ed1-a638-a5b43a7ae3b3/checklist",
+      "status": 200,
+      "empty_body": false,
+      "rows": null
+    },
+    {
+      "name": "work-order.completed.attachments",
+      "path": "work-orders/01a106e4-2de6-7ed1-a638-a5b43a7ae3b3/attachments",
+      "status": 200,
+      "empty_body": false,
+      "rows": 3
+    },
+    {
+      "name": "work-order.completed.close-readiness",
+      "path": "work-orders/01a106e4-2de6-7ed1-a638-a5b43a7ae3b3/close-readiness",
+      "status": 200,
+      "empty_body": false,
+      "rows": null
+    },
+    {
+      "name": "work-order.accepted",
+      "path": "work-orders/01a106a9-8fdd-773d-9efe-8f68ec7147b2",
+      "status": 200,
+      "empty_body": false,
+      "rows": null
+    },
+    {
+      "name": "work-order.accepted.audit",
+      "path": "work-orders/01a106a9-8fdd-773d-9efe-8f68ec7147b2/audit",
+      "status": 200,
+      "empty_body": false,
+      "rows": 6
+    },
+    {
+      "name": "work-order.accepted.checklist",
+      "path": "work-orders/01a106a9-8fdd-773d-9efe-8f68ec7147b2/checklist",
+      "status": 200,
+      "empty_body": false,
+      "rows": null
+    },
+    {
+      "name": "work-order.accepted.attachments",
+      "path": "work-orders/01a106a9-8fdd-773d-9efe-8f68ec7147b2/attachments",
+      "status": 200,
+      "empty_body": false,
+      "rows": 0
+    },
+    {
+      "name": "work-order.accepted.close-readiness",
+      "path": "work-orders/01a106a9-8fdd-773d-9efe-8f68ec7147b2/close-readiness",
+      "status": 200,
+      "empty_body": false,
+      "rows": null
+    },
+    {
+      "name": "work-order.completed.signature",
+      "path": "work-orders/01a106e4-2de6-7ed1-a638-a5b43a7ae3b3/signature",
+      "status": 200,
+      "empty_body": false,
+      "rows": null
+    },
+    {
+      "name": "work-order.accepted.signature",
+      "path": "work-orders/01a106a9-8fdd-773d-9efe-8f68ec7147b2/signature",
+      "status": 200,
+      "empty_body": true,
+      "rows": null
+    },
+    {
+      "name": "work-order.open.edit",
+      "path": "work-orders/01a106e4-2ad5-7a9a-8a92-886d9205a50f/edit",
+      "status": 200,
+      "empty_body": false,
+      "rows": null
+    },
+    {
+      "name": "work-order.open.candidates",
+      "path": "work-orders/01a106e4-2ad5-7a9a-8a92-886d9205a50f/candidates?page=1&per=50",
+      "status": 200,
+      "empty_body": false,
+      "rows": 7
+    },
+    {
+      "name": "work.crew-directory",
+      "path": "work/crew-directory",
+      "status": 200,
+      "empty_body": false,
+      "rows": 7
+    },
+    {
+      "name": "work.certification-watch",
+      "path": "work/certification-watch",
+      "status": 200,
+      "empty_body": false,
+      "rows": null
+    },
+    {
+      "name": "work.parts",
+      "path": "work/parts?page=1&per=50",
+      "status": 200,
+      "empty_body": false,
+      "rows": 10
+    },
+    {
+      "name": "work.parts.issues",
+      "path": "work/parts/issues?page=1&per=50",
+      "status": 200,
+      "empty_body": false,
+      "rows": 0
+    },
+    {
+      "name": "work.templates",
+      "path": "work/templates?page=1&per=50",
+      "status": 200,
+      "empty_body": false,
+      "rows": 6
+    },
+    {
+      "name": "work.template-packs",
+      "path": "work/template-packs",
+      "status": 200,
+      "empty_body": false,
+      "rows": null
+    },
+    {
+      "name": "work.template",
+      "path": "work/templates/01a106a7-49f9-7bea-a27b-d2f2a523b295",
+      "status": 200,
+      "empty_body": false,
+      "rows": null
+    },
+    {
+      "name": "work.template.versions",
+      "path": "work/templates/01a106a7-49f9-7bea-a27b-d2f2a523b295/versions",
+      "status": 200,
+      "empty_body": false,
+      "rows": null
+    },
+    {
+      "name": "work.template.usage",
+      "path": "work/templates/01a106a7-49f9-7bea-a27b-d2f2a523b295/usage",
+      "status": 200,
+      "empty_body": false,
+      "rows": null
+    },
+    {
+      "name": "work.template.audit",
+      "path": "work/templates/01a106a7-49f9-7bea-a27b-d2f2a523b295/audit?page=1&per=50",
+      "status": 200,
+      "empty_body": false,
+      "rows": 13
+    },
+    {
+      "name": "work.labour-rates",
+      "path": "work/labour-rates?page=1&per=50",
+      "status": 200,
+      "empty_body": false,
+      "rows": 4
+    },
+    {
+      "name": "work.lookups.work_skills",
+      "path": "lookups/work_skills?page=1&per=200",
+      "status": 200,
+      "empty_body": false,
+      "rows": 8
+    },
+    {
+      "name": "work.lookups.certification_types",
+      "path": "lookups/certification_types?page=1&per=200",
+      "status": 200,
+      "empty_body": false,
+      "rows": 6
+    },
+    {
+      "name": "work.performance",
+      "path": "work/performance",
+      "status": 200,
+      "empty_body": false,
+      "rows": 7
+    },
+    {
+      "name": "work.performance.paged",
+      "path": "work/performance?page=1&per=50",
+      "status": 200,
+      "empty_body": false,
+      "rows": 7
+    },
+    {
+      "name": "work.rules",
+      "path": "work/rules?page=1&per=50",
+      "status": 200,
+      "empty_body": false,
+      "rows": 7
+    },
+    {
+      "name": "work.rule",
+      "path": "work/rules/01a108cd-5349-7855-ae7a-eb2d4ffb7485",
+      "status": 200,
+      "empty_body": false,
+      "rows": null
+    },
+    {
+      "name": "work.rule.jobs",
+      "path": "work/rules/01a108cd-5349-7855-ae7a-eb2d4ffb7485/jobs?page=1&per=50",
+      "status": 200,
+      "empty_body": false,
+      "rows": 4
+    },
+    {
+      "name": "work.rule.audit",
+      "path": "work/rules/01a108cd-5349-7855-ae7a-eb2d4ffb7485/audit?page=1&per=50",
+      "status": 200,
+      "empty_body": false,
+      "rows": 1
+    },
+    {
+      "name": "work.at-risk",
+      "path": "work/at-risk?page=1&per=50",
+      "status": 200,
+      "empty_body": false,
+      "rows": 20
+    },
+    {
+      "name": "work.settings.sla",
+      "path": "work/settings/sla",
+      "status": 200,
+      "empty_body": false,
+      "rows": null
+    },
+    {
+      "name": "work.crews.technicians",
+      "path": "work/crews?view=technicians&page=1&per=50",
+      "status": 200,
+      "empty_body": false,
+      "rows": 4
+    },
+    {
+      "name": "work.crews.crews",
+      "path": "work/crews?view=crews&page=1&per=50",
+      "status": 200,
+      "empty_body": false,
+      "rows": 2
+    },
+    {
+      "name": "work.crews.contractors",
+      "path": "work/crews?view=contractors&page=1&per=50",
+      "status": 200,
+      "empty_body": false,
+      "rows": 1
+    },
+    {
+      "name": "work.technician",
+      "path": "work/technicians/d-ortiz",
+      "status": 200,
+      "empty_body": false,
+      "rows": null
+    },
+    {
+      "name": "work.technician.jobs",
+      "path": "work/technicians/d-ortiz/jobs?page=1&per=50",
+      "status": 200,
+      "empty_body": false,
+      "rows": 2
+    },
+    {
+      "name": "work.technician.performance",
+      "path": "work/technicians/d-ortiz/performance",
+      "status": 200,
+      "empty_body": false,
+      "rows": 1
+    },
+    {
+      "name": "work.technician.jobs.open",
+      "path": "work/technicians/d-ortiz/jobs?f.state=open&page=1&per=50",
+      "status": 200,
+      "empty_body": false,
+      "rows": 1
+    },
+    {
+      "name": "work.technician.jobs.done",
+      "path": "work/technicians/d-ortiz/jobs?f.state=done&page=1&per=50",
+      "status": 200,
+      "empty_body": false,
+      "rows": 1
+    },
+    {
+      "name": "work.technician.performance.month",
+      "path": "work/technicians/d-ortiz/performance?period=2026-10&page=1&per=50",
+      "status": 200,
+      "empty_body": false,
+      "rows": 1
+    },
+    {
+      "name": "work.technicians",
+      "path": "work/technicians",
+      "status": 200,
+      "empty_body": false,
+      "rows": 7
+    },
+    {
+      "name": "work.rules.processes",
+      "path": "work/rules/processes",
+      "status": 200,
+      "empty_body": false,
+      "rows": 12
+    },
+    {
+      "name": "work.rules.lookup.notification-rules",
+      "path": "notification-rules",
+      "status": 200,
+      "empty_body": false,
+      "rows": 40
+    },
+    {
+      "name": "work.rules.lookup.services",
+      "path": "settings/services",
+      "status": 200,
+      "empty_body": false,
+      "rows": 11
+    },
+    {
+      "name": "work.rules.lookup.roles",
+      "path": "roles",
+      "status": 200,
+      "empty_body": false,
+      "rows": null
+    }
+  ]
+}

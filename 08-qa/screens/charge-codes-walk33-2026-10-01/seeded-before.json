@@ -1,0 +1,1918 @@
+{
+ "BASE-BAT": {
+  "id": "01a0f872-42ed-7fd0-8390-bf6c4491677f",
+  "kind": "base",
+  "service": "battery",
+  "charge_type": "recurring",
+  "amount_rule": "flat",
+  "is_base": true,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f872-42ee-7db9-8214-e537ae609ecb",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "5.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "5.0000",
+     "refusal": null,
+     "row_id": "01a0f872-42ee-7db9-8214-e537ae609ecb"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "5.0000",
+     "refusal": null,
+     "row_id": "01a0f872-42ee-7db9-8214-e537ae609ecb"
+    }
+   ]
+  },
+  "audit_log_rows": 1,
+  "rate_change_log_rows": 0
+ },
+ "BASE-BB": {
+  "id": "01a0f872-42cd-79dc-89d9-6b9de206c462",
+  "kind": "base",
+  "service": "broadband",
+  "charge_type": "recurring",
+  "amount_rule": "flat",
+  "is_base": true,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f872-42cf-77c8-9cd8-4f24c8320eb7",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "30.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "30.0000",
+     "refusal": null,
+     "row_id": "01a0f872-42cf-77c8-9cd8-4f24c8320eb7"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "30.0000",
+     "refusal": null,
+     "row_id": "01a0f872-42cf-77c8-9cd8-4f24c8320eb7"
+    }
+   ]
+  },
+  "audit_log_rows": 1,
+  "rate_change_log_rows": 0
+ },
+ "BASE-E": {
+  "id": "01a0f871-1aad-7cbc-960c-0f1b76d98571",
+  "kind": "base",
+  "service": "electric",
+  "charge_type": "recurring",
+  "amount_rule": "flat",
+  "is_base": true,
+  "applies_to_customer_classes": [
+   "residential"
+  ],
+  "rows": [
+   {
+    "id": "01a0f871-1aaf-7fba-aae6-bdf3d31a5b22",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "12.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "12.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1aaf-7fba-aae6-bdf3d31a5b22"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "12.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1aaf-7fba-aae6-bdf3d31a5b22"
+    }
+   ]
+  },
+  "audit_log_rows": 1,
+  "rate_change_log_rows": 0
+ },
+ "BASE-E-COM": {
+  "id": "01a0f872-4261-7c8a-95e0-a235c25a84e2",
+  "kind": "base",
+  "service": "electric",
+  "charge_type": "recurring",
+  "amount_rule": "flat",
+  "is_base": true,
+  "applies_to_customer_classes": [
+   "commercial"
+  ],
+  "rows": [
+   {
+    "id": "01a0f872-4262-7d16-9331-e91f74c75228",
+    "size_class": "E-1P-100",
+    "customer_class": null,
+    "amount": "48.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   },
+   {
+    "id": "01a0f872-4263-77e6-8678-69d08e3a5d1b",
+    "size_class": "E-1P-200",
+    "customer_class": null,
+    "amount": "72.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   },
+   {
+    "id": "01a0f872-4264-7428-baf5-1e21629113ce",
+    "size_class": "E-1P-400",
+    "customer_class": null,
+    "amount": "120.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   },
+   {
+    "id": "01a0f872-4264-7ac6-89ba-ebe49d52bada",
+    "size_class": "E-3P-200",
+    "customer_class": null,
+    "amount": "96.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   },
+   {
+    "id": "01a0f872-4265-730c-abba-c91f9f481ffd",
+    "size_class": "E-3P-400",
+    "customer_class": null,
+    "amount": "168.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   },
+   {
+    "id": "01a0f872-4265-7b09-a7d2-7d1694804e0d",
+    "size_class": "E-CT",
+    "customer_class": null,
+    "amount": "456.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "E-1P-100",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "48.0000",
+     "refusal": null,
+     "row_id": "01a0f872-4262-7d16-9331-e91f74c75228"
+    },
+    {
+     "size_class": "E-1P-200",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "72.0000",
+     "refusal": null,
+     "row_id": "01a0f872-4263-77e6-8678-69d08e3a5d1b"
+    },
+    {
+     "size_class": "E-1P-400",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "120.0000",
+     "refusal": null,
+     "row_id": "01a0f872-4264-7428-baf5-1e21629113ce"
+    },
+    {
+     "size_class": "E-3P-200",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "96.0000",
+     "refusal": null,
+     "row_id": "01a0f872-4264-7ac6-89ba-ebe49d52bada"
+    },
+    {
+     "size_class": "E-3P-400",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "168.0000",
+     "refusal": null,
+     "row_id": "01a0f872-4265-730c-abba-c91f9f481ffd"
+    },
+    {
+     "size_class": "E-CT",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "456.0000",
+     "refusal": null,
+     "row_id": "01a0f872-4265-7b09-a7d2-7d1694804e0d"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "E-1P-100",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "48.0000",
+     "refusal": null,
+     "row_id": "01a0f872-4262-7d16-9331-e91f74c75228"
+    },
+    {
+     "size_class": "E-1P-200",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "72.0000",
+     "refusal": null,
+     "row_id": "01a0f872-4263-77e6-8678-69d08e3a5d1b"
+    },
+    {
+     "size_class": "E-1P-400",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "120.0000",
+     "refusal": null,
+     "row_id": "01a0f872-4264-7428-baf5-1e21629113ce"
+    },
+    {
+     "size_class": "E-3P-200",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "96.0000",
+     "refusal": null,
+     "row_id": "01a0f872-4264-7ac6-89ba-ebe49d52bada"
+    },
+    {
+     "size_class": "E-3P-400",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "168.0000",
+     "refusal": null,
+     "row_id": "01a0f872-4265-730c-abba-c91f9f481ffd"
+    },
+    {
+     "size_class": "E-CT",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "456.0000",
+     "refusal": null,
+     "row_id": "01a0f872-4265-7b09-a7d2-7d1694804e0d"
+    }
+   ]
+  },
+  "audit_log_rows": 1,
+  "rate_change_log_rows": 0
+ },
+ "BASE-E-IND": {
+  "id": "01a0f871-1ad1-797a-b863-80f8b34c3ecb",
+  "kind": "base",
+  "service": "electric",
+  "charge_type": "recurring",
+  "amount_rule": "flat",
+  "is_base": true,
+  "applies_to_customer_classes": [
+   "industrial"
+  ],
+  "rows": [
+   {
+    "id": "01a0f871-1ad3-7df4-9416-5db02219e908",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "180.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "180.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1ad3-7df4-9416-5db02219e908"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "180.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1ad3-7df4-9416-5db02219e908"
+    }
+   ]
+  },
+  "audit_log_rows": 1,
+  "rate_change_log_rows": 0
+ },
+ "BASE-FIRE": {
+  "id": "01a0f872-432e-7fe3-9c55-d090c6f13152",
+  "kind": "base",
+  "service": "fire",
+  "charge_type": "recurring",
+  "amount_rule": "flat",
+  "is_base": true,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f872-4330-7297-b012-fc25e8575adc",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "0.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "0.0000",
+     "refusal": null,
+     "row_id": "01a0f872-4330-7297-b012-fc25e8575adc"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "0.0000",
+     "refusal": null,
+     "row_id": "01a0f872-4330-7297-b012-fc25e8575adc"
+    }
+   ]
+  },
+  "audit_log_rows": 1,
+  "rate_change_log_rows": 0
+ },
+ "BASE-G": {
+  "id": "01a0f872-4288-7e0a-9e7f-bfc8904fcf21",
+  "kind": "base",
+  "service": "gas",
+  "charge_type": "recurring",
+  "amount_rule": "flat",
+  "is_base": true,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f872-428a-7a07-8c72-9ef49bf38ab2",
+    "size_class": "G-1000",
+    "customer_class": null,
+    "amount": "15.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   },
+   {
+    "id": "01a0f872-428a-76e6-a9f3-8ff34cea515c",
+    "size_class": "G-250",
+    "customer_class": null,
+    "amount": "6.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   },
+   {
+    "id": "01a0f872-428b-7a05-8de6-9b432c7ad295",
+    "size_class": "G-425",
+    "customer_class": null,
+    "amount": "8.1000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   },
+   {
+    "id": "01a0f872-428b-7ccf-b48e-96e575df5665",
+    "size_class": "G-630",
+    "customer_class": null,
+    "amount": "10.5600",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "G-1000",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "15.0000",
+     "refusal": null,
+     "row_id": "01a0f872-428a-7a07-8c72-9ef49bf38ab2"
+    },
+    {
+     "size_class": "G-250",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "6.0000",
+     "refusal": null,
+     "row_id": "01a0f872-428a-76e6-a9f3-8ff34cea515c"
+    },
+    {
+     "size_class": "G-425",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "8.1000",
+     "refusal": null,
+     "row_id": "01a0f872-428b-7a05-8de6-9b432c7ad295"
+    },
+    {
+     "size_class": "G-630",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "10.5600",
+     "refusal": null,
+     "row_id": "01a0f872-428b-7ccf-b48e-96e575df5665"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "G-1000",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "15.0000",
+     "refusal": null,
+     "row_id": "01a0f872-428a-7a07-8c72-9ef49bf38ab2"
+    },
+    {
+     "size_class": "G-250",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "6.0000",
+     "refusal": null,
+     "row_id": "01a0f872-428a-76e6-a9f3-8ff34cea515c"
+    },
+    {
+     "size_class": "G-425",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "8.1000",
+     "refusal": null,
+     "row_id": "01a0f872-428b-7a05-8de6-9b432c7ad295"
+    },
+    {
+     "size_class": "G-630",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "10.5600",
+     "refusal": null,
+     "row_id": "01a0f872-428b-7ccf-b48e-96e575df5665"
+    }
+   ]
+  },
+  "audit_log_rows": 1,
+  "rate_change_log_rows": 0
+ },
+ "BASE-S": {
+  "id": "01a0f872-4219-7099-ae55-06008391ee00",
+  "kind": "base",
+  "service": "sewer",
+  "charge_type": "recurring",
+  "amount_rule": "flat",
+  "is_base": true,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f872-421b-7d56-83fa-33a45317a523",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "9.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "9.0000",
+     "refusal": null,
+     "row_id": "01a0f872-421b-7d56-83fa-33a45317a523"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "9.0000",
+     "refusal": null,
+     "row_id": "01a0f872-421b-7d56-83fa-33a45317a523"
+    }
+   ]
+  },
+  "audit_log_rows": 1,
+  "rate_change_log_rows": 0
+ },
+ "BASE-SOL": {
+  "id": "01a0f872-42ac-7f13-ada1-272aa7706820",
+  "kind": "base",
+  "service": "solar",
+  "charge_type": "recurring",
+  "amount_rule": "flat",
+  "is_base": true,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f872-42ae-7622-8955-ab0cb471935b",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "0.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "0.0000",
+     "refusal": null,
+     "row_id": "01a0f872-42ae-7622-8955-ab0cb471935b"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "0.0000",
+     "refusal": null,
+     "row_id": "01a0f872-42ae-7622-8955-ab0cb471935b"
+    }
+   ]
+  },
+  "audit_log_rows": 1,
+  "rate_change_log_rows": 0
+ },
+ "BASE-SW": {
+  "id": "01a0f872-430d-7315-9842-78823a78438f",
+  "kind": "base",
+  "service": "storm_water",
+  "charge_type": "recurring",
+  "amount_rule": "flat",
+  "is_base": true,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f872-430f-7260-928f-750af8bbb0bd",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "2.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "2.0000",
+     "refusal": null,
+     "row_id": "01a0f872-430f-7260-928f-750af8bbb0bd"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "2.0000",
+     "refusal": null,
+     "row_id": "01a0f872-430f-7260-928f-750af8bbb0bd"
+    }
+   ]
+  },
+  "audit_log_rows": 1,
+  "rate_change_log_rows": 0
+ },
+ "BASE-T": {
+  "id": "01a0f872-423b-7c0b-a18b-b70b7ece23d4",
+  "kind": "base",
+  "service": "trash",
+  "charge_type": "recurring",
+  "amount_rule": "flat",
+  "is_base": true,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f872-423d-7b75-b09f-a11a26a4379e",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "0.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "0.0000",
+     "refusal": null,
+     "row_id": "01a0f872-423d-7b75-b09f-a11a26a4379e"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "0.0000",
+     "refusal": null,
+     "row_id": "01a0f872-423d-7b75-b09f-a11a26a4379e"
+    }
+   ]
+  },
+  "audit_log_rows": 1,
+  "rate_change_log_rows": 0
+ },
+ "BASE-TH": {
+  "id": "01a0f872-434e-7361-96b4-c3113563469f",
+  "kind": "base",
+  "service": "thermal_heat",
+  "charge_type": "recurring",
+  "amount_rule": "flat",
+  "is_base": true,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f872-4350-72be-baf9-2d8d32b678f1",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "20.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "20.0000",
+     "refusal": null,
+     "row_id": "01a0f872-4350-72be-baf9-2d8d32b678f1"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "20.0000",
+     "refusal": null,
+     "row_id": "01a0f872-4350-72be-baf9-2d8d32b678f1"
+    }
+   ]
+  },
+  "audit_log_rows": 1,
+  "rate_change_log_rows": 0
+ },
+ "BASE-W": {
+  "id": "01a0f871-1a61-7a7b-a64d-adeed0074280",
+  "kind": "base",
+  "service": "water",
+  "charge_type": "recurring",
+  "amount_rule": "flat",
+  "is_base": true,
+  "applies_to_customer_classes": [
+   "residential"
+  ],
+  "rows": [
+   {
+    "id": "01a0f871-1a63-78d3-a4ca-095f2715e94d",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "8.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "8.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1a63-78d3-a4ca-095f2715e94d"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "8.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1a63-78d3-a4ca-095f2715e94d"
+    }
+   ]
+  },
+  "audit_log_rows": 1,
+  "rate_change_log_rows": 0
+ },
+ "BASE-W-COM": {
+  "id": "01a0f871-1a83-7330-924a-b3dd1606c7da",
+  "kind": "base",
+  "service": "water",
+  "charge_type": "recurring",
+  "amount_rule": "flat",
+  "is_base": true,
+  "applies_to_customer_classes": [
+   "commercial"
+  ],
+  "rows": [
+   {
+    "id": "01a0f871-1a84-7deb-a87f-9d393992a0d9",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "15.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "15.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1a84-7deb-a87f-9d393992a0d9"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "15.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1a84-7deb-a87f-9d393992a0d9"
+    }
+   ]
+  },
+  "audit_log_rows": 1,
+  "rate_change_log_rows": 0
+ },
+ "AFTER-HRS": {
+  "id": "01a0f871-1064-7047-ae38-bd8f625d9350",
+  "kind": "other",
+  "service": null,
+  "charge_type": "one_time",
+  "amount_rule": "flat",
+  "is_base": false,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f871-1068-7cc6-afc4-05a224819013",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "75.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "75.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1068-7cc6-afc4-05a224819013"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "75.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1068-7cc6-afc4-05a224819013"
+    }
+   ]
+  },
+  "audit_log_rows": 0,
+  "rate_change_log_rows": 0
+ },
+ "BULK-WATER": {
+  "id": "01a0f871-10a6-772e-a02a-379f36ab6a2b",
+  "kind": "other",
+  "service": null,
+  "charge_type": "one_time",
+  "amount_rule": "per_case",
+  "is_base": false,
+  "applies_to_customer_classes": [],
+  "rows": [],
+  "lookups": {
+   "2026-10-15": [],
+   "2026-11-15": []
+  },
+  "audit_log_rows": 0,
+  "rate_change_log_rows": 0
+ },
+ "CC-EXPEDITE": {
+  "id": "01a0f872-5531-777d-b05a-b20e9b9819d6",
+  "kind": "other",
+  "service": null,
+  "charge_type": "one_time",
+  "amount_rule": "flat",
+  "is_base": false,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f872-5533-7882-b6ac-66b07afa7dcf",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "45.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "45.0000",
+     "refusal": null,
+     "row_id": "01a0f872-5533-7882-b6ac-66b07afa7dcf"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "45.0000",
+     "refusal": null,
+     "row_id": "01a0f872-5533-7882-b6ac-66b07afa7dcf"
+    }
+   ]
+  },
+  "audit_log_rows": 1,
+  "rate_change_log_rows": 0
+ },
+ "CC-METERTEST": {
+  "id": "01a0f872-5551-7145-b72e-90da0ef3dc23",
+  "kind": "other",
+  "service": null,
+  "charge_type": "one_time",
+  "amount_rule": "flat",
+  "is_base": false,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f872-5553-7493-b973-1b29f48c15f4",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "60.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "60.0000",
+     "refusal": null,
+     "row_id": "01a0f872-5553-7493-b973-1b29f48c15f4"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "60.0000",
+     "refusal": null,
+     "row_id": "01a0f872-5553-7493-b973-1b29f48c15f4"
+    }
+   ]
+  },
+  "audit_log_rows": 1,
+  "rate_change_log_rows": 0
+ },
+ "CC-REQFEE": {
+  "id": "01a0f872-5341-79d6-bf8e-cd35d78f5118",
+  "kind": "other",
+  "service": null,
+  "charge_type": "one_time",
+  "amount_rule": "flat",
+  "is_base": false,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f872-5343-7a5c-acfd-ee05209d8964",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "25.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "25.0000",
+     "refusal": null,
+     "row_id": "01a0f872-5343-7a5c-acfd-ee05209d8964"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "25.0000",
+     "refusal": null,
+     "row_id": "01a0f872-5343-7a5c-acfd-ee05209d8964"
+    }
+   ]
+  },
+  "audit_log_rows": 1,
+  "rate_change_log_rows": 0
+ },
+ "DAMAGE": {
+  "id": "01a0f871-106f-784e-a768-fb00a9f6a786",
+  "kind": "other",
+  "service": null,
+  "charge_type": "one_time",
+  "amount_rule": "per_case",
+  "is_base": false,
+  "applies_to_customer_classes": [],
+  "rows": [],
+  "lookups": {
+   "2026-10-15": [],
+   "2026-11-15": []
+  },
+  "audit_log_rows": 0,
+  "rate_change_log_rows": 0
+ },
+ "IMPACT": {
+  "id": "01a0f871-1078-713d-8828-1757b41d63e6",
+  "kind": "other",
+  "service": null,
+  "charge_type": "one_time",
+  "amount_rule": "per_case",
+  "is_base": false,
+  "applies_to_customer_classes": [],
+  "rows": [],
+  "lookups": {
+   "2026-10-15": [],
+   "2026-11-15": []
+  },
+  "audit_log_rows": 0,
+  "rate_change_log_rows": 0
+ },
+ "INSPECT": {
+  "id": "01a0f871-10a0-7be1-a079-00b4078f07a6",
+  "kind": "other",
+  "service": null,
+  "charge_type": "one_time",
+  "amount_rule": "flat",
+  "is_base": false,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f871-10a4-73db-961e-e02421cd09f6",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "30.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "30.0000",
+     "refusal": null,
+     "row_id": "01a0f871-10a4-73db-961e-e02421cd09f6"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "30.0000",
+     "refusal": null,
+     "row_id": "01a0f871-10a4-73db-961e-e02421cd09f6"
+    }
+   ]
+  },
+  "audit_log_rows": 0,
+  "rate_change_log_rows": 0
+ },
+ "METER-TEST": {
+  "id": "01a0f871-105f-7b99-be90-8566215f109b",
+  "kind": "other",
+  "service": null,
+  "charge_type": "one_time",
+  "amount_rule": "flat",
+  "is_base": false,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f871-1062-7728-923f-72a7b5c75778",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "25.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "25.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1062-7728-923f-72a7b5c75778"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "25.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1062-7728-923f-72a7b5c75778"
+    }
+   ]
+  },
+  "audit_log_rows": 0,
+  "rate_change_log_rows": 0
+ },
+ "RE-READ": {
+  "id": "01a0f871-1071-76f1-99cf-8fe3be726d7c",
+  "kind": "other",
+  "service": null,
+  "charge_type": "one_time",
+  "amount_rule": "flat",
+  "is_base": false,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f871-1074-7293-83a8-0ca738767762",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "20.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "20.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1074-7293-83a8-0ca738767762"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "20.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1074-7293-83a8-0ca738767762"
+    }
+   ]
+  },
+  "audit_log_rows": 0,
+  "rate_change_log_rows": 0
+ },
+ "RETURN-TRIP": {
+  "id": "01a0f871-106a-76f2-8cae-ba5e5463359f",
+  "kind": "other",
+  "service": null,
+  "charge_type": "one_time",
+  "amount_rule": "flat",
+  "is_base": false,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f871-106d-729f-8ddd-1323c51294b8",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "30.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "30.0000",
+     "refusal": null,
+     "row_id": "01a0f871-106d-729f-8ddd-1323c51294b8"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "30.0000",
+     "refusal": null,
+     "row_id": "01a0f871-106d-729f-8ddd-1323c51294b8"
+    }
+   ]
+  },
+  "audit_log_rows": 0,
+  "rate_change_log_rows": 0
+ },
+ "SAME-DAY": {
+  "id": "01a0f871-108b-753f-a561-0f1c7bc6c095",
+  "kind": "other",
+  "service": null,
+  "charge_type": "one_time",
+  "amount_rule": "flat",
+  "is_base": false,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f871-108e-7bb4-a185-727433fd11e0",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "50.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "50.0000",
+     "refusal": null,
+     "row_id": "01a0f871-108e-7bb4-a185-727433fd11e0"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "50.0000",
+     "refusal": null,
+     "row_id": "01a0f871-108e-7bb4-a185-727433fd11e0"
+    }
+   ]
+  },
+  "audit_log_rows": 0,
+  "rate_change_log_rows": 0
+ },
+ "SEASONAL": {
+  "id": "01a0f871-1085-74cc-89a9-45965005ae27",
+  "kind": "other",
+  "service": null,
+  "charge_type": "one_time",
+  "amount_rule": "flat",
+  "is_base": false,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f871-1089-7972-85b1-c11f62e5cb15",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "25.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "25.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1089-7972-85b1-c11f62e5cb15"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "25.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1089-7972-85b1-c11f62e5cb15"
+    }
+   ]
+  },
+  "audit_log_rows": 0,
+  "rate_change_log_rows": 0
+ },
+ "TAP": {
+  "id": "01a0f871-1076-7ef2-931d-1fbf2c2abd30",
+  "kind": "other",
+  "service": null,
+  "charge_type": "one_time",
+  "amount_rule": "per_case",
+  "is_base": false,
+  "applies_to_customer_classes": [],
+  "rows": [],
+  "lookups": {
+   "2026-10-15": [],
+   "2026-11-15": []
+  },
+  "audit_log_rows": 0,
+  "rate_change_log_rows": 0
+ },
+ "TEMP-SVC": {
+  "id": "01a0f871-1080-79ee-930e-6a7d82590686",
+  "kind": "other",
+  "service": null,
+  "charge_type": "one_time",
+  "amount_rule": "flat",
+  "is_base": false,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f871-1083-7b61-978e-0406ca8c83cc",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "40.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "40.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1083-7b61-978e-0406ca8c83cc"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "40.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1083-7b61-978e-0406ca8c83cc"
+    }
+   ]
+  },
+  "audit_log_rows": 0,
+  "rate_change_log_rows": 0
+ },
+ "CC-CONV": {
+  "id": "01a0f871-1096-7276-afda-a952433c55ba",
+  "kind": "plan",
+  "service": null,
+  "charge_type": "one_time",
+  "amount_rule": "flat",
+  "is_base": false,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f871-1099-721d-b428-36cebac65be1",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "2.9500",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "2.9500",
+     "refusal": null,
+     "row_id": "01a0f871-1099-721d-b428-36cebac65be1"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "2.9500",
+     "refusal": null,
+     "row_id": "01a0f871-1099-721d-b428-36cebac65be1"
+    }
+   ]
+  },
+  "audit_log_rows": 0,
+  "rate_change_log_rows": 0
+ },
+ "CONN": {
+  "id": "01a0f871-103c-7412-83bd-a035bd4c7e44",
+  "kind": "plan",
+  "service": null,
+  "charge_type": "one_time",
+  "amount_rule": "flat",
+  "is_base": false,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f871-1041-7ce8-9c94-86040b0525b5",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "45.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "45.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1041-7ce8-9c94-86040b0525b5"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "45.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1041-7ce8-9c94-86040b0525b5"
+    }
+   ]
+  },
+  "audit_log_rows": 0,
+  "rate_change_log_rows": 0
+ },
+ "DISC": {
+  "id": "01a0f871-1043-7e82-904b-44a938f56bc9",
+  "kind": "plan",
+  "service": null,
+  "charge_type": "one_time",
+  "amount_rule": "flat",
+  "is_base": false,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f871-1046-7df3-90b1-f027ef546a54",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "45.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "45.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1046-7df3-90b1-f027ef546a54"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "45.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1046-7df3-90b1-f027ef546a54"
+    }
+   ]
+  },
+  "audit_log_rows": 0,
+  "rate_change_log_rows": 0
+ },
+ "HYDRANT": {
+  "id": "01a0f871-107a-7733-be7f-667e518c4af0",
+  "kind": "plan",
+  "service": null,
+  "charge_type": "recurring",
+  "amount_rule": "flat",
+  "is_base": false,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f871-107e-7488-baaa-637ac6659590",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "50.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "50.0000",
+     "refusal": null,
+     "row_id": "01a0f871-107e-7488-baaa-637ac6659590"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "50.0000",
+     "refusal": null,
+     "row_id": "01a0f871-107e-7488-baaa-637ac6659590"
+    }
+   ]
+  },
+  "audit_log_rows": 0,
+  "rate_change_log_rows": 0
+ },
+ "LATE": {
+  "id": "01a0f871-1039-7bba-a4eb-f1206df0e4fd",
+  "kind": "plan",
+  "service": null,
+  "charge_type": "penalty",
+  "amount_rule": "percent_with_minimum",
+  "is_base": false,
+  "applies_to_customer_classes": [],
+  "rows": [],
+  "lookups": {
+   "2026-10-15": [],
+   "2026-11-15": []
+  },
+  "audit_log_rows": 1,
+  "rate_change_log_rows": 0
+ },
+ "MOVE-OUT": {
+  "id": "01a0f871-1090-7379-9dc9-b97e8fadcc34",
+  "kind": "plan",
+  "service": null,
+  "charge_type": "one_time",
+  "amount_rule": "flat",
+  "is_base": false,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f871-1094-7c5c-9819-b7d5bc5db878",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "20.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "20.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1094-7c5c-9819-b7d5bc5db878"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "20.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1094-7c5c-9819-b7d5bc5db878"
+    }
+   ]
+  },
+  "audit_log_rows": 0,
+  "rate_change_log_rows": 0
+ },
+ "NSF": {
+  "id": "01a0f871-1049-7095-beb4-fbcfb1e39dce",
+  "kind": "plan",
+  "service": null,
+  "charge_type": "penalty",
+  "amount_rule": "flat",
+  "is_base": false,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f871-104c-7138-a19b-7918ca2c1b5f",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "30.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "30.0000",
+     "refusal": null,
+     "row_id": "01a0f871-104c-7138-a19b-7918ca2c1b5f"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "30.0000",
+     "refusal": null,
+     "row_id": "01a0f871-104c-7138-a19b-7918ca2c1b5f"
+    }
+   ]
+  },
+  "audit_log_rows": 0,
+  "rate_change_log_rows": 0
+ },
+ "PAPER": {
+  "id": "01a0f871-109b-7985-884e-2225f28405dd",
+  "kind": "plan",
+  "service": null,
+  "charge_type": "recurring",
+  "amount_rule": "flat",
+  "is_base": false,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f871-109e-7a56-b1cf-16c2c6a3fdb7",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "2.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "2.0000",
+     "refusal": null,
+     "row_id": "01a0f871-109e-7a56-b1cf-16c2c6a3fdb7"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "2.0000",
+     "refusal": null,
+     "row_id": "01a0f871-109e-7a56-b1cf-16c2c6a3fdb7"
+    }
+   ]
+  },
+  "audit_log_rows": 0,
+  "rate_change_log_rows": 0
+ },
+ "RECON": {
+  "id": "01a0f871-1054-7ead-a2cf-e8850821574d",
+  "kind": "plan",
+  "service": null,
+  "charge_type": "one_time",
+  "amount_rule": "flat",
+  "is_base": false,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f871-1057-798a-986d-e2779bb5144d",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "75.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "75.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1057-798a-986d-e2779bb5144d"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "75.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1057-798a-986d-e2779bb5144d"
+    }
+   ]
+  },
+  "audit_log_rows": 0,
+  "rate_change_log_rows": 0
+ },
+ "TAMPER": {
+  "id": "01a0f871-104e-735b-8c2a-19c19012572f",
+  "kind": "plan",
+  "service": null,
+  "charge_type": "penalty",
+  "amount_rule": "flat",
+  "is_base": false,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f871-1052-7b27-91b5-261c292720d1",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "250.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "250.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1052-7b27-91b5-261c292720d1"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "250.0000",
+     "refusal": null,
+     "row_id": "01a0f871-1052-7b27-91b5-261c292720d1"
+    }
+   ]
+  },
+  "audit_log_rows": 0,
+  "rate_change_log_rows": 0
+ },
+ "TRANSFER": {
+  "id": "01a0f871-105a-7f82-8658-f5060fa1dba5",
+  "kind": "plan",
+  "service": null,
+  "charge_type": "one_time",
+  "amount_rule": "flat",
+  "is_base": false,
+  "applies_to_customer_classes": [],
+  "rows": [
+   {
+    "id": "01a0f871-105d-7473-9ec9-4d1f3e72c25f",
+    "size_class": "All sizes",
+    "customer_class": null,
+    "amount": "15.0000",
+    "percent": null,
+    "min_amount": null,
+    "effective_from": "2000-01-01",
+    "effective_to": null,
+    "killed": false
+   }
+  ],
+  "lookups": {
+   "2026-10-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "15.0000",
+     "refusal": null,
+     "row_id": "01a0f871-105d-7473-9ec9-4d1f3e72c25f"
+    }
+   ],
+   "2026-11-15": [
+    {
+     "size_class": "All sizes",
+     "customer_class": null,
+     "rows_in_force": 1,
+     "amount": "15.0000",
+     "refusal": null,
+     "row_id": "01a0f871-105d-7473-9ec9-4d1f3e72c25f"
+    }
+   ]
+  },
+  "audit_log_rows": 0,
+  "rate_change_log_rows": 0
+ }
+}

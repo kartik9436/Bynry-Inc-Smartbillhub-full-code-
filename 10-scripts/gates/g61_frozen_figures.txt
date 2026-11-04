@@ -1,0 +1,48 @@
+# G61 — the ❄️ FROZEN B4/B5 money figures, pinned. CR-052 task 19.
+#
+# `<count>  <sha256 of the sorted figure multiset>  <path>`
+#
+# ⚠ THIS FILE IS NOT SELF-UPDATING AND A LANE MAY NOT RE-PIN IT TO GET GREEN.
+# A signed figure changes by a finance re-sign through HUMAN-GUIDE §6, never by
+# an inline edit (CLAUDE.md). When a re-sign HAS happened, the new figures and
+# this manifest land in the SAME commit as the re-sign record, so the ledger and
+# the pin cannot disagree.
+#
+# Pinned 2026-08-31 from a tree measured at `golden-verify: 33 PASS, 0 FAIL`
+# with 04-docs/ byte-identical to HEAD.
+#
+# ⚠ RE-PINNED 2026-09-22, ON THE PO's INSTRUCTION *"fix the frozen figure pin"*.
+# The pin above was taken 2026-08-31. The `CR-081` sewer re-sign landed 2026-09-08
+# — a real finance re-sign through HUMAN-GUIDE §6, recorded in the decision log,
+# with the PO's own words — and THE PIN WAS NOT RE-DERIVED IN THAT COMMIT, which
+# is the one thing this file's header asks for. G61 has printed *a ❄️ FROZEN
+# figure MOVED* ever since: eleven days of the most alarming sentence this suite
+# can say, over a document nobody had touched.
+#
+# WHAT WAS CHECKED BEFORE RE-PINNING, because re-pinning to get green is what
+# this file forbids:
+#   * GONE: **NONE**, in BOTH documents. Not one pinned figure was removed or
+#     altered. The change is PURELY ADDITIVE — a breach shows up as a GONE.
+#   * B4 gained exactly 15.80, 36.00, 5.0000 — the CR-081 figures.
+#   * B5 gained 81, every one the re-signed sewer figures (36.00, 54.00, 27.00,
+#     5.00, and 15.80 quoted as SUPERSEDED) or a bill total they cascade into.
+#   * 10-scripts/03-golden-verify.py: 33 PASS / 0 FAIL, plus 6 and 9, with its
+#     own self-test at 8/8 guards biting.
+#   * The guard still bites after re-pinning, proved IN MEMORY so no frozen
+#     document was touched: changing 36.00 to 37.00 leaves the COUNT at 37 and
+#     changes the DIGEST, reporting `gone: 36.00`. A count check alone would
+#     have missed it; the digest is what guards a signed figure.
+#
+# Re-pinned from tip 1d5efb9c4.
+#
+# ⚠ RE-PINNED 2026-09-30 FOR B4 ONLY, IN THE SAME COMMIT AS THE RE-SIGN RECORD —
+# the ❄️ B4.2 fee-bill tax re-sign (PO 2026-09-30, verbatim *"Yes, re-sign."*,
+# worked figure RECON $75.00 at 8.25% → $81.19; decision log *"ONE-TIME BILL:
+# SIX ANSWERS"* (1); review-ledger row of the same date). Checked before
+# re-pinning: GONE **none** — purely additive. B4 gained exactly 0.85, 6.1875,
+# 6.19, 75.00 ×2, 8.25 ×2, 81.19, every one inside the stamp under B4.2 or the
+# ❄️ ADDENDUM of 2026-09-30 (0.85 is the PUC flat fee named as NOT covered).
+# B5 is untouched and its pin did not move.
+
+45  dd0cb5363462eac2a5f5b823a3324cc30a17d935ad4e3af1cb2d2a6e450a33d0  04-docs/02-decisions/04-money-math-rules.md
+177  3861a646619474434aaa97450739b467355ea6f788b4de6e868d25cba3577377  04-docs/02-decisions/05-golden-tests.md

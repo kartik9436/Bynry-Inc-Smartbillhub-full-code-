@@ -1,0 +1,183 @@
+signed in as dana@brazosbendutilities.com
+kept ann arbor City
+kept City of Ottumwa
+kept Bexar County
+kept TX State Utility Tax
+kept Storm water fee
+
+=== 01-list-all.png
+Plans & Rates
+6 plans · 9 rate schedules · 31 charge codes · 6 discounts · 6 taxes & fees · effective 10/01/2026
+History
++ New tax or fee
+Plans
+Rate schedules
+Charge codes
+Discounts
+Taxes & fees
+All
++ Filter
+▾
+TAX OR FEE
+▲
+	VERSION	APPLIES TO	RATE	FROM	TO	GL ACCOUNT	PREMISES	STATUS	
+Bexar County
+County
+	—	
+All services
+Every class
+	
+2.00%
+	01/01/2026	No end		—	Active	
+City of Ottumwa
+City
+	—	
+Electric
+Water
+Residential
+	
+150.00%
+Over 20%
+	09/01/2026	No end		—	Active	
+Local · Bexar County
+County
+	—	
+All services
+Every class
+	
+2.00%
+	—	No end	
+2200-01
+Tax payable — Local · Bexar County
+	—	Active	
+Storm water fee
+City
+	—	
+Water
+Every class
+	
+1.25 / bill
+	07/01/2025	06/30/2026		—	Expired	
+TX State Utility Tax
+State
+	—	
+All services
+Commercial, Industrial
+	
+6.25%
+	—	No end	
+2200-02
+Tax payable — TX State Utility Tax
+	—	Active	
+ann arbor City
+City
+	—	
+Electric
+Every class
+	
+150.00%
+Over 20%
+	09/01/2026	11/10/2027		—	Active	
+1–6 of 6
+Rows per page
+50
+100
+200
+500
+1000
+‹
+›
+
+=== 02-list-active.png
+Plans & Rates
+6 plans · 9 rate schedules · 31 charge codes · 6 discounts · 6 taxes & fees · effective 10/01/2026
+History
++ New tax or fee
+Plans
+Rate schedules
+Charge codes
+Discounts
+Taxes & fees
+All
+Status: Active
+×
++ Filter
+▾
+TAX OR FEE
+▲
+	VERSION	APPLIES TO	RATE	FROM	TO	GL ACCOUNT	PREMISES	STATUS	
+Bexar County
+County
+	—	
+All services
+Every class
+	
+2.00%
+	01/01/2026	No end		—	Active	
+City of Ottumwa
+City
+	—	
+Electric
+Water
+Residential
+	
+150.00%
+Over 20%
+	09/01/2026	No end		—	Active	
+Local · Bexar County
+County
+	—	
+All services
+Every class
+	
+2.00%
+	—	No end	
+2200-01
+Tax payable — Local · Bexar County
+	—	Active	
+TX State Utility Tax
+State
+	—	
+All services
+Commercial, Industrial
+	
+6.25%
+	—	No end	
+2200-02
+Tax payable — TX State Utility Tax
+	—	Active	
+ann arbor City
+City
+	—	
+Electric
+Every class
+	
+150.00%
+Over 20%
+	09/01/2026	11/10/2027		—	Active	
+1–5 of 5
+Rows per page
+50
+100
+200
+500
+1000
+‹
+›
+
+=== 03-list-no-results.png
+Plans & Rates
+6 plans · 9 rate schedules · 31 charge codes · 6 discounts · 6 taxes & fees · effective 10/01/2026
+History
++ New tax or fee
+Plans
+Rate schedules
+Charge codes
+Discounts
+Taxes & fees
+✕
+All
++ Filter
+▾
+No results for 'zzz'.
+Clear filters

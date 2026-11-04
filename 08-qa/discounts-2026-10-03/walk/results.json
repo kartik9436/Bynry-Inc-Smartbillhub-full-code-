@@ -1,0 +1,1458 @@
+[
+  {
+    "phase": 2,
+    "step": 1,
+    "what": "each missing box on step 1 is named on its box",
+    "pass": true,
+    "evidence": "[\"discount-code-error:Enter a code.\",\"discount-label-error:Enter the bill line label.\",\"discount-value-error:Enter the value.\"]"
+  },
+  {
+    "phase": 2,
+    "step": 2,
+    "what": "percent over 100 refused on the Value box",
+    "pass": true,
+    "evidence": "Cannot be over 100%."
+  },
+  {
+    "phase": 2,
+    "step": 2,
+    "what": "nothing typed is lost",
+    "pass": true,
+    "evidence": "OVER|Typed over a hundred|Keep me|150"
+  },
+  {
+    "phase": 2,
+    "step": 3,
+    "what": "currency is the utility's and cannot be changed",
+    "pass": true,
+    "evidence": "Currency\n\nUSD \u00b7 US Dollar\n\nYour utility's currency. \u00b7 [\"P\",\"USD \u00b7 US Dollar\",null,null]"
+  },
+  {
+    "phase": 2,
+    "step": 4,
+    "what": "no who-qualifies and end-before-start each named on its box",
+    "pass": true,
+    "evidence": "[\"discount-who-error:Choose who qualifies.\",\"discount-ends-error:Ends before it starts.\"]"
+  },
+  {
+    "phase": 2,
+    "step": 4,
+    "what": "the start typed is kept",
+    "pass": true,
+    "evidence": "2026-11-01"
+  },
+  {
+    "phase": 2,
+    "step": 3,
+    "what": "the server refuses another currency by name",
+    "pass": true,
+    "evidence": "422 {\"code\":\"VAL-003\",\"message_key\":\"rating.discounts.currency_not_utility\",\"params\":{\"currency\":\"USD\"},\"field_errors\":[{\"field\":\"currency\",\"code\":\"VAL-003\",\"message_key\":\"rating.discounts.currency_not_ut"
+  },
+  {
+    "phase": 2,
+    "step": 3,
+    "what": "nothing was stored by the refused write",
+    "pass": true,
+    "evidence": "CADTEST rows 0"
+  },
+  {
+    "phase": 1,
+    "step": "1",
+    "what": "Senior discount: Review shows \u2212$9.00 on the $60.00 bill",
+    "pass": true,
+    "evidence": "On a $60.00 bill \u2212$9.00"
+  },
+  {
+    "phase": 1,
+    "step": "1",
+    "what": "Senior discount: exactly one row in the database, saved as a draft",
+    "pass": true,
+    "evidence": "[[\"01a101d5-7165-75c1-837f-0053bed913b5\",\"draft\",\"Senior discount\",\"1\",\"draft\",\"15.000000\",\"2026-10-01\",\"\"]]"
+  },
+  {
+    "phase": 1,
+    "step": "2",
+    "what": "CAP credit: Review shows \u2212$10.00 on the $60.00 bill",
+    "pass": true,
+    "evidence": "On a $60.00 bill \u2212$10.00"
+  },
+  {
+    "phase": 1,
+    "step": "2",
+    "what": "CAP credit: exactly one row in the database, saved as a draft",
+    "pass": true,
+    "evidence": "[[\"01a101d5-8bdd-7d15-9a8e-ee23f635da50\",\"draft\",\"CAP credit\",\"1\",\"draft\",\"25.000000\",\"2026-10-01\",\"\"]]"
+  },
+  {
+    "phase": 1,
+    "step": "3",
+    "what": "Autopay discount: Review shows \u2212$0.30 on the $60.00 bill",
+    "pass": true,
+    "evidence": "On a $60.00 bill \u2212$0.30"
+  },
+  {
+    "phase": 1,
+    "step": "3",
+    "what": "Autopay discount: exactly one row in the database, saved as a draft",
+    "pass": true,
+    "evidence": "[[\"01a101d5-a640-7d51-b1f5-fdabcf414244\",\"draft\",\"Autopay discount\",\"1\",\"draft\",\"0.500000\",\"2026-10-01\",\"\"]]"
+  },
+  {
+    "phase": 1,
+    "step": "4",
+    "what": "Municipal account: Review shows \u2212$5.00 on the $60.00 bill",
+    "pass": true,
+    "evidence": "On a $60.00 bill \u2212$5.00"
+  },
+  {
+    "phase": 1,
+    "step": "4",
+    "what": "Municipal account: exactly one row in the database, saved as a draft",
+    "pass": true,
+    "evidence": "[[\"01a101d5-c054-72fc-b04f-552eb52fd5d5\",\"draft\",\"Municipal account\",\"1\",\"draft\",\"20.000000\",\"2026-10-01\",\"\"]]"
+  },
+  {
+    "phase": 1,
+    "step": "5",
+    "what": "Lifeline water: exactly one row in the database, saved as a draft",
+    "pass": true,
+    "evidence": "[[\"01a101d5-dae4-74a0-951e-d0e981451f56\",\"draft\",\"Lifeline water\",\"1\",\"draft\",\"10.000000\",\"2026-10-01\",\"\"]]"
+  },
+  {
+    "phase": 1,
+    "step": "6",
+    "what": "Lead line waiver: exactly one row in the database, saved as a draft",
+    "pass": true,
+    "evidence": "[[\"01a101da-0312-7451-bc78-2f523241f413\",\"draft\",\"Lead line waiver\",\"1\",\"draft\",\"0.000000\",\"2026-10-01\",\"\"]]"
+  },
+  {
+    "phase": 1,
+    "step": "7",
+    "what": "Garden allowance: exactly one row in the database, saved as a draft",
+    "pass": true,
+    "evidence": "[[\"01a101d6-4a79-7c62-accb-792b7cfa2a4b\",\"draft\",\"Garden allowance\",\"1\",\"draft\",\"2.000000\",\"2026-10-01\",\"\"]]"
+  },
+  {
+    "phase": 1,
+    "step": "9",
+    "what": "Veteran discount: exactly one row in the database, saved as a draft",
+    "pass": true,
+    "evidence": "[[\"01a101d6-650e-75c3-b755-2471863df3b1\",\"draft\",\"Veteran discount\",\"1\",\"draft\",\"1.500000\",\"2026-10-01\",\"\"]]"
+  },
+  {
+    "phase": 1,
+    "step": 8,
+    "what": "Save draft & exit stores exactly one row, a draft",
+    "pass": true,
+    "evidence": "[[\"01a101d6-7409-78dc-96df-e8d5dd655871\",\"draft\",\"Paperless credit\",\"1\",\"draft\",\"1.500000\",\"\",\"\"]]"
+  },
+  {
+    "phase": 1,
+    "step": "1",
+    "what": "Senior discount: one list row, Draft",
+    "pass": true,
+    "evidence": "SENIOR \u00b7 draft \u00b7 15.00% \u00b7 2026-10-01 \u2192 No end"
+  },
+  {
+    "phase": 1,
+    "step": "2",
+    "what": "CAP credit: one list row, Draft",
+    "pass": true,
+    "evidence": "CAP \u00b7 draft \u00b7 $25.00 \u00b7 2026-10-01 \u2192 No end"
+  },
+  {
+    "phase": 1,
+    "step": "3",
+    "what": "Autopay discount: one list row, Draft",
+    "pass": true,
+    "evidence": "AUTOPAY \u00b7 draft \u00b7 0.50% \u00b7 2026-10-01 \u2192 No end"
+  },
+  {
+    "phase": 1,
+    "step": "4",
+    "what": "Municipal account: one list row, Draft",
+    "pass": true,
+    "evidence": "MUNI \u00b7 draft \u00b7 20.00% \u00b7 2026-10-01 \u2192 No end"
+  },
+  {
+    "phase": 1,
+    "step": "5",
+    "what": "Lifeline water: one list row, Draft",
+    "pass": true,
+    "evidence": "LIFELINE \u00b7 draft \u00b7 $10.00 \u00b7 2026-10-01 \u2192 No end"
+  },
+  {
+    "phase": 1,
+    "step": "6",
+    "what": "Lead line waiver: one list row, Draft",
+    "pass": true,
+    "evidence": "LEADWAIVE \u00b7 draft \u00b7 \u2014 \u00b7 2026-10-01 \u2192 No end"
+  },
+  {
+    "phase": 1,
+    "step": "7",
+    "what": "Garden allowance: one list row, Draft",
+    "pass": true,
+    "evidence": "GARDEN \u00b7 draft \u00b7 2.00 kgal \u00b7 2026-10-01 \u2192 No end"
+  },
+  {
+    "phase": 1,
+    "step": "8",
+    "what": "Paperless credit: one list row, Draft",
+    "pass": true,
+    "evidence": "PAPERLESS \u00b7 draft \u00b7 $1.50 \u00b7 null \u2192 No end"
+  },
+  {
+    "phase": 1,
+    "step": "9",
+    "what": "Veteran discount: one list row, Draft",
+    "pass": true,
+    "evidence": "VETERAN \u00b7 draft \u00b7 1.50% \u00b7 2026-10-01 \u2192 No end"
+  },
+  {
+    "phase": 1,
+    "step": 8,
+    "what": "reopened: nothing typed before Save draft & exit is lost",
+    "pass": true,
+    "evidence": "PAPERLESS|Paperless credit|1.50 \u00b7 http://127.0.0.1:5197/brazosbend/plans-rates/discounts/01a101d6-7409-78dc-96df-e8d5dd655871/edit?change=info \u2014 the check first compared strings (1.50 vs 1.5) and was wrong, not the product; 1.50 = 1.5"
+  },
+  {
+    "phase": 1,
+    "step": 8,
+    "what": "finished: the SAME row, still one, eligibility and dates stored",
+    "pass": true,
+    "evidence": "[[\"01a101d6-7409-78dc-96df-e8d5dd655871\",\"draft\",\"Paperless credit\",\"1\",\"draft\",\"1.500000\",\"2026-11-01\",\"2027-10-31\"]] \u00b7 paperless_on|2026-11-01|2027-10-31"
+  },
+  {
+    "phase": 3,
+    "step": "1",
+    "what": "Senior discount: the API serves every value exactly as entered",
+    "pass": true,
+    "evidence": "31 values match"
+  },
+  {
+    "phase": 3,
+    "step": "1",
+    "what": "Senior discount: the Overview shows what was entered",
+    "pass": true,
+    "evidence": "shown: Senior discount \u00b7 SENIOR \u00b7 Billing \u00b7 Rate-payer funded \u00b7 Age 65 or over \u00b7 Apply and approve \u00b7 Low-income programs \u00b7 10/01/2026 \u00b7 15.00%"
+  },
+  {
+    "phase": 3,
+    "step": "1",
+    "what": "Senior discount: a Draft offers Edit and Submit for approval, not Approve",
+    "pass": true,
+    "evidence": "Edit \u00b7 Submit for approval"
+  },
+  {
+    "phase": 3,
+    "step": "2",
+    "what": "CAP credit: the API serves every value exactly as entered",
+    "pass": true,
+    "evidence": "31 values match"
+  },
+  {
+    "phase": 3,
+    "step": "2",
+    "what": "CAP credit: the Overview shows what was entered",
+    "pass": true,
+    "evidence": "shown: CAP credit \u00b7 CAP \u00b7 State agency \u00b7 State grant \u00b7 In a state assistance program \u00b7 Apply and approve \u00b7 Low-income programs \u00b7 $300.00 \u00b7 $50.00 \u00b7 10/01/2026 \u00b7 $25.00"
+  },
+  {
+    "phase": 3,
+    "step": "2",
+    "what": "CAP credit: a Draft offers Edit and Submit for approval, not Approve",
+    "pass": true,
+    "evidence": "Edit \u00b7 Submit for approval"
+  },
+  {
+    "phase": 3,
+    "step": "3",
+    "what": "Autopay discount: the API serves every value exactly as entered",
+    "pass": true,
+    "evidence": "31 values match"
+  },
+  {
+    "phase": 3,
+    "step": "3",
+    "what": "Autopay discount: the Overview shows what was entered",
+    "pass": true,
+    "evidence": "shown: Autopay discount \u00b7 AUTOPAY \u00b7 Finance \u00b7 Rate-payer funded \u00b7 Autopay is on \u00b7 Automatic \u00b7 Payment method \u00b7 10/01/2026 \u00b7 0.50%"
+  },
+  {
+    "phase": 3,
+    "step": "3",
+    "what": "Autopay discount: a Draft offers Edit and Submit for approval, not Approve",
+    "pass": true,
+    "evidence": "Edit \u00b7 Submit for approval"
+  },
+  {
+    "phase": 3,
+    "step": "4",
+    "what": "Municipal account: the API serves every value exactly as entered",
+    "pass": true,
+    "evidence": "31 values match"
+  },
+  {
+    "phase": 3,
+    "step": "4",
+    "what": "Municipal account: the Overview shows what was entered",
+    "pass": true,
+    "evidence": "shown: Municipal account \u00b7 MUNI \u00b7 City or county agency \u00b7 City budget \u00b7 Government or municipal account \u00b7 Automatic \u00b7 Government and municipal \u00b7 $5.00 \u00b7 10/01/2026 \u00b7 20.00%"
+  },
+  {
+    "phase": 3,
+    "step": "4",
+    "what": "Municipal account: a Draft offers Edit and Submit for approval, not Approve",
+    "pass": true,
+    "evidence": "Edit \u00b7 Submit for approval"
+  },
+  {
+    "phase": 3,
+    "step": "5",
+    "what": "Lifeline water: the API serves every value exactly as entered",
+    "pass": true,
+    "evidence": "31 values match"
+  },
+  {
+    "phase": 3,
+    "step": "5",
+    "what": "Lifeline water: the Overview shows what was entered",
+    "pass": true,
+    "evidence": "shown: Lifeline water \u00b7 LIFELINE \u00b7 Community programs \u00b7 Rate-payer funded \u00b7 Household income under a limit \u00b7 Apply and approve \u00b7 Low-income programs \u00b7 10/01/2026 \u00b7 $10.00"
+  },
+  {
+    "phase": 3,
+    "step": "5",
+    "what": "Lifeline water: a Draft offers Edit and Submit for approval, not Approve",
+    "pass": true,
+    "evidence": "Edit \u00b7 Submit for approval"
+  },
+  {
+    "phase": 3,
+    "step": "6",
+    "what": "Lead line waiver: the API serves every value exactly as entered",
+    "pass": true,
+    "evidence": "31 values match"
+  },
+  {
+    "phase": 3,
+    "step": "6",
+    "what": "Lead line waiver: the Overview shows what was entered",
+    "pass": true,
+    "evidence": "shown: Lead line waiver \u00b7 LEADWAIVE \u00b7 Customer service \u00b7 Rate-payer funded \u00b7 Medical equipment at home \u00b7 Apply and approve \u00b7 10/01/2026"
+  },
+  {
+    "phase": 3,
+    "step": "6",
+    "what": "Lead line waiver: a Draft offers Edit and Submit for approval, not Approve",
+    "pass": true,
+    "evidence": "Edit \u00b7 Submit for approval"
+  },
+  {
+    "phase": 3,
+    "step": "7",
+    "what": "Garden allowance: the API serves every value exactly as entered",
+    "pass": true,
+    "evidence": "31 values match"
+  },
+  {
+    "phase": 3,
+    "step": "7",
+    "what": "Garden allowance: the Overview shows what was entered",
+    "pass": true,
+    "evidence": "shown: Garden allowance \u00b7 GARDEN \u00b7 Conservation \u00b7 Conservation fund \u00b7 Everyone on the plan \u00b7 Automatic \u00b7 $500.00 \u00b7 10/01/2026 \u00b7 2.00 kgal"
+  },
+  {
+    "phase": 3,
+    "step": "7",
+    "what": "Garden allowance: a Draft offers Edit and Submit for approval, not Approve",
+    "pass": true,
+    "evidence": "Edit \u00b7 Submit for approval"
+  },
+  {
+    "phase": 3,
+    "step": "9",
+    "what": "Veteran discount: the API serves every value exactly as entered",
+    "pass": true,
+    "evidence": "31 values match"
+  },
+  {
+    "phase": 3,
+    "step": "9",
+    "what": "Veteran discount: the Overview shows what was entered",
+    "pass": true,
+    "evidence": "shown: Veteran discount \u00b7 VETERAN \u00b7 Community programs \u00b7 Rate-payer funded \u00b7 Veteran or active military \u00b7 Apply and approve \u00b7 Military and veterans \u00b7 10/01/2026 \u00b7 1.50%"
+  },
+  {
+    "phase": 3,
+    "step": "9",
+    "what": "Veteran discount: a Draft offers Edit and Submit for approval, not Approve",
+    "pass": true,
+    "evidence": "Edit \u00b7 Submit for approval"
+  },
+  {
+    "phase": 3,
+    "step": "8",
+    "what": "Paperless credit: the API serves every value exactly as entered",
+    "pass": true,
+    "evidence": "31 values match"
+  },
+  {
+    "phase": 3,
+    "step": "8",
+    "what": "Paperless credit: the Overview shows what was entered",
+    "pass": true,
+    "evidence": "shown: Paperless credit \u00b7 PAPERLESS \u00b7 Billing \u00b7 Rate-payer funded \u00b7 Paperless billing is on \u00b7 Automatic \u00b7 11/01/2026 \u00b7 10/31/2027 \u00b7 $1.50"
+  },
+  {
+    "phase": 3,
+    "step": "8",
+    "what": "Paperless credit: a Draft offers Edit and Submit for approval, not Approve",
+    "pass": true,
+    "evidence": "Edit \u00b7 Submit for approval"
+  },
+  {
+    "phase": 4,
+    "step": "1",
+    "what": "Senior discount: Submit puts it in Waiting approval",
+    "pass": true,
+    "evidence": "waiting_approval"
+  },
+  {
+    "phase": 4,
+    "step": "1",
+    "what": "Senior discount: Waiting approval offers Send back and Approve",
+    "pass": true,
+    "evidence": "Send back \u00b7 Approve"
+  },
+  {
+    "phase": 4,
+    "step": "1",
+    "what": "Senior discount: approved = live with no Activate (ruling 1)",
+    "pass": true,
+    "evidence": "served active \u00b7 stored [[\"active\",\"t\",\"t\",\"t\"]] \u00b7 confirm \"Approve Senior discount? \u2715 It goes live on 10/01/2026. Cancel Approve\""
+  },
+  {
+    "phase": 4,
+    "step": "2",
+    "what": "CAP credit: Submit puts it in Waiting approval",
+    "pass": true,
+    "evidence": "waiting_approval"
+  },
+  {
+    "phase": 4,
+    "step": "2",
+    "what": "CAP credit: Waiting approval offers Send back and Approve",
+    "pass": true,
+    "evidence": "Send back \u00b7 Approve"
+  },
+  {
+    "phase": 4,
+    "step": "2",
+    "what": "CAP credit: approved = live with no Activate (ruling 1)",
+    "pass": true,
+    "evidence": "served active \u00b7 stored [[\"active\",\"t\",\"t\",\"t\"]] \u00b7 confirm \"Approve CAP credit? \u2715 It goes live on 10/01/2026. Cancel Approve\""
+  },
+  {
+    "phase": 4,
+    "step": "3",
+    "what": "Autopay discount: Submit puts it in Waiting approval",
+    "pass": true,
+    "evidence": "waiting_approval"
+  },
+  {
+    "phase": 4,
+    "step": "3",
+    "what": "Autopay discount: Waiting approval offers Send back and Approve",
+    "pass": true,
+    "evidence": "Send back \u00b7 Approve"
+  },
+  {
+    "phase": 4,
+    "step": "3",
+    "what": "Autopay discount: approved = live with no Activate (ruling 1)",
+    "pass": true,
+    "evidence": "served active \u00b7 stored [[\"active\",\"t\",\"t\",\"t\"]] \u00b7 confirm \"Approve Autopay discount? \u2715 It goes live on 10/01/2026. Cancel Approve\""
+  },
+  {
+    "phase": 4,
+    "step": "4",
+    "what": "Municipal account: Submit puts it in Waiting approval",
+    "pass": true,
+    "evidence": "waiting_approval"
+  },
+  {
+    "phase": 4,
+    "step": "4",
+    "what": "Municipal account: Waiting approval offers Send back and Approve",
+    "pass": true,
+    "evidence": "Send back \u00b7 Approve"
+  },
+  {
+    "phase": 4,
+    "step": "4",
+    "what": "Municipal account: approved = live with no Activate (ruling 1)",
+    "pass": true,
+    "evidence": "served active \u00b7 stored [[\"active\",\"t\",\"t\",\"t\"]] \u00b7 confirm \"Approve Municipal account? \u2715 It goes live on 10/01/2026. Cancel Approve\""
+  },
+  {
+    "phase": 4,
+    "step": "6",
+    "what": "Lead line waiver: Submit puts it in Waiting approval",
+    "pass": true,
+    "evidence": "waiting_approval"
+  },
+  {
+    "phase": 4,
+    "step": "6",
+    "what": "Lead line waiver: Waiting approval offers Send back and Approve",
+    "pass": true,
+    "evidence": "Send back \u00b7 Approve"
+  },
+  {
+    "phase": 4,
+    "step": "6",
+    "what": "Lead line waiver: approved = live with no Activate (ruling 1)",
+    "pass": true,
+    "evidence": "served active \u00b7 stored [[\"active\",\"t\",\"t\",\"t\"]] \u00b7 confirm \"Approve Lead line waiver? \u2715 It goes live on 10/01/2026. Cancel Approve\""
+  },
+  {
+    "phase": 4,
+    "step": "9",
+    "what": "Veteran discount: Submit puts it in Waiting approval",
+    "pass": true,
+    "evidence": "waiting_approval"
+  },
+  {
+    "phase": 4,
+    "step": "9",
+    "what": "Veteran discount: Waiting approval offers Send back and Approve",
+    "pass": true,
+    "evidence": "Send back \u00b7 Approve"
+  },
+  {
+    "phase": 4,
+    "step": "9",
+    "what": "Veteran discount: approved = live with no Activate (ruling 1)",
+    "pass": true,
+    "evidence": "served active \u00b7 stored [[\"active\",\"t\",\"t\",\"t\"]] \u00b7 confirm \"Approve Veteran discount? \u2715 It goes live on 10/01/2026. Cancel Approve\""
+  },
+  {
+    "phase": 4,
+    "step": "8",
+    "what": "Paperless credit: Submit puts it in Waiting approval",
+    "pass": true,
+    "evidence": "waiting_approval"
+  },
+  {
+    "phase": 4,
+    "step": "8",
+    "what": "Paperless credit: Waiting approval offers Send back and Approve",
+    "pass": true,
+    "evidence": "Send back \u00b7 Approve"
+  },
+  {
+    "phase": 4,
+    "step": "8",
+    "what": "Paperless credit: approved = Scheduled with no Activate (ruling 1)",
+    "pass": true,
+    "evidence": "served scheduled \u00b7 stored [[\"active\",\"t\",\"t\",\"t\"]] \u00b7 confirm \"Approve Paperless credit? \u2715 It goes live on 11/01/2026. Cancel Approve\""
+  },
+  {
+    "phase": 4,
+    "step": "7",
+    "what": "Garden allowance: Submit puts it in Waiting approval",
+    "pass": true,
+    "evidence": "waiting_approval"
+  },
+  {
+    "phase": 4,
+    "step": "7",
+    "what": "Garden allowance: Waiting approval offers Send back and Approve",
+    "pass": true,
+    "evidence": "Send back \u00b7 Approve"
+  },
+  {
+    "phase": 4,
+    "step": 7,
+    "what": "Garden allowance: approval goes live (walk: free units before pricing)",
+    "pass": false,
+    "evidence": "served waiting_approval \u00b7 on screen: \u2190 Discounts Garden allowanceGARDEN Waiting approval V1 Usage allowance \u00b7 10/01/2026 \u2013 no end Send back Approve More \u25be Overview Accounts0 Plans0 Audit This discount type can't be priced yet, so it can't go live. VALUE 2.0"
+  },
+  {
+    "phase": 4,
+    "step": "2nd",
+    "what": "the second-approval threshold can be switched on (Settings \u203a Finance controls)",
+    "pass": true,
+    "evidence": "PUT \u2192 200 (was null)"
+  },
+  {
+    "phase": 4,
+    "step": "5",
+    "what": "Lifeline water: Submit puts it in Waiting approval",
+    "pass": true,
+    "evidence": "waiting_approval"
+  },
+  {
+    "phase": 4,
+    "step": "5",
+    "what": "Lifeline water: Waiting approval offers Send back and Approve",
+    "pass": true,
+    "evidence": "Send back \u00b7 Approve"
+  },
+  {
+    "phase": 4,
+    "step": "2nd",
+    "what": "Lifeline (no budget, threshold $100): needs a second approver before it is live (BR-RAT-077)",
+    "pass": false,
+    "evidence": "served active \u00b7 stored [[\"active\",\"t\",\"f\"]] \u2014 DEF-RAT-9303 (known, open): live on one approval"
+  },
+  {
+    "phase": 4,
+    "step": "1",
+    "what": "Senior discount: Audit shows who submitted and who approved",
+    "pass": true,
+    "evidence": "discount.version_self_approved \u00b7 Dana Whitfield | discount.version_submitted \u00b7 Dana Whitfield | discount.created \u00b7 Dana Whitfield"
+  },
+  {
+    "phase": 4,
+    "step": "5",
+    "what": "Lifeline water: Audit shows who submitted and who approved",
+    "pass": true,
+    "evidence": "discount.version_self_approved \u00b7 Dana Whitfield | discount.version_submitted \u00b7 Dana Whitfield | discount.created \u00b7 Dana Whitfield"
+  },
+  {
+    "phase": 5,
+    "step": 1,
+    "what": "the plans save their discounts",
+    "pass": true,
+    "evidence": "200 200 {\"id\":\"01a101d2-71e9-7586-a317-225302bece3f\",\"code\":\"DW-RES\",\"name\":\"Discount walk \u00b7 Residential\",\"description\":null,\"status\":\"published\",\"version\":2,\"account_t"
+  },
+  {
+    "phase": 5,
+    "step": 1,
+    "what": "Senior's Plans tab names Discount walk \u00b7 Residential",
+    "pass": true,
+    "evidence": "\u2190 Discounts Senior discountSENIOR Active V1 Percentage \u00b7 10/01/2026 \u2013 no end Edit More \u25be Overview Accounts0 Plans1 Audit Plans + Add to a plan PLAN SERVICES CUSTOMER CLASSES ACCOUNTS SINCE ACTIONS Discount walk \u00b7 Residential Water Every class 4 \u2014 \u00d7 1\u20131 of 1 Page 1 of 1 Rows per page 50 100 200 500 1"
+  },
+  {
+    "phase": 5,
+    "step": 3,
+    "what": "Autopay enrolled by itself: exactly the one account with autopay on (ruling 3)",
+    "pass": true,
+    "evidence": "[[\"AC-2026-00001\",\"2026-10-03\",\"\",\"not_required\",\"\"]]"
+  },
+  {
+    "phase": 5,
+    "step": 3,
+    "what": "Municipal enrolled by itself: exactly the municipal account (ruling 3)",
+    "pass": true,
+    "evidence": "[[\"AC-2026-00006\",\"2026-10-03\",\"\",\"not_required\",\"\"]]"
+  },
+  {
+    "phase": 5,
+    "step": 3,
+    "what": "Autopay's Accounts tab lists Ruth Alvarez, Receiving",
+    "pass": true,
+    "evidence": "\u2190 Discounts Autopay discountAUTOPAY Active V1 Percentage \u00b7 10/01/2026 \u2013 no end Edit More \u25be Overview Accounts1 Plans1 Audit Accounts + Enroll an account All + Filter \u25be ACCOUNT \u25b2 CUSTOMER PLAN ENROLLED RENEW BY THIS MONTH STATUS AC-2026-00001 Ruth Alvarez 11 Discount Walk Way Discount walk \u00b7 Residenti"
+  },
+  {
+    "phase": 5,
+    "step": 2,
+    "what": "an account on the plan is enrolled",
+    "pass": true,
+    "evidence": "[[\"AC-2026-00001\",\"2026-10-03\",\"\",\"pending\",\"\"]] \u00b7 dialog after: \"Enroll an account \u2715 Account* Cancel Enroll\""
+  },
+  {
+    "phase": 5,
+    "step": 2,
+    "what": "the off-plan account is refused, on screen, by name (ruling 2)",
+    "pass": true,
+    "evidence": "dialog: \"Enroll an account \u2715 Account* Their plan doesn't offer this discount. Cancel Enroll\""
+  },
+  {
+    "phase": 5,
+    "step": 4,
+    "what": "Senior off the plan: its enrollment on that plan ends",
+    "pass": true,
+    "evidence": "[[\"AC-2026-00001\",\"2026-10-03\",\"2026-10-03\",\"pending\",\"Removed from plan Discount walk \u00b7 Residential\"]]"
+  },
+  {
+    "phase": "9319",
+    "step": "en",
+    "what": "en: the list fits 1440 with no sideways scroll, Status in view, Type never one character a line",
+    "pass": true,
+    "evidence": "{\"table\":1120,\"box\":1120,\"scrolls\":\"visible\",\"typeLines\":2,\"statusRight\":1344,\"boxRight\":1400,\"page\":1440}"
+  },
+  {
+    "phase": "9319",
+    "step": "de",
+    "what": "de: the list fits 1440 with no sideways scroll, Status in view, Type never one character a line",
+    "pass": true,
+    "evidence": "{\"table\":1120,\"box\":1120,\"scrolls\":\"visible\",\"typeLines\":1,\"statusRight\":1344,\"boxRight\":1400,\"page\":1440}"
+  },
+  {
+    "phase": "9319",
+    "step": "es",
+    "what": "es: the list fits 1440 with no sideways scroll, Status in view, Type never one character a line",
+    "pass": true,
+    "evidence": "{\"table\":1120,\"box\":1120,\"scrolls\":\"visible\",\"typeLines\":2,\"statusRight\":1344,\"boxRight\":1400,\"page\":1440}"
+  },
+  {
+    "phase": "9319",
+    "step": "es-MX",
+    "what": "es-MX: the list fits 1440 with no sideways scroll, Status in view, Type never one character a line",
+    "pass": true,
+    "evidence": "{\"table\":1120,\"box\":1120,\"scrolls\":\"visible\",\"typeLines\":2,\"statusRight\":1344,\"boxRight\":1400,\"page\":1440}"
+  },
+  {
+    "phase": "9319",
+    "step": "fr-FR",
+    "what": "fr-FR: the list fits 1440 with no sideways scroll, Status in view, Type never one character a line",
+    "pass": true,
+    "evidence": "{\"table\":1120,\"box\":1120,\"scrolls\":\"visible\",\"typeLines\":2,\"statusRight\":1344,\"boxRight\":1400,\"page\":1440}"
+  },
+  {
+    "phase": "9319",
+    "step": "hi",
+    "what": "hi: the list fits 1440 with no sideways scroll, Status in view, Type never one character a line",
+    "pass": true,
+    "evidence": "{\"table\":1120,\"box\":1120,\"scrolls\":\"visible\",\"typeLines\":2,\"statusRight\":1344,\"boxRight\":1400,\"page\":1440}"
+  },
+  {
+    "phase": "9319",
+    "step": "id-ID",
+    "what": "id-ID: the list fits 1440 with no sideways scroll, Status in view, Type never one character a line",
+    "pass": true,
+    "evidence": "{\"table\":1120,\"box\":1120,\"scrolls\":\"visible\",\"typeLines\":3,\"statusRight\":1344,\"boxRight\":1400,\"page\":1440}"
+  },
+  {
+    "phase": "9319",
+    "step": "it-IT",
+    "what": "it-IT: the list fits 1440 with no sideways scroll, Status in view, Type never one character a line",
+    "pass": true,
+    "evidence": "{\"table\":1120,\"box\":1120,\"scrolls\":\"visible\",\"typeLines\":2,\"statusRight\":1344,\"boxRight\":1400,\"page\":1440}"
+  },
+  {
+    "phase": "9319",
+    "step": "ja-JP",
+    "what": "ja-JP: the list fits 1440 with no sideways scroll, Status in view, Type never one character a line",
+    "pass": true,
+    "evidence": "{\"table\":1120,\"box\":1120,\"scrolls\":\"visible\",\"typeLines\":1,\"statusRight\":1344,\"boxRight\":1400,\"page\":1440}"
+  },
+  {
+    "phase": "9319",
+    "step": "ko-KR",
+    "what": "ko-KR: the list fits 1440 with no sideways scroll, Status in view, Type never one character a line",
+    "pass": true,
+    "evidence": "{\"table\":1120,\"box\":1120,\"scrolls\":\"visible\",\"typeLines\":2,\"statusRight\":1344,\"boxRight\":1400,\"page\":1440}"
+  },
+  {
+    "phase": "9319",
+    "step": "pt-BR",
+    "what": "pt-BR: the list fits 1440 with no sideways scroll, Status in view, Type never one character a line",
+    "pass": true,
+    "evidence": "{\"table\":1120,\"box\":1120,\"scrolls\":\"visible\",\"typeLines\":3,\"statusRight\":1344,\"boxRight\":1400,\"page\":1440}"
+  },
+  {
+    "phase": 6,
+    "step": 1,
+    "what": "Verify proof turns Ruth's Senior from Proof pending to Receiving (DEF-RAT-9325)",
+    "pass": true,
+    "evidence": "[[\"AC-2026-00001\",\"2026-10-03\",\"\",\"verified\",\"\"]]"
+  },
+  {
+    "phase": 6,
+    "step": 2,
+    "what": "AC-2026-00002 enrolled in 2 and the dialog closes (DEF-RAT-9326)",
+    "pass": true,
+    "evidence": "dialog after: \"\""
+  },
+  {
+    "phase": 6,
+    "step": 2,
+    "what": "AC-2026-00002 enrolled in 5 and the dialog closes (DEF-RAT-9326)",
+    "pass": true,
+    "evidence": "dialog after: \"\""
+  },
+  {
+    "phase": 6,
+    "step": 2,
+    "what": "AC-2026-00002 enrolled in 1 and the dialog closes (DEF-RAT-9326)",
+    "pass": true,
+    "evidence": "dialog after: \"\""
+  },
+  {
+    "phase": 6,
+    "step": 2,
+    "what": "AC-2026-00003 enrolled in 6 and the dialog closes (DEF-RAT-9326)",
+    "pass": true,
+    "evidence": "dialog after: \"\""
+  },
+  {
+    "phase": 6,
+    "step": 2,
+    "what": "AC-2026-00004 enrolled in 1 and the dialog closes (DEF-RAT-9326)",
+    "pass": true,
+    "evidence": "dialog after: \"\""
+  },
+  {
+    "phase": 6,
+    "step": 2,
+    "what": "AC-2026-00004 enrolled in 9 and the dialog closes (DEF-RAT-9326)",
+    "pass": true,
+    "evidence": "dialog after: \"\""
+  },
+  {
+    "phase": 5,
+    "step": 5,
+    "what": "Senior put back on the plan",
+    "pass": true,
+    "evidence": "200"
+  },
+  {
+    "phase": 5,
+    "step": 5,
+    "what": "Ruth Alvarez enrolled again",
+    "pass": true,
+    "evidence": "[[\"AC-2026-00001\",\"2026-10-03\",\"\",\"pending\",\"\"],[\"AC-2026-00001\",\"2026-10-03\",\"2026-10-03\",\"pending\",\"Removed from plan Discount walk \u00b7 Residential\"]] "
+  },
+  {
+    "phase": 6,
+    "step": 3,
+    "what": "End stores the day and the reason, and the dialog closes",
+    "pass": true,
+    "evidence": "[[\"AC-2026-00004\",\"2026-10-03\",\"2026-10-03\",\"pending\",\"Walk re-run: duplicate enrollment\"],[\"AC-2026-00004\",\"2026-10-03\",\"2026-10-03\",\"pending\",\"Walk step 6: moved away\"]]"
+  },
+  {
+    "phase": 6,
+    "step": 4,
+    "what": "Granted and each This month are a dash, never $0.00 (DEF-2430, known)",
+    "pass": true,
+    "evidence": "granted null \u00b7 this_month ,,,,"
+  },
+  {
+    "phase": 6,
+    "step": 5,
+    "what": "Audit names enroll, verify and end, with who",
+    "pass": true,
+    "evidence": "discount.enrolment_ended \u00b7 Dana Whitfield | discount.enrolment_verified \u00b7 Dana Whitfield | discount.account_enrolled \u00b7 Dana Whitfield | discount.enrolment_verified \u00b7 Dana Whitfield | discount.enrolment_verified \u00b7 Dana Whitfield | discount.enrolment_ended \u00b7 Dana Whitfield | discount.account_enrolled \u00b7 Dana Whitfield | discount.account_enrolled \u00b7 Dana Whitfield"
+  },
+  {
+    "phase": 7,
+    "step": 1,
+    "what": "Name and details: the SAME row and the SAME version, name and funding changed",
+    "pass": true,
+    "evidence": "before [[\"01a1023e-9ef5-7a68-8c15-60aef61096fc\",\"active\",\"Autopay discount\",\"1\",\"active\",\"0.500000\",\"2026-10-01\",\"\"]] \u00b7 after [[\"01a1023e-9ef5-7a68-8c15-60aef61096fc\",\"active\",\"Autopay savings\",\"1\",\"active\",\"0.500000\",\"2026-10-01\",\"\"]] \u00b7 served Autopay savings / Rate-payer funded (billing)"
+  },
+  {
+    "phase": 7,
+    "step": 1,
+    "what": "Name and details: the details page shows the new name and funding source",
+    "pass": true,
+    "evidence": "\u2190 Discounts Autopay savingsAUTOPAY Active V1 Percentage \u00b7 10/01/2026 \u2013 no end Edit More \u25be Overview Accounts1 Plans1 Audit VALUE 0.50% off subtotal before taxes OFFERED TO 4 units on its plans RECEIVIN"
+  },
+  {
+    "phase": 7,
+    "step": 2,
+    "what": "New value Review: 15% \u2192 12%, \u2212$9.00 \u2192 \u2212$7.20 on $60.00, bills before 01/01/2027 keep 15%",
+    "pass": true,
+    "evidence": "What changes FIELD BEFORE AFTER Value 15% 12% On a $60.00 bill THIS DISCOUNT BEFORE AFTER Senior discount \u2212$9.00 \u2212$7.20 How it is saved VERSION VALUE DATES AFTER SAVING v1 \u00b7 today 15% 10/01/2026 \u2013 12/31/2026 Gets an end date v2 \u00b7 new 12% 01/01/2027 \u2013 No end New version Bills before 01/01/2027 keep 15%. Back Save new value THIS DISCOUNT 12% off subtotal before taxes Label Senior discount Code SENIOR Who Age 65"
+  },
+  {
+    "phase": 7,
+    "step": 2,
+    "what": "DB: v1 15% ends 12/31/2026, v2 12% starts 01/01/2027, nothing deleted",
+    "pass": true,
+    "evidence": "[[\"1\",\"active\",\"15.00\",\"2026-10-01\",\"2026-12-31\"],[\"2\",\"active\",\"12.00\",\"2027-01-01\",\"\"]]"
+  },
+  {
+    "phase": 7,
+    "step": 2,
+    "what": "API: today 15% v1, scheduled next 12% from 01/01/2027; versions v1 \u2192 12/31/2026 and v2 from 01/01/2027",
+    "pass": true,
+    "evidence": "15.00% \u00b7 next {\"value_display\":\"12.00%\",\"effective_from\":\"2027-01-01\"} \u00b7 v2 12.00% 2027-01-01\u2192- | v1 15.00% 2026-10-01\u21922026-12-31"
+  },
+  {
+    "phase": 7,
+    "step": 2,
+    "what": "Screen: the details page shows 12/31/2026 and 01/01/2027",
+    "pass": true,
+    "evidence": "discountSENIOR Active V1 Percentage \u00b7 10/01/2026 \u2013 12/31/2026 Next: 12.00% from 01/01/2027 Edit More \u25be Overview Accounts1 Plans1 Audit VALUE 15.00% off subtotal before ta"
+  },
+  {
+    "phase": 7,
+    "step": 3,
+    "what": "DB: the old row (1.5%) is KEPT and marked replaced; the new one (15%) corrects it, same dates, reason stored",
+    "pass": true,
+    "evidence": "[[\"1\",\"superseded\",\"1.50\",\"2026-10-01\",\"\",\"\",\"superseded\",\"\"],[\"2\",\"active\",\"15.00\",\"2026-10-01\",\"\",\"corrects v1\",\"\",\"Typed 1.5 instead of 15.\"]]"
+  },
+  {
+    "phase": 7,
+    "step": 3,
+    "what": "API: Veteran now serves 15%",
+    "pass": true,
+    "evidence": "15.00%"
+  },
+  {
+    "phase": 7,
+    "step": 4,
+    "what": "Audit shows the Name and details edit, by Dana",
+    "pass": true,
+    "evidence": "discount.updated \u00b7 Dana Whitfield \u00b7  \u00b7 {\"funding_source\":\"Rate-payer funded (billing)\"} | discount.automatic_enrolments_synced \u00b7 Dana Whitfield \u00b7  \u00b7 {\"check\":\"autopay\",\"ended\":[],\"on_day\":\"2026-10-03\",\"ended_on\":null,\"enrolled\":[ | discount.version_self_approved \u00b7 Dana Whitfield \u00b7  \u00b7 {\"goes_live_on\":\"2026-10-01\",\"predecessor_windows_closed\":0,\"self_approved\":true | discount.version_submitted \u00b7 Dana Whitfield \u00b7  \u00b7 {\"status\":\"pending_approval\"}"
+  },
+  {
+    "phase": 7,
+    "step": 4,
+    "what": "Audit shows the New value edit, by Dana",
+    "pass": true,
+    "evidence": "discount.new_value \u00b7 Dana Whitfield \u00b7 New value from 01/01/2027 \u00b7 {\"change_reason\":\"New value from 01/01/2027\",\"effective_from\":\"2027-01-01\",\"pred | discount.enrolment_verified \u00b7 Dana Whitfield \u00b7  \u00b7 {\"verification_status\":\"verified\"} | discount.account_enrolled \u00b7 Dana Whitfield \u00b7  \u00b7 {\"account\":\"AC-2026-00001\",\"currency\":\"USD\",\"ended_on\":null,\"end_reason\":null,\"e | discount.version_self_approved \u00b7 Dana Whitfield \u00b7  \u00b7 {\"goes_live_on\":\"2026-10-01\",\"predecessor_windows_closed\":0,\"self_approved\":true"
+  },
+  {
+    "phase": 7,
+    "step": 4,
+    "what": "Audit shows the Fix a mistake edit, by Dana",
+    "pass": true,
+    "evidence": "discount.correction_created \u00b7 Dana Whitfield \u00b7 Typed 1.5 instead of 15. \u00b7 {\"type\":\"percentage\",\"value\":\"15\",\"status\":\"active\",\"currency\":\"USD\",\"applies_to | discount.version_corrected \u00b7 Dana Whitfield \u00b7  \u00b7 {\"status\":\"superseded\"} | discount.account_enrolled \u00b7 Dana Whitfield \u00b7  \u00b7 {\"account\":\"AC-2026-00004\",\"currency\":\"USD\",\"ended_on\":null,\"end_reason\":null,\"e | discount.version_self_approved \u00b7 Dana Whitfield \u00b7  \u00b7 {\"goes_live_on\":\"2026-10-01\",\"predecessor_windows_closed\":0,\"self_approved\":true"
+  },
+  {
+    "phase": 7,
+    "step": 5,
+    "what": "a rename alone is in the Audit: Autopay savings \u2192 Autopay discount, by Dana (DEF-RAT-9338)",
+    "pass": false,
+    "evidence": "discount.updated \u00b7 undefined \u2192 undefined \u00b7 on screen: no Name row"
+  },
+  {
+    "phase": 7,
+    "step": 5,
+    "what": "a rename alone is in the Audit: old name \u2192 new name, by Dana (DEF-RAT-9338)",
+    "pass": true,
+    "evidence": "discount.updated \u00b7 Autopay discount \u2192 Autopay savings \u00b7 on screen: no Name row"
+  },
+  {
+    "phase": 8,
+    "step": "screen_2026-12-15",
+    "what": "Ruth's bill to 2026-12-15 shows Senior \u2212$9.00 on screen",
+    "pass": true,
+    "evidence": "Senior discount -9.00; Autopay savings -0.26 \u00b7 total 50.74 \u00b7 on screen Senior discount Discount \u00b7 4760 \u2014 Customer discounts (contra-reven"
+  },
+  {
+    "phase": 8,
+    "step": "screen_2027-01-15",
+    "what": "Ruth's bill to 2027-01-15 shows Senior \u2212$7.20 on screen",
+    "pass": true,
+    "evidence": "Senior discount -7.20; Autopay savings -0.26 \u00b7 total 52.54 \u00b7 on screen Senior discount Discount \u00b7 4760 \u2014 Customer discounts (contra-reven"
+  },
+  {
+    "phase": 8,
+    "step": "heads_2026-12-15_fixed",
+    "what": "Ruth's bill to 2026-12-15: discounts under \"Discounts\", no \"Taxes & fees\" heading (DEF-BIL-9339)",
+    "pass": true,
+    "evidence": "Water | Discounts"
+  },
+  {
+    "phase": 8,
+    "step": "screen_2026-12-15_fixed",
+    "what": "Ruth's bill to 2026-12-15 shows Senior \u2212$9.00 on screen",
+    "pass": true,
+    "evidence": "Senior discount -9.00; Autopay savings -0.26 \u00b7 total 50.74 \u00b7 on screen Senior discount Discount \u00b7 4760 \u2014 Customer discounts (contra-reven"
+  },
+  {
+    "phase": 8,
+    "step": "heads_2027-01-15_fixed",
+    "what": "Ruth's bill to 2027-01-15: discounts under \"Discounts\", no \"Taxes & fees\" heading (DEF-BIL-9339)",
+    "pass": true,
+    "evidence": "Water | Discounts"
+  },
+  {
+    "phase": 8,
+    "step": "screen_2027-01-15_fixed",
+    "what": "Ruth's bill to 2027-01-15 shows Senior \u2212$7.20 on screen",
+    "pass": true,
+    "evidence": "Senior discount -7.20; Autopay savings -0.26 \u00b7 total 52.54 \u00b7 on screen Senior discount Discount \u00b7 4760 \u2014 Customer discounts (contra-reven"
+  },
+  {
+    "phase": 10,
+    "step": 1,
+    "what": "Retire stores the last day on the versions in force; nothing deleted; the dialog closes",
+    "pass": false,
+    "evidence": "[[\"1\",\"active\",\"15.00\",\"2026-10-01\",\"2026-12-31\"],[\"2\",\"active\",\"12.00\",\"2027-01-01\",\"2027-01-31\"]] \u00b7 served active to 2026-12-31 \u00b7 enrolments [[\"AC-2026-00001\",\"2026-10-03\",\"2027-01-31\",\"verified\",\"discount_retired\"]]"
+  },
+  {
+    "phase": 10,
+    "step": 1,
+    "what": "Audit shows the retire, by Dana",
+    "pass": true,
+    "evidence": "discount.retired \u00b7 Dana Whitfield | discount.new_value \u00b7 Dana Whitfield | discount.enrolment_verified \u00b7 Dana Whitfield"
+  },
+  {
+    "phase": 10,
+    "step": 4,
+    "what": "Retire closes its dialog once the date is stored (DEF-RAT-9340)",
+    "pass": true,
+    "evidence": "dialog closed \u00b7 [[\"1\",\"active\",\"10.00\",\"2026-10-01\",\"2027-02-28\"]]"
+  },
+  {
+    "phase": 8,
+    "step": "heads_2026-12-15_after_retire",
+    "what": "Ruth's bill to 2026-12-15: discounts under \"Discounts\", no \"Taxes & fees\" heading (DEF-BIL-9339)",
+    "pass": true,
+    "evidence": "Water | Discounts"
+  },
+  {
+    "phase": 8,
+    "step": "screen_2026-12-15_after_retire",
+    "what": "Ruth's bill to 2026-12-15 shows Senior \u2212$9.00 on screen",
+    "pass": true,
+    "evidence": "Senior discount -9.00; Autopay savings -0.26 \u00b7 total 50.74 \u00b7 on screen Senior discount Discount \u00b7 4760 \u2014 Customer discounts (contra-reven"
+  },
+  {
+    "phase": 8,
+    "step": "heads_2027-01-15_after_retire",
+    "what": "Ruth's bill to 2027-01-15: discounts under \"Discounts\", no \"Taxes & fees\" heading (DEF-BIL-9339)",
+    "pass": true,
+    "evidence": "Water | Discounts"
+  },
+  {
+    "phase": 8,
+    "step": "screen_2027-01-15_after_retire",
+    "what": "Ruth's bill to 2027-01-15 shows Senior \u2212$7.20 on screen",
+    "pass": true,
+    "evidence": "Senior discount -7.20; Autopay savings -0.26 \u00b7 total 52.54 \u00b7 on screen Senior discount Discount \u00b7 4760 \u2014 Customer discounts (contra-reven"
+  },
+  {
+    "phase": 8,
+    "step": "heads_2027-02-15_after_retire",
+    "what": "Ruth's bill to 2027-02-15: discounts under \"Discounts\", no \"Taxes & fees\" heading (DEF-BIL-9339)",
+    "pass": true,
+    "evidence": "Water | Discounts"
+  },
+  {
+    "phase": 8,
+    "step": "screen_2027-02-15_after_retire",
+    "what": "Ruth's bill to 2027-02-15 shows no Senior line on screen",
+    "pass": true,
+    "evidence": "Autopay savings -0.30 \u00b7 total 59.70"
+  },
+  {
+    "phase": 11,
+    "step": "b1",
+    "what": "Utility B's list shows none of A's discounts",
+    "pass": true,
+    "evidence": "Plans & Rates 0 plans \u00b7 0 rate schedules \u00b7 23 charge codes \u00b7 0 discounts \u00b7 0 taxes & fees History + New discount Plans Rate schedules Charge codes Discounts Taxes & fees No discounts yet Reduces a bil"
+  },
+  {
+    "phase": 11,
+    "step": "b2",
+    "what": "Utility B's API list carries none of A's discounts",
+    "pass": true,
+    "evidence": "200 \u00b7 0 rows: "
+  },
+  {
+    "phase": 11,
+    "step": "b3",
+    "what": "Utility B asking for A's Senior by its id: not found (read, accounts, audit) and a write refused",
+    "pass": true,
+    "evidence": "read 404 \u00b7 accounts 404 \u00b7 audit 404 \u00b7 retire 404"
+  },
+  {
+    "phase": 11,
+    "step": "b4",
+    "what": "Utility B typing A's discount address sees no Senior",
+    "pass": true,
+    "evidence": "Failed We couldn't load this definition. We could not find that. It may have been removed, or the address may be wrong. Retry Download error report Cancel"
+  },
+  {
+    "phase": 11,
+    "step": "b3",
+    "what": "A's Senior unchanged by B's refused write",
+    "pass": true,
+    "evidence": "[[\"1\",\"active\",\"15.00\",\"2026-10-01\",\"2026-12-31\"],[\"2\",\"active\",\"12.00\",\"2027-01-01\",\"2027-01-31\"]]"
+  },
+  {
+    "phase": 11,
+    "step": "list_en",
+    "what": "list in en: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1120,\"box\":1120,\"typeLines\":2,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "new_en",
+    "what": "new in en: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":null,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "overview_en",
+    "what": "overview in en: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1116,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "accounts_en",
+    "what": "accounts in en: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1118,\"box\":1118,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "edit_en",
+    "what": "edit in en: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":776,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "list_de",
+    "what": "list in de: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1120,\"box\":1120,\"typeLines\":1,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "new_de",
+    "what": "new in de: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":null,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "overview_de",
+    "what": "overview in de: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1116,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "accounts_de",
+    "what": "accounts in de: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1118,\"box\":1118,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "edit_de",
+    "what": "edit in de: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":776,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "list_es",
+    "what": "list in es: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1120,\"box\":1120,\"typeLines\":2,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "new_es",
+    "what": "new in es: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":null,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "overview_es",
+    "what": "overview in es: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1116,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "accounts_es",
+    "what": "accounts in es: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1118,\"box\":1118,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "edit_es",
+    "what": "edit in es: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":776,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "list_es-MX",
+    "what": "list in es-MX: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1120,\"box\":1120,\"typeLines\":2,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "new_es-MX",
+    "what": "new in es-MX: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":null,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "overview_es-MX",
+    "what": "overview in es-MX: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1116,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "accounts_es-MX",
+    "what": "accounts in es-MX: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1118,\"box\":1118,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "edit_es-MX",
+    "what": "edit in es-MX: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":776,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "list_fr-FR",
+    "what": "list in fr-FR: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1120,\"box\":1120,\"typeLines\":2,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "new_fr-FR",
+    "what": "new in fr-FR: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":null,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "overview_fr-FR",
+    "what": "overview in fr-FR: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1116,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "accounts_fr-FR",
+    "what": "accounts in fr-FR: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1118,\"box\":1118,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "edit_fr-FR",
+    "what": "edit in fr-FR: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":776,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "list_hi",
+    "what": "list in hi: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1120,\"box\":1120,\"typeLines\":2,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "new_hi",
+    "what": "new in hi: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":null,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "overview_hi",
+    "what": "overview in hi: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1116,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "accounts_hi",
+    "what": "accounts in hi: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1118,\"box\":1118,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "edit_hi",
+    "what": "edit in hi: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":776,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "list_id-ID",
+    "what": "list in id-ID: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1120,\"box\":1120,\"typeLines\":3,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "new_id-ID",
+    "what": "new in id-ID: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":null,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "overview_id-ID",
+    "what": "overview in id-ID: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1116,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "accounts_id-ID",
+    "what": "accounts in id-ID: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1118,\"box\":1118,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "edit_id-ID",
+    "what": "edit in id-ID: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":776,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "list_it-IT",
+    "what": "list in it-IT: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1120,\"box\":1120,\"typeLines\":2,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "new_it-IT",
+    "what": "new in it-IT: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":null,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "overview_it-IT",
+    "what": "overview in it-IT: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1116,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "accounts_it-IT",
+    "what": "accounts in it-IT: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1118,\"box\":1118,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "edit_it-IT",
+    "what": "edit in it-IT: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":776,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "list_ja-JP",
+    "what": "list in ja-JP: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1120,\"box\":1120,\"typeLines\":1,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "new_ja-JP",
+    "what": "new in ja-JP: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":null,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "overview_ja-JP",
+    "what": "overview in ja-JP: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1116,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "accounts_ja-JP",
+    "what": "accounts in ja-JP: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1118,\"box\":1118,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "edit_ja-JP",
+    "what": "edit in ja-JP: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":776,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "list_ko-KR",
+    "what": "list in ko-KR: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1120,\"box\":1120,\"typeLines\":2,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "new_ko-KR",
+    "what": "new in ko-KR: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":null,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "overview_ko-KR",
+    "what": "overview in ko-KR: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1116,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "accounts_ko-KR",
+    "what": "accounts in ko-KR: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1118,\"box\":1118,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "edit_ko-KR",
+    "what": "edit in ko-KR: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":776,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "list_pt-BR",
+    "what": "list in pt-BR: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1120,\"box\":1120,\"typeLines\":3,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "new_pt-BR",
+    "what": "new in pt-BR: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":null,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "overview_pt-BR",
+    "what": "overview in pt-BR: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1116,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "accounts_pt-BR",
+    "what": "accounts in pt-BR: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":1118,\"box\":1118,\"typeLines\":0,\"squeezed\":[]}"
+  },
+  {
+    "phase": 11,
+    "step": "edit_pt-BR",
+    "what": "edit in pt-BR: no English left, nothing wraps badly at 1440",
+    "pass": true,
+    "evidence": "english: none \u00b7 {\"page\":0,\"table\":776,\"box\":null,\"typeLines\":0,\"squeezed\":[]}"
+  }
+]

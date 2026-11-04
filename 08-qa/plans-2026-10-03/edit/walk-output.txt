@@ -1,0 +1,27 @@
+rail: ["1 Details","2 Review"]
+code fact: Code SCW-IND
+locked: Services, charges and billing 🔒 Change from a date. Services Electric, Water Charges · taxes 1 · 2 Discounts 0
+=== 38-edit-info-1.png — Edit · Name and details · step Details
+=== 39-edit-info-review-unchanged.png — Name and details · Review, nothing changed (image 39)
+what changes: What changes FIELD BEFORE AFTER Description Sample plan. Electricity at a $180.00 monthly base and $0.085 per kilowatt-hour of use. Water and electric for businesses inside the city.
+=== 39-edit-info-review.png — Name and details · Review (same version), description moved
+  PATCH http://127.0.0.1:5311/api/brazosbend/plans/01a102d8-94ee-7740-a876-c39c258be6d8 → 200
+saved: ✓ Sample — Industrial saved Saved on this version. Logged in Audit. Back to plan
+=== 39b-edit-info-saved.png — Name and details · saved on this version
+rail: ["1 Services","2 Charges","3 Billing","4 Review"]
+=== 40-edit-change-1.png — Change from a date · first step (Services)
+step=2 opens: ["✓ Services","2 Charges","3 Billing","4 Review"] · charge rows 1
+=== 37-detail-section-edit.png — the address a section's Edit opens: ?change=change&step=2 → Charges
+=== 41-edit-change-review.png — Change from a date · Review (v1 ends, v2 new; units move)
+=== 42-edit-change-refused.png — Change from a date · Publish without a reason — refused by name (image 42 draws this)
+  POST http://127.0.0.1:5311/api/brazosbend/plans/01a102d8-94ee-7740-a876-c39c258be6d8/versions → 201
+saved: ✓ Sample — Industrial saved v2 starts 01/01/2027. Logged in Audit. Back to plan
+=== 42-edit-change-published.png — Change from a date · new version published
+=== 43-edit-correct-1.png — Fix a mistake · first step
+=== 44-edit-correct-review-noreason.png — Fix a mistake · Review, before the reason
+=== 44-edit-correct-review.png — Fix a mistake · Review (same dates, reason)
+  POST http://127.0.0.1:5311/api/brazosbend/plans/01a102d8-94ee-7740-a876-c39c258be6d8/corrections → 200
+saved: ✓ Sample — Industrial saved v1 corrected. Logged in Audit. Back to plan
+=== 44b-edit-correct-saved.png — Fix a mistake · saved
+=== audit-after-three-ways.png — Details · Audit after the three ways
+audit: ← Plans Sample — IndustrialSCW-IND Published V1 Industrial · 08/01/2026 – 12/31/2026 Edit More ▾ Overview Services2 Charges Billing Units1 Audit This plan's v2 starts 01/01/2027. See it Audit All Plan changes Changes underneath From To ▸ WHEN WHO WHAT CHANGE REASON ▸ 10/03/2026 14:12 Dana Whitfield Fixed a mistake · v1 Reason: — · Version terms: — → Reason: Budget billing was ruled on for this plan · Version terms: — Budget billing was ruled on for this plan ▸ 10/03/2026 14:12 Dana Whitfield Published · v2 Starts: 01/01/2027 · Reason: New minimum bill from council New minimum bill from council ▸ 10/03/2026 14:12 Dana Whitfield New version · v2 Starts: 01/01/2027 · Reason: New minimum bill from council New minimum bill from council ▸ 10/03/2026 14:12 Dana Whitfield Edited · v1 Description: Sample plan. Electricity at a $180.00 monthly base and $0.085 per kilowatt-hour of use. → Description: Water and electric for businesses inside the city. — ▸ 10/03/2026 12:38 Dana Whitfield Published · v1 Status: draft → Status: published — ▸ 10/03/2026 12:38 Dana Whitfield Created Budget billing: No · Charge rules: — · Code: SCW-IND · +13 more — ▸ 10/03/2026 12:38 Dana Whitfield Tax · TX State Utility Tax Edited — ▸ 10/03/2026 12:38 Dana Whitfield Tax · Local · Bexar County Edited — 1–8 of 8 Rows per page 50 100 200 500 1000 ‹ ›

@@ -1,0 +1,12 @@
+[
+  {
+    "paymentNumber": "PAY-2609-0311",
+    "paymentDate": "2026-09-01",
+    "amount": "142.18",
+    "currency": "USD",
+    "tender": "Bank transfer",
+    "account": "4100",
+    "partnerAccount": "001.100.44100",
+    "customerAccount": "ACC-1048"
+  }
+]

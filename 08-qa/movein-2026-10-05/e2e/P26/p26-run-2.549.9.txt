@@ -1,0 +1,39 @@
+
+── P26 · P4.26 · SR R1 To approve → Ask for more → Approve → Start → Complete; SR R2 Declined
+  PASS  P26 · Accounts  · SR-26-0009 reads To approve — status to_approve
+  PASS  P26 · Accounts  · Ask for more → SR-26-0009 reads Waiting on customer — status waiting_on_customer
+  PASS  P26 · Accounts  · Approve → the move-in reads Not started — status not_started
+  PASS  P26 · Accounts  · Start opens the four-step form FROM the request — http://127.0.0.1:5763/mvimatrix/move-ins/new?request=01a10fb4-2b3a-7abb-996c-8a6fee34cbfa
+  PASS  P26 · Units     · the form opens on the request's unit U-00011 — U-00011 · Unit 1 21 Lantern Way, Cedar Ford, TX 78610 Vacant Residential First occupant BUILDING P-00084 Single-family ·
+  PASS  P26 · Units     · step 1 lists Water
+  PASS  P26 · Units     · step 1 lists Sewer
+  PASS  P26 · Assets    · step 1 asks an opening read for W-R1
+  PASS  P26 · Accounts  · Search customer ID answers "new"
+  PASS  P26 · Accounts  · no match block is drawn for a new person
+  PASS  P26 · Payments  · Fees total reads $175.00 — $175.00
+  PASS  P26 · Payments  · no fee row is taxed at move-in (no Taxable column, no tax row)
+  PASS  P26 · Payments  · step 3 says $175.00 goes on the first bill — $175.00 goes on the first bill.
+  NOTE  P26 · Complete warned deposit_carry_forward_unavailable: no deposit was carried forward from an earlier account
+  PASS  P26 · Accounts  · Move-in completed prints no raw server code
+  PASS  P26 · Messages  · Move-in completed counts the queued welcome (not 0 queued) — reads "3 queued"
+  PASS  P26 · Accounts  · Move-in completed names an MVI- number — MVI-26-0007
+  PASS  P26 · Accounts  · SR-26-0010 reads To approve — status to_approve
+  PASS  P26 · Accounts  · Decline → SR-26-0010 reads Declined — status declined
+  PASS  P26 · Accounts  · SR-26-0009 went To approve → Waiting on customer → Approved (its timeline)
+  PASS  P26 · Messages  · SR-26-0009: the ask for more is queued to the applicant, never sent
+  PASS  P26 · Accounts  · SR-26-0009: ONE move-in job, done by Complete
+  PASS  P26 · Accounts  · SR-26-0009: Complete opened the account on the request's unit Unit 1
+  PASS  P26 · Accounts  · SR-26-0009: the account opens on the request's start 2026-10-12
+  PASS  P26 · Accounts  · SR-26-0010 is Declined (refused)
+  PASS  P26 · Accounts  · SR-26-0010: the decline keeps its reason
+  PASS  P26 · Messages  · SR-26-0010: the refusal letter is queued to the applicant
+  PASS  P26 · Accounts  · SR-26-0010: no move-in job and no account
+  PASS  P26 · Accounts  · /moves/MVI-26-0007 opens (h1 drawn, no error page)
+  PASS  P26 · Accounts  · the completed move-in MVI-26-0007 names Maya Okonkwo
+  PASS  P26 · Accounts  · the completed move-in carries its request SR-26-0009
+  PASS  P26 · Accounts  · /moves/SR-26-0010?tab=messages opens (h1 drawn, no error page)
+  PASS  P26 · Accounts  · the declined request's Messages tab lists the letter to the applicant
+
+── summary
+  P26: 32 PASS · 0 FAIL
+ALL PASS

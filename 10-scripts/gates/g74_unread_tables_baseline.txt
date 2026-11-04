@@ -1,0 +1,100 @@
+# G74 — TABLES NOTHING IN THIS PRODUCT TOUCHES.
+#
+# Measured 2026-09-02: 3 of 143 declared models. ⚠ ONE HAS SINCE BEEN RESOLVED
+# and its line is deleted, which is what this file means by holding the gain:
+# `BellEvent` / `bell_events` was REMOVED on 2026-09-03 (DEF-3422 — no writer,
+# no reader and no caller; the bell's store is `outbound_messages` +
+# `in_app_messages`, and the decision is in 12-governance/02-decision-log.md).
+# Two remain. Each line below is a table that
+# exists and that no file outside its own definition, a migration or a seeder
+# mentions — so nothing writes it and nothing reads it.
+#
+# ⚠ A LINE HERE IS AN ADMISSION, NOT A PERMISSION. The count MAY FALL AND MAY
+# NEVER RISE. Wiring one means DELETING its line; that is how the gain is held.
+# A table landed ahead of the story that fills it is an ordinary, honest state
+# — what it must not be is silent, because the silence is indistinguishable
+# from a feature that works (hard-won law 2).
+#
+# Format: <ModelName>  <app>  — what is owed.
+
+Permission  identity  — nothing writes or reads it. Roles are enforced by the permission classes on each view rather than from a table, so this is a schema landed ahead of a story. Owed: either the story that fills it, or its removal — and a decision recorded either way.
+
+IntegrationConsent  integrations  — nothing writes or reads it, DELIBERATELY, and this is the one line here that names a table whose emptiness is a RULE rather than an oversight. `BR-INT-036` says a customer's consent is revoked and never deleted; `OQ-INT-1482` asks whether the feature is in scope at all and is OPEN, so `CR-069` put the table in the schema on purpose — *so that the feature, if ruled in, costs rows and not a migration* — and `apps/integrations/services.py` deliberately has NO writer for it, so a lane cannot answer the question by writing a row. Owed: the ruling on `OQ-INT-1482`, then `US-INT-046` (the consent screens `S145`/`S146`) or the table's removal. Added 2026-09-04 by the CR-069 wave E build lane, which did not create the table and found the gate red over it.
+
+# ⚠ 2026-09-06 — `CR-075` WAVE B WIRED THREE OF THE SEVEN AND THE OTHER FOUR ARE BELOW.
+# `Runbook`, `RunbookVersion` and `RunbookRun` got their first writer
+# (`apps/runbooks/services.py`: `ensure_version`, `open_run`, `close_run`) and their first
+# reader (`apps/runbooks/selectors.py`), so their three lines are DELETED rather than
+# reworded. The four that remain each name what is owed, and one of them is BLOCKED rather
+# than merely later: `RunbookRunRecord` cannot be written until `OQ-RBS-1737` says how its
+# `idempotency_key` is composed.
+#
+# ⚠ 2026-09-06, LATER THE SAME DAY — `CR-075` WAVE D WIRED TWO MORE, SO TWO OF THOSE FOUR
+# LINES ARE DELETED HERE. `RunbookRunRecord` and `WorkItem` got their first READER:
+# `apps/runbooks/selectors.py` — `run_records_page` and `run_result_records` serve
+# `GET /runbooks/runs/{id}/records` and the two result CSVs, and
+# `_open_work_items_by_runbook` serves the catalogue's open-item count. Deleting the lines
+# is how the gain is held; the count MAY FALL AND MAY NEVER RISE, and the file's own header
+# says wiring one means deleting its line.
+#
+# ⚠ **WHAT WAS OWED ON THOSE TWO IS NOT DISCHARGED, AND SAYING SO HERE IS THE POINT —
+# BECAUSE THE DELETED LINE WAS ALSO WHERE IT WAS WRITTEN DOWN.** Both tables now have a
+# reader and STILL HAVE NO WRITER:
+#   * `RunbookRunRecord` — its `UNIQUE (tenant_id, idempotency_key)` index is laid and
+#     NOTHING COMPOSES A KEY, deliberately: how the key is composed contradicts itself
+#     across our own documents (`DEF-RBS-4246`) and is `OQ-RBS-1737`, OPEN, left to wave L
+#     with the collections ladder in front of it. Owed: that ruling, then wave C's
+#     per-record evaluation. Until then `/records` and the two files serve an empty list
+#     over a real run, which is honest and is not the same as broken.
+#   * `WorkItem` — the ENGINE writes it, never a runbook, which is what lets a Check
+#     populate the work list while holding no writer at all (`BR-RBS-002`); and ⚠ it is
+#     the RUNBOOKS module's table, not the `work` module's (`17-runbooks/03-field-map.md`
+#     D-4): `apps/work` owns crews, technicians, parts and WORK ORDERS. Owed: wave C's
+#     upsert-by-fingerprint and wave H's work list (`RBS-007`).
+# **This gate cannot see a write-only-half gap and does not claim to** — it asks whether
+# any file outside the definition NAMES the model, so one reader clears a table that
+# nothing writes. That is a declared blind spot with the two table names attached, which is
+# what law 7 asks of a check that cannot cover its whole subject.
+CutoverPlan  runbooks  — same wave, same reason. Owed: wave J (`GET · POST /cutover-plans`).
+CutoverPlanItem  runbooks  — same wave, same reason. A NULL `runbook_key` on this table is a human task the engine never performs, which is why the column is nullable before anything reads it. Owed: wave J (`PATCH /cutover-plans/{id}/items/{seq}`).
+# ══════════════════════════════════════════════════════════════════════════
+# ⚠ A SECOND SECTION, ADDED 2026-09-05 — TABLES THAT ARE READ, WHERE THIS GATE
+# CANNOT SEE THE READER. THESE ARE NOT ADMISSIONS THAT NOTHING READS THEM.
+#
+# The lines ABOVE mean what the header says: nothing writes them and nothing
+# reads them. A line down HERE means the opposite — the reader exists and is
+# named — and it is separated so that no reader of this file ever takes one for
+# the other. Writing `CrewSkill` under the header above would have been a false
+# statement in a governance file, which is the class of thing this repository
+# spends its days finding.
+#
+# THE BLIND SPOT: this gate asks whether the model's CLASS NAME appears as a
+# word in any file outside its own definition. A read through a Django REVERSE
+# RELATION never names the class — it names the `related_name` — so a table read
+# only that way looks identical to a table nothing touches. Filed as
+# DEF-WRK-4078.
+#
+# It is recorded rather than fixed, and the reason is that the obvious fix makes
+# the gate WEAKER: matching the `related_name` would count `skills__` as a read,
+# and `related_name="skills"` is declared TWICE in apps/work/models.py — on
+# `TechnicianSkill.technician` AND on `CrewSkill.crew`. A rule keyed on it would
+# credit one table for the other's reader, which turns a false alarm into a
+# silence. A silence is the failure mode this gate exists to prevent, so the
+# blind spot is left visible and named instead of half-closed.
+# ══════════════════════════════════════════════════════════════════════════
+
+# CrewSkill LEFT THIS LIST 2026-10-05 (`DEF-WRK-4078`, lane FIN-T): `apps/work/advice.py` now names
+# `work_models.CrewSkill` directly (the P3.52 skill writes and P4.5's advice), so the gate sees a reader
+# and said so — *"5 baselined table(s) now have a reader"*. The blind spot described above is UNCHANGED
+# and still deliberate; no table on this list depends on it today.
+
+# ⚠ 2026-09-26 — `CR-142-BRC07` PHASE 0 LANDED THREE REPORTS TABLES AND ONLY ONE
+# OF THEM HAS A READER. `ReportDefinition` is read on every request by
+# `apps/reports/runner.resolve()`, so it needs no line. The other two are
+# schema landed AHEAD of the story that reads them, deliberately and with the
+# phase boundary stated, which is the honest state this file's header
+# describes — and the gate found them, which is the gate working.
+
+ReportCategory  reports  — SEEDED (6 groups and 19 sub-groups, `reports/0003`) and read by nothing yet. `GET /reports` still serves `apps/reports/catalog.py`'s Python tuple and its three hardcoded group constants; the read that joins definitions to these rows is `CR-142-BRC07` `P1.1`, which owns the catalogue SCREEN in the same task and must, because the screen labels every group through `t("reports.group.<code>")` and naming six new groups is 275 strings across eleven catalogues (B14 rule 35 — a catalogue is written in its own language, never translated). Owed: `P1.1`. Added 2026-09-26 by lane REP-P0A, which created the table and found the gate red over it.
+
+ReportTenantSetting  reports  — created and written by nothing yet. It is the per-utility overlay — enabled, pinned, display order, name override — and the outcome it exists for is *"a water-only tenant disables the gas reports and the catalogue stops showing them"*, which needs the catalogue read to honour it. Owed: `P1.1` for the read, `P5.4` for the Settings surface that writes it. Added 2026-09-26 by lane REP-P0A, which created the table and found the gate red over it.

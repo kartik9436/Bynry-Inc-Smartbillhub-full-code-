@@ -1,0 +1,118 @@
+signed in as dana@brazosbendutilities.com
+GET /plans row keys: account_subtype_id, account_type_id, account_type_ids, accounts, base_charges, base_charges_display, base_charges_unavailable, budget_billing, code, description, effective_from, effective_to, eligibility, id, minimum_bill_amount, name, outside_city_factor, outside_city_percent, outside_city_percent_display, rate_schedules, schedules, services, status, units, upcoming_version, version 
+round-2 fields served: schedules=true units=true upcoming_version=true customer_classes=false
+  Industrial: base null (base_charge_refused)
+  Residential Standard: base null (base_charge_refused)
+  Rural Draft: base null (no_rate_schedule)
+  Sample — Commercial: base null (base_charge_refused)
+  Sample — Industrial: base null (base_charge_refused)
+  Sample — Residential: base 20.000000 (stated)
+  Small Commercial: base null (base_charge_refused)
+
+=== 01-list-all.png — Plans list, all plans (image 01)
+PLAN
+▲
+ | VERSION | SERVICES | SCHEDULES | BASE CHARGES | UNITS | FROM | TO | STATUS | 
+
+Industrial
+IND · Every customer class
+ | V1 | 
+E
+ | 1 | — | 1 | 08/01/2026 | No end | Published | 
+
+
+Residential Standard
+RES-STD · Every customer class
+ | V1 | 
+E
+W
+ | 2 | — | 7 | 08/01/2026 | No end | Published | 
+
+
+Rural Draft
+RUR · Every customer class
+ | V1 | No services yet | 0 | — | 0 | 12/01/2026 | No end | Draft | 
+
+
+Sample — Commercial
+SCW-COM · Commercial
+ | V1 | 
+E
+W
+ | 2 | — | 2 | 08/01/2026 | No end | Published | 
+
+
+Sample — Industrial
+SCW-IND · Industrial
+ | V1 | 
+E
+W
+ | 2 | — | 1 | 08/01/2026 | No end | Published | 
+
+
+Sample — Residential
+SCW-RES · Residential
+ | V1 | 
+E
+W
+ | 2 | $20.00 | 75 | 08/01/2026 | No end | Published | 
+
+
+Small Commercial
+COM-SM · Every customer class
+ | V1 | 
+W
+ | 1 | — | 2 | 08/01/2026 | No end | Published | 
+PASS 01 columns in the drawn order — Plan · Version · Services · Schedules · Base charges · Units · From · To · Status · 
+PASS 01 no paragraph above the table
+PASS 01 no database id on screen
+PASS 01 each row's one action is Open — [["Open"],["Open"],["Open"]]
+PASS server sorts units desc — [75,7,2,2,1,1,0]
+PASS server sorts version desc — [1,1,1,1,1,1,1]
+PASS server sorts effective_from desc — ["2026-12-01","2026-08-01","2026-08-01","2026-08-01","2026-08-01","2026-08-01","2026-08-01"]
+PASS server sorts effective_to desc — ["9999","9999","9999","9999","9999","9999","9999"]
+PASS clicking Units twice orders the rows by units, most first — http://127.0.0.1:5271/brazosbend/plans-rates?sort=units&dir=desc [75,7,2,2,1,1,0]
+
+=== 02-list-search.png — Plans list, searched "water" (image 02)
+(no table)
+PASS 02 the search went to the server — http://127.0.0.1:5271/brazosbend/plans-rates?q=water&sort=name&dir=asc
+
+=== 03-list-no-results.png — Plans list, a search with no results (image 03)
+Plans & Rates
+
+7 plans · 9 rate schedules · 31 charge codes · 6 discounts · 2 taxes & fees · effective 10/01/2026
+
+History
++ New plan
+Plans
+Rate schedules
+Charge codes
+Discounts
+Taxes & fees
+✕
+All
++ Filter
+▾
+
+No results for 'zzz'.
+
+Clear filters
+PASS lang en: fits 1440, no sideways scroll, no word split — {"page":0,"table":1120,"box":1120,"squeezed":[]}
+
+=== lang-de.png — list at 1440 in de
+PASS lang de: fits 1440, no sideways scroll, no word split — {"page":0,"table":1120,"box":1120,"squeezed":[]}
+PASS lang es: fits 1440, no sideways scroll, no word split — {"page":0,"table":1120,"box":1120,"squeezed":[]}
+PASS lang es-MX: fits 1440, no sideways scroll, no word split — {"page":0,"table":1120,"box":1120,"squeezed":[]}
+PASS lang fr-FR: fits 1440, no sideways scroll, no word split — {"page":0,"table":1120,"box":1120,"squeezed":[]}
+PASS lang hi: fits 1440, no sideways scroll, no word split — {"page":0,"table":1120,"box":1120,"squeezed":[]}
+PASS lang id-ID: fits 1440, no sideways scroll, no word split — {"page":0,"table":1120,"box":1120,"squeezed":[]}
+PASS lang it-IT: fits 1440, no sideways scroll, no word split — {"page":0,"table":1120,"box":1120,"squeezed":[]}
+
+=== lang-ja-JP.png — list at 1440 in ja-JP
+PASS lang ja-JP: fits 1440, no sideways scroll, no word split — {"page":0,"table":1120,"box":1120,"squeezed":[]}
+
+=== lang-ko-KR.png — list at 1440 in ko-KR
+PASS lang ko-KR: fits 1440, no sideways scroll, no word split — {"page":0,"table":1120,"box":1120,"squeezed":[]}
+PASS lang pt-BR: fits 1440, no sideways scroll, no word split — {"page":0,"table":1120,"box":1120,"squeezed":[]}
+
+ALL PASS

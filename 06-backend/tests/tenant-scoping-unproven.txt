@@ -1,0 +1,194 @@
+# MODULES NOT YET PROVED UNDER ENFORCED TENANT SCOPING — DEF-2761, 2026-08-31
+#
+# WHAT THIS LIST IS. `tests/test_us_ten_helpers.sqlite_guc` is an `autouse`
+# fixture that used to replace `core.tenancy.connection` with a recording fake
+# on EVERY vendor, so `set_config('app.tenant_id', ...)` never reached
+# PostgreSQL. Through `from ... import *` it reached 447 collected modules and
+# 6,575 cases. A green PostgreSQL run of any of them was never evidence of
+# tenant scoping — and while the app role was SUPERUSER nothing could say so,
+# because RLS was bypassed, no policy was consulted, and the run was green.
+#
+# The fixture is now narrowed to sqlite. Measured immediately afterwards, one
+# pytest invocation per module against real PostgreSQL 16.13 under
+# `smartbillhub` at `rolsuper=f rolbypassrls=f`, each module stopping at its
+# first failure:
+#
+#     447 modules  ->  31 green, 416 RED (93%)
+#
+# Two shared fixture helpers accounted for nearly all of it: they wrote and read
+# tenant-scoped rows with `tenant=tenant` set as a COLUMN but inside no tenant
+# context at all. `test_us_met_helpers` (`seed_physical_series`, `staff_actor`,
+# `make_plan`) and `test_us_rat_helpers` (`set_billed_uom`, `unit`, `assign`,
+# `_owner_of`, `_start_from_an_empty_rating_catalog`). Both were repaired with
+# `seeding_ctx`, and the 447 were then re-run.
+#
+# WHAT BEING ON THIS LIST MEANS, EXACTLY. Not "broken", and not "excused":
+# **not yet PROVED**. A module leaves this list only when a run against real
+# PostgreSQL under a non-bypassing role has been SEEN to pass it. A module
+# nobody has re-measured stays on it. That is the honest reading, and it is why
+# the list is seeded with all 416 rather than only with the ones observed still
+# failing.
+#
+# STATE AT 2026-08-31:
+#   289 of the 416 have been re-run and PASS — removed from this list.
+#   127 have been re-run and still fail — listed below, grouped by failure.
+#   0 have not been re-run since the repair — listed below as unproven.
+#
+# HOW IT MAY CHANGE. It may only ever SHRINK. G57 holds the ceiling in
+# `10-scripts/gates/g57_tenant_guc_not_faked.py` (`PARKED_CEILING`), so growing
+# this file takes two deliberate edits and the gate names the number either way.
+# When you prove a module, delete its line AND lower the ceiling.
+#
+# ⚠ BE HONEST ABOUT THE RATCHET. Unlike the i18n and refusal-copy baselines,
+# this one cannot re-derive its own contents: deciding whether a module passes
+# needs a real PostgreSQL under a non-bypassing role, which no gate can open.
+# It is bookkeeping backed by a measurement, and claiming more for it would be
+# the same class of claim this whole defect turned out to be.
+#
+# TO RE-MEASURE ONE:
+#   cd 06-backend
+#   DJANGO_SETTINGS_MODULE=config.settings.local JOBS_EAGER=false \
+#     python -m pytest <module> -x -q --reuse-db
+#
+# ⚠ NOT with the default `pytest`: `config/settings/test.py` hardcodes in-memory
+# sqlite and ignores DATABASE_URL (CLAUDE.md law 14), and sqlite has neither
+# row-level security nor `set_config`, so the default suite is green on every
+# module here and proves nothing about any of them.
+
+
+# ── other / unclassified  (89) ──
+tests/test_br_ast_049_external_ref.py
+tests/test_br_met_119_service_at_premises.py
+tests/test_br_rat_113_attach_taxes.py
+tests/test_br_rat_120_size_refusal.py
+tests/test_cr005_numbering_set08.py
+tests/test_cr008_tender_gl_posting.py
+tests/test_cr010_reference_list_inventory.py
+tests/test_cr014_group3_cohorts.py
+tests/test_cr014_round3_cohorts.py
+tests/test_cr023_import_stages.py
+tests/test_cr023_load_stage.py
+tests/test_cr026_background_stages.py
+tests/test_cr028_ast_w2_detail.py
+tests/test_cr028_seed.py
+tests/test_cr029_rcw1_route_model.py
+tests/test_cr029_rcw2_read_windows.py
+tests/test_cr029_rcw2_run_proposal.py
+tests/test_cr029_rcw6_bill_date_default.py
+tests/test_cr030_w1_opening_buckets.py
+tests/test_cr035_fixture.py
+tests/test_cr036_import_services.py
+tests/test_cr038_s64_service_settings.py
+tests/test_cr043_line_labels.py
+tests/test_cr046_identifiers.py
+tests/test_cr048_b7_e6_template_send_test.py
+tests/test_cr049_t4_bill_freeze.py
+tests/test_cr051_run_jobs_and_breaks.py
+tests/test_cr052_w0_disconnected_at_the_cut.py
+tests/test_cr052_w0_the_23_23_case.py
+tests/test_cr052_w2_snapshot_blocks.py
+tests/test_cr_009_notification_rules.py
+tests/test_def1080_assets_commit_path.py
+tests/test_def2030_2031_wizard_doors.py
+tests/test_def444_state_tax_jurisdictions.py
+tests/test_def629_seed_cutover.py
+tests/test_def_044_reads_sort.py
+tests/test_def_079_dark_counters.py
+tests/test_def_236_premises_types_card.py
+tests/test_def_264_refusal_detail_reaches_the_screen.py
+tests/test_def_273_tax_conditions.py
+tests/test_def_708_the_fee_is_a_real_charge.py
+tests/test_po_20260812_backbill_segment_estimate.py
+tests/test_reference_data_completeness.py
+tests/test_us_ast_001_003_registry.py
+tests/test_us_ast_004_006_detail.py
+tests/test_us_bil_001_003_run_api.py
+tests/test_us_bil_004_run_loop.py
+tests/test_us_bil_005_release.py
+tests/test_us_bil_005_release_gate.py
+tests/test_us_bil_005_release_issue_api.py
+tests/test_us_bil_012_single.py
+tests/test_us_bil_013_backbill.py
+tests/test_us_bil_016_bulk_corrections.py
+tests/test_us_bil_018_budget_enrollment.py
+tests/test_us_bil_022_documents.py
+tests/test_us_bil_surface_apis.py
+tests/test_us_cus_003_account_race.py
+tests/test_us_cus_003_account_write.py
+tests/test_us_cus_004_005_move_in_out.py
+tests/test_us_cus_004_move_in_race.py
+tests/test_us_cus_012_017_account_actions.py
+tests/test_us_cus_019_account_import.py
+tests/test_us_cus_schema_and_seed.py
+tests/test_us_led_005_gl_designations.py
+tests/test_us_led_013_reverse_repost.py
+tests/test_us_led_016_export.py
+tests/test_us_led_017_cost_chart.py
+tests/test_us_led_018_capture.py
+tests/test_us_led_021_cost_export.py
+tests/test_us_met_003_wizard.py
+tests/test_us_met_004_bulk.py
+tests/test_us_not_003_channel_routing.py
+tests/test_us_pay_020_023_bank_rec.py
+tests/test_us_rat_plans.py
+tests/test_us_rat_schedules.py
+tests/test_us_rat_versioning.py
+tests/test_us_ten_002_seeding.py
+tests/test_us_ten_019_sample_data.py
+tests/test_us_ten_020_sweep.py
+tests/test_w3_billing_models.py
+tests/test_w5_move_in_out_cases.py
+tests/test_w5_move_worklists.py
+tests/test_w6_connection_detail.py
+tests/test_w6_w7_seed.py
+tests/test_w7_cut_reconnect.py
+tests/test_w7_disconnects.py
+tests/test_w7_proof_of_service.py
+tests/test_w7_transfers.py
+tests/test_w9_event_reads.py
+
+# ── RLS refused a READ, so setup found no row  (32) ──
+tests/test_be07_job_runner.py
+tests/test_br_cus_170_master_covers_the_unbilled.py
+tests/test_br_rat_690_per_size_amounts.py
+tests/test_cr006_routes_cycles.py
+tests/test_cr012_dashboard_dsh01.py
+tests/test_cr028_import_targets.py
+tests/test_cr029_rcw1_schedule.py
+tests/test_cr029_rcw6_run_numbers.py
+tests/test_cr038_w1b_cascade.py
+tests/test_cr039_sample_block_reporting.py
+tests/test_cr049_t5_rights_clause_reprint.py
+tests/test_def1108_deferred_load_approver.py
+tests/test_def650_owner_is_the_master_account.py
+tests/test_def659_posted_over_nothing.py
+tests/test_def724_close_out.py
+tests/test_def_082_tenant_timezone.py
+tests/test_def_094_typed_date_write_half.py
+tests/test_def_184_uom_service_scope.py
+tests/test_def_494_publish_needs_a_start_date.py
+tests/test_oq366_ladder_follows_the_master.py
+tests/test_oq530_opening_balance_on_the_first_bill.py
+tests/test_us_met_016_tc_supersede.py
+tests/test_us_not_005_rendering.py
+tests/test_us_not_006_template_lifecycle.py
+tests/test_us_not_013_015_delivery_ops.py
+tests/test_us_pay_004_payments_api.py
+tests/test_us_pay_020_023_bankrec_surface.py
+tests/test_us_ten_001_004_provisioning.py
+tests/test_us_ten_007_008_services_uom.py
+tests/test_us_ten_009_011_lookups.py
+tests/test_us_ten_012_numbering.py
+tests/test_us_ten_settings_rule_pages.py
+
+# ── RLS refused a WRITE made with no tenant marker  (3) ──
+tests/test_br_rat_091_rate_change_impact.py
+tests/test_cr038_w5_reads_surface.py
+tests/test_def_898_899_reads_surface_defects.py
+
+# ── transaction aborted by an earlier refusal  (2) ──
+tests/test_def_163_notice_templates_seeded.py
+tests/test_us_aud_007_tc_archival.py
+
+# ── a tenant-marker assertion that could never fire before  (1) ──
+tests/test_br_cus_092_ein_encryption.py

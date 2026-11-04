@@ -1,0 +1,247 @@
+{
+  "results": [
+    {
+      "key": "dunning_auto",
+      "label": "A final notice expires unpaid",
+      "label_key": "work.rules.process.dunning_auto",
+      "module": "payments",
+      "module_label_key": "work.rules.module.payments",
+      "source_label": "dunning_auto",
+      "moment": "overnight",
+      "params": [
+        {
+          "name": "grace_days",
+          "kind": "int",
+          "default": 2,
+          "required": false,
+          "label_key": "work.rules.param.grace_days",
+          "minimum": 0
+        }
+      ]
+    },
+    {
+      "key": "billing_exception",
+      "label": "A billing exception stays open",
+      "label_key": "work.rules.process.billing_exception",
+      "module": "billing",
+      "module_label_key": "work.rules.module.billing",
+      "source_label": "billing_exception",
+      "moment": "overnight",
+      "params": [
+        {
+          "name": "retryable",
+          "kind": "bool",
+          "default": false,
+          "required": false,
+          "label_key": "work.rules.param.retryable"
+        }
+      ]
+    },
+    {
+      "key": "asset_age_rule",
+      "label": "An asset passes its certification",
+      "label_key": "work.rules.process.asset_age_rule",
+      "module": "assets",
+      "module_label_key": "work.rules.module.assets",
+      "source_label": "asset_age_rule",
+      "moment": "overnight",
+      "params": [
+        {
+          "name": "asset_type_ids",
+          "kind": "asset_types",
+          "default": [],
+          "required": false,
+          "label_key": "work.rules.param.asset_type_ids"
+        }
+      ]
+    },
+    {
+      "key": "compliance_calendar",
+      "label": "An asset's certification is due soon",
+      "label_key": "work.rules.process.compliance_calendar",
+      "module": "assets",
+      "module_label_key": "work.rules.module.assets",
+      "source_label": "compliance_calendar",
+      "moment": "overnight",
+      "params": [
+        {
+          "name": "asset_type_ids",
+          "kind": "asset_types",
+          "default": [],
+          "required": false,
+          "label_key": "work.rules.param.asset_type_ids"
+        },
+        {
+          "name": "days_ahead",
+          "kind": "int",
+          "default": null,
+          "required": true,
+          "label_key": "work.rules.param.days_ahead",
+          "minimum": 1
+        }
+      ]
+    },
+    {
+      "key": "high_usage_alert",
+      "label": "A meter shows continuous flow",
+      "label_key": "work.rules.process.high_usage_alert",
+      "module": "reads",
+      "module_label_key": "work.rules.module.reads",
+      "source_label": "high_usage_alert",
+      "moment": "overnight",
+      "params": [
+        {
+          "name": "service",
+          "kind": "service",
+          "default": null,
+          "required": true,
+          "label_key": "work.rules.param.service"
+        },
+        {
+          "name": "consecutive_reads",
+          "kind": "int",
+          "default": 3,
+          "required": false,
+          "label_key": "work.rules.param.consecutive_reads",
+          "minimum": 1
+        },
+        {
+          "name": "minimum_consumption",
+          "kind": "quantity",
+          "default": "0",
+          "required": false,
+          "label_key": "work.rules.param.minimum_consumption",
+          "unit_param": "unit"
+        },
+        {
+          "name": "unit",
+          "kind": "unit",
+          "default": null,
+          "required": true,
+          "label_key": "work.rules.param.unit"
+        }
+      ]
+    },
+    {
+      "key": "meter_read",
+      "label": "A meter reaches its estimate limit",
+      "label_key": "work.rules.process.meter_read",
+      "module": "reads",
+      "module_label_key": "work.rules.module.reads",
+      "source_label": "meter_read",
+      "moment": "overnight",
+      "params": [
+        {
+          "name": "est_max_consecutive",
+          "kind": "setting",
+          "default": null,
+          "required": false,
+          "label_key": "work.rules.param.est_max_consecutive"
+        }
+      ]
+    },
+    {
+      "key": "move_in",
+      "label": "A customer moves in",
+      "label_key": "work.rules.process.move_in",
+      "module": "accounts",
+      "module_label_key": "work.rules.module.accounts",
+      "source_label": "move_in",
+      "moment": "screen",
+      "params": []
+    },
+    {
+      "key": "move_out",
+      "label": "A customer moves out",
+      "label_key": "work.rules.process.move_out",
+      "module": "accounts",
+      "module_label_key": "work.rules.module.accounts",
+      "source_label": "move_out",
+      "moment": "screen",
+      "params": []
+    },
+    {
+      "key": "transfer",
+      "label": "An account is transferred",
+      "label_key": "work.rules.process.transfer",
+      "module": "accounts",
+      "module_label_key": "work.rules.module.accounts",
+      "source_label": "transfer",
+      "moment": "screen",
+      "params": []
+    },
+    {
+      "key": "reconnect",
+      "label": "A paid account awaits reconnection",
+      "label_key": "work.rules.process.reconnect",
+      "module": "accounts",
+      "module_label_key": "work.rules.module.accounts",
+      "source_label": "reconnect",
+      "moment": "screen",
+      "params": []
+    },
+    {
+      "key": "new_connect",
+      "label": "A new connection is built",
+      "label_key": "work.rules.process.new_connect",
+      "module": "premises",
+      "module_label_key": "work.rules.module.premises",
+      "source_label": "new_connect",
+      "moment": "screen",
+      "params": []
+    },
+    {
+      "key": "failed_outcome",
+      "label": "A job is accepted as failed",
+      "label_key": "work.rules.process.failed_outcome",
+      "module": "work",
+      "module_label_key": "work.rules.module.work",
+      "source_label": "failed_outcome",
+      "moment": "retry",
+      "params": []
+    }
+  ],
+  "settings": {
+    "est_max_consecutive": 2
+  },
+  "assign_kinds": [
+    "nobody",
+    "area",
+    "skill",
+    "technician",
+    "crew"
+  ],
+  "escalation_kinds": [
+    "unassigned",
+    "not_accepted",
+    "running_late",
+    "overdue",
+    "on_hold_too_long",
+    "failed",
+    "not_approved"
+  ],
+  "notify_when": [
+    "raised",
+    "assigned",
+    "on_the_way",
+    "done"
+  ],
+  "notify_who": [
+    "customer",
+    "whoever_acted",
+    "system_admins"
+  ],
+  "also_tell_kinds": [
+    "role",
+    "user"
+  ],
+  "escalation_events": {
+    "unassigned": "work_job_not_assigned",
+    "not_accepted": "work_job_not_accepted",
+    "running_late": "work_job_running_late",
+    "overdue": "sla_breach",
+    "on_hold_too_long": "work_hold_overdue",
+    "failed": "work_job_failed",
+    "not_approved": "work_approval_overdue"
+  }
+}

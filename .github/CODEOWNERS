@@ -1,0 +1,27 @@
+# Human review is FORCED on money-critical and isolation-critical paths (CLAUDE.md "Do NOT touch without a human").
+# Replace @NealGudhe with the accountable owner per area as the team grows.
+
+# Tenant isolation & RLS
+/06-backend/core/tenancy.py        @NealGudhe
+/06-backend/core/rls.py            @NealGudhe
+/06-backend/db/                    @NealGudhe
+
+# Money math & posting
+/06-backend/apps/rating/engine.py  @NealGudhe
+/06-backend/apps/rating/proration.py @NealGudhe
+/06-backend/apps/rating/taxes.py   @NealGudhe
+/06-backend/apps/ledger/posting.py @NealGudhe
+/06-backend/core/idempotency.py    @NealGudhe
+/06-backend/core/money.py          @NealGudhe
+
+# Migrations (ordering is human-authored)
+/06-backend/apps/*/migrations/     @NealGudhe
+
+# Contracts & decisions
+/04-docs/03-contracts/                @NealGudhe
+/04-docs/02-decisions/                @NealGudhe
+
+# Native field app (CR-187-BRC10, PO 2026-10-21) — touched only by the field-app work
+/field-app/                           @NealGudhe
+/shared/                              @NealGudhe
+/04-docs/05-modules/18-field-app/     @NealGudhe

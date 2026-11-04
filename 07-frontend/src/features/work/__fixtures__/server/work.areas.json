@@ -1,0 +1,39 @@
+{
+  "results": [
+    {
+      "id": "01a106a6-e1c1-7ac2-a21e-479ae7f2eb55",
+      "code": "DTWN",
+      "name": "Downtown"
+    },
+    {
+      "id": "01a106a6-e1c2-7112-8014-d49719318b9a",
+      "code": "EAST",
+      "name": "East district"
+    },
+    {
+      "id": "01a106a6-e1ca-7d19-ae19-6348095ad986",
+      "code": "EAST-SE",
+      "name": "SE"
+    },
+    {
+      "id": "01a106a6-e1c3-7eba-beda-f5ac33caa690",
+      "code": "IND",
+      "name": "Industrial corridor"
+    },
+    {
+      "id": "01a106a6-e1bf-70eb-9387-f5091cae1b74",
+      "code": "NORTH",
+      "name": "North district"
+    },
+    {
+      "id": "01a106a6-e1c6-7584-9aa2-08aad6d34be7",
+      "code": "NORTH-NE",
+      "name": "NE"
+    },
+    {
+      "id": "01a106a6-e1c8-7c6a-b791-89ef08ca02e1",
+      "code": "NORTH-NW",
+      "name": "NW"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "today": "2026-10-04",
+  "policy": "warn",
+  "blocks": false,
+  "windows": [
+    {
+      "days": 30,
+      "entries": [
+        {
+          "technician": "J. Okoro",
+          "technician_slug": "j-okoro",
+          "certification": "First aid / CPR · 2-yr",
+          "expires_on": "2026-09-22",
+          "expired": true,
+          "blocked_template_types": 0
+        },
+        {
+          "technician": "D. Ortiz",
+          "technician_slug": "d-ortiz",
+          "certification": "Traffic control · 3-yr",
+          "expires_on": "2026-10-22",
+          "expired": false,
+          "blocked_template_types": 0
+        }
+      ]
+    }
+  ]
+}

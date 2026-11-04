@@ -1,0 +1,42 @@
+[
+ {
+  "name": "plan edit shows no 'Several base codes'",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "name": "plan edit names BASE-SOL, never twenty times",
+  "ok": true,
+  "detail": "1 mention(s)"
+ },
+ {
+  "name": "help line reads One per customer class.",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "name": "step 1 warns under Customer class",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "name": "Continue is blocked while the clash stands",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "name": "the warning goes for Residential",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "name": "Continue is on",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "name": "Residential solar base saved beside BASE-SOL",
+  "ok": true,
+  "detail": "SMART360 Next SMART360 Next CF Cedar Ford Utilities Dashboard Plans & Rates Premises Assets Accounts Reads Billing Payments Work Finance Runbooks Reports Settin"
+ }
+]

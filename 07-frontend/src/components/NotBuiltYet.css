@@ -1,0 +1,56 @@
+/* NotBuiltYet — the state an address with no screen renders (DEF-152).
+ * Modernist tokens only (B8: no hex literals — every colour is a token from
+ * src/styles/tokens.css).
+ *
+ * Deliberately the SAME quiet, centred card the product already uses for an
+ * unbuilt surface (`.settings-arrives` on S8, and the Accounts / Billing /
+ * Payments panels that follow it). A user who has met one of those has met this
+ * one: an unfinished part of the product looks the same wherever they find it,
+ * which is what makes it read as considered rather than broken. */
+
+.not-built {
+  background: var(--color-surface);
+  border-top: 2px solid var(--color-divider);
+  padding: var(--space-8) var(--space-6);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.not-built-body {
+  font-size: var(--text-h4);
+  color: var(--color-text);
+  margin: 0;
+  max-width: 60ch;
+}
+
+.not-built-waiting {
+  font-size: var(--text-base);
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+  margin: 0;
+  max-width: 60ch;
+}
+
+.not-built-ready {
+  margin-top: var(--space-2);
+}
+
+.not-built-ready h3 {
+  font-size: var(--text-h4);
+  margin: 0 0 var(--space-2);
+}
+
+.not-built-ready ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.not-built-back {
+  margin-top: var(--space-4);
+}

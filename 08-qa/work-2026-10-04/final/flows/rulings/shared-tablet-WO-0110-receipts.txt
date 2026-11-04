@@ -1,0 +1,9 @@
+    kind     |     captured_as     |   sent_in_session   | count 
+-------------+---------------------+---------------------+-------
+ close       | r.patel@sample.test | r.patel@sample.test |     1
+ photo       | r.patel@sample.test | r.patel@sample.test |     1
+ reading     | r.patel@sample.test | r.patel@sample.test |     1
+ safety_tick | r.patel@sample.test | r.patel@sample.test |     1
+ task_tick   | r.patel@sample.test | r.patel@sample.test |     2
+(5 rows)
+

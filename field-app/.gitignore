@@ -1,0 +1,8 @@
+# The PO's native configuration — never committed (app.json references these paths).
+secrets/
+google-services.json
+GoogleService-Info.plist
+# Expo prebuild output and caches
+ios/
+android/
+.expo/

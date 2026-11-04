@@ -1,0 +1,397 @@
+DETAIL:
+SMART360 Next
+SMART360
+Next
+BB
+Brazos Bend Utilities
+Dashboard
+Plans & Rates
+Premises
+Assets
+Accounts
+Reads
+Billing
+Payments
+Work
+Finance
+Runbooks
+Reports
+Settings
+v2.586.0
+DW
+Dana Whitfield
+System Admin
+← Requests
+REQUEST SR-26-0065 · NOT YET CLASSIFIED
+Maria Lopez
+Submitted
+Customer portal
+Received
+10/17/2026
+2200 Riverbend Ct · Katy, TX 77494
+Refuse
+Edit
+Submit
+Ask for more
+Park
+Approve
+Applicant
+Documents
+Audit
+ASKED FOR
+Type
+Not yet classified
+Sub-category
+—
+SERVICE	REQUESTED START	CONNECTION DATE
+Electric	11/08/2026	11/08/2026
+Water	11/08/2026	11/08/2026
+What they said
+Applied through the customer portal for: electric, water.
+WHO IS ASKING
+Applying as
+A person
+Name
+Maria Lopez
+Email
+maria.lopez@example.com
+Phone
+(734) 555-0182
+Mailing address
+PO Box 2210, Ypsilanti, MI 48197
+Channel
+Customer portal
+Language
+es
+Social Security Number
+—
+Driver's license
+—
+Date of birth
+04/12/1988
+Co-applicant
+Daniel Lopez
+Co-applicant phone
+(734) 555-0144
+Co-applicant email
+dan.lopez@example.com
+Customer match
+Not searched yet
+THEIR ADDRESS
+Address as given
+2200 Riverbend Ct, Apt 101 · Katy, 77494
+Service address
+2200 Riverbend Ct · Katy, TX 77494
+Matched premises
+P-00004 · exact
+Matched unit
+U-00318-101 · exact
+Billing address
+PO Box 2210 · Ypsilanti, MI 48197
+What we found
+Served, and the unit is vacant
+PROPERTY FIELDS
+Roof Material
+Metal
+Gate code
+Quoted and taken
+
+No application fee.
+
+Application fees
+Expand▾
+Record what was handed over
+REQ-02
+
+DIALOG BEFORE:
+Approve SR-26-0065 · Maria Lopez
+✕
+
+Category to be set. This request came from the portal.
+
+Set before approving
+Category*
+Choose…
+Residential
+Commercial
+Industrial
+Agricultural
+Institutional
+Municipal
+Builder or developer
+Sub-category
+Choose…
+From the customer
+Name
+Maria Lopez
+Phone
+(734) 555-0182
+SSN
+last 4: 4471
+Co-applicant
+Daniel Lopez (Spouse)
+Documents
+maria-id.pdf
+What kind
+New connection
+Move-in
+
+In Premises · use a move-in
+
+Suggested: Move-in
+CHECKS
+✓
+Passed
+Property
+2200 Riverbend Ct, Katy
+✓
+Passed
+Unit
+U-00318-101 · Apt 101
+✓
+Passed
+Unit free
+Free
+✓
+Passed
+Other move-in
+None waiting
+✗
+Blocked
+Arrears
+Not searched yet
+Search customer below.
+!
+Noted
+Documents
+2 not checked
+✓
+Passed
+Fee
+Nothing owed
+CUSTOMER MATCH
+Search customer
+YOUR OWN FIELDS
+
+Property P-00004
+
+Roof Material
+Metal · already there
+What happens
+Opens a move-in job.
+
+The account opens on move day.
+
+Set the category first.
+
+Cancel
+Approve
+
+blocked strip: Set the category first.
+
+buttons: ✕|disabled=false ; New connection|disabled=true ; Move-in|disabled=false ; Search customer|disabled=false ; Cancel|disabled=false ; Approve|disabled=true
+
+DIALOG AFTER:
+Approve SR-26-0065 · Maria Lopez
+✕
+Set before approving
+Category*
+Choose…
+Residential
+Commercial
+Industrial
+Agricultural
+Institutional
+Municipal
+Builder or developer
+Sub-category
+Choose…
+Multi-family
+Senior/Low-income
+Single-family
+From the customer
+Name
+Maria Lopez
+Phone
+(734) 555-0182
+SSN
+last 4: 4471
+Co-applicant
+Daniel Lopez (Spouse)
+Documents
+maria-id.pdf
+What kind
+New connection
+Move-in
+
+In Premises · use a move-in
+
+Suggested: Move-in
+CHECKS
+✓
+Passed
+Property
+2200 Riverbend Ct, Katy
+✓
+Passed
+Unit
+U-00318-101 · Apt 101
+✓
+Passed
+Unit free
+Free
+✓
+Passed
+Other move-in
+None waiting
+✓
+Passed
+Arrears
+None owed
+!
+Noted
+Documents
+2 not checked
+✓
+Passed
+Fee
+Nothing owed
+CUSTOMER MATCH
+Search customer
+1 customer found
+Strongest first
+OPEN
+	MATCH	CUSTOMER	DATE OF BIRTH	PHONE	ACCOUNTS	OWED	ACTIONS
+
+	
+	
+Maria Lopez
+C-00055
+	04/12/1988	•••-0182	1 · 1 open	—	
+✕
+Existing customer
+Possible match
+None of these? New ID given on complete.
+No match recorded.
+YOUR OWN FIELDS
+
+Property P-00004
+
+Roof Material
+Metal · already there
+What happens
+Opens a move-in job.
+
+The account opens on move day.
+
+Cancel
+Approve
+
+blocked strip after: 
+
+buttons after: ✕|disabled=false ; New connection|disabled=true ; Move-in|disabled=false ; Search customer|disabled=false ; |disabled=false ; |disabled=false ; ✕|disabled=false ; Cancel|disabled=false ; Approve|disabled=false
+
+LANDED: http://127.0.0.1:8113/brazosbend/move-ins/new?request=01a14d4f-a4d8-7a0e-95a0-b9909dcc07eb&parked=01a14d50-35e5-72d1-bed4-a047956bfae0
+
+MOVE-IN:
+SMART360 Next
+SMART360
+Next
+BB
+Brazos Bend Utilities
+Dashboard
+Plans & Rates
+Premises
+Assets
+Accounts
+Reads
+Billing
+Payments
+Work
+Finance
+Runbooks
+Reports
+Settings
+v2.586.0
+DW
+Dana Whitfield
+System Admin
+← Move-ins
+New move-in
+Save draft & exit
+1
+Unit
+2
+Customer
+3
+Billing
+4
+Review
+Unit
+U-00318-101 · Apt 101
+2200 Riverbend Ct, Katy, TX 77494
+Vacant
+Change
+U-00318-101 · Apt 101
+2200 Riverbend Ct, Katy, TX 77494
+Vacant
+Residential · sub-metered
+First occupant
+BUILDING
+P-00004
+Apartment complex
+Area East district
+Route Riverbend — electric drive-by, Riverbend — irrigation walk · Cycle Residential monthly, Irrigation quarterly
+UNIT
+Residential · sub-metered
+Not a common area
+OWNER
+No owner account
+HISTORY
+First occupant
+Move-in date
+Move-in date*
+
+Rates and reads use this date.
+
+Services and meters
+2 services · 1 meter
+START	SERVICE	METER	SIZE	READS AS	LAST READ	OPENING READ* · READ DATE*	
+DETAILS
+
+	
+E
+Electric
+Metered
+	
+M-7301
+Meter
+	—	×1 · 9 digits	
+9,092 kWh
+08/01/2026
+	
+Opening read for M-7301*
+kWh
+Read date for M-7301*
+	▸
+	
+W
+Water
+Not metered
+	—	—	—	—	—	
+
+2 of 2 services start · 1 opening read needed
+
+Field visit
+Visit needed
+
+No work orders yet.
+
++ Add work order
+Raised when you complete
+Park
+Continue
+ACC-05
+
+ERRORS:
+404 GET /api/brazosbend/service-requests/01a14d4f-a4d8-7a0e-95a0-b9909dcc07eb/interruption

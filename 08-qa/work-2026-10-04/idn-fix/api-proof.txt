@@ -1,0 +1,21 @@
+DEF-WRK-9583 — API proof on build 2.493.1 (lane IDN-FIX), 2026-10-04
+POST /api/brazosbend/auth/session against PostgreSQL 16 (sbh_widn: migrate + seed_demo + load_sample_data brazosbend),
+temporary passwords issued by Dana (System Admin) through POST /users/{id}/temp-password; avery.cole set to surface_scope=web for case (c).
+
+r.patel@sample.test (technician) surface=mobile:     201 signed in, must_change_password=True
+r.patel@sample.test (technician) surface=(absent):   403 identity.signIn.fieldAppOnly
+r.patel@sample.test (technician) surface=web:        403 identity.signIn.fieldAppOnly
+avery.cole@sample.test (web-only) surface=mobile:    403 identity.signIn.webAppOnly
+avery.cole@sample.test (web-only) surface=web:       201 signed in, must_change_password=True
+sam.reyes@sample.test (clerk, both) surface=mobile:  201 signed in, must_change_password=True
+sam.reyes@sample.test (clerk, both) surface=web:     201 signed in, must_change_password=True
+r.patel@sample.test (technician, wrong pw) mobile:   401 errors.auth.sign_in_failed
+r.patel@sample.test (technician, wrong pw) web:      401 errors.auth.sign_in_failed
+sam.reyes@sample.test (clerk) surface=both:          422 errors.val-005   (a scope is not a declarable surface)
+
+Before the fix (2.490.6, CR-168 §6 #33): every one of r.patel's attempts, surface=mobile included, was 403 identity.signIn.fieldAppOnly.
+
+DEF-WRK-9593 (found by this lane's browser walk once sign-in worked) — m.chen@sample.test, signed in with surface=mobile:
+  before (FieldAppRole not yet applied):  POST /me/password 403 errors.auth-002 · GET /me 403 · GET /work/mobile/today 403
+  after:                                  POST /me/password 204 · then the field app's Today loads (WO-0025, idn5-technician-on-today.png)
+  still refused (test_9593_a_technician_is_still_refused_on_the_office_routes): GET /users, /work-orders, /settings/security-policy, /me/permissions → 403

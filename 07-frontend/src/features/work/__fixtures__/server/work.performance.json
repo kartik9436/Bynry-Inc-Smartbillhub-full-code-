@@ -1,0 +1,162 @@
+{
+  "count": 7,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "job_type": "Meter set",
+      "volume": 7,
+      "sla_measured": 7,
+      "sla_met": 7,
+      "sla_met_pct": "100.0",
+      "first_time_fix_pct": "100.0",
+      "cost_per_job": "25.96",
+      "total_cost": "181.73"
+    },
+    {
+      "job_type": "Service drop",
+      "volume": 7,
+      "sla_measured": 7,
+      "sla_met": 7,
+      "sla_met_pct": "100.0",
+      "first_time_fix_pct": "100.0",
+      "cost_per_job": "0.00",
+      "total_cost": "0.00"
+    },
+    {
+      "job_type": "Site inspection & mark-out",
+      "volume": 4,
+      "sla_measured": 4,
+      "sla_met": 4,
+      "sla_met_pct": "100.0",
+      "first_time_fix_pct": "100.0",
+      "cost_per_job": "0.00",
+      "total_cost": "0.00"
+    },
+    {
+      "job_type": "Tap and service line",
+      "volume": 2,
+      "sla_measured": 2,
+      "sla_met": 2,
+      "sla_met_pct": "100.0",
+      "first_time_fix_pct": "100.0",
+      "cost_per_job": "0.00",
+      "total_cost": "0.00"
+    },
+    {
+      "job_type": "Main tap",
+      "volume": 1,
+      "sla_measured": 1,
+      "sla_met": 1,
+      "sla_met_pct": "100.0",
+      "first_time_fix_pct": "100.0",
+      "cost_per_job": "0.00",
+      "total_cost": "0.00"
+    },
+    {
+      "job_type": "Meter set — crew day 1",
+      "volume": 1,
+      "sla_measured": 1,
+      "sla_met": 1,
+      "sla_met_pct": "100.0",
+      "first_time_fix_pct": "100.0",
+      "cost_per_job": "0.00",
+      "total_cost": "0.00"
+    },
+    {
+      "job_type": "Meter set — crew day 2",
+      "volume": 1,
+      "sla_measured": 1,
+      "sla_met": 1,
+      "sla_met_pct": "100.0",
+      "first_time_fix_pct": "100.0",
+      "cost_per_job": "0.00",
+      "total_cost": "0.00"
+    }
+  ],
+  "period": "",
+  "tiles": {
+    "sla_met_pct": "100.0",
+    "sla_measured": 23,
+    "sla_met": 23,
+    "first_time_fix_pct": "100.0",
+    "cost_per_job": "7.90",
+    "volume": 23
+  },
+  "total": {
+    "volume": 23,
+    "total_cost": "181.73"
+  },
+  "by_job_type": [
+    {
+      "job_type": "Meter set",
+      "volume": 7,
+      "sla_measured": 7,
+      "sla_met": 7,
+      "sla_met_pct": "100.0",
+      "first_time_fix_pct": "100.0",
+      "cost_per_job": "25.96",
+      "total_cost": "181.73"
+    },
+    {
+      "job_type": "Service drop",
+      "volume": 7,
+      "sla_measured": 7,
+      "sla_met": 7,
+      "sla_met_pct": "100.0",
+      "first_time_fix_pct": "100.0",
+      "cost_per_job": "0.00",
+      "total_cost": "0.00"
+    },
+    {
+      "job_type": "Site inspection & mark-out",
+      "volume": 4,
+      "sla_measured": 4,
+      "sla_met": 4,
+      "sla_met_pct": "100.0",
+      "first_time_fix_pct": "100.0",
+      "cost_per_job": "0.00",
+      "total_cost": "0.00"
+    },
+    {
+      "job_type": "Tap and service line",
+      "volume": 2,
+      "sla_measured": 2,
+      "sla_met": 2,
+      "sla_met_pct": "100.0",
+      "first_time_fix_pct": "100.0",
+      "cost_per_job": "0.00",
+      "total_cost": "0.00"
+    },
+    {
+      "job_type": "Main tap",
+      "volume": 1,
+      "sla_measured": 1,
+      "sla_met": 1,
+      "sla_met_pct": "100.0",
+      "first_time_fix_pct": "100.0",
+      "cost_per_job": "0.00",
+      "total_cost": "0.00"
+    },
+    {
+      "job_type": "Meter set — crew day 1",
+      "volume": 1,
+      "sla_measured": 1,
+      "sla_met": 1,
+      "sla_met_pct": "100.0",
+      "first_time_fix_pct": "100.0",
+      "cost_per_job": "0.00",
+      "total_cost": "0.00"
+    },
+    {
+      "job_type": "Meter set — crew day 2",
+      "volume": 1,
+      "sla_measured": 1,
+      "sla_met": 1,
+      "sla_met_pct": "100.0",
+      "first_time_fix_pct": "100.0",
+      "cost_per_job": "0.00",
+      "total_cost": "0.00"
+    }
+  ]
+}

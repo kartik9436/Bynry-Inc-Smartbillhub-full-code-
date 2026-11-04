@@ -1,0 +1,11 @@
+P24 red proofs on 2.549.9 — each key check broken in memory, read against the case's committed database (PostgreSQL 16), then restored
+
+BROKEN (p24-unit-vacant):
+  FAIL  CANCEL: the unit holds no open account (reads Vacant, derived) — expected 1, read 0
+RESTORED:
+  PASS  CANCEL: the unit holds no open account (reads Vacant, derived)
+
+BROKEN (p24-reads-kept):
+  FAIL  CANCEL (4/4): the opening reads are KEPT (true readings, append-only) — expected [], read ['E-M1']
+RESTORED:
+  PASS  CANCEL (4/4): the opening reads are KEPT (true readings, append-only)

@@ -1,0 +1,11 @@
+P26 red proofs on 2.549.9 — each key check broken in memory, read against the case's committed database (PostgreSQL 16), then restored
+
+BROKEN (p26-decline):
+  FAIL  SR-26-0010 is Declined (refused) — expected 'more_info', read 'refused'
+RESTORED:
+  PASS  SR-26-0010 is Declined (refused)
+
+BROKEN (p26-job):
+  FAIL  SR-26-0009: ONE move-in job, done by Complete — expected ['pending'], read ['done']
+RESTORED:
+  PASS  SR-26-0009: ONE move-in job, done by Complete

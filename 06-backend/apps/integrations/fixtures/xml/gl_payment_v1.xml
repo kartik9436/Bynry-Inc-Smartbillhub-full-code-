@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<records>
+  <record>
+    <paymentNumber>PAY-2609-0311</paymentNumber>
+    <paymentDate>2026-09-01</paymentDate>
+    <amount>142.18</amount>
+    <currency>USD</currency>
+    <tender>Bank transfer</tender>
+    <account>4100</account>
+    <partnerAccount>001.100.44100</partnerAccount>
+    <customerAccount>ACC-1048</customerAccount>
+  </record>
+</records>

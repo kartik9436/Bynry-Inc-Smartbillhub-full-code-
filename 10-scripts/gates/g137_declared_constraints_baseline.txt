@@ -1,0 +1,32 @@
+# G137 — ACCEPTED DIVERGENCES between B2's signed DDL and what the database has.
+#
+# WHAT A LINE HERE MEANS, AND WHAT IT DOES NOT
+# --------------------------------------------
+# G137 sorts every constraint B2 signs into MATCHED, DIVERGED and NOT BUILT.
+#   * NOT BUILT  — the table has nothing of that kind over those columns. There
+#                  is NO baseline for that class and there deliberately never
+#                  will be: it is the `tariff_versions` incident (DEF-RAT-7980),
+#                  and a file that could excuse it would be the review that
+#                  never happened, in another costume.
+#   * DIVERGED   — a constraint of that kind exists over an overlapping column
+#                  set: a partial unique, a wider key, a renamed column. That is
+#                  design drift, and drift may well be RIGHT. A line here says a
+#                  human looked and why; an un-baselined divergence FAILS,
+#                  because a reason nobody wrote down is a reason nobody can
+#                  check.
+#
+# A line that no longer matches any divergence also FAILS the gate — a baseline
+# that outlives its subject is a check that has stopped checking.
+#
+# FORMAT (four `|`-separated fields, the first three exactly as `--report` prints
+# the key):   <table>|<kind: u|x|p>|<declared columns, comma-separated>|<reason>
+#
+# Recorded 2026-09-29 against PostgreSQL 16.13, `sbh_tpl_c561df3f`, 449
+# migrations applied. Each reason was read out of the code that built it, not
+# inferred from the shape of the key.
+
+invoices|u|tenant_id,invoice_no|Built as the PARTIAL unique `uq_invoices_no` (WHERE invoice_no IS NOT NULL). A draft bill carries no number and many NULLs must coexist; the number is unique the moment one exists. billing/models.py says so at the constraint (~line 1049).
+
+payment_plan_installments|u|payment_plan_id,seq|Built as `uq_plan_installment` over (tenant_id, plan_id, seq) — the FK column is spelled `plan_id`, and `tenant_id` is carried on every key in this schema for RLS locality. `plan_id` is a UUID primary key, so the tenant column narrows nothing: the guarantee is the one B2 signs. payments/collections_models.py:270.
+
+notification_templates|u|tenant_id,code,channel|Built as `uq_ntpl_variant` over (tenant_id, code, category, language). A deliberate widening ruled in notifications/0005's header: the r8 designers added the category and language axes, so one tenant may hold the same code on the same channel for two audiences or two languages, and what must not exist twice is a variant. `channel` left the key with that ruling.

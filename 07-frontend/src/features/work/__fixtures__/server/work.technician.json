@@ -1,0 +1,115 @@
+{
+  "id": "01a10793-b6a5-79bb-9b2b-a502c41d2fdc",
+  "slug": "d-ortiz",
+  "name": "D. Ortiz",
+  "role_label": "Field technician",
+  "shift": "07:00–15:30",
+  "status": "on_shift",
+  "unavailable_reason": null,
+  "van": "Unit 12",
+  "crew": {
+    "id": "01a10793-b67f-76b5-806e-2d6b7fe6ce5c",
+    "name": "Field crew A"
+  },
+  "skills": [
+    {
+      "skill_id": "01a10790-de9f-70c6-819b-982340109083",
+      "code": "ELECTRIC_I",
+      "name": "Electric I",
+      "proficiency": "not_held",
+      "eligible_for": [
+        "Service drop"
+      ]
+    },
+    {
+      "skill_id": "01a10790-dea0-7c3f-86f2-fedac36462d3",
+      "code": "ELECTRIC_II",
+      "name": "Electric II",
+      "proficiency": "not_held",
+      "eligible_for": []
+    },
+    {
+      "skill_id": "01a10790-dea4-7b8c-8362-7262bd5fcd22",
+      "code": "EXCAVATION",
+      "name": "Excavation",
+      "proficiency": "not_held",
+      "eligible_for": [
+        "Tap and service line"
+      ]
+    },
+    {
+      "skill_id": "01a10790-dea1-77f3-a46d-a1c2fc64f69b",
+      "code": "METER_I",
+      "name": "Meter I",
+      "proficiency": "certified",
+      "eligible_for": [
+        "Meter exchange — residential",
+        "Meter set",
+        "Meter set"
+      ]
+    },
+    {
+      "skill_id": "01a10790-dea3-7d2d-9b6f-3a9bfee4bd1f",
+      "code": "READS",
+      "name": "Reads",
+      "proficiency": "trained",
+      "eligible_for": []
+    },
+    {
+      "skill_id": "01a10790-de94-79e4-9fcb-958122e5fae8",
+      "code": "WATER_I",
+      "name": "Water I",
+      "proficiency": "certified",
+      "eligible_for": [
+        "Site inspection & mark-out"
+      ]
+    },
+    {
+      "skill_id": "01a10790-de98-7324-b45d-32562ba1ab3b",
+      "code": "WATER_II",
+      "name": "Water II",
+      "proficiency": "not_held",
+      "eligible_for": []
+    },
+    {
+      "skill_id": "01a10790-de9e-7b01-9f3f-6229c94ae35e",
+      "code": "WATER_III",
+      "name": "Water III",
+      "proficiency": "not_held",
+      "eligible_for": []
+    }
+  ],
+  "certifications": [
+    {
+      "certification_type_id": "01a10790-ddc1-764e-a8ad-11384efb53ce",
+      "name": "Traffic control · 3-yr",
+      "expires_on": "2026-10-22",
+      "proof": null
+    },
+    {
+      "certification_type_id": "01a10790-ddc2-7ff8-aa84-450a3a123312",
+      "name": "First aid / CPR · 2-yr",
+      "expires_on": "2028-03-27",
+      "proof": {
+        "id": "01a10814-59b3-75d1-9670-e1bb02fd72bd",
+        "name": "first-aid-card.pdf",
+        "content_type": "application/pdf",
+        "bytes": 30,
+        "url": "/work/technicians/d-ortiz/certifications/01a10790-ddc2-7ff8-aa84-450a3a123312/proof/content"
+      }
+    }
+  ],
+  "today": {
+    "jobs": 0,
+    "on": "2026-10-04"
+  },
+  "this_month": {
+    "month": "2026-10",
+    "closed": 1,
+    "on_time": 1,
+    "on_time_of": 1,
+    "first_visit_pct": "100.0",
+    "vs_estimate_pct": "133.3",
+    "vs_estimate_minutes": 60
+  }
+}

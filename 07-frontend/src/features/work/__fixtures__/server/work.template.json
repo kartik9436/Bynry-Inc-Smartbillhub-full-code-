@@ -1,0 +1,177 @@
+{
+  "id": "01a106a7-49f9-7bea-a27b-d2f2a523b295",
+  "template_no": "ST-0001",
+  "name": "Service drop",
+  "service": {
+    "id": "01a106a0-01e3-7291-91d6-7f9c5cca756f",
+    "code": "electric",
+    "name": "Electric"
+  },
+  "scope": "per_premise",
+  "sequence": 1,
+  "job_type": null,
+  "skill": {
+    "id": "01a106a6-e35a-79de-9611-12daf7250a9c",
+    "name": "Electric I"
+  },
+  "safety_kit": {
+    "id": "01a106a6-e36b-7bf3-8c4a-0914360e7b7d",
+    "name": "Traffic control"
+  },
+  "crew_size": 2,
+  "est_duration": "9000.0",
+  "is_gate": false,
+  "no_gate_reason": null,
+  "is_sample": true,
+  "active": true,
+  "version": 2,
+  "updated_at": "2026-10-04T12:29:35.918124Z",
+  "est_duration_minutes": 150,
+  "contents": {
+    "tasks": 6,
+    "parts": 2,
+    "readings": 1,
+    "safety": 3,
+    "help": 3
+  },
+  "status": "published",
+  "bundle": {
+    "details": {
+      "show_account_summary": true,
+      "show_asset_card": true,
+      "show_access_notes": true,
+      "show_appointment": true,
+      "signature_required": true,
+      "refusal_reason_required": true,
+      "door_hanger_on_no_answer": true
+    },
+    "safety": [
+      {
+        "seq": 1,
+        "text": "Confirm the drop is de-energised at the transformer",
+        "is_mandatory": true
+      },
+      {
+        "seq": 2,
+        "text": "Cones and signs set before the ladder goes up",
+        "is_mandatory": true
+      },
+      {
+        "seq": 3,
+        "text": "Check for overhead clearance to the roofline",
+        "is_mandatory": false
+      }
+    ],
+    "tasks": [
+      {
+        "seq": 1,
+        "title": "Confirm the service address and the point of attachment",
+        "est_minutes": 10,
+        "photo_required": false,
+        "is_mandatory": true,
+        "instruction": "Isolate at the main before touching."
+      },
+      {
+        "seq": 2,
+        "title": "Fit the mast bracket and the insulator",
+        "est_minutes": 35,
+        "photo_required": false,
+        "is_mandatory": true,
+        "instruction": null
+      },
+      {
+        "seq": 3,
+        "title": "Run and tension the triplex to the weatherhead",
+        "est_minutes": 45,
+        "photo_required": false,
+        "is_mandatory": true,
+        "instruction": null
+      },
+      {
+        "seq": 4,
+        "title": "Terminate at the meter socket",
+        "est_minutes": 30,
+        "photo_required": true,
+        "is_mandatory": true,
+        "instruction": null
+      },
+      {
+        "seq": 5,
+        "title": "Photograph the finished drop from the street",
+        "est_minutes": 5,
+        "photo_required": true,
+        "is_mandatory": true,
+        "instruction": null
+      },
+      {
+        "seq": 6,
+        "title": "Leave the door hanger if nobody is home",
+        "est_minutes": 5,
+        "photo_required": false,
+        "is_mandatory": false,
+        "instruction": null
+      }
+    ],
+    "materials": [
+      {
+        "part_id": "01a106a9-8cec-7699-abf9-3f8b2afc58d1",
+        "part_no": "CPL-58B",
+        "name": "Brass coupling 5/8\"",
+        "planned_qty": "2.0000",
+        "unit_of_measure": "each"
+      },
+      {
+        "part_id": "01a106a9-8ce7-7c47-9892-2c3563bae995",
+        "part_no": "TAPE-PTFE",
+        "name": "PTFE thread tape",
+        "planned_qty": "1.0000",
+        "unit_of_measure": "roll"
+      }
+    ],
+    "readings": [
+      {
+        "seq": 1,
+        "prompt": "Service voltage at the socket",
+        "unit_of_measure": "V",
+        "min": "220.0000",
+        "max": "250.0000",
+        "required": true,
+        "photo_required": false,
+        "posts_as_meter_read": false,
+        "kind": "number"
+      }
+    ],
+    "help": [
+      {
+        "seq": 1,
+        "kind": "document",
+        "label": "Overhead service standard",
+        "ref": "STD-EL-004",
+        "url": null,
+        "link": null
+      },
+      {
+        "seq": 2,
+        "kind": "phone",
+        "label": "Dispatch — overhead crew",
+        "ref": "+1 555 0142",
+        "url": null,
+        "link": null
+      },
+      {
+        "seq": 3,
+        "kind": "link",
+        "label": "How to fit a meter (video)",
+        "ref": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "url": null,
+        "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+      }
+    ],
+    "asset_types": [
+      {
+        "asset_type_id": "01a106a6-e18e-72b6-bd54-ff6455da4f1b"
+      }
+    ]
+  },
+  "orders_raised": 1
+}

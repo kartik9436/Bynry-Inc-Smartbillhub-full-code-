@@ -1,0 +1,45 @@
+# G107 — MIN-WIDTH RESPONSIVE VARIANTS THAT ALREADY EXIST OUTSIDE THE PORTAL.
+#
+# `tailwind.css` says it in capitals: this theme is DESKTOP-FIRST and every
+# responsive rule is max-width, so authoring reads `max-lg:grid-cols-1` and
+# NEVER `lg:grid-cols-2`. Both forms compile — that is why the drift is silent
+# and why a gate is the only thing that can see it (DEF-CWP-4004).
+#
+# The customer portal is at ZERO and G107 keeps it there. The staff app is not,
+# and converting it is real layout work with a browser open rather than a
+# rename: on a `col-span`, collapsing the grid without a matching span override
+# sends the child into implicit columns. So its sites are recorded here.
+#
+# ⚠ THIS NUMBER MAY FALL AND MAY NEVER RISE. A site that is not listed fails
+# the merge; a line that matches nothing ALSO fails, so fixing one means
+# deleting its line. That is what makes this a measurement rather than history.
+#
+# One `path<TAB>class` per line.
+07-frontend/src/components/workflow/WriteModeChoice.tsx	sm:grid-cols-2
+07-frontend/src/features/assets/AssetLifecycleTab.tsx	lg:grid-cols-[1fr_320px]
+07-frontend/src/features/customers/ServiceRequestInterruption.tsx	md:grid-cols-3
+07-frontend/src/features/customers/accountDetailHeader.tsx	md:grid-cols-2
+07-frontend/src/features/customers/accountDetailHeader.tsx	xl:grid-cols-4
+07-frontend/src/features/integrations/ConnectionDetailPage.tsx	sm:grid-cols-4
+07-frontend/src/features/integrations/IntegrationsTab.tsx	md:grid-cols-2
+07-frontend/src/features/integrations/IntegrationsTab.tsx	xl:grid-cols-3
+07-frontend/src/features/metering/ImportWorkflowPage.tsx	md:grid-cols-2
+07-frontend/src/features/tenancy/CycleDetailPage.tsx	lg:flex-row
+07-frontend/src/features/tenancy/CycleDetailPage.tsx	lg:items-start
+07-frontend/src/features/tenancy/CycleDetailPage.tsx	sm:grid-cols-3
+07-frontend/src/features/tenancy/CycleDetailPage.tsx	sm:grid-cols-4
+07-frontend/src/features/tenancy/RouteDetailPage.tsx	lg:flex-row
+07-frontend/src/features/tenancy/RouteDetailPage.tsx	lg:items-start
+07-frontend/src/features/tenancy/SettingsBillingPlanTab.tsx	md:grid-cols-2
+07-frontend/src/features/tenancy/SettingsCustomerPortalTab.tsx	md:col-span-4
+07-frontend/src/features/tenancy/SettingsCustomerPortalTab.tsx	md:col-span-8
+07-frontend/src/features/tenancy/SettingsPortalHelp.tsx	md:col-span-4
+07-frontend/src/features/tenancy/SettingsPortalHelp.tsx	md:col-span-8
+07-frontend/src/features/tenancy/SettingsPortalTips.tsx	md:col-span-4
+07-frontend/src/features/tenancy/SettingsPortalTips.tsx	md:col-span-8
+07-frontend/src/features/tenancy/SettingsPortalTips.tsx	md:grid-cols-2
+07-frontend/src/features/tenancy/SettingsReadValidation.tsx	sm:grid-cols-2
+07-frontend/src/features/tenancy/SettingsReadValidation.tsx	sm:grid-rows-[repeat(6,auto)]
+07-frontend/src/features/tenancy/SettingsServiceCentres.tsx	md:col-span-4
+07-frontend/src/features/tenancy/SettingsServiceCentres.tsx	md:col-span-8
+07-frontend/src/features/tenancy/routesCyclesShared.tsx	lg:w-72

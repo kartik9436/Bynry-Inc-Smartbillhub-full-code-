@@ -1,0 +1,5 @@
+/* CR-018 Phase 0 proof page — the ONLY consumer of the theme in this phase.
+ * tokens.css is deliberately NOT imported here: it is read as raw text by
+ * specimen.js so the two sides of every comparison stay independent. If both
+ * sheets declared :root, the comparison would be a variable against itself. */
+@import "../src/styles/tailwind.css";

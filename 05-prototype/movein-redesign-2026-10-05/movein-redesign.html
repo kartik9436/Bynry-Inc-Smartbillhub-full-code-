@@ -1,0 +1,836 @@
+<title>Move-in Redesign</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap">
+<style>
+/* Move-in redesign mock-up. SMARTBillHub tokens: light-only by product choice, square corners, 4px scale.
+   Layout: demo bar → one screen at a time (list · approve · four-step wizard, full width · details) → what this design fixes. */
+:root{
+  --bg:#f3f2f2; --surface:#ffffff; --panel:#eae9e9; --text:#201e1d; --muted:#605d5d; --faint:#9b9797;
+  --line:#d7d3d3; --accent:#ec3013; --accent-ink:#ae1800; --accent-soft:#fff2ef;
+  --ok:#0f6e3a; --ok-soft:#e6f4ec; --warn:#a65d0a; --warn-soft:#fdf0d8; --bad:#a81600; --bad-soft:#fde4df; --info:#1d4ea8; --info-soft:#e6eefb;
+  --water:#1e6b8f; --sewer:#5a5555; --electric:#ec3013;
+  --font:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --t-xs:11px; --t-sm:12px; --t-base:13px; --t-md:14px; --t-body:15px; --t-h4:20px; --t-h2:32px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:var(--t-body);line-height:1.55;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:20px 48px;display:flex;flex-direction:column;gap:20px}
+h1,h2,h3{font-weight:800;letter-spacing:-.015em;line-height:1.12;margin:0;text-wrap:balance}
+h1{font-size:var(--t-h2)} h2{font-size:var(--t-h4)} h3{font-size:var(--t-md);font-weight:700}
+.kicker{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--accent-ink);font-weight:700}
+.num{font-variant-numeric:tabular-nums}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+a{color:var(--accent-ink)}
+.demo{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 12px;border:1px dashed var(--faint);font-size:var(--t-sm);color:var(--muted)}
+.demo b{color:var(--text)}
+.chipbtn{border:1px solid var(--line);background:var(--surface);padding:4px 10px;cursor:pointer;font-size:var(--t-sm)}
+.chipbtn[aria-pressed="true"]{border-color:var(--text);font-weight:600}
+.head{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:flex-end}
+.head .btns{display:flex;flex-wrap:wrap;gap:8px}
+.crumb{font-size:var(--t-sm);color:var(--muted)}
+.tabs{display:flex;flex-wrap:wrap;gap:20px;border-bottom:1px solid var(--line);font-size:var(--t-md);font-weight:600}
+.tabs span{padding:8px 0;color:var(--muted)}
+.tabs span.on{color:var(--text);box-shadow:inset 0 -3px 0 var(--accent)}
+.rail{display:flex;border:1px solid var(--line);background:var(--surface)}
+.rail button{flex:1;display:flex;align-items:center;gap:10px;padding:12px 16px;border:0;background:transparent;cursor:pointer;text-align:left;border-right:1px solid var(--line);min-width:0}
+.rail button:last-child{border-right:0}
+.rail .n{width:24px;height:24px;display:grid;place-items:center;border:1.5px solid var(--faint);font-size:var(--t-sm);font-weight:700;flex:none}
+.rail button[data-state="current"]{box-shadow:inset 0 -3px 0 var(--accent)}
+.rail button[data-state="current"] .n{background:var(--accent);border-color:var(--accent);color:#fff}
+.rail button[data-state="done"] .n{background:var(--text);border-color:var(--text);color:#fff}
+.rail .lbl{font-size:var(--t-md);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:640px){.rail .lbl{display:none}.rail button{justify-content:center}}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:20px;align-items:start}
+@media (max-width:960px){.grid{grid-template-columns:minmax(0,1fr)}}
+.stack{display:flex;flex-direction:column;gap:20px;min-width:0}
+.panel{background:var(--surface);border:1px solid var(--line);padding:20px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.panel-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px)}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.fields.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.fields.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:720px){.fields,.fields.three,.fields.four{grid-template-columns:minmax(0,1fr)}}
+.span2{grid-column:1/-1}
+.f{display:flex;flex-direction:column;gap:4px;min-width:0}
+.f label,.f .lab{font-size:var(--t-base);font-weight:600}
+.req{color:var(--accent)}
+.f input,.f select{border:1px solid var(--line);background:var(--surface);padding:8px 10px;min-height:38px;width:100%;font-size:var(--t-md)}
+.f .help{font-size:var(--t-sm);color:var(--muted)}
+.suffix{display:flex;align-items:stretch;border:1px solid var(--line);background:var(--surface)}
+.suffix input{border:0;flex:1;min-width:0}
+.suffix span{display:grid;place-items:center;padding:0 12px;background:var(--bg);border-left:1px solid var(--line);font-weight:700;color:var(--muted)}
+.ticks{display:flex;flex-wrap:wrap;gap:12px 24px}
+.ticks label{display:flex;align-items:center;gap:8px;font-size:var(--t-md);font-weight:500;cursor:pointer}
+.ticks input{width:18px;height:18px;accent-color:var(--accent)}
+.seg{display:inline-flex;border:1px solid var(--line)}
+.seg button{border:0;border-right:1px solid var(--line);background:var(--surface);padding:8px 16px;cursor:pointer;font-size:var(--t-md)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--accent);color:#fff;font-weight:700}
+.kv{display:grid;grid-template-columns:150px minmax(0,1fr);gap:6px 12px;font-size:var(--t-md)}
+.kv dt{color:var(--muted)} .kv dd{margin:0;font-weight:600;overflow-wrap:anywhere}
+.kv2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+@media (max-width:720px){.kv2{grid-template-columns:minmax(0,1fr)}}
+.svc{display:inline-grid;place-items:center;width:20px;height:20px;color:#fff;font-size:var(--t-xs);font-weight:800;margin-right:4px}
+.tiles{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+@media (max-width:860px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.tile{background:var(--surface);border:1px solid var(--line);padding:12px 14px}
+.tile .l{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+.tile .v{font-size:28px;font-weight:800;font-variant-numeric:tabular-nums}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.toolbar .search{flex:1 1 320px;border:1px solid var(--line);background:var(--surface);padding:8px 10px;min-height:38px}
+.tw{overflow-x:auto;border:1px solid var(--line);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:var(--t-base)}
+th{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;font-weight:600;background:var(--bg);padding:8px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.r,th.r{text-align:right}
+.pill{display:inline-block;font-size:var(--t-xs);font-weight:700;padding:2px 8px;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.p-ok{background:var(--ok-soft);color:var(--ok)} .p-warn{background:var(--warn-soft);color:var(--warn)} .p-off{background:var(--panel);color:var(--muted)} .p-bad{background:var(--bad-soft);color:var(--bad)} .p-info{background:var(--info-soft);color:var(--info)}
+.note{display:flex;gap:10px;padding:10px 12px;font-size:var(--t-base);align-items:flex-start}
+.note.info{background:var(--info-soft);color:var(--info)} .note.warn{background:var(--warn-soft);color:var(--warn)}
+.effect{display:flex;gap:12px;align-items:flex-start;background:var(--panel);padding:12px}
+.effect b{font-size:var(--t-xs);border:1px solid var(--text);padding:1px 6px;letter-spacing:.06em}
+.btn{border:1px solid var(--text);background:var(--surface);padding:0 18px;min-height:40px;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--text)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.danger{border-color:var(--bad);color:var(--bad)}
+.btn.link{border:0;background:none;color:var(--accent-ink);padding:0;min-height:0;text-decoration:underline;font-weight:600}
+.actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:16px}
+.actions .right,.actions .left{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.sum{display:flex;flex-direction:column;gap:6px;font-size:var(--t-base)}
+.sum .row{display:flex;justify-content:space-between;gap:12px}
+.sum .row span:first-child{color:var(--muted)}
+.sum .row span:last-child{text-align:right;font-weight:600;overflow-wrap:anywhere}
+.hr{border-top:1px solid var(--line)}
+.rev{display:grid;grid-template-columns:180px minmax(0,1fr);border:1px solid var(--line)}
+.rev div{padding:9px 12px;border-bottom:1px solid var(--line);font-size:var(--t-md)}
+.rev div:nth-child(odd){color:var(--muted);background:var(--bg)}
+.rev div:nth-last-child(-n+2){border-bottom:0}
+@media (max-width:560px){.rev{grid-template-columns:minmax(0,1fr)}}
+details.more summary{cursor:pointer;font-weight:700;font-size:var(--t-md);color:var(--accent-ink)}
+details.more[open] summary{margin-bottom:12px}
+.menu{border:1px solid var(--text);background:var(--surface);box-shadow:0 12px 32px rgba(45,43,43,.22);display:flex;flex-direction:column;min-width:240px;position:absolute;right:0;top:calc(100% + 4px);z-index:5}
+.menu button{border:0;border-top:1px solid var(--line);background:none;text-align:left;padding:10px 14px;cursor:pointer;font-size:var(--t-md)}
+.menu button:first-child{border-top:0}
+.menu button.d{color:var(--bad)}
+.dialog{max-width:560px;width:100%;margin:0 auto;background:var(--surface);border:1px solid var(--text);box-shadow:0 12px 40px rgba(45,43,43,.25);padding:20px;display:flex;flex-direction:column;gap:14px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 24px);background:var(--text);color:#fff;padding:10px 16px;font-weight:600;font-size:var(--t-md)}
+.sec-title{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.sec-title span{font-size:var(--t-sm);color:var(--muted)}
+
+.unithead{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:flex-start;justify-content:space-between;background:var(--bg);border:1px solid var(--line);padding:14px 16px}
+.unithead .t{font-size:22px;font-weight:800;line-height:1.15}
+.unithead .a{font-size:var(--t-md);color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);padding:2px 8px;font-size:var(--t-sm);font-weight:600}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid var(--line)}
+@media (max-width:860px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.facts{grid-template-columns:minmax(0,1fr)}}
+.facts section{padding:12px 14px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:6px;min-width:0}
+.facts section:last-child{border-right:0}
+.facts h3{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+.facts .p{font-size:var(--t-md);font-weight:600;overflow-wrap:anywhere}
+.facts .s{font-size:var(--t-sm);color:var(--muted);overflow-wrap:anywhere}
+.datepick{display:flex;align-items:stretch;border:1px solid var(--line);background:var(--surface);max-width:260px}
+.datepick input{border:0;flex:1;min-width:0;padding:8px 10px;min-height:38px;font-size:var(--t-md)}
+.svct td{vertical-align:middle}
+.svct tr.off td{color:var(--faint)}
+.svct tr.off input[type=text]{background:var(--bg)}
+.svct .sub{font-size:var(--t-sm);color:var(--muted)}
+.svct tr.det td{background:var(--bg);font-size:var(--t-sm)}
+.xbtn{border:1px solid var(--line);background:var(--surface);width:30px;height:30px;cursor:pointer;display:inline-grid;place-items:center;font-weight:700}
+.readin{display:flex;align-items:stretch;border:1px solid var(--line);background:var(--surface);min-width:150px}
+.readin input{border:0;flex:1;min-width:0;padding:6px 8px;font-variant-numeric:tabular-nums;text-align:right}
+.readin span{display:grid;place-items:center;padding:0 10px;background:var(--bg);border-left:1px solid var(--line);font-weight:700;color:var(--muted);font-size:var(--t-sm)}
+.wmsg{font-size:var(--t-sm);color:var(--warn);font-weight:600}
+.switch{display:inline-flex;align-items:center;gap:10px;cursor:pointer;font-size:var(--t-md);font-weight:600}
+.switch input{width:18px;height:18px;accent-color:var(--accent)}
+.woT select,.woT input{border:1px solid var(--line);background:var(--surface);padding:6px 8px;min-height:34px;font-size:var(--t-base);width:100%;min-width:110px}
+.woT td{vertical-align:top}
+.woT input[type=checkbox]{width:18px;height:18px;min-width:0;min-height:0;padding:0}
+.woT .adv{font-size:var(--t-xs);color:var(--ok);font-weight:700}
+.tfoot{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 12px;border-top:1px solid var(--line);background:var(--bg);font-size:var(--t-sm);color:var(--muted)}
+.docT td{vertical-align:middle}
+.upl{position:relative;overflow:hidden}
+.upl input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.legend{font-size:var(--t-sm);color:var(--muted)}
+.co{border:1px solid var(--line);background:var(--bg);padding:14px;display:flex;flex-direction:column;gap:12px}
+.co-h{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.co-h b{font-size:var(--t-md)}
+details.rs{border:1px solid var(--line);background:var(--bg);padding:12px 14px}
+details.rs>summary{cursor:pointer;color:var(--text);font-weight:400;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+details.rs>summary::marker{color:var(--accent-ink)}
+details.rs>summary .sub{color:var(--muted)}
+.rh{margin:0;font-size:var(--t-xs);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+tr.hit td{background:var(--info-soft)}
+.atT td:first-child{white-space:nowrap}
+td.nowrap{white-space:nowrap}
+.rowact{display:inline-grid;place-items:center;width:32px;height:32px;border:1px solid var(--line);background:var(--surface);color:var(--accent-ink);cursor:pointer;padding:0}
+.rowact:hover{border-color:var(--accent-ink);background:var(--accent-soft)}
+.rowact:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.stickyhead{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;flex-direction:column;gap:12px;padding-top:4px}
+.hcode{font-size:var(--t-md);font-weight:600;color:var(--muted);margin-left:8px;letter-spacing:.02em}
+.hact{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-start;position:relative;flex:none}
+@media (min-width:900px){.stickyhead .head{flex-wrap:nowrap}.stickyhead .head>div:first-child{min-width:0}}
+.morewrap{position:relative}
+.menu2{position:absolute;right:0;top:calc(100% + 4px);background:var(--surface);border:1px solid var(--text);min-width:220px;z-index:10;display:flex;flex-direction:column;box-shadow:0 12px 30px rgba(0,0,0,.15)}
+.menu2 button{all:unset;cursor:pointer;padding:11px 14px;border-top:1px solid var(--line);font-size:var(--t-md)}
+.menu2 button:first-child{border-top:0}.menu2 button.dang{color:var(--bad)}
+.mback{position:fixed;inset:0;background:rgba(32,30,29,.45);z-index:40}
+.cfm{position:fixed;z-index:41;left:50%;top:50%;transform:translate(-50%,-50%);width:min(560px,calc(100% - 32px));border:1px solid var(--text);box-shadow:0 20px 50px rgba(0,0,0,.25);margin:0}
+.btn.dangbtn{background:var(--bad);border-color:var(--bad)}
+.fmenu{padding:12px 14px;gap:12px;min-width:240px}
+.fgrp{display:flex;flex-direction:column;gap:6px}.fgrp label{display:flex;gap:8px;align-items:center;font-size:var(--t-md);cursor:pointer}
+.fhd{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);padding:4px 4px 4px 10px;font-size:var(--t-sm)}
+.chip button{all:unset;cursor:pointer;padding:2px 6px;color:var(--muted)}.chip button:hover{color:var(--text)}.menu2 button:hover{background:var(--bg)}
+.dtabs{display:flex;gap:24px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.dtabs button{border:0;background:none;padding:8px 0;cursor:pointer;font:inherit;font-size:var(--t-md);font-weight:600;color:var(--muted)}
+.dtabs button[aria-selected="true"]{color:var(--text);box-shadow:inset 0 -3px 0 var(--accent)}
+.dtiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:720px){.dtiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.dtile{border:1px solid var(--line);background:var(--surface);padding:12px 14px;display:flex;flex-direction:column;gap:2px;text-align:left;cursor:pointer;font:inherit;color:var(--text)}
+.dtile:hover{border-color:var(--text)}
+.dtile span{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.dtile b{font-size:24px;font-weight:800}.dtile b.warn{color:var(--warn)}
+.dtile small{color:var(--muted);font-size:var(--t-sm)}
+.dfacts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+@media (max-width:720px){.dfacts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.dfacts{grid-template-columns:minmax(0,1fr)}}
+.dfact{padding:10px 12px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);display:flex;flex-direction:column;gap:2px;min-width:0}
+.dfact span{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.dfact b{font-size:var(--t-md);font-weight:600;overflow-wrap:anywhere}
+.seg2{border:1px solid var(--line);background:var(--surface);padding:6px 12px;font:inherit;font-size:var(--t-sm);cursor:pointer;min-height:38px}
+.seg2[aria-pressed="true"]{background:var(--text);color:var(--surface);border-color:var(--text)}
+.done-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.done-list li{display:grid;grid-template-columns:24px 160px minmax(0,1fr);gap:8px;padding:10px 0;border-top:1px solid var(--line);font-size:var(--t-md)}
+.done-list li:first-child{border-top:0}
+.done-list .tick{color:var(--ok);font-weight:800}
+.done-list .k{color:var(--muted)}
+@media (max-width:560px){.done-list li{grid-template-columns:24px minmax(0,1fr)}.done-list .k{grid-column:2}}
+.svct tr.kidrow td{background:var(--bg)}
+.svct .tree{color:var(--faint);margin-right:6px}
+.atT .tree{color:var(--faint);margin:0 6px 0 14px}
+.atT tr.kid td:first-child{padding-left:12px}
+.atT .cotog{display:inline-flex;font-size:var(--t-sm);margin-right:4px}
+.cotog{all:unset;cursor:pointer;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;min-width:0}
+.cotog:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+
+<div class="wrap">
+  <div class="demo" role="group" aria-label="Demo controls">
+    <b>Design mock-up · example data</b>
+    <span>Screen:</span>
+    <button class="chipbtn" data-view="list" aria-pressed="true">List</button>
+    <button class="chipbtn" data-view="approve" aria-pressed="false">Approve</button>
+    <button class="chipbtn" data-view="wiz" aria-pressed="false">New move-in</button>
+    <button class="chipbtn" data-view="done" aria-pressed="false">Completed</button><button class="chipbtn" data-view="detail" aria-pressed="false">Details</button>
+    <span>Ottumwa Water Works · Kestrel Park ph. 2.</span>
+  </div>
+
+  <!-- LIST -->
+  <section id="listView" class="stack">
+    <header class="head">
+      <div><div class="kicker">Accounts</div><h1>Move-ins</h1></div>
+      <div class="btns"><button class="btn primary" data-go="wiz">+ New move-in</button></div>
+    </header>
+    <nav class="tabs" aria-label="Accounts"><span>Requests</span><span>New connects</span><span class="on">Move-ins</span><span>Move-outs</span><span>Transfers</span><span>Disconnects</span></nav>
+    <div class="tiles">
+      <div class="tile"><div class="l">To approve</div><div class="v" style="color:var(--accent-ink)">2</div></div>
+      <div class="tile"><div class="l">Not started</div><div class="v">3</div></div>
+      <div class="tile"><div class="l">Drafts</div><div class="v">1</div></div>
+      <div class="tile"><div class="l">Starting this week</div><div class="v">4</div></div>
+      <div class="tile"><div class="l">Waiting on a read</div><div class="v">1</div></div>
+    </div>
+    <div class="toolbar">
+      <label for="q" style="position:absolute;left:-9999px">Search move-ins</label>
+      <input id="q" class="search" placeholder="Search customer, unit, MVI…">
+      <span class="morewrap"><button class="btn" id="fBtn" aria-expanded="false">+ Filter ▾</button>
+        <div class="menu2 fmenu" id="fMenu" hidden role="dialog" aria-label="Filter">
+          <div class="fgrp"><div class="fhd">Status</div>
+            <label><input type="radio" name="fst" value="all" checked> All</label><label><input type="radio" name="fst" value="approve"> To approve</label><label><input type="radio" name="fst" value="open"> Open</label><label><input type="radio" name="fst" value="done"> Completed</label></div>
+          <div class="fgrp"><div class="fhd">Service</div>
+            <label><input type="checkbox" name="fsv" value="W"> Water</label><label><input type="checkbox" name="fsv" value="S"> Sewer</label><label><input type="checkbox" name="fsv" value="E"> Electric</label></div>
+        </div></span>
+    </div>
+    <div class="toolbar" id="fChips"></div>
+    <div class="tw"><table>
+      <thead><tr><th>Reference</th><th>Customer</th><th>Unit</th><th>Services</th><th>Move-in date</th><th>Step</th><th>Opening read</th><th class="r">Deposit</th><th>State</th><th><span style="position:absolute;left:-9999px">Action</span></th></tr></thead>
+      <tbody id="listRows"></tbody>
+    </table></div>
+    <div class="toolbar" style="justify-content:space-between;font-size:var(--t-sm);color:var(--muted)"><span id="listCount">1–6 of 6</span><span>Rows per page 50 ▾</span></div>
+  </section>
+
+  <!-- APPROVE -->
+  <section id="approveView" class="stack" hidden>
+    <div class="crumb"><a href="#" data-go="list">← Move-ins</a></div>
+    <header class="head">
+      <div><div class="kicker">Move-in request · SR-26-0014</div><h1>Asha Verma</h1>
+        <div style="margin-top:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="pill p-warn">To approve</span><span class="crumb">From the portal · 10/03/2026</span></div></div>
+      <div class="btns"><button class="btn" id="declineBtn">Decline…</button><button class="btn">Ask for more…</button><button class="btn primary" id="approveBtn">Approve ✓</button></div>
+    </header>
+    <div class="kv2">
+      <div class="panel"><h2>What they asked for</h2>
+        <dl class="kv"><dt>Unit</dt><dd>Kestrel Park ph. 2 · SCW-U-311</dd><dt>Unit is</dt><dd>Vacant</dd><dt>Services</dt><dd><span class="svc" style="background:var(--water)">W</span><span class="svc" style="background:var(--sewer)">S</span> Water · Sewer</dd><dt>Move-in date</dt><dd>10/12/2026</dd></dl></div>
+      <div class="panel"><h2>Who</h2>
+        <dl class="kv"><dt>Person or company</dt><dd>Person</dd><dt>Email</dt><dd>asha.v@example.com</dd><dt>Phone</dt><dd>(641) 555-0182</dd><dt>Mailing</dt><dd>Same as service address</dd></dl></div>
+      <div class="panel span2"><h2>Documents</h2><div class="ticks"><a href="#">lease-agreement.pdf</a><a href="#">photo-id.jpg</a></div></div>
+    </div>
+    <div class="dialog" id="approveDlg" hidden role="dialog" aria-labelledby="adT">
+      <h2 id="adT">Approve SR-26-0014?</h2>
+      <div class="effect"><b>EFFECT</b><span>Opens the move-in with this request filled in.</span></div>
+      <div class="actions" style="border:0;padding:0;justify-content:flex-end"><button class="btn" id="adCancel">Cancel</button><button class="btn primary" data-go="wiz">Approve and start ✓</button></div>
+    </div>
+    <div class="dialog" id="declineDlg" hidden role="dialog" aria-labelledby="ddT">
+      <h2 id="ddT">Decline SR-26-0014?</h2>
+      <div class="f"><label for="why">Reason <span class="req">*</span></label><select id="why"><option>Unit not vacant</option><option>Documents missing</option><option>Other</option></select></div>
+      <div class="effect"><b>EFFECT</b><span>The customer is told by email.</span></div>
+      <div class="actions" style="border:0;padding:0;justify-content:flex-end"><button class="btn" id="ddCancel">Cancel</button><button class="btn danger">Decline ✓</button></div>
+    </div>
+  </section>
+
+  <!-- WIZARD -->
+  <section id="wizView" class="stack" hidden>
+    <header class="head"><div><div class="crumb"><a href="#" data-go="list">← Move-ins</a></div><h1 id="wizTitle">New move-in</h1></div><button class="btn" id="draft">Save draft &amp; exit</button></header>
+    <nav class="rail" id="rail" aria-label="Steps"></nav>
+    <main class="stack" id="main"></main>
+  </section>
+  <!-- COMPLETED -->
+  <section id="doneView" class="stack" hidden></section>
+
+  <!-- DETAILS -->
+  <section id="detailView" class="stack" hidden></section>
+
+  <!-- MAPPING -->
+  <section class="panel">
+    <div class="sec-title"><h2>Where every data element went</h2><span>7 steps → 4 · nothing removed · new fields added</span></div>
+    <div class="tw"><table><thead><tr><th>#</th><th>Data element</th><th>Old step</th><th>New step</th><th>Change</th></tr></thead><tbody id="maprows"></tbody></table></div>
+  </section>
+
+  <!-- FIXES -->
+  <section class="panel">
+    <div class="sec-title"><h2>What this design fixes</h2><span>From the screens on v2.455.0</span></div>
+    <div class="tw"><table><thead><tr><th>#</th><th>Where</th><th>Today</th><th>In this design</th></tr></thead><tbody id="fixrows"></tbody></table></div>
+  </section>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const views={list:'#listView',approve:'#approveView',wiz:'#wizView',done:'#doneView',detail:'#detailView'};
+function show(v){if(v==='approve'){D.st='approve';D.tab='over';D.cf='';v='detail'}Object.entries(views).forEach(([k,sel])=>{$(sel).hidden=k!==v});$$('.demo [data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===v)));if(v==='done')renderDone();if(v==='detail')renderDetail();if(v==='wiz'){$('#wizTitle').textContent=editMode?'Edit move-in · MVI-26-0011':'New move-in';editMode=false;step=0;renderWiz()}window.scrollTo(0,0)}
+function toast(t){const el=$('#toast');el.textContent=t;el.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>el.hidden=true,2200)}
+document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g){e.preventDefault();show(g.dataset.go)}const v=e.target.closest('.demo [data-view]');if(v)show(v.dataset.view)});
+
+/* ---------- list ---------- */
+const rows=[
+ {ref:'SR-26-0014',cust:'Asha Verma',unit:'Kestrel Park ph. 2 · SCW-U-311',svc:'WS',date:'10/12/2026',step:'—',read:'—',dep:'—',st:'To approve',cls:'p-warn',grp:'approve',act:'Review →',go:'approve'},
+ {ref:'SR-26-0015',cust:'Owen Pratt',unit:'240 Sable Court · Unit 4',svc:'EW',date:'10/15/2026',step:'—',read:'—',dep:'—',st:'To approve',cls:'p-warn',grp:'approve',act:'Review →',go:'approve'},
+ {ref:'MVI-26-0011',cust:'Carl Brandt',unit:'88 Pine Vista · SCW-U-206',svc:'W',date:'10/14/2026',step:'—',read:'—',dep:'—',st:'Not started',cls:'p-info',grp:'open',act:'Start →',go:'wiz'},
+ {ref:'MVI-26-0010',cust:'Nilesh G',unit:'Kestrel Park ph. 2 · SCW-U-308',svc:'WS',date:'10/10/2026',step:'Done',read:'Waiting',dep:'$150.00',st:'Waiting on a read',cls:'p-warn',grp:'open',act:'Open →',go:'detail'},
+ {ref:'MVI-26-0009',cust:'Lena Ortiz',unit:'12 Harbour View · Unit 1',svc:'W',date:'10/09/2026',step:'3 of 4 · Billing',read:'—',dep:'—',st:'Draft · 2 days',cls:'p-off',grp:'open',act:'Resume →',go:'wiz'},
+ {ref:'MVI-26-0006',cust:'Priya Raman',unit:'1408 Elm Street · Unit A',svc:'EW',date:'10/05/2026',step:'Done',read:'16,082 kWh · 841 kgal',dep:'$0.00',st:'Completed',cls:'p-ok',grp:'done',act:'Open →',go:'detail'}
+];
+const svcColor={W:'var(--water)',S:'var(--sewer)',E:'var(--electric)'};
+let filt='all',fsv=[];
+function renderList(){const q=$('#q').value.toLowerCase();const r=rows.filter(x=>(filt==='all'||x.grp===filt)&&(!fsv.length||fsv.some(c=>x.svc.includes(c)))&&(!q||(x.ref+x.cust+x.unit).toLowerCase().includes(q)));
+ const ICO={review:'<path d="M9 11l2 2 4-4"/><rect x="4" y="3" width="16" height="18" rx="1"/>',start:'<polygon points="7,4 19,12 7,20"/>',open:'<path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/>',resume:'<path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="M13 7l4 4"/>'};
+function rowAct(x){const k={'Review →':['review','Review request'],'Start →':['start','Start move-in'],'Open →':['open','View'],'Resume →':['resume','Resume draft']}[x.act];return `<button class="rowact" data-go="${x.go}" title="${k[1]}" aria-label="${k[1]} ${x.ref}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">${ICO[k[0]]}</svg></button>`}
+$('#listRows').innerHTML=r.map(x=>`<tr><td class="nowrap"><a href="#" data-go="${x.go}">${x.ref}</a></td><td>${x.cust}</td><td>${x.unit}</td><td>${[...x.svc].map(c=>`<span class="svc" style="background:${svcColor[c]}">${c}</span>`).join('')}</td><td class="num">${x.date}</td><td>${x.step}</td><td class="num">${x.read}</td><td class="r num">${x.dep}</td><td><span class="pill ${x.cls}">${x.st}</span></td><td class="r">${rowAct(x)}</td></tr>`).join('')||`<tr><td colspan="10">No move-ins match.</td></tr>`;
+ $('#listCount').textContent=r.length?`1–${r.length} of ${r.length}`:'0 of 0'}
+$('#q').addEventListener('input',renderList);
+const FST={approve:'To approve',open:'Open',done:'Completed'},FSV={W:'Water',S:'Sewer',E:'Electric'};
+function chips(){const c=[];if(filt!=='all')c.push(['st',filt,'Status: '+FST[filt]]);fsv.forEach(v=>c.push(['sv',v,'Service: '+FSV[v]]));
+ $('#fChips').innerHTML=c.map(x=>`<span class="chip">${x[2]}<button data-chip="${x[0]}:${x[1]}" aria-label="Remove ${x[2]}">✕</button></span>`).join('')+(c.length>1?'<button class="btn link" id="fClear">Clear all</button>':'');
+ $$('[data-chip]').forEach(b=>b.onclick=()=>{const[k,v]=b.dataset.chip.split(':');if(k==='st'){filt='all';document.querySelector('input[name=fst][value=all]').checked=true}else{fsv=fsv.filter(x=>x!==v);document.querySelector(`input[name=fsv][value=${v}]`).checked=false}chips();renderList()});
+ const fc=$('#fClear');if(fc)fc.onclick=()=>{filt='all';fsv=[];document.querySelector('input[name=fst][value=all]').checked=true;$$('input[name=fsv]').forEach(i=>i.checked=false);chips();renderList()}}
+$('#fBtn').onclick=()=>{const m=$('#fMenu');m.hidden=!m.hidden;$('#fBtn').setAttribute('aria-expanded',String(!m.hidden))};
+$$('input[name=fst]').forEach(i=>i.onchange=()=>{filt=i.value;chips();renderList()});
+$$('input[name=fsv]').forEach(i=>i.onchange=()=>{fsv=$$('input[name=fsv]').filter(x=>x.checked).map(x=>x.value);chips();renderList()});
+renderList();
+
+/* ---------- approve ---------- */
+$('#approveBtn').onclick=()=>{$('#approveDlg').hidden=false;$('#declineDlg').hidden=true;$('#approveDlg').scrollIntoView({block:'center'})};
+$('#declineBtn').onclick=()=>{$('#declineDlg').hidden=false;$('#approveDlg').hidden=true;$('#declineDlg').scrollIntoView({block:'center'})};
+$('#adCancel').onclick=()=>$('#approveDlg').hidden=true;$('#ddCancel').onclick=()=>$('#declineDlg').hidden=true;
+
+/* ---------- wizard ---------- */
+const S={unit:'Kestrel Park ph. 2 · SCW-U-308',water:true,sewer:true,date:'10/10/2026',dateIso:'2026-10-10',read:'1,031',open:false,visit:true,wos:[{type:'Reading › Move-in read',tpl:'Move-in read · 15 min',for:'W-5000 · Water',pri:'Normal',due:'2026-10-10',win:'8:00–12:00',who:'R. Patel',note:'Gate code 4471'}],kind:'Person',cat:'Residential',sub:'Multi-family',contactPref:'Email',coP:[{name:'Riya G',rel:'Spouse',dob:'1999-03-02',ssn:'',dl:'',phone:'(732) 555-0144',email:'riya@example.com',pref:'Text',liable:true,id:''}],coC:[{name:'Arun Mehta',title:'Managing member',pct:'50',dob:'',ssn:'',phone:'(641) 555-0120',email:'arun@kestrelbakery.com',signs:true,guar:false,id:''}],legal:'Kestrel Bakery LLC',dba:'Kestrel Bakery',entity:'LLC',ein:'47-1234567',regState:'Iowa',cName:'Nilesh G',cTitle:'Owner',billSame:true,billEmail:'',po:'',docs:{Person:[{n:'Proof of identity',file:'photo-id.jpg',note:'',fixed:true},{n:'Tenancy or deed',file:'',note:'',fixed:true}],Company:[{n:'Proof of identity',file:'',note:'',fixed:true},{n:'Tenancy or deed',file:'',note:'',fixed:true}]},coOn:{Person:true,Company:true},name:'Nilesh G',email:'nilesh@bynry.io',phone:'(732) 630-0285',dob:'06/18/2001',ssn:'210-80-9662',dl:'DL986735',gov:'12452732323',same:true,paper:true,text:true,auto:true,lang:'English (US)',dAuto:true,dMuni:false,dPaper:true,exempt:true,exCat:'Non-profit',exNo:'NP-4471',exFrom:'01/15/2026',exTo:'01/14/2029',taken:'150.00',prefOn:true,discOn:true,apFrom:'Bank account',discs:[{n:'Autopay',note:''},{n:'Paperless',note:''}],exFromIso:'2026-01-15',exToIso:'2029-01-14',exFile:'np-4471-certificate.pdf',msgs:[{def:true,on:true,t:'Welcome · account opened',to:'Nilesh G · customer',ch:'Email · Text',when:'On complete'},{def:true,on:true,t:'Service agreement',to:'Nilesh G · customer',ch:'Email',when:'On complete'}],pay:'now',payMethod:'Check',payAmt:'175.00',payRef:'1043',payDate:'2026-10-10',read2:'214',atOpen:{},fees:[{code:'DEPOSIT',plan:true,amt:'150.00',note:''},{code:'CONNECT',plan:true,amt:'25.00',note:''}],idRes:'',idLinked:false,mOpen:false,mSt:'',mApt:'',mCy:'',mSta:'',mZip:'',mCo:'United States'};
+const steps=['Unit','Customer','Billing','Review'];let step=0;
+function renderRail(){$('#rail').innerHTML=steps.map((s,i)=>`<button data-i="${i}" data-state="${i===step?'current':i<step?'done':'todo'}" ${i===step?'aria-current="step"':''}><span class="n">${i<step?'✓':i+1}</span><span class="lbl">${s}</span></button>`).join('');$$('#rail button').forEach(b=>b.onclick=()=>{step=+b.dataset.i;renderWiz()})}
+const ck=(id,l,v)=>`<label><input type="checkbox" id="${id}" ${v?'checked':''}> ${l}</label>`;
+const fld=(id,l,v,req,help)=>`<div class="f"><label for="${id}">${l}${req?' <span class="req">*</span>':''}</label><input id="${id}" value="${v}">${help?`<span class="help">${help}</span>`:''}</div>`;
+function opt(list,v){return list.map(o=>{if(typeof o==='object')return `<optgroup label="${o.g}">${o.o.map(x=>`<option ${x===v?'selected':''}>${x}</option>`).join('')}</optgroup>`;return `<option ${o===v?'selected':''}>${o}</option>`}).join('')}
+const JOBS=[{g:'Reading',o:['Reading › Move-in read','Reading › Re-read']},{g:'Meter',o:['Meter › Meter exchange','Meter › Meter check']},{g:'Consumer services',o:['Consumer services › Move-in inspection','Consumer services › Turn on service']}];
+const TPLS={'Reading › Move-in read':['Move-in read · 15 min'],'Reading › Re-read':['Re-read · 10 min'],'Meter › Meter exchange':['Meter exchange — residential · 45 min'],'Meter › Meter check':['Meter check · 20 min'],'Consumer services › Move-in inspection':['Move-in inspection · 30 min'],'Consumer services › Turn on service':['Turn on service · 20 min']};
+const WHO=['Leave unassigned',{g:'Technicians',o:['R. Patel','M. Chen','D. Ortiz']},{g:'Crews',o:['Field crew A','Field crew B']},{g:'Contractors',o:['Redline Meter Services']}];
+function woLabel(k){const t=TPLS[k][0];return t+' — '+k.split(' › ')[0]}
+function woFind(v){return Object.keys(TPLS).find(k=>woLabel(k)===v)||''}
+function woRows(){return S.wos.map((w,i)=>`<tr>
+ <td class="num">${i+1}</td>
+ <td><label for="wt${i}" style="position:absolute;left:-9999px">Work order</label><input id="wt${i}" list="woList" data-wo="${i}" data-k="type" placeholder="Search work orders…" value="${w.type?woLabel(w.type):''}" style="min-width:260px"></td>
+ <td><label for="wf${i}" style="position:absolute;left:-9999px">For</label><select id="wf${i}" data-wo="${i}" data-k="for">${opt(['W-5000 · Water','Whole unit'],w.for)}</select></td>
+ <td><label for="wr${i}" style="position:absolute;left:-9999px">Priority</label><select id="wr${i}" data-wo="${i}" data-k="pri">${opt(['Low','Normal','High','Urgent'],w.pri)}</select></td>
+ <td><label for="wd${i}" style="position:absolute;left:-9999px">Due</label><input type="date" id="wd${i}" data-wo="${i}" data-k="due" value="${w.due}"></td>
+ <td><label for="ww${i}" style="position:absolute;left:-9999px">Window</label><select id="ww${i}" data-wo="${i}" data-k="win">${opt(['Any time','8:00–12:00','12:00–16:00','16:00–20:00'],w.win)}</select></td>
+ <td><label for="wa${i}" style="position:absolute;left:-9999px">Assign to</label><select id="wa${i}" data-wo="${i}" data-k="who">${opt(WHO,w.who)}</select>${w.who==='R. Patel'?'<div class="adv">Best fit · 2 jobs that day</div>':''}</td>
+ <td><label for="wn${i}" style="position:absolute;left:-9999px">Note</label><input id="wn${i}" data-wo="${i}" data-k="note" value="${w.note}"></td>
+ <td><button class="xbtn" data-rm="${i}" aria-label="Remove work order ${i+1}">✕</button></td></tr>`).join('')}
+function stepUnit(){const rd=parseFloat(String(S.read).replace(/,/g,''));const low=!isNaN(rd)&&rd<1024;return `
+<div class="panel"><h2>Unit</h2>
+ <div class="f"><label for="u">Vacant unit <span class="req">*</span></label><select id="u"><option>Kestrel Park ph. 2 · SCW-U-308</option><option>Kestrel Park ph. 2 · SCW-U-311</option></select><span class="help">Occupied units aren't listed.</span></div>
+ <div class="unithead">
+  <div><div class="t">SCW-U-308 · Unit 3B</div><div class="a">8 Quarry Lane, Ottumwa, IA 52501 · Kestrel Park ph. 2</div></div>
+  <div class="chips"><span class="pill p-ok">Vacant</span><span class="chip">Apartment</span><span class="chip">First occupant</span></div>
+ </div>
+ <div class="facts">
+  <section><h3>Building</h3><div class="p">P-00063 · Kestrel Park ph. 2</div><div class="s">Residential · inside city limits</div><div class="s">Area SE · Parcel 12-345 · Verified</div><div class="s">Route 4 · Cycle 2</div></section>
+  <section><h3>Unit</h3><div class="p">Apartment · 2nd floor</div><div class="s">850 sq ft</div><div class="s">Not a common area</div></section>
+  <section><h3>Owner</h3><div class="p">Kestrel Holdings</div><div class="s">AC-2026-00050</div><div class="s">Billed while vacant</div></section>
+  <section><h3>History</h3><div class="p">First occupant</div><div class="s">Plan changed 2 times · <a href="#">see</a></div></section>
+ </div>
+</div>
+<div class="panel"><h2>Move-in date</h2>
+ <div class="f"><label for="dt">Move-in date <span class="req">*</span></label><div class="datepick"><input type="date" id="dt" value="${S.dateIso}" min="2026-10-04"></div><span class="help">Rates and reads use this date.</span></div>
+</div>
+<div class="panel"><div class="panel-h"><h2>Services and meters</h2><span class="crumb">2 services · 2 meters · 1 device</span></div>
+ <div class="tw"><table class="svct">
+  <thead><tr><th>Start</th><th>Service</th><th>Meter</th><th>Size</th><th>Reads as</th><th class="r">Last read</th><th class="r">Opening read <span class="req">*</span></th><th><span style="position:absolute;left:-9999px">Details</span></th></tr></thead>
+  <tbody>
+  <tr class="${S.water?'':'off'}"><td><input type="checkbox" id="sw" ${S.water?'checked':''} aria-label="Start water"></td>
+   <td><span class="svc" style="background:var(--water)">W</span><b>Water</b><div class="sub">Metered</div></td>
+   <td>W-5000<div class="sub">Basement, left of stairs</div></td><td>5/8"</td><td>×1 · 6 digits</td>
+   <td class="r num">1,024 kgal<div class="sub">10/04/2026</div></td>
+   <td class="r"><div class="readin"><label for="rd" style="position:absolute;left:-9999px">Opening read W-5000</label><input id="rd" type="text" inputmode="decimal" value="${S.read}" ${S.water?'':'disabled'}><span>kgal</span></div>${low?'<div class="wmsg">Below the last read.</div>':''}</td>
+   <td><button class="xbtn" id="mdet" aria-expanded="${S.open}" aria-label="Meter details">${S.open?'▾':'▸'}</button></td></tr>
+  ${S.open?`<tr class="det"><td></td><td colspan="7"><b>W-5000 · SN 77123</b> · Positive displacement · Manual read · Installed Jan 2026 · Badger M25 · Seal S-0912 · Certified to 03/03/2027</td></tr>`:''}
+  ${S.water?`<tr class="kidrow"><td></td><td><span class="tree" aria-hidden="true">└</span><span class="pill p-warn">Sub-meter</span></td>
+   <td>W-5000-S1<div class="sub">Irrigation · side yard</div></td><td>5/8"</td><td>×1 · 5 digits</td>
+   <td class="r num">212 kgal<div class="sub">10/04/2026</div></td>
+   <td class="r"><div class="readin"><label for="rd2" style="position:absolute;left:-9999px">Opening read W-5000-S1</label><input id="rd2" type="text" inputmode="decimal" value="${S.read2}"><span>kgal</span></div></td><td></td></tr>
+  <tr class="kidrow"><td></td><td><span class="tree" aria-hidden="true">└</span><span class="pill p-off">Behind the meter</span></td>
+   <td>BF-0217<div class="sub">Backflow preventer</div></td><td>3/4"</td><td>—</td><td class="r">—</td><td class="r sub">Not read · test due 03/2027</td><td></td></tr>`:''}
+  <tr class="${S.sewer?'':'off'}"><td><input type="checkbox" id="ss" ${S.sewer?'checked':''} aria-label="Start sewer"></td>
+   <td><span class="svc" style="background:var(--sewer)">S</span><b>Sewer</b><div class="sub">Per kgal of water</div></td>
+   <td class="sub">Sized by W-5000<div class="sub">less W-5000-S1</div></td><td>—</td><td>—</td><td class="r">—</td><td class="r sub">Follows water</td><td></td></tr>
+  </tbody></table>
+  <div class="tfoot"><span>${[S.water,S.sewer].filter(Boolean).length} of 2 services start · ${S.water?2:0} opening reads needed</span></div>
+ </div>
+</div>
+<div class="panel"><div class="panel-h"><h2>Field visit</h2><label class="switch"><input type="checkbox" id="vn" ${S.visit?'checked':''}> Visit needed</label></div>
+ ${S.visit?`<div class="tw"><table class="woT">
+  <thead><tr><th>#</th><th>Work order <span class="req">*</span></th><th>For</th><th>Priority</th><th>Due</th><th>Window</th><th>Assign to</th><th>Note</th><th><span style="position:absolute;left:-9999px">Remove</span></th></tr></thead>
+  <tbody>${woRows()}</tbody></table><datalist id="woList">${Object.keys(TPLS).map(k=>`<option value="${woLabel(k)}">`).join('')}</datalist>
+  <div class="tfoot"><button class="btn link" id="woAdd">+ Add work order</button><span>Raised when you complete</span></div></div>`:''}
+</div>`}
+const CATS={Person:{Residential:['Single family','Multi-family','Senior housing']},Company:{Commercial:['Small commercial','Office','Retail'],Industrial:['Light industrial','Heavy industrial'],Government:['Municipal','State','Federal'],'Non-profit':['Charity','Religious','Education']}};
+const DOCT=['Proof of identity','Proof of address','Tenancy or deed','Authority to act','Site plan','Assistance evidence','Signed agreement','Completion paperwork','Anything else'];
+const DOCREQ=['Proof of identity','Tenancy or deed'];
+function docRows(){return S.docs[S.kind].map((d,i)=>{const req=DOCREQ.includes(d.n);const used=S.docs[S.kind].filter((x,j)=>j!==i&&x.n!=='Anything else').map(x=>x.n);const choices=DOCT.filter(t=>!used.includes(t));return `<tr>
+ <td class="num">${i+1}</td>
+ <td><label for="dt${i}" style="position:absolute;left:-9999px">Document</label>${d.fixed?`<b>${d.n}</b>`:`<select id="dt${i}" data-dk="${i}" data-dkk="n"><option value="">Choose…</option>${opt(choices,d.n)}</select>`}</td>
+ <td>${d.n?(req?'<span class="pill p-warn">Required</span>':'<span class="pill p-off">Optional</span>'):'—'}</td>
+ <td>${d.file?`<div style="display:flex;gap:8px;align-items:center"><a href="#">${d.file}</a><button class="xbtn" data-docrm="${i}" aria-label="Remove file">✕</button></div>`:`<span class="btn upl" style="min-height:34px;padding:0 12px">Upload<input type="file" accept=".pdf,.png,.jpg,.jpeg" data-doc="${i}" aria-label="Upload ${d.n||'document'}"></span>`}</td>
+ <td><label for="dn${i}" style="position:absolute;left:-9999px">Note</label><input id="dn${i}" data-dk="${i}" data-dkk="note" value="${d.note}" placeholder="Optional"></td>
+ <td class="r">${d.fixed?'':`<button class="xbtn" data-drow="${i}" aria-label="Remove row ${i+1}">✕</button>`}</td></tr>`}).join('')}
+function coPanel(){const P=S.kind==='Person',L=P?S.coP:S.coC;
+ const title=P?'Co-owners':'Owners and officers';
+ const head=(c,i,lab,sum)=>`<div class="co-h"><button class="cotog" data-cotog="${i}" aria-expanded="${c.open?'true':'false'}"><span aria-hidden="true">${c.open?'▾':'▸'}</span> <b>${c.name||lab+' '+(i+1)}</b> <span class="sub">${sum}</span></button><button class="xbtn" data-corm="${i}" aria-label="Remove ${lab.toLowerCase()} ${i+1}">✕</button></div>`;
+ const card=(c,i)=>P?`<div class="co">${head(c,i,'Co-owner',[c.rel,c.phone,c.liable?'Responsible for bills':'',c.id?'ID added':'No ID'].filter(Boolean).join(' · '))}${c.open?`
+  <div class="fields three">
+   ${cf(i,'name','Full name',c.name,true)}
+   <div class="f"><label for="co${i}rel">Relationship</label><select id="co${i}rel" data-co="${i}" data-ck="rel">${opt(['Spouse','Partner','Family','Roommate','Other'],c.rel)}</select></div>
+   <div class="f"><label for="co${i}dob">Date of birth</label><input type="date" id="co${i}dob" data-co="${i}" data-ck="dob" value="${c.dob}"></div>
+   ${cf(i,'ssn','Social Security number',c.ssn)}${cf(i,'dl','Driver\'s license',c.dl)}${cf(i,'phone','Phone',c.phone)}
+   ${cf(i,'email','Email',c.email)}
+   <div class="f"><label for="co${i}pref">Contact by</label><select id="co${i}pref" data-co="${i}" data-ck="pref">${opt(['Email','Text','Phone call','Mail'],c.pref)}</select></div>
+   <div class="f"><span class="lab">Photo ID</span>${idCell(c,i)}</div>
+  </div>
+  <div class="ticks"><label><input type="checkbox" data-co="${i}" data-ck="liable" ${c.liable?'checked':''}> Also responsible for the bills</label></div>`:''}</div>`
+ :`<div class="co">${head(c,i,'Owner',[c.title,c.pct?c.pct+'%':'',c.signs?'Signs':'',c.guar?'Guarantees':'',c.id?'ID added':'No ID'].filter(Boolean).join(' · '))}${c.open?`
+  <div class="fields three">
+   ${cf(i,'name','Full name',c.name,true)}${cf(i,'title','Title',c.title)}
+   <div class="f"><label for="co${i}pct">Ownership</label><div class="suffix"><input id="co${i}pct" data-co="${i}" data-ck="pct" value="${c.pct}"><span>%</span></div></div>
+   <div class="f"><label for="co${i}dob">Date of birth</label><input type="date" id="co${i}dob" data-co="${i}" data-ck="dob" value="${c.dob}"></div>
+   ${cf(i,'ssn','Social Security number',c.ssn)}${cf(i,'phone','Phone',c.phone)}${cf(i,'email','Email',c.email)}
+   <div class="f"><span class="lab">Photo ID</span>${idCell(c,i)}</div>
+  </div>
+  <div class="ticks"><label><input type="checkbox" data-co="${i}" data-ck="signs" ${c.signs?'checked':''}> Signs for the company</label><label><input type="checkbox" data-co="${i}" data-ck="guar" ${c.guar?'checked':''}> Personal guarantee</label></div>`:''}</div>`;
+ const on=S.coOn[S.kind];
+ return `<div class="panel"><div class="panel-h"><h2>${title}</h2><label class="ticks" style="margin:0"><input type="checkbox" id="coOn" ${on?'checked':''}> ${P?'Has co-owners':'Has owners or officers'}</label></div>${on?`<span class="legend">${L.length} added</span>${L.map(card).join('')}
+  <button class="btn link" id="coAdd" style="align-self:flex-start">+ Add ${P?'co-owner':'owner'}</button>`:''}</div>`}
+function idResult(){if(!S.idRes)return '';const P=S.kind==='Person';
+ const demo=`<div class="crumb" style="border:1px dashed var(--line);padding:6px 10px">Mock-up only · try: <button class="btn link" data-idd="found">Found</button> · <button class="btn link" data-idd="possible">Possible</button> · <button class="btn link" data-idd="none">Not found</button></div>`;
+ if(S.idRes==='none')return `<div class="co"><div class="note"><span class="pill p-info">New customer</span><span>No customer found. A new ID is given on complete.</span></div></div>${demo}`;
+ const found=S.idRes==='found';
+ const c=found?{no:'CU-000231',name:P?'Nilesh G':'Kestrel Holdings LLC',basis:P?'Name, date of birth and SSN match.':'Name and Tax ID match.'}:{no:'CU-000198',name:P?'Nilesh Gupta':'Kestrel Holdings',basis:'Only the name matches.'};
+ const accts=found?[['AC-2025-00412','14 Mill Rd · Unit 2','Closed 08/31/2026','$84.20',true],['AC-2026-00031','220 Ash Ave','Active','$0.00',false]]:[['AC-2024-00977','9 Birch Ct','Closed 02/28/2025','$0.00',false]];
+ const due=found?'$84.20':'$0.00';
+ return `<div class="co"><div class="co-h" style="flex-wrap:wrap"><div style="display:flex;gap:10px;align-items:baseline;flex-wrap:wrap">${S.idLinked?'<span class="pill p-ok">Linked</span>':found?'<span class="pill p-ok">Existing customer</span>':'<span class="pill p-warn">Possible match</span>'}<b>${c.no} · ${c.name}</b><span class="sub">${c.basis}</span></div>
+ <div style="display:flex;gap:8px">${S.idLinked?'<button class="btn" id="idUnlink">Unlink</button>':`<button class="btn" id="idNot">Not them</button><button class="btn primary" id="idLink">${found?'Link customer':'Same person · link'}</button>`}</div></div>
+ <div class="tw"><table><thead><tr><th>Account</th><th>Address</th><th>State</th><th class="r">Outstanding</th></tr></thead><tbody>${accts.map(a=>`<tr><td><a href="#">${a[0]}</a></td><td>${a[1]}</td><td>${a[2]}</td><td class="r num">${a[4]?`<span class="pill p-bad">${a[3]} due</span>`:a[3]}</td></tr>`).join('')}</tbody></table></div>
+ <div class="crumb">${accts.length} account${accts.length>1?'s':''} · ${due} outstanding</div></div>${demo}`}
+function assetTable(k,rows){const open=S.atOpen[k]!==false;const kids=rows.filter(r=>r.sub).length;
+ const pill={'Meter':'p-info','Sub-meter':'p-warn','Behind the meter':'p-off'};
+ return `<div class="tw"><table class="atT"><thead><tr><th>ID</th><th>Name</th><th>Kind</th><th>Size</th><th class="r">Base a month</th><th class="r">Minimum</th><th>Note</th></tr></thead><tbody>${rows.filter(r=>!r.sub||open).map(r=>`<tr${r.sub?' class="kid"':' class="hit"'}>
+  <td>${r.sub?'<span class="tree" aria-hidden="true">└</span>':kids?`<button class="cotog" data-at="${k}" aria-expanded="${open}" aria-label="${open?'Hide':'Show'} ${kids} linked">${open?'▾':'▸'}</button> `:''}<a href="#">${r.id}</a></td>
+  <td>${r.name}</td><td><span class="pill ${pill[r.role]}">${r.role}</span></td><td>${r.size}</td><td class="r num">${r.base}</td><td class="r num">${r.min}</td><td class="sub">${r.note||(r.sub?'':open||!kids?'':kids+' linked')}</td></tr>`).join('')}</tbody></table></div>`}
+function rateSec(t,meta,mine,body){return `<details class="rs" data-d="${t}"><summary><b>${t}</b><span class="sub">${meta}</span><span class="pill p-info" style="margin-left:auto">${mine}</span></summary><div class="stack" style="gap:10px;padding-top:10px">${body}</div></details>`}
+const FEES={DEPOSIT:{n:'Deposit · Residential',a:'150.00',tax:false,planOnly:true,edit:false},CONNECT:{n:'Connection · Residential',a:'25.00',tax:true,planOnly:true,edit:false},
+ KEYDEP:{n:'Key or gate deposit',a:'20.00',tax:false},RUSH:{n:'Same-day turn-on',a:'40.00',tax:true},AFTERHRS:{n:'After-hours trip',a:'65.00',tax:true},LEADINSP:{n:'Lead service inspection',a:'35.00',tax:false},
+ METERTEST:{n:'Meter test on request',a:'30.00',tax:false},MISC:{n:'Other charge',a:'0.00',tax:false,edit:true}};
+const money=v=>v.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+const num=v=>parseFloat(String(v).replace(/[^\d.]/g,''))||0;
+function feeSum(k){return S.fees.filter(f=>f.code).reduce((t,f)=>t+num(f[k]),0)}
+const MSGT=['Welcome · account opened','Service agreement','Visit reminder','Payment receipt','Autopay set-up','Portal invitation','Paperless confirmation'];
+function msgTo(){const L=[S.kind==='Person'?S.name+' · customer':S.legal+' · customer'];(S.coOn[S.kind]?(S.kind==='Person'?S.coP:S.coC):[]).forEach(c=>c.name&&L.push(c.name+(S.kind==='Person'?' · co-owner':' · owner')));L.push('Kestrel Holdings · unit owner');return L}
+function renderDone(){const fees=feeSum('amt'),paid=S.pay==='now'?Math.min(num(S.payAmt),fees):0;const cust=S.idLinked?(S.idRes==='found'?'CU-000231':'CU-000198'):'CU-000412';
+ const sent=S.msgs.filter(m=>m.on&&m.t);const wos=S.visit?S.wos.filter(w=>w.type):[];
+ const rows=[
+  ['Customer',S.idLinked?`Linked to existing <a href="#">${cust}</a> · ${S.name}`:`Created <a href="#">${cust}</a> · ${S.kind==='Person'?S.name:S.legal}`],
+  ['Account',`Opened <a href="#">AC-2026-00058</a> · <a href="#">Sample — Residential · v3</a>`],
+  ['Services',`${[S.water&&'Water',S.sewer&&'Sewer'].filter(Boolean).join(' · ')} start ${S.date}`],
+  ['Opening reads',`W-5000 ${S.read} kgal · W-5000-S1 ${S.read2} kgal`],
+  ['Unit','SCW-U-308 · Vacant → Occupied'],
+  ...(S.coOn[S.kind]&&(S.kind==='Person'?S.coP:S.coC).length?[['Co-owners',(S.kind==='Person'?S.coP:S.coC).map(c=>c.name).join(' · ')+' added']]:[]),
+  ['Documents',S.docs[S.kind].filter(d=>d.file).length+' filed on the customer'],
+  ...(wos.length?[['Work orders',wos.map((w,i)=>`<a href="#">WO-00${62+i}</a> · ${w.tpl} · ${w.who}`).join('<br>')]]:[]),
+  ['Fees',`$${money(fees)} posted · ${S.fees.filter(f=>f.code).map(f=>f.code).join(', ')}`],
+  ['Payment',S.pay==='now'?`$${money(paid)} received · ${S.payMethod}${S.payRef?' '+S.payRef:''} · receipt <a href="#">RC-2026-01177</a>${fees>paid?` · $${money(fees-paid)} on the first bill`:''}`:`$${money(fees)} on the first bill`],
+  ['Messages',sent.length?sent.map(m=>`${m.t} · ${m.ch} · ${m.when.toLowerCase()}`).join('<br>'):'None']];
+ $('#doneView').innerHTML=`<header class="head"><div><div class="crumb"><a href="#" data-go="list">← Move-ins</a></div><h1>Move-in completed</h1>
+  <div style="margin-top:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="pill p-ok">Completed</span><b>MVI-26-0011</b><span class="crumb">From request SR-26-0014 · ${S.name} · SCW-U-308</span></div></div></header>
+ <div class="panel"><h2>What happened</h2><ul class="done-list">${rows.map(([k,v])=>`<li><span class="tick" aria-hidden="true">✓</span><span class="k">${k}</span><span>${v}</span></li>`).join('')}</ul></div>
+ <div class="actions"><div class="left"><button class="btn" id="dAnother">+ Start another move-in</button></div><div class="right"><button class="btn" id="dReq">Open the move-in</button><button class="btn primary" id="dAcct">Open the account →</button></div></div>`;
+ $('#dAnother').onclick=()=>show('wiz');$('#dReq').onclick=()=>show('detail');$('#dAcct').onclick=()=>toast('Opens account AC-2026-00058')}
+let editMode=false;
+const D={tab:'over',more:false,af:'all',st:'done',cf:''};
+const DST={
+ approve:{lab:'To approve',pill:['p-warn','To approve'],sub:'Requested 10/03/2026 · moves in 10/12/2026',primary:'Approve ✓',second:'Ask for more…',more:['Edit','Decline…']},
+ waiting:{lab:'Waiting on customer',pill:['p-warn','Waiting on customer'],sub:'Asked 10/04/2026 · moves in 10/12/2026',primary:'Approve ✓',second:'Resend the ask',more:['Edit','Decline…']},
+ declined:{lab:'Declined',pill:['p-bad','Declined'],sub:'Declined 10/04/2026',primary:'',second:'',more:['Reopen']},
+ notstarted:{lab:'Not started',pill:['p-info','Not started'],sub:'Approved 10/04/2026 · moves in 10/10/2026',primary:'Start',second:'',more:['Edit','Cancel move-in…']},
+ draft:{lab:'Draft',pill:['p-off','Draft'],sub:'Step 3 of 4 · moves in 10/10/2026',primary:'Edit',second:'',more:['Discard draft…']},
+ scheduled:{lab:'Waiting on a read',pill:['p-warn','Waiting on a read'],sub:'Moved in 10/10/2026 · visit 8:00–12:00',primary:'Enter opening read',second:'Change move-in date',more:['Add a work order','Send a message','Cancel move-in…']},
+ done:{lab:'Completed',pill:['p-ok','Completed'],sub:'Moved in 10/10/2026',primary:'',second:'',more:['Send a message','Print']},
+ cancelled:{lab:'Cancelled',pill:['p-off','Cancelled'],sub:'Cancelled 10/06/2026',primary:'',second:'',more:[]}};
+const DANGER=['Decline…','Cancel move-in…','Discard draft…'];
+function dfact(k,v){return `<div class="dfact"><span>${k}</span><b>${v}</b></div>`}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&D.cf){D.cf='';renderDetail()}});
+function renderDetail(){const T=[['over','Overview'],['unit','Unit & reads'],['cust','Account'],['bill','Billing'],['work','Work · 1'],['msg','Messages · 2'],['audit','Audit']];
+ const tile=(tab,k,v,sm,cls)=>`<button class="dtile" data-dtab="${tab}"><span>${k}</span><b class="num ${cls||''}">${v}</b><small>${sm} ›</small></button>`;
+ const tbl=(h,rows)=>`<div class="tw"><table><thead><tr>${h.map(x=>`<th${x[0]==='>'?' class="r"':''}>${x.replace(/^>/,'')}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map((c,i)=>`<td${h[i][0]==='>'?' class="r num"':''}>${c}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+ const P=(t,body,right)=>`<section class="panel"><div class="panel-h"><h2>${t}</h2>${right||''}</div>${body}</section>`;
+ const a=x=>`<a href="#">${x}</a>`;
+ const over=`<div class="dtiles">${tile('unit','Opening reads','2 of 2','recorded 10/10/2026')}${tile('bill','Fees','$175.00','paid in full')}${tile('work','Work orders','1 open','visit 10/10, 8–12','warn')}${tile('msg','Messages','2 sent','email and text')}</div>
+  ${P('Details',`<div class="dfacts">${dfact('Move-in','MVI-26-0011')}${dfact('From request',a('SR-26-0014'))}${dfact('Moved in on','10/10/2026')}
+   ${dfact('Customer',a('CU-000412')+' · Nilesh G')}${dfact('Account',a('AC-2026-00058'))}${dfact('Plan',a('Sample — Residential · v3'))}
+   ${dfact('Unit',a('SCW-U-308')+' · Unit 3B')}${dfact('Building',a('P-00063')+' · Kestrel Park ph. 2')}${dfact('Services','Water · Sewer')}
+   ${dfact('From account','None · first occupant')}${dfact('Earliest legal start','No earlier tenancy')}${dfact('Committed by','Dana Whitfield · 10/05/2026')}</div>`)}
+  ${P('Still open',tbl(['Item','State','Next'],[[a('WO-0062')+' · Move-in read','<span class="pill p-warn">Scheduled</span>','R. Patel · 10/10/2026 · 8:00–12:00'],['Backflow test · BF-0217','<span class="pill p-off">Not due</span>','Due 03/2027']]))}`;
+ const unit=P('Unit',`<div class="dfacts">${dfact('Unit','SCW-U-308 · Unit 3B · Apartment · 2nd floor')}${dfact('Address','8 Quarry Lane, Ottumwa, IA 52501')}${dfact('Building','P-00063 · Kestrel Park ph. 2')}${dfact('Owner','Kestrel Holdings · AC-2026-00050')}${dfact('Area · parcel','Area SE · Parcel 12-345')}${dfact('Route · cycle','Route 4 · Cycle 2')}</div>`)
+  +P('Opening reads',tbl(['ID','Kind','Size','>Last read','>Opening read','Source','State'],[[a('W-5000'),'Meter · water','5/8"','1,024 kgal','1,031 kgal','Entered at move-in','<span class="pill p-ok">Recorded</span>'],['└ '+a('W-5000-S1'),'Sub-meter · irrigation','5/8"','212 kgal','214 kgal','Entered at move-in','<span class="pill p-ok">Recorded</span>'],['└ '+a('BF-0217'),'Behind the meter · backflow','3/4"','—','—','Not read','<span class="pill p-off">Not read</span>']]));
+ const cust=P('Account holder',`<div class="dfacts">${dfact('Customer',a('CU-000412')+' · Nilesh G · Person')}${dfact('Customer type','Residential · Multi-family')}${dfact('Matched','New · no existing customer')}${dfact('Email','nilesh@bynry.io')}${dfact('Phone','(732) 630-0285 · texts on')}${dfact('Contact by','Email')}${dfact('Date of birth','06/18/2001')}${dfact('SSN','•••-••-9662')}${dfact('Driver\'s license','•••••735')}${dfact('Mailing address','Same as service address')}</div>`)
+  +P('Co-owners',tbl(['Name','Relationship','Phone','Contact by','Bills','Photo ID'],[['Riya G','Spouse','(732) 555-0144','Text','Responsible','<span class="pill p-warn">Missing</span>']]));
+ const bill=`<div class="dtiles">${tile('bill','Base charge','$20.00','a month')}${tile('bill','Fees','$175.00','2 fees')}${tile('bill','Paid','$175.00','check 1043')}${tile('bill','Still to collect','$0.00','nothing owed')}</div>`
+  +P('Plan and preferences',`<div class="dfacts">${dfact('Plan',a('Sample — Residential · v3')+' from 06/01/2026')}${dfact('Discounts','Autopay 0.50% · Paperless $1.00')}${dfact('Tax','Exempt · Non-profit · NP-4471 to 01/14/2029')}${dfact('Paperless billing','On')}${dfact('Autopay','On')}${dfact('Portal language','English (US)')}</div>`)
+  +P('Fees',tbl(['Fee','From','>Amount','Taxable','Paid'],[['DEPOSIT · Deposit · Residential','Plan','$150.00','No','Yes'],['CONNECT · Connection · Residential','Plan','$25.00','Yes','Yes'],['<b>Total</b>','','<b>$175.00</b>','','']]))
+  +P('Payment and deposit',`<div class="dfacts">${dfact('Paid','$175.00 · Check 1043 · 10/10/2026')}${dfact('Receipt',a('RC-2026-01177'))}${dfact('Deposit','Plan requires $150.00 · taken $150.00')}${dfact('Carried over','None found')}${dfact('Still to collect','$0.00')}${dfact('First bill','11/01/2026 · cycle 2')}</div>`);
+ const work=P('Work orders',tbl(['Order','Work order','For','Due','Window','Assigned to','State'],[[a('WO-0062'),'Move-in read · 15 min','W-5000','10/10/2026','8:00–12:00','R. Patel','<span class="pill p-warn">Scheduled</span>']]),'<button class="btn link">+ Add work order</button>');
+ const msg=P('Messages',tbl(['Message','To','Channel','When','State'],[['Welcome · account opened','Nilesh G','Email · Text','10/05/2026 14:12','<span class="pill p-ok">Sent</span>'],['Service agreement','Nilesh G','Email','10/05/2026 14:12','<span class="pill p-ok">Sent</span>']]),'<button class="btn link">+ Send a message</button>');
+ const docs=P('Documents',tbl(['Document','Needed','File','Added'],[['Proof of identity','<span class="pill p-warn">Required</span>',a('photo-id.jpg'),'10/05/2026 · Dana Whitfield'],['Tenancy or deed','<span class="pill p-warn">Required</span>',a('lease-agreement.pdf'),'10/05/2026 · Dana Whitfield']]),'<button class="btn link">+ Add document</button>');
+ const AU=[['10/05/2026 14:12','Dana Whitfield','Move-in completed','chg'],['10/05/2026 14:12','System','Account AC-2026-00058 opened','chg'],['10/05/2026 14:12','System','Work order WO-0062 raised','chg'],['10/05/2026 14:12','System','Welcome and agreement sent','msg'],['10/05/2026 14:05','Dana Whitfield','Payment $175.00 received · check 1043','chg'],['10/03/2026 09:40','Dana Whitfield','Request SR-26-0014 approved','chg']].filter(x=>D.af==='all'||x[3]===D.af);
+ const audit=P('Audit',`<div class="toolbar">${[['all','All'],['chg','Changes'],['msg','Messages']].map(x=>`<button class="seg2" data-daf="${x[0]}" aria-pressed="${D.af===x[0]}">${x[1]}</button>`).join('')}</div>`+tbl(['When','Who','What'],AU.map(x=>[x[0],x[1],x[2]])));
+ const REQ=['approve','waiting','declined'].includes(D.st);
+ const rover=`<div class="dtiles">${tile('over','Move-in date','10/12/2026','requested')}${tile('over','Services','2','Water · Sewer')}${tile('docs','Documents','2 of 2','required ones added')}${tile('over','Unit','Vacant','SCW-U-311')}</div>
+  ${P('Request',`<div class="dfacts">${dfact('Request','SR-26-0014')}${dfact('From','Portal · 10/03/2026')}${dfact('Move-in date','10/12/2026')}
+   ${dfact('Unit',a('SCW-U-311')+' · Unit 4A')}${dfact('Building',a('P-00063')+' · Kestrel Park ph. 2')}${dfact('Unit is','Vacant · first occupant')}
+   ${dfact('Services','Water · Sewer')}${dfact('Plan',a('Sample — Residential · v3'))}${dfact('Customer type','Residential · Multi-family')}</div>`)}
+  ${P('Who',`<div class="dfacts">${dfact('Person or company','Person')}${dfact('Name','Asha Verma')}${dfact('Matched','No existing customer')}${dfact('Email','asha.v@example.com')}${dfact('Phone','(641) 555-0182')}${dfact('Mailing address','Same as service address')}</div>`)}`;
+ const rdocs=P('Documents',tbl(['Document','Needed','File','Added'],[['Proof of identity','<span class="pill p-warn">Required</span>',a('photo-id.jpg'),'10/03/2026 · Asha Verma'],['Tenancy or deed','<span class="pill p-warn">Required</span>',a('lease-agreement.pdf'),'10/03/2026 · Asha Verma']]));
+ const rmsg=P('Messages',tbl(['Message','To','Channel','When','State'],[['Request received','Asha Verma','Email','10/03/2026 09:12','<span class="pill p-ok">Sent</span>']]),'<button class="btn link">+ Send a message</button>');
+ const raudit=P('Audit',tbl(['When','Who','What'],[['10/03/2026 09:12','Asha Verma','Request sent from the portal'],['10/03/2026 09:12','System','Request received sent']]));
+ const B=REQ?{over:rover,docs:rdocs,msg:rmsg,audit:raudit}:{over,unit,cust:cust+docs,bill,work,msg,audit};
+ const TT=REQ?[['over','Overview'],['docs','Documents · 2'],['msg','Messages · 1'],['audit','Audit']]:T;
+ if(!B[D.tab])D.tab='over';
+ const CF={'Approve ✓':['Approve SR-26-0014?','Opens the move-in with this request filled in.','Approve ✓',''],'Decline…':['Decline SR-26-0014?','The customer is told. The request closes.','Decline','reason'],'Ask for more…':['Ask Asha Verma for more','The request waits for the reply.','Send','ask']}[D.cf];
+ const X=DST[D.st];
+ $('#detailView').innerHTML=`<div class="crumb" style="border:1px dashed var(--line);padding:6px 10px">Mock-up only · status: ${Object.entries(DST).map(([k,v])=>[k,v.lab]).map(x=>`<button class="btn link" data-dst="${x[0]}" ${D.st===x[0]?'aria-pressed="true" style="font-weight:800;text-decoration:none"':''}>${x[1]}</button>`).join(' · ')}</div><div class="stickyhead"><header class="head"><div><div class="crumb"><a href="#" data-go="list">← Move-ins</a></div>
+  <h1>${REQ?'Asha Verma':'Nilesh G'} <span class="hcode num">${REQ?'SR-26-0014':'MVI-26-0011'}</span></h1>
+  <div class="toolbar" style="margin-top:6px"><span class="pill ${X.pill[0]}">${X.pill[1]}</span><span class="pill p-off">${X.sub}</span><span class="crumb">${REQ?'Kestrel Park ph. 2 · SCW-U-311 · Unit 4A':'Kestrel Park ph. 2 · SCW-U-308 · Unit 3B'}</span></div></div>
+  <div class="hact">${X.second?`<button class="btn" data-act="${X.second}">${X.second}</button>`:''}${X.primary?`<button class="btn primary" data-act="${X.primary}">${X.primary}</button>`:''}${X.more.length?`<span class="morewrap"><button class="btn" id="dMore" aria-expanded="${D.more}">More ▾</button>${D.more?`<div class="menu2" role="menu">${X.more.map(m=>`<button role="menuitem" data-act="${m}" class="${DANGER.includes(m)?'dang':''}">${m}</button>`).join('')}</div>`:''}</span>`:''}</div></header>
+  <nav class="dtabs" role="tablist" aria-label="Move-in">${TT.map(x=>`<button role="tab" data-dtab="${x[0]}" aria-selected="${D.tab===x[0]}">${x[1]}</button>`).join('')}</nav></div>
+  ${CF?`<div class="mback"></div><section class="panel cfm" role="dialog" aria-modal="true" aria-label="${CF[0]}"><h2>${CF[0]}</h2><div class="note" style="background:var(--bg)"><span class="pill p-off">Effect</span><span>${CF[1]}</span></div>${CF[3]?`<div class="f"><label for="cfTxt">${CF[3]==='reason'?'Reason':'What you need'} <span class="req">*</span></label><textarea id="cfTxt" rows="3"></textarea></div>`:''}<div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn" id="cfNo">Cancel</button><button class="btn primary ${CF[2]==='Decline'?'dangbtn':''}" id="cfYes">${CF[2]}</button></div></section>`:''}
+  ${B[D.tab]}`;
+ $$('#detailView [data-dtab]').forEach(b=>b.onclick=()=>{D.tab=b.dataset.dtab;D.more=false;renderDetail()});
+ $$('#detailView [data-daf]').forEach(b=>b.onclick=()=>{D.af=b.dataset.daf;renderDetail()});
+ const dm=$('#dMore');if(dm)dm.onclick=()=>{D.more=!D.more;renderDetail()};
+ $$('#detailView [data-act]').forEach(b=>b.onclick=()=>{const a=b.dataset.act;D.more=false;if(a==='Edit'||a==='Start'){editMode=a==='Edit';show('wiz')}else if(['Approve ✓','Decline…','Ask for more…'].includes(a)){D.cf=a;renderDetail()}else{toast(a.replace('…','')+(DANGER.includes(a)?' asks you to confirm.':' — opens here.'));renderDetail()}});
+ const cn=$('#cfNo');if(cn)cn.onclick=()=>{D.cf='';renderDetail()};
+ const mb=document.querySelector('.mback');if(mb)mb.onclick=()=>{D.cf='';renderDetail()};
+ const cft=$('#cfTxt')||$('#cfYes');if(cft)cft.focus();
+ const cy=$('#cfYes');if(cy)cy.onclick=()=>{const c=D.cf;D.cf='';D.st=c==='Approve ✓'?'notstarted':c==='Decline…'?'declined':'waiting';D.tab='over';toast(c==='Approve ✓'?'Approved · the move-in is ready to start':c==='Decline…'?'Declined · customer told':'Sent · waiting on the customer');renderDetail()};
+ $$('#detailView [data-dst]').forEach(b=>b.onclick=()=>{D.st=b.dataset.dst;D.more=false;renderDetail()})}
+const DISC={'Autopay':{t:'Percent',a:'0.50%',on:'Usage charges'},'Paperless':{t:'Fixed',a:'$1.00',on:'Each bill'}};
+function mf(k,l,req){return `<div class="f"><label for="${k}">${l}${req?' <span class="req">*</span>':''}</label><input id="${k}" data-m="${k}" value="${S[k]}"></div>`}
+function cf(i,k,l,v,req){return `<div class="f"><label for="co${i}${k}">${l}${req?' <span class="req">*</span>':''}</label><input id="co${i}${k}" data-co="${i}" data-ck="${k}" value="${v}"></div>`}
+function idCell(c,i){return c.id?`<div style="display:flex;gap:8px;align-items:center"><a href="#">${c.id}</a><button class="xbtn" data-coidrm="${i}" aria-label="Remove ID">✕</button></div>`:`<span class="btn upl" style="min-height:38px;align-self:flex-start">Upload<input type="file" accept=".pdf,.png,.jpg,.jpeg" data-coid="${i}" aria-label="Upload photo ID"></span>`}
+function stepCust(){const cats=CATS[S.kind];if(!cats[S.cat]){S.cat=Object.keys(cats)[0];S.sub=cats[S.cat][0]}
+const missing=DOCREQ.filter(n=>!S.docs[S.kind].some(d=>d.n===n&&d.file)).length;
+const person=`
+<div class="panel"><h2>Who is moving in</h2>
+ <div class="seg" role="group" aria-label="Person or company"><button aria-pressed="true" data-k="Person">Person</button><button aria-pressed="false" data-k="Company">Company</button></div>
+ <div class="fields">
+  <div class="f"><label for="cat">Customer type <span class="req">*</span></label><select id="cat">${opt(Object.keys(cats),S.cat)}</select><span class="help">Decides the plan, deposit and taxes.</span></div>
+  <div class="f"><label for="sub">Sub-type</label><select id="sub">${opt(cats[S.cat],S.sub)}</select></div>
+  <div class="span2">${fld('nm','Full name',S.name,true)}</div>
+  ${fld('em','Email',S.email)}${fld('ph','Phone',S.phone,true,'Texts go to this number.')}
+  <div class="f"><label for="cp">Contact by</label><select id="cp">${opt(['Email','Text','Phone call','Mail'],S.contactPref)}</select></div>
+  <div class="f"><label for="dob">Date of birth</label><input type="date" id="dob" value="2001-06-18"></div>
+ </div></div>
+<div class="panel"><div class="panel-h"><h2>Identity</h2><button class="btn" id="idSearch">Search customer ID</button></div><div class="fields three">${fld('ssn','Social Security number',S.ssn,false,'Staff see the last four only.')}${fld('dl','Driver\'s license',S.dl)}${fld('gov','Government ID',S.gov)}</div>${idResult()}</div>
+${coPanel()}`;
+const company=`
+<div class="panel"><h2>Who is moving in</h2>
+ <div class="seg" role="group" aria-label="Person or company"><button aria-pressed="false" data-k="Person">Person</button><button aria-pressed="true" data-k="Company">Company</button></div>
+ <div class="fields">
+  <div class="f"><label for="cat">Customer type <span class="req">*</span></label><select id="cat">${opt(Object.keys(cats),S.cat)}</select><span class="help">Decides the plan, deposit and taxes.</span></div>
+  <div class="f"><label for="sub">Sub-type</label><select id="sub">${opt(cats[S.cat],S.sub)}</select></div>
+  ${fld('lg2','Legal name',S.legal,true)}${fld('dba','Trading as',S.dba)}
+  <div class="f"><label for="ent">Business type <span class="req">*</span></label><select id="ent">${opt(['Sole proprietor','Partnership','LLC','Corporation','Non-profit','Government'],S.entity)}</select></div>
+  ${fld('ein','EIN (tax ID)',S.ein,true)}
+  <div class="f"><label for="rs">Registered in</label><select id="rs">${opt(['Iowa','Illinois','Missouri','Nebraska'],S.regState)}</select></div>
+ </div><div style="display:flex;justify-content:flex-end"><button class="btn" id="idSearch">Search customer ID</button></div>${idResult()}</div>
+<div class="panel"><h2>Contact person</h2><div class="fields">${fld('cn','Full name',S.cName,true)}${fld('ct','Job title',S.cTitle)}${fld('em','Email',S.email,true)}${fld('ph','Phone',S.phone,true,'Texts go to this number.')}
+ <div class="f"><label for="cp">Contact by</label><select id="cp">${opt(['Email','Text','Phone call','Mail'],S.contactPref)}</select></div></div></div>
+${coPanel()}<div class="panel"><h2>Bills go to</h2><div class="ticks">${ck('bs','Same as the contact person',S.billSame)}</div>
+ <div class="fields">${S.billSame?'':fld('be','Billing email',S.billEmail,true)}${fld('po','PO or reference on bills',S.po)}</div></div>`;
+return (S.kind==='Person'?person:company)+`
+<div class="panel"><div class="panel-h"><h2>Documents</h2><span class="legend">${missing?missing+' required still missing':'All required added'} · Required ones come from Settings › Configure · PDF, JPG or PNG up to 10 MB</span></div>
+ <div class="tw"><table class="docT woT"><thead><tr><th>#</th><th>Document <span class="req">*</span></th><th>Needed</th><th>File</th><th>Note</th><th><span style="position:absolute;left:-9999px">Remove</span></th></tr></thead><tbody>${docRows()}</tbody></table><div class="tfoot"><button class="btn link" id="docAdd">+ Add document</button><span>Required rows stay</span></div></div></div>
+<div class="panel"><div class="panel-h"><h2>Mailing address</h2><label class="ticks" style="margin:0"><input type="checkbox" id="same" ${S.same?'checked':''}> Same as service address</label></div>
+ <div class="co"><div class="co-h"><button class="cotog" id="mtog" aria-expanded="${S.mOpen?'true':'false'}"><span aria-hidden="true">${S.mOpen?'▾':'▸'}</span> <b>${S.same?'Service address':'Mailing address'}</b> <span class="sub">${S.same?'8 Quarry Lane, Unit 3B, Ottumwa, IA 52501':([S.mSt,S.mApt,S.mCy,S.mSta,S.mZip].filter(Boolean).join(', ')||'Not entered')}</span></button></div>
+ ${S.mOpen?(S.same?`<div class="fields three"><div class="f"><span class="lab">Street</span><div>8 Quarry Lane</div></div><div class="f"><span class="lab">Apt, suite or unit</span><div>Unit 3B</div></div><div class="f"><span class="lab">City</span><div>Ottumwa</div></div><div class="f"><span class="lab">State</span><div>Iowa</div></div><div class="f"><span class="lab">ZIP code</span><div>52501</div></div><div class="f"><span class="lab">Country</span><div>United States</div></div></div>`
+ :`<div class="fields three">${mf('mSt','Street address',true)}${mf('mApt','Apt, suite or unit')}${mf('mCy','City',true)}<div class="f"><label for="mSta">State <span class="req">*</span></label><select id="mSta" data-m="mSta">${opt(['','Iowa','Illinois','Missouri','Nebraska','Minnesota','Wisconsin'],S.mSta)}</select></div>${mf('mZip','ZIP code',true)}<div class="f"><label for="mCo">Country</label><select id="mCo" data-m="mCo">${opt(['United States','Canada'],S.mCo)}</select></div></div>`):''}</div>
+</div>`}
+function stepBill(){return `
+<div class="panel"><div class="panel-h"><h2>Plan</h2><span class="crumb">From the unit</span></div>
+ <div class="fields four"><div><div class="crumb">Plan</div><b>Sample — Residential</b></div><div><div class="crumb">Version on ${S.date}</div><b>v3 · from 06/01/2026</b></div><div><div class="crumb">Base charge</div><b class="num">$20.00 a month</b></div><div><div class="crumb">Deposit rule</div><b class="num">Residential $150.00</b></div></div>
+ <details class="more" data-d="rates"><summary>See full rates</summary>
+  <div class="stack" style="gap:10px">
+  ${rateSec('Water','Rate schedule WTR-RES · v2 · effective 06/01/2026 · Tiered, per kgal','1 meter · 1 sub-meter · 1 device',`
+   <h4 class="rh">Meters and devices on this service</h4>
+   ${assetTable('w',[
+    {role:'Meter',id:'W-5000',name:'Unit 3B water',size:'5/8"',base:'$8.00',min:'$5.00'},
+    {role:'Sub-meter',id:'W-5000-S1',name:'Irrigation',size:'5/8"',base:'$3.00',min:'None',sub:1},
+    {role:'Behind the meter',id:'BF-0217',name:'Backflow preventer',size:'3/4"',base:'Not billed',min:'—',sub:1,note:'Test due 03/2027'}])}
+   <h4 class="rh">Usage · tiered · on W-5000 and W-5000-S1</h4>
+   <div class="tw"><table><thead><tr><th>Tier</th><th class="r">From</th><th class="r">To</th><th class="r">Rate per kgal</th></tr></thead><tbody>
+    <tr><td>1</td><td class="r num">0</td><td class="r num">5</td><td class="r num">$4.2350</td></tr><tr><td>2</td><td class="r num">5</td><td class="r num">15</td><td class="r num">$6.8900</td></tr><tr><td>3</td><td class="r num">15</td><td class="r num">and up</td><td class="r num">$8.4825</td></tr></tbody></table></div>`)}
+  ${rateSec('Sewer','Rate schedule SWR-RES · v1 · effective 06/01/2026 · Per kgal of water','Sized by W-5000 · 5/8"',`
+   <h4 class="rh">Meters and devices on this service</h4>
+   ${assetTable('s',[
+    {role:'Meter',id:'W-5000',name:'Sized by water meter',size:'5/8"',base:'$9.00',min:'None'},
+    {role:'Sub-meter',id:'W-5000-S1',name:'Irrigation',size:'5/8"',base:'Excluded',min:'—',sub:1,note:'Water not returned to sewer'}])}
+   <h4 class="rh">Usage · volumetric</h4>
+   <div class="tw"><table><thead><tr><th>Measured on</th><th class="r">Rate per kgal</th><th class="r">Cap a month</th></tr></thead><tbody>
+    <tr><td>Water on W-5000, less W-5000-S1</td><td class="r num">$3.1000</td><td class="r num">12 kgal</td></tr></tbody></table></div>`)}
+  ${rateSec('Deposit','For this account type','Residential · $150.00',`
+   <div class="tw"><table><thead><tr><th>Account type</th><th class="r">Amount</th><th>Waived when</th></tr></thead><tbody>
+    <tr><td>Residential</td><td class="r num">$150.00</td><td>12 months paid on time</td></tr></tbody></table></div>`)}
+  ${rateSec('Charges','That apply to this move-in','CONNECT · BFTEST',`
+   <div class="tw"><table><thead><tr><th>Code</th><th>Charge</th><th>Applies to</th><th class="r">Amount</th><th>When</th><th>Taxable</th></tr></thead><tbody>
+    <tr><td>CONNECT</td><td>Connection</td><td>Residential</td><td class="r num">$25.00</td><td>Once, at move-in</td><td>Yes</td></tr>
+    <tr><td>BFTEST</td><td>Backflow test</td><td>BF-0217 · 3/4"</td><td class="r num">$45.00</td><td>Once a year</td><td>No</td></tr>
+    <tr><td>LATE</td><td>Late fee</td><td>All</td><td class="r num">1.50%</td><td>10 days after due</td><td>No</td></tr></tbody></table></div>`)}
+  ${rateSec('Discounts','This customer can claim','Autopay · Paperless',`
+   <div class="tw"><table><thead><tr><th>Discount</th><th>Type</th><th class="r">Amount</th><th>On</th><th>Who qualifies</th></tr></thead><tbody>
+    <tr><td>Autopay</td><td>Percent</td><td class="r num">0.50%</td><td>Usage charges</td><td>Autopay on</td></tr>
+    <tr><td>Paperless</td><td>Fixed</td><td class="r num">$1.00</td><td>Each bill</td><td>Paperless on</td></tr></tbody></table></div>`)}
+  ${rateSec('Taxes','That apply · after discounts','City utility tax 2.00%',`
+   <div class="tw"><table><thead><tr><th>Tax</th><th>Authority</th><th class="r">Rate</th><th>On</th></tr></thead><tbody>
+    <tr><td>City utility tax</td><td>City of Ottumwa</td><td class="r num">2.00%</td><td>Water, Sewer, CONNECT</td></tr></tbody></table></div>`)}
+  <dl class="kv"><dt>Rate filing</dt><dd>Water v2 · approved 05/12/2026</dd><dt>Plan for</dt><dd>Residential · Multi-family</dd></dl>
+  </div></details>
+</div>
+<div class="panel"><div class="panel-h"><h2>Preferences</h2><label class="switch"><input type="checkbox" id="prOn" ${S.prefOn?'checked':''}> Set preferences</label></div>
+ ${S.prefOn?`<div class="fields four">
+  <div class="f"><label for="pPap">Paperless billing</label><select id="pPap" data-s="paper">${opt(['On','Off'],S.paper?'On':'Off')}</select></div>
+  <div class="f"><label for="pTx">Text reminders</label><select id="pTx" data-s="text">${opt(['On','Off'],S.text?'On':'Off')}</select></div>
+  <div class="f"><label for="pAp">Autopay</label><select id="pAp" data-s="auto">${opt(['On','Off'],S.auto?'On':'Off')}</select></div>
+  <div class="f"><label for="pLg">Portal language</label><select id="pLg" data-v="lang">${opt(['English (US)','Español (México)','Français (Canada)'],S.lang)}</select></div>
+  ${S.auto?`<div class="f"><label for="pApF">Autopay from <span class="req">*</span></label><select id="pApF" data-v="apFrom">${opt(['Bank account','Card'],S.apFrom)}</select></div>`:''}
+ </div>`:''}</div>
+<div class="panel"><div class="panel-h"><h2>Discounts</h2><label class="switch"><input type="checkbox" id="dcOn" ${S.discOn?'checked':''}> Claim discounts</label></div>
+ ${S.discOn?`<div class="tw"><table class="woT"><thead><tr><th>#</th><th>Discount <span class="req">*</span></th><th>Type</th><th class="r">Amount</th><th>On</th><th>Note</th><th><span style="position:absolute;left:-9999px">Remove</span></th></tr></thead><tbody>
+ ${S.discs.map((d,i)=>{const D2=DISC[d.n]||{};return `<tr><td class="num">${i+1}</td>
+  <td><label for="dsn${i}" style="position:absolute;left:-9999px">Discount</label><select id="dsn${i}" data-dk2="${i}" data-k="n"><option value="">Choose…</option>${opt(Object.keys(DISC).filter(k=>k===d.n||!S.discs.some(x=>x.n===k)),d.n)}</select></td>
+  <td>${D2.t||'—'}</td><td class="r num">${D2.a||'—'}</td><td>${D2.on||'—'}</td>
+  <td><input data-dk2="${i}" data-k="note" value="${d.note}" placeholder="Optional" aria-label="Note"></td>
+  <td class="r"><button class="xbtn" data-dkrm="${i}" aria-label="Remove discount ${i+1}">✕</button></td></tr>`}).join('')}
+ </tbody></table><div class="tfoot"><button class="btn link" id="dkAdd">+ Add discount</button><span>From the plan</span></div></div>`:''}</div>
+<div class="panel"><div class="panel-h"><h2>Tax</h2><label class="switch"><input type="checkbox" id="ex" ${S.exempt?'checked':''}> Tax exempt</label></div>
+ ${S.exempt?`<div class="fields four">
+  <div class="f"><label for="exc">Exemption <span class="req">*</span></label><select id="exc" data-v="exCat">${opt(['Non-profit','Government','Religious','Agricultural','Resale'],S.exCat)}</select></div>
+  ${fld('exn','Certificate number',S.exNo,true)}
+  <div class="f"><label for="exfD">Issued</label><input type="date" id="exfD" data-v="exFromIso" value="${S.exFromIso}"></div>
+  <div class="f"><label for="extD">Expires <span class="req">*</span></label><input type="date" id="extD" data-v="exToIso" value="${S.exToIso}"></div>
+ </div>
+ <div class="f"><span class="lab">Certificate <span class="req">*</span></span>${S.exFile?`<div style="display:flex;gap:8px;align-items:center"><a href="#">${S.exFile}</a><button class="xbtn" id="exFileRm" aria-label="Remove certificate">✕</button></div>`:`<span class="btn upl" style="min-height:38px;align-self:flex-start">Upload<input type="file" accept=".pdf,.png,.jpg,.jpeg" id="exFile" aria-label="Upload exemption certificate"></span>`}</div>`:''}</div>
+<div class="panel"><div class="panel-h"><h2>Fees</h2><span class="legend">Plan fees come first · add any other charge code</span></div>
+ <div class="tw"><table class="woT feeT"><thead><tr><th>#</th><th>Fee <span class="req">*</span></th><th>From</th><th class="r">Amount</th><th>Taxable</th><th>Note</th><th><span style="position:absolute;left:-9999px">Remove</span></th></tr></thead>
+ <tbody>${S.fees.map((f,i)=>{const c=FEES[f.code];return `<tr><td class="num">${i+1}</td>
+  <td>${f.plan?`<b>${f.code} · ${c.n}</b>`:`<label for="fc${i}" style="position:absolute;left:-9999px">Fee</label><input id="fc${i}" list="feeList" data-fee="${i}" data-fk="code" placeholder="Search charge codes…" value="${f.code?f.code+' · '+c.n:''}" style="min-width:220px">`}</td>
+  <td>${f.plan?'<span class="pill p-info">Plan</span>':f.code?'<span class="pill p-off">Charge code</span>':'—'}</td>
+  <td class="r num">${f.code?(c.edit?`<div class="suffix" style="min-width:110px"><span style="border-left:0;border-right:1px solid var(--line)">$</span><input class="num" data-fee="${i}" data-fk="amt" value="${f.amt}"></div>`:'$'+f.amt):'—'}</td>
+  <td>${f.code?(c.tax?'Yes':'No'):'—'}</td>
+
+  <td><input data-fee="${i}" data-fk="note" value="${f.note}" placeholder="${f.code==='DEPOSIT'?'Carried over: none found':'Optional'}"></td>
+  <td class="r">${f.plan?'':`<button class="xbtn" data-feerm="${i}" aria-label="Remove fee ${i+1}">✕</button>`}</td></tr>`}).join('')}</tbody>
+ <tfoot><tr><td></td><td colspan="2"><b>Total</b></td><td class="r num"><b>$${money(feeSum('amt'))}</b></td><td colspan="3"></td></tr></tfoot></table>
+ <datalist id="feeList">${Object.entries(FEES).filter(([k,v])=>!v.planOnly).map(([k,v])=>`<option value="${k} · ${v.n}">`).join('')}</datalist>
+ <div class="tfoot"><button class="btn link" id="feeAdd">+ Add fee</button><span>Plan rows stay</span></div></div></div>
+<div class="panel"><div class="panel-h"><h2>Payment</h2><span class="legend">Fees total $${money(feeSum('amt'))}</span></div>
+ <div class="seg" role="group" aria-label="How the fees are paid"><button aria-pressed="${S.pay==='now'}" data-pay="now">Pay now</button><button aria-pressed="${S.pay==='bill'}" data-pay="bill">Add to bill</button></div>
+ ${S.pay==='now'?`<div class="fields four">
+  <div class="f"><label for="pm">Method <span class="req">*</span></label><select id="pm" data-p="payMethod">${opt(['Cash','Check','Card','Bank transfer (ACH)','Money order'],S.payMethod)}</select></div>
+  <div class="f"><label for="pa">Amount <span class="req">*</span></label><div class="suffix"><span style="border-left:0;border-right:1px solid var(--line)">$</span><input id="pa" class="num" data-p="payAmt" value="${S.payAmt}"></div></div>
+  <div class="f"><label for="pr">${S.payMethod==='Check'?'Check number':S.payMethod==='Card'?'Card last four':'Reference'}</label><input id="pr" data-p="payRef" value="${S.payRef}"></div>
+  <div class="f"><label for="pd">Received</label><input type="date" id="pd" data-p="payDate" value="${S.payDate}"></div></div>
+  <div class="crumb">${num(S.payAmt)>=feeSum('amt')?'All fees paid now. Receipt prints on complete.':`$${money(feeSum('amt')-num(S.payAmt))} goes on the first bill.`}</div>`
+ :`<div class="crumb">$${money(feeSum('amt'))} goes on the first bill.</div>`}
+</div>`}
+const yn=v=>v?'On':'Off';
+function stepReview(){const disc=S.discOn?(S.discs.filter(d=>d.n).map(d=>d.n+' '+DISC[d.n].a).join(' · ')||'None'):'None';const usd=v=>{const[y,m,d]=(v||'').split('-');return y?m+'/'+d+'/'+y:'—'};
+ const sec=(t,i,rows)=>`<div class="panel"><div class="panel-h"><h2>${t}</h2><button class="btn link" data-edit="${i}">✎ Edit</button></div><div class="rev">${rows.map(([k,v])=>`<div>${k}</div><div>${v}</div>`).join('')}</div></div>`;
+ return sec('Unit',0,[['Unit',S.unit],['Address','8 Quarry Lane, Ottumwa, IA 52501'],['Previous','None · first occupant'],['Services',[S.water&&'Water',S.sewer&&'Sewer'].filter(Boolean).join(' · ')],['Move-in date',S.date],['Opening read','W-5000 · '+S.read+' kgal'],['Field visit',S.visit&&S.wos.length?S.wos.map(w=>(w.tpl||'No work order')+' · '+w.who+' · '+w.due+' '+w.win).join(' / '):'Not needed']])
+ +sec('Customer',1,(S.kind==='Person'?[['Customer ID',S.idLinked?(S.idRes==='found'?'CU-000231':'CU-000198')+' · existing, linked':'New · given on complete'],['Name',S.name+' · Person'],['Customer type',S.cat+' · '+S.sub],['Email',S.email],['Phone',S.phone],['Contact by',S.contactPref],['Date of birth',S.dob],['SSN','•••-••-'+S.ssn.slice(-4)],['Driver\'s license',S.dl],['Government ID',S.gov],['Co-owners',(S.coOn.Person?S.coP:[]).map(c=>c.name+' · '+c.rel+(c.liable?' · responsible':'')).join(' / ')||'None']]:[['Customer ID',S.idLinked?(S.idRes==='found'?'CU-000231':'CU-000198')+' · existing, linked':'New · given on complete'],['Legal name',S.legal+' · Company'],['Trading as',S.dba],['Customer type',S.cat+' · '+S.sub],['Business type',S.entity],['EIN','••-•••'+S.ein.slice(-4)],['Registered in',S.regState],['Contact',S.cName+' · '+S.cTitle],['Owners',(S.coOn.Company?S.coC:[]).map(c=>c.name+' · '+(c.pct||'?')+'%'+(c.signs?' · signs':'')+(c.guar?' · guarantor':'')).join(' / ')||'None'],['Email',S.email],['Phone',S.phone],['Bills go to',S.billSame?'The contact person':S.billEmail],['PO on bills',S.po||'None']]).concat([['Documents',S.docs[S.kind].filter(d=>d.file).map(d=>d.file).join(' · ')||'None'],['Mailing address',S.same?'Same as service address':'As entered']]))
+ +sec('Billing',2,[['Plan','Sample — Residential · v3 · $20.00 a month'],...(S.prefOn?[['Paperless billing',yn(S.paper)],['Text reminders',yn(S.text)],['Autopay',S.auto?'On · from '+S.apFrom.toLowerCase():'Off'],['Portal language',S.lang]]:[['Preferences','Not set']]),['Discounts',disc],['Tax',S.exempt?'Exempt · '+S.exCat+' · '+S.exNo+' · '+usd(S.exFromIso)+' to '+usd(S.exToIso)+' · '+(S.exFile||'no certificate'):'Not exempt'],['Fees',S.fees.filter(f=>f.code).map(f=>f.code+' $'+f.amt).join(' · ')+' · total $'+money(feeSum('amt'))],['Payment',S.pay==='now'?'Pay now · '+S.payMethod+' $'+money(num(S.payAmt))+(S.payRef?' · '+S.payRef:'')+(num(S.payAmt)<feeSum('amt')?' · $'+money(feeSum('amt')-num(S.payAmt))+' on first bill':''):'Add to bill · $'+money(feeSum('amt'))+' on first bill'],['Account number','Given when you complete']])
+ +`<div class="panel"><div class="panel-h"><h2>Messaging</h2><span class="legend">Defaults come from Settings · add any other</span></div>
+ <div class="tw"><table class="woT"><thead><tr><th>Send</th><th>Message <span class="req">*</span></th><th>To</th><th>Channel</th><th>When</th><th><span style="position:absolute;left:-9999px">Remove</span></th></tr></thead><tbody>
+ ${S.msgs.map((m,i)=>`<tr${m.on?'':' class="off"'}><td><input type="checkbox" data-mg="${i}" data-mk="on" ${m.on?'checked':''} aria-label="Send ${m.t||'message'}"></td>
+  <td>${m.def?`<b>${m.t}</b>`:`<select data-mg="${i}" data-mk="t" aria-label="Message"><option value="">Choose…</option>${opt(MSGT.filter(t=>t===m.t||!S.msgs.some(x=>x.t===t)),m.t)}</select>`}</td>
+  <td><select data-mg="${i}" data-mk="to" aria-label="To">${opt(msgTo(),m.to)}</select></td>
+  <td><select data-mg="${i}" data-mk="ch" aria-label="Channel">${opt(['Email','Text','Email · Text','Letter','Portal'],m.ch)}</select></td>
+  <td><select data-mg="${i}" data-mk="when" aria-label="When">${opt(['On complete','Day before move-in','On move-in date','Day before the visit'],m.when)}</select></td>
+  <td class="r">${m.def?'':`<button class="xbtn" data-mgrm="${i}" aria-label="Remove message ${i+1}">✕</button>`}</td></tr>`).join('')}
+ </tbody></table><div class="tfoot"><button class="btn link" id="mgAdd">+ Add message</button><span>${S.msgs.filter(m=>m.on&&m.t).length} will send</span></div></div></div>`}
+function bind(){const m={sw:'water',ss:'sewer',vn:'visit',same:'same',bs:'billSame',pp:'paper',tx:'text',ap:'auto',d1:'dAuto',d2:'dMuni',d3:'dPaper',ex:'exempt'};
+ Object.entries(m).forEach(([id,k])=>{const el=document.getElementById(id);if(el)el.onchange=()=>{S[k]=el.checked;if(k==='same')S.mOpen=!el.checked;if(k==='visit'&&S.visit&&!S.wos.length)S.wos.push({type:'',tpl:'',for:'Whole unit',pri:'Normal',due:S.dateIso,win:'Any time',who:'Leave unassigned',note:''});renderWiz(true)}});
+ const t={rd:'read',rd2:'read2',lg2:'legal',dba:'dba',ein:'ein',cn:'cName',ct:'cTitle',be:'billEmail',po:'po',nm:'name',em:'email',ph:'phone',dob:'dob',ssn:'ssn',dl:'dl',gov:'gov',exn:'exNo',exf:'exFrom',ext:'exTo',tk:'taken'};
+ Object.entries(t).forEach(([id,k])=>{const el=document.getElementById(id);if(el)el.oninput=()=>{S[k]=el.value}});
+ $$('.seg [data-k]').forEach(b=>b.onclick=()=>{S.kind=b.dataset.k;renderWiz(true)});
+ [['cat','cat'],['sub','sub'],['cp','contactPref'],['ent','entity'],['rs','regState']].forEach(([id,k])=>{const el=document.getElementById(id);if(el)el.onchange=()=>{S[k]=el.value;if(id==='cat')S.sub=CATS[S.kind][S.cat][0];renderWiz(true)}});
+ $$('[data-doc]').forEach(el=>el.onchange=()=>{if(el.files[0]){S.docs[S.kind][+el.dataset.doc].file=el.files[0].name;renderWiz(true)}});
+ $$('[data-docrm]').forEach(b=>b.onclick=()=>{S.docs[S.kind][+b.dataset.docrm].file='';renderWiz(true)});
+ $$('[data-dk]').forEach(el=>{const h=()=>{S.docs[S.kind][+el.dataset.dk][el.dataset.dkk]=el.value;if(el.tagName==='SELECT')renderWiz(true)};if(el.tagName==='SELECT')el.onchange=h;else el.oninput=h});
+ $$('[data-drow]').forEach(b=>b.onclick=()=>{S.docs[S.kind].splice(+b.dataset.drow,1);renderWiz(true)});
+ const da=document.getElementById('docAdd');if(da)da.onclick=()=>{S.docs[S.kind].push({n:'',file:'',note:''});renderWiz(true)};
+ const con=document.getElementById('coOn');if(con)con.onchange=()=>{S.coOn[S.kind]=con.checked;if(con.checked&&!coL().length)coL().push(S.kind==='Person'?{open:true,name:'',rel:'Spouse',dob:'',ssn:'',dl:'',phone:'',email:'',pref:'Email',liable:true,id:''}:{open:true,name:'',title:'',pct:'',dob:'',ssn:'',phone:'',email:'',signs:false,guar:false,id:''});renderWiz(true)};
+ $$('#idSearch').forEach(b=>b.onclick=()=>{S.idLinked=false;S.idRes=S.kind==='Person'?(S.ssn.replace(/\D/g,'').endsWith('9662')?'found':S.name?'possible':'none'):(S.ein?'found':'none');renderWiz(true)});
+ $$('[data-idd]').forEach(b=>b.onclick=()=>{S.idRes=b.dataset.idd;S.idLinked=false;renderWiz(true)});
+ const il=document.getElementById('idLink');if(il)il.onclick=()=>{S.idLinked=true;renderWiz(true)};
+ const iu=document.getElementById('idUnlink');if(iu)iu.onclick=()=>{S.idLinked=false;renderWiz(true)};
+ const inn=document.getElementById('idNot');if(inn)inn.onclick=()=>{S.idRes='none';renderWiz(true)};
+ $$('[data-fee]').forEach(el=>{const f=S.fees[+el.dataset.fee],k=el.dataset.fk;
+  if(k==='code')el.onchange=()=>{const code=el.value.split(' · ')[0];if(FEES[code]&&!FEES[code].planOnly){f.code=code;f.amt=FEES[code].a}else{f.code=''};S.payAmt=money(feeSum('amt')).replace(/,/g,'');renderWiz(true)};
+  else if(k==='note')el.oninput=()=>{f.note=el.value};
+  else el.onchange=()=>{f[k]=el.value;renderWiz(true)}});
+ $$('[data-pay]').forEach(b=>b.onclick=()=>{S.pay=b.dataset.pay;if(S.pay==='now')S.payAmt=money(feeSum('amt')).replace(/,/g,'');renderWiz(true)});
+ $$('[data-p]').forEach(el=>{const k=el.dataset.p;if(el.tagName==='SELECT'||el.type==='date')el.onchange=()=>{S[k]=el.value;renderWiz(true)};else el.onchange=()=>{S[k]=el.value;renderWiz(true)}});
+ $$('[data-mg]').forEach(el=>el.onchange=()=>{const m=S.msgs[+el.dataset.mg];m[el.dataset.mk]=el.type==='checkbox'?el.checked:el.value;renderWiz(true)});
+ $$('[data-mgrm]').forEach(b=>b.onclick=()=>{S.msgs.splice(+b.dataset.mgrm,1);renderWiz(true)});
+ const ma=document.getElementById('mgAdd');if(ma)ma.onclick=()=>{S.msgs.push({def:false,on:true,t:'',to:msgTo()[0],ch:'Email',when:'On complete'});renderWiz(true)};
+ $$('[data-feerm]').forEach(b=>b.onclick=()=>{S.fees.splice(+b.dataset.feerm,1);S.payAmt=money(feeSum('amt')).replace(/,/g,'');renderWiz(true)});
+ const fa=document.getElementById('feeAdd');if(fa)fa.onclick=()=>{S.fees.push({code:'',plan:false,amt:'0.00',note:''});renderWiz(true)};
+ $$('[data-at]').forEach(b=>b.onclick=e=>{e.preventDefault();S.atOpen[b.dataset.at]=S.atOpen[b.dataset.at]===false;renderWiz(true)});
+ const po=document.getElementById('prOn');if(po)po.onchange=()=>{S.prefOn=po.checked;renderWiz(true)};
+ const dco=document.getElementById('dcOn');if(dco)dco.onchange=()=>{S.discOn=dco.checked;if(S.discOn&&!S.discs.length)S.discs.push({n:'',note:''});renderWiz(true)};
+ $$('[data-s]').forEach(el=>el.onchange=()=>{S[el.dataset.s]=el.value==='On';renderWiz(true)});
+ $$('[data-v]').forEach(el=>el.onchange=()=>{S[el.dataset.v]=el.value;renderWiz(true)});
+ $$('[data-dk2]').forEach(el=>{const d=S.discs[+el.dataset.dk2];if(el.tagName==='SELECT')el.onchange=()=>{d.n=el.value;renderWiz(true)};else el.oninput=()=>{d.note=el.value}});
+ $$('[data-dkrm]').forEach(b=>b.onclick=()=>{S.discs.splice(+b.dataset.dkrm,1);if(!S.discs.length)S.discOn=false;renderWiz(true)});
+ const dka=document.getElementById('dkAdd');if(dka)dka.onclick=()=>{S.discs.push({n:'',note:''});renderWiz(true)};
+ const exf=document.getElementById('exFile');if(exf)exf.onchange=()=>{if(exf.files[0]){S.exFile=exf.files[0].name;renderWiz(true)}};
+ const exr=document.getElementById('exFileRm');if(exr)exr.onclick=()=>{S.exFile='';renderWiz(true)};
+ const mt=document.getElementById('mtog');if(mt)mt.onclick=()=>{S.mOpen=!S.mOpen;renderWiz(true)};
+ $$('[data-m]').forEach(el=>{const h=()=>{S[el.dataset.m]=el.value;if(el.tagName==='SELECT')renderWiz(true)};if(el.tagName==='SELECT')el.onchange=h;else el.oninput=h});
+ $$('[data-cotog]').forEach(b=>b.onclick=()=>{const c=coL()[+b.dataset.cotog];c.open=!c.open;renderWiz(true)});
+ const coL=()=>S.kind==='Person'?S.coP:S.coC;
+ $$('[data-co]').forEach(el=>{const h=()=>{const c=coL()[+el.dataset.co];c[el.dataset.ck]=el.type==='checkbox'?el.checked:el.value;if(el.type==='checkbox')renderWiz(true)};if(el.type==='checkbox'||el.tagName==='SELECT'||el.type==='date')el.onchange=h;else el.oninput=h});
+ $$('[data-corm]').forEach(b=>b.onclick=()=>{coL().splice(+b.dataset.corm,1);renderWiz(true)});
+ $$('[data-coid]').forEach(el=>el.onchange=()=>{if(el.files[0]){coL()[+el.dataset.coid].id=el.files[0].name;renderWiz(true)}});
+ $$('[data-coidrm]').forEach(b=>b.onclick=()=>{coL()[+b.dataset.coidrm].id='';renderWiz(true)});
+ const ca=document.getElementById('coAdd');if(ca)ca.onclick=()=>{coL().push(S.kind==='Person'?{open:true,name:'',rel:'Spouse',dob:'',ssn:'',dl:'',phone:'',email:'',pref:'Email',liable:true,id:''}:{open:true,name:'',title:'',pct:'',dob:'',ssn:'',phone:'',email:'',signs:false,guar:false,id:''});renderWiz(true)};
+ const dt=document.getElementById('dt');if(dt)dt.onchange=()=>{S.dateIso=dt.value;const[y,m,d]=dt.value.split('-');if(y)S.date=m+'/'+d+'/'+y};
+ const rdEl=document.getElementById('rd');if(rdEl)rdEl.onchange=()=>{S.read=rdEl.value;renderWiz(true)};
+ const md=document.getElementById('mdet');if(md)md.onclick=()=>{S.open=!S.open;renderWiz(true)};
+ $$('[data-wo]').forEach(el=>el.onchange=()=>{const w=S.wos[+el.dataset.wo];if(el.dataset.k==='type'){w.type=woFind(el.value);w.tpl=(TPLS[w.type]||[''])[0]}else{w[el.dataset.k]=el.value}renderWiz(true)});
+ $$('[data-rm]').forEach(b=>b.onclick=()=>{S.wos.splice(+b.dataset.rm,1);if(!S.wos.length)S.visit=false;renderWiz(true)});
+ const add=document.getElementById('woAdd');if(add)add.onclick=()=>{S.wos.push({type:'',tpl:'',for:'Whole unit',pri:'Normal',due:S.dateIso,win:'Any time',who:'Leave unassigned',note:''});renderWiz(true)};
+ $$('[data-edit]').forEach(b=>b.onclick=()=>{step=+b.dataset.edit;renderWiz()});
+ const back=$('#bBack'),next=$('#bNext');if(back)back.onclick=()=>{step--;renderWiz()};
+ next.onclick=()=>{if(step<3){step++;renderWiz()}else{show('done')}};
+ $('#bPark').onclick=()=>toast('Parked · find it under Drafts')}
+function renderWiz(keep){const dOpen=new Set([...document.querySelectorAll('#main details[data-d]')].filter(d=>d.open).map(d=>d.dataset.d));renderRail();const body=[stepUnit,stepCust,stepBill,stepReview][step]();
+ $('#main').innerHTML=body+`<div class="actions"><div class="left"><button class="btn" id="bPark">Park</button></div><div class="right">${step?'<button class="btn" id="bBack">Back</button>':''}<button class="btn primary" id="bNext">${step<3?'Continue':'Complete move-in ✓'}</button></div></div>`;
+ if(keep)document.querySelectorAll('#main details[data-d]').forEach(d=>{if(dOpen.has(d.dataset.d))d.open=true});bind();if(!keep)window.scrollTo(0,0)}
+$('#draft').onclick=()=>{toast('Draft saved');show('list')};
+
+/* ---------- details ---------- */
+
+/* ---------- mapping + fixes ---------- */
+const map=[
+['Vacant unit','1 Find unit','1 Unit','Shown once'],['Previous account · first occupant','1 Find unit','1 Unit','Kept'],['Services (badges)','1 Find unit','1 Unit','Merged with the services choice'],
+['Which services','2 Which services','1 Unit','Checkboxes under the unit'],['Move-in date','4 Start & read','1 Unit','Moved up'],['Opening read per meter','4 Start & read','1 Unit','Beside the meter, size, multiplier and last read'],
+['No visit needed','4 Start & read','1 Unit','Becomes "Visit needed"'],['Work orders (job type, priority, due, assignee, status, note)','4 Start & read','1 Unit','Shown only when a visit is needed; job type and template are one searchable Work order field'],
+['Building, address, owner, unit type','—','1 Unit','Shown; more under "See more"'],['Meter size, multiplier, last read, location','—','1 Unit','Shown; more under "Meter details"'],
+['Person or company','3 Customer','2 Customer','First'],['Category, sub-category','3 Customer','2 Customer','Kept'],['Full name, email, phone','3 Customer','2 Customer','Kept'],
+['Date of birth','3 Customer','2 Customer','Person only'],['SSN, driver\'s license, government ID','3 Customer','2 Customer','Grouped as Identity'],['Mailing address','3 Customer','2 Customer','"Same as service address" on by default'],
+['Plan name, code, version, base charge','5 Preferences','3 Billing','One summary line; version in force on the move-in date'],['Services included, rate schedules, tiers','5 Preferences','3 Billing','Under "See full rates"'],
+['Minimum charges, charge codes, late fee','5 Preferences','3 Billing','Under "See full rates"'],['Plan discounts and their rules','5 Preferences','3 Billing','List to claim from; rules under "See full rates"'],
+['Tax authorities','5 Preferences','3 Billing','Under "See full rates"'],['Paperless, texts, autopay','5 Preferences','3 Billing','Kept'],['Portal language','5 Preferences','3 Billing','Kept'],
+['Tax exempt','5 Preferences','3 Billing','Adds exemption type and certificate'],['Discount claim','5 Preferences','3 Billing','Taken from the plan\'s own discounts'],
+['Deposit, carry-forward','6 Deposit','3 Billing','Now a row in Fees, with every other fee for this move-in'],['Every field above','7 Review','4 Review','All shown, each section with Edit'],
+['Account number','7 Review','4 Review','Kept'],['What goes out (welcome, agreement)','7 Review','4 Review','Now Messaging: defaults shown, add any other message'],['Field visit summary','7 Review','4 Review','Kept'],
+['Services, meters, sizes, last reads, opening reads','1, 2, 4','1 Unit','One table: a row per service with its meter beside it'],
+['Move-in date','4 Start & read','1 Unit','Date picker'],
+['Work orders: job type, template, for, priority, due, window, assignee, note','4 Start & read','1 Unit','Table with a dropdown per column; added only when a visit is needed'],
+['Documents: the 8 types from Settings › Configure (identity, address, tenancy or deed, authority to act, site plan, assistance evidence, signed agreement, completion paperwork) plus anything else','—','2 Customer','Reuses the existing move-in document checklist; required ones are what the utility ticked (none by default)'],
+['Co-owners (name, relationship, DOB, SSN, licence, phone, email, contact by, photo ID, responsible for bills)','—','2 Customer','New: any number'],
+['Company: legal name, trading as, business type, EIN, registered in','—','2 Customer','New for a company'],
+['Company: owners and officers (title, ownership %, signs, guarantee, photo ID)','—','2 Customer','New for a company'],
+['Company: contact person, bills go to, PO on bills','—','2 Customer','New for a company'],
+['Customer type list','3 Customer','2 Customer','Follows Person / Company'],
+['Save & exit, Park, Back, Continue','Every step','Every step','Kept'],['Complete move-in ✓','7 Review','4 Review','Kept']];
+$('#maprows').innerHTML=map.map((r,i)=>`<tr><td class="num">${i+1}</td><td>${r[0]}</td><td>${r[1]}</td><td><b>${r[2]}</b></td><td>${r[3]}</td></tr>`).join('');
+const fixes=[
+['Review','The unit shown (88 Pine Vista · SCW-U-206) differs from the unit chosen (Kestrel Park ph. 2 · SCW-U-308)','The Review reads the same unit as step 1'],
+['Review','About half the entered fields are missing','Every field is shown, in three sections with Edit'],
+['Start & read','"No meters at this unit" on a Water service','Each meter appears with size, multiplier and last read beside its opening read'],
+['Preferences','"Plan: No plan recorded" under a page describing Sample — Residential','One plan line, version in force on the move-in date'],
+['Preferences','Discount claim offers Senior / Low income / Veteran; the plan offers Autopay / Municipal / Paperless','The claim list is the plan\'s own discounts'],
+['Preferences','Sewer (% of water) shown as $5.00','Shown as 5.00% of water'],
+['Preferences','Fire shown as seven "0 connection – and above" rows','Each price named by its size'],
+['Preferences','Rates "apply today, 4 Oct" for a 10 Oct move-in','Rates as of the move-in date'],
+['Preferences','About 8 screens of plan detail before 6 choices','Detail behind "See full rates"; the choices come first'],
+['Preferences','Raw values: published, tiered, flat, percent_of_service, active','Words a clerk uses'],
+['Preferences','Two contradicting tax sentences; a contracts placeholder','Removed'],
+['Preferences','Tax exempt is a bare checkbox','Asks for the exemption and its certificate'],
+['Preferences','Autopay discount not linked to "Enroll in autopay"','Autopay sits beside its discount'],
+['Which services','A whole step for one choice','Services sit under the unit'],
+['Find unit','The unit shown twice','Shown once'],
+['Every step','"Waiting 0 days — nothing is held…" in red','Removed; a draft\'s age shows on the list'],
+['Every step','"A move-in is recorded in the audit log…"','Removed; the audit is written anyway'],
+['Find unit','"Only vacant units are listed. A unit someone still occupies…"','"Occupied units aren\'t listed."'],
+['Customer','Person / Company after date of birth and ID numbers','Person / Company first; fields follow the choice'],
+['Customer','"Customer number" heading over the wrong control','Removed'],
+['Customer','"Same as service address" off, four empty fields','On by default'],
+['Start & read','A blank work-order row with a required job type','Rows appear only when a visit is needed'],
+['Start & read · Review','Dates as 10-Oct-26 and DD-MMM-YY','The utility\'s date format'],
+['Deposit','A whole step for "No deposit on this plan"','Deposit sits in Billing'],
+['Review','"Paperless billing: On, still mailed as well"','"On"'],
+['Review','Service agreement unchecked, no channel','Channel shown; checked by default']];
+$('#fixrows').innerHTML=fixes.map((r,i)=>`<tr><td class="num">${i+1}</td><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('');
+</script>

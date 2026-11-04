@@ -1,0 +1,2 @@
+Premise ID (existing only),Name,Address line 1,City,State,Postal code,Inside city limits,Premise type,Services available,Area / sub-area,Owner name,External reference,Lat,Lng,Status,GIS parcel ID,Created,Owner is a person or a company,Owner Social Security number,Owner driving licence,Owner phone,Owner Tax ID,Owner account type,Owner category,Owner email
+,Sample Building,12 Sample Street,Springfield,TX,75001,yes,apartment_complex,"electric,sewer,trash,water",,Sample Owner,,,,active,,,person,,,555-0142,,residential,owner_occupier,sample.owner@example.test

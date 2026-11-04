@@ -1,0 +1,3558 @@
+[
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/auth/session",
+  "status": 201,
+  "request": {
+   "email": "r.patel@sample.test",
+   "password": "S3cure!passw0rd",
+   "surface": "mobile"
+  },
+  "response": {
+   "user": {
+    "id": "01a109dd-43a7-72ab-a652-47a7cb1bc928",
+    "full_name": "R. Patel",
+    "email": "r.patel@sample.test",
+    "phone": null,
+    "role": "field_technician",
+    "role_name": "Field technician",
+    "must_change_password": false
+   }
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/capture-token",
+  "status": 200,
+  "request": {
+   "device_label": "Tablet 3"
+  },
+  "response": {
+   "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+   "technician": {
+    "name": "R. Patel"
+   },
+   "max_age_seconds": 604800,
+   "br_ref": "BR-WRK-059"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "GET",
+  "path": "/work/mobile/changes?page_size=50",
+  "status": 200,
+  "request": null,
+  "response": {
+   "changes": [
+    {
+     "change": "upsert",
+     "order_id": "01a109dd-aaa8-7c04-9312-e4b29225df8c",
+     "at": "2026-10-05T02:25:01.564061+00:00",
+     "job": {
+      "id": "01a109dd-aaa8-7c04-9312-e4b29225df8c",
+      "order_no": "WO-0038",
+      "type": "Tap and service line",
+      "premise": {
+       "id": "01a109dd-9523-7225-82ad-9a94cdb166c9",
+       "premise_no": "P-00064",
+       "address": "240 Sable Court"
+      },
+      "window_start": null,
+      "window_end": null,
+      "due_at": "2026-10-08T02:21:24.515606+00:00",
+      "est_minutes": null,
+      "priority": {
+       "id": "01a109dc-f63d-7590-a15d-0638f84feaae",
+       "code": "NORMAL",
+       "name": "Normal",
+       "colour": "info",
+       "rank": 3
+      },
+      "state": "planned",
+      "dispatch_state": "en_route",
+      "access_notes": null,
+      "hazards": null,
+      "gate_code": null
+     }
+    },
+    {
+     "change": "upsert",
+     "order_id": "01a109f8-d9e6-73e8-a107-88e1d36d70a1",
+     "at": "2026-10-05T02:51:25.435415+00:00",
+     "job": {
+      "id": "01a109f8-d9e6-73e8-a107-88e1d36d70a1",
+      "order_no": "WO-0045",
+      "type": "Site inspection & mark-out",
+      "premise": {
+       "id": "01a109f8-d897-7909-a6dd-abf6142f9835",
+       "premise_no": "P-00080",
+       "address": "412 Walkway Ln"
+      },
+      "window_start": null,
+      "window_end": null,
+      "due_at": null,
+      "est_minutes": 55,
+      "priority": null,
+      "state": "planned",
+      "dispatch_state": "scheduled",
+      "access_notes": null,
+      "hazards": null,
+      "gate_code": null
+     }
+    },
+    {
+     "change": "upsert",
+     "order_id": "01a109f8-da0d-7176-8354-6a0a74102417",
+     "at": "2026-10-05T02:51:34.157948+00:00",
+     "job": {
+      "id": "01a109f8-da0d-7176-8354-6a0a74102417",
+      "order_no": "WO-0046",
+      "type": "Tap and service line",
+      "premise": {
+       "id": "01a109f8-d897-7909-a6dd-abf6142f9835",
+       "premise_no": "P-00080",
+       "address": "412 Walkway Ln"
+      },
+      "window_start": null,
+      "window_end": null,
+      "due_at": null,
+      "est_minutes": 290,
+      "priority": null,
+      "state": "planned",
+      "dispatch_state": "scheduled",
+      "access_notes": null,
+      "hazards": null,
+      "gate_code": null
+     }
+    },
+    {
+     "change": "upsert",
+     "order_id": "01a109f8-da2e-7190-8bb9-ab0ca73813ce",
+     "at": "2026-10-05T02:51:42.654034+00:00",
+     "job": {
+      "id": "01a109f8-da2e-7190-8bb9-ab0ca73813ce",
+      "order_no": "WO-0047",
+      "type": "Meter set",
+      "premise": {
+       "id": "01a109f8-d897-7909-a6dd-abf6142f9835",
+       "premise_no": "P-00080",
+       "address": "412 Walkway Ln"
+      },
+      "window_start": null,
+      "window_end": null,
+      "due_at": null,
+      "est_minutes": 45,
+      "priority": null,
+      "state": "planned",
+      "dispatch_state": "scheduled",
+      "access_notes": null,
+      "hazards": null,
+      "gate_code": null
+     }
+    },
+    {
+     "change": "upsert",
+     "order_id": "01a109dd-a9be-7090-86ed-adc5b37484af",
+     "at": "2026-10-05T02:53:33.544305+00:00",
+     "job": {
+      "id": "01a109dd-a9be-7090-86ed-adc5b37484af",
+      "order_no": "WO-0033",
+      "type": "Tap and service line",
+      "premise": {
+       "id": "01a109dd-914a-7433-86d0-6e4bb12b1942",
+       "premise_no": "P-00063",
+       "address": "8 Quarry Lane"
+      },
+      "window_start": null,
+      "window_end": null,
+      "due_at": "2026-10-08T02:21:24.281561+00:00",
+      "est_minutes": null,
+      "priority": {
+       "id": "01a109dc-f63d-7590-a15d-0638f84feaae",
+       "code": "NORMAL",
+       "name": "Normal",
+       "colour": "info",
+       "rank": 3
+      },
+      "state": "planned",
+      "dispatch_state": "scheduled",
+      "access_notes": "",
+      "hazards": "",
+      "gate_code": ""
+     }
+    },
+    {
+     "change": "upsert",
+     "order_id": "01a109dd-a9d1-7bc7-995b-335d36a0f826",
+     "at": "2026-10-05T02:53:41.828847+00:00",
+     "job": {
+      "id": "01a109dd-a9d1-7bc7-995b-335d36a0f826",
+      "order_no": "WO-0034",
+      "type": "Meter set",
+      "premise": {
+       "id": "01a109dd-914a-7433-86d0-6e4bb12b1942",
+       "premise_no": "P-00063",
+       "address": "8 Quarry Lane"
+      },
+      "window_start": null,
+      "window_end": null,
+      "due_at": "2026-10-08T02:21:24.301186+00:00",
+      "est_minutes": null,
+      "priority": {
+       "id": "01a109dc-f63d-7590-a15d-0638f84feaae",
+       "code": "NORMAL",
+       "name": "Normal",
+       "colour": "info",
+       "rank": 3
+      },
+      "state": "planned",
+      "dispatch_state": "scheduled",
+      "access_notes": "",
+      "hazards": "",
+      "gate_code": ""
+     }
+    }
+   ],
+   "count": 6,
+   "next_cursor": "MjAyNi0xMC0wNVQwMjo1Mzo0MS44Mjg4NDcrMDA6MDB8MDFhMTA5ZGQtYTlkMS03YmM3LTk5NWItMzM1ZDM2YTBmODI2",
+   "has_more": false,
+   "br_ref": "BR-WRK-063"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "GET",
+  "path": "/work/mobile/jobs/01a109f8-d9e6-73e8-a107-88e1d36d70a1",
+  "status": 200,
+  "request": null,
+  "response": {
+   "order_id": "01a109f8-d9e6-73e8-a107-88e1d36d70a1",
+   "order_no": "WO-0045",
+   "template_id": "01a109dd-8deb-72e4-ad38-04835bd6b350",
+   "template_version": 2,
+   "safety": [
+    {
+     "id": "01a109f8-d9ec-76f9-b4db-3f8716cf112c",
+     "seq": 1,
+     "text": "Locate and mark every buried service before any dig",
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null
+    },
+    {
+     "id": "01a109f8-d9ec-7f42-8759-8749cbf28fda",
+     "seq": 2,
+     "text": "Hi-vis on for the whole of the walk-over",
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null
+    }
+   ],
+   "safety_lock": {
+    "locked": true,
+    "remaining": 2,
+    "first_outstanding": "Locate and mark every buried service before any dig",
+    "ticked": 0,
+    "total": 2,
+    "mandatory_total": 2
+   },
+   "tasks": [
+    {
+     "id": "01a109f8-d9ef-7859-81fe-899561694abc",
+     "seq": 1,
+     "title": "Walk the route with the customer's plan",
+     "instruction": null,
+     "est_minutes": 20,
+     "photo_required": false,
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null,
+     "photo_attachment_id": null
+    },
+    {
+     "id": "01a109f8-d9ef-7164-827f-beecd3918fc9",
+     "seq": 2,
+     "title": "Paint-mark the main and the proposed tap",
+     "instruction": null,
+     "est_minutes": 20,
+     "photo_required": true,
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null,
+     "photo_attachment_id": null
+    },
+    {
+     "id": "01a109f8-d9f0-707c-a810-7da937e5751c",
+     "seq": 3,
+     "title": "Note the surface to be reinstated",
+     "instruction": null,
+     "est_minutes": 10,
+     "photo_required": true,
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null,
+     "photo_attachment_id": null
+    },
+    {
+     "id": "01a109f8-d9f0-76e8-9edd-5ee63b135ef3",
+     "seq": 4,
+     "title": "Photograph the mark-out from both ends",
+     "instruction": null,
+     "est_minutes": 5,
+     "photo_required": true,
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null,
+     "photo_attachment_id": null
+    }
+   ],
+   "tasks_total": 4,
+   "tasks_ticked": 0,
+   "tasks_est_minutes": 55,
+   "readings": [
+    {
+     "id": "01a109f8-d9f6-753b-bc2d-abf6cda87769",
+     "seq": 1,
+     "prompt": "Depth to main",
+     "unit_of_measure": "in",
+     "min_value": "18.0000",
+     "max_value": "96.0000",
+     "required": true,
+     "photo_required": false,
+     "posts_as_meter_read": false,
+     "value": null,
+     "kind": "number",
+     "value_text": null,
+     "captured_at": null,
+     "photo_attachment_id": null,
+     "in_range": null
+    },
+    {
+     "id": "01a109f8-d9f6-75b2-9291-e2bb5de6b29c",
+     "seq": 2,
+     "prompt": "Distance from the main to the meter pit",
+     "unit_of_measure": "ft",
+     "min_value": "0.0000",
+     "max_value": "500.0000",
+     "required": true,
+     "photo_required": false,
+     "posts_as_meter_read": false,
+     "value": null,
+     "kind": "number",
+     "value_text": null,
+     "captured_at": null,
+     "photo_attachment_id": null,
+     "in_range": null
+    }
+   ],
+   "materials": [
+    {
+     "id": "01a109f8-d9f3-7a8b-9f24-09f1e22355d7",
+     "part_id": "01a109e0-ec2c-7030-a38d-a2bebd0d4406",
+     "part_no": "TAPE-PTFE",
+     "part_name": "PTFE thread tape",
+     "planned_qty": "1.0000",
+     "used_qty": null,
+     "unit_of_measure": "roll",
+     "unplanned": false
+    }
+   ],
+   "help": [
+    {
+     "id": "01a109f8-d9fa-72a4-b1f6-be703fc4eeae",
+     "seq": 1,
+     "kind": "note",
+     "label": "Call the one-call centre 48 hours ahead",
+     "ref": null,
+     "url": null
+    },
+    {
+     "id": "01a109f8-d9fa-769c-80f6-9b9cdef13bdc",
+     "seq": 2,
+     "kind": "phone",
+     "label": "One-call centre",
+     "ref": "811",
+     "url": null
+    }
+   ],
+   "details": {
+    "access_notes": null,
+    "hazards": null,
+    "gate_code": null,
+    "show_account_summary": true,
+    "show_asset_card": true,
+    "show_access_notes": true,
+    "show_appointment": true
+   },
+   "customer": null,
+   "card": {
+    "id": "01a109f8-d9e6-73e8-a107-88e1d36d70a1",
+    "order_no": "WO-0045",
+    "type": "Site inspection & mark-out",
+    "premise": {
+     "id": "01a109f8-d897-7909-a6dd-abf6142f9835",
+     "premise_no": "P-00080",
+     "address": "412 Walkway Ln"
+    },
+    "window_start": null,
+    "window_end": null,
+    "due_at": null,
+    "est_minutes": 55,
+    "priority": null,
+    "state": "planned",
+    "dispatch_state": "scheduled",
+    "access_notes": null,
+    "hazards": null,
+    "gate_code": null
+   },
+   "technician_acceptance": {
+    "state": "pending",
+    "at": null,
+    "reason": null
+   }
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "GET",
+  "path": "/work/mobile/jobs/01a109f8-d9e6-73e8-a107-88e1d36d70a1/readings?page=1&page_size=50",
+  "status": 200,
+  "request": null,
+  "response": {
+   "count": 2,
+   "page": 1,
+   "pages": 1,
+   "next": null,
+   "previous": null,
+   "results": [
+    {
+     "id": "01a109f8-d9f6-753b-bc2d-abf6cda87769",
+     "seq": 1,
+     "prompt": "Depth to main",
+     "unit_of_measure": "in",
+     "required": true,
+     "photo_required": false,
+     "posts_as_meter_read": false,
+     "kind": "number",
+     "value": null,
+     "value_text": null,
+     "photo_attachment_id": null
+    },
+    {
+     "id": "01a109f8-d9f6-75b2-9291-e2bb5de6b29c",
+     "seq": 2,
+     "prompt": "Distance from the main to the meter pit",
+     "unit_of_measure": "ft",
+     "required": true,
+     "photo_required": false,
+     "posts_as_meter_read": false,
+     "kind": "number",
+     "value": null,
+     "value_text": null,
+     "photo_attachment_id": null
+    }
+   ]
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a109f8-d9e6-73e8-a107-88e1d36d70a1/accept",
+  "status": 200,
+  "request": {},
+  "response": {
+   "order_id": "01a109f8-d9e6-73e8-a107-88e1d36d70a1",
+   "order_no": "WO-0045",
+   "technician_acceptance": {
+    "state": "accepted",
+    "at": "2026-10-05T02:53:45.898174+00:00",
+    "reason": null
+   }
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a109f8-d9e6-73e8-a107-88e1d36d70a1/acts",
+  "status": 200,
+  "request": {
+   "act": "depart"
+  },
+  "response": {
+   "assignment_id": "01a109fb-4a83-7ced-a257-d188328db92f",
+   "order_no": "WO-0045",
+   "act": "depart",
+   "dispatch_state": "en_route",
+   "technician": {
+    "kind": "person",
+    "name": "R. Patel",
+    "slug": "r-patel"
+   },
+   "reason": null,
+   "against_advice": null,
+   "push_job_id": null,
+   "customer_notice": "visit_message_no_customer"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a109f8-d9e6-73e8-a107-88e1d36d70a1/acts",
+  "status": 200,
+  "request": {
+   "act": "arrive"
+  },
+  "response": {
+   "assignment_id": "01a109fb-4ae2-7cdb-a452-46ff535bda84",
+   "order_no": "WO-0045",
+   "act": "arrive",
+   "dispatch_state": "on_site",
+   "technician": {
+    "kind": "person",
+    "name": "R. Patel",
+    "slug": "r-patel"
+   },
+   "reason": null,
+   "against_advice": null,
+   "push_job_id": null,
+   "customer_notice": null
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work-orders/01a109f8-d9e6-73e8-a107-88e1d36d70a1/signature",
+  "status": 200,
+  "request": {
+   "printed_name": "S. Miller",
+   "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+   "signed_at": "2026-10-05T02:53:47.469829+00:00"
+  },
+  "response": {
+   "id": "01a109fb-5094-75f1-98b8-148322cd580a",
+   "refused": false,
+   "printed_name": "S. Miller",
+   "decline_reason": null,
+   "door_hanger_attachment_id": null,
+   "signed_at": "2026-10-05T02:53:47.469829Z",
+   "captured_by": {
+    "name": "R. Patel"
+   },
+   "image_url": "/api/brazosbend/work-orders/01a109f8-d9e6-73e8-a107-88e1d36d70a1/signature/image"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a109f8-d9e6-73e8-a107-88e1d36d70a1/sync",
+  "status": 200,
+  "request": {
+   "items": [
+    {
+     "key": "WO-0045-1791168826-0001",
+     "kind": "safety_tick",
+     "seq": 1,
+     "captured_at": "2026-10-05T02:53:46.133771+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:46.133801+00:00"
+     },
+     "payload": {
+      "safety_id": "01a109f8-d9ec-76f9-b4db-3f8716cf112c"
+     }
+    },
+    {
+     "key": "WO-0045-1791168826-0002",
+     "kind": "safety_tick",
+     "seq": 2,
+     "captured_at": "2026-10-05T02:53:46.133809+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:46.133813+00:00"
+     },
+     "payload": {
+      "safety_id": "01a109f8-d9ec-7f42-8759-8749cbf28fda"
+     }
+    },
+    {
+     "key": "WO-0045-1791168826-0003",
+     "kind": "task_tick",
+     "seq": 3,
+     "captured_at": "2026-10-05T02:53:46.133818+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:46.133821+00:00"
+     },
+     "payload": {
+      "task_id": "01a109f8-d9ef-7859-81fe-899561694abc"
+     }
+    },
+    {
+     "key": "WO-0045-1791168826-0004",
+     "kind": "task_tick",
+     "seq": 4,
+     "captured_at": "2026-10-05T02:53:46.133827+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:46.133830+00:00"
+     },
+     "payload": {
+      "task_id": "01a109f8-d9ef-7164-827f-beecd3918fc9"
+     }
+    },
+    {
+     "key": "WO-0045-1791168826-0005",
+     "kind": "task_tick",
+     "seq": 5,
+     "captured_at": "2026-10-05T02:53:46.133834+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:46.133836+00:00"
+     },
+     "payload": {
+      "task_id": "01a109f8-d9f0-707c-a810-7da937e5751c"
+     }
+    },
+    {
+     "key": "WO-0045-1791168826-0006",
+     "kind": "task_tick",
+     "seq": 6,
+     "captured_at": "2026-10-05T02:53:46.133840+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:46.133843+00:00"
+     },
+     "payload": {
+      "task_id": "01a109f8-d9f0-76e8-9edd-5ee63b135ef3"
+     }
+    },
+    {
+     "key": "WO-0045-1791168826-0007",
+     "kind": "reading",
+     "seq": 7,
+     "captured_at": "2026-10-05T02:53:46.133848+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:46.133850+00:00"
+     },
+     "payload": {
+      "reading_id": "01a109f8-d9f6-753b-bc2d-abf6cda87769",
+      "value": "48221",
+      "unit": "in"
+     }
+    },
+    {
+     "key": "WO-0045-1791168826-0008",
+     "kind": "reading",
+     "seq": 8,
+     "captured_at": "2026-10-05T02:53:46.133854+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:46.133857+00:00"
+     },
+     "payload": {
+      "reading_id": "01a109f8-d9f6-75b2-9291-e2bb5de6b29c",
+      "value": "48221",
+      "unit": "ft"
+     }
+    },
+    {
+     "key": "WO-0045-1791168826-0009",
+     "kind": "material",
+     "seq": 9,
+     "captured_at": "2026-10-05T02:53:46.133861+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:46.133863+00:00"
+     },
+     "payload": {
+      "material_id": "01a109f8-d9f3-7a8b-9f24-09f1e22355d7",
+      "used_qty": "1.0000"
+     }
+    },
+    {
+     "key": "WO-0045-1791168826-0010",
+     "kind": "photo",
+     "seq": 10,
+     "captured_at": "2026-10-05T02:53:46.579971+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:46.580039+00:00"
+     },
+     "payload": {
+      "photo_id": "7129d8a3-1ef2-467b-85c0-e88c3050ebb5",
+      "sha256": "35a9177320e320d18160f4bc2eaffacfc9151632c9ccbd1d5b613c1734f76ba4",
+      "task_id": "01a109f8-d9ef-7164-827f-beecd3918fc9"
+     }
+    },
+    {
+     "key": "WO-0045-1791168826-0011",
+     "kind": "photo",
+     "seq": 11,
+     "captured_at": "2026-10-05T02:53:47.086764+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:47.086793+00:00"
+     },
+     "payload": {
+      "photo_id": "e69d834b-dcf7-4f7b-8457-2442eda1cbbc",
+      "sha256": "132f9bcaf10e23141b139290f9396b45c4c0aea528d71978f88a5235ccf81804",
+      "task_id": "01a109f8-d9f0-707c-a810-7da937e5751c"
+     }
+    },
+    {
+     "key": "WO-0045-1791168826-0012",
+     "kind": "photo",
+     "seq": 12,
+     "captured_at": "2026-10-05T02:53:47.469118+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:47.469148+00:00"
+     },
+     "payload": {
+      "photo_id": "b85a5b0e-f912-4705-9a22-38d54191a8ec",
+      "sha256": "50882f58a04e2769bfc0ec7ab78f3c4cd0d7b88690670f94af5575a2321b3851",
+      "task_id": "01a109f8-d9f0-76e8-9edd-5ee63b135ef3"
+     }
+    }
+   ]
+  },
+  "response": {
+   "work_order_id": "01a109f8-d9e6-73e8-a107-88e1d36d70a1",
+   "accepted": 12,
+   "duplicate": 0,
+   "refused": 0,
+   "held_for_review": 0,
+   "acknowledged": [
+    "WO-0045-1791168826-0001",
+    "WO-0045-1791168826-0002",
+    "WO-0045-1791168826-0003",
+    "WO-0045-1791168826-0004",
+    "WO-0045-1791168826-0005",
+    "WO-0045-1791168826-0006",
+    "WO-0045-1791168826-0007",
+    "WO-0045-1791168826-0008",
+    "WO-0045-1791168826-0009",
+    "WO-0045-1791168826-0010",
+    "WO-0045-1791168826-0011",
+    "WO-0045-1791168826-0012"
+   ],
+   "items": [
+    {
+     "key": "WO-0045-1791168826-0001",
+     "kind": "safety_tick",
+     "seq": 1,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-d9ec-76f9-b4db-3f8716cf112c",
+      "ticked_at": "2026-10-05T02:53:47.626896+00:00",
+      "safety_lock": {
+       "locked": true,
+       "remaining": 1,
+       "first_outstanding": "Hi-vis on for the whole of the walk-over",
+       "ticked": 1,
+       "total": 2,
+       "mandatory_total": 2
+      }
+     }
+    },
+    {
+     "key": "WO-0045-1791168826-0002",
+     "kind": "safety_tick",
+     "seq": 2,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-d9ec-7f42-8759-8749cbf28fda",
+      "ticked_at": "2026-10-05T02:53:47.656285+00:00",
+      "safety_lock": {
+       "locked": false,
+       "remaining": 0,
+       "first_outstanding": null,
+       "ticked": 2,
+       "total": 2,
+       "mandatory_total": 2
+      }
+     }
+    },
+    {
+     "key": "WO-0045-1791168826-0003",
+     "kind": "task_tick",
+     "seq": 3,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-d9ef-7859-81fe-899561694abc",
+      "ticked_at": "2026-10-05T02:53:47.696133+00:00",
+      "tasks_ticked": 1,
+      "tasks_total": 4
+     }
+    },
+    {
+     "key": "WO-0045-1791168826-0004",
+     "kind": "task_tick",
+     "seq": 4,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-d9ef-7164-827f-beecd3918fc9",
+      "ticked_at": "2026-10-05T02:53:47.738571+00:00",
+      "tasks_ticked": 2,
+      "tasks_total": 4
+     }
+    },
+    {
+     "key": "WO-0045-1791168826-0005",
+     "kind": "task_tick",
+     "seq": 5,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-d9f0-707c-a810-7da937e5751c",
+      "ticked_at": "2026-10-05T02:53:47.770542+00:00",
+      "tasks_ticked": 3,
+      "tasks_total": 4
+     }
+    },
+    {
+     "key": "WO-0045-1791168826-0006",
+     "kind": "task_tick",
+     "seq": 6,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-d9f0-76e8-9edd-5ee63b135ef3",
+      "ticked_at": "2026-10-05T02:53:47.799557+00:00",
+      "tasks_ticked": 4,
+      "tasks_total": 4
+     }
+    },
+    {
+     "key": "WO-0045-1791168826-0007",
+     "kind": "reading",
+     "seq": 7,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-d9f6-753b-bc2d-abf6cda87769",
+      "seq": 1,
+      "prompt": "Depth to main",
+      "unit": "in",
+      "kind": "number",
+      "value_text": null,
+      "value": "48221",
+      "in_range": false,
+      "required": true,
+      "photo_required": false,
+      "photo_attachment_id": null,
+      "captured_at": "2026-10-05T02:53:47.824390Z",
+      "posts_as_meter_read": false
+     }
+    },
+    {
+     "key": "WO-0045-1791168826-0008",
+     "kind": "reading",
+     "seq": 8,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-d9f6-75b2-9291-e2bb5de6b29c",
+      "seq": 2,
+      "prompt": "Distance from the main to the meter pit",
+      "unit": "ft",
+      "kind": "number",
+      "value_text": null,
+      "value": "48221",
+      "in_range": false,
+      "required": true,
+      "photo_required": false,
+      "photo_attachment_id": null,
+      "captured_at": "2026-10-05T02:53:47.848785Z",
+      "posts_as_meter_read": false
+     }
+    },
+    {
+     "key": "WO-0045-1791168826-0009",
+     "kind": "material",
+     "seq": 9,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-d9f3-7a8b-9f24-09f1e22355d7",
+      "part_no": "TAPE-PTFE",
+      "planned_qty": "1.0000",
+      "used_qty": "1.0000",
+      "unit_of_measure": "roll",
+      "issued_at": "2026-10-05T02:53:47.876501+00:00"
+     }
+    },
+    {
+     "key": "WO-0045-1791168826-0010",
+     "kind": "photo",
+     "seq": 10,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "photo_id": "7129d8a3-1ef2-467b-85c0-e88c3050ebb5",
+      "upload_url": "/api/brazosbend/work/mobile/photos/7129d8a3-1ef2-467b-85c0-e88c3050ebb5",
+      "state": "pending",
+      "attachment_id": null
+     }
+    },
+    {
+     "key": "WO-0045-1791168826-0011",
+     "kind": "photo",
+     "seq": 11,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "photo_id": "e69d834b-dcf7-4f7b-8457-2442eda1cbbc",
+      "upload_url": "/api/brazosbend/work/mobile/photos/e69d834b-dcf7-4f7b-8457-2442eda1cbbc",
+      "state": "pending",
+      "attachment_id": null
+     }
+    },
+    {
+     "key": "WO-0045-1791168826-0012",
+     "kind": "photo",
+     "seq": 12,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "photo_id": "b85a5b0e-f912-4705-9a22-38d54191a8ec",
+      "upload_url": "/api/brazosbend/work/mobile/photos/b85a5b0e-f912-4705-9a22-38d54191a8ec",
+      "state": "pending",
+      "attachment_id": null
+     }
+    }
+   ],
+   "synced_at": "2026-10-05T02:53:47.955503+00:00",
+   "br_ref": "BR-WRK-042"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "PUT",
+  "path": "/work/mobile/photos/7129d8a3-1ef2-467b-85c0-e88c3050ebb5",
+  "status": 200,
+  "request": "<94,184 bytes>",
+  "response": {
+   "photo_id": "7129d8a3-1ef2-467b-85c0-e88c3050ebb5",
+   "upload_url": "/api/brazosbend/work/mobile/photos/7129d8a3-1ef2-467b-85c0-e88c3050ebb5",
+   "state": "staged",
+   "attachment_id": null,
+   "duplicate": false,
+   "job_id": "01a109fb-528a-7dff-aeb2-5fa670755994"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "PUT",
+  "path": "/work/mobile/photos/e69d834b-dcf7-4f7b-8457-2442eda1cbbc",
+  "status": 200,
+  "request": "<92,655 bytes>",
+  "response": {
+   "photo_id": "e69d834b-dcf7-4f7b-8457-2442eda1cbbc",
+   "upload_url": "/api/brazosbend/work/mobile/photos/e69d834b-dcf7-4f7b-8457-2442eda1cbbc",
+   "state": "staged",
+   "attachment_id": null,
+   "duplicate": false,
+   "job_id": "01a109fb-554a-71aa-a3a2-e7d6faecd069"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "PUT",
+  "path": "/work/mobile/photos/b85a5b0e-f912-4705-9a22-38d54191a8ec",
+  "status": 200,
+  "request": "<93,926 bytes>",
+  "response": {
+   "photo_id": "b85a5b0e-f912-4705-9a22-38d54191a8ec",
+   "upload_url": "/api/brazosbend/work/mobile/photos/b85a5b0e-f912-4705-9a22-38d54191a8ec",
+   "state": "staged",
+   "attachment_id": null,
+   "duplicate": false,
+   "job_id": "01a109fb-5801-7935-b848-2758b3993d50"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a109f8-d9e6-73e8-a107-88e1d36d70a1/sync",
+  "status": 200,
+  "request": {
+   "items": [
+    {
+     "key": "WO-0045-1791168826-close",
+     "kind": "close",
+     "seq": 13,
+     "captured_at": "2026-10-05T02:53:47.469157+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:47.469161+00:00"
+     },
+     "payload": {
+      "outcome": "passed"
+     }
+    }
+   ]
+  },
+  "response": {
+   "work_order_id": "01a109f8-d9e6-73e8-a107-88e1d36d70a1",
+   "accepted": 1,
+   "duplicate": 0,
+   "refused": 0,
+   "held_for_review": 0,
+   "acknowledged": [
+    "WO-0045-1791168826-close"
+   ],
+   "items": [
+    {
+     "key": "WO-0045-1791168826-close",
+     "kind": "close",
+     "seq": 13,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-d9e6-73e8-a107-88e1d36d70a1",
+      "state": "completed",
+      "awaiting_review": true,
+      "br_ref": "BR-MET-110"
+     }
+    }
+   ],
+   "synced_at": "2026-10-05T02:53:50.207165+00:00",
+   "br_ref": "BR-WRK-042"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "GET",
+  "path": "/work/mobile/jobs/01a109f8-da0d-7176-8354-6a0a74102417",
+  "status": 200,
+  "request": null,
+  "response": {
+   "order_id": "01a109f8-da0d-7176-8354-6a0a74102417",
+   "order_no": "WO-0046",
+   "template_id": "01a109dd-8e1f-704b-aaf7-fd8b86f7c1b6",
+   "template_version": 2,
+   "safety": [
+    {
+     "id": "01a109f8-da11-797f-a66d-0aca101514a4",
+     "seq": 1,
+     "text": "Trench box in before anybody enters the excavation",
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null
+    },
+    {
+     "id": "01a109f8-da12-74e4-8c7b-4b63efc1b6c5",
+     "seq": 2,
+     "text": "Gas-test the trench before entry and every 30 minutes",
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null
+    },
+    {
+     "id": "01a109f8-da12-74ce-991f-39f8433ea8ff",
+     "seq": 3,
+     "text": "Spoil kept two feet back from the edge",
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null
+    },
+    {
+     "id": "01a109f8-da12-70f0-a1f9-8ef09327e2c1",
+     "seq": 4,
+     "text": "Plates and lights left over any open cut",
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null
+    }
+   ],
+   "safety_lock": {
+    "locked": true,
+    "remaining": 4,
+    "first_outstanding": "Trench box in before anybody enters the excavation",
+    "ticked": 0,
+    "total": 4,
+    "mandatory_total": 4
+   },
+   "tasks": [
+    {
+     "id": "01a109f8-da14-71a0-9c82-8542a37defec",
+     "seq": 1,
+     "title": "Set traffic control and open the cut",
+     "instruction": null,
+     "est_minutes": 60,
+     "photo_required": true,
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null,
+     "photo_attachment_id": null
+    },
+    {
+     "id": "01a109f8-da14-7f34-997f-1e02f30a4f9f",
+     "seq": 2,
+     "title": "Tap the main and fit the corporation stop",
+     "instruction": null,
+     "est_minutes": 60,
+     "photo_required": false,
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null,
+     "photo_attachment_id": null
+    },
+    {
+     "id": "01a109f8-da14-74b5-9077-498134891324",
+     "seq": 3,
+     "title": "Lay and bed the service line to the curb stop",
+     "instruction": null,
+     "est_minutes": 90,
+     "photo_required": false,
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null,
+     "photo_attachment_id": null
+    },
+    {
+     "id": "01a109f8-da14-78c2-bcb6-cd64b6542763",
+     "seq": 4,
+     "title": "Pressure-test the new line",
+     "instruction": null,
+     "est_minutes": 30,
+     "photo_required": false,
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null,
+     "photo_attachment_id": null
+    },
+    {
+     "id": "01a109f8-da14-7ff1-a71f-4b1914377aa5",
+     "seq": 5,
+     "title": "Backfill, compact and reinstate the surface",
+     "instruction": null,
+     "est_minutes": 45,
+     "photo_required": true,
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null,
+     "photo_attachment_id": null
+    },
+    {
+     "id": "01a109f8-da14-756d-b72d-e12cd1a80139",
+     "seq": 6,
+     "title": "Photograph the reinstatement",
+     "instruction": null,
+     "est_minutes": 5,
+     "photo_required": true,
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null,
+     "photo_attachment_id": null
+    }
+   ],
+   "tasks_total": 6,
+   "tasks_ticked": 0,
+   "tasks_est_minutes": 290,
+   "readings": [
+    {
+     "id": "01a109f8-da19-7556-ac23-41ed2bafe333",
+     "seq": 1,
+     "prompt": "Test pressure held",
+     "unit_of_measure": "psi",
+     "min_value": "100.0000",
+     "max_value": "200.0000",
+     "required": true,
+     "photo_required": false,
+     "posts_as_meter_read": false,
+     "value": null,
+     "kind": "number",
+     "value_text": null,
+     "captured_at": null,
+     "photo_attachment_id": null,
+     "in_range": null
+    },
+    {
+     "id": "01a109f8-da1a-7e99-ac7d-1f640c6d78db",
+     "seq": 2,
+     "prompt": "Length of service laid",
+     "unit_of_measure": "ft",
+     "min_value": "0.0000",
+     "max_value": "500.0000",
+     "required": true,
+     "photo_required": false,
+     "posts_as_meter_read": false,
+     "value": null,
+     "kind": "number",
+     "value_text": null,
+     "captured_at": null,
+     "photo_attachment_id": null,
+     "in_range": null
+    }
+   ],
+   "materials": [
+    {
+     "id": "01a109f8-da17-7035-a0d9-c9004962a284",
+     "part_id": "01a109e0-ec34-7ba6-a1ba-a21e6c171ac6",
+     "part_no": "CPL-58B",
+     "part_name": "Brass coupling 5/8\"",
+     "planned_qty": "2.0000",
+     "used_qty": null,
+     "unit_of_measure": "each",
+     "unplanned": false
+    },
+    {
+     "id": "01a109f8-da17-7427-a29e-74e561f00fe6",
+     "part_id": "01a109e0-ec42-77f7-b57f-d55774863baa",
+     "part_no": "PIPE-CU34",
+     "part_name": "Copper service pipe 3/4\"",
+     "planned_qty": "60.0000",
+     "used_qty": null,
+     "unit_of_measure": "ft",
+     "unplanned": false
+    },
+    {
+     "id": "01a109f8-da17-7f9c-9194-53cbd1b7453e",
+     "part_id": "01a109e0-ec3b-7d12-895c-851caec3e7fd",
+     "part_no": "VLV-CS58",
+     "part_name": "Curb stop valve 5/8\"",
+     "planned_qty": "1.0000",
+     "used_qty": null,
+     "unit_of_measure": "each",
+     "unplanned": false
+    }
+   ],
+   "help": [
+    {
+     "id": "01a109f8-da1c-7baa-8c8e-d7be2ad1a168",
+     "seq": 1,
+     "kind": "document",
+     "label": "Trench safety plan",
+     "ref": "SAF-WA-002",
+     "url": null
+    },
+    {
+     "id": "01a109f8-da1c-7691-9985-7fa81e20057b",
+     "seq": 2,
+     "kind": "phone",
+     "label": "Standby \u2014 water operations",
+     "ref": "+1 555 0177",
+     "url": null
+    }
+   ],
+   "details": {
+    "access_notes": null,
+    "hazards": null,
+    "gate_code": null,
+    "show_account_summary": true,
+    "show_asset_card": true,
+    "show_access_notes": true,
+    "show_appointment": true
+   },
+   "customer": {
+    "name": "Priya Raman",
+    "phone": "+1 512 555 0190",
+    "account_no": "AC-2026-00055"
+   },
+   "card": {
+    "id": "01a109f8-da0d-7176-8354-6a0a74102417",
+    "order_no": "WO-0046",
+    "type": "Tap and service line",
+    "premise": {
+     "id": "01a109f8-d897-7909-a6dd-abf6142f9835",
+     "premise_no": "P-00080",
+     "address": "412 Walkway Ln"
+    },
+    "window_start": null,
+    "window_end": null,
+    "due_at": null,
+    "est_minutes": 290,
+    "priority": null,
+    "state": "planned",
+    "dispatch_state": "scheduled",
+    "access_notes": null,
+    "hazards": null,
+    "gate_code": null
+   },
+   "technician_acceptance": {
+    "state": "pending",
+    "at": null,
+    "reason": null
+   }
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "GET",
+  "path": "/work/mobile/jobs/01a109f8-da0d-7176-8354-6a0a74102417/readings?page=1&page_size=50",
+  "status": 200,
+  "request": null,
+  "response": {
+   "count": 2,
+   "page": 1,
+   "pages": 1,
+   "next": null,
+   "previous": null,
+   "results": [
+    {
+     "id": "01a109f8-da19-7556-ac23-41ed2bafe333",
+     "seq": 1,
+     "prompt": "Test pressure held",
+     "unit_of_measure": "psi",
+     "required": true,
+     "photo_required": false,
+     "posts_as_meter_read": false,
+     "kind": "number",
+     "value": null,
+     "value_text": null,
+     "photo_attachment_id": null
+    },
+    {
+     "id": "01a109f8-da1a-7e99-ac7d-1f640c6d78db",
+     "seq": 2,
+     "prompt": "Length of service laid",
+     "unit_of_measure": "ft",
+     "required": true,
+     "photo_required": false,
+     "posts_as_meter_read": false,
+     "kind": "number",
+     "value": null,
+     "value_text": null,
+     "photo_attachment_id": null
+    }
+   ]
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a109f8-da0d-7176-8354-6a0a74102417/accept",
+  "status": 200,
+  "request": {},
+  "response": {
+   "order_id": "01a109f8-da0d-7176-8354-6a0a74102417",
+   "order_no": "WO-0046",
+   "technician_acceptance": {
+    "state": "accepted",
+    "at": "2026-10-05T02:53:50.484957+00:00",
+    "reason": null
+   }
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a109f8-da0d-7176-8354-6a0a74102417/acts",
+  "status": 200,
+  "request": {
+   "act": "depart"
+  },
+  "response": {
+   "assignment_id": "01a109fb-5c6f-7453-96b2-82b57af302c7",
+   "order_no": "WO-0046",
+   "act": "depart",
+   "dispatch_state": "en_route",
+   "technician": {
+    "kind": "person",
+    "name": "R. Patel",
+    "slug": "r-patel"
+   },
+   "reason": null,
+   "against_advice": null,
+   "push_job_id": null,
+   "customer_notice": "visit_message_no_channel_elected"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a109f8-da0d-7176-8354-6a0a74102417/acts",
+  "status": 200,
+  "request": {
+   "act": "arrive"
+  },
+  "response": {
+   "assignment_id": "01a109fb-5cd8-7e11-b7da-10995fa0ee67",
+   "order_no": "WO-0046",
+   "act": "arrive",
+   "dispatch_state": "on_site",
+   "technician": {
+    "kind": "person",
+    "name": "R. Patel",
+    "slug": "r-patel"
+   },
+   "reason": null,
+   "against_advice": null,
+   "push_job_id": null,
+   "customer_notice": null
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work-orders/01a109f8-da0d-7176-8354-6a0a74102417/signature",
+  "status": 200,
+  "request": {
+   "printed_name": "S. Miller",
+   "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+   "signed_at": "2026-10-05T02:53:51.952088+00:00"
+  },
+  "response": {
+   "id": "01a109fb-6204-72e4-a84a-45cc65d0e178",
+   "refused": false,
+   "printed_name": "S. Miller",
+   "decline_reason": null,
+   "door_hanger_attachment_id": null,
+   "signed_at": "2026-10-05T02:53:51.952088Z",
+   "captured_by": {
+    "name": "R. Patel"
+   },
+   "image_url": "/api/brazosbend/work-orders/01a109f8-da0d-7176-8354-6a0a74102417/signature/image"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a109f8-da0d-7176-8354-6a0a74102417/sync",
+  "status": 200,
+  "request": {
+   "items": [
+    {
+     "key": "WO-0046-1791168830-0001",
+     "kind": "safety_tick",
+     "seq": 1,
+     "captured_at": "2026-10-05T02:53:50.733646+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:50.733671+00:00"
+     },
+     "payload": {
+      "safety_id": "01a109f8-da11-797f-a66d-0aca101514a4"
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0002",
+     "kind": "safety_tick",
+     "seq": 2,
+     "captured_at": "2026-10-05T02:53:50.733678+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:50.733680+00:00"
+     },
+     "payload": {
+      "safety_id": "01a109f8-da12-74e4-8c7b-4b63efc1b6c5"
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0003",
+     "kind": "safety_tick",
+     "seq": 3,
+     "captured_at": "2026-10-05T02:53:50.733683+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:50.733685+00:00"
+     },
+     "payload": {
+      "safety_id": "01a109f8-da12-74ce-991f-39f8433ea8ff"
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0004",
+     "kind": "safety_tick",
+     "seq": 4,
+     "captured_at": "2026-10-05T02:53:50.733688+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:50.733691+00:00"
+     },
+     "payload": {
+      "safety_id": "01a109f8-da12-70f0-a1f9-8ef09327e2c1"
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0005",
+     "kind": "task_tick",
+     "seq": 5,
+     "captured_at": "2026-10-05T02:53:50.733695+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:50.733696+00:00"
+     },
+     "payload": {
+      "task_id": "01a109f8-da14-71a0-9c82-8542a37defec"
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0006",
+     "kind": "task_tick",
+     "seq": 6,
+     "captured_at": "2026-10-05T02:53:50.733700+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:50.733703+00:00"
+     },
+     "payload": {
+      "task_id": "01a109f8-da14-7f34-997f-1e02f30a4f9f"
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0007",
+     "kind": "task_tick",
+     "seq": 7,
+     "captured_at": "2026-10-05T02:53:50.733706+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:50.733708+00:00"
+     },
+     "payload": {
+      "task_id": "01a109f8-da14-74b5-9077-498134891324"
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0008",
+     "kind": "task_tick",
+     "seq": 8,
+     "captured_at": "2026-10-05T02:53:50.733711+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:50.733713+00:00"
+     },
+     "payload": {
+      "task_id": "01a109f8-da14-78c2-bcb6-cd64b6542763"
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0009",
+     "kind": "task_tick",
+     "seq": 9,
+     "captured_at": "2026-10-05T02:53:50.733716+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:50.733718+00:00"
+     },
+     "payload": {
+      "task_id": "01a109f8-da14-7ff1-a71f-4b1914377aa5"
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0010",
+     "kind": "task_tick",
+     "seq": 10,
+     "captured_at": "2026-10-05T02:53:50.733721+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:50.733723+00:00"
+     },
+     "payload": {
+      "task_id": "01a109f8-da14-756d-b72d-e12cd1a80139"
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0011",
+     "kind": "reading",
+     "seq": 11,
+     "captured_at": "2026-10-05T02:53:50.733742+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:50.733745+00:00"
+     },
+     "payload": {
+      "reading_id": "01a109f8-da19-7556-ac23-41ed2bafe333",
+      "value": "48221",
+      "unit": "psi"
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0012",
+     "kind": "reading",
+     "seq": 12,
+     "captured_at": "2026-10-05T02:53:50.733748+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:50.733750+00:00"
+     },
+     "payload": {
+      "reading_id": "01a109f8-da1a-7e99-ac7d-1f640c6d78db",
+      "value": "48221",
+      "unit": "ft"
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0013",
+     "kind": "material",
+     "seq": 13,
+     "captured_at": "2026-10-05T02:53:50.733758+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:50.733760+00:00"
+     },
+     "payload": {
+      "material_id": "01a109f8-da17-7035-a0d9-c9004962a284",
+      "used_qty": "2.0000"
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0014",
+     "kind": "material",
+     "seq": 14,
+     "captured_at": "2026-10-05T02:53:50.733764+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:50.733766+00:00"
+     },
+     "payload": {
+      "material_id": "01a109f8-da17-7427-a29e-74e561f00fe6",
+      "used_qty": "60.0000"
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0015",
+     "kind": "material",
+     "seq": 15,
+     "captured_at": "2026-10-05T02:53:50.733769+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:50.733771+00:00"
+     },
+     "payload": {
+      "material_id": "01a109f8-da17-7f9c-9194-53cbd1b7453e",
+      "used_qty": "1.0000"
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0016",
+     "kind": "photo",
+     "seq": 16,
+     "captured_at": "2026-10-05T02:53:51.138013+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:51.138066+00:00"
+     },
+     "payload": {
+      "photo_id": "dc6686a9-b771-4937-91e6-deaa4d15fbed",
+      "sha256": "c4899266b1309b5c32a3b78d4cb6b2b577aee672911c841946e160848fea7940",
+      "task_id": "01a109f8-da14-71a0-9c82-8542a37defec"
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0017",
+     "kind": "photo",
+     "seq": 17,
+     "captured_at": "2026-10-05T02:53:51.558218+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:51.558628+00:00"
+     },
+     "payload": {
+      "photo_id": "6caea7d1-16a5-4b45-9b6c-48ab21c2a6a8",
+      "sha256": "d63a5e3f8d04edd69715f09bb05a048a85fae88446fd3868cee8a7958e4a2ebd",
+      "task_id": "01a109f8-da14-7ff1-a71f-4b1914377aa5"
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0018",
+     "kind": "photo",
+     "seq": 18,
+     "captured_at": "2026-10-05T02:53:51.951374+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:51.951402+00:00"
+     },
+     "payload": {
+      "photo_id": "4e7c1494-ac5d-4af5-bb37-4a1f9f8c05e5",
+      "sha256": "9da4cac6b02ae4d545a6ed38242704eb330c5a6b1b3401deea1ebeccda49c951",
+      "task_id": "01a109f8-da14-756d-b72d-e12cd1a80139"
+     }
+    }
+   ]
+  },
+  "response": {
+   "work_order_id": "01a109f8-da0d-7176-8354-6a0a74102417",
+   "accepted": 18,
+   "duplicate": 0,
+   "refused": 0,
+   "held_for_review": 0,
+   "acknowledged": [
+    "WO-0046-1791168830-0001",
+    "WO-0046-1791168830-0002",
+    "WO-0046-1791168830-0003",
+    "WO-0046-1791168830-0004",
+    "WO-0046-1791168830-0005",
+    "WO-0046-1791168830-0006",
+    "WO-0046-1791168830-0007",
+    "WO-0046-1791168830-0008",
+    "WO-0046-1791168830-0009",
+    "WO-0046-1791168830-0010",
+    "WO-0046-1791168830-0011",
+    "WO-0046-1791168830-0012",
+    "WO-0046-1791168830-0013",
+    "WO-0046-1791168830-0014",
+    "WO-0046-1791168830-0015",
+    "WO-0046-1791168830-0016",
+    "WO-0046-1791168830-0017",
+    "WO-0046-1791168830-0018"
+   ],
+   "items": [
+    {
+     "key": "WO-0046-1791168830-0001",
+     "kind": "safety_tick",
+     "seq": 1,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da11-797f-a66d-0aca101514a4",
+      "ticked_at": "2026-10-05T02:53:52.066831+00:00",
+      "safety_lock": {
+       "locked": true,
+       "remaining": 3,
+       "first_outstanding": "Gas-test the trench before entry and every 30 minutes",
+       "ticked": 1,
+       "total": 4,
+       "mandatory_total": 4
+      }
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0002",
+     "kind": "safety_tick",
+     "seq": 2,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da12-74e4-8c7b-4b63efc1b6c5",
+      "ticked_at": "2026-10-05T02:53:52.092975+00:00",
+      "safety_lock": {
+       "locked": true,
+       "remaining": 2,
+       "first_outstanding": "Spoil kept two feet back from the edge",
+       "ticked": 2,
+       "total": 4,
+       "mandatory_total": 4
+      }
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0003",
+     "kind": "safety_tick",
+     "seq": 3,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da12-74ce-991f-39f8433ea8ff",
+      "ticked_at": "2026-10-05T02:53:52.115363+00:00",
+      "safety_lock": {
+       "locked": true,
+       "remaining": 1,
+       "first_outstanding": "Plates and lights left over any open cut",
+       "ticked": 3,
+       "total": 4,
+       "mandatory_total": 4
+      }
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0004",
+     "kind": "safety_tick",
+     "seq": 4,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da12-70f0-a1f9-8ef09327e2c1",
+      "ticked_at": "2026-10-05T02:53:52.139152+00:00",
+      "safety_lock": {
+       "locked": false,
+       "remaining": 0,
+       "first_outstanding": null,
+       "ticked": 4,
+       "total": 4,
+       "mandatory_total": 4
+      }
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0005",
+     "kind": "task_tick",
+     "seq": 5,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da14-71a0-9c82-8542a37defec",
+      "ticked_at": "2026-10-05T02:53:52.163504+00:00",
+      "tasks_ticked": 1,
+      "tasks_total": 6
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0006",
+     "kind": "task_tick",
+     "seq": 6,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da14-7f34-997f-1e02f30a4f9f",
+      "ticked_at": "2026-10-05T02:53:52.195438+00:00",
+      "tasks_ticked": 2,
+      "tasks_total": 6
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0007",
+     "kind": "task_tick",
+     "seq": 7,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da14-74b5-9077-498134891324",
+      "ticked_at": "2026-10-05T02:53:52.229970+00:00",
+      "tasks_ticked": 3,
+      "tasks_total": 6
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0008",
+     "kind": "task_tick",
+     "seq": 8,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da14-78c2-bcb6-cd64b6542763",
+      "ticked_at": "2026-10-05T02:53:52.252960+00:00",
+      "tasks_ticked": 4,
+      "tasks_total": 6
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0009",
+     "kind": "task_tick",
+     "seq": 9,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da14-7ff1-a71f-4b1914377aa5",
+      "ticked_at": "2026-10-05T02:53:52.280491+00:00",
+      "tasks_ticked": 5,
+      "tasks_total": 6
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0010",
+     "kind": "task_tick",
+     "seq": 10,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da14-756d-b72d-e12cd1a80139",
+      "ticked_at": "2026-10-05T02:53:52.306569+00:00",
+      "tasks_ticked": 6,
+      "tasks_total": 6
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0011",
+     "kind": "reading",
+     "seq": 11,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da19-7556-ac23-41ed2bafe333",
+      "seq": 1,
+      "prompt": "Test pressure held",
+      "unit": "psi",
+      "kind": "number",
+      "value_text": null,
+      "value": "48221",
+      "in_range": false,
+      "required": true,
+      "photo_required": false,
+      "photo_attachment_id": null,
+      "captured_at": "2026-10-05T02:53:52.329715Z",
+      "posts_as_meter_read": false
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0012",
+     "kind": "reading",
+     "seq": 12,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da1a-7e99-ac7d-1f640c6d78db",
+      "seq": 2,
+      "prompt": "Length of service laid",
+      "unit": "ft",
+      "kind": "number",
+      "value_text": null,
+      "value": "48221",
+      "in_range": false,
+      "required": true,
+      "photo_required": false,
+      "photo_attachment_id": null,
+      "captured_at": "2026-10-05T02:53:52.351517Z",
+      "posts_as_meter_read": false
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0013",
+     "kind": "material",
+     "seq": 13,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da17-7035-a0d9-c9004962a284",
+      "part_no": "CPL-58B",
+      "planned_qty": "2.0000",
+      "used_qty": "2.0000",
+      "unit_of_measure": "each",
+      "issued_at": "2026-10-05T02:53:52.375640+00:00"
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0014",
+     "kind": "material",
+     "seq": 14,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da17-7427-a29e-74e561f00fe6",
+      "part_no": "PIPE-CU34",
+      "planned_qty": "60.0000",
+      "used_qty": "60.0000",
+      "unit_of_measure": "ft",
+      "issued_at": "2026-10-05T02:53:52.399999+00:00"
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0015",
+     "kind": "material",
+     "seq": 15,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da17-7f9c-9194-53cbd1b7453e",
+      "part_no": "VLV-CS58",
+      "planned_qty": "1.0000",
+      "used_qty": "1.0000",
+      "unit_of_measure": "each",
+      "issued_at": "2026-10-05T02:53:52.422610+00:00"
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0016",
+     "kind": "photo",
+     "seq": 16,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "photo_id": "dc6686a9-b771-4937-91e6-deaa4d15fbed",
+      "upload_url": "/api/brazosbend/work/mobile/photos/dc6686a9-b771-4937-91e6-deaa4d15fbed",
+      "state": "pending",
+      "attachment_id": null
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0017",
+     "kind": "photo",
+     "seq": 17,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "photo_id": "6caea7d1-16a5-4b45-9b6c-48ab21c2a6a8",
+      "upload_url": "/api/brazosbend/work/mobile/photos/6caea7d1-16a5-4b45-9b6c-48ab21c2a6a8",
+      "state": "pending",
+      "attachment_id": null
+     }
+    },
+    {
+     "key": "WO-0046-1791168830-0018",
+     "kind": "photo",
+     "seq": 18,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "photo_id": "4e7c1494-ac5d-4af5-bb37-4a1f9f8c05e5",
+      "upload_url": "/api/brazosbend/work/mobile/photos/4e7c1494-ac5d-4af5-bb37-4a1f9f8c05e5",
+      "state": "pending",
+      "attachment_id": null
+     }
+    }
+   ],
+   "synced_at": "2026-10-05T02:53:52.473383+00:00",
+   "br_ref": "BR-WRK-042"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "PUT",
+  "path": "/work/mobile/photos/dc6686a9-b771-4937-91e6-deaa4d15fbed",
+  "status": 200,
+  "request": "<92,892 bytes>",
+  "response": {
+   "photo_id": "dc6686a9-b771-4937-91e6-deaa4d15fbed",
+   "upload_url": "/api/brazosbend/work/mobile/photos/dc6686a9-b771-4937-91e6-deaa4d15fbed",
+   "state": "staged",
+   "attachment_id": null,
+   "duplicate": false,
+   "job_id": "01a109fb-6427-7d22-b23c-0f375bb011a5"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "PUT",
+  "path": "/work/mobile/photos/6caea7d1-16a5-4b45-9b6c-48ab21c2a6a8",
+  "status": 200,
+  "request": "<93,638 bytes>",
+  "response": {
+   "photo_id": "6caea7d1-16a5-4b45-9b6c-48ab21c2a6a8",
+   "upload_url": "/api/brazosbend/work/mobile/photos/6caea7d1-16a5-4b45-9b6c-48ab21c2a6a8",
+   "state": "staged",
+   "attachment_id": null,
+   "duplicate": false,
+   "job_id": "01a109fb-66e0-7b10-a2bf-9c82465e2c14"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "PUT",
+  "path": "/work/mobile/photos/4e7c1494-ac5d-4af5-bb37-4a1f9f8c05e5",
+  "status": 200,
+  "request": "<92,138 bytes>",
+  "response": {
+   "photo_id": "4e7c1494-ac5d-4af5-bb37-4a1f9f8c05e5",
+   "upload_url": "/api/brazosbend/work/mobile/photos/4e7c1494-ac5d-4af5-bb37-4a1f9f8c05e5",
+   "state": "staged",
+   "attachment_id": null,
+   "duplicate": false,
+   "job_id": "01a109fb-6997-7a1b-8628-62210d79c2b1"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a109f8-da0d-7176-8354-6a0a74102417/sync",
+  "status": 200,
+  "request": {
+   "items": [
+    {
+     "key": "WO-0046-1791168830-close",
+     "kind": "close",
+     "seq": 19,
+     "captured_at": "2026-10-05T02:53:51.951411+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:51.951414+00:00"
+     },
+     "payload": {
+      "outcome": "passed"
+     }
+    }
+   ]
+  },
+  "response": {
+   "work_order_id": "01a109f8-da0d-7176-8354-6a0a74102417",
+   "accepted": 1,
+   "duplicate": 0,
+   "refused": 0,
+   "held_for_review": 0,
+   "acknowledged": [
+    "WO-0046-1791168830-close"
+   ],
+   "items": [
+    {
+     "key": "WO-0046-1791168830-close",
+     "kind": "close",
+     "seq": 19,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da0d-7176-8354-6a0a74102417",
+      "state": "completed",
+      "awaiting_review": true,
+      "br_ref": "BR-MET-110"
+     }
+    }
+   ],
+   "synced_at": "2026-10-05T02:53:54.739130+00:00",
+   "br_ref": "BR-WRK-042"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "GET",
+  "path": "/work/mobile/jobs/01a109f8-da2e-7190-8bb9-ab0ca73813ce",
+  "status": 200,
+  "request": null,
+  "response": {
+   "order_id": "01a109f8-da2e-7190-8bb9-ab0ca73813ce",
+   "order_no": "WO-0047",
+   "template_id": "01a109dd-8e62-747e-98b6-02abe122f2f8",
+   "template_version": 2,
+   "safety": [
+    {
+     "id": "01a109f8-da33-74ac-ab85-4fa4ca2a360e",
+     "seq": 1,
+     "text": "Shut the curb stop before breaking the union",
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null
+    },
+    {
+     "id": "01a109f8-da33-7d37-a9c5-87e97f051d01",
+     "seq": 2,
+     "text": "Check the pit for standing water before reaching in",
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null
+    }
+   ],
+   "safety_lock": {
+    "locked": true,
+    "remaining": 2,
+    "first_outstanding": "Shut the curb stop before breaking the union",
+    "ticked": 0,
+    "total": 2,
+    "mandatory_total": 2
+   },
+   "tasks": [
+    {
+     "id": "01a109f8-da35-785d-9f59-6f13ef96cd5b",
+     "seq": 1,
+     "title": "Confirm the pit is the right address",
+     "instruction": null,
+     "est_minutes": 5,
+     "photo_required": false,
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null,
+     "photo_attachment_id": null
+    },
+    {
+     "id": "01a109f8-da35-7a5e-85e8-ec4dc7c94bb3",
+     "seq": 2,
+     "title": "Fit the meter with the flow arrow in the direction of supply",
+     "instruction": null,
+     "est_minutes": 20,
+     "photo_required": false,
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null,
+     "photo_attachment_id": null
+    },
+    {
+     "id": "01a109f8-da35-7f1e-bc82-b0375287b6ab",
+     "seq": 3,
+     "title": "Charge the line and check for weeps at both unions",
+     "instruction": null,
+     "est_minutes": 10,
+     "photo_required": false,
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null,
+     "photo_attachment_id": null
+    },
+    {
+     "id": "01a109f8-da35-75a5-9b84-2ce0987f019e",
+     "seq": 4,
+     "title": "Seal and record the seal number",
+     "instruction": null,
+     "est_minutes": 5,
+     "photo_required": true,
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null,
+     "photo_attachment_id": null
+    },
+    {
+     "id": "01a109f8-da35-7632-ab3f-f02036eb583f",
+     "seq": 5,
+     "title": "Photograph the meter in the pit",
+     "instruction": null,
+     "est_minutes": 5,
+     "photo_required": true,
+     "is_mandatory": true,
+     "ticked_at": null,
+     "ticked_by": null,
+     "ticked_by_name": null,
+     "photo_attachment_id": null
+    }
+   ],
+   "tasks_total": 5,
+   "tasks_ticked": 0,
+   "tasks_est_minutes": 45,
+   "readings": [
+    {
+     "id": "01a109f8-da3b-7829-bd8a-acec5e042a96",
+     "seq": 1,
+     "prompt": "Meter number as fitted",
+     "unit_of_measure": "text",
+     "min_value": null,
+     "max_value": null,
+     "required": true,
+     "photo_required": false,
+     "posts_as_meter_read": true,
+     "value": null,
+     "kind": "number",
+     "value_text": null,
+     "captured_at": null,
+     "photo_attachment_id": null,
+     "in_range": null
+    },
+    {
+     "id": "01a109f8-da3b-7631-99be-ec7cf31dd62a",
+     "seq": 2,
+     "prompt": "Opening register",
+     "unit_of_measure": "gal",
+     "min_value": "0.0000",
+     "max_value": "99999999.0000",
+     "required": true,
+     "photo_required": false,
+     "posts_as_meter_read": true,
+     "value": null,
+     "kind": "number",
+     "value_text": null,
+     "captured_at": null,
+     "photo_attachment_id": null,
+     "in_range": null
+    }
+   ],
+   "materials": [
+    {
+     "id": "01a109f8-da38-73fb-a491-711f1321ab95",
+     "part_id": "01a109e0-ec1c-76ee-b23f-702b7b805bc4",
+     "part_no": "GSK-58",
+     "part_name": "Meter gasket 5/8\"",
+     "planned_qty": "2.0000",
+     "used_qty": null,
+     "unit_of_measure": "each",
+     "unplanned": false
+    },
+    {
+     "id": "01a109f8-da38-7320-9d82-f58527b7eef3",
+     "part_id": "01a109e0-ec07-7134-80dc-ca8fd98b75c1",
+     "part_no": "MTR-W58",
+     "part_name": "Water meter 5/8\" positive displacement",
+     "planned_qty": "1.0000",
+     "used_qty": null,
+     "unit_of_measure": "each",
+     "unplanned": false
+    },
+    {
+     "id": "01a109f8-da38-7ec0-845f-00116ffc1b6f",
+     "part_id": "01a109e0-ec24-70c1-afae-28cc2b41f591",
+     "part_no": "SEAL-WIRE",
+     "part_name": "Meter seal, wire and tag",
+     "planned_qty": "1.0000",
+     "used_qty": null,
+     "unit_of_measure": "each",
+     "unplanned": false
+    }
+   ],
+   "help": [
+    {
+     "id": "01a109f8-da3d-714a-94cc-2f0cb9f23d7a",
+     "seq": 1,
+     "kind": "document",
+     "label": "Water meter setting standard",
+     "ref": "STD-WA-006",
+     "url": null
+    }
+   ],
+   "details": {
+    "access_notes": null,
+    "hazards": null,
+    "gate_code": null,
+    "show_account_summary": true,
+    "show_asset_card": true,
+    "show_access_notes": true,
+    "show_appointment": true
+   },
+   "customer": {
+    "name": "Priya Raman",
+    "phone": "+1 512 555 0190",
+    "account_no": "AC-2026-00055"
+   },
+   "card": {
+    "id": "01a109f8-da2e-7190-8bb9-ab0ca73813ce",
+    "order_no": "WO-0047",
+    "type": "Meter set",
+    "premise": {
+     "id": "01a109f8-d897-7909-a6dd-abf6142f9835",
+     "premise_no": "P-00080",
+     "address": "412 Walkway Ln"
+    },
+    "window_start": null,
+    "window_end": null,
+    "due_at": null,
+    "est_minutes": 45,
+    "priority": null,
+    "state": "planned",
+    "dispatch_state": "scheduled",
+    "access_notes": null,
+    "hazards": null,
+    "gate_code": null
+   },
+   "technician_acceptance": {
+    "state": "pending",
+    "at": null,
+    "reason": null
+   }
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "GET",
+  "path": "/work/mobile/jobs/01a109f8-da2e-7190-8bb9-ab0ca73813ce/readings?page=1&page_size=50",
+  "status": 200,
+  "request": null,
+  "response": {
+   "count": 2,
+   "page": 1,
+   "pages": 1,
+   "next": null,
+   "previous": null,
+   "results": [
+    {
+     "id": "01a109f8-da3b-7829-bd8a-acec5e042a96",
+     "seq": 1,
+     "prompt": "Meter number as fitted",
+     "unit_of_measure": "text",
+     "required": true,
+     "photo_required": false,
+     "posts_as_meter_read": true,
+     "kind": "number",
+     "value": null,
+     "value_text": null,
+     "photo_attachment_id": null
+    },
+    {
+     "id": "01a109f8-da3b-7631-99be-ec7cf31dd62a",
+     "seq": 2,
+     "prompt": "Opening register",
+     "unit_of_measure": "gal",
+     "required": true,
+     "photo_required": false,
+     "posts_as_meter_read": true,
+     "kind": "number",
+     "value": null,
+     "value_text": null,
+     "photo_attachment_id": null
+    }
+   ]
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a109f8-da2e-7190-8bb9-ab0ca73813ce/accept",
+  "status": 200,
+  "request": {},
+  "response": {
+   "order_id": "01a109f8-da2e-7190-8bb9-ab0ca73813ce",
+   "order_no": "WO-0047",
+   "technician_acceptance": {
+    "state": "accepted",
+    "at": "2026-10-05T02:53:55.030825+00:00",
+    "reason": null
+   }
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a109f8-da2e-7190-8bb9-ab0ca73813ce/acts",
+  "status": 200,
+  "request": {
+   "act": "depart"
+  },
+  "response": {
+   "assignment_id": "01a109fb-6e2f-7ba0-a5b2-72ef7df4245c",
+   "order_no": "WO-0047",
+   "act": "depart",
+   "dispatch_state": "en_route",
+   "technician": {
+    "kind": "person",
+    "name": "R. Patel",
+    "slug": "r-patel"
+   },
+   "reason": null,
+   "against_advice": null,
+   "push_job_id": null,
+   "customer_notice": "visit_message_no_channel_elected"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a109f8-da2e-7190-8bb9-ab0ca73813ce/acts",
+  "status": 200,
+  "request": {
+   "act": "arrive"
+  },
+  "response": {
+   "assignment_id": "01a109fb-6ea0-7183-ac31-58c57c231baa",
+   "order_no": "WO-0047",
+   "act": "arrive",
+   "dispatch_state": "on_site",
+   "technician": {
+    "kind": "person",
+    "name": "R. Patel",
+    "slug": "r-patel"
+   },
+   "reason": null,
+   "against_advice": null,
+   "push_job_id": null,
+   "customer_notice": null
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work-orders/01a109f8-da2e-7190-8bb9-ab0ca73813ce/signature",
+  "status": 200,
+  "request": {
+   "printed_name": "S. Miller",
+   "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+   "signed_at": "2026-10-05T02:53:56.053971+00:00"
+  },
+  "response": {
+   "id": "01a109fb-7215-75ab-a388-d6eb7ede24fc",
+   "refused": false,
+   "printed_name": "S. Miller",
+   "decline_reason": null,
+   "door_hanger_attachment_id": null,
+   "signed_at": "2026-10-05T02:53:56.053971Z",
+   "captured_by": {
+    "name": "R. Patel"
+   },
+   "image_url": "/api/brazosbend/work-orders/01a109f8-da2e-7190-8bb9-ab0ca73813ce/signature/image"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a109f8-da2e-7190-8bb9-ab0ca73813ce/sync",
+  "status": 200,
+  "request": {
+   "items": [
+    {
+     "key": "WO-0047-1791168835-0001",
+     "kind": "safety_tick",
+     "seq": 1,
+     "captured_at": "2026-10-05T02:53:55.282117+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:55.282147+00:00"
+     },
+     "payload": {
+      "safety_id": "01a109f8-da33-74ac-ab85-4fa4ca2a360e"
+     }
+    },
+    {
+     "key": "WO-0047-1791168835-0002",
+     "kind": "safety_tick",
+     "seq": 2,
+     "captured_at": "2026-10-05T02:53:55.282155+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:55.282158+00:00"
+     },
+     "payload": {
+      "safety_id": "01a109f8-da33-7d37-a9c5-87e97f051d01"
+     }
+    },
+    {
+     "key": "WO-0047-1791168835-0003",
+     "kind": "task_tick",
+     "seq": 3,
+     "captured_at": "2026-10-05T02:53:55.282165+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:55.282168+00:00"
+     },
+     "payload": {
+      "task_id": "01a109f8-da35-785d-9f59-6f13ef96cd5b"
+     }
+    },
+    {
+     "key": "WO-0047-1791168835-0004",
+     "kind": "task_tick",
+     "seq": 4,
+     "captured_at": "2026-10-05T02:53:55.282173+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:55.282177+00:00"
+     },
+     "payload": {
+      "task_id": "01a109f8-da35-7a5e-85e8-ec4dc7c94bb3"
+     }
+    },
+    {
+     "key": "WO-0047-1791168835-0005",
+     "kind": "task_tick",
+     "seq": 5,
+     "captured_at": "2026-10-05T02:53:55.282182+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:55.282185+00:00"
+     },
+     "payload": {
+      "task_id": "01a109f8-da35-7f1e-bc82-b0375287b6ab"
+     }
+    },
+    {
+     "key": "WO-0047-1791168835-0006",
+     "kind": "task_tick",
+     "seq": 6,
+     "captured_at": "2026-10-05T02:53:55.282208+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:55.282211+00:00"
+     },
+     "payload": {
+      "task_id": "01a109f8-da35-75a5-9b84-2ce0987f019e"
+     }
+    },
+    {
+     "key": "WO-0047-1791168835-0007",
+     "kind": "task_tick",
+     "seq": 7,
+     "captured_at": "2026-10-05T02:53:55.282216+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:55.282219+00:00"
+     },
+     "payload": {
+      "task_id": "01a109f8-da35-7632-ab3f-f02036eb583f"
+     }
+    },
+    {
+     "key": "WO-0047-1791168835-0008",
+     "kind": "reading",
+     "seq": 8,
+     "captured_at": "2026-10-05T02:53:55.282229+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:55.282250+00:00"
+     },
+     "payload": {
+      "reading_id": "01a109f8-da3b-7829-bd8a-acec5e042a96",
+      "value": "48221",
+      "unit": "text"
+     }
+    },
+    {
+     "key": "WO-0047-1791168835-0009",
+     "kind": "reading",
+     "seq": 9,
+     "captured_at": "2026-10-05T02:53:55.282256+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:55.282260+00:00"
+     },
+     "payload": {
+      "reading_id": "01a109f8-da3b-7631-99be-ec7cf31dd62a",
+      "value": "48221",
+      "unit": "gal"
+     }
+    },
+    {
+     "key": "WO-0047-1791168835-0010",
+     "kind": "material",
+     "seq": 10,
+     "captured_at": "2026-10-05T02:53:55.282271+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:55.282275+00:00"
+     },
+     "payload": {
+      "material_id": "01a109f8-da38-73fb-a491-711f1321ab95",
+      "used_qty": "2.0000"
+     }
+    },
+    {
+     "key": "WO-0047-1791168835-0011",
+     "kind": "material",
+     "seq": 11,
+     "captured_at": "2026-10-05T02:53:55.282280+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:55.282287+00:00"
+     },
+     "payload": {
+      "material_id": "01a109f8-da38-7320-9d82-f58527b7eef3",
+      "used_qty": "1.0000"
+     }
+    },
+    {
+     "key": "WO-0047-1791168835-0012",
+     "kind": "material",
+     "seq": 12,
+     "captured_at": "2026-10-05T02:53:55.282293+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:55.282296+00:00"
+     },
+     "payload": {
+      "material_id": "01a109f8-da38-7ec0-845f-00116ffc1b6f",
+      "used_qty": "1.0000"
+     }
+    },
+    {
+     "key": "WO-0047-1791168835-0013",
+     "kind": "photo",
+     "seq": 13,
+     "captured_at": "2026-10-05T02:53:55.672659+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:55.672742+00:00"
+     },
+     "payload": {
+      "photo_id": "e7c1e6de-dd6a-4b92-9fe7-d319110a6f83",
+      "sha256": "6490be564d82061d31f3738eedc416736e1163bbbaab3b3f3c60bd583579af36",
+      "task_id": "01a109f8-da35-75a5-9b84-2ce0987f019e"
+     }
+    },
+    {
+     "key": "WO-0047-1791168835-0014",
+     "kind": "photo",
+     "seq": 14,
+     "captured_at": "2026-10-05T02:53:56.053310+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:56.053340+00:00"
+     },
+     "payload": {
+      "photo_id": "430a411e-18e1-461d-a999-d0c5547d520d",
+      "sha256": "4775eb2edcc0029d786d685176311e74e40a9845199933125c4324d4d8d06888",
+      "task_id": "01a109f8-da35-7632-ab3f-f02036eb583f"
+     }
+    }
+   ]
+  },
+  "response": {
+   "work_order_id": "01a109f8-da2e-7190-8bb9-ab0ca73813ce",
+   "accepted": 14,
+   "duplicate": 0,
+   "refused": 0,
+   "held_for_review": 0,
+   "acknowledged": [
+    "WO-0047-1791168835-0001",
+    "WO-0047-1791168835-0002",
+    "WO-0047-1791168835-0003",
+    "WO-0047-1791168835-0004",
+    "WO-0047-1791168835-0005",
+    "WO-0047-1791168835-0006",
+    "WO-0047-1791168835-0007",
+    "WO-0047-1791168835-0008",
+    "WO-0047-1791168835-0009",
+    "WO-0047-1791168835-0010",
+    "WO-0047-1791168835-0011",
+    "WO-0047-1791168835-0012",
+    "WO-0047-1791168835-0013",
+    "WO-0047-1791168835-0014"
+   ],
+   "items": [
+    {
+     "key": "WO-0047-1791168835-0001",
+     "kind": "safety_tick",
+     "seq": 1,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da33-74ac-ab85-4fa4ca2a360e",
+      "ticked_at": "2026-10-05T02:53:56.193414+00:00",
+      "safety_lock": {
+       "locked": true,
+       "remaining": 1,
+       "first_outstanding": "Check the pit for standing water before reaching in",
+       "ticked": 1,
+       "total": 2,
+       "mandatory_total": 2
+      }
+     }
+    },
+    {
+     "key": "WO-0047-1791168835-0002",
+     "kind": "safety_tick",
+     "seq": 2,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da33-7d37-a9c5-87e97f051d01",
+      "ticked_at": "2026-10-05T02:53:56.221065+00:00",
+      "safety_lock": {
+       "locked": false,
+       "remaining": 0,
+       "first_outstanding": null,
+       "ticked": 2,
+       "total": 2,
+       "mandatory_total": 2
+      }
+     }
+    },
+    {
+     "key": "WO-0047-1791168835-0003",
+     "kind": "task_tick",
+     "seq": 3,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da35-785d-9f59-6f13ef96cd5b",
+      "ticked_at": "2026-10-05T02:53:56.246887+00:00",
+      "tasks_ticked": 1,
+      "tasks_total": 5
+     }
+    },
+    {
+     "key": "WO-0047-1791168835-0004",
+     "kind": "task_tick",
+     "seq": 4,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da35-7a5e-85e8-ec4dc7c94bb3",
+      "ticked_at": "2026-10-05T02:53:56.277688+00:00",
+      "tasks_ticked": 2,
+      "tasks_total": 5
+     }
+    },
+    {
+     "key": "WO-0047-1791168835-0005",
+     "kind": "task_tick",
+     "seq": 5,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da35-7f1e-bc82-b0375287b6ab",
+      "ticked_at": "2026-10-05T02:53:56.305094+00:00",
+      "tasks_ticked": 3,
+      "tasks_total": 5
+     }
+    },
+    {
+     "key": "WO-0047-1791168835-0006",
+     "kind": "task_tick",
+     "seq": 6,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da35-75a5-9b84-2ce0987f019e",
+      "ticked_at": "2026-10-05T02:53:56.341352+00:00",
+      "tasks_ticked": 4,
+      "tasks_total": 5
+     }
+    },
+    {
+     "key": "WO-0047-1791168835-0007",
+     "kind": "task_tick",
+     "seq": 7,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da35-7632-ab3f-f02036eb583f",
+      "ticked_at": "2026-10-05T02:53:56.381733+00:00",
+      "tasks_ticked": 5,
+      "tasks_total": 5
+     }
+    },
+    {
+     "key": "WO-0047-1791168835-0008",
+     "kind": "reading",
+     "seq": 8,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da3b-7829-bd8a-acec5e042a96",
+      "seq": 1,
+      "prompt": "Meter number as fitted",
+      "unit": "text",
+      "kind": "number",
+      "value_text": null,
+      "value": "48221",
+      "in_range": null,
+      "required": true,
+      "photo_required": false,
+      "photo_attachment_id": null,
+      "captured_at": "2026-10-05T02:53:56.408111Z",
+      "posts_as_meter_read": true
+     }
+    },
+    {
+     "key": "WO-0047-1791168835-0009",
+     "kind": "reading",
+     "seq": 9,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da3b-7631-99be-ec7cf31dd62a",
+      "seq": 2,
+      "prompt": "Opening register",
+      "unit": "gal",
+      "kind": "number",
+      "value_text": null,
+      "value": "48221",
+      "in_range": true,
+      "required": true,
+      "photo_required": false,
+      "photo_attachment_id": null,
+      "captured_at": "2026-10-05T02:53:56.429520Z",
+      "posts_as_meter_read": true
+     }
+    },
+    {
+     "key": "WO-0047-1791168835-0010",
+     "kind": "material",
+     "seq": 10,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da38-73fb-a491-711f1321ab95",
+      "part_no": "GSK-58",
+      "planned_qty": "2.0000",
+      "used_qty": "2.0000",
+      "unit_of_measure": "each",
+      "issued_at": "2026-10-05T02:53:56.452861+00:00"
+     }
+    },
+    {
+     "key": "WO-0047-1791168835-0011",
+     "kind": "material",
+     "seq": 11,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da38-7320-9d82-f58527b7eef3",
+      "part_no": "MTR-W58",
+      "planned_qty": "1.0000",
+      "used_qty": "1.0000",
+      "unit_of_measure": "each",
+      "issued_at": "2026-10-05T02:53:56.475672+00:00"
+     }
+    },
+    {
+     "key": "WO-0047-1791168835-0012",
+     "kind": "material",
+     "seq": 12,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da38-7ec0-845f-00116ffc1b6f",
+      "part_no": "SEAL-WIRE",
+      "planned_qty": "1.0000",
+      "used_qty": "1.0000",
+      "unit_of_measure": "each",
+      "issued_at": "2026-10-05T02:53:56.497657+00:00"
+     }
+    },
+    {
+     "key": "WO-0047-1791168835-0013",
+     "kind": "photo",
+     "seq": 13,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "photo_id": "e7c1e6de-dd6a-4b92-9fe7-d319110a6f83",
+      "upload_url": "/api/brazosbend/work/mobile/photos/e7c1e6de-dd6a-4b92-9fe7-d319110a6f83",
+      "state": "pending",
+      "attachment_id": null
+     }
+    },
+    {
+     "key": "WO-0047-1791168835-0014",
+     "kind": "photo",
+     "seq": 14,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "photo_id": "430a411e-18e1-461d-a999-d0c5547d520d",
+      "upload_url": "/api/brazosbend/work/mobile/photos/430a411e-18e1-461d-a999-d0c5547d520d",
+      "state": "pending",
+      "attachment_id": null
+     }
+    }
+   ],
+   "synced_at": "2026-10-05T02:53:56.541429+00:00",
+   "br_ref": "BR-WRK-042"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "PUT",
+  "path": "/work/mobile/photos/e7c1e6de-dd6a-4b92-9fe7-d319110a6f83",
+  "status": 200,
+  "request": "<92,689 bytes>",
+  "response": {
+   "photo_id": "e7c1e6de-dd6a-4b92-9fe7-d319110a6f83",
+   "upload_url": "/api/brazosbend/work/mobile/photos/e7c1e6de-dd6a-4b92-9fe7-d319110a6f83",
+   "state": "staged",
+   "attachment_id": null,
+   "duplicate": false,
+   "job_id": "01a109fb-741c-7c08-8f7d-89144aef9cbf"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "PUT",
+  "path": "/work/mobile/photos/430a411e-18e1-461d-a999-d0c5547d520d",
+  "status": 200,
+  "request": "<92,021 bytes>",
+  "response": {
+   "photo_id": "430a411e-18e1-461d-a999-d0c5547d520d",
+   "upload_url": "/api/brazosbend/work/mobile/photos/430a411e-18e1-461d-a999-d0c5547d520d",
+   "state": "staged",
+   "attachment_id": null,
+   "duplicate": false,
+   "job_id": "01a109fb-76de-7edd-a678-09a1d5a2837f"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a109f8-da2e-7190-8bb9-ab0ca73813ce/sync",
+  "status": 200,
+  "request": {
+   "items": [
+    {
+     "key": "WO-0047-1791168835-close",
+     "kind": "close",
+     "seq": 15,
+     "captured_at": "2026-10-05T02:53:56.053347+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:56.053350+00:00"
+     },
+     "payload": {
+      "outcome": "passed"
+     }
+    }
+   ]
+  },
+  "response": {
+   "work_order_id": "01a109f8-da2e-7190-8bb9-ab0ca73813ce",
+   "accepted": 1,
+   "duplicate": 0,
+   "refused": 0,
+   "held_for_review": 0,
+   "acknowledged": [
+    "WO-0047-1791168835-close"
+   ],
+   "items": [
+    {
+     "key": "WO-0047-1791168835-close",
+     "kind": "close",
+     "seq": 15,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109f8-da2e-7190-8bb9-ab0ca73813ce",
+      "state": "completed",
+      "awaiting_review": true,
+      "br_ref": "BR-MET-110"
+     }
+    }
+   ],
+   "synced_at": "2026-10-05T02:53:58.164924+00:00",
+   "br_ref": "BR-WRK-042"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "GET",
+  "path": "/work/mobile/jobs/01a109dd-a9be-7090-86ed-adc5b37484af",
+  "status": 200,
+  "request": null,
+  "response": {
+   "order_id": "01a109dd-a9be-7090-86ed-adc5b37484af",
+   "order_no": "WO-0033",
+   "template_id": null,
+   "template_version": null,
+   "safety": [],
+   "safety_lock": {
+    "locked": false,
+    "remaining": 0,
+    "first_outstanding": null,
+    "ticked": 0,
+    "total": 0,
+    "mandatory_total": 0
+   },
+   "tasks": [],
+   "tasks_total": 0,
+   "tasks_ticked": 0,
+   "tasks_est_minutes": 0,
+   "readings": [],
+   "materials": [],
+   "help": [],
+   "details": null,
+   "customer": null,
+   "card": {
+    "id": "01a109dd-a9be-7090-86ed-adc5b37484af",
+    "order_no": "WO-0033",
+    "type": "Tap and service line",
+    "premise": {
+     "id": "01a109dd-914a-7433-86d0-6e4bb12b1942",
+     "premise_no": "P-00063",
+     "address": "8 Quarry Lane"
+    },
+    "window_start": null,
+    "window_end": null,
+    "due_at": "2026-10-08T02:21:24.281561+00:00",
+    "est_minutes": null,
+    "priority": {
+     "id": "01a109dc-f63d-7590-a15d-0638f84feaae",
+     "code": "NORMAL",
+     "name": "Normal",
+     "colour": "info",
+     "rank": 3
+    },
+    "state": "planned",
+    "dispatch_state": "scheduled",
+    "access_notes": "",
+    "hazards": "",
+    "gate_code": ""
+   },
+   "technician_acceptance": {
+    "state": "pending",
+    "at": null,
+    "reason": null
+   }
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "GET",
+  "path": "/work/mobile/jobs/01a109dd-a9be-7090-86ed-adc5b37484af/readings?page=1&page_size=50",
+  "status": 200,
+  "request": null,
+  "response": {
+   "count": 0,
+   "page": 1,
+   "pages": 1,
+   "next": null,
+   "previous": null,
+   "results": []
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a109dd-a9be-7090-86ed-adc5b37484af/accept",
+  "status": 200,
+  "request": {},
+  "response": {
+   "order_id": "01a109dd-a9be-7090-86ed-adc5b37484af",
+   "order_no": "WO-0033",
+   "technician_acceptance": {
+    "state": "accepted",
+    "at": "2026-10-05T02:53:58.438623+00:00",
+    "reason": null
+   }
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a109dd-a9be-7090-86ed-adc5b37484af/acts",
+  "status": 200,
+  "request": {
+   "act": "depart"
+  },
+  "response": {
+   "assignment_id": "01a109fb-7b78-79be-b9c4-6c0fda953734",
+   "order_no": "WO-0033",
+   "act": "depart",
+   "dispatch_state": "en_route",
+   "technician": {
+    "kind": "person",
+    "name": "R. Patel",
+    "slug": "r-patel"
+   },
+   "reason": null,
+   "against_advice": null,
+   "push_job_id": null,
+   "customer_notice": "visit_message_no_customer"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a109dd-a9be-7090-86ed-adc5b37484af/acts",
+  "status": 200,
+  "request": {
+   "act": "arrive"
+  },
+  "response": {
+   "assignment_id": "01a109fb-7bd9-787c-bcfa-87713e4f73e7",
+   "order_no": "WO-0033",
+   "act": "arrive",
+   "dispatch_state": "on_site",
+   "technician": {
+    "kind": "person",
+    "name": "R. Patel",
+    "slug": "r-patel"
+   },
+   "reason": null,
+   "against_advice": null,
+   "push_job_id": null,
+   "customer_notice": null
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work-orders/01a109dd-a9be-7090-86ed-adc5b37484af/signature",
+  "status": 200,
+  "request": {
+   "printed_name": "S. Miller",
+   "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+   "signed_at": "2026-10-05T02:53:58.670582+00:00"
+  },
+  "response": {
+   "id": "01a109fb-7c53-73a2-a8b5-278e79969a34",
+   "refused": false,
+   "printed_name": "S. Miller",
+   "decline_reason": null,
+   "door_hanger_attachment_id": null,
+   "signed_at": "2026-10-05T02:53:58.670582Z",
+   "captured_by": {
+    "name": "R. Patel"
+   },
+   "image_url": "/api/brazosbend/work-orders/01a109dd-a9be-7090-86ed-adc5b37484af/signature/image"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a109dd-a9be-7090-86ed-adc5b37484af/sync",
+  "status": 200,
+  "request": {
+   "items": [
+    {
+     "key": "WO-0033-1791168838-close",
+     "kind": "close",
+     "seq": 1,
+     "captured_at": "2026-10-05T02:53:58.669695+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:58.669725+00:00"
+     },
+     "payload": {
+      "outcome": "passed"
+     }
+    }
+   ]
+  },
+  "response": {
+   "work_order_id": "01a109dd-a9be-7090-86ed-adc5b37484af",
+   "accepted": 1,
+   "duplicate": 0,
+   "refused": 0,
+   "held_for_review": 0,
+   "acknowledged": [
+    "WO-0033-1791168838-close"
+   ],
+   "items": [
+    {
+     "key": "WO-0033-1791168838-close",
+     "kind": "close",
+     "seq": 1,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109dd-a9be-7090-86ed-adc5b37484af",
+      "state": "completed",
+      "awaiting_review": true,
+      "br_ref": "BR-MET-110"
+     }
+    }
+   ],
+   "synced_at": "2026-10-05T02:53:58.910123+00:00",
+   "br_ref": "BR-WRK-042"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "GET",
+  "path": "/work/mobile/jobs/01a109dd-a9d1-7bc7-995b-335d36a0f826",
+  "status": 200,
+  "request": null,
+  "response": {
+   "order_id": "01a109dd-a9d1-7bc7-995b-335d36a0f826",
+   "order_no": "WO-0034",
+   "template_id": null,
+   "template_version": null,
+   "safety": [],
+   "safety_lock": {
+    "locked": false,
+    "remaining": 0,
+    "first_outstanding": null,
+    "ticked": 0,
+    "total": 0,
+    "mandatory_total": 0
+   },
+   "tasks": [],
+   "tasks_total": 0,
+   "tasks_ticked": 0,
+   "tasks_est_minutes": 0,
+   "readings": [],
+   "materials": [],
+   "help": [],
+   "details": null,
+   "customer": null,
+   "card": {
+    "id": "01a109dd-a9d1-7bc7-995b-335d36a0f826",
+    "order_no": "WO-0034",
+    "type": "Meter set",
+    "premise": {
+     "id": "01a109dd-914a-7433-86d0-6e4bb12b1942",
+     "premise_no": "P-00063",
+     "address": "8 Quarry Lane"
+    },
+    "window_start": null,
+    "window_end": null,
+    "due_at": "2026-10-08T02:21:24.301186+00:00",
+    "est_minutes": null,
+    "priority": {
+     "id": "01a109dc-f63d-7590-a15d-0638f84feaae",
+     "code": "NORMAL",
+     "name": "Normal",
+     "colour": "info",
+     "rank": 3
+    },
+    "state": "planned",
+    "dispatch_state": "scheduled",
+    "access_notes": "",
+    "hazards": "",
+    "gate_code": ""
+   },
+   "technician_acceptance": {
+    "state": "pending",
+    "at": null,
+    "reason": null
+   }
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "GET",
+  "path": "/work/mobile/jobs/01a109dd-a9d1-7bc7-995b-335d36a0f826/readings?page=1&page_size=50",
+  "status": 200,
+  "request": null,
+  "response": {
+   "count": 0,
+   "page": 1,
+   "pages": 1,
+   "next": null,
+   "previous": null,
+   "results": []
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a109dd-a9d1-7bc7-995b-335d36a0f826/accept",
+  "status": 200,
+  "request": {},
+  "response": {
+   "order_id": "01a109dd-a9d1-7bc7-995b-335d36a0f826",
+   "order_no": "WO-0034",
+   "technician_acceptance": {
+    "state": "accepted",
+    "at": "2026-10-05T02:53:59.181243+00:00",
+    "reason": null
+   }
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a109dd-a9d1-7bc7-995b-335d36a0f826/acts",
+  "status": 200,
+  "request": {
+   "act": "depart"
+  },
+  "response": {
+   "assignment_id": "01a109fb-7e62-7a7b-9398-2d9839a23b0a",
+   "order_no": "WO-0034",
+   "act": "depart",
+   "dispatch_state": "en_route",
+   "technician": {
+    "kind": "person",
+    "name": "R. Patel",
+    "slug": "r-patel"
+   },
+   "reason": null,
+   "against_advice": null,
+   "push_job_id": null,
+   "customer_notice": "visit_message_no_customer"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a109dd-a9d1-7bc7-995b-335d36a0f826/acts",
+  "status": 200,
+  "request": {
+   "act": "arrive"
+  },
+  "response": {
+   "assignment_id": "01a109fb-7ebd-76d8-8376-9faa526ec41d",
+   "order_no": "WO-0034",
+   "act": "arrive",
+   "dispatch_state": "on_site",
+   "technician": {
+    "kind": "person",
+    "name": "R. Patel",
+    "slug": "r-patel"
+   },
+   "reason": null,
+   "against_advice": null,
+   "push_job_id": null,
+   "customer_notice": null
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work-orders/01a109dd-a9d1-7bc7-995b-335d36a0f826/signature",
+  "status": 200,
+  "request": {
+   "printed_name": "S. Miller",
+   "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+   "signed_at": "2026-10-05T02:53:59.414475+00:00"
+  },
+  "response": {
+   "id": "01a109fb-7f2f-72eb-8b3d-8d7e055d24fd",
+   "refused": false,
+   "printed_name": "S. Miller",
+   "decline_reason": null,
+   "door_hanger_attachment_id": null,
+   "signed_at": "2026-10-05T02:53:59.414475Z",
+   "captured_by": {
+    "name": "R. Patel"
+   },
+   "image_url": "/api/brazosbend/work-orders/01a109dd-a9d1-7bc7-995b-335d36a0f826/signature/image"
+  }
+ },
+ {
+  "who": "R. Patel",
+  "method": "POST",
+  "path": "/work/mobile/jobs/01a109dd-a9d1-7bc7-995b-335d36a0f826/sync",
+  "status": 200,
+  "request": {
+   "items": [
+    {
+     "key": "WO-0034-1791168839-close",
+     "kind": "close",
+     "seq": 1,
+     "captured_at": "2026-10-05T02:53:59.413831+00:00",
+     "capture_token": "eyJ0IjoiMDFhMTA5ZGMtZjAwNi03ODhmLTk5MDYtMTA3NTdlNTBkZWQ0IiwidSI6IjAxYTEwOWRkLTQzYTctNzJhYi1hNjUyLTQ3YTdjYjFiYzkyOCIsIngiOiIwMWExMDllMC1lYWZjLTcwYTYtYTQ4NC03NGJhMDM5NzgwYzUiLCJkIjoiVGFibGV0IDMifQ:1xDYpl:rrWwoKgS3dVLp5eeoTOPy7I2XYlV6G6meAmBPCeMYOU",
+     "location": {
+      "lat": "29.560100",
+      "lng": "-95.807200",
+      "accuracy_m": "8.0",
+      "fix_at": "2026-10-05T02:53:59.413856+00:00"
+     },
+     "payload": {
+      "outcome": "passed"
+     }
+    }
+   ]
+  },
+  "response": {
+   "work_order_id": "01a109dd-a9d1-7bc7-995b-335d36a0f826",
+   "accepted": 1,
+   "duplicate": 0,
+   "refused": 0,
+   "held_for_review": 0,
+   "acknowledged": [
+    "WO-0034-1791168839-close"
+   ],
+   "items": [
+    {
+     "key": "WO-0034-1791168839-close",
+     "kind": "close",
+     "seq": 1,
+     "result": "accepted",
+     "ack": true,
+     "detail": {
+      "id": "01a109dd-a9d1-7bc7-995b-335d36a0f826",
+      "state": "completed",
+      "awaiting_review": true,
+      "br_ref": "BR-MET-110"
+     }
+    }
+   ],
+   "synced_at": "2026-10-05T02:53:59.651751+00:00",
+   "br_ref": "BR-WRK-042"
+  }
+ }
+]

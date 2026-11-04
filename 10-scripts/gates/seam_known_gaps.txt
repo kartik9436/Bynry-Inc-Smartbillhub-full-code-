@@ -1,0 +1,181 @@
+# G20 — PARKED SEAM GAPS. A documented cross-module contract whose owning module
+# publishes no implementer, together with the reason its caller's fallback is
+# honest anyway. Every row here is REAL, UNFIXED and ROUTED — never hidden. The
+# gate names the count on every run and the docstring of g20_seam_implementers.py
+# explains what each column buys.
+#
+#   <apps.M.K.name>  <caller>  <fallback>  <guard>  <YYYY-MM-DD>  <reason>
+#
+# fallback — what the CALLER does while the seam is dark:
+#   reports-absent      returns None/()/[]/a stated problem; the caller must
+#                       handle absence and cannot mistake it for an answer
+#   refuses             raises, so the operation stops rather than guessing
+#   alternative         a second documented callable IS published and runs
+#   substitutes-answer  returns a value the caller uses as FACT. ⚠ This is
+#                       DEF-075's shape — `financial_records_exist` substituting
+#                       `False` is what let a tenant with issued bill
+#                       BL-2606-000001 (108.88 USD) re-denominate at 200 OK.
+#
+# guard — the condition that keeps the reason true, re-asked on every run:
+#   none                no construction claim; absence cannot become a lie
+#   absent=mod.Sym[,…]  the symbols whose ABSENCE makes the fallback honest.
+#                       The gate FAILS the moment one appears.
+#   alt=apps.M.K.name   the alternative that runs instead; must still resolve.
+#
+# ⚠ ADDING A ROW IS NOT HOW A FINDING IS CLOSED. The fix is to publish the
+# function in the owning module. A row buys time and writes down the price.
+
+# ── reports-absent: the caller renders/records "unavailable", never a value ──
+# ONE ROW WAS DELETED FROM HERE ON 2026-09-02 (the red-tip lane), and it is the
+# good kind of closure: `apps.customers.selectors.delivery_channel_election_for_account`
+# IS NOW PUBLISHED — 06-backend/apps/customers/selectors.py:2593, landed by
+# CR-052 W4 task 14 on 2026-08-31 with migration `customers 0034`, which built
+# the two columns (`Account.paperless`, `Account.sms_reminders`) the park's own
+# `absent=` guard named. The seam was NOT widened and apps/billing/delivery_seam.py
+# was not edited: it had asked for the read by name (`ELECTION_READ`) since W3,
+# so the day the columns landed it simply started answering. Measured there:
+# an account electing nothing queues ONE row (`pdf_print`), paperless queues TWO
+# (`pdf_print` + `email`), both switches queue THREE, and nothing ever queues zero.
+# The line is DELETED rather than annotated, for this file's standing reason:
+# G20 fails on a park whose target resolves, and a park that has done its job and
+# stays behind is a stale allowlist. G20 now guards this seam like any other.
+#
+apps.billing.services.account_aging_state apps/customers/seams.py reports-absent none 2026-08-11 BR-CUS-016 Current/30d/60+ is DERIVED from open-invoice due-date math and never stored. None means the S17 pill shows the STORED status only and states no aging. A fabricated "Current" would be a claim about money, so absence is the safe answer and stays safe however many invoices billing grows.
+# ── RETIRED 2026-09-25 · apps.rating.selectors.tax_authority_id_for_tax ────
+# The park sat here from 2026-08-11 citing OQ-116, and G20 went red on it:
+#   "STALE PARK line 44: apps.rating.selectors.tax_authority_id_for_tax
+#    RESOLVES now — the park has done its job; delete the row so the gate
+#    guards it again"
+# Rating publishes the read: 06-backend/apps/rating/selectors.py:3645, landed
+# by `b813394a6` on 2026-09-24 with Finance Phase 0. `apps/billing/posting_seam.py`
+# was not edited and the seam was not widened -- it had asked for the read BY
+# NAME (`TAX_AUTHORITY_READ`) since 2026-08-11, so the day rating published it
+# the seam simply started getting an answer.
+# The line is DELETED rather than annotated, for this file's standing reason
+# recorded above: a park whose target resolves is an allowlist entry, and G20
+# guards this seam like any other now.
+# ⚠ `posting_seam.py` still carries prose saying rating publishes no such read
+#   (its lines 187 and 1503). That is hard-won law 1 in a 🔒 money-path file and
+#   is REPORTED rather than edited here, by the lane that owns it.
+
+apps.metering.selectors.unbilled_read_rollup apps/reports/dashboard_seams.py reports-absent none 2026-08-16 US-REP-019 / S7. Metering owns meter_reads and publishes a paginated LIST for S25, not a count of committed-but-unbilled reads. The dashboard tile renders "not available" with that sentence and no number at all; counting from reports would mean querying metering's tables (B1 forbids it, G6 greps for it) and would create a second counter of metering's own fact, which is DEF-104's shape.
+apps.customers.selectors.account_status_class_counts apps/reports/dashboard_seams.py reports-absent none 2026-08-16 US-REP-019 / S7, BR-REP-012. Active connections = Active + Marked disconnect + Vacation hold, Pending activation and Closed EXCLUDED. Customers publishes accounts_rollup() with a total and no status-class split. The total is deliberately NOT substituted: it counts the two classes the rule excludes, so under this label it is a wrong figure rather than an approximate one — DEF-075 exactly.
+apps.payments.summary.failed_payment_count apps/reports/dashboard_seams.py reports-absent none 2026-08-16 US-REP-019 / S7. summary().failed is a LIST sliced [:50] for the S32 panel, so its length counts rows chosen for a screen and not failed payments: a tenant with eighty failures would read 50 on the first screen after sign-in, which is a false number rather than a smaller true one. The tile refuses instead.
+apps.rating.selectors.pending_approval_count apps/reports/dashboard_seams.py reports-absent none 2026-08-19 US-REP-019 / S7, BR-REP-032. DSH-01's `review` to-do for rate approvals. Rating owns what 'pending approval' MEANS (BR-RAT-*) and counting draft schedules from reports would be a second module deciding a rating lifecycle question. None contributes NO ROW — the panel shows no task rather than a task of unknown size, and under the PO ruling of 2026-08-19 it could never show a zero either. Parked at CR-012's closure: the seam was declared on 2026-08-18 and G20 has named it since; the row records the price rather than paying it.
+apps.customers.selectors.disconnect_eligible_count apps/reports/dashboard_seams.py reports-absent none 2026-08-19 US-REP-019 / S7, BR-REP-032. DSH-01's second `review` to-do. Eligibility is A15's rule set — arrears, the medical hold, the collection tier — and is emphatically NOT 'balance > 0', which is the number a dashboard would reach for. A WRONG COUNT HERE PROPOSES DISCONNECTING A HOUSEHOLD, so the panel contributes no row at all rather than an approximation. Parked at CR-012's closure.
+apps.ledger.selectors.open_close_period apps/reports/dashboard_seams.py reports-absent none 2026-08-19 US-REP-019 / S7, BR-REP-032. DSH-01's `draft` to-do — the period a finance close is outstanding for. The ledger owns period state (BR-TEN-023/038) and a dashboard deciding a month was 'still open' would be a second opinion on the one fact a finance officer plans their week around. ⚠ Its documented return is a DICT naming the period, not a count, and calling int() on it was DEF-304 — the row now renders label-alone when it lands. Parked at CR-012's closure.
+apps.tenancy.selectors.monthly_revenue_target apps/reports/dashboard_seams.py reports-absent none 2026-08-19 US-REP-019 / S7, BR-REP-034. The MTD-revenue tile's sub-line is a percentage against a target A HUMAN TYPED. None is the RULED state and not a stub (PO 2026-08-18, option B): with no target the tile is the figure alone — no sub-line, no percentage, no bar, no delta — which is what every tenant on this deployment sees. A default target would put a denominator nobody chose behind a money figure. Parked at CR-012's closure.
+apps.tenancy.selectors.current_subscription apps/reports/dashboard_seams.py reports-absent none 2026-08-19 US-REP-019 / S7. r10 draws 'of 1,000 plan · Growth' under Active connections. None means the tile carries the count alone and makes no claim about a plan limit; inventing one would print a commercial threshold the tenant never agreed to, and the requirement puts upgrade prompts in Settings -> Subscription rather than here. Parked at CR-012's closure.
+
+# ── refuses: the operation stops rather than proceeding on a guess ───────────
+apps.billing.services.issue_credit_note apps/billing/rating_seam.py refuses none 2026-08-11 GT-6 is frozen (B5, finance-signed 2026-08-08) and the implementation is not written. The seam raises through _require naming the golden test, so nothing here guesses a figure on a finance-signed path.
+
+# ── alternative: a second documented callable is published and is what runs ──
+apps.billing.selectors.issued_invoices_for_account apps/payments/billing_seam.py alternative alt=apps.billing.selectors.invoice_queryset 2026-08-11 BR-PAY-010. The seam documents a preferred read and a fallback read; the fallback IS published and is what allocation actually uses, so open bills are read from real rows. Parked rather than deleted because the preferred contract is still the one the seam asks for first.
+apps.billing.selectors.billed_volume_by_service apps/ledger/billing_seam.py alternative alt=apps.billing.selectors.invoice_queryset 2026-08-15 BR-LED-032 / US-LED-020. The BILLED half of the bought-vs-billed reconciliation — the 910,000 gal that turns 1,000,000 gal bought into 9.00% unaccounted for. Billing publishes no per-service volume read, so the seam falls back to billing's own published tenant-scoped invoice_queryset and aggregates usage lines along the reviewed cross-module edge; no billing model is imported (G6 rule 4) and no billing file was edited. Ledger field map D-13 routes this read to a published SELECTOR SEAM precisely so the ledger read model keeps its no-import law. Closes by publishing the read, not by widening the fallback.
+apps.customers.selectors.unit_id_for_account apps/ledger/dimension_seam.py alternative alt=apps.customers.selectors.account_queryset 2026-08-16 BR-LED-001 / US-LED-002. The first half of the account -> unit -> premises chain the posting service stamps on every money line. Customers publishes no purpose-built read, so the seam falls back to customers' OWN published tenant-scoped account_queryset and reads one column off it; no customers model is imported (G6 rule 4) and no customers file was edited -- another lane may be in apps/customers right now. The scoping is customers' own (its queryset is RLS-bound), which is why this seam does not re-implement it, and US-LED-002 TC-6 asserts a neighbour's account id resolves to nothing. Closes by publishing the read, not by widening the fallback.
+apps.metering.selectors.premises_id_for_unit apps/ledger/dimension_seam.py alternative alt=apps.metering.selectors.unit_row 2026-08-16 BR-LED-001 / BR-MET-046 / US-LED-002. The second half of the same chain. Metering publishes no purpose-built read, so the seam falls back to metering's OWN published unit_row(unit_id), which select_related('premises') and raises for a unit outside the tenant. The fallback is honest because units NEVER move between premises (BR-MET-046), so the two reads can only ever agree; what a purpose-built read would buy is one query instead of a materialised row, not a different answer. Closes by publishing the read.
+
+# ── substitutes-answer: ⚠ DEF-075's shape — three of five CLOSED 2026-08-12 ─
+# THREE ROWS WERE DELETED FROM HERE ON 2026-08-12 because their counters were
+# published (DEF-079): plan_invoice_count, charge_line_count and
+# reason_code_used_by_count now come from apps/billing/selectors.py. A park that
+# has done its job and stays behind is a stale allowlist, so the row goes rather
+# than gaining a 'fixed' note — G20 fails on a park whose target resolves.
+#
+# ONE OF THE TWO IS CLOSED (2026-08-15, metering/assets/audit lane).
+# `apps.metering.services.read_count_for_asset` IS NOW PUBLISHED — the counter
+# was written, not the fallback widened, which is what this file's header says
+# closing a row looks like. Its line is DELETED rather than annotated: G20 fails
+# on a park whose target resolves, and a park that has done its job and stays
+# behind is a stale allowlist.
+#
+# THE SECOND LEG REMAINS, and it is not a matter of nobody having written it:
+# NO INVOICE LINE NAMES AN ASSET. There is no column and no join from
+# `invoice_lines` to an asset or a meter, so the count cannot be derived at all
+# — a SCHEMA gap, not an unwired seam, and guessing a chain through service
+# points would answer a different question. It stays parked with the real
+# blocker, and on 2026-08-15 its GUARD WAS TIGHTENED from `none` to the three
+# column names, so the park now EXPIRES the moment one arrives (red-proved:
+# adding an `asset` column to InvoiceLine takes this gate to
+# "PARK EXPIRED line 65 … it exists now, so the fallback is no longer honest by
+# construction", and removing it restores PASS).
+#
+# ⚠ AND THE "HALF-SIGHTED" CLAIM IS NOW ARGUED RATHER THAN ASSERTED. It used to
+# end *"an asset named only on issued invoice lines still reads as
+# unreferenced"*, which reads as a live hole. Walk the caller and it is not one:
+# `delete_asset` refuses unless the status is INVENTORY, then refuses on ANY
+# non-zero entry of `asset_reference_probe` — which counts `AssetAssignment`,
+# assets' OWN always-answerable table — and an asset cannot reach an invoice
+# line without having been ASSIGNED to a service point, because that assignment
+# is what produces the reads a bill is priced from. So every asset this dark
+# counter could return non-zero for is already refused by the assignments leg.
+# What is genuinely lost is the refusal MESSAGE: a clerk blocked by an
+# assignment is not told how many bills also name the meter. A worse sentence,
+# not a worse outcome. The full argument is in
+# `apps/assets/seams.invoice_line_count_for_asset` and must be RE-ARGUED, never
+# inherited, the day the column lands.
+apps.billing.services.invoice_line_count_for_asset apps/assets/seams.py substitutes-answer absent=billing.InvoiceLine.asset,billing.InvoiceLine.asset_id,billing.InvoiceLine.meter 2026-08-11 BR-AST-013 the billing half of the delete gate, and THE LAST OF DEF-079's five. Returns 0. billing.InvoiceLine EXISTS but carries NO asset or meter column, so this is a SCHEMA gap needing a B2 addendum, not an unwired function — the other four rows closed by publishing a counter and this one cannot. GUARD TIGHTENED 2026-08-15 from `none` to the three column names: the moment invoice_lines gains any of them the park EXPIRES and this gate goes RED, which is the arrival signal a `none` guard could never give. WHY THE 0 CANNOT LET A BILLED ASSET BE DELETED ANYWAY, argued in full in apps/assets/seams.invoice_line_count_for_asset and re-checkable: delete_asset refuses unless status is INVENTORY, then refuses on ANY non-zero probe entry including AssetAssignment — assets' OWN always-answerable table — and an asset cannot reach an invoice line without having been assigned to a service point, because that assignment is what produces the reads a bill is priced from. The residue is the refusal MESSAGE (a clerk blocked by an assignment is not told how many bills also name the meter), not the outcome.
+
+# ── reports-absent: the notifications delivery core (W3, 2026-08-15) ────────
+# ⚠ THE TWO `apps.integrations.services.*` ROWS WERE DELETED 2026-09-04 BY THE
+# CR-069 wave E build lane, BECAUSE THEY RESOLVE — which is what G20 asks for
+# in as many words: *the park has done its job; delete the row so the gate
+# guards it again*. `dispatch_outbound_batch` and `provider_connection_status`
+# are published (`apps/integrations/seams/notifications.py`, re-exported from
+# `services.py` so the neighbour's address never moved). The paragraph below
+# is KEPT because it is the record of what the absence cost and why the
+# fallback was safe while it lasted — and because one half of it turned out to
+# be load-bearing in a way nobody predicted: `channel_route` answered *this
+# tenant has no provider* by asking whether the ADAPTER existed, which was
+# only ever true by coincidence. Publishing these two separated the two
+# questions. See the decision log, 2026-09-04.
+#
+# BOTH rows are the SAME absence seen from two sides: `apps/integrations` holds
+# three docstrings — models.py, services.py, registry.py — and no code at all.
+# Neither row is "somebody forgot to write a function"; the owning MODULE is
+# unbuilt, and its stories (EP-INT-01 connections surface, B7 provider config)
+# are not in this wave. The consequence is stated loudly rather than parked
+# quietly: **this deployment dispatches NOTHING on any channel, print included**,
+# and US-NOT-003 TC-1 (a print batch reaching `sent`) is not satisfiable until a
+# print-vendor integration exists. `apps/notifications/dispatcher.py` carries
+# that on every CycleResult and a test asserts it.
+#
+# ⚠ UPGRADED FROM "OWED" TO **ACCEPTED** — Product Owner ruling, 2026-08-15
+# (notifications CONTENT lane). *Issuing a bill does NOT mean the customer
+# receives one.* **Delivery is OUT of this release, by decision** — no provider
+# adapter exists or is coming on ANY channel, print included, and the chain ends
+# at a RENDERED DOCUMENT. So a dispatch cycle reporting the adapter absent is
+# **CORRECT OUTPUT, not a defect**, and these two rows are no longer a debt
+# somebody is expected to pay down this release. They STAY here rather than
+# being deleted, because the gate is what keeps the absence visible and because
+# G20 fails on a park whose target resolves — the day an adapter IS published,
+# both rows must go and the fallbacks stop being the whole story.
+# ⛔ NOBODY IS TO BUILD OR FAKE AN ADAPTER TO MAKE A TEST GREEN. US-NOT-003 TC-1
+# was RE-SCOPED against this ruling (see EP-NOT-01's TC-1 note and the docstring
+# of `test_us_not_003_tc1__print_is_the_one_channel_v1_activates`) rather than
+# left failing.
+
+# ── US-TEN-019 sample data: FIVE PARKED ROWS DELETED 2026-08-16 (DEF-153) ──
+# They parked `seed_sample_records` on rating, metering, assets and customers
+# plus `seed_sample_reads` on metering, each guarded on the ABSENCE of
+# BR-TEN-057's `is_sample` column. The columns landed (rating 0005, metering
+# 0008, assets 0006, customers 0010) and every one of the five functions is
+# published, so the guards expired and the parks are DELETED rather than
+# annotated — this file's own header says a park whose target resolves is a
+# stale allowlist and G20 fails on one.
+#
+# The park did exactly what it was for: it named a real, unfixed, routed gap
+# for a day, and the gap it named turned out to be the whole reason a
+# brand-new tenant was empty in production (DEF-153, critical). What it could
+# NOT do is schedule its own unparking — which is the durable finding that
+# defect's prevention column asks for: **a parked seam that nothing schedules
+# to unpark is indistinguishable from a forgotten one.**
+
+apps.customers.selectors.occupying_status_codes apps/metering/seams.py alternative alt=apps.customers.services.OCCUPYING_BEHAVIOR_CLASSES 2026-08-29 CR-047 · BR-CUS-017/BR-CUS-022. Stage 3's two new accounts rules need to know which account statuses TAKE a unit, so a DRAFT row (lawful on an occupied unit, lawful with no start date) is not rejected for a refusal it would never meet. The documented selector is not authored yet and the seam falls back to the owning module's OWN published constants — OCCUPYING_BEHAVIOR_CLASSES crossed with SEED_ACCOUNT_STATUSES — which is BR-CUS-055's seeded vocabulary read from customers rather than copied into metering, so the answer is customers' answer either way. WHAT THE FALLBACK CANNOT SEE, and why that is survivable rather than hidden: a status a tenant ADDED, or a seeded one whose behaviour class a tenant CHANGED, lives in the account_statuses TABLE and is invisible to a constant. A row carrying one is judged a draft at stage 3, reaches the loader, and CR-047's per-row savepoint turns _make_occupying's correct refusal into ONE rejected row carrying its reason and its fix — so the residue costs a rehearsal that under-reports by a row, never a run that half-loads and never a fabricated pass. UNPARK CONDITION, stated so this is not a forgotten park: the row goes the day customers publishes occupying_status_codes(), and apps/metering/seams.occupying_account_status_codes already prefers it, so the seam lights up with no edit on either side.
+apps.billing.selectors.billed_volume_by_service_and_premises apps/ledger/billing_seam.py alternative alt=apps.billing.selectors.invoice_queryset 2026-09-01 BR-LED-031 as amended 2026-09-01 / CR-060 C9 / US-LED-020. The BILLED half of the bought-vs-billed reconciliation AT THE (BUILDING, SERVICE) GRAIN — the 570,000 gal that turns 600,000 gal bought at one building into 5.00% unaccounted for, which is the figure a sub-metering company opens the product for. Billing publishes no per-premises volume read, so the seam falls back to billing's own published tenant-scoped invoice_queryset — invoices.account_id is a REVIEWED cross-module edge (B2 section 2) — and resolves account to unit to premises through dimension_seam.location_for_account, which US-LED-002 already built and which apps/ledger/posting.py stamps every journal line from. No billing, customers or metering model is imported (G6 rule 4) and no file outside apps/ledger was edited. Walking account__unit__premises_id in that queryset was considered and REFUSED: it would be a SECOND implementation of the same chain, which BR-TEN-013 forbids and which is how the cost side and the receivable side would eventually attribute the same money to two different buildings. Cost stated rather than discovered: the chain is two queries per DISTINCT account, memoised for the length of one call, so forty buildings with twenty members each is 1,600 queries on a monthly report - acceptable at this product's stated size and exactly what publishing the read would remove. Closes by publishing the read, not by widening the fallback.
+apps.metering.selectors.unbilled_reads apps/ledger/metering_seam.py alternative alt=apps.metering.selectors.read_list 2026-09-02 BR-LED-791 / CR-060 C2 / task T7. WHICH READS ARE RECORDED AND NOT YET BILLED - the measured half of the unbilled-revenue accrual, the 10 kgal of water and 300 kWh that turn into a 68.04 debit to 1210 Unbilled AR on a month that had never posted to that account at all. Metering owns meter_reads and publishes a paginated LIST for S25 plus a lineage-head filter, not a per-account per-service roll-up of committed-but-unbilled consumption - the same absence the apps.metering.selectors.unbilled_read_rollup row above already records from the dashboard side. So the seam falls back to metering's own published tenant-scoped read_list queryset, which applies CLAUDE.md rule 1 and BR-MET-016's lineage-head filter itself, and reads the heads along it with values() and iterator() so no model instance is materialised. No metering model is imported (G6 rule 4) and no metering file was edited. TWO THINGS THE FALLBACK CARRIES AND SAYS SO: BR-MET-055's 730-day hot window is metering's own and is disclosed on every answer as unbilled_reads_limited_to_metering_hot_window rather than defeated, and a read is counted as unbilled only when its lifecycle is committed AND it falls after its account's last issued service period - belt and braces, because a read taken before the BILLED lock was wired at issue (DEF-098) still reads committed. Requiring both can only under-accrue, which is the safe direction for an entry that reverses itself on day one. Closes by publishing the read, not by widening the fallback.
+apps.billing.selectors.last_priced_usage_by_account_service apps/ledger/billing_seam.py alternative alt=apps.billing.selectors.invoice_queryset 2026-09-02 BR-LED-791 / CR-060 C2 / task T7. THE PRICE BASIS FOR THE UNBILLED-REVENUE ACCRUAL - what this account was LAST charged per unit for this service, 3.10 per kgal of water and 0.123450 per kWh of electricity on the worked month, read off an issued invoice line the rating engine produced and froze. Billing publishes no such read, so this runs on the SAME published fallback its two sibling volume reads already use, ordered newest-issued-first so the latest line per (account, service) wins, and streamed with iterator() because an accrual over a large tenant walks every issued usage line its candidate accounts have. No billing model is imported (G6 rule 4) and no billing file was edited. NOTHING IS RE-RATED HERE and that is the rule rather than the implementation: BR-REP-002 says a report never recomputes money and CR-060 section 13's third exclusion says the mapping and the maths are resolved once upstream and read downstream - two implementations of one pricing rule would eventually disagree, with the books holding the copy that was wrong. A pair with no prior priced usage line is EXCLUDED AND COUNTED as account_service_has_no_prior_priced_usage_line, never priced at zero: a zero-priced read puts consumption into the accrual's quantity and nothing into its money, so the entry would understate revenue while looking complete. Closes by publishing the read, not by widening the fallback.
+apps.assets.selectors.depreciation_movement apps/ledger/assets_seam.py alternative alt=apps.assets.selectors.asset_book_value 2026-09-02 BR-LED-793 / CR-060 C20 / task T7f. The period's depreciation charge, one call, computed inside the module that owns the arithmetic. Assets publishes no such read, so the seam falls back to assets' OWN published pair — the tenant-scoped asset_list() queryset and asset_book_value(), called at the period end and at the day before the period start — and posts the DIFFERENCE. The fallback is honest because BOTH terms come from BR-AST-047's single straight-line implementation: nothing in the ledger multiplies a cost by a life, and a test greps both new files to prove no second formula was written. What a purpose-built read would buy is one call instead of two per asset, not a different answer. Closes by publishing the read, not by widening the fallback.
+apps.billing.selectors.issued_bill_count_for_unit apps/metering/seams.py reports-absent none 2026-09-09 DEF-511 / CR-089 PUJ-55. The move screen asks how many bills a unit has produced and nothing in this product counts issued invoices by unit. None means the screen prints the sentence it has printed since CR-024 — "How many bills this unit has produced cannot be shown — nothing counts bills for a single unit yet." — and NEVER a zero, which would read as "this unit has never billed" and is the fact that makes a move harmless. The guard is `none` and that is correct rather than lazy: the caller makes no construction claim, it states the absence in words, so the absence cannot become a lie however billing grows. The FIX is one function — the `.count()` of the queryset `billing.selectors.last_issued_bill_for_unit` already writes (account__unit_id, INVOICE_LOCKED_STATUSES) — in apps/billing/selectors.py, which is another lane this session. The day it lands the seam resolves at call time and the number appears with no change in metering and none on the client; 07-frontend/src/features/metering/MoveUnitModal.test.tsx and 06-backend/tests/test_cr089_j_move_preview.py each assert BOTH sides so nobody can publish half of it.
+apps.customers.service_request_reads.level_pay_asks_page apps/billing/customers_seam.py reports-absent absent=apps.customers.service_request_reads.level_pay_asks_page 2026-09-15 OQ-BIL-12359, §05 entry 25.3. A customer's ask to level their payments is an ORDINARY service request (BR-CWP-066) and carries no route, no account and no record of the amount the customer was shown, so `customers` has nothing to page. The caller answers (None, reason) and the screen states it in its own words: `count` is null and NEVER 0, because 0 on this queue says *six people asked and none of them qualifies* where the truth is *nobody could ask*. Publishing the read means giving the request those three facts, one of which narrows BR-CWP-026 — the PO's call, not a lane's, which is why this is an OQ and not a task. The `absent=` guard is the hold's expiry: the gate FAILS the moment the symbol appears, and so does 06-backend/tests/test_s253_budget_asks.py::test_hold_expires_when_customers_publishes_the_read, which names the screen to wire in its own failure message.

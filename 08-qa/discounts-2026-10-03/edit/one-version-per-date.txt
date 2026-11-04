@@ -1,0 +1,34 @@
+
+SRB72040:
+  v1 active      15.000000 2026-08-01 – 2026-12-31
+  v2 active      12.000000 2027-01-01 – no end
+  12/25/2026  versions in force: 1  billing reads v1  15% → −$9.00 off $60.00  OK
+  12/26/2026  versions in force: 1  billing reads v1  15% → −$9.00 off $60.00  OK
+  12/27/2026  versions in force: 1  billing reads v1  15% → −$9.00 off $60.00  OK
+  12/28/2026  versions in force: 1  billing reads v1  15% → −$9.00 off $60.00  OK
+  12/29/2026  versions in force: 1  billing reads v1  15% → −$9.00 off $60.00  OK
+  12/30/2026  versions in force: 1  billing reads v1  15% → −$9.00 off $60.00  OK
+  12/31/2026  versions in force: 1  billing reads v1  15% → −$9.00 off $60.00  OK
+  01/01/2027  versions in force: 1  billing reads v2  12% → −$7.20 off $60.00  OK
+  01/02/2027  versions in force: 1  billing reads v2  12% → −$7.20 off $60.00  OK
+  01/03/2027  versions in force: 1  billing reads v2  12% → −$7.20 off $60.00  OK
+  01/04/2027  versions in force: 1  billing reads v2  12% → −$7.20 off $60.00  OK
+  01/05/2027  versions in force: 1  billing reads v2  12% → −$7.20 off $60.00  OK
+
+SRC72040:
+  v1 superseded  15.000000 2026-08-01 – no end
+  v2 active       1.500000 2026-08-01 – no end
+  12/25/2026  versions in force: 1  billing reads v2  1.5% → −$0.90 off $60.00  OK
+  12/26/2026  versions in force: 1  billing reads v2  1.5% → −$0.90 off $60.00  OK
+  12/27/2026  versions in force: 1  billing reads v2  1.5% → −$0.90 off $60.00  OK
+  12/28/2026  versions in force: 1  billing reads v2  1.5% → −$0.90 off $60.00  OK
+  12/29/2026  versions in force: 1  billing reads v2  1.5% → −$0.90 off $60.00  OK
+  12/30/2026  versions in force: 1  billing reads v2  1.5% → −$0.90 off $60.00  OK
+  12/31/2026  versions in force: 1  billing reads v2  1.5% → −$0.90 off $60.00  OK
+  01/01/2027  versions in force: 1  billing reads v2  1.5% → −$0.90 off $60.00  OK
+  01/02/2027  versions in force: 1  billing reads v2  1.5% → −$0.90 off $60.00  OK
+  01/03/2027  versions in force: 1  billing reads v2  1.5% → −$0.90 off $60.00  OK
+  01/04/2027  versions in force: 1  billing reads v2  1.5% → −$0.90 off $60.00  OK
+  01/05/2027  versions in force: 1  billing reads v2  1.5% → −$0.90 off $60.00  OK
+
+EXACTLY ONE VERSION PER DATE

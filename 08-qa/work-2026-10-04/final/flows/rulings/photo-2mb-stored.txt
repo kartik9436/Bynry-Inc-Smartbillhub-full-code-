@@ -1,0 +1,10 @@
+ state  | bytes_received | bytes_stored | byte_length 
+--------+----------------+--------------+-------------
+ landed |        4082031 |        97510 |       97510
+(1 row)
+
+      action       |  recv   | stored 
+-------------------+---------+--------
+ work.photo.landed | 4082031 | 97510
+(1 row)
+

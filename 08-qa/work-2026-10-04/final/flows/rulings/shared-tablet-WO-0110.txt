@@ -1,0 +1,42 @@
+  [R. Patel] POST   /auth/session -> 201 (780 ms)
+  [R. Patel] POST   /work/mobile/capture-token -> 200 (75 ms)
+  [R. Patel] GET    /work/mobile/changes?page_size=50 -> 200 (595 ms)
+
+R. Patel: 8 job(s) in the feed, 8 open, 1 chosen: ['WO-0110']
+
+── WO-0110 ─────────────────────────────────────────
+  [R. Patel] GET    /work/mobile/jobs/01a10a23-8620-736c-bcae-1e347a4528bd -> 200 (143 ms)
+  [R. Patel] GET    /work/mobile/jobs/01a10a23-8620-736c-bcae-1e347a4528bd/readings?page=1&page_size=50 -> 200 (84 ms)
+  [R. Patel] POST   /work/mobile/jobs/01a10a23-8620-736c-bcae-1e347a4528bd/accept -> 200 (87 ms)
+  [R. Patel] POST   /work/mobile/jobs/01a10a23-8620-736c-bcae-1e347a4528bd/acts -> 200 (119 ms)
+  [R. Patel] POST   /work/mobile/jobs/01a10a23-8620-736c-bcae-1e347a4528bd/acts -> 200 (84 ms)
+  [R. Patel] POST   /work-orders/01a10a23-8620-736c-bcae-1e347a4528bd/signature -> 200 (84 ms)
+      captured offline: 6 items, 1 photos — held on the device
+
+── shared tablet: X signs out OFFLINE, Y signs in ──────────────
+  [R. Patel] DELETE /auth/session -> 204 (77 ms)
+  [M. Chen] POST   /auth/session -> 201 (807 ms)
+  [M. Chen] GET    /work/mobile/changes?page_size=50 -> 200 (259 ms)
+      Y's feed: ['WO-0025', 'WO-0111'] · X's jobs visible to Y: none
+  [M. Chen] GET    /work/mobile/jobs/01a10a23-8620-736c-bcae-1e347a4528bd -> 404 (84 ms)
+      Y opens X's WO-0110: 404 (404 = not visible)
+      signal returns: the device sends X's held work under Y's session, with X's token
+  [M. Chen] POST   /work/mobile/jobs/01a10a23-8620-736c-bcae-1e347a4528bd/sync -> 200 (254 ms)
+      page 1: {'accepted': 5, 'duplicate': 0, 'held_for_review': 0, 'refused': 0} · acknowledged 5/5
+  [M. Chen] PUT    /work/mobile/photos/78f9f393-f52b-41e5-982c-62d507ea1eb8 -> 200 · 92,592 bytes · landed
+  [M. Chen] POST   /work/mobile/jobs/01a10a23-8620-736c-bcae-1e347a4528bd/sync -> 200 (163 ms)
+      page 1: {'accepted': 1, 'duplicate': 0, 'held_for_review': 0, 'refused': 0} · acknowledged 1/1
+  [M. Chen] DELETE /auth/session -> 204 (71 ms)
+  [R. Patel] POST   /auth/session -> 201 (787 ms)
+  [R. Patel] GET    /work/mobile/reconciliation -> 200 (83 ms)
+      X's reconciliation (server side): {'technician': {'name': 'R. Patel'}, 'items_stored': 146, 'items_held_for_review': 0, 'by_kind': {'close': 18, 'material': 16, 'photo': 25, 'reading': 21, 'safety_tick': 21, 'task_tick': 45}, 'photos_declared': 25, 'photos_landed': 25, 'br_ref': 'BR-WRK-063'}
+  [Dana] POST   /auth/session -> 201 (743 ms)
+
+── the office accepts ──────────────────────────────────────
+  [Dana] GET    /work-orders/01a10a23-8620-736c-bcae-1e347a4528bd -> 200 (292 ms)
+      office sees: state=completed photos_uploading=0 location={'lat': '29.560100', 'lng': '-95.807200', 'fix_at': '2026-10-05T03:37:55.695276+00:00', 'precise': True, 'accuracy_m': '8.0', 'threshold_m': 50}
+  [Dana] POST   /work-orders/01a10a23-8620-736c-bcae-1e347a4528bd/accept -> 200 (483 ms)
+   WO-0110: accept -> 200; final state=completed accepted=True
+
+FINAL:
+   WO-0110: accepted

@@ -1,0 +1,23 @@
+# J14 — Lockbox day (40-row import, 2 errors → day×method batches → bank rec with a −5.00 difference)
+
+---
+id: J14
+tier: 2
+rules: [BR-PAY-023, BR-PAY-025, BR-PAY-033, BR-PAY-021, BR-PAY-019, BR-PAY-035, BR-PAY-004, BR-REP-013, BR-REP-010, BR-AUD-018]
+stories: [US-PAY-003, US-PAY-001, US-PAY-020, US-PAY-021, US-PAY-022, US-PAY-023, US-LED-001, US-REP-007]
+# journey→story wiring sweep pending: story frontmatter `journeys:` updated in a later sweep (00-e2e-design.md §6)
+---
+
+**Intent.** One physical day of money-in, followed to the bank and back: counter receipts + a 40-row lockbox file (2 rows that must NOT be guessed), deposit batches cut by TILL × tender on the POSTING date (⚠ **day × method until 2026-09-22, `P0.6`**) — the frozen PE-10 pair **471.39 / 121.78**, whose codes read `DEP-260808-CHK` / `DEP-260808-CSH` on rows banked before the re-key and would be allocated as `DEP-260808-0001` / `-0002` today — then the statement lands and PE-11's **−5.00** difference is EXPLAINED (reason + GL), never force-matched, and the reconciled batches lock.
+
+**Fixture.** Tenant brazos-bend · **Aug 8, 2026** · counter receipts: checks 292.87 + 142.30 + 36.22, cash 105.36 + 16.42 (the PE-10 set) · lockbox CSV 40 rows, 2 with failing account-match heuristics; committed lockbox total and its method batch **engine-computed** (00-e2e-design.md §5) · bank statement Aug 11: line 588.17 vs counter-batch total 593.17 · auto-match tolerance date ±3 days (finance setting).
+
+| # | Date · action | Handoff contract (what this step leaves) | Downstream assertions (bill · ledger · reports · queue · audit) | Rule |
+|---|---|---|---|---|
+| 1 | **Aug 8 09:00** — counter entry: 3 checks + 2 cash recorded; posting date USER-ENTERED Aug 8, clearing dates per instrument | Five cleared/pending payments with both dates (BR-PAY-021); allocations per BR-PAY-010; receipts queued per cleared payment | S32 "Today total" reads POSTING basis, "Method mix MTD" clearing — the blessed label pair (BR-REP-010); audit per entry | BR-PAY-033/022 |
+| 2 | **Aug 8 10:00** — lockbox CSV staged: batch → per-row validation → preview **38 ok / 2 errors** (account-match heuristic flags for review — never auto-guess silently) → commit 38, skip-with-report; file + SHA-256 stamp; idempotency = file+tags | 38 committed payments (total engine-computed); 2-row error report attached to the batch | Compliance stamp on the batch; the 2 skipped rows never touched the books; audit | **BR-PAY-023** |
+| 3 | **Aug 8 10:30** — the same file uploaded again | **BLOCKED** by the file+tags idempotency key, with who/when/link to the existing batch; refusal writes an attempt row | Zero duplicate payments; books identical to step 2 | BR-PAY-023 · BR-AUD-018 |
+| 4 | **Aug 8 17:00** — deposit batches cut, grouped **by TILL × tender on the POSTING date** (the physical drawer day; ⚠ **day × method until 2026-09-22, `P0.6` — and with one till a day these two batches are unchanged**): **check = 471.39** (292.87+142.30+36.22) · **cash = 121.78** (105.36+16.42) (PE-10, ❄️ frozen and untouched); lockbox rows batch under their own method and that day's SYSTEM till, which nobody sat at | Numbered batches **allocated** from the tenant DEP- series (Settings → Numbering, PO 2026-09-22) rather than composed; batches are grouping only — NO ledger effect | S37 lists the batches; batch day = posting even though the bank clears later (BR-REP-013); audit | **BR-PAY-025** |
+| 5 | **Aug 11** — bank statement import (S38): auto-match bank line ↔ batch on amount + date ±3d (CLEARING side) → exception: bank **588.17** vs batch **593.17** → difference **−5.00** | Matched batches confirmed; one exception open in the reconcile modal | Matching runs on clearing dates (BR-PAY-021); exception visible, nothing auto-resolved | BR-PAY-019 |
+| 6 | **Aug 11** — reconcile modal: −5.00 explained = **bank fee**, reason + GL required; "Force match anyway" does not exist (permanently superseded) → reconcile → **batch totals LOCK**; Unreconcile is the only undo | Reconciled, locked batches; difference posted per its reason GL (the only ledger row born here) | Trail on S39/S40; ledger balanced incl. the 5.00 fee line; a post-lock edit attempt is refused + attempt-audited (BR-AUD-018) | BR-PAY-035 · **BR-PAY-004** |
+| 7 | **INVARIANCE** — the 2 error rows were skipped, not guessed; the drawer day (posting) never moved to the bank day (clearing); locked batch totals immutable; every payment traceable file→row→payment→allocation→batch→statement line | — | Payments-by-method report purpose-aware on clearing basis (US-REP-007, basis labeled); tie-outs hold (BR-LED-007); full audit chain | hard rule 7 |

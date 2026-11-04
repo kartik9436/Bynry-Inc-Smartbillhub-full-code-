@@ -1,0 +1,71 @@
+{
+  "count": 8,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": "01a106d3-12f7-7e3a-90ae-b178e42fa35a",
+      "code": "ELECTRIC_I",
+      "name": "Electric I",
+      "active": true,
+      "is_system": true,
+      "used_by": 0
+    },
+    {
+      "id": "01a106d3-12f8-7d93-b3d3-2e3e1d990c30",
+      "code": "ELECTRIC_II",
+      "name": "Electric II",
+      "active": true,
+      "is_system": true,
+      "used_by": 0
+    },
+    {
+      "id": "01a106d3-12fb-7c16-b9e9-47530d6f26e8",
+      "code": "EXCAVATION",
+      "name": "Excavation",
+      "active": true,
+      "is_system": true,
+      "used_by": 0
+    },
+    {
+      "id": "01a106d3-12f9-709a-8749-2587b77f8942",
+      "code": "METER_I",
+      "name": "Meter I",
+      "active": true,
+      "is_system": true,
+      "used_by": 0
+    },
+    {
+      "id": "01a106d3-12fa-7628-afd4-ad01c7f64ad9",
+      "code": "READS",
+      "name": "Reads",
+      "active": true,
+      "is_system": true,
+      "used_by": 0
+    },
+    {
+      "id": "01a106d3-12f3-78c6-a078-1cf4306225cb",
+      "code": "WATER_I",
+      "name": "Water I",
+      "active": true,
+      "is_system": true,
+      "used_by": 0
+    },
+    {
+      "id": "01a106d3-12f4-7187-bc5d-731d6b6a0459",
+      "code": "WATER_II",
+      "name": "Water II",
+      "active": true,
+      "is_system": true,
+      "used_by": 0
+    },
+    {
+      "id": "01a106d3-12f6-71c4-afd4-a2978dd618e3",
+      "code": "WATER_III",
+      "name": "Water III",
+      "active": true,
+      "is_system": true,
+      "used_by": 0
+    }
+  ]
+}

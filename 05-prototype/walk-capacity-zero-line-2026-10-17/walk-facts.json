@@ -1,0 +1,61 @@
+{
+  "runId": "01a14b14-395e-7fe0-9d4f-6ef327f38f13",
+  "flat_lines": [
+    {
+      "kind": "base",
+      "description": "battery base charge",
+      "quantity": null,
+      "unit": null,
+      "unit_price": null,
+      "amount": "25.000000"
+    },
+    {
+      "kind": "base",
+      "description": "solar base charge",
+      "quantity": null,
+      "unit": null,
+      "unit_price": null,
+      "amount": "25.000000"
+    },
+    {
+      "kind": "tax",
+      "description": "Tax Solar walk 4% tax",
+      "quantity": null,
+      "unit": null,
+      "unit_price": "0.040000",
+      "amount": "2.000000"
+    }
+  ],
+  "flat_detail_text": "← Billing BILL · CYCLE BILL BL-2610-000251 Issued Rosa Delgado · T4 Sunfield Way, CAP0-FLAT Unit 1, Katy TX 77494 · AC-2026-00057 $52.00 due 10/22/2026 · billed 10/17/2026 for 09/01/2026 – 09/30/2026 · Solar walk — monthly View the bill as sent Fix this bill Document Charges Sent2 Corrections0 Audit AMOUNT Previous balance $0.00 Payments received $0.00 Current charges $52.00 Total due $52.00 BY SERVICE SERVICE LINES AMOUNT Solar 1 $25.00 Battery 1 $25.00 Charged to the bill, not to a service Tax 1 $2.00 These add up to the bill's total. EVERY CHARGE DESCRIPTION USAGE RATE AMOUNT TAXABLE BATTERY battery base charge 4165 — Battery · Solar + battery flat fee — battery · from 2025-01-01 — — $25.00 Yes SOLAR solar base charge 4150 — Solar · Solar + battery flat fee — solar · from 2025-01-01 — — $25.00 Yes TAXES & FEES Tax Solar walk 4% tax Tax · Solar walk town · 2200-03 — Solar walk town tax payable — $0.04 $2.00 — Subtotal $50.00 Tax $2.00 Total $52.00 The accounting code on each line is the one that was recorded when the bill was issued. Changing the mapping later never changes an old bill. TAX PAID TO DESCRIPTION AMOUNT Solar walk town Tax Solar walk 4% tax $2.00 Total tax $2.00 These add up to the tax. A tax is charged on the bill, not on one service. Nothing records which service a tax belongs to.",
+  "flat_number": "BL-2610-000251",
+  "muni_lines": [
+    {
+      "kind": "usage",
+      "description": "solar usage tier 1 (0+ kW)",
+      "quantity": "6.000000",
+      "unit": "kW",
+      "unit_price": "4.000000",
+      "amount": "24.000000"
+    },
+    {
+      "kind": "base",
+      "description": "solar base charge",
+      "quantity": null,
+      "unit": null,
+      "unit_price": null,
+      "amount": "10.000000"
+    },
+    {
+      "kind": "tax",
+      "description": "Tax Solar walk 4% tax",
+      "quantity": null,
+      "unit": null,
+      "unit_price": "0.040000",
+      "amount": "1.360000"
+    }
+  ],
+  "muni_detail_text": "← Billing BILL · CYCLE BILL BL-2610-000252 Issued Hal Brenner · I4 Sunfield Way, CAP0-MUNI Unit 1, Katy TX 77494 · AC-2026-00058 $35.36 due 10/22/2026 · billed 10/17/2026 for 09/01/2026 – 09/30/2026 · Solar walk — monthly View the bill as sent Fix this bill Document Charges Sent2 Corrections0 Audit AMOUNT Previous balance $0.00 Payments received $0.00 Current charges $35.36 Total due $35.36 BY SERVICE SERVICE LINES AMOUNT Solar 2 $34.00 Charged to the bill, not to a service Tax 1 $1.36 These add up to the bill's total. EVERY CHARGE DESCRIPTION USAGE RATE AMOUNT TAXABLE SOLAR solar usage tier 1 (0+ kW) 4150 — Solar · Municipal Solar — solar · from 2025-01-01 6 kW $4.00 $24.00 Yes solar base charge 4150 — Solar · Municipal Solar — solar · from 2025-01-01 — — $10.00 Yes TAXES & FEES Tax Solar walk 4% tax Tax · Solar walk town · 2200-03 — Solar walk town tax payable — $0.04 $1.36 — Subtotal $34.00 Tax $1.36 Total $35.36 The accounting code on each line is the one that was recorded when the bill was issued. Changing the mapping later never changes an old bill. TAX PAID TO DESCRIPTION AMOUNT Solar walk town Tax Solar walk 4% tax $1.36 Total tax $1.36 These add up to the tax. A tax is charged on the bill, not on one service. Nothing records which service a tax belongs to.",
+  "muni_number": "BL-2610-000252",
+  "flat_portal_text": "BB Brazos Bend Utilities Help Sign out RD Home Bills Usage Payments Requests My details Account AC-2026-00057 T4 Sunfield Way · CAP0-FLAT Unit 1 ← Bills BILLS October 2026 Why is this different? → WHAT YOU WERE CHARGED BL-2610-000251 · 09/01/2026 to 09/30/2026 · issued 10/17/2026 SOLAR Every Solar charge on this bill LINE QUANTITY RATE AMOUNT solar base charge — — $25.00 $25.00 for this service BATTERY Every Battery charge on this bill LINE QUANTITY RATE AMOUNT battery base charge — — $25.00 $25.00 for this service TAXES AND FEES Every Taxes and fees charge on this bill LINE QUANTITY RATE AMOUNT Tax Solar walk 4% tax — 4.00% $2.00 $2.00 for this service Charges before tax $50.00 Tax $2.00 Total for this period $52.00 THE BILL WE SENT YOU This is the document that went out in the mail, exactly as it was printed. See the bill we sent → Why is my bill higher than last month? Most of the time it is one of three things: you used more water, the bill covers more days, or the last reading was an estimate and this one is real. Compare the used figure with last month's — if the jump is large and nothing changed at home, it is worth checking for a leak before you pay. Read the whole answer → We show this on every bill. Amount due $52.00 Due 10/22/2026 Pay Your account Brought forward $0.00 This bill $52.00 Paid since $0.00 Owing $52.00 Something not right? Tell us and somebody will look at this bill. Query this bill → Ask us about it → Version 2.583.1 CWP-028",
+  "muni_portal_text": "BB Brazos Bend Utilities Help Sign out HB Home Bills Usage Payments Requests My details Account AC-2026-00058 I4 Sunfield Way · CAP0-MUNI Unit 1 ← Bills BILLS October 2026 Why is this different? → WHAT YOU WERE CHARGED BL-2610-000252 · 09/01/2026 to 09/30/2026 · issued 10/17/2026 SOLAR Every Solar charge on this bill LINE QUANTITY RATE AMOUNT solar usage tier 1 (0+ kW) 6 kW $4.00 / kW $24.00 solar base charge — — $10.00 $34.00 for this service TAXES AND FEES Every Taxes and fees charge on this bill LINE QUANTITY RATE AMOUNT Tax Solar walk 4% tax — 4.00% $1.36 $1.36 for this service Charges before tax $34.00 Tax $1.36 Total for this period $35.36 THE BILL WE SENT YOU This is the document that went out in the mail, exactly as it was printed. See the bill we sent → Why is my bill higher than last month? Most of the time it is one of three things: you used more water, the bill covers more days, or the last reading was an estimate and this one is real. Compare the used figure with last month's — if the jump is large and nothing changed at home, it is worth checking for a leak before you pay. Read the whole answer → We show this on every bill. Amount due $35.36 Due 10/22/2026 Pay Your account Brought forward $0.00 This bill $35.36 Paid since $0.00 Owing $35.36 Something not right? Tell us and somebody will look at this bill. Query this bill → Ask us about it → Version 2.583.1 CWP-028"
+}

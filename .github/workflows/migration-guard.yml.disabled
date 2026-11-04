@@ -1,0 +1,86 @@
+name: migration-guard
+on:
+  pull_request: { paths: ["06-backend/apps/*/migrations/**"] }
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: Block edits to existing migrations
+        run: |
+          # New migration files are fine; MODIFYING an already-committed migration is not.
+          #
+          # ⚠ ONE FILE IS EXEMPT, ONCE, AND IT IS PINNED BY CONTENT — NOT BY PATH.
+          # PO ruling 2026-08-24, in exactly these words: "One time exception".
+          #
+          # WHY IT WAS NEEDED (DEF-639). tenancy/0004 defines its two RLS policies
+          # INLINE, creates the tables, enables FORCE RLS, runs a seed that clears
+          # `app.tenant_id`, and then exits — at which point Django validates the
+          # foreign keys it deferred. That validation is subject to those very
+          # policies, which used to RAISE on an empty marker rather than simply
+          # not matching, so a fresh database died at this step. Every OTHER policy
+          # in the product is normalised after the fact by
+          # audit/0005_rls_deny_on_unset_tenant, which fixes the whole class — but
+          # nothing outside this file can reach between its own parts.
+          #
+          # WHY A HASH AND NOT A PATH ALLOWLIST. A path exemption stays open
+          # forever and would let ANY future edit to this file through. The hash
+          # names one exact content, so the exception closes the instant it is
+          # used: edit this file again, for any reason, and the hash no longer
+          # matches and this guard fails exactly as it did before. It cannot be
+          # borrowed for a second migration either.
+          #
+          # DO NOT ADD AN ENTRY TO EXTEND THIS. A new exception is a new PO ruling
+          # with its own decision-log row, not a line appended here.
+          #
+          # ── SECOND EXCEPTION, 2026-08-24 — OQ-354, RULED, OPTION (A) ──────────
+          # The rule above was obeyed, not routed around: this is a SEPARATE PO
+          # ruling with its own row, recorded in `12-governance/01-open-questions.md`
+          # (OQ-354) and `12-governance/02-decision-log.md`. PO verbatim: *"You will
+          # ahve to do the migration step by step - you will ahve to consier a
+          # depands on b , b depends on c - so build the sequence of migration"*,
+          # which chose (A) and RULED OUT the BYPASSRLS alternative — so there is no
+          # other path to a first deploy, and refusing this change means shipping a
+          # product that cannot be installed.
+          #
+          # WHAT IT COVERS: three data migrations ended by clearing tenant context
+          # to the EMPTY STRING. `set_config(..., false)` is SESSION level, so that
+          # value outlived each migration and every later one inherited it — and
+          # PostgreSQL validates a deferred FOREIGN KEY with a scan the B2 §3 policy
+          # is evaluated against, where `''::uuid` RAISES. Each now leaves the nil
+          # sentinel, which casts under both the original and DEF-639's repaired
+          # policy and matches no row under either, so deny-by-default is unchanged.
+          # Measured on PostgreSQL 16 with a role at rolsuper=f rolbypassrls=f:
+          # empty database → `migrate` exit 0 (171 migrations, 187 tables ENABLE +
+          # FORCE, 187 policies) → `seed_demo` exit 0.
+          #
+          # ⚠ THE TENANCY HASH MOVES, AND THAT IS THE MECHANISM WORKING. That file
+          # carried the DEF-639 exception above; editing it again changed its
+          # content, so the old hash 786bb4e8… no longer matches and has been
+          # REPLACED rather than kept beside the new one. A stale hash left in this
+          # list would exempt nothing and would read as though it still did.
+          EXEMPT_SHAS="
+          9b5cc4ce14d54b383fdb6459831a92e9f5683cc93553e40ced505dcde7c430f8  06-backend/apps/assets/migrations/0003_meter_types_and_read_methods.py
+          798f4280025356f8a87eb6f7586fb9598e08e80e490ef2141d17127c21932ddb  06-backend/apps/metering/migrations/0016_br_met_101_common_area.py
+          b19f5cc6752e93c0561427f916800afb26d840350cbcfbba4f37e1326c761569  06-backend/apps/tenancy/migrations/0004_settings_families_logo_and_hosted_lists.py
+          "
+
+          BASE="${{ github.event.pull_request.base.sha }}"
+          MODIFIED=$(git diff --diff-filter=M --name-only "$BASE"...HEAD -- '06-backend/apps/*/migrations/*.py' || true)
+
+          OFFENDING=""
+          for f in $MODIFIED; do
+            # Match on (path, content) together — a hash alone could be borrowed by
+            # copying an exempt file's bytes to another migration's path.
+            actual="$(sha256sum "$f" | cut -d' ' -f1)"
+            if echo "$EXEMPT_SHAS" | grep -qF "$actual  $f"; then
+              echo "note: $f matches the recorded OQ-354 exception (PO 2026-08-24) — allowed."
+              continue
+            fi
+            OFFENDING="$OFFENDING $f"
+          done
+
+          if [ -n "$OFFENDING" ]; then
+            echo "::error::Existing migrations were modified (append-only policy):"; echo "$OFFENDING"; exit 1
+          fi

@@ -1,0 +1,13 @@
+{
+  "id": "01a106e4-31a8-74f4-bfa3-41b766ddee5c",
+  "refused": false,
+  "printed_name": "Ana Alvarez",
+  "decline_reason": null,
+  "door_hanger_attachment_id": null,
+  "door_hanger_uploading": false,
+  "signed_at": "2026-10-04T12:29:40.642847Z",
+  "captured_by": {
+    "name": "D. Ortiz"
+  },
+  "image_url": "/api/brazosbend/work-orders/01a106e4-2de6-7ed1-a638-a5b43a7ae3b3/signature/image"
+}

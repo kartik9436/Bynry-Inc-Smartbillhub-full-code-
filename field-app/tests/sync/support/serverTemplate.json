@@ -1,0 +1,21 @@
+{
+  "id": "4f6c2a10-8b1e-4c3d-9a77-0e5b6d2f9c11",
+  "name": "Meter exchange",
+  "version": 2,
+  "service": {
+    "id": "01a07f62-3c4d-4e5f-8a9b-0c1d2e3f4a5b",
+    "code": "water",
+    "name": "Water"
+  },
+  "job_type": {
+    "id": "7d2e9b40-1a2b-4c3d-8e9f-a0b1c2d3e4f5",
+    "name": "Exchange"
+  },
+  "steps": 7,
+  "safety_checks": 3,
+  "readings": 3,
+  "materials": 3,
+  "help": 3,
+  "last_used_at": null,
+  "recent": false
+}

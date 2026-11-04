@@ -1,0 +1,393 @@
+[
+  {
+    "block": "verdict",
+    "payload": {
+      "count": "3 things stop billing",
+      "tone": "danger",
+      "word": "No-go"
+    }
+  },
+  {
+    "block": "kpis",
+    "payload": {
+      "tiles": [
+        {
+          "id": "blockers",
+          "label": "Blockers",
+          "value": {
+            "kind": "text",
+            "text": "3"
+          }
+        },
+        {
+          "id": "warnings",
+          "label": "Warnings",
+          "value": {
+            "kind": "text",
+            "text": "1"
+          }
+        },
+        {
+          "id": "steps_clear",
+          "label": "Steps clear",
+          "value": {
+            "kind": "text",
+            "text": "6 of 10"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "block": "chain",
+    "payload": {
+      "cells": [
+        {
+          "id": "services_and_units",
+          "label": "Services and units",
+          "note": "1 count",
+          "position": 1,
+          "state": "ok"
+        },
+        {
+          "id": "reference_data",
+          "label": "Reference data",
+          "note": "22 holidays · 31 number series",
+          "position": 2,
+          "state": "ok"
+        },
+        {
+          "id": "tax",
+          "label": "Tax",
+          "note": "No tax region is set, so nothing on this service can be taxed.",
+          "position": 3,
+          "state": "bad"
+        },
+        {
+          "id": "plans_in_force",
+          "label": "Plans in force",
+          "note": "1 plan services",
+          "position": 4,
+          "state": "ok"
+        },
+        {
+          "id": "rate_coverage",
+          "label": "Rate coverage",
+          "note": "Residential Water has no block above 20000 gal.",
+          "position": 5,
+          "state": "bad"
+        },
+        {
+          "id": "account_chain",
+          "label": "Account chain",
+          "note": "4 accounts do not reach a property.",
+          "position": 6,
+          "state": "bad"
+        },
+        {
+          "id": "meters",
+          "label": "Meters",
+          "note": "0 service points · 0 units",
+          "position": 7,
+          "state": "ok"
+        },
+        {
+          "id": "reads_and_windows",
+          "label": "Reads and windows",
+          "note": "0 cycles · 0 meters · 0 unread",
+          "position": 8,
+          "state": "ok"
+        },
+        {
+          "id": "documents",
+          "label": "Documents",
+          "note": "1 published bill template · 45 published notice templates",
+          "position": 9,
+          "state": "ok"
+        },
+        {
+          "id": "books",
+          "label": "Books",
+          "note": "1 services · 8 tenders · 3 unmapped designations",
+          "position": 10,
+          "state": "ok"
+        }
+      ],
+      "label": "Ten steps, 3 stopped billing."
+    }
+  },
+  {
+    "block": "breakdown",
+    "payload": {
+      "columns": [
+        {
+          "key": "service",
+          "label": "Service"
+        },
+        {
+          "key": "verdict",
+          "label": "Verdict"
+        }
+      ],
+      "heading": "By service",
+      "rows": [
+        {
+          "cells": {
+            "service": {
+              "kind": "text",
+              "text": "water"
+            },
+            "verdict": {
+              "kind": "pill",
+              "label": "No-go",
+              "tone": "danger"
+            }
+          },
+          "id": "water"
+        }
+      ]
+    }
+  },
+  {
+    "block": "records",
+    "payload": {
+      "checked": {
+        "account_chain": {
+          "accounts": 4,
+          "broken": 4
+        },
+        "books": {
+          "services": 1,
+          "tenders": 8,
+          "unmapped_designations": 3
+        },
+        "documents": {
+          "per_language": "not checked — a template's language set is not read here",
+          "published_bill_template": true,
+          "published_notice_templates": 45
+        },
+        "meters": {
+          "service_points": 0,
+          "units": 0
+        },
+        "plans_in_force": {
+          "plan_services": 1
+        },
+        "rate_coverage": {
+          "ladders": 1,
+          "usage_comparison": "not made — nothing reads the highest usage seen, so a ladder that stops above today's highest reading still reads as bounded"
+        },
+        "reads_and_windows": {
+          "cycles": 0,
+          "meters": 0,
+          "unread": 0
+        },
+        "reference_data": {
+          "account_types": {
+            "selectable": 7,
+            "total": 8
+          },
+          "holidays": 22,
+          "number_series": 31
+        },
+        "services_and_units": {
+          "bases": [
+            "metered"
+          ],
+          "count": 1,
+          "services": [
+            "water"
+          ]
+        },
+        "tax": {
+          "authorities": 0,
+          "premises": 0,
+          "priced": 0,
+          "units": 0
+        }
+      },
+      "chips": [
+        {
+          "count": 4,
+          "id": "all",
+          "label": "All"
+        },
+        {
+          "count": 3,
+          "id": "blockers",
+          "label": "Blockers"
+        },
+        {
+          "count": 1,
+          "id": "warnings",
+          "label": "Warnings"
+        }
+      ],
+      "columns": [
+        {
+          "key": "step",
+          "label": "Step"
+        },
+        {
+          "key": "finding",
+          "label": "Finding"
+        },
+        {
+          "key": "affects",
+          "label": "Affects"
+        },
+        {
+          "key": "weight",
+          "label": "Weight"
+        },
+        {
+          "key": "fix",
+          "label": "Fix"
+        }
+      ],
+      "empty": {
+        "helper": "Every step ran and found nothing to fix.",
+        "title": "Nothing stops billing."
+      },
+      "rows": [
+        {
+          "cells": {
+            "affects": {
+              "kind": "text",
+              "text": "0 units across 0 premises"
+            },
+            "finding": {
+              "kind": "text",
+              "text": "No tax region is set, so nothing on this service can be taxed."
+            },
+            "fix": {
+              "kind": "link",
+              "label": "Set a tax region",
+              "to": "plans-rates"
+            },
+            "step": {
+              "kind": "text",
+              "text": "Tax"
+            },
+            "weight": {
+              "kind": "pill",
+              "label": "Blocks billing",
+              "tone": "danger"
+            }
+          },
+          "id": "f1",
+          "meta": {
+            "decided_by_rule": "Tax attaches to a property through a region, and there is none.",
+            "service": "water"
+          }
+        },
+        {
+          "cells": {
+            "affects": {
+              "kind": "text",
+              "text": "Any account using more than that"
+            },
+            "finding": {
+              "kind": "text",
+              "text": "Residential Water has no block above 20000 gal."
+            },
+            "fix": {
+              "kind": "link",
+              "label": "Add a block",
+              "to": "plans-rates"
+            },
+            "step": {
+              "kind": "text",
+              "text": "Rate coverage"
+            },
+            "weight": {
+              "kind": "pill",
+              "label": "Blocks billing",
+              "tone": "danger"
+            }
+          },
+          "id": "f2",
+          "meta": {
+            "decided_by_rule": "The last block runs to no limit, or usage above it prices at nothing.",
+            "service": "water"
+          }
+        },
+        {
+          "cells": {
+            "affects": {
+              "kind": "text",
+              "text": "4 accounts"
+            },
+            "finding": {
+              "kind": "text",
+              "text": "4 accounts do not reach a property."
+            },
+            "fix": {
+              "kind": "link",
+              "label": "Match units",
+              "to": "accounts"
+            },
+            "step": {
+              "kind": "text",
+              "text": "Account chain"
+            },
+            "weight": {
+              "kind": "pill",
+              "label": "Blocks billing",
+              "tone": "danger"
+            }
+          },
+          "id": "f3",
+          "meta": {
+            "decided_by_rule": "An account is billed at an address, and the address lives on the property.",
+            "service": null
+          }
+        },
+        {
+          "cells": {
+            "affects": {
+              "kind": "text",
+              "text": "3 of the eleven"
+            },
+            "finding": {
+              "kind": "text",
+              "text": "3 places in the books have no account behind them."
+            },
+            "fix": {
+              "kind": "link",
+              "label": "Finish the mapping",
+              "to": "finance"
+            },
+            "step": {
+              "kind": "text",
+              "text": "Books"
+            },
+            "weight": {
+              "kind": "pill",
+              "label": "Warning",
+              "tone": "warning"
+            }
+          },
+          "id": "f4",
+          "meta": {
+            "decided_by_rule": "Each kind of posting names its own account before it is used.",
+            "service": null
+          }
+        }
+      ],
+      "total": 4
+    }
+  },
+  {
+    "block": "downloads",
+    "payload": {
+      "files": [
+        {
+          "format": "csv",
+          "id": "findings",
+          "label": "Findings"
+        }
+      ]
+    }
+  }
+]

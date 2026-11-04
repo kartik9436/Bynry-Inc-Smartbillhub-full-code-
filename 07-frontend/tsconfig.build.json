@@ -1,0 +1,6 @@
+{
+  "//": "DEF-DEP-10115 — the image's typecheck: what the image SHIPS. Test files are not roots here (they still enter if shipped code imports one); `npm run typecheck` checks all of src. Measured 2026-10-13: 2.88 GB with tests, 2.13 GB without.",
+  "extends": "./tsconfig.json",
+  "include": ["src"],
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"]
+}

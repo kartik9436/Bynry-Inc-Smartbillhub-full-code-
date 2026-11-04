@@ -1,0 +1,54 @@
+{
+  "customers.transfer.step.account": {
+    "en": "Find the account",
+    "de": "Konto suchen",
+    "es": "Buscar la cuenta",
+    "es-MX": "Buscar la cuenta",
+    "fr-FR": "Trouver le compte",
+    "hi": "खाता खोजें",
+    "id-ID": "Cari akun",
+    "it-IT": "Trova il conto",
+    "ja-JP": "アカウント検索",
+    "ko-KR": "계정 찾기",
+    "pt-BR": "Localizar a conta"
+  },
+  "customers.transfer.step.buyer": {
+    "en": "The buyer",
+    "de": "Käufer",
+    "es": "El comprador",
+    "es-MX": "El comprador",
+    "fr-FR": "L'acheteur",
+    "hi": "खरीदार",
+    "id-ID": "Pembeli",
+    "it-IT": "L'acquirente",
+    "ja-JP": "購入者",
+    "ko-KR": "구매자",
+    "pt-BR": "O comprador"
+  },
+  "customers.transfer.step.saleDate": {
+    "en": "Date of sale",
+    "de": "Verkaufsdatum",
+    "es": "Fecha de venta",
+    "es-MX": "Fecha de venta",
+    "fr-FR": "Date de vente",
+    "hi": "बिक्री की तारीख",
+    "id-ID": "Tanggal penjualan",
+    "it-IT": "Data di vendita",
+    "ja-JP": "売却日",
+    "ko-KR": "매각일",
+    "pt-BR": "Data da venda"
+  },
+  "customers.transfer.step.takeOn": {
+    "en": "What they take on",
+    "de": "Was übernommen wird",
+    "es": "Lo que asume",
+    "es-MX": "Lo que asume",
+    "fr-FR": "Ce qui est repris",
+    "hi": "क्या ट्रांसफर होगा",
+    "id-ID": "Yang ditanggung",
+    "it-IT": "Cosa subentra",
+    "ja-JP": "引き継ぐもの",
+    "ko-KR": "인수 항목",
+    "pt-BR": "O que assume"
+  }
+}

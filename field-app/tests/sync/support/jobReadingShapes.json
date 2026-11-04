@@ -1,0 +1,23 @@
+{
+  "number": {
+    "reading_id": "{reading_id}",
+    "value": "1204",
+    "unit": "{unit}",
+    "flagged": false,
+    "unable_to_read": false
+  },
+  "text": {
+    "reading_id": "{reading_id}",
+    "value_text": "W-5000-N",
+    "unable_to_read": false
+  },
+  "unable": {
+    "reading_id": "{reading_id}",
+    "value": null,
+    "unit": "{unit}",
+    "flagged": false,
+    "unable_to_read": true,
+    "unable_reason": "dog",
+    "note": "Dog at the gate"
+  }
+}

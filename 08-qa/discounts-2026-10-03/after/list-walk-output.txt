@@ -1,0 +1,37 @@
+signed in as dana@brazosbendutilities.com
+
+=== a01-list-all.png — List · All (image 01)
+COLUMNS: ["Code▲","Discount","Type","Value","Eligibility","Verification","From","To","Plans","Enrolled","Status",""]
+  ROW: AUTOPAY | Autopay discount | Percentage | 0.50% | Autopay enrolled | Automatic | 08/01/2026 | — | 1 | 0 | Active | 
+  ROW: CAP | CAP / low-income credit | Fixed amount | 25.00 | Program enrolment | Agency file · monthly | 08/01/2026 | — | 0 | 0 | Active | 
+  ROW: MILITARY | Veteran discount | Percentage | 10.00% | Veteran ID | One-time proof at enrollment | 08/01/2026 | — | 0 | 0 | Draft | 
+  ROW: MUNICIPAL | Municipal account | Percentage | 20.00% | Government account | Automatic | 08/01/2026 | — | 1 | 1 | Active | 
+  ROW: PAPERLESS | Paperless billing | Fixed amount | 1.00 | E-bill on | Automatic | 08/01/2026 | — | 1 | 0 | Active | 
+  ROW: SENIOR | Senior discount | Percentage | 15.00% | Age 65+ | Annual recertification | 08/01/2026 | — | 0 | 0 | Active | 
+PARAGRAPH ABOVE THE TABLE: absent
+FILTER MENU: ["Active","Draft","Waiting approval","Ended","Retired","Percentage","Fixed amount","Rate override","Charge waiver","Usage allowance"]
+
+=== a02-list-filter-menu.png — List · + Filter open (image 02)
+COLUMNS: ["Code▲","Discount","Type","Value","Eligibility","Verification","From","To","Plans","Enrolled","Status",""]
+  ROW: AUTOPAY | Autopay discount | Percentage | 0.50% | Autopay enrolled | Automatic | 08/01/2026 | — | 1 | 0 | Active | 
+  ROW: CAP | CAP / low-income credit | Fixed amount | 25.00 | Program enrolment | Agency file · monthly | 08/01/2026 | — | 0 | 0 | Active | 
+  ROW: MILITARY | Veteran discount | Percentage | 10.00% | Veteran ID | One-time proof at enrollment | 08/01/2026 | — | 0 | 0 | Draft | 
+  ROW: MUNICIPAL | Municipal account | Percentage | 20.00% | Government account | Automatic | 08/01/2026 | — | 1 | 1 | Active | 
+  ROW: PAPERLESS | Paperless billing | Fixed amount | 1.00 | E-bill on | Automatic | 08/01/2026 | — | 1 | 0 | Active | 
+  ROW: SENIOR | Senior discount | Percentage | 15.00% | Age 65+ | Annual recertification | 08/01/2026 | — | 0 | 0 | Active | 
+
+=== a03-list-filter-chip.png — List · Status: Active chip (image 03)
+COLUMNS: ["Code▲","Discount","Type","Value","Eligibility","Verification","From","To","Plans","Enrolled","Status",""]
+  ROW: AUTOPAY | Autopay discount | Percentage | 0.50% | Autopay enrolled | Automatic | 08/01/2026 | — | 1 | 0 | Active | 
+  ROW: CAP | CAP / low-income credit | Fixed amount | 25.00 | Program enrolment | Agency file · monthly | 08/01/2026 | — | 0 | 0 | Active | 
+  ROW: MUNICIPAL | Municipal account | Percentage | 20.00% | Government account | Automatic | 08/01/2026 | — | 1 | 1 | Active | 
+  ROW: PAPERLESS | Paperless billing | Fixed amount | 1.00 | E-bill on | Automatic | 08/01/2026 | — | 1 | 0 | Active | 
+  ROW: SENIOR | Senior discount | Percentage | 15.00% | Age 65+ | Annual recertification | 08/01/2026 | — | 0 | 0 | Active | 
+
+=== a04-list-no-results.png — List · search with no results (image 04)
+COLUMNS: []
+MAIN TEXT: Plans & Rates / 6 plans · 9 rate schedules · 31 charge codes · 6 discounts · 2 taxes & fees · effective 10/01/2026 / History / + New discount / Plans / Rate schedules / Charge codes / Discounts / Taxes & fees / ✕ / All / + Filter / ▾ / No results for 'zzz'. / Clear filters
+side by side: a01side-01-list-all.png
+side by side: a02side-02-list-filter-menu.png
+side by side: a03side-03-list-filter-chip.png
+side by side: a04side-04-list-no-results.png

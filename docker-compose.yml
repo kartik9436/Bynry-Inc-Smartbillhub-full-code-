@@ -1,0 +1,900 @@
+# ── SMARTBillHub — the whole application, two containers ─────────────────────
+#
+#   docker compose up -d --build      build and start
+#   docker compose logs -f            watch
+#   open http://localhost:8080        the app (SPA + API on ONE origin)
+#
+# WHAT IS NOT HERE, AND WHY
+#
+#   · No database. Postgres 16 is EXTERNAL and yours — RDS in AWS, whatever you
+#     like locally. DATABASE_URL is NOT in this file and never should be: it is
+#     yours to set in `06-backend/.env` (start from the committed .env.example:
+#     `make env-init`). Keeping it out of compose means a connection string with
+#     a real password is never committed and never rendered by `compose config`
+#     to anyone who can read the repo.
+#     Its `?sslmode=${DB_SSLMODE:-require}` suffix keeps TLS a knob, so changing
+#     it needs no edit here. The default FAILS CLOSED (encrypted) as of
+#     2026-08-10 — the old `disable` default broke the first RDS deploy with
+#     `no pg_hba.conf entry … no encryption`, and would have been worse against
+#     a server that accepted the plaintext. Local Postgres without TLS:
+#     `DB_SSLMODE=disable make up`.
+#   · ⚠ REDIS AND A CELERY WORKER ARE HERE NOW — this bullet used to say the
+#     opposite, and the day the opposite became false is the day it started
+#     lying. PO ruling 2026-08-19, verbatim: *"We want Async job install redis
+#     and celery; Trigger after tenant creation; also add these two services in
+#     docker compose"* (12-governance/02-decision-log.md).
+#     WHAT IT COST TO NOT HAVE THEM: production sets JOBS_EAGER=false, so with
+#     nothing consuming the queue every 202 rested `queued` forever — four job
+#     kinds, silently. A new tenant opened with no sample data (DEF-320) and a
+#     BULK RATE CHANGE answered "accepted" and changed no price (DEF-326).
+#     · AND BEAT, ruled in separately the same day — PO verbatim: *"we need
+#     Beat ; include it"*. So THREE services, not two: `redis`, `celery`,
+#     `celery-beat`.
+#     ⚠ **BEAT RUNS EXACTLY ONE. NEVER TWO** — see the service's own note. It
+#     does not fail loudly when it is doubled; it silently does everything
+#     twice.
+#     ⚠ **IT HAS EIGHT SCHEDULES — `G132` PASS, 2026-09-28 (`DEF-INF-7541`).**
+#     This line said SIX (corrected 2026-09-23, `DEF-PAY-6268`) and the note
+#     below said SEVEN, both counted by hand. Before 2026-09-23 this
+#     note read *"AND IT HAS NO SCHEDULE TO RUN TODAY. There is no
+#     `beat_schedule` in `06-backend/config/` … The container starts, connects
+#     and fires nothing."* The literal sentence about `config/` is still true
+#     and **stopped being the test on 2026-08-29**: a schedule is installed from
+#     an app's `ready()`, not declared in `config/`, so grepping `config/` kept
+#     returning the old answer. ⚠ **THERE ARE EIGHT, AND THIS NOTE SAID SEVEN
+#     ON 2026-09-28 WHILE EIGHT WERE INSTALLED (`DEF-INF-7541`)** — it added
+#     `identity.session_cleanup` (`CR-145-BRC08` `B10`) to the old list of six
+#     and never ran `G132`, which would have named `reports.schedule_sweep`
+#     (landed 2026-09-27, `a2ad9b6c8`, every 60 seconds). `G132`'s own list:
+#     `customers.cut_date_watch`, `identity.session_cleanup`,
+#     `notifications.dispatch`, `payments.collections_ladder`,
+#     `payments.counter_watch`, `reports.schedule_sweep`,
+#     `runbooks.schedule_sweep`, `work.rules_sweep`. `identity.session_cleanup`
+#     runs at **03:20 daily**, deleting sessions that have already expired or been
+#     signed out. ⚠ **AN IDLE SESSION IS NOT AN EXPIRED ONE AND IS NOT TOUCHED**;
+#     it is the first schedule in this product that DELETES rather than reads,
+#     which is why that sentence is here and not only in its own module.
+#     `09-infra/01-deployment-architecture.md` §10.3
+#     lists them and `G132` counts them from the code, which is the only version
+#     of that list that cannot rot — **run it rather than trusting this comment,
+#     which has now been wrong three times.** **Partition archival (NFR-6/28) and report
+#     retention (NFR-9) are still unbuilt.** And adding the PROCESS is still not
+#     adding the SCHEDULES, which is why this note existed.
+#   · No nginx, no reverse proxy, no TLS, no DNS. The edge is managed outside
+#     this file (PO ruling 2026-08-10).
+#   · No load balancer — and that is why the frontend container proxies /api/*
+#     to the backend (07-frontend/server.mjs). Nothing else routes it.
+#
+# ONE PUBLISHED PORT, ON PURPOSE
+#
+# Only the frontend publishes. The backend has no host port at all: it is
+# reachable only over the compose network, at http://backend:8000, and the only
+# thing that calls it is the frontend's pass-through. That is what makes
+# same-origin true by construction rather than by convention — one origin, so
+# the httpOnly session cookie rides and `/api/{tenant}/…` resolves, with nothing
+# in front. Publishing the API separately would create a second origin whose
+# only use is bypassing the first.
+# For one-off backend work, go through the container rather than a port:
+#   docker compose exec backend python manage.py migrate
+#   docker compose exec backend python manage.py seed_demo      # never in prod
+#
+# ENV FILES: one per service, and ONLY `.env` (PO ruling 2026-08-10)
+#
+# Each service reads exactly one file — its own `.env`. The committed
+# `.env.example` beside it is a TEMPLATE you copy, never a file compose loads,
+# so what runs is what you wrote and nothing is silently inherited from a
+# checked-in default. `make env-init` does both copies; compose refuses to start
+# until they exist, which is the intended failure — a missing `.env` should stop
+# the boot, not hand you a half-configured app that fails later and elsewhere.
+
+services:
+  backend:
+    build:
+      context: ./06-backend
+      dockerfile: Dockerfile
+    image: smartbillhub-backend:local
+    # One env file, as the PO asked (2026-08-10). `.env.example` is the committed
+    # template you copy from — compose never reads it, so what runs is exactly
+    # what is in `.env` and nothing is silently inherited from a checked-in file.
+    #   cp 06-backend/.env.example 06-backend/.env
+    env_file:
+      - ./06-backend/.env
+    # Only useful when YOUR DATABASE_URL points at a Postgres on the Docker host:
+    # Docker Desktop provides `host.docker.internal`, Linux does not, so this adds
+    # it. Inert when the URL points at RDS, which is the expected case.
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    # No `ports:` — see the note above. This is documentation of what the
+    # container listens on, and what API_PROXY_TARGET must therefore say.
+    expose:
+      - "8000"
+    restart: unless-stopped
+    healthcheck:
+      # ⚠ This proves the port is LISTENING. It does not prove Django answers,
+      # because nothing serves a health route yet (09-infra/02 §10.8 — `health`
+      # is a reserved path segment holding the door open for one). An HTTP probe
+      # would have to pick a real endpoint, and every candidate touches the
+      # database or the tenant resolver, so a red check would mean five
+      # different things. A TCP check that says only what it knows beats an HTTP
+      # check that lies. Replace this the day /healthz exists.
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('127.0.0.1', 8000), 2).close()"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      # migrate runs before gunicorn binds, so first boot is slow by design.
+      start_period: 60s
+    # ⚠ **NO VOLUMES, ON PURPOSE — EXPORT FILES ARE IN S3 (`DEF-MET-4954`).**
+    # With `JOBS_EAGER=false` (what `.env.example` ships) a worker writes an
+    # export and this container serves it, so a file on either container's
+    # disk is a 404 on the other — which is how Download saved `file.json`
+    # containing a 404. From 2026-09-12 a shared `artifacts:` volume papered
+    # over it; on 2026-10-02 the PO ruled it away (decision log, *"EXPORT FILES
+    # MOVE FROM THE SHARED DISK TO S3 — THE DESIGN IS APPROVED"*: *"Removed ->
+    # Yes we will just be using S3"*). Every export goes to the environment's
+    # bucket at `t/<web name>/export/…` and is found through its database row
+    # (`apps/tenancy/export_store.py`). **So this host needs
+    # `DOCUMENT_STORAGE_BUCKET` / `_REGION` set** — the same bucket bills use.
+    # `tests/test_cr092_registry_paging.py` fails if two app containers ever
+    # share a directory again.
+
+  frontend:
+    build:
+      context: ./07-frontend
+      dockerfile: Dockerfile
+    image: smartbillhub-frontend:local
+    # One env file, as the PO asked (2026-08-10). `.env.example` is the committed
+    # template you copy from — compose never reads it, so what runs is exactly
+    # what is in `.env` and nothing is silently inherited from a checked-in file.
+    #   cp 07-frontend/.env.example 07-frontend/.env
+    env_file:
+      - ./07-frontend/.env
+    ports:
+      # The application's ONE address. Change the host side with WEB_PORT;
+      # the container side is PORT in 07-frontend/.env.example.
+      - "${WEB_PORT:-8080}:8080"
+    depends_on:
+      # Ordering only, deliberately not `service_healthy`. The SPA must be
+      # servable while the API is down — that is when its error states matter —
+      # and the pass-through 502s honestly meanwhile. Gating the whole app on a
+      # backend that cannot reach an external database would leave nothing to
+      # look at, including the screen that would tell you why.
+      backend:
+        condition: service_started
+    restart: unless-stopped
+    healthcheck:
+      # Honest and complete for what this container does: it fetches the page
+      # the server actually serves. (busybox wget is in the alpine base.)
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:8080/"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 10s
+
+  # ── The broker (PO ruling 2026-08-19) ──────────────────────────────────────
+  #
+  # It carries TASK MESSAGES ONLY. Job status, progress, checkpoint and result
+  # all live in the `jobs` table and are polled at /api/jobs/{id} (B12 r1,
+  # core/jobs.py), which is what makes the next line safe to say out loud:
+  # **losing this container loses queued WORK, never TRUTH.** A record whose
+  # message was flushed rests `queued`, the poll keeps saying so, and a repair
+  # run picks it up. That is why there is no volume here and no persistence
+  # configuration: durability of the queue is not what protects the data.
+  #
+  # Not published. Only `backend` and `celery` reach it, over the compose
+  # network at redis://redis:6379/0 — the address CELERY_BROKER_URL must name
+  # in 06-backend/.env (hard-won law 3: the default in base.py points at
+  # localhost and will silently not work, so the working value is the one you
+  # type).
+  redis:
+    image: redis:7-alpine
+    # `--save ""` turns RDB snapshots OFF, deliberately: a snapshot of a queue
+    # that is not the source of truth buys nothing and costs disk on every
+    # restart. `--appendonly no` says the same thing about the AOF.
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    expose:
+      - "6379"
+    restart: unless-stopped
+    healthcheck:
+      # This one is honest and complete: PING is Redis answering, not a port
+      # being open — unlike the backend's TCP check above, which says so itself.
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 5s
+
+  # ── No malware scanner (PO, 2026-09-22 and 2026-09-23) ─────────────────────
+  #
+  # A `clamav` service ran here from 2026-09-13 (BR-SHL-253). The PO removed the
+  # virus scan — *"please remove virus scan chek user don't wan't it"* — and the
+  # service, its signature volume and its health check went with it
+  # (DEF-SHL-6347). ⚠ **A HOST THAT ALREADY RAN IT KEEPS THE CONTAINER** until
+  # `docker compose up -d --remove-orphans`, and keeps its signature volume
+  # until `docker volume rm <project>_clamav_db`; nothing reads either.
+
+  # ── The worker (PO ruling 2026-08-19) ──────────────────────────────────────
+  #
+  # THE SAME IMAGE AS `backend`, on purpose. A worker that runs different code
+  # from the web process is how a job body drifts from the endpoint that
+  # enqueues it, and every job body here is an ordinary function in an ordinary
+  # app — `apps.tenancy.tasks.run_pending_job` looks the body up in the same
+  # registry the web process fills at `AppConfig.ready()`.
+  #
+  # ⚠ IT READS THE SAME `.env`, WHICH MEANS `JOBS_EAGER` MUST BE FALSE THERE.
+  # With it true the web process runs job bodies inside the request and this
+  # container idles — the whole point is lost, and nothing would say so. That
+  # is exactly the shape hard-won law 3 warns about, so `06-backend/.env.example`
+  # now types both values explicitly rather than inheriting either.
+  #
+  # `-A config.celery` and NOT `-A config`: nothing imports the Celery app at
+  # Django startup, so the web process never needs the library loaded to serve a
+  # request.
+  celery:
+    build:
+      context: ./06-backend
+      dockerfile: Dockerfile
+    image: smartbillhub-backend:local
+    env_file:
+      - ./06-backend/.env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    # `--concurrency 2`: the jobs in this product are long and database-bound
+    # (the sample-data plant is ~40 s of writes), and CELERY_WORKER_PREFETCH_
+    # MULTIPLIER is already 1 so a slow run cannot hoard the queue. Two workers
+    # is two concurrent database connections, not twenty.
+    # ⚠ ENTRYPOINT MUST BE CLEARED, AND THIS IS WHY THE WORKER RESTART-LOOPED.
+    #
+    # The image sets ENTRYPOINT ["/app/docker-entrypoint.sh"], and in Docker a
+    # service's `command:` is NOT a replacement for the entrypoint — it becomes
+    # the ARGUMENTS TO IT. docker-entrypoint.sh ends with
+    #
+    #     exec gunicorn config.wsgi:application --bind … "$@"
+    #
+    # so `celery -A config.celery worker …` was appended to gunicorn's own argv:
+    #
+    #     gunicorn: error: unrecognized arguments: celery -A config.celery worker
+    #
+    # gunicorn exits, `restart: unless-stopped` brings the container back, and it
+    # loops. Reported on smartbillhub.bynry.com 2026-08-19 (DEF-338).
+    #
+    # ⚠ AND THE SECOND CONSEQUENCE IS WORSE THAN THE LOOP. Everything ABOVE that
+    # exec line still ran — so this container executed `manage.py migrate` and the
+    # OQ-087 reference-data sweep ON EVERY RESTART, against the same database the
+    # web container migrates. That is why the PO's *celery* log contains "Running
+    # migrations" and a full tenant sweep. Two containers racing migrate is how a
+    # half-applied schema happens, and it was invisible because the log read
+    # exactly like the backend's.
+    #
+    # Clearing it means `command:` is exec'd directly and this container does
+    # nothing but consume the queue. A worker must never migrate: migrations
+    # belong to exactly one process, and that is the web container.
+    #
+    # ⚠ `-Q celery` — THIS WORKER NO LONGER DRAINS BILLING (CR-051 task 29, PO
+    # ruling 2026-08-31). It used to have no `-Q` at all, which means "consume
+    # the default queue", which before 2026-08-31 meant "consume everything"
+    # because nothing was routed anywhere else. Billing now routes its three job
+    # kinds to `billing` (config/settings/base.py → CELERY_TASK_ROUTES) and the
+    # `celery-billing` service below consumes that queue.
+    #
+    # **IF THIS FLAG IS DROPPED, THE SPLIT BECOMES COSMETIC AND NOTHING SAYS
+    # SO.** A worker with no `-Q` would go back to draining the default queue
+    # only — so, in fact, dropping it does NOT re-drain billing. What dropping
+    # it costs is the EXPLICITNESS: the queue name stops being written down in
+    # the one file an operator reads, and the next person to add `-Q billing`
+    # here "so nothing is missed" undoes the ruling in one word. The decision
+    # log states the danger in its own terms: *"The default worker must STOP
+    # consuming billing, or the split is cosmetic and the ordering harm
+    # remains."* `G59` fails if `billing` ever appears in this service's `-Q`
+    # list, and `tests/test_cr051_billing_queue.py` proves that failure is real.
+    entrypoint: []
+    command: ["celery", "-A", "config.celery", "worker", "-Q", "celery", "--loglevel", "info", "--concurrency", "2"]
+    # No volume: the exports this worker writes go to S3 (`DEF-MET-4954`; see
+    # `backend` above).
+    depends_on:
+      redis:
+        condition: service_healthy
+      # Ordering only. The worker must come up even when the database is
+      # unreachable, because a worker that refuses to start says nothing,
+      # while a worker that starts and logs a connection error says which
+      # host it could not reach.
+      backend:
+        condition: service_started
+    restart: unless-stopped
+    healthcheck:
+      # `celery inspect ping` asks THIS worker whether it is consuming, which
+      # is the only question worth asking of it. A process check would go green
+      # on a worker that had lost the broker.
+      # ⚠ TWO BUGS IN ONE LINE — DEF-340. It read:
+      # (This block said DEF-339 until 2026-08-31. DEF-339 is an unrelated
+      #  lint failure in tailwindTheme.test.ts; the row this fix closes is
+      #  DEF-340, and citing the wrong one left that row reading `open` for
+      #  twelve days because a grep for DEF-340 found nothing here.
+      #  ⚠ THE CLASS IS DEF-2792, and G67 is what watches for it now: a row
+      #  marked closed that names a file, where that file never mentions the
+      #  id. That is what a lane grepping for DEF-340 saw here — nothing —
+      #  and it is invisible to G50, G51 and G55, because DEF-339 is a real
+      #  row and every check passes on a sentence pointing at the wrong one.)
+      #     ["CMD", "celery", …, "-d", "celery@$$HOSTNAME"]
+      #
+      # (1) `CMD` is the EXEC form and runs NO SHELL, so nothing ever expanded
+      #     `$HOSTNAME`. Compose turned `$$HOSTNAME` into the literal string
+      #     `$HOSTNAME` and celery was asked to ping a node called
+      #     `celery@$HOSTNAME`, which cannot exist. The real node name is
+      #     `celery@<container id>`.
+      #
+      # (2) ⚠ AND `CMD-SHELL` ALONE DOES NOT FIX IT, which is the part worth
+      #     writing down. This image is `python:3.12-slim` — Debian — so
+      #     `/bin/sh` is **dash**, and dash does not set `HOSTNAME` (bash does).
+      #     A shell would have expanded it to the EMPTY STRING, leaving
+      #     `celery@`, and the check would have gone on failing for a second
+      #     reason while looking fixed. Verified in a dash shell before this
+      #     line was written: `$HOSTNAME` empty, `$(hostname)` correct.
+      #
+      # The symptom was a worker that was connected to redis, had
+      # `smartbillhub.jobs.run_pending` registered and had logged `ready.` —
+      # healthy by every real measure — and that `docker ps` called unhealthy.
+      test: ["CMD-SHELL", "celery -A config.celery inspect ping -d celery@$$(hostname)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+
+  # ── BILLING'S OWN NAMED WORKER (PO ruling 2026-08-31, CR-051 task 29) ──────
+  #
+  # PO, verbatim: *"we will ahve to create named worker for billing - eventually
+  # we should able to scale these works on the fly itf required; but billing
+  # will need its own named workers - otherwise it will slow down the system"*.
+  #
+  # ⚠ **WHAT THIS SERVICE IS FOR, BECAUSE IT IS NOT WHAT IT LOOKS LIKE.** It does
+  # not make a bill run faster. CR-051 task 27 measured ten utilities billing at
+  # once against one PostgreSQL 16 and found **zero ungranted locks in six
+  # waves** — bill runs never wait for each other in the database, so a second
+  # queue creates no capacity. What this service creates is an **ADDRESS**.
+  # Before it existed, ONE unrouted queue carried bill runs, CSV exports, staged
+  # imports and customers' outbound notices through the same two worker slots,
+  # so capping the worker's CPU capped the notices too and adding a worker for
+  # billing added one for everything. **The cap and the replica count below are
+  # the deliverable; this service is what makes them aimable.**
+  #
+  # THE HARM BEING FIXED, measured (CR-051 task 28) in a bystander utility that
+  # was firing no run at all, under the TWO runs `--concurrency 2` can actually
+  # execute:
+  #
+  #     accounts list, one page of 50   p95   605.8 ms idle → 2,868.9 ms
+  #     one account's detail            p95    44.0 ms idle →   228.3 ms
+  #     one bill with its lines         p95    18.1 ms idle →    97.2 ms
+  #
+  # No lock ever waited. The runs and the three gunicorn processes were
+  # competing for CPU on one host with **no limit on any service** —
+  # `deploy.resources` appeared nowhere in this file until this block.
+  celery-billing:
+    build:
+      context: ./06-backend
+      dockerfile: Dockerfile
+    image: smartbillhub-backend:local
+    env_file:
+      - ./06-backend/.env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    # ⚠ ENTRYPOINT MUST BE CLEARED — DEF-338, and it is not a formality.
+    #
+    # The image sets ENTRYPOINT ["/app/docker-entrypoint.sh"], and in Docker a
+    # service's `command:` is NOT a replacement for the entrypoint — it becomes
+    # the ARGUMENTS TO IT. docker-entrypoint.sh ends with
+    #
+    #     exec gunicorn config.wsgi:application --bind … "$@"
+    #
+    # so `celery -A config.celery worker …` is appended to gunicorn's own argv:
+    #
+    #     gunicorn: error: unrecognized arguments: celery -A config.celery worker
+    #
+    # gunicorn exits, `restart: unless-stopped` brings the container back, and it
+    # loops. Reported on smartbillhub.bynry.com 2026-08-19.
+    #
+    # ⚠ AND THE SECOND CONSEQUENCE IS WORSE THAN THE LOOP. Everything ABOVE that
+    # exec line still runs — so the container executes `manage.py migrate` and
+    # the OQ-087 reference-data sweep ON EVERY RESTART, against the same database
+    # the web container migrates. Two containers racing migrate is how a
+    # half-applied schema happens, and it is invisible because the log reads
+    # exactly like the backend's. **A worker must never migrate:** migrations
+    # belong to exactly one process, and that is the web container.
+    entrypoint: []
+    #
+    # `-Q billing` — THE CONSUMER HALF, and it is half of a pair.
+    # The ROUTING half is `config/settings/base.py`'s `CELERY_TASK_ROUTES` +
+    # `apps/billing/run_jobs.py`'s `BILLING_QUEUE`. **Ship either half alone and
+    # the product is worse than before**: routing with no consumer means a bill
+    # run is accepted, answers 202 and never runs — `core/jobs.py` names that
+    # shape in its own words, *"it accepts the file, says 'queued', and writes
+    # nothing, for ever"* — and a consumer with no routing is an idle container
+    # whose CPU cap applies to nothing at all. `G59` fails on either.
+    #
+    # `--concurrency 2` matches the default worker's, so two bill runs execute
+    # at once exactly as they did before the split. That is deliberate: this
+    # change is about WHERE the work runs and how much machine it may take, not
+    # about how much of it runs at once. Changing this number changes drain time
+    # (CR-051 task 27 measured ten runs through two slots at 131.9 s; through one
+    # it would be about 262 s) and it multiplies against the CPU limit below.
+    command: ["celery", "-A", "config.celery", "worker", "-Q", "billing", "--loglevel", "info", "--concurrency", "2"]
+    # No volume: the bill print set is built in this container's own scratch
+    # folder and uploaded to S3 (`DEF-MET-4954`, `DEF-BIL-9148`; see `backend`).
+    #
+    # ── THE TWO NUMBERS AN OPERATOR MAY CHANGE ────────────────────────────────
+    #
+    # The PO asked that these be changeable — *"eventually we should able to
+    # scale these works on the fly itf required"*. That is a CAPABILITY, not an
+    # autoscaler: nothing here decides anything by itself. These two numbers are
+    # the whole of it, they are in this file and not in code, and changing either
+    # affects **billing and no other job kind** — which is the thing that was
+    # impossible before the queue had a name.
+    deploy:
+      resources:
+        limits:
+          # ⚠ **cpus: "1.0" — WHAT IT COSTS AND WHAT IT BUYS.**
+          #
+          # COSTS: the worker may use one core, and `--concurrency 2` means two
+          # bill runs share it. At the rate CR-051 task 27 measured — **145 ms an
+          # account** with a slot to itself — a 10,000-account run takes about
+          # **24 minutes** alone and about **48 minutes** when a second run is
+          # executing beside it under this cap.
+          #
+          # BUYS: on the four-core host this product is sized for, three cores
+          # are left for the three gunicorn processes that answer the clerk. That
+          # is the trade CR-051 task 28's own remedy list put FIRST and argued
+          # for in these terms: *"a bill run finishing at 3 a.m. instead of 2:30
+          # costs nobody anything and a clerk waiting three seconds per click
+          # costs them all morning."*
+          #
+          # ⚠ **IT IS PER CONTAINER, SO IT MULTIPLIES BY `replicas` BELOW.**
+          # Two replicas at 1.0 is 2.0 CPU of billing, not 0.5 each. Whoever
+          # raises one number must read the other.
+          #
+          # ⚠ **AND IT IS THE ONLY LIMIT IN THIS FILE.** `backend`, `celery` and
+          # `celery-beat` are still uncapped by deliberate omission: nobody has
+          # measured a need, and CLAUDE.md law 1 says a comment claiming a
+          # guarantee is not the guarantee. Adding one is these same three lines
+          # under that service, no code change anywhere.
+          cpus: "1.0"
+      # ⚠ **replicas: 1 — WHAT IT COSTS AND WHAT IT BUYS.**
+      #
+      # COSTS: two bill runs execute at once and no more (1 replica ×
+      # `--concurrency 2`), so ten utilities pressing the button at the same time
+      # are serialised two at a time. CR-051 task 27 measured that and it is not
+      # the loss it sounds: ten runs through two slots finished in **131.9 s**
+      # total against **167.6 s** when all ten were fired at once, and cost
+      # **261.8 worker-seconds against 1,663.9** — six times less machine. The
+      # queue is what stops thrashing, so raising this is not free speed.
+      #
+      # BUYS: one number, changed here and nowhere else, scales billing's
+      # capacity WITHOUT touching exports, imports or customers' notices — which
+      # is precisely what one unrouted queue made impossible. `docker compose up
+      # -d --scale celery-billing=2` is the on-the-fly form.
+      #
+      # ⚠ **AND WHOEVER SCALES THIS IS THE PERSON WHO WILL SCALE `celery-beat`
+      # TOO — DO NOT.** Beat stays at exactly one replica, and its own margin
+      # below says why: *"Beat is a clock, and two clocks do not conflict — they
+      # both fire."* Nothing errors and nothing logs a warning; every scheduled
+      # job simply happens twice. That warning is repeated here because this is
+      # the file an operator has open when the thought occurs.
+      replicas: 1
+    depends_on:
+      redis:
+        condition: service_healthy
+      # Ordering only, exactly as for `celery`: a worker that refuses to start
+      # says nothing, while a worker that starts and logs a connection error says
+      # which host it could not reach.
+      backend:
+        condition: service_started
+    restart: unless-stopped
+    healthcheck:
+      # ⚠ `CMD-SHELL` AND `$$(hostname)` — BOTH HALVES, DEF-340, and the second
+      # half is the one that looks fixed and is not.
+      #
+      # (1) `CMD` is the EXEC form and runs NO SHELL, so nothing would expand
+      #     `$HOSTNAME`; compose turns `$$HOSTNAME` into the literal string
+      #     `$HOSTNAME` and celery is asked to ping a node called
+      #     `celery@$HOSTNAME`, which cannot exist.
+      # (2) `CMD-SHELL` ALONE DOES NOT FIX IT. This image is `python:3.12-slim`
+      #     — Debian — so `/bin/sh` is **dash**, and dash does not set
+      #     `HOSTNAME` (bash does). A shell would expand it to the EMPTY STRING,
+      #     leaving `celery@`, and the check would go on failing for a second
+      #     reason while looking repaired.
+      #
+      # ⚠ AND THE NODE NAME IS `celery@…` HERE TOO, WHICH IS NOT AN OVERSIGHT.
+      # This service does NOT pass `--hostname`, so celery's default node name
+      # applies and it is `celery@<container id>` regardless of which queue the
+      # worker consumes. A prettier `billing@%h` would have to be matched exactly
+      # in the line below, and DEF-340 is precisely the defect of a healthcheck
+      # naming a node that does not exist. The container id already distinguishes
+      # the two workers in `celery inspect` output.
+      test: ["CMD-SHELL", "celery -A config.celery inspect ping -d celery@$$(hostname)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  # ── The integrations worker (CR-069 wave B, US-INT-016 · BR-INT-041) ──────
+  #
+  # P5 — *"one tenant's outage is one tenant's outage."* Integration work —
+  # a test message to a mail server, a manual run, later the nightly sweeps
+  # and the kiosk's inbound messages — rides the `integrations` queue and is
+  # drained by THIS worker and nothing else. A mail server that hangs for
+  # ninety seconds holds one of these two slots; it never holds a web worker
+  # and never a billing worker (`celery-billing` above), so another utility's
+  # bill run completes on time (US-INT-016 TC-3, J53).
+  #
+  # ⚠ THIS IS THE CONSUMER HALF OF A PAIR. The ROUTING half is
+  # `apps/integrations/jobs.py` (`INTEGRATIONS_QUEUE`, registered at ready()
+  # through `core.jobs.set_job_queue`, read by `config/celery_routes.py`).
+  # Ship either half alone and the product is worse than before — routing
+  # with no consumer is DEF-320 (*"it accepts the file, says 'queued', and
+  # writes nothing, for ever"*); a consumer with no routing is an idle
+  # container whose CPU cap applies to nothing. `G80` refuses either.
+  #
+  # Every clause below is G59's, for the same reasons written beside
+  # `celery-billing`: the cleared entrypoint (DEF-338 — a worker must never
+  # migrate), the `CMD-SHELL` + `$$(hostname)` healthcheck (DEF-340), and the
+  # two numbers an operator may change.
+  celery-integrations:
+    build:
+      context: ./06-backend
+      dockerfile: Dockerfile
+    image: smartbillhub-backend:local
+    env_file:
+      - ./06-backend/.env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    # DEF-338 — see `celery-billing`: a bare `command:` becomes gunicorn's argv.
+    entrypoint: []
+    # `-Q integrations` and ONLY that queue: the default worker stays `-Q celery`
+    # and the billing worker stays `-Q billing`, so no other worker drains this
+    # one and this one drains no other. `--concurrency 2` is the per-connection
+    # concurrency cap's ceiling (BR-INT-022, wave F): two slow providers at once.
+    command: ["celery", "-A", "config.celery", "worker", "-Q", "integrations", "--loglevel", "info", "--concurrency", "2"]
+    deploy:
+      resources:
+        limits:
+          # Half a core: integration work is I/O-bound waiting on somebody
+          # else's server, not CPU-bound, and the number exists so it is a
+          # number somebody can change (CR-051 task 29's own words). Per
+          # container — it multiplies by `replicas`.
+          cpus: "0.5"
+      # One replica × concurrency 2 = two provider calls in flight. Raise it
+      # here and nowhere else; `docker compose up -d --scale
+      # celery-integrations=2` is the on-the-fly form. Never scale
+      # `celery-beat` with it — see the margin below.
+      replicas: 1
+    depends_on:
+      redis:
+        condition: service_healthy
+      backend:
+        condition: service_started
+    restart: unless-stopped
+    healthcheck:
+      # DEF-340 — CMD-SHELL so a shell runs, `$$(hostname)` because this
+      # image's /bin/sh is dash and sets no HOSTNAME. The node is `celery@…`
+      # because no `--hostname` is passed (see `celery-billing`).
+      test: ["CMD-SHELL", "celery -A config.celery inspect ping -d celery@$$(hostname)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  # ── The field-work worker (CR-070 wave J, US-WRK-030 · BR-WRK-034) ───────
+  #
+  # WHAT RIDES THIS QUEUE, AND WHY IT MUST NOT RIDE ANOTHER. `work.push` —
+  # the job that puts a newly assigned order on a technician's phone. It is a
+  # call out to a push provider, so it can hang for thirty seconds for reasons
+  # that have nothing to do with this utility, and it is the ONE job in this
+  # product whose latency a person is standing there feeling: a dispatcher
+  # assigns a job and a technician's phone should buzz. Sharing a queue with a
+  # bill run means the buzz waits behind twenty-four minutes of invoicing.
+  #
+  # ⚠ THIS IS THE CONSUMER HALF OF A PAIR. The ROUTING half is
+  # `apps/work/push.py` (`WORK_QUEUE`, registered at `WorkConfig.ready()`
+  # through `core.jobs.set_job_queue`, read by `config/celery_routes.py`).
+  # Ship either half alone and the product is worse than before — routing with
+  # no consumer is DEF-320 (*"it accepts the file, says 'queued', and writes
+  # nothing, for ever"*), which is exactly how four job kinds reached
+  # production dispatching none of them; a consumer with no routing is an idle
+  # container whose CPU cap applies to nothing. `G109` refuses either.
+  #
+  # ⚠ AND THE FAILURE HERE IS QUIETER THAN BILLING'S. A bill run that never
+  # runs is noticed within a day — nobody got a bill. A push that never fires
+  # is INVISIBLE: the technician's phone still gets the job on its next
+  # ordinary sync (`apps/work/push.py` — *the sync is the delivery and the
+  # push is the doorbell*), so the product looks fine and merely feels slow.
+  # That is why the gate checks the pair rather than trusting this file.
+  #
+  # Every clause below is G59's, for the reasons written beside
+  # `celery-billing`: the cleared entrypoint (DEF-338 — a worker must never
+  # migrate), the `CMD-SHELL` + `$$(hostname)` healthcheck (DEF-340), and the
+  # two numbers an operator may change.
+  celery-work:
+    build:
+      context: ./06-backend
+      dockerfile: Dockerfile
+    image: smartbillhub-backend:local
+    env_file:
+      - ./06-backend/.env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    # DEF-338 — see `celery-billing`: a bare `command:` becomes gunicorn's argv,
+    # the container restart-loops, AND it runs `migrate` on every restart against
+    # the database the web container migrates. A worker must never migrate.
+    entrypoint: []
+    # `-Q work` and ONLY that queue: the default worker stays `-Q celery`, the
+    # billing worker `-Q billing`, the integrations worker `-Q integrations`. No
+    # other worker drains this one and this one drains no other — which is what
+    # makes the cap below apply to field pushes and to nothing else.
+    command: ["celery", "-A", "config.celery", "worker", "-Q", "work", "--loglevel", "info", "--concurrency", "2"]
+    deploy:
+      resources:
+        limits:
+          # Half a core. A push is a small HTTPS POST per registered handset and
+          # a utility in this product's size band has one or two technicians, so
+          # this is I/O-bound and tiny; the number exists so that it is a number
+          # somebody can change (CR-051 task 29's own words). Per container — it
+          # multiplies by `replicas`.
+          cpus: "0.5"
+      # One replica × concurrency 2. A second technician's push does not wait
+      # behind a first one that is timing out on a dead provider, which is the
+      # only queuing that matters at this size. Raise it here and nowhere else;
+      # `docker compose up -d --scale celery-work=2` is the on-the-fly form.
+      # Never scale `celery-beat` with it — see the margin below.
+      replicas: 1
+    depends_on:
+      redis:
+        condition: service_healthy
+      backend:
+        condition: service_started
+    restart: unless-stopped
+    healthcheck:
+      # DEF-340 — CMD-SHELL so a shell runs, `$$(hostname)` because this image's
+      # /bin/sh is dash and sets no HOSTNAME. The node is `celery@…` because no
+      # `--hostname` is passed (see `celery-billing`).
+      test: ["CMD-SHELL", "celery -A config.celery inspect ping -d celery@$$(hostname)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  # ── The runbooks worker (CR-075 wave I, US-RBS-007 · BR-INT-054 as amended) ─
+  #
+  # WHAT RIDES THIS QUEUE. `runbooks.check` and `runbooks.act` — a whole
+  # runbook, start to finish, started by the clock rather than by a person. The
+  # collections ladder over 1,035 accounts took about fifteen seconds in wave
+  # M's month-long dry cycle with two per-account reads in the path; the same
+  # shape over the top of this product's size band — 40,000 accounts —
+  # extrapolates to roughly TEN MINUTES of worker time per firing. Ten minutes
+  # is fine for a weekly job and is not fine on the queue a clerk's CSV export
+  # is waiting behind, which is the whole argument for this container.
+  #
+  # ⚠ THE SCHEDULER ITSELF IS NOT HERE AND IS NOT A WORKER. Deciding WHEN is
+  # Runbooks' own code (`apps/runbooks/scheduler.py`), riding `celery-beat`
+  # below; this container is HOW the work then runs. That split is `BR-INT-054`
+  # as amended 2026-09-06, PO verbatim: *"business logic , scheduling ,
+  # processing we will take it in run book"* — one scheduler, and the queue and
+  # the worker stay with the platform.
+  #
+  # ⚠ THIS IS THE CONSUMER HALF OF A PAIR. The ROUTING half is
+  # `apps/runbooks/scheduler.py` (`RUNBOOKS_QUEUE`, registered at
+  # `RunbooksConfig.ready()` through `core.jobs.set_job_queue`, read by
+  # `config/celery_routes.py`). Ship either half alone and the product is worse
+  # than before — routing with no consumer is DEF-320 all over again, and this
+  # module's failure is the QUIETEST of the four: a scheduled Check that never
+  # runs leaves no trace at all, because its whole output is a work list that is
+  # simply empty on a morning when it should not have been. `G117` refuses a
+  # tree with one half and not the other.
+  #
+  # Every clause below is G59's, for the reasons written beside
+  # `celery-billing`: the cleared entrypoint (DEF-338 — a worker must never
+  # migrate), the `CMD-SHELL` + `$$(hostname)` healthcheck (DEF-340), and the
+  # two numbers an operator may change.
+  celery-runbooks:
+    build:
+      context: ./06-backend
+      dockerfile: Dockerfile
+    image: smartbillhub-backend:local
+    env_file:
+      - ./06-backend/.env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    # DEF-338 — see `celery-billing`: a bare `command:` becomes gunicorn's argv,
+    # the container restart-loops, AND it runs `migrate` on every restart against
+    # the database the web container migrates. A worker must never migrate.
+    entrypoint: []
+    # `-Q runbooks` and ONLY that queue: the default worker stays `-Q celery`,
+    # the billing worker `-Q billing`, integrations `-Q integrations`, work
+    # `-Q work`. No other worker drains this one and this one drains no other.
+    command: ["celery", "-A", "config.celery", "worker", "-Q", "runbooks", "--loglevel", "info", "--concurrency", "2"]
+    deploy:
+      resources:
+        limits:
+          # One core. A runbook run is database-bound rather than I/O-bound —
+          # it walks accounts and prices a sample through the rating engine —
+          # so it is the one of the four named queues that can actually saturate
+          # a CPU. The number exists so that it is a number somebody can change
+          # (CR-051 task 29's own words). Per container — it multiplies by
+          # `replicas`.
+          cpus: "1.0"
+      # One replica × concurrency 2. Two utilities' 06:00 sweeps overlap and
+      # neither waits for the other; a third waits, which at this size is a
+      # minute. Raise it here and nowhere else; `docker compose up -d --scale
+      # celery-runbooks=2` is the on-the-fly form. Never scale `celery-beat`
+      # with it — see the margin below.
+      replicas: 1
+    depends_on:
+      redis:
+        condition: service_healthy
+      backend:
+        condition: service_started
+    restart: unless-stopped
+    healthcheck:
+      # DEF-340 — CMD-SHELL so a shell runs, `$$(hostname)` because this image's
+      # /bin/sh is dash and sets no HOSTNAME. The node is `celery@…` because no
+      # `--hostname` is passed (see `celery-billing`).
+      test: ["CMD-SHELL", "celery -A config.celery inspect ping -d celery@$$(hostname)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  # ── The account-access worker (CR-188-BRC10, PO 2026-10-22) ──────────────
+  #
+  # PO, verbatim: *"this should be on highest priority in quesu this should be
+  # instant email , in case of staff access email same logic needs to apply
+  # email should be sent instantly no latency"*. A staff invitation, a staff
+  # reset link and the customer portal's reset link are each dispatched the
+  # moment their transaction commits, by the `notifications.send_now` job —
+  # and only on THIS queue, so a bill run or a big export can never sit in
+  # front of a sign-in link a person is waiting for.
+  #
+  # ⚠ THIS IS THE CONSUMER HALF OF A PAIR. The ROUTING half is
+  # `apps/notifications/send_now.py` (`ACCOUNT_ACCESS_QUEUE`, registered at
+  # `NotificationsConfig.ready()` through `core.jobs.set_job_queue`, read by
+  # `config/celery_routes.py`). Without this worker the rows are still
+  # written, marked highest priority, and delivered by the ordinary dispatch
+  # cycle — late, never lost.
+  #
+  # ⚠ LAW 4: A HOST ALREADY RUNNING DOES NOT GET THIS SERVICE FROM THIS FILE.
+  # Its compose file / ECS task definitions must add it.
+  celery-account-access:
+    build:
+      context: ./06-backend
+      dockerfile: Dockerfile
+    image: smartbillhub-backend:local
+    env_file:
+      - ./06-backend/.env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    # DEF-338 — see `celery-billing`: a bare `command:` becomes gunicorn's argv.
+    entrypoint: []
+    # `-Q account_access` and ONLY that queue.
+    command: ["celery", "-A", "config.celery", "worker", "-Q", "account_access", "--loglevel", "info", "--concurrency", "2"]
+    deploy:
+      resources:
+        limits:
+          # A quarter core: one email hand-off per job, I/O-bound.
+          cpus: "0.25"
+      replicas: 1
+    depends_on:
+      redis:
+        condition: service_healthy
+      backend:
+        condition: service_started
+    restart: unless-stopped
+    healthcheck:
+      # DEF-340 — CMD-SHELL + `$$(hostname)` (dash sets no HOSTNAME).
+      test: ["CMD-SHELL", "celery -A config.celery inspect ping -d celery@$$(hostname)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  # ── The scheduler (PO ruling 2026-08-19: *"we need Beat ; include it"*) ────
+  #
+  # ⚠⚠ **EXACTLY ONE. NEVER TWO. `deploy.replicas: 1` IS LOAD-BEARING.**
+  # Beat is a clock, and two clocks do not conflict — they both fire. Nothing
+  # errors, nothing logs a warning, and every scheduled job simply happens
+  # twice: partition archival over the same range twice, report-retention
+  # DELETES twice, dispatcher pacing at double rate. `09-infra/01-deployment-
+  # architecture.md` §4 states the same constraint and asks for liveness to be
+  # alarmed on. The person who scales `celery` to four replicas is the person
+  # who will scale this one too, which is why the reason is written here beside
+  # the number rather than in a document they will not have open.
+  #
+  # ⚠ **IT NOW HAS SOMETHING TO FIRE, AND THIS PARAGRAPH SAID THE OPPOSITE
+  # UNTIL 2026-09-07 (CR-075 wave I).** It read *"IT HAS NOTHING TO FIRE YET …
+  # this container connects to the broker and sits there"*, which was true when
+  # it was written and had become false in two steps nobody came back to amend:
+  # `apps/notifications/schedule.py` and `apps/work/rules.py` each install a
+  # beat entry from their own `AppConfig.ready()`, and now
+  # `apps/runbooks/scheduler.py` installs a third — `runbooks.schedule_sweep`,
+  # every sixty seconds, the sweep that asks every utility whether one of its
+  # runbooks is due on its own clock.
+  #
+  # ⚠ **THERE IS STILL NO `beat_schedule` IN `06-backend/config/` AND THAT IS
+  # DELIBERATE**, so a reader grepping for one finds nothing and must not
+  # conclude beat is idle: each entry is registered by the module that owns the
+  # work, in the same `ready()` that registers its job body, because a schedule
+  # in one file and a body in another drift the first time either is renamed.
+  # `apps/work/rules.py` says the same in its own words.
+  #
+  # The schedule file is written to container disk on purpose: it holds only
+  # "when did each entry last fire", it is rebuilt from the schedule on start,
+  # and losing it costs one duplicate tick — never data.
+  celery-beat:
+    build:
+      context: ./06-backend
+      dockerfile: Dockerfile
+    image: smartbillhub-backend:local
+    env_file:
+      - ./06-backend/.env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    # ⚠ ENTRYPOINT MUST BE CLEARED, AND THIS IS WHY THE WORKER RESTART-LOOPED.
+    #
+    # The image sets ENTRYPOINT ["/app/docker-entrypoint.sh"], and in Docker a
+    # service's `command:` is NOT a replacement for the entrypoint — it becomes
+    # the ARGUMENTS TO IT. docker-entrypoint.sh ends with
+    #
+    #     exec gunicorn config.wsgi:application --bind … "$@"
+    #
+    # so `celery -A config.celery worker …` was appended to gunicorn's own argv:
+    #
+    #     gunicorn: error: unrecognized arguments: celery -A config.celery worker
+    #
+    # gunicorn exits, `restart: unless-stopped` brings the container back, and it
+    # loops. Reported on smartbillhub.bynry.com 2026-08-19 (DEF-338).
+    #
+    # ⚠ AND THE SECOND CONSEQUENCE IS WORSE THAN THE LOOP. Everything ABOVE that
+    # exec line still ran — so this container executed `manage.py migrate` and the
+    # OQ-087 reference-data sweep ON EVERY RESTART, against the same database the
+    # web container migrates. That is why the PO's *celery* log contains "Running
+    # migrations" and a full tenant sweep. Two containers racing migrate is how a
+    # half-applied schema happens, and it was invisible because the log read
+    # exactly like the backend's.
+    #
+    # Clearing it means `command:` is exec'd directly and this container does
+    # nothing but consume the queue. A worker must never migrate: migrations
+    # belong to exactly one process, and that is the web container.
+    entrypoint: []
+    command:
+      - "celery"
+      - "-A"
+      - "config.celery"
+      - "beat"
+      - "--loglevel"
+      - "info"
+      - "--schedule"
+      - "/tmp/celerybeat-schedule"
+    deploy:
+      # ⚠ ONE. Read the note above before changing this number.
+      replicas: 1
+    depends_on:
+      redis:
+        condition: service_healthy
+      backend:
+        condition: service_started
+    restart: unless-stopped
+    # No healthcheck. Beat exposes no ping and answers no inspect call — the
+    # only honest check is "is the process alive", which `restart:
+    # unless-stopped` already handles, and a check that reported more than that
+    # would be reporting something it cannot know. 09-infra §4 asks for
+    # liveness ALARMING on this process; that belongs to the monitoring stack,
+    # which is outside this file (PO ruling 2026-08-10: the edge is managed
+    # elsewhere).
+
+# ── `DEF-MET-4954` · NO shared disk ────────────────────────────────────────
+#
+# There is deliberately no top-level `volumes:` key. The `artifacts:` volume
+# that lived here (2026-09-12 → 2026-10-02) shared one directory between
+# `backend`, `celery` and `celery-billing` so a download could find a file a
+# worker wrote. Export files are in S3 now (PO 2026-10-02), so nothing passes
+# between web and any worker through a directory — not a local disk, not a
+# Docker volume, not EFS. ⚠ A host that already ran with the volume keeps an
+# orphaned `<project>_artifacts` volume after this change; `docker volume rm`
+# it once nothing older than its utilities' retention is wanted from it
+# (hard-won law 4: a compose change does not clean up what a host already has).

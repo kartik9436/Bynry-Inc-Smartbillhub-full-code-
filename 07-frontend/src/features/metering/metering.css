@@ -1,0 +1,268 @@
+/* Premises & Units (S14/S15/S16) + the S26/S27 operational views — tokens
+ * only (B8: no hex literals here). The page rhythm deliberately matches the
+ * Settings and S61 surfaces so the app reads as one product; everything below
+ * is what those screens do not already own. */
+
+.met-page {
+  padding: var(--space-6) var(--space-4) var(--space-8);
+}
+
+.met-head h1 {
+  font-size: var(--text-h2);
+  margin: 0;
+}
+
+.met-head-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.met-head-actions {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.met-sub {
+  font-size: var(--text-base);
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+  margin: var(--space-1) 0 var(--space-4);
+}
+
+.met-back {
+  padding-left: 0;
+}
+
+/* The BR-MET-045 detail views had their own `.met-tabs` bar here. US-SHL-020
+ * deleted it with `DetailTabs`: every tab strip in the app is now the shared
+ * PageHeader's, styled once in PageHeader.css. `.met-head*` stays — the S16
+ * wizard and the S26/S27 ops views still use PageHead, which is NOT part of
+ * this story's screen set. */
+
+/* ── Fact lists (the Overview panels) ────────────────────────────────────── */
+.met-facts {
+  display: grid;
+  grid-template-columns: minmax(140px, auto) 1fr;
+  gap: var(--space-2) var(--space-3);
+  margin: 0 0 var(--space-4);
+  font-size: var(--text-base);
+}
+
+.met-facts dt {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+}
+
+.met-facts dd {
+  margin: 0;
+}
+
+/* A value the server did not send — visibly quieter than data, never blank. */
+.met-muted {
+  color: color-mix(in srgb, var(--color-text) 45%, transparent);
+  font-style: italic;
+}
+
+/* ── Service tags (BR-MET-003) ───────────────────────────────────────────── */
+/* `.met-tags` / `.met-tag` RETIRED (CR-038 W5): their last renderer was the
+   S29 read detail, whose tag row is utilities now (PO 2026-08-26, "no custom
+   CSS in new UI"), ported value for value. The service chips every other
+   screen draws are ratingShared's ServiceSquares, one component product-wide
+   (CR-023 §9.7). */
+
+
+
+
+
+
+
+
+
+
+
+/* ⚠ THE TEN `.met-tag-<service>` COLOUR RULES WERE DELETED HERE — CR-023 P1,
+   2026-08-21. The service cell on the premises and units tables draws r10's
+   COLOURED LETTER SQUARES now, from `features/rating/ratingShared`'s
+   `ServiceTags` — one badge component for the whole product, because a second
+   one is a second vocabulary (DEF-439's fix, DEF-348's lesson). Nothing
+   referenced these ten any more, and dead CSS left behind is DEF-460's exact
+   shape: twelve declarations with no caller, found by grep months later.
+
+   `.met-tags` and `.met-tag` STAY — `ReadDetailDrawer` still uses the plain
+   bordered tag for something else entirely. The paragraph below about the ten
+   services and OQ-273 is kept because it explains the PALETTE, which the
+   letter squares consume through the very same tokens. */
+
+/* ⚠ THE SECOND CONSUMER, AND IT IS WHY OQ-273 IS NOT DONE AT `PlansRates.css`.
+   The service palette has TWO consumers — the dots on Plans & Rates and these
+   tags on the metering surfaces — and both had the same six. Colouring one and
+   not the other is hard-won law 2 in miniature: the token would exist, the gate
+   would be green, and four services would still draw as unstyled tags on the
+   screens a clerk actually works in. Ten and ten, or the palette is not landed.
+   ⚠ NO HOLLOW VARIANT HERE, deliberately. The fill variant OQ-273 ratified is
+   for the 6px DOT, where the label is somewhere else and hue is the only
+   identifier. This tag PRINTS THE SERVICE NAME inside itself, so storm water is
+   never mistaken for water however close the two blues sit. */
+
+/* ── Meters cell (US-MET-002 TC-1 — the (sub)/(master) qualifiers) ───────── */
+.met-qualifier {
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+  font-size: var(--text-sm);
+}
+
+/* ── Filter panel + row actions ──────────────────────────────────────────── */
+.met-filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-3);
+  width: 100%;
+}
+
+.met-filters .field {
+  margin: 0;
+}
+
+/* ⚠ .ast-row-actions / .met-row-actions WERE HERE AND ARE GONE (2026-08-20).
+   Five per-feature containers declared the same flex row with three different
+   gaps; `components/RowActions.tsx` is the one that remains. PO ruling: "we
+   should ahve only one reference point not two". */
+
+/* `.met-danger` DELETED 2026-08-22 (DEF-344, W15): its rest colours were an
+ * exact copy of the kit's `danger` variant, its hover was the divergence, and
+ * the comment above it ("`.btn-danger` is NOT in the shared kit") had been
+ * false since 2026-08-18. `GuardedButton danger` now passes
+ * `variant="danger"`. */
+
+/* B14 rule 5 — a link-shaped <button> still counts as a button. `font:
+   inherit` made it take the cell's size, which is a third tier the moment the
+   cell is not 14px. 14px IS the default tier and is a half-pixel from the
+   13.5px body around it. */
+/* ⚠ `.met-link` LEFT ON 2026-08-20 (CR-018 Phase 4b-4) — 44 sites, now
+   `<InlineLink>` / `<InlineLinkTo>` / `<InlineLinkAnchor>` in
+   `components/Surfaces.tsx`, one per element the look was worn by.
+
+   ⚠ ITS `font: inherit` COULD NOT BE COPIED ACROSS AS A SHORTHAND. Tailwind
+   emits `[font:inherit]` AFTER `text-md` — checked against the compiler — so
+   the shorthand would have silently overwritten the font SIZE with the
+   inherited one and rendered these at the table's 13.5px instead of 14px. Each
+   property is filled exactly once instead, which is `buttonKit.ts`'s rule. */
+
+/* ── Panels ──────────────────────────────────────────────────────────────── */
+/* ⚠ `.met-panel` AND `.met-panel h3` LEFT ON 2026-08-20 (CR-018 Phase 4b-2).
+   The 149 call sites across 46 components are `components/Panel.tsx` now — four
+   declarations as utilities plus `[&_h3]:text-h5 [&_h3]:m-0 [&_h3]:mb-2`, which
+   is the same descendant rule written where the container is written.
+
+   ⚠ IT WAS THE PHASE'S "HARD ONE" AND IT WAS NOT, WHICH IS 4b-1'S POINT: this
+   class LOOKED like a styling scope because FormModal.css styled form controls
+   as its descendants. Those selectors named three scopes, `.view` already
+   covered every one, and deleting the other two moved zero pixels — measured in
+   a browser over 15 screens, 42 panels and 172 controls.
+
+   `.met-panel-hint` STAYS for now: 132 call sites, its own migration. */
+
+.met-panel-hint {
+  font-size: var(--text-sm);
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+  margin: 0 0 var(--space-3);
+}
+
+/* ── Plain tables inside detail tabs and wizard previews ─────────────────── */
+/* ⚠ `.met-table` AND ITS THREE DESCENDANT RULES LEFT ON 2026-08-20 (CR-018
+   Phase 4b-4) — 51 sites, now `<PlainTable>` in `components/Surfaces.tsx` with
+   `[&_th]:`, `[&_td]:` and `[&_thead_th]:` variants.
+
+   The `thead th` scoping is CARRIED, not flattened, and the reason is the
+   original comment's: a `<th>` in a BODY row is a row header — the tie-out
+   table's left column — and must match the `<td>`s beside it, not the column
+   labels above. Applying the header tier to every `<th>` made that row 12px in
+   a 13.5px table. */
+
+/* ── S16 wizard: mode cards, preview counts, generated-label list ────────── */
+.met-modes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.met-mode {
+  border: 1px solid var(--color-divider);
+  background: var(--color-surface);
+  padding: var(--space-3);
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+
+.met-mode.active {
+  border-color: var(--color-accent-600);
+  border-left-width: 3px;
+}
+
+.met-mode strong {
+  display: block;
+  font-family: var(--font-heading);
+}
+
+.met-mode span {
+  font-size: var(--text-sm);
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+}
+
+.met-counts {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  border: 1px solid var(--color-divider);
+  border-left: 3px solid var(--color-accent-500);
+  background: var(--color-surface);
+  padding: var(--space-2) var(--space-3);
+  margin-bottom: var(--space-3);
+  font-size: var(--text-base);
+}
+
+.met-counts b {
+  font-family: var(--font-heading);
+}
+
+.met-preview-list {
+  margin: 0;
+  padding: var(--space-2);
+  border: 1px solid var(--color-divider);
+  background: var(--color-neutral-100);
+  font-size: var(--text-sm);
+  max-height: 240px;
+  overflow-y: auto;
+  list-style: none;
+}
+
+/* ── S26/S27 progress bars (derived figures only — BR-MET-011) ───────────── */
+.met-progress {
+  display: inline-block;
+  width: 120px;
+  height: 8px;
+  border: 1px solid var(--color-divider);
+  background: var(--color-neutral-200);
+  vertical-align: middle;
+}
+
+.met-progress-fill {
+  display: block;
+  height: 100%;
+  background: var(--color-accent-500);
+}
+
+/* ── DEF-327 · the meter list on a shared metering row. `.met-tags` next door
+ * is the same shape for services; this is the same treatment for meters, and
+ * without it a row's meters rendered as one unbroken run of ids. ────────── */
+.met-meters {
+  display: inline-flex;
+  gap: var(--space-1);
+  flex-wrap: wrap;
+  min-width: 0;
+}

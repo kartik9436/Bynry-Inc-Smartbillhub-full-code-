@@ -1,0 +1,98 @@
+{
+  "id": "01a106a7-5c71-7d2a-81e7-29328acfbe06",
+  "order_no": "WO-0022",
+  "type": "Site inspection & mark-out",
+  "premise": {
+    "id": "01a106a7-4f10-765a-83ff-8eba09209d8f",
+    "premise_no": "P-00067",
+    "address": "Kestrel Park ph. 2"
+  },
+  "service": "water",
+  "state": "planned",
+  "outcome": null,
+  "mode": "our_crew",
+  "is_gate": false,
+  "connection": {
+    "id": "01a106a7-5b7d-7e58-b1c1-de718fb9a07a",
+    "connection_no": "CON-26-0122",
+    "home": {
+      "kind": "premises",
+      "id": "01a106a7-4f10-765a-83ff-8eba09209d8f"
+    }
+  },
+  "account": null,
+  "raised_at": "2026-10-04T11:23:13.905422+00:00",
+  "priority": {
+    "id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e",
+    "code": "NORMAL",
+    "name": "Normal",
+    "colour": "info",
+    "rank": 3
+  },
+  "technician": {
+    "kind": "person",
+    "name": "D. Ortiz",
+    "slug": "d-ortiz"
+  },
+  "due_at": "2026-10-07T11:23:13.901410+00:00",
+  "window_start": null,
+  "window_end": null,
+  "dispatch_state": "on_hold",
+  "source": null,
+  "source_ref": null,
+  "area": {
+    "id": "01a106a6-e1c2-7112-8014-d49719318b9a",
+    "code": "EAST",
+    "name": "East district"
+  },
+  "technician_acceptance": {
+    "state": "pending",
+    "at": null,
+    "reason": null
+  },
+  "hold": {
+    "reason": {
+      "code": "WEATHER",
+      "name": "Weather"
+    },
+    "expected_return_on": null,
+    "since": "2026-10-04T12:29:58.696787+00:00"
+  },
+  "accepted": null,
+  "sla": {
+    "due_at": "2026-10-07T11:23:22.375032+00:00",
+    "target": "priority",
+    "at_risk": false
+  },
+  "shape": "open",
+  "customer": null,
+  "location": {
+    "premises": {
+      "id": "01a106a7-4f10-765a-83ff-8eba09209d8f",
+      "premise_no": "P-00067"
+    },
+    "unit": null,
+    "asset": null,
+    "address": "Kestrel Park ph. 2"
+  },
+  "signature": null,
+  "closed": null,
+  "timeline": [
+    {
+      "kind": "raised",
+      "at": "2026-10-04T11:23:13.905422+00:00",
+      "by": null,
+      "detail": null
+    },
+    {
+      "kind": "assigned",
+      "at": "2026-10-04T11:25:41.558540+00:00",
+      "by": {
+        "name": "Dana Whitfield"
+      },
+      "detail": "D. Ortiz"
+    }
+  ],
+  "est_duration_minutes": 55,
+  "custom_data": {}
+}

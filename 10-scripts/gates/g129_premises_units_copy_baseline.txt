@@ -1,0 +1,159 @@
+# G129 BASELINE — premises/units strings that were still over B14 rule 33's
+# caps on 2026-09-19, after the sweep that DEF-MET-5836 records. IT MAY ONLY
+# SHRINK.
+#
+# THE SWEEP THAT PRODUCED THIS FILE. 218 strings were over the caps that
+# morning, 2,551 words in all. 122 were rewritten and 8 retired across all
+# eleven catalogues; the longest string on any premises or units screen went
+# from 47 words to 17, and the worst of what remains is a note behind a
+# collapsed disclosure. These are what was DELIBERATELY NOT CUT, and the
+# reason is per class rather than per line:
+#
+#   * 39 LABELS over three words. Most are empty-state titles and row actions
+#     ("Nothing is installed here yet", "+ Add a common area"). B14 rule 4
+#     gives an action its own grammar and the blueprint draws several of these
+#     headings by name, so shortening them is a DRAWING question (rule 38:
+#     what a form CONTAINS is the drawing's to decide), not a copy sweep's.
+#
+#   * 39 strings at SEVEN words — one over. Rule 33's own framing is that the
+#     caps "codify what the good strings already do… rather than imposing a
+#     target nobody meets", and its consequence clause says NEVER CUT BELOW
+#     CLARITY. Taking "Start typing. We look it up." style lines down one more
+#     word is churn against eleven catalogues for no reader benefit.
+#
+#   * 4 notes behind a CLOSED DISCLOSURE on the common-areas tab
+#     (`common.masterCallout` and the three `*ArrivesWith`). B14 rule 32 says a
+#     stated absence is a `<details>` CLOSED by default, and these already are
+#     — `CommonAreasTab.tsx` says so in its own comment. They cost a clerk
+#     nothing to skip, and each one CITES the question that will kill it
+#     (`OQ-314`, `OQ-327`, `DEF-560`), which G38 checks. Rewriting them would
+#     drop citations that were deliberately preserved.
+#
+#   * 2 ROLL-UP LINES (`rollupLine`, `rollupLineCommon`). These are four
+#     counts joined by `·` — a chip list, not a sentence, and the word counter
+#     reads the whole run as one. ⚠ The real question about them is not length:
+#     the blueprint for this screen says "No roll-up sentence is drawn. The
+#     line under the title is the subtitle", and the screen draws the roll-up
+#     in that slot. That is a CONFORMANCE question, reported rather than taken,
+#     because removing the counts changes what a clerk can see.
+#
+# FORMAT: `<key> :: <the English text, whitespace normalised>`, exactly as
+# G33's baseline. THE TEXT IS PART OF THE IDENTITY — change the copy and the
+# licence lapses, so a line cannot be rewritten and kept long forever.
+metering.premises.area_unknown :: That area is not in Reference data.
+metering.premises.assets.emptyCta :: Open the units →
+metering.premises.assets.emptyHelper :: A meter on a unit starts billing.
+metering.premises.assets.emptyTitle :: Nothing is installed here yet
+metering.premises.assets.footerCounts :: {{read}} read this cycle, {{notRead}} not read by design
+metering.premises.assets.search :: Search by number, type or where it is…
+metering.premises.common.addAction :: + Add a common area
+metering.premises.common.addLabelHelp :: What people here call it — Laundry, Corridor lighting.
+metering.premises.common.addTitle :: Add a common area
+metering.premises.common.commonBillArrivesWith :: One owner bill covering every common area needs the master bill run. Bill assembly prices the account's anchor unit only today, so no figure is shown here.
+metering.premises.common.coverageArrivesWith :: A master account anchors on one common area and covers the rest through its service agreements. The accounts endpoint filters on the anchor only, so per-area coverage cannot be read yet.
+metering.premises.common.emptyHelper :: A shared space with its own meter. It bills the owner.
+metering.premises.common.emptyTitle :: No shared space here yet
+metering.premises.common.masterCallout :: Common-area usage never splits across tenants — it bills the owner's master account. Sub-meter reconciliation flags any gap between the master meter and unit meters.
+metering.premises.common.needsOwnerWhy :: Nobody here can be billed for shared space.
+metering.premises.common.unallocatedArrivesWith :: The share of the building's usage no unit accounts for, master meter against unit meters. Nothing in this product computes it, and the sign matters — sub-meters routinely read above the master.
+metering.premises.detail.failedTitle :: We couldn't open that premise
+metering.premises.edit.addressConsequenceTitle :: Everything here follows the address.
+metering.premises.emptyHelper :: Add your first property to start billing.
+metering.premises.field.areaHelp :: Areas come from Reference data. Tagging puts it on that area's routes.
+metering.premises.field.routeHelp :: Optional. Left empty, the area picks the route.
+metering.premises.field.servicesAllAdded :: Every service you sell is on this address
+metering.premises.field.servicesNotRecorded :: Not recorded — nobody has been asked.
+metering.premises.find.offlineTitle :: The City's records are unreachable.
+metering.premises.find.title :: Where is this property?
+metering.premises.jurisdiction.help :: Outside the city limits, a surcharge may apply.
+metering.premises.kind.help :: These two pick the taxes and the rate.
+metering.premises.kpi.assetsSplit :: {{metered}} metered · {{behind}} behind the meter
+metering.premises.map.foundTitle :: Found on the city map
+metering.premises.master.accountTypeHelp :: A master account still has a class. A hallway is residential.
+metering.premises.master.accountTypePlaceholder :: Choose an account type
+metering.premises.master.coverageHelp :: Uncheck to leave it for another account.
+metering.premises.master.explainer :: One owner account, from the date below. It covers what you select.
+metering.premises.master.openedAtHelp :: Every service agreement starts on this date.
+metering.premises.master.refusal.notACommonAreaUnnamed :: That unit is not a common area. Uncheck it.
+metering.premises.openInUnits :: Open these units in the Units tab →
+metering.premises.owner.help :: Pick the party that owns this. Not listed? Type the name below.
+metering.premises.owner.link.search :: Find an account by number or name
+metering.premises.owner.match.title :: Owner names to match
+metering.premises.owner.optionalNow :: Optional. Empty, it waits on Needs an owner.
+metering.premises.rollupLine :: {{premises}} premises · {{units}} units · {{vacant}} vacant · {{pending}} pending activation
+metering.premises.rollupLineCommon :: {{premises}} premises · {{units}} + {{common}} common units · {{vacant}} vacant · {{pending}} pending activation
+metering.premises.route.failedPlaceholder :: Routes did not load
+metering.premises.searchPlaceholder :: Search address, city, premise ID or owner…
+metering.premises.status.deactivateAction :: Take out of service
+metering.premises.status.deactivateTitle :: Take {{name}} out of service?
+metering.premises.status.reactivateAction :: Put back in service
+metering.premises.status.reactivateTitle :: Put {{name}} back in service?
+metering.premises.status.refusalHeading :: Not while these are live
+metering.premises.submeterRecon.noPeriods :: The master meter has no reading yet.
+metering.premises.submeterRecon.reason.no_trailing_history :: The master read no usage this period
+metering.premises.submeterRecon.reason.submeter_sum_incomplete :: A sub-meter has no usable reading for this period
+metering.premises.submeterRecon.reason.validation_config_missing :: No loss tolerance is configured for this service
+metering.premises.type_unknown :: That type is not in Reference data.
+metering.premises.units.emptyHelper :: A property with no units bills nothing.
+metering.premises.units.emptyTitle :: No units on this property yet
+metering.premises_owner.customer_via_account :: Link the customer on the master account.
+metering.premises_owner.name_taken :: That owner exists — link to them.
+metering.units.account.badAddressYes :: Yes — check the address before mailing again
+metering.units.account.classDecides :: this decides which base charge the plan applies
+metering.units.account.commonAreaTitle :: This is a common area
+metering.units.account.deliveryPostEmailText :: By mail, by email and by text
+metering.units.account.postCameBack :: Mail came back — check the address
+metering.units.account.protectionOpenEnded :: while the plan is being kept to
+metering.units.account.reachNothing :: Nothing recorded — no paperless choice, no texts, no language
+metering.units.account.vacantBetweenNone :: No gap — one moved in as the other left
+metering.units.account.vacantTitle :: Nobody occupies this unit
+metering.units.accountsAttachToUnits :: Accounts attach to units, not to premises.
+metering.units.assets.assignPickerHelp :: It opens the reassign page, unit already chosen.
+metering.units.assets.assignPickerPlaceholder :: Search inventory by asset #…
+metering.units.assets.findHelp :: Say the size, kind, class or place. Or type its number.
+metering.units.assets.findLabel :: Find one for {{unit}}
+metering.units.assets.findPlaceholder :: 5/8 water meter inventory
+metering.units.assets.heading :: Assets on this unit
+metering.units.assets.noneEmptyHelper :: A meter on this unit starts billing.
+metering.units.assets.statusTitle :: Change the status of {{asset}}
+metering.units.deleteBlockedHint :: An account, asset or read uses it. Deactivate it instead.
+metering.units.detail.failedTitle :: We couldn't open that unit
+metering.units.edit.planSection :: A unit with no plan cannot bill.
+metering.units.field.commonAreaNo :: No — it is a unit somebody lives in
+metering.units.field.commonAreaYes :: Yes — shared space that bills the owner
+metering.units.field.occupancyDerived :: {{occupancy}} — it follows the active account.
+metering.units.kpi.assetsSplit :: {{metered}} metered · {{behind}} behind the meter
+metering.units.listSubtitle :: Every unit that can take service, across every property.
+metering.units.move.acknowledge :: I understand, and I want to move this unit anyway
+metering.units.move.acknowledgeHint :: Required before the move can be made
+metering.units.move.billCountUnavailable :: Bills are not counted per unit yet.
+metering.units.move.effect.heading :: What this will do
+metering.units.move.effect.issuedBills :: They stay on {{premise}} — nothing already billed moves.
+metering.units.move.effect.nextBill :: It is attributed to the new property from {{date}}.
+metering.units.move.effect.recorded :: Both properties, the date and your reason. In the audit log.
+metering.units.move.effect.routeGained :: {{service}} is on no route today and joins {{to}}.
+metering.units.move.effect.routeNone :: {{service}} is on no route at either property.
+metering.units.move.reasonHelp :: The only record of why it moved. It goes to the audit log.
+metering.units.move.title :: Move {{unit}} to another property
+metering.units.move.toHelp :: It takes the new building's route and services.
+metering.units.overview.openAccountTab :: Open the account tab →
+metering.units.owed.vacantOwnerBilled :: Vacant — base charges bill to the owner
+metering.units.plan.bulkTitle :: Assign a plan to {{count}} units
+metering.units.plan.eligibilityArrivesWith :: Not checked — no plan here asks for proof before it applies
+metering.units.plan.lockedMeaning :: · a change here needs a supervisor
+metering.units.plan.noStandbyMeaning :: · nothing bills while the unit is empty
+metering.units.plan.notLockedMeaning :: · a change here does not need a supervisor
+metering.units.plan.overrideWarning :: That was an override. Your reason is in the audit log.
+metering.units.plan.standbyMeaning :: · the standing charge bills while the unit is empty
+metering.units.plan.title :: Assign a plan to {{unit}}
+metering.units.point.help :: Only where the unit sits apart from its building.
+metering.units.point.noneYet :: Neither this unit nor its building has one.
+metering.units.point.usingOwn :: This unit has its own point — {{lat}}, {{lng}}
+metering.units.searchPlaceholder :: Search unit, address, premise # or meter #…
+metering.units.servicesTheUnitCanTake :: {{services}} — the {{count}} this unit can take
+metering.units.status.blocker.assets_one :: {{count}} asset is still on this unit
+metering.units.status.blocker.assets_other :: {{count}} assets are still on this unit
+metering.units.status.deactivateTitle :: Take {{name}} out of service?
+metering.units.status.reactivateAction :: Put back in service
+metering.units.status.reactivateTitle :: Put {{name}} back in service?
+metering.units.status.refusalHeading :: Not while this is live

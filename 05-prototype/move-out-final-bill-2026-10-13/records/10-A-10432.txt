@@ -1,0 +1,41 @@
+== account
+ account_no | closed_at | status | behavior_class | deposit_on_file | close_reason 
+------------+-----------+--------+----------------+-----------------+--------------
+ A-10432    |           | active | billable       |      150.000000 | 
+(1 row)
+
+== final invoices
+ invoice_no | bill_type | status | period_start | period_end | total | marker | bill_date | due_days 
+------------+-----------+--------+--------------+------------+-------+--------+-----------+----------
+(0 rows)
+
+== lines
+ description | qty | unit_price | amount 
+-------------+-----+------------+--------
+(0 rows)
+
+== journal (by entry, designation)
+ posting_key | designation | side | amt 
+-------------+-------------+------+-----
+(0 rows)
+
+== entries balanced?
+ posting_key | dr | cr 
+-------------+----+----
+(0 rows)
+
+== delivery rows
+ channel | status | template_code | unavailable_reason 
+---------+--------+---------------+--------------------
+(0 rows)
+
+== audit rows today
+ action | entity_type | created_at 
+--------+-------------+------------
+(0 rows)
+
+== meter reads today
+ read_at | current_value | consumption | unit | source | lifecycle 
+---------+---------------+-------------+------+--------+-----------
+(0 rows)
+

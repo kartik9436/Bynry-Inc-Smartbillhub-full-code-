@@ -1,0 +1,115 @@
+{
+  "id": "01a106e4-2de6-7ed1-a638-a5b43a7ae3b3",
+  "order_no": "WO-0042",
+  "type": "Meter exchange — residential",
+  "premise": {
+    "id": "01a106a7-2b05-7dd5-be94-ea3e264227f4",
+    "premise_no": "P-00007",
+    "address": "101 Silver Creek Rd"
+  },
+  "service": "water",
+  "state": "completed",
+  "outcome": "passed",
+  "mode": "our_crew",
+  "is_gate": false,
+  "connection": null,
+  "account": {
+    "id": "01a106a7-757b-7c50-9586-5eac8366194e",
+    "account_no": "AC-2026-00001"
+  },
+  "raised_at": "2026-10-04T12:29:39.687458+00:00",
+  "priority": null,
+  "technician": {
+    "kind": "person",
+    "name": "D. Ortiz",
+    "slug": "d-ortiz"
+  },
+  "due_at": null,
+  "window_start": "2026-10-05T09:00:00+00:00",
+  "window_end": "2026-10-05T12:00:00+00:00",
+  "dispatch_state": "complete",
+  "source": "dispatcher",
+  "source_ref": null,
+  "area": {
+    "id": "01a106a6-e1c8-7c6a-b791-89ef08ca02e1",
+    "code": "NORTH-NW",
+    "name": "NW"
+  },
+  "technician_acceptance": {
+    "state": "pending",
+    "at": null,
+    "reason": null
+  },
+  "hold": null,
+  "accepted": null,
+  "sla": {
+    "due_at": "2026-10-07T12:29:39.687458+00:00",
+    "target": "default",
+    "at_risk": false
+  },
+  "shape": "completed",
+  "customer": {
+    "name": "Ana Alvarez",
+    "phone": "+1 (402) 555-1000",
+    "account_no": "AC-2026-00001"
+  },
+  "location": {
+    "premises": {
+      "id": "01a106a7-2b05-7dd5-be94-ea3e264227f4",
+      "premise_no": "P-00007"
+    },
+    "unit": {
+      "id": "01a106a7-2b11-734e-a21e-126bc0654353",
+      "label": "Unit 1"
+    },
+    "asset": {
+      "id": "01a106a7-6548-7b6b-ba9e-59ac0d0d5a3f",
+      "asset_no": "W-5000",
+      "serial": null
+    },
+    "address": "101 Silver Creek Rd"
+  },
+  "signature": {
+    "id": "01a106e4-31a8-74f4-bfa3-41b766ddee5c",
+    "refused": false,
+    "printed_name": "Ana Alvarez",
+    "decline_reason": null,
+    "door_hanger_attachment_id": null,
+    "door_hanger_uploading": false,
+    "signed_at": "2026-10-04T12:29:40.642847Z",
+    "captured_by": {
+      "name": "D. Ortiz"
+    },
+    "image_url": "/api/brazosbend/work-orders/01a106e4-2de6-7ed1-a638-a5b43a7ae3b3/signature/image"
+  },
+  "closed": {
+    "by": {
+      "name": "D. Ortiz"
+    },
+    "at": "2026-10-04T12:29:40.666612+00:00"
+  },
+  "timeline": [
+    {
+      "kind": "raised",
+      "at": "2026-10-04T12:29:39.687458+00:00",
+      "by": null,
+      "detail": "dispatcher"
+    },
+    {
+      "kind": "assigned",
+      "at": "2026-10-04T12:29:39.722112+00:00",
+      "by": {
+        "name": "Dana Whitfield"
+      },
+      "detail": "D. Ortiz"
+    },
+    {
+      "kind": "completed",
+      "at": "2026-10-04T12:29:40.666612+00:00",
+      "by": null,
+      "detail": "passed"
+    }
+  ],
+  "est_duration_minutes": 38,
+  "custom_data": {}
+}

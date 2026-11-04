@@ -1,0 +1,2432 @@
+{
+  "01-rs-list": {
+    "at1440": {
+      "h1": {
+        "text": "Plans & Rates",
+        "size": "32px"
+      },
+      "head": [
+        "History",
+        "+ New rate schedule"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        19,
+        29,
+        35,
+        40,
+        43,
+        65,
+        87
+      ],
+      "dates": [
+        "08/01/2026"
+      ],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "Plans & Rates",
+        "size": "32px"
+      },
+      "head": [
+        "History",
+        "+ New rate schedule"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        19,
+        29,
+        35,
+        40,
+        43,
+        65,
+        87
+      ],
+      "dates": [
+        "08/01/2026"
+      ],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "02-rs-list-filter-open": {
+    "at1440": {
+      "h1": {
+        "text": "Plans & Rates",
+        "size": "32px"
+      },
+      "head": [
+        "History",
+        "+ New rate schedule"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        19,
+        29,
+        35,
+        40,
+        43,
+        65,
+        87
+      ],
+      "dates": [
+        "08/01/2026"
+      ],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "Plans & Rates",
+        "size": "32px"
+      },
+      "head": [
+        "History",
+        "+ New rate schedule"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        19,
+        29,
+        35,
+        40,
+        43,
+        65,
+        87
+      ],
+      "dates": [
+        "08/01/2026"
+      ],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "03-rs-list-service-tag": {
+    "at1440": {
+      "h1": {
+        "text": "Plans & Rates",
+        "size": "32px"
+      },
+      "head": [
+        "History",
+        "+ New rate schedule"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        19,
+        29,
+        35,
+        40,
+        65
+      ],
+      "dates": [
+        "08/01/2026"
+      ],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "Plans & Rates",
+        "size": "32px"
+      },
+      "head": [
+        "History",
+        "+ New rate schedule"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        19,
+        29,
+        35,
+        40,
+        65
+      ],
+      "dates": [
+        "08/01/2026"
+      ],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "04-rs-list-no-results": {
+    "at1440": {
+      "h1": {
+        "text": "Plans & Rates",
+        "size": "32px"
+      },
+      "head": [
+        "History",
+        "+ New rate schedule"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        29,
+        35,
+        40
+      ],
+      "dates": [
+        "08/01/2026"
+      ],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "Plans & Rates",
+        "size": "32px"
+      },
+      "head": [
+        "History",
+        "+ New rate schedule"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        29,
+        35,
+        40
+      ],
+      "dates": [
+        "08/01/2026"
+      ],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "05-rs-view-overview": {
+    "at1440": {
+      "h1": {
+        "text": "Residential Water \u2014 Inclining tiers",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [
+        "08/01/2026"
+      ],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "Residential Water \u2014 Inclining tiers",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [
+        "08/01/2026"
+      ],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "06-rs-view-rates": {
+    "at1440": {
+      "h1": {
+        "text": "Residential Water \u2014 Inclining tiers",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [
+        "08/01/2026"
+      ],
+      "longMoney": [
+        "$4.0000",
+        "$6.5000",
+        "$8.0000"
+      ],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "Residential Water \u2014 Inclining tiers",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [
+        "08/01/2026"
+      ],
+      "longMoney": [
+        "$4.0000",
+        "$6.5000",
+        "$8.0000"
+      ],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "07-rs-view-plans": {
+    "at1440": {
+      "h1": {
+        "text": "Residential Water \u2014 Inclining tiers",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [
+        "08/01/2026"
+      ],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "Residential Water \u2014 Inclining tiers",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [
+        "08/01/2026"
+      ],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "08-rs-view-audit": {
+    "at1440": {
+      "h1": {
+        "text": "Residential Water \u2014 Inclining tiers",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [
+        "08/01/2026"
+      ],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "Residential Water \u2014 Inclining tiers",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [
+        "08/01/2026"
+      ],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "09-rs-view-rates-backfilled": {
+    "at1440": {
+      "h1": {
+        "text": "Industrial Electric \u2014 Energy + demand",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [
+        "08/01/2026"
+      ],
+      "longMoney": [
+        "$0.0850",
+        "$11.0000"
+      ],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "Industrial Electric \u2014 Energy + demand",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [
+        "08/01/2026"
+      ],
+      "longMoney": [
+        "$0.0850",
+        "$11.0000"
+      ],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "10-rs-add-1-details": {
+    "at1440": {
+      "h1": {
+        "text": "New rate schedule",
+        "size": "32px"
+      },
+      "head": [],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": {
+        "left": [
+          "Cancel"
+        ],
+        "right": [
+          "Continue"
+        ],
+        "autoMargins": 1,
+        "width": 1120,
+        "layoutWidth": 1120
+      },
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        58
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "New rate schedule",
+        "size": "32px"
+      },
+      "head": [],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": {
+        "left": [
+          "Cancel"
+        ],
+        "right": [
+          "Continue"
+        ],
+        "autoMargins": 1,
+        "width": 960,
+        "layoutWidth": 960
+      },
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        58
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "11-rs-add-1-errors": {
+    "at1440": {
+      "h1": {
+        "text": "New rate schedule",
+        "size": "32px"
+      },
+      "head": [],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": {
+        "left": [
+          "Cancel"
+        ],
+        "right": [
+          "Continue"
+        ],
+        "autoMargins": 1,
+        "width": 1120,
+        "layoutWidth": 1120
+      },
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        58
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "New rate schedule",
+        "size": "32px"
+      },
+      "head": [],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": {
+        "left": [
+          "Cancel"
+        ],
+        "right": [
+          "Continue"
+        ],
+        "autoMargins": 1,
+        "width": 960,
+        "layoutWidth": 960
+      },
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        58
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "12-rs-add-2-pricing": {
+    "at1440": {
+      "h1": {
+        "text": "New rate schedule",
+        "size": "32px"
+      },
+      "head": [],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": {
+        "left": [
+          "Cancel"
+        ],
+        "right": [
+          "Back",
+          "Continue"
+        ],
+        "autoMargins": 1,
+        "width": 1120,
+        "layoutWidth": 1120
+      },
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        28,
+        35,
+        58
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "New rate schedule",
+        "size": "32px"
+      },
+      "head": [],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": {
+        "left": [
+          "Cancel"
+        ],
+        "right": [
+          "Back",
+          "Continue"
+        ],
+        "autoMargins": 1,
+        "width": 960,
+        "layoutWidth": 960
+      },
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        28,
+        35,
+        58
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "13-rs-add-3-review": {
+    "at1440": {
+      "h1": {
+        "text": "New rate schedule",
+        "size": "32px"
+      },
+      "head": [],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": {
+        "left": [
+          "Cancel"
+        ],
+        "right": [
+          "Save draft",
+          "Back",
+          "Create rate schedule"
+        ],
+        "autoMargins": 1,
+        "width": 1120,
+        "layoutWidth": 1120
+      },
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        58
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "New rate schedule",
+        "size": "32px"
+      },
+      "head": [],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": {
+        "left": [
+          "Cancel"
+        ],
+        "right": [
+          "Save draft",
+          "Back",
+          "Create rate schedule"
+        ],
+        "autoMargins": 1,
+        "width": 960,
+        "layoutWidth": 960
+      },
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        58
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "14-rs-edit-1": {
+    "at1440": {
+      "h1": {
+        "text": "Edit Residential Water \u2014 Inclining tiers",
+        "size": "32px"
+      },
+      "head": [],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": {
+        "left": [
+          "Cancel"
+        ],
+        "right": [
+          "Continue"
+        ],
+        "autoMargins": 1,
+        "width": 1120,
+        "layoutWidth": 1120
+      },
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        58
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "Edit Residential Water \u2014 Inclining tiers",
+        "size": "32px"
+      },
+      "head": [],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": {
+        "left": [
+          "Cancel"
+        ],
+        "right": [
+          "Continue"
+        ],
+        "autoMargins": 1,
+        "width": 960,
+        "layoutWidth": 960
+      },
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        58
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "15-rs-edit-2": {
+    "at1440": {
+      "h1": {
+        "text": "Edit Residential Water \u2014 Inclining tiers",
+        "size": "32px"
+      },
+      "head": [],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": {
+        "left": [
+          "Cancel"
+        ],
+        "right": [
+          "Back",
+          "Continue"
+        ],
+        "autoMargins": 1,
+        "width": 1120,
+        "layoutWidth": 1120
+      },
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        28,
+        35,
+        58
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "Edit Residential Water \u2014 Inclining tiers",
+        "size": "32px"
+      },
+      "head": [],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": {
+        "left": [
+          "Cancel"
+        ],
+        "right": [
+          "Back",
+          "Continue"
+        ],
+        "autoMargins": 1,
+        "width": 960,
+        "layoutWidth": 960
+      },
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        28,
+        35,
+        58
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "16-rs-edit-3": {
+    "at1440": {
+      "h1": {
+        "text": "Edit Residential Water \u2014 Inclining tiers",
+        "size": "32px"
+      },
+      "head": [],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": {
+        "left": [
+          "Cancel"
+        ],
+        "right": [
+          "Save draft",
+          "Back",
+          "Create new version"
+        ],
+        "autoMargins": 1,
+        "width": 1120,
+        "layoutWidth": 1120
+      },
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        58
+      ],
+      "dates": [],
+      "longMoney": [
+        "$4.0000",
+        "$6.5000",
+        "$8.0000"
+      ],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "Edit Residential Water \u2014 Inclining tiers",
+        "size": "32px"
+      },
+      "head": [],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": {
+        "left": [
+          "Cancel"
+        ],
+        "right": [
+          "Save draft",
+          "Back",
+          "Create new version"
+        ],
+        "autoMargins": 1,
+        "width": 960,
+        "layoutWidth": 960
+      },
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        58
+      ],
+      "dates": [],
+      "longMoney": [
+        "$4.0000",
+        "$6.5000",
+        "$8.0000"
+      ],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "20-cc-list": {
+    "at1440": {
+      "h1": {
+        "text": "Plans & Rates",
+        "size": "32px"
+      },
+      "head": [
+        "History",
+        "+ New charge code"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        19,
+        29,
+        35,
+        40
+      ],
+      "dates": [
+        "08/01/2026"
+      ],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "Plans & Rates",
+        "size": "32px"
+      },
+      "head": [
+        "History",
+        "+ New charge code"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        19,
+        29,
+        35,
+        40
+      ],
+      "dates": [
+        "08/01/2026"
+      ],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "21-cc-list-filter-open": {
+    "at1440": {
+      "h1": {
+        "text": "Plans & Rates",
+        "size": "32px"
+      },
+      "head": [
+        "History",
+        "+ New charge code"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        19,
+        29,
+        35,
+        40
+      ],
+      "dates": [
+        "08/01/2026"
+      ],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "Plans & Rates",
+        "size": "32px"
+      },
+      "head": [
+        "History",
+        "+ New charge code"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        19,
+        29,
+        35,
+        40
+      ],
+      "dates": [
+        "08/01/2026"
+      ],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "22-cc-list-no-results": {
+    "at1440": {
+      "h1": {
+        "text": "Plans & Rates",
+        "size": "32px"
+      },
+      "head": [
+        "History",
+        "+ New charge code"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        29,
+        35,
+        40
+      ],
+      "dates": [
+        "08/01/2026"
+      ],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "Plans & Rates",
+        "size": "32px"
+      },
+      "head": [
+        "History",
+        "+ New charge code"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        29,
+        35,
+        40
+      ],
+      "dates": [
+        "08/01/2026"
+      ],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "23-cc-view-base-overview": {
+    "at1440": {
+      "h1": {
+        "text": "Electric base service \u2014 residential",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "Electric base service \u2014 residential",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "24-cc-view-base-prices": {
+    "at1440": {
+      "h1": {
+        "text": "Electric base service \u2014 residential",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "Electric base service \u2014 residential",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "25-cc-view-base-plans": {
+    "at1440": {
+      "h1": {
+        "text": "Electric base service \u2014 residential",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "Electric base service \u2014 residential",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "26-cc-view-base-audit": {
+    "at1440": {
+      "h1": {
+        "text": "Electric base service \u2014 residential",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "Electric base service \u2014 residential",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "27-cc-view-plan-overview": {
+    "at1440": {
+      "h1": {
+        "text": "Card convenience fee",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "Card convenience fee",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "28-cc-view-plan-prices": {
+    "at1440": {
+      "h1": {
+        "text": "Card convenience fee",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "Card convenience fee",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "29-cc-view-plan-plans": {
+    "at1440": {
+      "h1": {
+        "text": "Card convenience fee",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "Card convenience fee",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "30-cc-view-plan-audit": {
+    "at1440": {
+      "h1": {
+        "text": "Card convenience fee",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "Card convenience fee",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "31-cc-view-other-overview": {
+    "at1440": {
+      "h1": {
+        "text": "After-hours service call",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "After-hours service call",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "32-cc-view-other-prices": {
+    "at1440": {
+      "h1": {
+        "text": "After-hours service call",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "After-hours service call",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "33-cc-view-other-audit": {
+    "at1440": {
+      "h1": {
+        "text": "After-hours service call",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "After-hours service call",
+        "size": "32px"
+      },
+      "head": [
+        "Duplicate",
+        "Edit",
+        "Retire"
+      ],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": null,
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        40
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "40-cc-add-1": {
+    "at1440": {
+      "h1": {
+        "text": "New charge code",
+        "size": "32px"
+      },
+      "head": [],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": {
+        "left": [
+          "Cancel"
+        ],
+        "right": [
+          "Continue"
+        ],
+        "autoMargins": 1,
+        "width": 1120,
+        "layoutWidth": 1120
+      },
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        58
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "New charge code",
+        "size": "32px"
+      },
+      "head": [],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": {
+        "left": [
+          "Cancel"
+        ],
+        "right": [
+          "Continue"
+        ],
+        "autoMargins": 1,
+        "width": 960,
+        "layoutWidth": 960
+      },
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        58
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "41-cc-add-1-kind-chosen": {
+    "at1440": {
+      "h1": {
+        "text": "New charge code",
+        "size": "32px"
+      },
+      "head": [],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": {
+        "left": [
+          "Cancel"
+        ],
+        "right": [
+          "Continue"
+        ],
+        "autoMargins": 1,
+        "width": 1120,
+        "layoutWidth": 1120
+      },
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        58
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "New charge code",
+        "size": "32px"
+      },
+      "head": [],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": {
+        "left": [
+          "Cancel"
+        ],
+        "right": [
+          "Continue"
+        ],
+        "autoMargins": 1,
+        "width": 960,
+        "layoutWidth": 960
+      },
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        58
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "42-cc-edit-1": {
+    "at1440": {
+      "h1": {
+        "text": "Edit BASE-E",
+        "size": "32px"
+      },
+      "head": [],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": {
+        "left": [
+          "Cancel"
+        ],
+        "right": [
+          "Continue"
+        ],
+        "autoMargins": 1,
+        "width": 1120,
+        "layoutWidth": 1120
+      },
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        58
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "Edit BASE-E",
+        "size": "32px"
+      },
+      "head": [],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": {
+        "left": [
+          "Cancel"
+        ],
+        "right": [
+          "Continue"
+        ],
+        "autoMargins": 1,
+        "width": 960,
+        "layoutWidth": 960
+      },
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        58
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "43-cc-edit-2": {
+    "at1440": {
+      "h1": {
+        "text": "Edit BASE-E",
+        "size": "32px"
+      },
+      "head": [],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": {
+        "left": [
+          "Cancel"
+        ],
+        "right": [
+          "Back",
+          "Continue"
+        ],
+        "autoMargins": 1,
+        "width": 1120,
+        "layoutWidth": 1120
+      },
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        58
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "Edit BASE-E",
+        "size": "32px"
+      },
+      "head": [],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": {
+        "left": [
+          "Cancel"
+        ],
+        "right": [
+          "Back",
+          "Continue"
+        ],
+        "autoMargins": 1,
+        "width": 960,
+        "layoutWidth": 960
+      },
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        58
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  },
+  "44-cc-edit-3": {
+    "at1440": {
+      "h1": {
+        "text": "Edit BASE-E",
+        "size": "32px"
+      },
+      "head": [],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": {
+        "left": [
+          "Cancel"
+        ],
+        "right": [
+          "Save draft & exit",
+          "Back",
+          "Save change"
+        ],
+        "autoMargins": 1,
+        "width": 1120,
+        "layoutWidth": 1120
+      },
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1200,
+        "mainClient": 1200,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        58
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    },
+    "at1280": {
+      "h1": {
+        "text": "Edit BASE-E",
+        "size": "32px"
+      },
+      "head": [],
+      "bottomBar": 0,
+      "quickChips": 0,
+      "footer": {
+        "left": [
+          "Cancel"
+        ],
+        "right": [
+          "Save draft & exit",
+          "Back",
+          "Save change"
+        ],
+        "autoMargins": 1,
+        "width": 960,
+        "layoutWidth": 960
+      },
+      "sideways": {
+        "document": false,
+        "main": false,
+        "mainScroll": 1040,
+        "mainClient": 1040,
+        "table": false
+      },
+      "clipped": [],
+      "buttonHeights": [
+        35,
+        58
+      ],
+      "dates": [],
+      "longMoney": [],
+      "uuids": 0,
+      "epoch": false
+    }
+  }
+}

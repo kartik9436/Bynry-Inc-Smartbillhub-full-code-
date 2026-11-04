@@ -1,0 +1,165 @@
+{
+  "01-base-w-fire-edit-pricing": {
+    "codesOnScreen": [],
+    "selects": [
+      {
+        "value": "W-58",
+        "shown": "Water 5/8\"",
+        "options": [
+          "Choose",
+          "Water 5/8\"",
+          "Water 3\"",
+          "Water 4\"",
+          "Water 5\"",
+          "Water 6\""
+        ]
+      },
+      {
+        "value": "W-34",
+        "shown": "Water 3/4\"",
+        "options": [
+          "Choose",
+          "Water 3/4\"",
+          "Water 3\"",
+          "Water 4\"",
+          "Water 5\"",
+          "Water 6\""
+        ]
+      },
+      {
+        "value": "W-1",
+        "shown": "Water 1\"",
+        "options": [
+          "Choose",
+          "Water 1\"",
+          "Water 3\"",
+          "Water 4\"",
+          "Water 5\"",
+          "Water 6\""
+        ]
+      },
+      {
+        "value": "W-112",
+        "shown": "Water 1½\"",
+        "options": [
+          "Choose",
+          "Water 1½\"",
+          "Water 3\"",
+          "Water 4\"",
+          "Water 5\"",
+          "Water 6\""
+        ]
+      },
+      {
+        "value": "W-2",
+        "shown": "Water 2\"",
+        "options": [
+          "Choose",
+          "Water 2\"",
+          "Water 3\"",
+          "Water 4\"",
+          "Water 5\"",
+          "Water 6\""
+        ]
+      }
+    ]
+  },
+  "02-base-w-fire-edit-review": {
+    "codesOnScreen": [],
+    "selects": []
+  },
+  "03-base-w-fire-details-prices": {
+    "codesOnScreen": [],
+    "selects": []
+  },
+  "04-base-w-dup-edit-pricing": {
+    "codesOnScreen": [],
+    "selects": [
+      {
+        "value": "W-58",
+        "shown": "Water 5/8\"",
+        "options": [
+          "Choose",
+          "Water 5/8\"",
+          "Water 3/4\"",
+          "Water 1½\"",
+          "Water 2\"",
+          "Water 3\"",
+          "Water 4\"",
+          "Water 5\"",
+          "Water 6\""
+        ]
+      },
+      {
+        "value": "W-1",
+        "shown": "Water 1\"",
+        "options": [
+          "Choose",
+          "Water 3/4\"",
+          "Water 1\"",
+          "Water 1½\"",
+          "Water 2\"",
+          "Water 3\"",
+          "Water 4\"",
+          "Water 5\"",
+          "Water 6\""
+        ]
+      },
+      {
+        "value": "W-1",
+        "shown": "Water 1\"",
+        "options": [
+          "Choose",
+          "Water 5/8\"",
+          "Water 3/4\"",
+          "Water 1\"",
+          "Water 1½\"",
+          "Water 2\"",
+          "Water 3\"",
+          "Water 4\"",
+          "Water 5\"",
+          "Water 6\""
+        ]
+      }
+    ]
+  },
+  "dupRows": [
+    "1 Water Meter Choose Water 5/8\" Water 3/4\" Water 1½\" Water 2\" Water 3\" Water 4\" Water 5\" Water 6\" Every class — ✕",
+    "2 Water Meter Choose Water 3/4\" Water 1\" Water 1½\" Water 2\" Water 3\" Water 4\" Water 5\" Water 6\" Every class — ✕",
+    "3 Water Meter Choose Water 5/8\" Water 3/4\" Water 1\" Water 1½\" Water 2\" Water 3\" Water 4\" Water 5\" Water 6\" Commercial — ✕"
+  ],
+  "04b-base-w-dup-review-before-save": {
+    "codesOnScreen": [],
+    "selects": []
+  },
+  "04c-base-w-dup-after-save": {
+    "codesOnScreen": [],
+    "selects": []
+  },
+  "dupPricesAfterSave": [
+    "W-1|null|12.00|2026-01-01→null|killed=false",
+    "W-1|commercial|20.00|2026-11-01→null|killed=false",
+    "W-58|null|8.00|2026-01-01→null|killed=false"
+  ],
+  "05-base-w-dup-details-prices": {
+    "codesOnScreen": [],
+    "selects": []
+  },
+  "06-asset-detail-measurement": {
+    "codesOnScreen": [],
+    "selects": []
+  },
+  "07-premises-assets-tab": {
+    "codesOnScreen": [],
+    "selects": []
+  },
+  "08-route-wizard-meters": {
+    "codesOnScreen": [],
+    "selects": []
+  },
+  "routeRows": [
+    "M-7001 1408 Bluestem Ln — — —",
+    "W-7001 1408 Bluestem Ln — Water 5/8\" —",
+    "M-7450 2201 Cane Island Pkwy — — —"
+  ]
+}

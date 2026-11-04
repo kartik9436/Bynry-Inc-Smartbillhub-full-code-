@@ -1,0 +1,77 @@
+# G41 baseline — occurrences of the OLD tenant predicate per file.
+# `current_setting('app.tenant_id')::uuid` (no `, true`), which RAISES on an unset
+# marker instead of denying. Generated 2026-08-24 from DEF-639's fix.
+#
+# THE MIGRATION ENTRIES ARE BASELINED, NOT FORGIVEN. A committed migration may not
+# be edited (migration-guard.yml), and `audit.0005_rls_deny_on_unset_tenant` rewrites
+# whatever they created, so a built database ends up correct either way. Their numbers
+# fall only when a migration is superseded.
+#
+# THE THREE NON-MIGRATION ENTRIES ARE PROSE, AND DELETING THEM WOULD DELETE THE
+# EXPLANATION: two docstrings narrating what the predicate USED to be, and one `--`
+# comment. Hard-won law 10 — a reason a thing is built the way it is belongs in the
+# file's own docstring.
+#
+# Every number here may FALL and may never RISE. A file not listed may not introduce
+# the old form at all.
+
+06-backend/apps/audit/migrations/0003_rls_audit_partitions.py 2
+06-backend/apps/audit/migrations/0005_rls_deny_on_unset_tenant.py 3
+06-backend/apps/billing/migrations/0004_rls_run_decisions.py 2
+06-backend/apps/billing/migrations/0008_rls_release_gate.py 2
+06-backend/apps/billing/migrations/0013_rls_budget_billing.py 4
+06-backend/apps/billing/migrations/0015_rls_correction_cases.py 6
+06-backend/apps/billing/migrations/0019_rls_bill_templates.py 4
+06-backend/apps/customers/migrations/0002_rls_w2_policies.py 4
+06-backend/apps/customers/migrations/0006_rls_us_cus_019_tables.py 4
+06-backend/apps/customers/migrations/0008_rls_account_notes.py 4
+06-backend/apps/customers/migrations/0016_rls_cr030_w1_opening_buckets.py 2
+06-backend/apps/customers/migrations/0018_rls_cr031_service_requests.py 2
+06-backend/apps/customers/migrations/0020_rls_sr_document_requirements.py 1
+06-backend/apps/identity/migrations/0004_rls_security_policies.py 2
+06-backend/apps/ledger/migrations/0003_gl_designations.py 1
+06-backend/apps/metering/migrations/0004_rls_w2_reads_policies.py 6
+06-backend/apps/metering/migrations/0015_rls_cr023_import_runs.py 4
+06-backend/apps/metering/migrations/0016_br_met_101_common_area.py 1
+# assets/0003 gained 1 on 2026-08-24, and it is PROSE. The OQ-354 fix (option (A),
+# PO 2026-08-24) made this migration leave the nil sentinel instead of the empty
+# string, and its comment explains WHY by quoting the old predicate verbatim —
+# line 121, `# (\`current_setting('app.tenant_id')::uuid\`) it CASTS, where '' raises`.
+# There is no live policy here. Deleting the quote would delete the explanation
+# (hard-won law 10), and the file cannot be edited anyway: migration-guard.yml pins
+# it by CONTENT HASH under the same one-time exception, so any edit — including a
+# cosmetic one to satisfy this ratchet — breaks the exemption and blocks the build.
+# ⚠ G41 COULD NOT SAY SO AT THE TIME. It had no `run()`, so `run_gates.py` crashed
+# on it and the merge stack counted the crash as one FAIL among many (DEF-674).
+06-backend/apps/assets/migrations/0003_meter_types_and_read_methods.py 1
+06-backend/apps/metering/migrations/0017_cr026_import_progress.py 2
+06-backend/apps/metering/migrations/0025_rls_br_met_106_monthly_usage.py 1
+06-backend/apps/payments/migrations/0008_rls_plans_and_collections.py 10
+06-backend/apps/payments/migrations/0010_rls_writeoffs_and_intents.py 4
+# tenancy/0004 fell 4 → 1 on 2026-08-24. The four LIVE predicates were rewritten
+# under the PO's one-time migration-guard exception (DEF-639) — it is the only
+# committed migration in this repo that has ever been edited, and the guard pins
+# it by content hash so it cannot be edited again. The 1 that remains is the
+# comment in that file explaining what the predicates used to say, which is the
+# prose this ratchet exists to protect (hard-won law 10).
+06-backend/apps/tenancy/migrations/0004_settings_families_logo_and_hosted_lists.py 1
+06-backend/core/rls.py 1
+06-backend/core/tenancy.py 1
+06-backend/db/001_tenant_context_default.sql 1
+# ── 2026-09-30 · gate triage T6 — FOUR MIGRATIONS, NONE A LIVE OLD POLICY TODAY ──
+# Each was committed after this baseline and G41 was red from the first of them
+# (tenancy/0048, b813394a6, 2026-09-24). Read line by line:
+#  * tenancy/0048 (1) and customers/0070 (1) — PROSE: a docstring quoting the
+#    old predicate to explain why the new one is written as it is.
+#  * customers/0074 (2) — the FIX: DEF-GOV-7821 rewrites 0073's policy to the
+#    NULLIF form; its docstring quotes the old text and OLD_PREDICATE names it so
+#    the migration can assert what it replaces.
+#  * customers/0073 (2) — a REAL old-form policy when committed (64f7c64bd,
+#    2026-09-26), which is DEF-GOV-7821, fixed two days later by 0074 above. An
+#    applied migration is history and is not edited; the live policy is 0074's.
+# So all four are banked at today's counts: none may RISE, and a new file still
+# may not introduce the old form at all.
+06-backend/apps/customers/migrations/0070_p0_2_primary_holder.py 1
+06-backend/apps/customers/migrations/0073_rls_cr142_p0_18_attribute_history.py 2
+06-backend/apps/customers/migrations/0074_rls_def_gov_7821_attribute_history_deny_on_unset.py 2
+06-backend/apps/tenancy/migrations/0048_p0_13_je_series_format.py 1

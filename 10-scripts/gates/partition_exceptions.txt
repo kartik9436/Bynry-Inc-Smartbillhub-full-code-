@@ -1,0 +1,40 @@
+# G16 exception list — the ONLY way an NFR-24 table may ship unpartitioned.
+#
+# NFR-24 says "No exceptions", and this file does not weaken that: it makes the
+# exceptions that exist in the running code VISIBLE, ATTRIBUTABLE and EXPIRING.
+# An entry is a parked decision, never a granted one. G16 fails if the cited
+# open question is CLOSED (the reason to be unpartitioned has expired — ship the
+# ruling), if the OQ does not exist, if the OQ's registry row does not name the
+# table, or if the table has since been partitioned (stale entry — delete it in
+# the same diff that partitions the table).
+#
+# One entry per line, four fields:
+#   <table> <OQ-### | PO-RULED> <YYYY-MM-DD added> <reason: who reported it, and what closes it>
+#
+# The second field says WHAT KIND of exception this is, and the two are not
+# interchangeable:
+#   OQ-###    PARKED. A question is open; when it closes, this line must go —
+#             either because the ruling was to partition, or because it was
+#             ratified and the line is re-filed as PO-RULED.
+#   PO-RULED  RATIFIED. The PO decided this table stays unpartitioned. It does
+#             not expire. Reopen only by a new ruling, never by editing here.
+#
+# The distinction exists because OQ-108 closed IN FAVOUR of the exception, and
+# the gate then failed a line whose reason had not expired but had been signed.
+#
+# Adding a line here is a process event — it goes into the daily PO batch like an
+# E1 (B12 r2, "who watches the watchers"), same as editing human_owned.txt. You
+# are recording that shipped code disagrees with signed law; do not add one
+# without an open question that says so.
+
+# invoice_lines and journal_lines were parked here from 2026-08-11 until
+# 2026-08-15, both citing OQ-107. OQ-107 CLOSED on 2026-08-12 — PO verbatim,
+# "Nod to split both by year" — and G16 then failed both lines, correctly: a
+# closed question means a parked exception's reason has expired. The ruling was
+# to PARTITION, so the two lines are deleted in the diff that partitions the
+# tables (apps/billing/0016_partition_invoice_lines_by_year.py and
+# apps/ledger/0005_partition_journal_lines_by_year.py), which is the first of
+# the two lawful outcomes this file's own header names. Neither was re-filed as
+# PO-RULED: nothing was exempted.
+
+outbound_messages PO-RULED 2026-08-11 PO ruling (decision log 2026-08-11, option A): the no-duplicate guarantee WINS over NFR-24. Monthly RANGE forces created_at into every unique constraint, so a bill released 30 Sept and re-run 2 Oct would land in a different partition, pass the duplicate check and send the customer a SECOND COPY. CLAUDE.md hard rule 6 stands; this exemption is RATIFIED and does not expire. Reopen only by a new PO ruling.

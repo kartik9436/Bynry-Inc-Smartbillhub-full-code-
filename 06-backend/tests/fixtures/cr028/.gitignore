@@ -1,0 +1,3 @@
+# CR-028 AST-W0-T2: make_100k.py's output is DERIVED data, never committed
+# (hard-won law 5 — one generated file, committed never; regenerate on demand).
+*.generated.csv

@@ -1,0 +1,141 @@
+# G44 clause (c) — THE RATCHET, AND WHAT IS STILL IN IT
+#
+# ⚠ **THIS NUMBER IS A DEBT, NOT A CLEAN BILL.** 21 classified values still
+# reach a text position with no treatment. The display-truth sweep of
+# 2026-08-27 measured 39 and fixed 6; OQ-620's ruling later that day unblocked
+# DEF-1121 and took it to 26. Every line below is
+# covered by a defect row, so a lane picking one up has a place to write the
+# fix down. It may FALL and may never RISE, and a fall that is not banked here
+# is also a failure — a ratchet that never tightens is a number nobody reads
+# (DEF-490, thirty-one commits deep).
+#
+# **A LINE HERE IS NOT AUTOMATICALLY A BUG.** Six of the keys below are honest
+# FALLBACKS with their reasons written beside them in the source: a bill run id
+# shown because the run screens do not exist, a GL account id shown only when
+# `gl_account_code` is null, an audit `entity_id` on a row whose target may have
+# been hard-deleted. They are counted anyway, on purpose, for the reason G43
+# gives for counting its two correct `max-w-prose` uses: a ratchet that
+# adjudicates each entry is a ratchet somebody has to argue with, and the
+# number stops being checkable. Fixing one of them means REMOVING the line and
+# lowering COUNT; deciding one is correct means leaving it and saying so in its
+# defect row.
+#
+# WHY EACH GROUP IS STILL HERE
+# ----------------------------
+# rating tier bounds and unit prices (0) ......... ✅ **DEF-1121 CLOSED
+#     2026-08-27**, once OQ-620(a) ruled what a rate shows. All seven cells
+#     plus two more the gate could not see (the size matrix, and the bill's own
+#     unit-price cell, which was rendering a RATE through `MoneyCell` and so
+#     printing `$0.14` for `0.142000`). Bounds are a quantity composed
+#     server-side with the version UoM; prices are a rate at four places with
+#     the zeros kept.
+# ⚠ A `[rate]` LABEL NOW EXISTS AND IS NOT COSMETIC. Before OQ-620(a) this
+#     gate called `unit_price` MONEY, which sent a lane to `MoneyCell` — two
+#     decimals, and a figure that cannot reproduce its own line. A mislabelled
+#     hit is worse than an uncounted one.
+#
+# the printable bill document (3) ................ NOT A DEFECT AS FAR AS THE
+#     SCREEN GOES — `apps/billing/documents.py` composes all three server-side
+#     (`_quantity`, `_trim`, `_money`) and the cell renders the composed string,
+#     which is BR-SHL-250 working. They are counted because the FIELD NAMES
+#     carry no `_display` marker, so nothing distinguishes them from a raw
+#     render by reading the client. ⚠ The QUANTITY one is separately wrong for
+#     a different reason: `_trim` applies only half of BR-MET-144 (DEF-1120).
+# database keys (4) .............................. DEF-1122 for the two that
+#     are plainly wrong (the collections ladder and returned mail print a raw
+#     account uuid and the server sends nothing else to render); the other two
+#     are documented fallbacks. ⚠ BOTH OF DEF-1122's HALVES ARE FIXED — the
+#     ladder on 2026-09-01 (`DEF-2580`) and returned mail on 2026-09-23
+#     (`DEF-PAY-6344`); see the notes below.
+# ⚠ **THREE OF THE SEVEN LEFT ON 2026-08-31 — DEF-2716, AND THEY ARE THE THREE
+#     THIS FILE NAMED AS "HONEST FALLBACKS".** The bill's Accounting code and
+#     Rate version columns and its Billing run row each printed a key, each with
+#     a stated reason, and `B14` rule 31 (PO 2026-08-30, *"no Databse ID on
+#     screen - that is a rule"*) overtook all three. The reasons survive: the
+#     accounting code says *"Accounting code not readable"* rather than going
+#     blank, which is what `DEF-937` was protecting; the run NAMES itself
+#     (`RUN-0001`) and links to the run screens `CR-051` built. **So the note
+#     above about honest fallbacks stands as a principle and has three fewer
+#     instances — a line here is a debt until a RULING says what to put in its
+#     place, and then it is just work.**
+# ⚠ **ONE MORE LEFT ON 2026-09-01 AND THE FALL WAS BANKED ON 2026-09-02 —
+#     `CollectionsPage.tsx:136`, the collections ladder's Account column, which
+#     is one of the two `DEF-1122` names as PLAINLY WRONG above.** Commit
+#     `6a333bbf` (`DEF-2580`) made `ladder.py` serve `account_no` beside
+#     `account_id` and the cell now renders the NUMBER, with the words
+#     *"payments.row.noAccountNo"* where an account has never been numbered —
+#     never a dash and never the id. The row is still keyed and drilled by
+#     `row.account_id`, which is not a visible value, so rule 31 is met.
+#     ⚠ **`DEF-1122` STAYS OPEN AND MUST**: its OTHER half, `returnedMail.tsx:325`,
+#     still prints the raw uuid and is still counted below. A ratchet is banked
+#     for the line that left, not for the defect that named it.
+#     ⚠ **THE FALL SAT UNBANKED FOR A DAY, WHICH IS THE FAILURE THIS FILE'S OWN
+#     HEADER NAMES** (DEF-490, *"a fall that is not banked is a number nobody
+#     reads"*): G44 clause (c) had been RED on the branch since the fix landed,
+#     and a red gate nobody owns is what let 18 others sit beside it. Filed as
+#     DEF-3082.
+# ⚠ **ONE MORE LEFT ON 2026-09-02 AND THE FALL IS BANKED IN THE SAME COMMIT —
+#     `AuditLogPage.tsx:132`, `[key] row.entity_id`, the S61 audit log's Entity
+#     column.** It read `` `${row.entity_type} · ${row.entity_id}` ``, so every
+#     row on that screen printed a whole database uuid as the value a person
+#     reads: `tenant · 01a062a7-9f7d-73e6-96e4-700cba033c73`. The Product Owner
+#     reported it from a live deployment (*"DB Keys are displayed"*, `DEF-2378`)
+#     — this gate had been counting it, correctly, as a debt for weeks.
+#     The cell now says WHAT THE RECORD IS (*Utility*, *Park*, *Bill*), which is
+#     `B14` rule 31 met and not merely deferred. **A NAME would be better and
+#     cannot be had here**: `apps/audit/selectors.audit_row` serves no name, the
+#     list spans every module (91 entity types, ten modules, no shared name
+#     column), and a hard-deleted record could never resolve one — so this is
+#     the answer, not a stop-gap. **The id is not lost**: it rides on `title` and
+#     `data-audit-entity-id`, it is still what the Entity ID filter searches, and
+#     the drawer's collapsed *Stored record* fold shows it verbatim, which
+#     `US-AUD-005 §5` ratifies as the auditor's exact record. `G69` clause 2 now
+#     refuses the expression, so this line cannot come back quietly.
+#     ⚠ Banked in the SAME commit as the fix, which is what `DEF-3082` cost us
+#     when it was not: a red gate nobody owns is what lets eighteen others sit
+#     beside it.
+# money on ledger / payments / reports (9) ....... each needs `MoneyCell`, which
+#     is the CLIENT half of BR-SHL-250 and needs the row's currency; several of
+#     these rows do not carry one, which is the work.
+# quantities outside metering (7) ................ each needs `formatQuantity`
+#     or a server sibling; `CostOfServicePage`'s three build their own
+#     `"<n> <unit>"` f-strings, which is the shape DEF-1120 is about.
+#
+# ⚠ **ONE MORE LEFT ON 2026-09-03 AND THE FALL IS BANKED IN THE SAME COMMIT —
+#     `PaymentsPage.tsx`'s `depositBatch` cell, the S33 Batch column.** It read
+#     `row.deposit_batch_id !== null ? <span className="pay-id">{row.deposit_
+#     batch_id}</span> : <Dash>`, so the non-null branch printed a whole database
+#     uuid as the value a clerk reads — `B14` rule 31 again, and `DEF-2378`'s
+#     shape exactly.
+#     ⚠ **NOTHING COULD FIRE IT, WHICH IS WHY IT MATTERED.** The payments list
+#     read hardcodes `"deposit_batch_id": None`, every fixture followed the type
+#     that says the column is always null, and no gate in this repo reads
+#     rendered output — so the branch was unreachable and would have STARTED
+#     RUNNING on the day somebody else's lane made the read serve the value.
+#     **This gate was the only thing counting it**, which is the case for
+#     counting a debt nobody can currently see.
+#     The cell now renders the stated absence unconditionally and says in its own
+#     comment that the column is filled with the batch CODE — never the key —
+#     when the read serves one. `DEF-2352` is the screen half; `DEF-2353` is the
+#     read, which is a backend gap and stays open.
+#     ⚠ Banked in the SAME commit as the fix, per this file's own header and the
+#     day `DEF-3082` cost us by not doing it.
+# ⚠ **`DEF-1122`'S OTHER HALF LEFT ON 2026-09-23 — `returnedMail.tsx:325`,
+#     `[key] row.account_id`, the S35 *Mark returned post* Account column —
+#     AND IT LEFT BECAUSE THE PRODUCT OWNER FOUND IT, NOT BECAUSE THIS FILE DID**
+#     (`DEF-PAY-6344`, *"this modal is showing db keys"*, on the deployed build).
+#     The paragraph above said *"DEF-1122 STAYS OPEN AND MUST"* for 22 days and
+#     this gate counted the line the whole time, correctly — **inside a clause
+#     that has been RED since this repository's first commit** (measured
+#     2026-09-23 by running this gate over older trees: 32 against 20 on
+#     2026-09-11, 31 on 09-15, 33 on 09-19, 37 on 09-22, 41 on 09-23). A known
+#     line inside a gate that is already red is not a warning anybody reads.
+#     `GET /outbound` now serves `account_no` (one statement per page, through
+#     `apps/notifications/customers_seam.py`) and the cell prints the number
+#     or *"No account number"*, never the id. `DEF-1122` closes with it.
+#     ⚠ **NOTHING IS BANKED, AND THAT IS THE HONEST ANSWER, NOT AN OMISSION:**
+#     the live count falls 41 → 40, which is still twenty above `COUNT`, so
+#     there is no lower ceiling to write. `COUNT` may only fall, and it cannot
+#     fall to a number the tree does not meet.
+
+COUNT 20

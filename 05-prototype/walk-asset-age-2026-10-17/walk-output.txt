@@ -1,0 +1,42 @@
+
+meters · sort=age dir=asc · 100 rows
+  heads: SELECT | METER # | TYPE | ROLE | SERVICE | CONNECTION SIZE | MULT. | ASSIGNED TO | INSTALLED | AGE ▲ | STATUS | ACTIONS
+  first 5 by age: M-4022 (16 yrs 5 mos Past life) · E-5001 (13 yrs 1 mo) · AST-04414 (7 yrs 3 mos Past life · from purchase) · AST-04412 (5 yrs 7 mos Past life · from purchase) · M-4021 (2 yrs 8 mos)
+  334556: not on this page
+  M-4022: position 1 · Installed "May 2010" · Age "16 yrs 5 mos Past life" · RED
+  E-5001: position 2 · Installed "May 2012" · Age "13 yrs 1 mo"
+  AST-04413: position 6 · Installed "—" · Age "2 yrs 7 mos from purchase"
+
+meters · sort=age dir=desc · 100 rows
+  heads: SELECT | METER # | TYPE | ROLE | SERVICE | CONNECTION SIZE | MULT. | ASSIGNED TO | INSTALLED | AGE ▼ | STATUS | ACTIONS
+  first 5 by age: M-5099 (6 days from record) · 334556 (1 mo) · W-5101 (3 mos from purchase) · W-9011 (3 mos) · M-NET-01 (3 mos from purchase)
+  334556: position 2 · Installed "Sep 2026" · Age "1 mo"
+  M-4022: not on this page
+  E-5001: not on this page
+  AST-04413: not on this page
+
+sub_meters · sort=age dir=asc · 10 rows
+  heads: SELECT | SUB-METER # | PARENT / MASTER | SERVICE | UNIT | LAST READ | INSTALLED | AGE ▲ | STATUS | ACTIONS
+  first 5 by age: M-7204 (1 yr 9 mos) · SM-7041 (9 mos) · SM-7042 (9 mos) · SM-7043 (9 mos) · SM-7044 (9 mos)
+  SM-7040: position 10 · Installed "Jan 2026" · Age "9 mos"
+
+sub_meters · sort=age dir=desc · 10 rows
+  heads: SELECT | SUB-METER # | PARENT / MASTER | SERVICE | UNIT | LAST READ | INSTALLED | AGE ▼ | STATUS | ACTIONS
+  first 5 by age: SM-7040 (9 mos) · SM-7041 (9 mos) · SM-7042 (9 mos) · SM-7043 (9 mos) · SM-7044 (9 mos)
+  SM-7040: position 1 · Installed "Jan 2026" · Age "9 mos"
+
+behind_the_meter · sort=age dir=asc · 9 rows
+  heads: SELECT | DEVICE # | TYPE | PREMISES · UNIT | METER | CONNECTION SIZE | EXPORT CAPACITY | NEXT TEST | INSTALLED | AGE ▲ | STATUS | ACTIONS
+  first 5 by age: BF-3301 (1 yr 9 mos) · BF-0001 (9 mos) · PV-0001 (9 mos) · EV-0001 (9 mos) · COM-0001 (9 mos)
+  AST-00010: position 9 · Installed "—" · Age "15 days from record"
+  BF-0002: position 8 · Installed "—" · Age "4 mos from purchase"
+  BAT-0001: position 6 · Installed "Jan 2026" · Age "9 mos"
+
+behind_the_meter · sort=age dir=desc · 9 rows
+  heads: SELECT | DEVICE # | TYPE | PREMISES · UNIT | METER | CONNECTION SIZE | EXPORT CAPACITY | NEXT TEST | INSTALLED | AGE ▼ | STATUS | ACTIONS
+  first 5 by age: AST-00010 (15 days from record) · BF-0002 (4 mos from purchase) · CART-0099 (4 mos from purchase) · BF-0001 (9 mos) · PV-0001 (9 mos)
+  AST-00010: position 1 · Installed "—" · Age "15 days from record"
+  BF-0002: position 2 · Installed "—" · Age "4 mos from purchase"
+  BAT-0001: position 8 · Installed "Jan 2026" · Age "9 mos"
+
+download notice: The export didn't finish. File storage is not set up.

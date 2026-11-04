@@ -1,0 +1,32 @@
+[
+  {
+    "id": "01a106e4-30cb-7e12-bbe5-f114773cfe22",
+    "kind": "work_order_photo",
+    "taken_at": "2026-10-04T12:29:40.427099Z",
+    "device": "",
+    "added_by_name": "D. Ortiz",
+    "reading_id": null,
+    "task_id": "01a106e4-2df0-75ac-94ae-a4ddef34b43a",
+    "duplicate": false
+  },
+  {
+    "id": "01a106e4-312d-7a8f-8c72-dadb938648d4",
+    "kind": "work_order_photo",
+    "taken_at": "2026-10-04T12:29:40.525130Z",
+    "device": "",
+    "added_by_name": "D. Ortiz",
+    "reading_id": null,
+    "task_id": "01a106e4-2df0-7e31-a863-c414530f93a6",
+    "duplicate": false
+  },
+  {
+    "id": "01a106e4-3177-7937-a8ad-085a901e3e5e",
+    "kind": "work_order_photo",
+    "taken_at": "2026-10-04T12:29:40.599831Z",
+    "device": "",
+    "added_by_name": "D. Ortiz",
+    "reading_id": "01a106e4-2df4-79b9-ab8d-25892bb7bb31",
+    "task_id": null,
+    "duplicate": false
+  }
+]

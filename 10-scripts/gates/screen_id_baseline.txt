@@ -1,0 +1,1031 @@
+# G29's ratchet — EXACT counts, never ceilings (the G23/G25/DEF-077 discipline).
+#
+# `screens_without_a1`  screens the frontend routes that A1 allocates no id for.
+#                      Each is hard-won law 8: a screen with no id is a screen
+#                      with no story. Every one carries its reason in
+#                      07-frontend/src/routing/screenIds.ts.
+# `screens_without_r10` screens r10 draws no badge for, so the visible tag the PO
+#                      asked for shows NOTHING on them. Reported, never invented.
+# `screens_total`      every row that IS a screen (redirects and the catch-all excluded).
+# `routes_total`       every row in the table, those seven included.
+#
+# A count that RISES means a screen shipped unnamed — RED.
+# A count that FALLS means someone earned it — lower it in the SAME commit, or
+# the register keeps claiming debt it has already paid off.
+# 2026-08-20 · MERGED FROM TWO PARALLEL LANES, so this figure is neither lane's.
+# RAT-02 (row 5) took 60->61 screens / 67->68 routes; the three definition-detail
+# routes below took it to 64 / 71. Each lane computed its own delta against the
+# base it branched from, so both were right and neither total was — the count
+# here is what G29 itself reports on the merged tree, not arithmetic on two
+# stale numbers.
+#
+# 2026-08-20 · CR-013 rows 8 · 11 · 14 — the shared definition detail. THREE
+# routes, three screens, three r10 badges and three A1 absences, which is why
+# every count except `screens_without_r10` moves by exactly three.
+#
+# ⚠ THE A1 ABSENCE IS THE FINDING, NOT AN OVERSIGHT, and it is why this ratchet
+# rises with a clear conscience for once. A1's `S9` is the **r9** landing — four
+# tabs, no Discounts and no detail pages at all — so A1 allocates nothing for any
+# of the five CR-013 details (`09-screen-inventory.md` §7: *"r9-era and stale.
+# r10 wins; file, do not follow"*). Minting S-numbers out of the reserved S61–S90
+# block to make this number stay still is exactly what `screenIds.ts` forbids.
+#
+# The r10 half is NOT absent: BR-RAT-084 (PO ruling 2026-08-20) ratifies three
+# distinct ids over one component, and all three resolve — `CHG-01`,
+# `CHG-01.discount`, `CHG-01.tax` — so `screens_without_r10` is unchanged at 16.
+# 2026-08-21 · CR-013 row 9 — CHG-02, the New/Edit charge-code WIZARD. TWO
+# routes (`…/charge-codes/new` and `…/charge-codes/{id}/edit`), both the SAME
+# screen, so `screens_total` and `routes_total` each rise by exactly two.
+#
+# ⚠ AND THE TWO DEBT COUNTS DO NOT MOVE, WHICH IS THE POINT OF RAISING THEM
+# SEPARATELY. Unlike the three definition-detail routes above, this screen has
+# an id from BOTH authorities: A1 allocates `S12 | New Charge Code form`, and
+# `09-screen-inventory.md` §18 row 9 numbers it `CHG-02`. Nothing shipped
+# unnamed — the totals rise because two real routes exist that did not, and the
+# debt registers stay where they were.
+# 2026-08-21 · CR-013 P4 row 15 — TAX-02, the New/Edit tax or fee wizard. TWO
+# routes (`…/taxes-fees/new` and `…/taxes-fees/:taxId/edit`), two screens, and
+# TWO MORE SCREENS WITH NO r10 BADGE — which is the finding, not an oversight.
+#
+# r10 renders this wizard under `module: 'newTax'`, and its own `sid()` has no
+# branch for that module: it falls through to the final fallback
+# `(m || 'APP').toUpperCase().slice(0, 3) + '-01'` and stamps the literal
+# `NEW-01`. `09-screen-inventory.md` §8 measured the same thing on the PO's
+# screenshots — *"ALL FIVE WIZARDS EMIT THE SAME BADGE: NEW-01 … the screen ID
+# cannot distinguish a new plan from a new tax."* `NEW-01` is not a string
+# `sid()` ever writes, so this gate cannot accept it, and the SPECIFIED id
+# `TAX-02` appears nowhere in the drawing at all. Claiming either would mint an
+# id no authority defines, which is precisely what assertion 2 exists to refuse.
+#
+# `screens_without_a1` does NOT move: A1 declares `S13 | New Tax/Fee form`, and
+# both routes carry it. The A1 row is r9-era and describes a modal; the screen
+# is the same screen, and r10's shape wins (CLAUDE.md).
+
+# 2026-08-20 · FOUR PARALLEL LANES MERGED. Each computed its delta against
+# the base it branched from, so no lane's total was right for the merge.
+# These are what G29 reports on the merged tree, not arithmetic on stale numbers.
+# 2026-08-21 · CR-013 row 2 — PLN-02, the PLAN DETAIL. ONE new route
+# (`…/plans/{id}/edit`), so `screens_total` and `routes_total` each rise by
+# exactly one. The DETAIL is not a new route: `…/plans/{id}` already existed and
+# opened the PLN-03 builder, so what changed there is which screen answers it —
+# the same move RAT-02 made on `…/rates/{id}` — and its r10 id changes from
+# PLN-03 to PLN-02 with no effect on any count.
+#
+# ⚠ AND THE TWO DEBT COUNTS DO NOT MOVE, which is the point of raising them
+# separately. Both routes carry an id from BOTH authorities: A1 allocates S10
+# for the plan surface and `09-screen-inventory.md` §18 numbers the detail
+# PLN-02 and the builder PLN-03. Nothing shipped unnamed — the totals rise
+# because one real route exists that did not, and the debt registers stay where
+# they were.
+
+# 2026-08-21 · CR-013 row 12 — DIS-02, the New/Edit DISCOUNT wizard. TWO routes
+# (`…/discounts/new` and `…/discounts/{id}/edit`), both the SAME screen, so
+# `screens_total` and `routes_total` each rise by exactly two.
+#
+# ⚠ AND UNLIKE CHG-02 THE DAY BEFORE, **BOTH DEBT COUNTS RISE BY TWO AS WELL** —
+# this screen is named by NEITHER authority, and each half of that is a finding
+# rather than an oversight:
+#
+#   · **A1 allocates nothing.** It gives `S11 New Rate wizard`, `S12 New Charge
+#     Code form` and `S13 New Tax/Fee form` — and no discount screen of any kind,
+#     because A1's `S9` is the **r9** landing with four tabs and no Discounts on
+#     it (`09-screen-inventory.md` §7: *"r9-era and stale. r10 wins; file, do not
+#     follow"*). Minting a number out of the reserved S61–S90 block to keep this
+#     figure still is exactly what `screenIds.ts` forbids.
+#
+#   · **r10 draws no badge either, and THE GATE IS WHAT PROVED IT.** `DIS-02` was
+#     written into the map first, on §18 row 12's authority, and G29 refused it:
+#     *"that is not a badge r10 draws"*. It is right. r10's `sid` function has a
+#     branch for every other Plans & Rates wizard — `PLN-03.n`, `RAT-03.n`,
+#     `CHG-02.n` — and none for the discount wizard, so the prototype badges the
+#     LANDING TAB there. §8's *"ALL FIVE WIZARDS EMIT THE SAME BADGE: NEW-01"* is
+#     not what the source does: `NEW-01` appears nowhere in the file. DEF-406.
+#
+# `DIS-02` remains the TICKET vocabulary in §18 and does not become a badge claim
+# in the map — an id no authority defines is an id nobody can look up when it
+# turns up in a bug report, which is the sentence this gate exists to enforce.
+
+# 2026-08-21 · CR-023 P0 adds ONE route and ONE screen: `/premises/imports`,
+# r10's PRM-04, the third tab of the one Premises page. A1 allocates no id for
+# it — the spec draws S14/S15/S16 and stops — so `screens_without_a1` rises with
+# it, and `screenIds.ts` carries the reason on the row itself. The other two
+# CR-023 routes are unchanged: `/premises` and `/premises/units` keep their
+# paths and their ids exactly, which is the property TC-24 exists to protect.
+
+# 2026-08-21 · DEF-520 — THE FIVE-STAGE IMPORT RUNNER IS MOUNTED, +2 ROUTES.
+# `/premises/import` and `/premises/units/import` both render `WFL-01`. They are
+# TWO routes and, deliberately, ONE screen id: BR-MET-096 (PO 2026-08-21) rules
+# one workflow for premises and units, differing only in the Transform stage's
+# field map, so a second r10 badge here would be the first crack in that rule.
+# Both raise `screens_without_a1` because A1 draws no workflow screen at all —
+# hard-won law 8, reported on each row in `screenIds.ts`, not invented.
+# The kit, its four endpoints and 39 backend tests were all on the branch while
+# NO route rendered them; these two lines are the whole of the fix.
+
+# 2026-08-22 · CR-028 AST-W1 T5 (BR-AST-046) — THE ASSETS IMPORT ENTRY, +1 ROUTE.
+# `/assets/import` renders `WFL-01`, the SAME runner and deliberately the same
+# r10 badge as the two premises routes above (BR-MET-096: one workflow; the
+# assets targets differ only in the field map, and they register with AST-W3).
+# It raises `screens_without_a1` for the same reason those two did: A1 draws no
+# workflow screen at all — hard-won law 8, reported on the row in
+# `screenIds.ts`, not invented. `screens_without_r10` does not move.
+
+# 2026-08-22 · CR-028 AST-W4 — THE FOUR LIFECYCLE FLOWS BECOME FULL-PAGE
+# ROUTES (PO: "as per r10 - it is not modal"): `/assets/new` (S51 · AST-05),
+# `/assets/:assetId/reassign` (S55 · AST-06), `/assets/:assetId/maintenance/new`
+# (S53 · AST-07), `/assets/:assetId/retire` (S54 · AST-08). FOUR routes, four
+# screens, and — like CHG-02 before them — every one carries an id from BOTH
+# authorities: A1 allocated S51/S53/S54/S55 to these flows when they were
+# modals, and r10's own sid() emits AST-05.<step>/AST-06/AST-07/AST-08. The
+# totals rise by exactly four; the two debt counts DO NOT MOVE, which is the
+# point of counting them separately.
+
+# 2026-08-23 · CR-029 RC-W3-T5 — ROUTES & CYCLES BECOME ADDRESSABLE, +6 ROUTES.
+# `…/routes-cycles/routes/new` · `…/routes/{id}/edit` · `…/routes/{id}` and the
+# three cycle siblings. SIX routes and SIX screens: the four wizard paths are
+# two screens each rendered twice (create and edit share a screen id, the CHG-02
+# precedent), and the two detail paths are new screens outright.
+#
+# ⚠ **`screens_without_r10` RISES BY EXACTLY TWO, AND THAT IS THE FINDING.**
+# The four wizard routes carry `SET-06.1` / `SET-07.1`, which r10's own `sid()`
+# emits, so they cost nothing. The two DETAIL screens are `SET-06D` and
+# `SET-07D` in B17 §4 and in the CR-029 record — allocated by the PO's
+# **upgraded prototype (2026-08-23)**, which supersedes r10 for these surfaces
+# exactly as r10 superseded r9 and **is not a file in this repo**: it arrived as
+# screenshots, and `05-prototype/` holds r10 and r9 only. r10's `sid()` has no
+# branch for either, so this gate refused the claim — and it is right, on the
+# same grounds it refused `DIS-02` above.
+#
+# The cost is stated rather than paid: **those two screens draw no visible tag**,
+# which is what the PO's 2026-08-19 ruling asks of every screen. It closes the
+# day the upgraded prototype lands in `05-prototype/` with an id function this
+# gate can read. Minting a badge to keep this number still is exactly what
+# `screenIds.ts` forbids and what the DIS-02 entry above settled.
+#
+# `screens_without_a1` does NOT move: A1 gives the whole Settings surface one id
+# (S8) and never numbered a tab, so all six rows carry it.
+
+# 2026-08-24 · CR-030 W4 — THE SERVICE-REQUEST SURFACE, +4 ROUTES / +4 SCREENS.
+# `/requests` (REQ-01, the list) · `/requests/new` (REQ-03.1–6 + REQ-03.sent, the
+# capture form) · `/requests/{id}` (REQ-02, the detail and its six tabs) ·
+# `/settings/reference-data/service-request-documents` (BR-CUS-095's checklist).
+# The three FEATURE screens were served by 23 live endpoints with NOTHING
+# rendering any of them — hard-won law 2 for the seventh time in this product —
+# and these four lines are the whole of the wiring.
+#
+# ⚠ **ALL FOUR DEBT COUNTS RISE BY FOUR, AND EACH HALF IS A FINDING RATHER THAN
+# AN OVERSIGHT.** This is the DIS-02 position above, four screens wide:
+#
+#   · **A1 ALLOCATES NOTHING, AND IT CANNOT.** B18 §5.3 PROPOSES `S83` (list),
+#     `S84` (detail) and `S85` (the applicant's form) and gives the fourth
+#     screen no id at all. Proposing is not allocating: B18 §12.2's decision
+#     **D1** records that the reserved band **S61–S90 is EXHAUSTED** — ten slots
+#     remain and CR-030 needs sixteen — so **the next free ground is S115 and
+#     allocation is the PRODUCT OWNER's**, with G17/G29 existing precisely to
+#     stop a collision. Writing `a1: "S83"` here would fail assertion 1 (*an id
+#     A1 declares*) and it would be right to.
+#
+#   · **r10 DRAWS NO SERVICE-REQUEST SCREEN AT ALL.** Its `sid()` emits 92
+#     badges and not one begins `REQ-`. `REQ-01` … `REQ-03.sent` come from the
+#     PO's **upgraded prototype of 2026-08-24**, and B19's own §Source states
+#     those screenshots are **not in this repo** — the same position SET-06D /
+#     SET-07D are in, three entries up. The cost is the reported half: **these
+#     four screens draw no visible tag**, which is what the PO's 2026-08-19
+#     ruling asks of every screen. It closes the day the upgraded prototype
+#     lands in `05-prototype/` with an id function this gate can read.
+#
+# `S83`/`S84`/`S85` remain the TICKET vocabulary in B18 and in the CR-030
+# record, exactly as `DIS-02` and `SET-06D` do, and do not become claims here.
+# Minting a number out of a band somebody else may already have promised is
+# what `screenIds.ts` forbids and what this register was written to hold.
+
+# 2026-08-25 · +3, from lane WOPLACEHOLDER, and the three are TWO different things.
+#
+#   · **+2 · `/:tenant/connections/new` and `/:tenant/connections/:connectionId`
+#     were ALREADY SHIPPED and were not in the table at all** (DEF-710). This
+#     gate could not see them — it counts `SCREEN_ROUTES` rows, and a route with
+#     no row is invisible to it; `screenIds.test.tsx` is what was red. So this
+#     rise is a debt becoming VISIBLE rather than a debt being taken on, which
+#     is the one case a ratchet should welcome.
+#   · **+1 · `/:tenant/work/templates`** — CR-030 W6 task 6.14, the Work order
+#     section's templates screen, shipped as a stated absence on the PO's ruling
+#     of 2026-08-25 (*"Just keep it black - and show note that Work orders not
+#     yet build"*).
+#
+# ⚠ **ALL THREE ARE `ids: NONE`, AND NONE OF THE THREE MAY BE FIXED BY MINTING A
+# NUMBER.** B18 proposes S87 (NCT-01) and S88 (NCT-02) and proposes nothing for
+# the templates screen; **decision D1 is UNRULED** — A1's reserved band S61–S90
+# is exhausted, the next free ground is S115 and allocation is the PO's. r10
+# draws no `NCT-` badge (those come from the PO's upgraded prototype of
+# 2026-08-24, not in this repo) and no `WRK-` badge for a templates screen. So
+# all four counts move by exactly three, and all three screens draw NO VISIBLE
+# TAG — reported, never invented, exactly as the four service-request screens
+# above are.
+#
+# ⚠ **THIS FILE IS NOT SQUARE WITH THE TREE AT THE MOMENT IT IS WRITTEN, AND
+# THAT IS DELIBERATE.** G29 reports 101 routes / 94 screens as this is saved.
+# The remaining **+2** are `/:tenant/transfers/new` and `/:tenant/disconnects/new`,
+# which landed from another lane WHILE this one was running. They are not this
+# lane's to bank: a ratchet raised on somebody else's behalf is a number nobody
+# justified, which is the failure the register above records about itself. That
+# lane raises its own two, and until it does this gate stays RED and says so.
+
+# 2026-08-26 · lane MOVEENTRY — THE STANDALONE MOVE-IN / MOVE-OUT ENTRIES,
+# +2 ROUTES / +2 SCREENS, AND **ZERO** ON EITHER DEBT COUNT.
+#
+# `/:tenant/move-ins/new` and `/:tenant/move-outs/new`. PO ruling 2026-08-26,
+# verbatim, overruling this repository's own justification for leaving the
+# Accounts header's two controls disabled: *"Move-in and move-out stay disabled,
+# on purpose: both wizards are built, but a move-in creates the next occupant of
+# a particular account's unit and no account is chosen in that header. The live
+# control is on the account's own page and the button says so. -Enable Move in
+# /move out"*.
+#
+# ⚠ **NOTHING SHIPPED UNNAMED, WHICH IS WHY THIS RISE IS THE CHG-02 KIND AND NOT
+# THE DIS-02 KIND.** These are the SAME TWO SCREENS at a second address — the
+# same two components, mounted with nothing in the path so that each wizard's
+# first step ASKS for its subject instead of confirming one. Both authorities
+# already name them: A1 allocates `S19` / `S20`, and r10's own `sid()` emits
+# `ACC-05` / `ACC-06`. So `screens_without_a1` stays at 27 and
+# `screens_without_r10` stays at 29, and the totals rise because two real routes
+# exist that did not.
+#
+# ⚠ **THIS LANE BANKS ITS OWN TWO AND ONLY ITS OWN TWO, SO THE GATE STAYS RED —
+# READ THE ENTRY ABOVE BEFORE READING 101 AS "SETTLED".** The +2 that entry
+# records — `/:tenant/transfers/new` and `/:tenant/disconnects/new`, landed from
+# another lane and never banked — is still outstanding, and G29 therefore reports
+# **103 routes / 96 screens against 101 / 94** after this commit. That remaining
+# gap is exactly those two rows and is not this lane's to bank: a ratchet raised
+# on somebody else's behalf is a number nobody justified.
+
+# 2026-08-26 · lane CR-038 W5 — S29 BECOMES A ROUTED PAGE, +1 ROUTE / +1
+# SCREEN, AND **ZERO** ON EITHER DEBT COUNT.
+#
+# `/:tenant/reads/:readId`. PO ruling 2026-08-26, verbatim: *"i want page to be
+# open for consitency - we dont open side panel"* — S29 was a drawer riding
+# S25's `?read=<id>` URL state (the old registry note said so), and the ruling
+# re-homed it on a route. Both authorities already name it: A1 allocates `S29`
+# and r10 draws the content as `RDS-04` (the OVERLAY presentation is what the
+# ruling overrode, not the content), so `screens_without_a1` and
+# `screens_without_r10` do not move. The old `?read=` links redirect to the
+# page from S25.
+#
+# ⚠ **THIS LANE BANKS ITS OWN ONE AND ONLY ITS OWN ONE — the +2 the MOVEENTRY
+# entry above records as another lane's (`/:tenant/transfers/new`,
+# `/:tenant/disconnects/new`) is still outstanding and still not this lane's to
+# bank, so the gate stays RED by exactly those two rows.**
+
+# 2026-08-26 · THE MERGE LANE BANKS THE TWO ROWS THREE ENTRIES HAVE NOW
+# DEFERRED: `/:tenant/transfers/new` (TRF-02) and `/:tenant/disconnects/new`
+# (DSC-02). +2 ROUTES / +2 SCREENS / **+2 `screens_without_a1`**.
+#
+# ⚠ **THIS IS A DEBT BEING RECORDED, NOT ONE BEING PAID, AND THE DISCIPLINE
+# THAT LEFT IT UNBANKED WAS RIGHT.** Three consecutive entries above — lane
+# WOPLACEHOLDER, lane MOVEENTRY, lane CR-038 W5 — each banked its own rows,
+# named these two as another lane's, and said out loud that the gate would stay
+# RED by exactly this gap. Each was correct: *a ratchet raised on somebody
+# else's behalf is a number nobody justified.* But the lane that shipped them
+# (CR-030 W7) has landed and merged, so the two rows now belong to no lane at
+# all, and a permanently-red gate teaches everyone to read past it — which is
+# DEF-805's mechanism one register over. **The merge lane is the owner of last
+# resort for a row every contributing lane correctly declined.**
+#
+# ⚠ **BOTH ARE `ids: NONE`, AND NEITHER MAY BE FIXED BY MINTING A NUMBER** —
+# the DIS-02 position, restated because it is what makes these two legitimate
+# rather than sloppy:
+#
+#   · **A1 ALLOCATES NOTHING AND CANNOT.** B18 §5.7.7 PROPOSES `S89` for the
+#     transfer wizard and §5.8.7 proposes `S90` for the disconnect wizard.
+#     Proposing is not allocating: B18 §12.2 decision **D1** records that the
+#     reserved band **S61–S90 is EXHAUSTED**, the next free ground is **S115**,
+#     and allocation is the **PRODUCT OWNER's**. Writing `a1: "S89"` here would
+#     fail assertion 1 and would deserve to.
+#   · **r10 DRAWS NO BADGE FOR EITHER.** `TRF-02` and `DSC-02` come from the
+#     PO's upgraded prototype of 2026-08-24, which B19 §Source states is **not
+#     in this repo**, so `screens_without_r10` rises by two as well — 29 -> 31.
+#     ⚠ **THIS ENTRY FIRST CLAIMED THAT COUNT WOULD NOT MOVE**, reasoning that
+#     the two were already inside the 29 while their routes went unregistered.
+#     The gate answered `screens_without_r10 ROSE: 31 now, 29 registered` and it
+#     is right: a route with no row in `SCREEN_ROUTES` is invisible to EVERY one
+#     of these counts, not merely to the totals — the lane WOPLACEHOLDER entry
+#     above says exactly that about its own two, and this entry read past it.
+#     The wrong sentence is corrected here rather than quietly replaced, because
+#     a register whose reasoning cannot be audited is a number nobody justified,
+#     which is the thing this file exists to prevent.
+#
+# So both screens **draw no visible tag**, which is what the PO's 2026-08-19
+# ruling asks of every screen. That closes the day the upgraded prototype lands
+# in `05-prototype/` with an id function this gate can read — the same
+# condition SET-06D/SET-07D and the four service-request screens wait on.
+#
+# The two id rows already exist in `screenIds.ts` with their reasons written
+# out; what was missing was only this register catching up with them.
+
+
+# 2026-08-27 · DEF-897 — A SCREEN LEAVES THE TABLE. −1 ROUTE / −1 SCREEN, AND
+# **−1 ON BOTH DEBT COUNTS**, which is the whole point of this one.
+#
+# `/:tenant/reads/estimate` is gone. PO on the live app at v2.61.1, verbatim:
+# *"this can be modal - instead of page"*. "Estimate a missing read" is a
+# three-field form that returns to the list it was launched from, and its three
+# siblings on S25 (Add reading, Route sheet, Upload reads) were already dialogs —
+# so it is `EstimateReadModal`, mounted from the S25 header, and it is not a
+# routed screen any more.
+#
+# ⚠ **THIS IS THE FIRST FALL IN THIS REGISTER THAT PAYS OFF REAL DEBT RATHER
+# THAN RECORDING A RENAME.** That row was `ids: NONE` on BOTH authorities and
+# its own note said why: *"NO A1 ID. 'Estimate a missing read' is a screen A1
+# never drew — S64 is the estimation RULES in Settings, not this — and r10 has
+# no estimate view either."* A screen neither authority draws is a screen that
+# should probably not have been a screen, and it drew no visible tag for the
+# eleven days it existed. Both debt counts fall by one because the row leaves
+# the table entirely, which is the mirror of the lane-WOPLACEHOLDER entry above:
+# a route with no row is invisible to EVERY one of these counts.
+#
+# ⚠ **NO B14 RULE WAS BROKEN AND THAT IS FILED, NOT GLOSSED.** B14's
+# twenty-nine rules say nothing about a form's container, so nothing could have
+# caught this. The general rule is PROPOSED to the PO as B14 rule 30 via
+# **OQ-540** rather than minted by the lane.
+
+# ⚠ **2026-08-30 · ALL FOUR RISE BY ONE, AND THE RISE IS THIS REGISTER CATCHING
+# UP WITH A SCREEN THAT ALREADY SHIPPED — NOT A NEW SCREEN BEING WAVED THROUGH.**
+# `/:tenant/accounts/:accountId/close-out` (DEF-724, BR-CUS-430, PO 2026-08-27:
+# *"A disconnected customer can never be closed - Add a separate close-out act —
+# Cleaner in the record"*) was mounted in `App.tsx` on 2026-08-27 with NO
+# `SCREEN_ROUTES` row. That is lane-WOPLACEHOLDER's case again (DEF-710) and it
+# has the same consequence recorded there: **a route with no row is invisible to
+# EVERY one of these counts**, so G29 has been reporting 103/96 over a product
+# that routed 104/97, and reporting it as a PASS. The row is added now, so the
+# screen is counted for the first time.
+#
+# ⚠ **THE TWO DEBT COUNTS RISE BECAUSE THE DEBT IS REAL AND WAS ALWAYS THERE.**
+# The close-out carries NO A1 id and NO r10 badge: the act is eleven days
+# younger than r10 and A1 was extracted from r9, so neither authority has
+# numbered it and neither was invented to make this file quieter. The visible
+# tag draws nothing on that screen today. That is hard-won law 8 — a screen with
+# no id is a screen with no story — and it is recorded here rather than fixed by
+# allocating an id this lane has no authority to allocate.
+#
+# ⚠ **WHAT WOULD HAVE CAUGHT IT, STATED BECAUSE IT DID NOT:** nothing in this
+# register could — the count cannot miss a row it never sees. The only check
+# that fired is `screenIds.test.tsx`, which compares the table to `App.tsx`'s own
+# route list in both directions, and it was left RED on the branch instead of
+# read. DEF-710's prevention is still the rule: the route and its row are ONE
+# commit.
+
+# ⚠ **2026-08-31 · CR-053 TASK 13 — THE PRINT BILLS SCREEN. +1 ROUTE / +1
+# SCREEN / +1 `screens_without_a1`, AND `screens_without_r10` DOES NOT MOVE.**
+# `/:tenant/billing/print` — the print hand-over the PO ruled on 2026-08-30
+# (*"Im okay with this"*): one print-ready PDF per bill plus the manifest a mail
+# house reads. The row is in `screenIds.ts` in the SAME commit as the route,
+# which is DEF-710's own prevention and the reason this rise is visible at all.
+#
+# ⚠ **`ids: NONE`, AND MINTING A NUMBER WOULD BE THE WRONG FIX — the DIS-02
+# position, restated because it is what makes this rise legitimate.** A1 is
+# extracted from r9 and numbers no print hand-over screen of any kind; r10 is
+# 2026-08-16 and draws none either — **the ruling that created this screen is
+# LATER THAN BOTH AUTHORITIES**, which is a stronger form of the same absence
+# the close-out entry above records. B18 §12.2 decision D1 still stands: the
+# reserved band S61–S90 is EXHAUSTED, the next free ground is S115, and
+# allocation is the PRODUCT OWNER's. Writing an `a1:` here would fail assertion
+# 1 and would deserve to.
+#
+# ⚠ **THIS ENTRY FIRST CLAIMED `screens_without_r10` WOULD STAY AT 31. IT DOES
+# NOT — IT RISES TO 32, AND THE GATE IS WHAT PROVED IT.** The claim was that the
+# merge-lane entry above had already banked this count and the register was
+# square at 31, so a `NONE` row would cost nothing here. The gate answered
+# `screens_without_r10 ROSE: 32 now, 31 registered` and it is right: a screen
+# with `ids: NONE` is counted by BOTH debt registers, every time, and there is no
+# arithmetic on a previous entry that changes that.
+#
+# **The wrong sentence is corrected here rather than quietly replaced**, which is
+# the discipline the merge-lane entry above wrote down after making the mirror
+# image of this mistake: *a register whose reasoning cannot be audited is a
+# number nobody justified*. And it is the 2026-08-20 merge entry's lesson twice
+# over — **the number below is what G29 itself reports on this tree, never
+# arithmetic on an entry above it.**
+#
+# So all four counts rise by exactly one. The visible tag draws NOTHING on this
+# screen today. That is hard-won law 8, recorded here rather than papered over,
+# and it closes the day an authority numbers a print hand-over.
+
+# ⚠ **2026-08-31 · CR-056 W5 TASK 25 — THE CUSTOMERS LIST. ALL FOUR COUNTS RISE
+# BY EXACTLY ONE.** `/:tenant/customers` — the screen CR-056 §4 was filed about:
+# *"you reach a person only through the accounts linked to them"*. The row is in
+# `screenIds.ts` in the SAME commit as the route, which is DEF-710's own
+# prevention and the reason this rise is visible at all rather than a count
+# reporting PASS over a product that routes one more screen than it can see.
+#
+# ⚠ **`ids: NONE`, AND MINTING A NUMBER WOULD BE THE WRONG FIX — the DIS-02
+# position, restated because it is what makes this rise legitimate rather than
+# sloppy, and because BOTH halves of the absence are findings.**
+#
+#   · **A1 ALLOCATES NOTHING AND CANNOT.** B18 §12.2 decision D1 still stands:
+#     the reserved band S61-S90 is EXHAUSTED, the next free ground is S115, and
+#     allocation is the PRODUCT OWNER's. Writing an `a1:` here would fail
+#     assertion 1 (*an id A1 declares*) and would deserve to.
+#   · **r10 DRAWS NO CUSTOMERS SURFACE AT ALL**, and that is not an accident of
+#     the drawing — it is the same fact CR-056 §4 measured from the other side.
+#     A person is reached through an account in the prototype too, which is
+#     precisely what this screen exists to end. So there is no badge to claim.
+#
+# The visible tag therefore draws NOTHING on this screen today — hard-won law 8,
+# recorded here rather than papered over, and it closes the day an authority
+# numbers a customers list.
+#
+# ⚠ **THE FOUR NUMBERS BELOW ARE WHAT G29 ITSELF REPORTS ON THIS TREE** (its own
+# `map_rows()`, run against it: 31 / 33 / 99 / 106) — never arithmetic on an
+# entry above, which is the 2026-08-20 merge entry's lesson and the mistake the
+# merge-lane and CR-053 entries each corrected in themselves rather than quietly
+# replacing. This lane banks its ONE screen and only its one.
+
+
+# ⚠ **2026-09-01 · CR-059 TASK 18 — S58 REFUNDS. +1 ROUTE / +1 SCREEN / +1
+# `screens_without_r10`, AND `screens_without_a1` DOES NOT MOVE.**
+# `/:tenant/finance/refunds` — the whole refund lifecycle (raise, approve,
+# issue, clear, void), whose services have been complete since 2026-08-11 and
+# whose approval queue has been mounted since 2026-08-28 and **could never have
+# held a row**, because nothing in the product could RAISE a refund. The row is
+# in `screenIds.ts` in the SAME commit as the route, which is DEF-710's own
+# prevention.
+#
+# ⚠ **THE TWO HALVES DIVERGE HERE, AND THAT IS THE FINDING WORTH READING.**
+# Unlike the last five entries above, this screen is NOT `ids: NONE`:
+#
+#   · **A1 DOES ALLOCATE IT.** `S58 | Record refund` is in the PROVISIONAL
+#     S49–S60 block (A1 addendum, `OQ-014`), so `a1: "S58"` passes assertion 1
+#     on an id A1 genuinely declares and **`screens_without_a1` stays at 31**.
+#     Nothing was minted.
+#   · **r10 DRAWS NO REFUNDS SCREEN AT ALL.** Its `sid()` emits no badge
+#     beginning `REF-`, and CR-059 §10 says the same from the other side —
+#     *"P3 · Refunds (S58, `/finance/refunds`, **no screen at all today**)"*.
+#     So `screens_without_r10` rises by one and **the visible tag draws NOTHING
+#     on this screen today**. That is hard-won law 8, recorded rather than
+#     papered over, and it closes the day an authority draws a refunds screen.
+#     Claiming a badge r10 does not emit is exactly what this gate refused for
+#     `DIS-02` and for `SET-06D`/`SET-07D`, and it would be right to refuse it
+#     here.
+#
+# ⚠ **THE FOUR NUMBERS BELOW ARE WHAT G29 ITSELF REPORTS ON THIS TREE** (31 / 34
+# / 100 / 107) — never arithmetic on an entry above, which is the 2026-08-20
+# merge entry's lesson and the mistake the merge-lane and CR-053 entries each
+# corrected in themselves. This lane banks its ONE screen and only its one; the
+# Reverse control that landed with it (task 16) is a row action on two EXISTING
+# screens and adds no route at all.
+
+screens_without_a1 31
+screens_without_r10 35
+screens_total 100
+routes_total 107
+
+# ── 2026-09-02 · CR-060 T17 — THE CUSTOMER STATEMENT, ONE SCREEN AND ONE ROUTE
+#
+# `07-frontend/src/features/reports/CustomerStatementPage.tsx` at
+# `/reports/customer-statement`. **IT HAS NO A1 SCREEN ID AND ONE IS NOT
+# MINTED**, which is what this file exists to record rather than to hide.
+#
+# **WHY THERE IS NONE.** A1 was extracted from a prototype that has since been
+# DELETED (`DEF-610`), so it cannot describe a report designed afterwards; and
+# `CR-060` C16, which specifies this screen in full, allocates no screen id — it
+# names the endpoint and the four money rules and stops. Minting one here would
+# put a number in the inventory that no signed document ever assigned, which is
+# the renumbering CLAUDE.md forbids in the same breath as the A1 vocabulary.
+# Hard-won law 8 asks for the gap to be REPORTED, and it is: in the page's own
+# Lifecycle trailer, in `CR-060`'s task row, and here.
+#
+# **ONLY TWO NUMBERS MOVE, and that is checked rather than assumed.** G29 on
+# this tree reports `screens_without_a1 31` and `screens_without_r10 34` —
+# UNCHANGED — because this screen carries a written reason for both absences and
+# the gate counts a reasoned absence as accounted for. The two that rise are the
+# raw totals, by exactly one each: one component, one route.
+#
+# **This lane banks its ONE screen and only its one**, which is the discipline
+# every entry above records about itself.
+
+# ── 2026-09-03 · DEF-3463 — THE TWO ROUTES CR-060 SHIPPED THAT THIS MAP NEVER
+#                 GAINED A ROW FOR, PLUS THE PAYMENTS SUMMARY BADGE (DEF-3480)
+#
+# ⚠ **THE ENTRY ABOVE BANKED `routes_total 108` FOR THE CUSTOMER STATEMENT AND
+# NO ROW WAS EVER ADDED TO `screenIds.ts`.** Read that entry again: it reasons
+# carefully about which numbers move, states *"one component, one route"*, and
+# raises the two totals. The row it was banking never landed — `CR-060` T17
+# routed the screen in `App.tsx` and left the map alone, which is `DEF-3463`,
+# and `screenIds.test.tsx` was RED on the branch from that commit until today.
+# So this ratchet has been describing a screen the map did not contain, and the
+# arithmetic below is NOT `108 + 2`; it is what G29 measures on the tree that
+# finally holds both rows.
+#
+# **WHAT MOVES, and it is three of the four.**
+#   `routes_total`       108 → 110  `/finance/revenue` and
+#                                   `/reports/customer-statement`, one row each.
+#   `screens_total`      101 → 103  both are screens; neither is a redirect.
+#   `screens_without_a1`  31 →  32  the customer statement has no A1 id and one
+#                                   is NOT minted — the reason the entry above
+#                                   gives still stands word for word.
+#
+#   `screens_without_r10` 34 →  35  the customer statement, for the same reason:
+#                                   r10 draws no statement screen at all.
+#
+# ⚠ **AND THIS GATE STOPPED A FOURTH MOVEMENT, WHICH IS THE PART WORTH READING
+# (`DEF-3480`).** The Payments **Summary** tab draws no badge — the Product
+# Owner reported exactly that — and the fix drafted for it wrote `PAY-summary`
+# into the map, taking this count DOWN by one. G29 refused it in its own words:
+#
+#     /:tenant/payments claims r10 badge "PAY-summary" — that is not a badge
+#     r10 draws. An id no authority defines is an id nobody can look up when
+#     it appears in a bug report.
+#
+# The gate is right. r10 COMPUTES that string at runtime — `map[s.payTab] ||
+# 'PAY-' + s.payTab` — and DECLARES it nowhere, which is not the
+# `PLN-01.charges` case: there the parent `PLN-01` is a literal in the
+# prototype and only the suffix is computed. The value was reverted, the tab
+# still draws nothing, and the collision it sits on (render the A1 id and
+# reverse a PO ruling of 2026-08-19, or mint an id no authority defines) is in
+# `12-governance/02-decision-log.md` for the Product Owner. **So this count
+# rises by one rather than staying still, and the reason it did not fall is a
+# gate doing its job.**
+
+screens_without_a1 32
+screens_without_r10 35
+screens_total 103
+routes_total 110
+
+# 2026-09-03 · EVERY SCREEN NOW CARRIES A VISIBLE ID — `screens_without_r10`
+# goes 35 → 0, and it is the biggest single move this register has ever made.
+#
+# PO instruction 2026-09-03: *"We need unique screen ID - on every screen"*.
+# The row above put a collision to the Product Owner — render the A1 `S`-id and
+# reverse the ruling of 2026-08-19, or accept an id no authority defines and gut
+# this gate — and the decision log of the same day records a THIRD road that
+# breaks neither: the 2026-08-19 ruling says the tag follows *"modules how we
+# are using in r10"*, which is a SCHEME and not a closed list, so the missing
+# ids are ALLOCATED in that same grammar from `g29_allocated_badges.txt` and
+# G29 reads that register as a THIRD AUTHORITY beside A1 and r10.
+#
+# **The gate was not weakened to do it.** It still refuses an id no authority
+# defines; it gained an authority. Proved RED four ways before it was trusted
+# green — an invented id, the register deleted, one row commented out of the
+# register, and green again after every restore.
+#
+# 35 screens, and 23 of them had no id from EITHER authority. 14 of the 35 were
+# ADOPTED rather than minted — a document in this repository had already
+# specified the id and only an authority was missing (`SET-06D`, `TAX-02`,
+# `DIS-02`, `PLN-04`, `REQ-01..03`, `NCT-01..02`, `TRF-02`, `DSC-02`) — and
+# `DIS-02` is the one that proves the point, because `06-rating/09-screen-
+# inventory.md` records a lane writing that exact string and G29 correctly
+# refusing it. 11 were MINTED continuing r10's own numbering, and 10 needed no
+# number at all because a dotted sub-id of an already-badged parent is r10's own
+# convention (`FIN-01.taxes`, `ACC-02.closeOut`, `PAY-03.import`).
+#
+# ⚠ `PAY-summary` IS THE ONE THE ROW ABOVE COULD NOT SOLVE, and it is allocated
+# as the string r10 ITSELF COMPUTES rather than as a tidier new number, so the
+# running prototype and the running product agree on what that tab is called.
+#
+# `screens_without_a1` falls 32 → 31 in the same commit for a different reason:
+# CR-060 C27 ratified S73/S74 into A1, so `/finance/cost-of-service` stopped
+# being a route whose id the inventory did not allocate.
+
+screens_without_a1 31
+screens_without_r10 0
+screens_total 103
+routes_total 110
+
+# 2026-09-03 · CR-070 WAVE A — THE WORK SHELL. `routes_total` 110 → 112 and
+# `screens_total` 103 → 105: `/:tenant/work` and `/:tenant/work/orders`, ONE
+# screen at two addresses (the shell landing on its Orders tab, Work-007 in the
+# module's own series). `screens_without_a1` 31 → 33 for the reason the CR-013
+# block above already gives, one module further along: A1 allocates nothing for
+# any Work screen — its reserved band is exhausted and the PO ruled the module
+# its own `Work-nnn` series on 2026-09-03 (BR-WRK-005) — so both rows carry
+# `a1: null` with the reason written in `screenIds.ts`, exactly as
+# `/work/templates` has since 2026-08-25. `screens_without_r10` stays 0: both
+# rows carry r10's own `WRK-01`, the badge r10 draws for the dispatcher, so the
+# visible tag shows it (screenshot in the wave's walkthrough). Whether a
+# `Work-nnn` number ever renders is unruled and none does.
+
+screens_without_a1 33
+screens_without_r10 0
+screens_total 105
+routes_total 112
+
+# ── 2026-09-03 · CR-069 wave D · S143 mounts (INT-03) ─────────────────────────────
+#
+# `routes_total` 112 → 113 and `screens_total` 105 → 106: ONE new route,
+# `/:tenant/settings/integrations/:key/mappings` — S143, *their words for our
+# things* (US-INT-037). Both halves of its id come from an authority: A1's
+# addendum of the same day records CR-069 §9's allocation of S141–S146, and the
+# badge `INT-03` is ALLOCATED in g29_allocated_badges.txt together with the
+# other five, by the first lane to mount one of the six (the execution plan's
+# own rule for task B7). Nothing minted, nothing invented; `screens_without_a1`
+# and `screens_without_r10` do not move.
+
+# ── 2026-09-03 · CR-068 wave A — TWO ROUTES ADDED, ONE OF THEM A SCREEN ────
+# `/:tenant/settings/reference-data/customer-portal/:segment` is the portal
+# back office's own strip (CWP-069 · CWP-070, allocated): a screen with an A1
+# id (S8) and a badge, so `screens_total` rises by one and neither debt count
+# moves. `/:tenant/portal/*` is the customer portal's ROOT, a second
+# application with its own register (`noScreen: "own-register"`), so it is a
+# route and not a staff screen: `routes_total` rises by two.
+
+# ── 2026-09-04 · CR-070 waves B AND C — TWO WORK SCREENS MOUNT ────────────
+# `routes_total` 115 → 117 and `screens_total` 107 → 109. TWO routes, one from
+# each wave, and this block covers both because they landed within the hour and
+# the ratchet is a count of the merged tree, never arithmetic on two stale
+# numbers (the 2026-08-20 note above records what that mistake looks like).
+#
+#   `/:tenant/work/awaiting-approval`  wave B, the approval queue (Work-009).
+#                                      Badge WRK-20, MINTED and allocated in
+#                                      g29_allocated_badges.txt.
+#   `/:tenant/work/parts`              wave C, the parts register (Work-025).
+#                                      Badge WRK-10, r10's OWN — nothing minted.
+#
+# ⚠ `screens_without_a1` RISES 33 → 35, one for each, and that is the FINDING
+# rather than an oversight — the same reading the CR-013 block above records.
+# A1 was extracted from r9; r9 has no Work module at all, and A1's reserved
+# S61–S90 band is exhausted. Minting an S-number for either would invent an
+# authority. `screens_without_r10` does not move: both screens carry a visible
+# badge. Each absence and its reason are written on the route's own row in
+# `07-frontend/src/routing/screenIds.ts`, where the next reader will meet it.
+#
+# ⚠ THE WAVE-C LANE FIRST WROTE 116/108/34 HERE — correct for its own tree and
+# WRONG by the time it pushed, because wave B's route landed in between. The
+# numbers below were re-read from G29 itself against the merged tip rather than
+# re-applied from that edit. An allocated NUMBER is a blob too (DEF-1706).
+#
+# ⚠ AND IT HAPPENED ONCE MORE, THE SAME DAY AND THE OTHER WAY ROUND (wave B,
+# 2026-09-04). The block above describes `/:tenant/work/awaiting-approval` in
+# full and counts `screens_without_a1` as already including it — 33 → 35 — but
+# the two TOTALS were written from a tree where wave B's route did not yet
+# exist, so they read 109/117 for a product that was about to have 110/118.
+# Neither lane was careless: each read G29 on its own tree and each was right
+# there. **The only figure that is ever true is the one G29 reports on the
+# MERGED tree**, which is what the four below are — re-read after wave B's
+# route landed, not arithmetic on top of wave C's edit. `screens_without_a1`
+# does NOT move again: 35 already counted this screen.
+#
+# ⚠ **CR-070 WAVE O (2026-09-04) — THE FIRST TIME THESE THREE FIGURES HAVE EVER
+# GONE DOWN, AND IT IS THE RATCHET WORKING RATHER THAN A REGRESSION.**
+# `/:tenant/connections/:connectionId` stops being a SCREEN. The route still
+# resolves — every bookmark a clerk made in the three weeks `NCT-02` was live
+# still works — but it is a DOORWAY now: `BuildRedirect` resolves where the
+# build lives and sends the reader to the premises or to the account. PO,
+# 2026-09-04: *"you cannot have two differnt screen - this is an integration
+# problem"*, scoped the same day to *"One screen too many."*
+#
+# A redirect carries no badge, so `screenIds.ts` loses the row and
+# `g29_allocated_badges.txt` loses `NCT-02` in the SAME commit — a badge left
+# in the allocated list is `G29` asserting something nothing renders.
+#
+#   `screens_total`      110 → 108  (the detail was a screen; the doorway is not)
+#   `routes_total`       118 → 118  (UNMOVED — and that is the correction below)
+#   `screens_without_a1`  35 → 33   (`NCT-02` was one of them — B18 proposed S88
+#                                    and A1 allocated nothing, decision D1)
+#   `screens_without_r10`  0 → 0    (unmoved: nothing lost a visible badge it
+#                                    was supposed to keep)
+#
+# ⚠ **AND `routes_total` DOES NOT MOVE, WHICH THIS BLOCK GOT WRONG ONCE.** The
+# first attempt DELETED the row from `screenIds.ts` and lowered `routes_total`
+# to 117 — and `screenIds.test.tsx` went red, correctly: that table is the
+# ROUTER'S OWN ROUTE TABLE, asserted in both directions, so deleting the row
+# says the address does not exist while `App.tsx` still serves it. The row
+# STAYS with `noScreen: "redirect"`, exactly as the four CR-001 settings
+# redirects above it are modelled. A doorway is a route that is not a screen,
+# which is what these two figures are for.
+#
+# ⚠ **RE-READ FROM G29 ON THIS TREE, NOT ARITHMETIC ON THE FOUR ABOVE** — which
+# is the correction the two blocks above this one both had to make, once each,
+# on the same day. And these four are re-read AGAIN at push time against the
+# pinned tip, because an allocated number is a blob (DEF-1706) and a sibling
+# lane adding a route between this edit and the push would make every one of
+# them wrong in the same silent way.
+# ═══════════════════════════════════════════════════════════════════════════
+# CR-070 WAVE D · 2026-09-05 — the templates DETAIL is a new screen, and the
+# templates LIST stops being a stated absence
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# `Work-022` (`/:tenant/work/templates/:templateId`) is ONE new screen at ONE
+# new route: Overview · Usage · Versions · Audit for a service template. The
+# list at `/:tenant/work/templates` is not new — it was already routed, as the
+# BLANK page the PO ruled on 2026-08-25 — so it moves no counter; what it does
+# is swap its badge from the minted `WRK-19` to r10's own `WRK-04`, and
+# `g29_allocated_badges.txt` loses the `WRK-19` row in the SAME commit. A badge
+# left in the allocated list is `G29` asserting something nothing renders.
+#
+#   `screens_total`      108 → 109  (the template detail)
+#   `routes_total`       118 → 119  (the same one route)
+#   `screens_without_a1`  33 → 34   (A1's reserved S61–S90 band is exhausted and
+#                                    allocation is the PO's, so the detail has
+#                                    no `S` id — REPORTED, not invented, exactly
+#                                    as `Work-013`, `Work-009` and `Work-025`
+#                                    are)
+#   `screens_without_r10`  0 → 0    (unmoved: `WRK-15` is r10's own badge for
+#                                    the template detail, so nothing is minted
+#                                    and nothing renders blank)
+#
+# ⚠ **`WRK-19` IS RETIRED RATHER THAN REPOINTED.** It was minted on 2026-09-03
+# for a screen r10 does not draw, because at that moment the screen genuinely
+# did not exist. It exists now and `01-overview.md` §6 maps it to `WRK-04`, so
+# the borrowed id replaces the minted one: nothing stays minted that does not
+# have to be, and `screens_without_r10` is unmoved because the swap is
+# badge-for-badge.
+#
+# ⚠ RE-READ FROM G29 ON THIS TREE, NOT ARITHMETIC — and re-read AGAIN at push
+# time against the pinned tip, because an allocated number is a blob
+# (`DEF-1706`) and a sibling lane adding a route between this edit and the push
+# would make all four of these wrong in the same silent way.
+#
+# ⚠ **MOVED AGAIN 2026-09-05 (CR-070 wave E, `US-WRK-016`) — TWO ROUTES, TWO
+# SCREENS, AND NOTHING MINTED.** The eight-step template builder mounts at
+# `…/work/templates/new` and `…/work/templates/{id}/edit`: one component at two
+# addresses, because the eight steps are identical and a second copy would
+# drift. Both carry r10's OWN badge — its `sid()` emits `'WRK-05.' + twStep` for
+# the template wizard, exactly as `ONB-04.n` is emitted for the five-step signup
+# — so `g29_allocated_badges.txt` gains nothing and `screens_without_r10` is
+# unmoved at 0.
+#
+#   `routes_total`         119 → 121  (the two addresses)
+#   `screens_total`        109 → 111
+#   `screens_without_a1`    34 →  36  (A1's reserved S61–S90 band is exhausted,
+#                                      which is REPORTED and not invented — the
+#                                      same answer every Work screen has given)
+#
+# ⚠ RE-READ FROM G29 ON THIS TREE, and re-read again at push time — see the
+# note above, which is the reason this block exists at all.
+# ⚠ **MOVED 2026-09-06 (`CR-075` wave D, tasks `D3`/`D4`) — AND 13 OF THE 18
+# ROUTES IT ABSORBS ARE NOT THIS WAVE'S. Read the split before citing it.**
+# Measured with `g29_screen_ids.run()` on this tree, twice: once before wave D
+# touched anything and once after.
+#
+#   at the tip, BEFORE this wave      routes 134 · screens 123 · without_a1 47
+#   registered here                   routes 121 · screens 111 · without_a1 36
+#   → G29 was ALREADY RED by          routes  13 · screens  12 · without_a1 11
+#
+# Those thirteen are routes other lanes landed without moving these numbers;
+# they are in `screenIds.ts` and they are real screens. **This wave adds FIVE**
+# — `runbooks/templates`, `runbooks/templates/:key`, `runbooks/mine` and the two
+# wave-C runbooks routes that shipped with no `screenIds.ts` row at all. So the
+# gate goes green on 139/128/52, and a reader who assumes wave D shipped
+# eighteen screens has been misled by an unexplained jump, which is exactly what
+# this block exists to prevent.
+#
+# ⚠ **`screens_without_a1` RISES BY FIVE AND THAT IS A REPORT, NOT A CHOICE.**
+# A1 declares no row for any runbooks screen and its canonical range stops at
+# `S114`; the runbooks source document's own `S148`–`S155` are outside it.
+# Minting an A1 id would renumber a vocabulary CLAUDE.md says is never
+# renumbered. Every runbooks row carries `a1: null` with its reason and an
+# allocated `RBS-` badge, so `screens_without_r10` stays at 0.
+#
+# ⚠ RE-READ FROM G29 AT PUSH TIME. A sibling landing a route between this edit
+# and the push makes all four numbers wrong in the same silent way — an
+# allocated number is a blob (`DEF-1706`).
+# ⚠ MOVED 2026-09-07 BY THE `CR-075` WAVE I `I6` LANE, RE-READ FROM G29 AT PUSH
+# TIME AS THE NOTE ABOVE REQUIRES. One route and one screen: `RBS-008`, run
+# history, at `/:tenant/runbooks/runs`. `screens_without_a1` rises with it
+# because every runbooks screen carries `a1: null` — A1 was extracted from r9
+# and this module's screens are `RBS-`-numbered by PO ruling of 2026-09-06 —
+# and `screens_without_r10` stays 0 because the badge is allocated in
+# `g29_allocated_badges.txt` in the same commit.
+# ⚠ MOVED 2026-09-12 BY THE `CR-092` `AST-B-12` LANE, RE-READ FROM G29 AT PUSH
+# TIME AS THE NOTE ABOVE REQUIRES. **TWO routes, and only ONE of them is this
+# lane's** — which is written out because a ratchet that absorbs somebody else's
+# debt silently is how a register stops meaning anything:
+#   +1 `/:tenant/assets/:assetId/edit` (AST-09) — this lane's, `a1: null` with
+#      its reason in `screenIds.ts`, badge allocated in the same commit;
+#   +1 `/:tenant/runbooks/work` (RBS-007) — ALREADY ON THE BRANCH when this lane
+#      started, landed `df1ade52e` 2026-09-07, and G29 had been RED on it for
+#      five days (`DEF-RBS-5110`). Dated with `git log -S`, not assumed.
+# `screens_without_a1` therefore rises by two and `screens_without_r10` stays 0,
+# because both badges are now registered.
+# ⚠ MOVED 2026-09-13 BY THE `CR-094-BRC01` WAVE L LANE (`BR-CUS-1051`, product
+# `2.242.0`), RE-READ FROM G29 AT PUSH TIME AS THE NOTE ABOVE REQUIRES.
+# **THREE routes, and all three are this lane's** — measured against `feed3007f`,
+# the commit before this wave's first, where G29 reported PASS at 131/142.
+#
+# PO 2026-09-13, verbatim: *"Yes move the eight quick actions over the account"*.
+# Five of the eight already had an account-scoped address and keep the exact
+# string they had; **three did not, and each gains one while KEEPING ITS OWN**:
+#   +1 `/:tenant/accounts/:accountId/bills/:invoiceId/document` (`BIL-05.document`)
+#   +1 `/:tenant/accounts/:accountId/issue-credit`              (`S30` · `BIL-01`)
+#   +1 `/:tenant/accounts/:accountId/disconnect`                (`DSC-02`)
+#
+# ⚠ **NO NEW SCREEN SHIPPED AND NO NEW ID WAS MINTED.** Each row carries the ids
+# of the screen it MOUNTS, exactly as `/move-ins/new` and `/move-outs/new` carry
+# S19/S20: two routes, one screen, one id. `screens_total` counts ROWS, so it
+# moves with `routes_total` — and `screens_without_r10` stays 0 because all three
+# badges were already registered before this wave touched anything.
+#
+# `screens_without_a1` rises by TWO, not three, and that is a report rather than
+# a choice: A1 numbers neither the rendered bill document nor the disconnect
+# wizard at their EXISTING addresses either, so a second address cannot be the
+# place an A1 id is invented. `issue-credit` mounts the bills screen's own tab
+# and carries its `S30`.
+screens_without_a1 57
+screens_without_r10 0
+screens_total 134
+routes_total 145
+
+# ── CR-125-BRC07 · THE DISCONNECT CASE RECORD (blueprint p143) ──────────────
+# ONE screen, ONE route: `/:tenant/disconnects/:ref`, badged `DSC-03` and
+# allocated in `g29_allocated_badges.txt` in the same commit. r10 draws the
+# disconnect LIST and the WIZARD and no record at all, so the badge is a mint
+# in r10's own grammar rather than a lookup; A1 allocates nothing for S90's
+# second half (decision D1 — S82–S90 still read *"remain reserved"*), so
+# `screens_without_a1` rises by one and that rise is the REPORT, not an
+# oversight.
+#
+# ⚠⚠ **THIS RAISES THE COUNT BY EXACTLY ONE AND THE GATE STAYS RED, ON PURPOSE.**
+# G29 reports **150 routes and 137 screens** against the 145/134 below, so FOUR
+# further routes shipped unnamed and they are not this lane's to absorb. Raising
+# the figure to 150 would make four other lanes' gaps permanently invisible,
+# which is the single most damaging move available in this repository. Paying
+# exactly this lane's debt leaves the remaining four naming themselves at every
+# run, which is what a ratchet is for.
+screens_without_a1 58
+screens_without_r10 0
+screens_total 135
+routes_total 146
+
+# ── CR-136-BRC07 `P2.6` · THE COUNTER DETAIL (blueprint p052–p053) ─────────
+# ONE new route and ONE new screen: `/:tenant/payments/counter/:counterCode`,
+# badged `PAY-07` and allocated in `g29_allocated_badges.txt` in the same
+# commit. (3·1 Counters is the Counter TAB, which was already a route — it
+# gains `PAY-04` and raises nothing.) A1 draws no counter screen at all, so
+# `screens_without_a1` rises by one and that rise is the REPORT rather than an
+# oversight, exactly as the disconnect record's block above says.
+#
+# ⚠⚠ **THE GATE WAS ALREADY RED BEFORE THIS LANE STARTED, AND STAYS RED.**
+# MEASURED at the tip this lane branched from, `29bcbb31e`, in a clean
+# worktree: **149 routes · 136 screens · 59 without an A1 id**, against the
+# 146/135/58 above — so THREE routes and ONE screen shipped unnamed and they
+# are not this lane's to absorb. Raising the figure to cover them would make
+# four other lanes' gaps permanently invisible, which is the single most
+# damaging move available in this repository (hard-won law 7). Paying exactly
+# this lane's one leaves the rest naming themselves at every run.
+screens_without_a1 59
+screens_without_r10 0
+screens_total 136
+routes_total 147
+
+# ── CR-139-BRC07 `P5.7` · THE SETTLEMENT DETAIL (blueprint p071) ───────────
+# ONE new route and ONE new screen: `/:tenant/payments/settlements/:settlementRef`,
+# badged `PAY-09` and allocated in `g29_allocated_badges.txt` in the same
+# commit. (5·1 Settlements is the Settlements TAB, which was already a route —
+# it gains `PAY-08` and raises nothing.) A1 draws no settlements screen at all,
+# so `screens_without_a1` rises by one and that rise is the REPORT rather than
+# an oversight, exactly as the counter block above says.
+#
+# ⚠⚠ **THE GATE WAS ALREADY RED BEFORE THIS LANE STARTED, AND STAYS RED.**
+# MEASURED at the tip this lane branched from, `09039da1e`, in a clean
+# worktree: **150 routes · 137 screens · 60 without an A1 id**, against the
+# 147/136/59 above — so THREE routes, ONE screen and ONE A1 absence shipped
+# unnamed and they are not this lane's to absorb. `DEF-SHL-6047` (2026-09-20)
+# is the row that already records the registry drift. Raising the figure to
+# cover them would make other lanes' gaps permanently invisible, which is the
+# single most damaging move available in this repository (hard-won law 7).
+# Paying exactly this lane's one leaves the rest naming themselves at every run.
+screens_without_a1 60
+screens_without_r10 0
+screens_total 137
+routes_total 148
+
+# ── CR-151-BRC09 §6a · THE BUILD'S PAGE COMES BACK AT ITS OLD ADDRESS ──────
+# NO new route and ONE new screen. `/:tenant/connections/:connectionId` has
+# been a ROW in this table throughout — `CR-070` wave O kept it so no bookmark
+# would 404 and marked it `noScreen: "redirect"`. The flip swaps the ELEMENT
+# for `BuildDetailPage`, so the row stops being a redirect and starts being a
+# screen: `screens_total` rises by one and `routes_total` does not move.
+# `NCT-02` is re-allocated in `g29_allocated_badges.txt` in the same commit —
+# A1 allocates nothing for it (the reserved band is exhausted and allocation is
+# the PO's, the same D1 posture `NCT-01` carries one row above it), so
+# `screens_without_a1` rises by one and that rise is the REPORT rather than an
+# oversight.
+#
+# ⚠⚠ **THE GATE WAS ALREADY RED BEFORE THIS LANE STARTED, AND STAYS RED —
+# MEASURED, NOT ASSUMED.** `G29` run in a throwaway worktree at the tip this
+# lane branched from, `origin/claude/brave-dijkstra-xgfsgz` @ `9d97307df`,
+# with nothing of this lane's in it: **157 routes · 144 screens · 62 without
+# an A1 id**, against the 148/137/60 above. So NINE routes, SEVEN screens and
+# TWO A1 absences had already shipped unnamed, and they are not this lane's to
+# absorb (`DEF-SHL-7645`, 2026-09-28, is the row that records the drift and
+# counts it a different way: 180 routed paths against 159 rows). Raising the
+# figure to cover them would make other lanes' gaps permanently invisible,
+# which is the single most damaging move available in this repository
+# (hard-won law 7). Paying exactly this lane's one leaves the rest naming
+# themselves at every run.
+screens_without_a1 61
+screens_without_r10 0
+screens_total 138
+routes_total 148
+
+# ── 2.445.14 (2026-10-02) · THE REGISTER CAUGHT UP WITH THE ROUTER ─────────
+# RE-DERIVED, NOT BUMPED. The figures below were measured by bundling the REAL
+# `07-frontend/src/routing/screenIds.ts` with esbuild and counting
+# `SCREEN_ROUTES` in node — a second reader beside this gate's own regex
+# parser — and both agree: **179 routes · 168 screens · 82 without an A1 id ·
+# 18 without a visible badge.**
+#
+# Where the rise came from, measured the same way at each step:
+#   · at `ab052ac04` (2026-09-28) this file said 148 / 138 / 61 / 0;
+#   · just BEFORE 2.445.10 (`700751f97^`) the map already held 159 / 148 / 64 /
+#     **4** — eleven rows of other lanes' drift the blocks above refused to
+#     absorb (`DEF-SHL-7645`), and four screens already drawing no badge;
+#   · 2.445.10 (`DEF-SHL-6047`) registered the TWENTY routes `App.tsx` mounted
+#     with no row — `screenIds.test.tsx`'s *"covers every routed screen, in
+#     App.tsx's order"* is the check that proves the map now equals the router —
+#     each with an id or a written reason (clause 4 passes on all of them), so
+#     the counts rose to 179 / 168 / 82 / 19 and nothing was left unnamed;
+#   · this commit allocates `RBS-001` (`g29_allocated_badges.txt`) and gives the
+#     Runbooks home its badge: 19 → 18.
+#
+# ⚠ THE BLOCKS ABOVE REFUSED TO RAISE THESE FIGURES TO COVER UNREGISTERED
+# ROUTES, AND THAT REFUSAL STILL STANDS — IT IS WHY THIS IS SAFE NOW AND WAS
+# NOT THEN. The rise is no longer a route nobody named: every one of the 179 is
+# a row, `screenIds.test.tsx` is green on the router-equals-map assertion, and
+# the 18 badge-less screens each carry the reason they have none. A new route
+# added to `App.tsx` without a row turns that test red; a new row with no id
+# moves `screens_without_r10` or `screens_without_a1` here and turns G29 red.
+# Both were watched to fail before this block was trusted.
+screens_without_a1 82
+screens_without_r10 18
+screens_total 168
+routes_total 179
+#
+# ── 2026-10-04 · CR-168-BRC10 round 3, lane RAISE (`2.500.0`) ──────────────
+# ONE route added, and it is registered with an id: image 19's raise from an
+# account, `/:tenant/accounts/:accountId/work-orders/new`, r10 `WRK-12` (the
+# badge every raise image carries; borrowed, not minted). A1 draws no raise on
+# an account, so `screens_without_a1` rises with it: 179→180, 168→169, 82→83.
+screens_without_a1 83
+screens_without_r10 18
+screens_total 169
+routes_total 180
+#
+# ── 2026-10-04 · CR-168-BRC10 round 5, lane RULES (`2.514.0`) ──────────────
+# TWO routes added, both registered with an id: the rule builder re-opened on a
+# rule, `/:tenant/work/rules/:ruleId/edit` (r10 `WRK-13`, borrowed), and one
+# rule's page, `/:tenant/work/rules/:ruleId` (`WRK-06.rule`, a dotted child of
+# the rules screen — images 62–64 carry WRK-06). A1 draws neither, so
+# `screens_without_a1` rises with them: 180→182, 169→171, 83→85.
+screens_without_a1 85
+screens_without_r10 18
+screens_total 171
+routes_total 182
+#
+# ── 2026-10-05 · CR-168-BRC10 §30, lane BOARDS (`2.519.0`) ─────────────────
+# ONE route added, registered with an id: At risk as its own Work tab,
+# `/:tenant/work/at-risk` (`WRK-25`, MINTED in g29_allocated_badges.txt — r10
+# draws no at-risk screen), by the PO's answer (1) of 2026-10-05. A1 draws it
+# not, so `screens_without_a1` rises with it: 182→183, 171→172, 85→86.
+screens_without_a1 86
+screens_without_r10 18
+screens_total 172
+routes_total 183
+#
+# ── 2026-10-05 · CR-170-BRC10, lane PWD ────────────────────────────────────
+# ONE route added, registered with an id: the public forgot-password page,
+# `/:tenant/forgot-password` (`ONB-06`, MINTED in g29_allocated_badges.txt —
+# the next number after `/signin-help`'s `ONB-05`). A1 draws it not, so
+# `screens_without_a1` rises with it: 183→184, 172→173, 86→87.
+screens_without_a1 87
+screens_without_r10 18
+screens_total 173
+routes_total 184
+#
+# ── 2026-10-13 · OQ-WRK-12792 → A, the runbook Check wizard ───────────────
+# ONE route added, registered with an id: `/:tenant/runbooks/:key/run`
+# (`RBS-004.run`, a dotted sub-id of the allocated `RBS-004` — nothing
+# minted). A1 draws no runbook screen, so `screens_without_a1` rises with it:
+# 184→185, 173→174, 87→88. DEF-WRK-10123.
+screens_without_a1 88
+screens_without_r10 18
+screens_total 174
+routes_total 185
+#
+# ── 2026-10-21 · CR-187-BRC10 (EP-WRK-11), Work-034 From the field ─────────
+# THREE routes added, all registered with an id: `/:tenant/work/field`,
+# `/field/raised`, `/field/alerts` — one screen, three panes, one badge
+# (`WRK-26`, MINTED in g29_allocated_badges.txt; r10 predates the field app).
+# A1 draws none of them, so `screens_without_a1` rises with them:
+# 185→188, 174→177, 88→91.
+screens_without_a1 91
+screens_without_r10 18
+screens_total 177
+routes_total 188
+#
+# ── 2026-10-22 · CR-190-BRC10 lane AGREEMENT — the agreement link's page ──
+# ONE route, `/:tenant/portal/agreements/:token`, mounted BESIDE the portal
+# (PO answer 4: not inside the signed-in portal). No A1 id, no r10 badge and
+# no CWP id (CR-068 §9 is the PO's to allocate) — reported in its row's note
+# rather than minted. All four counts rise by one: 188→189, 177→178, 91→92, 18→19.
+# MERGED 2026-10-22 (lane MERGE-EMAILS) with CR-188 below; its own counts then rise.
+#
+# ── 2026-10-22 · CR-188-BRC10 (lane STAFF-INVITE), the set-password page ──
+# ONE route, registered with an id: `/:tenant/set-password` (`ONB-07`, MINTED
+# in g29_allocated_badges.txt), where an emailed one-time sign-in link lands.
+# A1 draws no such screen, so `screens_without_a1` rises with it:
+# 188→189, 177→178, 91→92.
+# Both routes together: 188→190, 177→179, 91→93; r10 18→19 (the agreement page only).
+screens_without_a1 93
+screens_without_r10 19
+screens_total 179
+routes_total 190

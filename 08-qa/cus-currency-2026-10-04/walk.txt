@@ -1,0 +1,17 @@
+DEF-CUS-5114 · PostgreSQL 16 (sbh_cuscur: seed_demo + load_sample_data + 10-scripts/dep_pick_walk_prep.py), Chromium at 1440, lane CUS-CURRENCY, 2026-10-04
+walk: BASE=http://127.0.0.1:5501 OUT=08-qa/cus-currency-2026-10-04 node 10-scripts/cus_currency_walk.mjs
+data: SCW-U-355 (no meter) on New account, SCW-U-206 (vacant) on Move-in; Meter size Water 2" -> $600.00, Taken today in cash
+
+BEFORE - build 2.495.2 (front end at 98207764e), photos in before-2.495.2/
+FAIL New account · Deposit · taken today: "$600.00" MISSING · "Currency not known here" SHOWN
+FAIL New account · Review: "$600.00" MISSING · "Currency not known here" SHOWN
+FAIL Move-in (vacant unit) · Deposit · taken today: "$600.00" MISSING · "Currency not known here" SHOWN
+FAIL Move-in (vacant unit) · Review: "$600.00" MISSING · "Currency not known here" SHOWN
+WALK FAIL (4)
+
+AFTER - build 2.496.1 (ae80cc070), photos 01-04
+PASS New account · Deposit · taken today: "$600.00" shown · "Currency not known here" absent
+PASS New account · Review: "$600.00" shown · "Currency not known here" absent
+PASS Move-in (vacant unit) · Deposit · taken today: "$600.00" shown · "Currency not known here" absent
+PASS Move-in (vacant unit) · Review: "$600.00" shown · "Currency not known here" absent
+WALK PASS

@@ -1,0 +1,208 @@
+[
+  {
+    "service": "electric",
+    "name": "Electric",
+    "enabled": true,
+    "billing_basis": "metered",
+    "primary_uom": "kWh",
+    "alt_uom": "kW",
+    "billed_uom": null,
+    "conversion_factor": null,
+    "revenue_account": {
+      "id": "01a1085a-8503-7383-a123-3ab4fc5eff24",
+      "code": "4100",
+      "name": "Electric usage"
+    },
+    "base_revenue_account": {
+      "id": "01a1085a-8504-70ce-89b3-c7c44b50ff5a",
+      "code": "4105",
+      "name": "Electric base"
+    },
+    "rate_schedules": 4,
+    "active_accounts": 70
+  },
+  {
+    "service": "water",
+    "name": "Water",
+    "enabled": true,
+    "billing_basis": "metered",
+    "primary_uom": "kgal",
+    "alt_uom": "ccf",
+    "billed_uom": null,
+    "conversion_factor": null,
+    "revenue_account": {
+      "id": "01a1085a-8505-7c16-9b4c-a45c5e26041f",
+      "code": "4110",
+      "name": "Water usage"
+    },
+    "base_revenue_account": {
+      "id": "01a1085a-8506-7cdb-96ac-105507df9f19",
+      "code": "4115",
+      "name": "Water base"
+    },
+    "rate_schedules": 5,
+    "active_accounts": 70
+  },
+  {
+    "service": "gas",
+    "name": "Gas",
+    "enabled": false,
+    "billing_basis": "metered",
+    "primary_uom": "ccf",
+    "alt_uom": "therm",
+    "billed_uom": null,
+    "conversion_factor": null,
+    "revenue_account": {
+      "id": "01a1085a-850a-7aad-8d93-77aaffeb08ec",
+      "code": "4140",
+      "name": "Gas"
+    },
+    "base_revenue_account": null,
+    "rate_schedules": 0,
+    "active_accounts": 0
+  },
+  {
+    "service": "sewer",
+    "name": "Sewer",
+    "enabled": false,
+    "billing_basis": "share",
+    "primary_uom": "kgal",
+    "alt_uom": "ccf",
+    "billed_uom": null,
+    "conversion_factor": null,
+    "revenue_account": {
+      "id": "01a1085a-8508-7bbf-afde-0ead2faa8225",
+      "code": "4120",
+      "name": "Sewer"
+    },
+    "base_revenue_account": null,
+    "rate_schedules": 0,
+    "active_accounts": 0
+  },
+  {
+    "service": "trash",
+    "name": "Trash",
+    "enabled": false,
+    "billing_basis": "capacity",
+    "primary_uom": "cart",
+    "alt_uom": null,
+    "billed_uom": "cart",
+    "conversion_factor": null,
+    "revenue_account": {
+      "id": "01a1085a-8509-73bf-8de2-81e1cc69c058",
+      "code": "4130",
+      "name": "Trash"
+    },
+    "base_revenue_account": null,
+    "rate_schedules": 0,
+    "active_accounts": 0
+  },
+  {
+    "service": "storm_water",
+    "name": "Storm water",
+    "enabled": false,
+    "billing_basis": "capacity",
+    "primary_uom": "ERU",
+    "alt_uom": null,
+    "billed_uom": null,
+    "conversion_factor": null,
+    "revenue_account": {
+      "id": "01a1085a-8516-7ee0-b545-2bdd03889617",
+      "code": "4160",
+      "name": "Storm water"
+    },
+    "base_revenue_account": null,
+    "rate_schedules": 0,
+    "active_accounts": 0
+  },
+  {
+    "service": "solar",
+    "name": "Solar",
+    "enabled": false,
+    "billing_basis": "capacity",
+    "primary_uom": "kW",
+    "alt_uom": null,
+    "billed_uom": null,
+    "conversion_factor": null,
+    "revenue_account": {
+      "id": "01a1085a-850f-70d3-b318-3f415db55757",
+      "code": "4150",
+      "name": "Solar"
+    },
+    "base_revenue_account": null,
+    "rate_schedules": 0,
+    "active_accounts": 0
+  },
+  {
+    "service": "broadband",
+    "name": "Broadband",
+    "enabled": false,
+    "billing_basis": "capacity",
+    "primary_uom": "Mbps",
+    "alt_uom": null,
+    "billed_uom": null,
+    "conversion_factor": null,
+    "revenue_account": {
+      "id": "01a1085a-850d-7a4b-a18d-ec0d65f2afbf",
+      "code": "4145",
+      "name": "Broadband"
+    },
+    "base_revenue_account": null,
+    "rate_schedules": 0,
+    "active_accounts": 0
+  },
+  {
+    "service": "thermal_heat",
+    "name": "Thermal/Heat",
+    "enabled": false,
+    "billing_basis": "capacity",
+    "primary_uom": "ton",
+    "alt_uom": "klb",
+    "billed_uom": null,
+    "conversion_factor": null,
+    "revenue_account": {
+      "id": "01a1085a-8519-7188-ba41-b24344b8d5a2",
+      "code": "4170",
+      "name": "Thermal/Heat"
+    },
+    "base_revenue_account": null,
+    "rate_schedules": 0,
+    "active_accounts": 0
+  },
+  {
+    "service": "battery",
+    "name": "Battery",
+    "enabled": false,
+    "billing_basis": "capacity",
+    "primary_uom": "kW",
+    "alt_uom": null,
+    "billed_uom": null,
+    "conversion_factor": null,
+    "revenue_account": {
+      "id": "01a1085a-8518-7abe-8412-f89e2d30a270",
+      "code": "4165",
+      "name": "Battery"
+    },
+    "base_revenue_account": null,
+    "rate_schedules": 0,
+    "active_accounts": 0
+  },
+  {
+    "service": "fire",
+    "name": "Fire",
+    "enabled": false,
+    "billing_basis": "capacity",
+    "primary_uom": "connection",
+    "alt_uom": null,
+    "billed_uom": null,
+    "conversion_factor": null,
+    "revenue_account": {
+      "id": "01a1085a-8513-752b-879c-db5171036a7f",
+      "code": "4155",
+      "name": "Fire"
+    },
+    "base_revenue_account": null,
+    "rate_schedules": 0,
+    "active_accounts": 0
+  }
+]

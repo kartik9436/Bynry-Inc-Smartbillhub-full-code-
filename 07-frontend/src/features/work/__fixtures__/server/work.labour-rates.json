@@ -1,0 +1,51 @@
+{
+  "count": 4,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": "01a106a9-8d12-74b9-942e-eff2d2887307",
+      "role": "contractor",
+      "role_label": "Redline Meter Services",
+      "hourly": "95.0000",
+      "overtime_hourly": null,
+      "overtime_after_hours": null,
+      "effective_from": "2026-01-01",
+      "superseded_on": null,
+      "current": true
+    },
+    {
+      "id": "01a106a9-8d03-72a5-b3d1-69d024ed410e",
+      "role": "field_technician",
+      "role_label": "Field technician",
+      "hourly": "48.5000",
+      "overtime_hourly": "72.7500",
+      "overtime_after_hours": "8.00",
+      "effective_from": "2026-01-01",
+      "superseded_on": null,
+      "current": true
+    },
+    {
+      "id": "01a106a9-8d0d-76c2-a3c7-ca81452e1665",
+      "role": "network_crew",
+      "role_label": "Network crew",
+      "hourly": "55.0000",
+      "overtime_hourly": "82.5000",
+      "overtime_after_hours": "8.00",
+      "effective_from": "2026-01-01",
+      "superseded_on": null,
+      "current": true
+    },
+    {
+      "id": "01a106a9-8d08-73be-9ca9-1103122105bf",
+      "role": "senior_technician",
+      "role_label": "Senior technician",
+      "hourly": "61.0000",
+      "overtime_hourly": "91.5000",
+      "overtime_after_hours": "8.00",
+      "effective_from": "2026-01-01",
+      "superseded_on": null,
+      "current": true
+    }
+  ]
+}

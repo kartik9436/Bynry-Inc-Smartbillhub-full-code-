@@ -1,0 +1,6 @@
+P25 red proofs on 2.549.9 — each key check broken in memory, read against the case's committed database (PostgreSQL 16), then restored
+
+BROKEN (p25-new-date):
+  FAIL  DATE: the account now opens on 2026-10-16 — expected '2026-10-16', read '2026-10-15'
+RESTORED:
+  PASS  DATE: the account now opens on 2026-10-15

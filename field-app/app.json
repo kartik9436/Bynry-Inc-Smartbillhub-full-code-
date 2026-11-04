@@ -1,0 +1,117 @@
+{
+  "expo": {
+    "name": "SMART360 Next Field",
+    "slug": "smart360-next-field",
+    "owner": "bynry",
+    "orientation": "default",
+    "userInterfaceStyle": "automatic",
+    "runtimeVersion": {
+      "policy": "fingerprint"
+    },
+    "updates": {
+      "enabled": true,
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 0
+    },
+    "ios": {
+      "bundleIdentifier": "io.bynry.smart360.field",
+      "buildNumber": "1",
+      "supportsTablet": true,
+      "entitlements": {
+        "com.apple.developer.usernotifications.critical-alerts": true
+      },
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Your location is stamped on each reading and photo you take, and shows nearby jobs. It is only read while the app is open.",
+        "NSCameraUsageDescription": "The camera takes job photos and scans meter barcodes and QR codes.",
+        "NSFaceIDUsageDescription": "Face ID unlocks your own session after the app locks."
+      }
+    },
+    "android": {
+      "package": "io.bynry.smart360.field",
+      "versionCode": 1,
+      "softwareKeyboardLayoutMode": "resize",
+      "permissions": [
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.CAMERA",
+        "android.permission.USE_BIOMETRIC",
+        "android.permission.POST_NOTIFICATIONS",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.WAKE_LOCK"
+      ],
+      "blockedPermissions": [
+        "android.permission.ACCESS_BACKGROUND_LOCATION"
+      ]
+    },
+    "plugins": [
+      "expo-sqlite",
+      "expo-secure-store",
+      "expo-localization",
+      "expo-font",
+      "expo-asset",
+      "./plugins/withFontScaleConfigChanges",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "The camera takes job photos and scans meter barcodes and QR codes.",
+          "microphonePermission": "The microphone lets you speak a note instead of typing it.",
+          "recordAudioAndroid": false
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Your location is stamped on each reading and photo you take, and shows nearby jobs. It is only read while the app is open.",
+          "isAndroidBackgroundLocationEnabled": false,
+          "isIosBackgroundLocationEnabled": false
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "defaultChannel": "new_job",
+          "sounds": [],
+          "enableBackgroundRemoteNotifications": false
+        }
+      ],
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Face ID unlocks your own session after the app locks."
+        }
+      ],
+      [
+        "expo-speech-recognition",
+        {
+          "microphonePermission": "The microphone lets you speak a note instead of typing it.",
+          "speechRecognitionPermission": "Your spoken note is turned into text on this phone."
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "0d22425a-c538-4d4a-97b0-20a9f336f025"
+      },
+      "pins": [
+        {
+          "spki_sha256": "C5+lpZ7tcVwmwQIMcRtPbsQtWLABXhQzejna0wHFr8M=",
+          "label": "ISRG Root X1",
+          "not_after": "2035-06-04"
+        },
+        {
+          "spki_sha256": "hxqRlPTu1bMS/0DITB1SSu0vd4u/8l8TjPgfaAp63Gc=",
+          "label": "GTS Root R1",
+          "not_after": "2036-06-22"
+        }
+      ]
+    }
+  }
+}

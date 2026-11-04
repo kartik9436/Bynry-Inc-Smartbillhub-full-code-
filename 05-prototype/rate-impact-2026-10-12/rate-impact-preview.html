@@ -1,0 +1,472 @@
+<title>Rate Impact Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: the product's own Reports screens (RPT-01 catalogue card, then the report's own page). One result block per input row. */
+:root {
+  --bg: #f4f4f3; --panel: #ebebea; --surface: #ffffff; --fg: #1c1c1b; --muted: #5d5d5a; --line: #d4d4d1;
+  --accent: #e2391b; --accent-soft: #fde9e4; --ok: #1d7a3e; --ok-soft: #e3f3e8;
+  --new: #2357c9; --new-soft: #e7eefc;
+  --font: "Inter Tight", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161615; --panel: #212120; --surface: #1b1b1a; --fg: #ecece9; --muted: #a3a39e; --line: #3a3a37;
+    --accent: #ff6a4d; --accent-soft: #3a1d17; --ok: #5fd08a; --ok-soft: #15301f; --new: #7aa4ff; --new-soft: #17233d; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #161615; --panel: #212120; --surface: #1b1b1a; --fg: #ecece9; --muted: #a3a39e; --line: #3a3a37;
+  --accent: #ff6a4d; --accent-soft: #3a1d17; --ok: #5fd08a; --ok-soft: #15301f; --new: #7aa4ff; --new-soft: #17233d; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 14px; line-height: 1.45; }
+.wrap { max-width: 1200px; margin: 0 auto; padding-inline: 16px; padding-block: 24px 48px; display: grid; gap: 22px; }
+.note { background: var(--new-soft); border: 1px solid var(--new); border-radius: 6px; padding: 12px 14px; display: grid; gap: 4px; }
+.note strong { color: var(--new); }
+.kicker { color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.step { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--new); }
+h1 { font-size: 32px; line-height: 1.1; margin: 4px 0 2px; font-weight: 800; text-wrap: balance; }
+h2 { margin: 0; font-size: 18px; font-weight: 700; }
+.sub { color: var(--muted); font-size: 15px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 0 16px; }
+.card { border-top: 2px solid var(--line); padding: 14px 4px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+.card .sg { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.card .nm { font-size: 17px; font-weight: 700; }
+.card .bs { font-size: 13px; color: var(--muted); }
+.card.is-new { border-top-color: var(--new); background: var(--new-soft); padding-inline: 10px; }
+.flagline { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--new); }
+.head { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; justify-content: space-between; }
+.btn { font: inherit; font-weight: 700; font-size: 14px; padding: 9px 16px; border-radius: 2px; border: 1px solid var(--fg); background: var(--surface); color: var(--fg); cursor: pointer; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn.link { border: 0; background: none; color: var(--accent); padding: 6px 0; }
+.icon-btn { font: inherit; border: 1px solid var(--line); background: var(--surface); color: var(--muted); width: 32px; height: 32px; border-radius: 2px; cursor: pointer; }
+.icon-btn:hover { color: var(--accent); border-color: var(--accent); }
+.btn:focus-visible, input:focus-visible, select:focus-visible, .icon-btn:focus-visible, summary:focus-visible { outline: 2px solid var(--new); outline-offset: 2px; }
+.panel { background: var(--panel); border: 1px solid var(--line); padding: 20px; display: grid; gap: 16px; min-width: 0; }
+.grid4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.field { display: grid; gap: 6px; min-width: 0; align-content: start; }
+.field label, .field .lbl { font-size: 13px; font-weight: 600; }
+.sel { font: inherit; padding: 8px 10px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 2px; width: 100%; }
+.dd { position: relative; }
+.dd summary { list-style: none; cursor: pointer; padding: 8px 32px 8px 10px; border: 1px solid var(--line); background: var(--surface); border-radius: 2px; position: relative; }
+.dd summary::-webkit-details-marker { display: none; }
+.dd summary::after { content: "▾"; position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+.dd[open] summary { border-color: var(--fg); }
+.dd-menu { position: absolute; z-index: 5; left: 0; right: 0; top: calc(100% + 4px); background: var(--surface); border: 1px solid var(--line); border-radius: 2px; padding: 6px; display: grid; gap: 2px; box-shadow: 0 6px 18px rgba(0,0,0,.12); }
+.dd-menu label { display: flex; gap: 8px; align-items: center; padding: 6px 8px; border-radius: 2px; cursor: pointer; }
+.dd-menu label:hover { background: var(--panel); }
+.dd-menu input { accent-color: var(--accent); }
+.scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+th { text-align: left; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding: 10px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td { padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+td.num, th.num { text-align: right; }
+.ta { background: var(--surface); border: 1px solid var(--line); min-width: 1200px; }
+.money-in { width: 88px; font: inherit; font-variant-numeric: tabular-nums; text-align: right; padding: 6px 8px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 2px; }
+.pair { display: grid; gap: 2px; justify-items: end; }
+.cur { color: var(--muted); font-size: 12px; }
+.na { color: var(--muted); text-align: right; }
+.sizes { display: grid; gap: 6px; }
+.size-line { display: grid; grid-template-columns: minmax(90px, 1fr) auto auto auto; gap: 10px; align-items: center; }
+.size-line .cnt { color: var(--muted); font-size: 12px; text-align: right; }
+.up { color: var(--accent); font-weight: 600; }
+.down { color: var(--ok); font-weight: 600; }
+.hint { font-size: 13px; color: var(--muted); }
+.list { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+/* result blocks */
+.blocks { display: grid; gap: 10px; }
+.block { background: var(--surface); border: 1px solid var(--line); }
+.block > summary { list-style: none; cursor: pointer; padding: 14px 16px; display: grid; grid-template-columns: 18px minmax(220px, 2fr) repeat(4, minmax(110px, 1fr)); gap: 12px; align-items: center; font-variant-numeric: tabular-nums; }
+.block > summary::-webkit-details-marker { display: none; }
+.block > summary .chev { color: var(--muted); transition: transform .15s; }
+.block[open] > summary .chev { transform: rotate(90deg); }
+.block > summary .t1 { font-weight: 700; }
+.block > summary .t2 { font-size: 12px; color: var(--muted); }
+.block > summary .fig { text-align: right; }
+.block > summary .fig small { display: block; font-size: 11px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+.block .inner { border-top: 1px solid var(--line); padding: 4px 16px 12px; }
+.block .inner table { min-width: 760px; }
+.grand { display: grid; grid-template-columns: 18px minmax(220px, 2fr) repeat(4, minmax(110px, 1fr)); gap: 12px; padding: 14px 16px; border-top: 2px solid var(--fg); font-weight: 800; font-variant-numeric: tabular-nums; }
+.grand .fig { text-align: right; }
+@media (max-width: 760px) {
+  .block > summary, .grand { grid-template-columns: 18px 1fr 1fr; }
+  .block > summary .fig.hide-sm, .grand .fig.hide-sm { display: none; }
+}
+.fit table { min-width: 560px; }
+@media (prefers-reduced-motion: reduce) { .block > summary .chev { transition: none; } }
+</style>
+
+<div class="wrap">
+  <div class="note">
+    <strong>Preview · Rate Impact report</strong>
+    <span>Every figure is an example. Proposed prices are typed into the report; nothing changes in Plans &amp; Rates. <em>Revenue now</em> is what was billed. <em>Revenue proposed</em>: metered = base + usage × price (at least the minimum), per capacity; capacity-billed = items × price per item; charge code = amount. The result has one block per rate schedule or charge code, with a line per capacity and class.</span>
+  </div>
+
+  <section aria-label="Where it sits">
+    <div class="step">1 · Reports → Catalog</div>
+    <div class="kicker" style="margin-top:10px">Billing · Readiness · Bills · Delivery</div>
+    <div class="cards" style="margin-top:8px">
+      <div class="card"><span class="sg">Bills</span><span class="nm">Bill Adjustments</span><span class="bs">Posting date</span></div>
+      <div class="card"><span class="sg">Bills</span><span class="nm">Billing Register</span><span class="bs">Posting date</span></div>
+      <div class="card"><span class="sg">Delivery</span><span class="nm">Bill Delivery</span><span class="bs">—</span></div>
+      <div class="card"><span class="sg">Readiness</span><span class="nm">Bill Run Readiness</span><span class="bs">Posting date</span></div>
+      <div class="card is-new"><span class="flagline">New</span><span class="sg">Readiness</span><span class="nm">Rate Impact</span><span class="bs">Usage months</span></div>
+    </div>
+  </section>
+
+  <section aria-label="Report page">
+    <div class="step">2 · Opening the card</div>
+    <div class="head" style="margin-top:10px">
+      <div>
+        <div class="kicker">Report</div>
+        <h1>Rate Impact</h1>
+        <div class="sub">Proposed rates against billed revenue.</div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn" type="button">Export</button>
+        <button class="btn primary" type="button" id="run">Run report</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" aria-label="Inputs">
+    <h2>What to model</h2>
+    <div class="grid4">
+      <div class="field">
+        <span class="lbl" id="svc-label">Services</span>
+        <details class="dd" id="svc-dd">
+          <summary aria-labelledby="svc-label"><span id="svc-text">Water, Electric, Trash</span></summary>
+          <div class="dd-menu" id="svc-menu"></div>
+        </details>
+      </div>
+      <div class="field">
+        <span class="lbl" id="cls-label">Customer classes</span>
+        <details class="dd" id="cls-dd">
+          <summary aria-labelledby="cls-label"><span id="cls-text">All classes</span></summary>
+          <div class="dd-menu">
+            <label><input type="checkbox" id="cls-Residential" checked> Residential</label>
+            <label><input type="checkbox" id="cls-Commercial" checked> Commercial</label>
+          </div>
+        </details>
+      </div>
+      <div class="field">
+        <label for="period-sel">Usage period</label>
+        <select class="sel" id="period-sel">
+          <option value="1">1 month · Sep-2026</option>
+          <option value="3">3 months · Jul-2026 to Sep-2026</option>
+          <option value="6">6 months · Apr-2026 to Sep-2026</option>
+          <option value="9">9 months · Jan-2026 to Sep-2026</option>
+          <option value="12" selected>12 months · Oct-2025 to Sep-2026</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="pct">Change all prices by</label>
+        <div style="display:flex;gap:8px;align-items:center">
+          <select class="sel" id="pct">
+            <option value="">Choose %</option>
+            <option value="-10">−10%</option><option value="-5">−5%</option><option value="2">+2%</option>
+            <option value="3">+3%</option><option value="5">+5%</option><option value="8">+8%</option>
+            <option value="10">+10%</option><option value="15">+15%</option><option value="20">+20%</option>
+          </select>
+          <button class="btn" type="button" id="apply-pct">Fill</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="lbl">Proposed rates</span>
+      <div class="scroll">
+        <table class="ta" aria-label="Proposed rates">
+          <thead><tr><th style="width:150px">Type</th><th>Item</th><th style="width:140px">Version</th><th>Effective from</th><th>Service</th><th style="width:150px">Capacity</th><th class="num">Base / month</th><th class="num">Price per unit</th><th class="num">Minimum</th><th></th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <div><button class="btn link" type="button" id="add">+ Add a row</button></div>
+      <span class="hint">One row per capacity. A capacity-billed schedule takes a price per item. A charge code takes one amount a month.</span>
+    </div>
+  </section>
+
+  <section class="panel" aria-label="Result">
+    <h2>Revenue impact</h2>
+    <div class="hint" id="window">12 months · Oct-2025 to Sep-2026</div>
+    <div class="blocks" id="blocks"></div>
+    <div class="grid2">
+      <div class="field">
+        <span class="lbl">Not worked out</span>
+        <ul class="list"><li>3 accounts · No bills in the period</li><li>1 account · No plan on the unit</li></ul>
+      </div>
+      <div class="field">
+        <span class="lbl">Proposed figures used</span>
+        <ul class="list" id="used"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="fit" aria-label="Fit with the report structure">
+    <h2>How it fits our report structure</h2>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Part</th><th>Existing report pattern</th><th>This report</th></tr></thead>
+        <tbody>
+          <tr><td>Catalogue card</td><td>A definition in a group and sub-group</td><td>Billing · Readiness, next to Bill Run Readiness</td></tr>
+          <tr><td>Page</td><td>Standard viewer, or its own page (Customer statement, Account ledger, By premises)</td><td>Its own page: a table of typed prices does not fit the standard filter bar</td></tr>
+          <tr><td>Versions</td><td>Rate schedules and charge codes are dated versions in Plans &amp; Rates</td><td>Each row picks a version (the one in force by default) and shows its effective date</td></tr>
+          <tr><td>Export</td><td>CSV / PDF from the page</td><td>Same: one section per block</td></tr>
+          <tr><td>History</td><td>Each run is listed under History</td><td>Same, with the typed rows kept so a run can be re-opened</td></tr>
+          <tr><td>Scheduled</td><td>Reports can be scheduled</td><td>Not offered: a model is run by hand</td></tr>
+          <tr><td>Writes</td><td>Reports write nothing</td><td>Same: Plans &amp; Rates is never changed</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  var SERVICES = ["Water", "Electric", "Sewer", "Trash", "Fire"];
+  var ONSVC = { Water: true, Electric: true, Sewer: false, Trash: true, Fire: false };
+  var ALL = "All sizes";
+  // Example catalogue. kind: metered | capacity | charge. caps = the capacities the schedule uses, each with its accounts per class.
+  // Metered lines: use = average usage per account per month; billed = average billed per account per month (Revenue now).
+  // Capacity-billed lines: count = items on file; billedPerItem = billed per item per month.
+  var CATALOGUE = {
+    rate: [
+      { id: "r1", kind: "metered", name: "Water · Residential Flat", service: "Water", unit: "kgal", caps: {
+          '5/8" meter': [{ cls: "Residential", accounts: 1100, use: 5.0, billed: 29.75 }, { cls: "Commercial", accounts: 20, use: 12.0, billed: 59.50 }],
+          '1" meter': [{ cls: "Residential", accounts: 80, use: 11.0, billed: 60.75 }, { cls: "Commercial", accounts: 30, use: 25.0, billed: 120.25 }],
+          '2" meter': [{ cls: "Commercial", accounts: 12, use: 70.0, billed: 335.50 }] } },
+      { id: "r2", kind: "metered", name: "Water · Residential Tiered", service: "Water", unit: "kgal", caps: {
+          '5/8" meter': [{ cls: "Residential", accounts: 380, use: 7.0, billed: 40.50 }],
+          '1" meter': [{ cls: "Residential", accounts: 30, use: 9.0, billed: 52.10 }] } },
+      { id: "r3", kind: "metered", name: "Electric · General Flat", service: "Electric", unit: "kWh", caps: {
+          "All sizes": [{ cls: "Residential", accounts: 940, use: 583.3, billed: 73.25 }, { cls: "Commercial", accounts: 48, use: 4100, billed: 442.50 }] } },
+      { id: "r4", kind: "metered", name: "Sewer · Residential", service: "Sewer", unit: "kgal", caps: {
+          '5/8" meter': [{ cls: "Residential", accounts: 1100, use: 5.0, billed: 21.50 }],
+          '1" meter': [{ cls: "Residential", accounts: 80, use: 11.0, billed: 40.10 }] } },
+      { id: "r5", kind: "capacity", name: "Trash · Residential Carts", service: "Trash", item: "cart", caps: {
+          "64-gal cart": [{ cls: "Residential", accounts: 820, count: 820, billedPerItem: 14.00 }],
+          "96-gal cart": [{ cls: "Residential", accounts: 410, count: 410, billedPerItem: 18.00 }] } },
+      { id: "r6", kind: "capacity", name: "Trash · Commercial Dumpsters", service: "Trash", item: "dumpster", caps: {
+          "2-yd dumpster": [{ cls: "Commercial", accounts: 38, count: 40, billedPerItem: 85.00 }],
+          "4-yd dumpster": [{ cls: "Commercial", accounts: 20, count: 22, billedPerItem: 140.00 }] } },
+      { id: "r7", kind: "capacity", name: "Fire · Private Lines", service: "Fire", item: "line", caps: {
+          '2" line': [{ cls: "Commercial", accounts: 30, count: 36, billedPerItem: 12.00 }],
+          '6" line': [{ cls: "Commercial", accounts: 9, count: 9, billedPerItem: 60.00 }] } }
+    ],
+    charge: [
+      { id: "c1", kind: "charge", name: "Infrastructure fee", service: "Water", caps: {
+          "All sizes": [{ cls: "Residential", accounts: 1590, billed: 3.00 }, { cls: "Commercial", accounts: 62, billed: 3.00 }] } },
+      { id: "c2", kind: "charge", name: "Meter charge", service: "Electric", caps: {
+          "All sizes": [{ cls: "Residential", accounts: 940, billed: 2.50 }, { cls: "Commercial", accounts: 48, billed: 2.50 }] } }
+    ]
+  };
+  var TYPE_LABEL = { rate: "Rate schedule", charge: "Charge code" };
+  // Versions: first is in force. Each holds the figures per capacity.
+  var VERSIONS = {
+    r1: [{ v: "v3", from: "01-Jan-2026", caps: { '5/8" meter': { base: 8.50, price: 4.25, min: 10.00 }, '1" meter': { base: 14.00, price: 4.25, min: 16.00 }, '2" meter': { base: 38.00, price: 4.25, min: 40.00 } } },
+         { v: "v2", from: "01-Jan-2025", caps: { '5/8" meter': { base: 8.00, price: 4.00, min: 10.00 }, '1" meter': { base: 13.00, price: 4.00, min: 15.00 }, '2" meter': { base: 36.00, price: 4.00, min: 38.00 } } }],
+    r2: [{ v: "v2", from: "01-Jul-2025", caps: { '5/8" meter': { base: null, price: null, min: null }, '1" meter': { base: null, price: null, min: null } } }],
+    r3: [{ v: "v4", from: "01-Apr-2026", caps: { "All sizes": { base: 12.00, price: 0.105, min: 15.00 } } },
+         { v: "v3", from: "01-Apr-2025", caps: { "All sizes": { base: 11.50, price: 0.099, min: 15.00 } } }],
+    r4: [{ v: "v2", from: "01-Jan-2026", caps: { '5/8" meter': { base: 6.00, price: 3.10, min: 8.00 }, '1" meter': { base: 9.00, price: 3.10, min: 11.00 } } }],
+    r5: [{ v: "v2", from: "01-Jan-2026", caps: { "64-gal cart": { base: 14.00 }, "96-gal cart": { base: 18.00 } } },
+         { v: "v1", from: "01-Jan-2025", caps: { "64-gal cart": { base: 13.00 }, "96-gal cart": { base: 17.00 } } }],
+    r6: [{ v: "v1", from: "01-Mar-2026", caps: { "2-yd dumpster": { base: 85.00 }, "4-yd dumpster": { base: 140.00 } } }],
+    r7: [{ v: "v1", from: "01-Sep-2026", caps: { '2" line': { base: 12.00 }, '6" line': { base: 60.00 } } }],
+    c1: [{ v: "v2", from: "01-Oct-2025", caps: { "All sizes": { base: 3.00 } } }, { v: "v1", from: "01-Oct-2024", caps: { "All sizes": { base: 2.50 } } }],
+    c2: [{ v: "v1", from: "01-Jan-2025", caps: { "All sizes": { base: 2.50 } } }]
+  };
+  var rows = [
+    { type: "rate", id: "r1", ver: 0, cap: '5/8" meter', base: 9.00, price: 4.60, min: 10.00 },
+    { type: "rate", id: "r1", ver: 0, cap: '1" meter', base: 15.00, price: 4.60, min: 17.00 },
+    { type: "rate", id: "r1", ver: 0, cap: '2" meter', base: 40.00, price: 4.60, min: 42.00 },
+    { type: "rate", id: "r2", ver: 0, cap: '5/8" meter', base: 9.00, price: 4.60, min: 10.00 },
+    { type: "rate", id: "r3", ver: 0, cap: "All sizes", base: 12.50, price: 0.112, min: 15.00 },
+    { type: "charge", id: "c1", ver: 0, cap: "All sizes", base: 4.00 },
+    { type: "rate", id: "r5", ver: 0, cap: "64-gal cart", base: 15.00 },
+    { type: "rate", id: "r5", ver: 0, cap: "96-gal cart", base: 19.50 },
+    { type: "rate", id: "r6", ver: 0, cap: "2-yd dumpster", base: 92.00 },
+    { type: "rate", id: "r6", ver: 0, cap: "4-yd dumpster", base: 150.00 }
+  ];
+  var months = 12;
+  var ranges = { 1: "Sep-2026", 3: "Jul-2026 to Sep-2026", 6: "Apr-2026 to Sep-2026", 9: "Jan-2026 to Sep-2026", 12: "Oct-2025 to Sep-2026" };
+  var money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
+  var unitPrice = function (v) { return "$" + Number(v).toFixed(4).replace(/0{1,2}$/, ""); };
+  var num = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
+  function el(id) { return document.getElementById(id); }
+  function on(id) { var e = el(id); return !!e && e.checked; }
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/'/g, "&#39;").replace(/</g, "&lt;"); }
+  function item(r) { return CATALOGUE[r.type].filter(function (x) { return x.id === r.id; })[0]; }
+  function itemsFor(type) { return CATALOGUE[type].filter(function (x) { return on("svc-" + x.service); }); }
+  function ver(r) { var list = VERSIONS[r.id] || []; return list[r.ver || 0] || null; }
+  function verCap(r) { var v = ver(r); return v && v.caps[r.cap] ? v.caps[r.cap] : null; }
+  function capsOf(it) { return it ? Object.keys(it.caps) : []; }
+  function cur(v, kind) { return v === null || v === undefined ? "Billed" : kind === "price" ? unitPrice(v) : money.format(v); }
+  function signed(v) { return (v >= 0 ? "+" : "−") + money.format(Math.abs(v)); }
+  function pct(ch, now) { if (!now) return "—"; var p = ch / now * 100; return (p >= 0 ? "+" : "−") + Math.abs(p).toFixed(1) + "%"; }
+  function tone(v) { return v >= 0 ? "up" : "down"; }
+
+  el("svc-menu").innerHTML = SERVICES.map(function (s) {
+    return "<label><input type='checkbox' id='svc-" + s + "'" + (ONSVC[s] ? " checked" : "") + "> " + s + "</label>";
+  }).join("");
+
+  function seed(r) {
+    var c = verCap(r);
+    r.base = c && c.base !== undefined ? c.base : null;
+    r.price = c && c.price !== undefined ? c.price : null;
+    r.min = c && c.min !== undefined ? c.min : null;
+  }
+  function firstFreeCap(id, type, skip) {
+    var it = CATALOGUE[type].filter(function (x) { return x.id === id; })[0];
+    var taken = rows.filter(function (r, k) { return r.id === id && k !== skip; }).map(function (r) { return r.cap; });
+    var caps = capsOf(it);
+    return caps.filter(function (c) { return taken.indexOf(c) < 0; })[0] || caps[0];
+  }
+
+  function renderRows() {
+    var html = "";
+    rows.forEach(function (r, i) {
+      var it = item(r), v = ver(r), c = verCap(r);
+      var typeSel = "<select class='sel' data-i='" + i + "' data-f='type' aria-label='Type, row " + (i + 1) + "'>" +
+        Object.keys(TYPE_LABEL).map(function (k) { return "<option value='" + k + "'" + (k === r.type ? " selected" : "") + ">" + TYPE_LABEL[k] + "</option>"; }).join("") + "</select>";
+      var opts = itemsFor(r.type);
+      var itemSel = "<select class='sel' data-i='" + i + "' data-f='id' aria-label='Item, row " + (i + 1) + "'>" +
+        (opts.length ? opts.map(function (x) { return "<option value='" + x.id + "'" + (x.id === r.id ? " selected" : "") + ">" + x.name + "</option>"; }).join("") : "<option>Choose a service first</option>") + "</select>";
+      var verSel = "<select class='sel' data-i='" + i + "' data-f='ver' aria-label='Version, row " + (i + 1) + "'>" +
+        (VERSIONS[r.id] || []).map(function (x, k) { return "<option value='" + k + "'" + (k === (r.ver || 0) ? " selected" : "") + ">" + x.v + (k === 0 ? " · in force" : "") + "</option>"; }).join("") + "</select>";
+      var capSel = "<select class='sel' data-i='" + i + "' data-f='cap' aria-label='Capacity, row " + (i + 1) + "'>" +
+        capsOf(it).map(function (x) { return "<option value='" + esc(x) + "'" + (x === r.cap ? " selected" : "") + ">" + esc(x) + "</option>"; }).join("") + "</select>";
+      function box(f, step) {
+        return "<div class='pair'><input class='money-in' type='number' step='" + step + "' data-i='" + i + "' data-f='" + f + "' value='" + (r[f] === null || r[f] === undefined ? "" : r[f]) +
+          "' aria-label='Proposed " + f + ", row " + (i + 1) + "'><span class='cur'>now " + cur(c ? c[f] : null, f) + "</span></div>";
+      }
+      var money3;
+      if (!it) money3 = "<td colspan='3' class='na'>—</td>";
+      else if (it.kind === "metered") money3 = "<td class='num'>" + box("base", "0.01") + "</td><td class='num'>" + box("price", "0.0001") + "</td><td class='num'>" + box("min", "0.01") + "</td>";
+      else {
+        var lab = it.kind === "capacity" ? "<span class='cur'>per " + it.item + "</span>" : "";
+        money3 = "<td class='num'>" + box("base", "0.01") + lab + "</td><td class='na'>—</td><td class='na'>—</td>";
+      }
+      html += "<tr><td>" + typeSel + "</td><td>" + itemSel + "</td><td>" + verSel + "</td><td>" + (v ? v.from : "—") + "</td><td>" + (it ? it.service : "—") + "</td><td>" + capSel + "</td>" + money3 +
+        "<td><button class='icon-btn' type='button' data-del='" + i + "' aria-label='Remove row " + (i + 1) + "'>×</button></td></tr>";
+    });
+    el("rows").innerHTML = html || "<tr><td colspan='10' class='hint'>Add a rate schedule or charge code.</td></tr>";
+  }
+
+  el("rows").addEventListener("change", function (ev) {
+    var t = ev.target, i = +t.getAttribute("data-i"), f = t.getAttribute("data-f");
+    if (isNaN(i) || !f) return;
+    var r = rows[i];
+    if (f === "type") { r.type = t.value; var first = itemsFor(t.value)[0]; r.id = first ? first.id : null; r.ver = 0; r.cap = first ? firstFreeCap(r.id, r.type, i) : null; seed(r); }
+    else if (f === "id") { r.id = t.value; r.ver = 0; r.cap = firstFreeCap(r.id, r.type, i); seed(r); }
+    else if (f === "ver") { r.ver = parseInt(t.value, 10); seed(r); }
+    else if (f === "cap") { r.cap = t.value; seed(r); }
+    else return;
+    renderRows(); renderResult();
+  });
+  el("rows").addEventListener("input", function (ev) {
+    var t = ev.target, i = +t.getAttribute("data-i"), f = t.getAttribute("data-f");
+    if (isNaN(i) || ["base", "price", "min"].indexOf(f) < 0) return;
+    var v = parseFloat(t.value); rows[i][f] = isNaN(v) ? null : v; renderResult();
+  });
+  el("rows").addEventListener("click", function (ev) {
+    var d = ev.target.getAttribute && ev.target.getAttribute("data-del");
+    if (d === null || d === undefined) return;
+    rows.splice(+d, 1); renderRows(); renderResult();
+  });
+  el("add").addEventListener("click", function () {
+    var first = itemsFor("rate")[0];
+    var r = { type: "rate", id: first ? first.id : null, ver: 0 };
+    r.cap = first ? firstFreeCap(r.id, "rate", -1) : null; seed(r); rows.push(r); renderRows(); renderResult();
+  });
+
+  function line(cap, cls, acc, use, now, nw) {
+    var ch = nw - now;
+    return "<tr><td>" + esc(cap) + "</td><td>" + cls + "</td><td class='num'>" + num.format(acc) + "</td><td class='num'>" + use + "</td><td class='num'>" + money.format(now) +
+      "</td><td class='num'>" + money.format(nw) + "</td><td class='num " + tone(ch) + "'>" + signed(ch) + "</td><td class='num'>" + pct(ch, now) + "</td></tr>";
+  }
+
+  function renderResult() {
+    var groups = [], byKey = {}, used = [];
+    rows.forEach(function (r) {
+      var it = item(r), v = ver(r);
+      if (!it || !v || !r.cap || !on("svc-" + it.service)) return;
+      var key = r.type + ":" + r.id + ":" + (r.ver || 0);
+      if (!byKey[key]) { byKey[key] = { it: it, v: v, type: r.type, rows: [] }; groups.push(byKey[key]); }
+      byKey[key].rows.push(r);
+    });
+    var html = "", totNow = 0, totNew = 0;
+    groups.forEach(function (g) {
+      var it = g.it, v = g.v, lines = "", bNow = 0, bNew = 0, acc = 0;
+      g.rows.forEach(function (r) {
+        var c = verCap(r) || {}, parts = [];
+        (it.caps[r.cap] || []).forEach(function (d) {
+          if (!on("cls-" + d.cls)) return;
+          var now, nw, use;
+          if (it.kind === "capacity") {
+            now = d.count * d.billedPerItem * months; nw = d.count * (r.base || 0) * months;
+            use = num.format(d.count) + " " + it.item + (d.count === 1 ? "" : "s");
+          } else if (it.kind === "charge") {
+            now = d.accounts * d.billed * months; nw = d.accounts * (r.base || 0) * months; use = "—";
+          } else {
+            now = d.accounts * d.billed * months;
+            nw = d.accounts * months * Math.max((r.base || 0) + d.use * (r.price || 0), r.min || 0);
+            use = num.format(d.accounts * d.use * months) + " " + it.unit;
+          }
+          bNow += now; bNew += nw; acc += d.accounts;
+          lines += line(r.cap, d.cls, d.accounts, use, now, nw);
+        });
+        if (r.base !== null && r.base !== undefined) parts.push((it.kind === "metered" ? "base " : it.kind === "capacity" ? "per " + it.item + " " : "amount ") + cur(c.base, "base") + " → " + money.format(r.base));
+        if (it.kind === "metered" && r.price !== null) parts.push("per " + it.unit + " " + cur(c.price, "price") + " → " + unitPrice(r.price));
+        if (it.kind === "metered" && r.min !== null) parts.push("minimum " + cur(c.min, "min") + " → " + money.format(r.min));
+        used.push(it.name + " · " + r.cap + " (" + v.v + ", from " + v.from + "): " + parts.join(", "));
+      });
+      var bch = bNew - bNow; totNow += bNow; totNew += bNew;
+      var useHead = it.kind === "capacity" ? "Items" : "Usage";
+      html += "<details class='block' open><summary>" +
+        "<span class='chev' aria-hidden='true'>▸</span>" +
+        "<span><span class='t1'>" + it.name + "</span><br><span class='t2'>" + TYPE_LABEL[g.type] + " · " + it.service + " · " + v.v + ", from " + v.from + " · " + g.rows.length + (g.rows.length === 1 ? " capacity" : " capacities") + " · " + num.format(acc) + " accounts</span></span>" +
+        "<span class='fig hide-sm'><small>Now (billed)</small>" + money.format(bNow) + "</span>" +
+        "<span class='fig hide-sm'><small>Proposed</small>" + money.format(bNew) + "</span>" +
+        "<span class='fig " + tone(bch) + "'><small>Change</small>" + signed(bch) + "</span>" +
+        "<span class='fig'><small>%</small>" + pct(bch, bNow) + "</span>" +
+        "</summary><div class='inner scroll'><table><thead><tr><th>Capacity</th><th>Class</th><th class='num'>Accounts</th><th class='num'>" + useHead +
+        "</th><th class='num'>Revenue now (billed)</th><th class='num'>Revenue proposed</th><th class='num'>Change</th><th class='num'>%</th></tr></thead><tbody>" +
+        (lines || "<tr><td colspan='8' class='hint'>No accounts in the chosen classes.</td></tr>") + "</tbody></table></div></details>";
+    });
+    var tc = totNew - totNow;
+    html += "<div class='grand'><span></span><span>Total</span><span class='fig hide-sm'>" + money.format(totNow) + "</span><span class='fig hide-sm'>" + money.format(totNew) +
+      "</span><span class='fig " + tone(tc) + "'>" + signed(tc) + "</span><span class='fig'>" + pct(tc, totNow) + "</span></div>";
+    el("blocks").innerHTML = html;
+    el("used").innerHTML = used.length ? used.map(function (u) { return "<li>" + esc(u) + "</li>"; }).join("") : "<li>No rows</li>";
+    el("window").textContent = months + (months === 1 ? " month" : " months") + " · " + ranges[months];
+  }
+
+  function labels() {
+    var s = SERVICES.filter(function (x) { return on("svc-" + x); });
+    el("svc-text").textContent = s.length ? s.join(", ") : "Choose services";
+    var c = ["Residential", "Commercial"].filter(function (x) { return on("cls-" + x); });
+    el("cls-text").textContent = c.length === 2 ? "All classes" : c.length ? c.join(", ") : "Choose classes";
+  }
+  SERVICES.forEach(function (x) { el("svc-" + x).addEventListener("change", function () { labels(); renderRows(); renderResult(); }); });
+  ["Residential", "Commercial"].forEach(function (x) { el("cls-" + x).addEventListener("change", function () { labels(); renderResult(); }); });
+  el("period-sel").addEventListener("change", function (ev) { months = parseInt(ev.target.value, 10); renderResult(); });
+  el("apply-pct").addEventListener("click", function () {
+    var p = parseFloat(el("pct").value); if (isNaN(p)) return;
+    var f = 1 + p / 100;
+    rows.forEach(function (r) {
+      var c = verCap(r); if (!c) return;
+      if (c.base !== null && c.base !== undefined) r.base = Math.round(c.base * f * 100) / 100;
+      if (c.price !== null && c.price !== undefined) r.price = Math.round(c.price * f * 10000) / 10000;
+    });
+    renderRows(); renderResult();
+  });
+  document.addEventListener("click", function (ev) {
+    ["svc-dd", "cls-dd"].forEach(function (id) { var d = el(id); if (d.open && !d.contains(ev.target)) d.open = false; });
+  });
+  el("run").addEventListener("click", renderResult);
+  renderRows(); renderResult();
+})();
+</script>

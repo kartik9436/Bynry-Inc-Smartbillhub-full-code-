@@ -1,0 +1,10 @@
+{
+  "priority": {
+    "id": "01a10790-de53-71b1-a773-36dfa20fee81",
+    "code": "NORMAL",
+    "name": "Normal"
+  },
+  "hours": 72,
+  "chosen": false,
+  "at_risk_window_hours": 72
+}

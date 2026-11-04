@@ -1,0 +1,21 @@
+{
+ "tab": "notes",
+ "note": "Transcribed from 04-docs/05-modules/03-customers/blueprint/02-account-detail.md — the EXTRACTED TEXT of `ACC-T11`, not from looking at the picture, and cross-read against conformance/CR-094-lane2-account-detail-step1.md §1.5. The drawing is a toolbar — `All` `Pinned` `Collections` `Customer-visible` `Search` · `Add note` — then a pinned CARD, then `WHEN ▼ · WHO · KIND · NOTE · row actions (pin, …)`, then `1–4 of 4 · Rows per page 50 ‹ ›`.",
+ "groups": [
+  {
+   "col": "left",
+   "slug": "notes",
+   "heading": "NOTES",
+   "table": [
+    "WHEN",
+    "WHO",
+    "KIND",
+    "NOTE",
+    "ACTIONS"
+   ],
+   "elsewhere": {
+    "Collections": "a note KIND, and `account_notes` has no kind column — checked on the wire (apps/customers/models.py::AccountNote), not inferred from the TypeScript. A chip that can only ever empty the list is a dead control (hard-won law 2), so the dimension is not offered and the KIND column says `Not recorded` on every row instead. Filed as DEF-CUS-5145."
+   }
+  }
+ ]
+}

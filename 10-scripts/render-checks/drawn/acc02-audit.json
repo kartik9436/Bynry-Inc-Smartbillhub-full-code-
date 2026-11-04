@@ -1,0 +1,23 @@
+{
+ "tab": "audit",
+ "note": "Transcribed from 04-docs/05-modules/03-customers/blueprint/02-account-detail.md — the EXTRACTED TEXT of `ACC-T12`, not from looking at the picture, and cross-read against conformance/CR-094-lane2-account-detail-step1.md §1.5. The drawing is a toolbar — `All` `Money` `Status` `Collections` `Filter ▾` `Search` · `Columns ▾` `Export` — then `expander · WHEN ▼ · WHO · WHAT HAPPENED`.",
+ "groups": [
+  {
+   "col": "left",
+   "slug": "audit",
+   "heading": "AUDIT",
+   "table": [
+    "WHEN",
+    "WHO"
+   ],
+   "elsewhere": {
+    "WHAT HAPPENED": "SUPERSEDED by a PO ruling of 2026-09-10 on the Premises blueprint, which replaced this one column and its expander with `WHAT CHANGED · FROM · TO` in these words: *\"the thing a person actually needs — what the value was before — is behind a press, one row at a time … that is the whole use of an audit log: seeing what a field used to say.\"* The account tab mounts metering's `AuditTab`, the ONE audit surface on eight screens (BR-CUS-034 / US-AUD-005), so it cannot carry a different one without the masking and window rules diverging per module. Raised to the PO as a drawing-versus-ruling contradiction, 2026-09-13.",
+    "expander": "same ruling — *\"no `Expand` control and no disclosure anywhere in the table\"*. The values ride on the row itself and cost no extra request.",
+    "Money": "the toolbar's dimension is IS-4's: the options are the actions THIS record has actually recorded, so a named grouping that a record has no rows for can only ever empty the list. It is the shared component's own rule on eight screens; changing it is a metering change, not an account one.",
+    "Status": "as `Money`.",
+    "Collections": "as `Money`.",
+    "Export": "BR-SHL-010 — nothing registers an account's audit rows as an export resource, so a download button here would be wired to a 404."
+   }
+  }
+ ]
+}

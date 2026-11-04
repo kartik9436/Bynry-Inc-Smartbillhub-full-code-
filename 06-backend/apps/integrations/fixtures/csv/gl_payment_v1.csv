@@ -1,0 +1,2 @@
+paymentNumber,paymentDate,amount,currency,tender,account,partnerAccount,customerAccount
+PAY-2609-0311,2026-09-01,142.18,USD,Bank transfer,4100,001.100.44100,ACC-1048

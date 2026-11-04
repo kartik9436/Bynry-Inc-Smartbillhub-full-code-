@@ -1,0 +1,32 @@
+  [R. Patel] POST   /auth/session -> 201 (765 ms)
+  [R. Patel] POST   /work/mobile/capture-token -> 200 (72 ms)
+DOWN  1000 readings in 5 pages · 0.24 MB
+UP    page 1: 200 accepted=200 duplicate=0 held=0 acked=200
+UP    page 2: 200 accepted=200 duplicate=0 held=0 acked=200
+UP    page 3: 200 accepted=200 duplicate=0 held=0 acked=200
+UP    page 4: 200 accepted=200 duplicate=0 held=0 acked=200
+UP    page 5: 200 accepted=200 duplicate=0 held=0 acked=200
+UP    page 6: 200 accepted=200 duplicate=0 held=0 acked=200
+UP    page 7: 200 accepted=200 duplicate=0 held=0 acked=200
+UP    page 8: 200 accepted=200 duplicate=0 held=0 acked=200
+UP    page 9: 200 accepted=200 duplicate=0 held=0 acked=200
+UP    page 10: 200 accepted=200 duplicate=0 held=0 acked=200
+REPLAY page 1: duplicate=200/200 · same links: True
+IMAGES interrupted after 400 · {'landed_or_staged': 400, 'duplicate': 0, 'hash_mismatch': 5, 'resent_after_mismatch': 5}
+RESUME: 600 links still pending (expected 600)
+IMAGES done · {'landed_or_staged': 1000, 'duplicate': 10, 'hash_mismatch': 5, 'resent_after_mismatch': 5}
+  [R. Patel] GET    /work/mobile/reconciliation -> 200 (87 ms)
+RECONCILIATION (server): {"technician": {"name": "R. Patel"}, "items_stored": 2175, "items_held_for_review": 4, "by_kind": {"close": 23, "material": 16, "photo": 1030, "reading": 1025, "safety_tick": 26, "task_tick": 55}, "photos_declared": 1030, "photos_landed": 1030, "br_ref": "BR-WRK-063"}
+  [R. Patel] POST   /work/mobile/jobs/01a10a27-1e52-7a27-b3d7-9fc1cb322065/sync -> 200 (215 ms)
+  [Dana] POST   /auth/session -> 201 (728 ms)
+  [Dana] POST   /work-orders/01a10a27-1e52-7a27-b3d7-9fc1cb322065/accept -> 200 (123 ms)
+
+TIMINGS (wall clock):
+   1 down: 1,000 readings, paged                                      0.2 s
+   2 up: 2,000 records in 10 pages (no image)                        42.4 s
+   3 replay: page 1 again                                             0.9 s
+   4a images: first 400, then the connection drops                   72.0 s
+   4b images: resume the remaining 600 (+10 deliberate re-sends)    188.4 s
+   6 close + accept                                                   1.1 s
+MOVED: down 0.24 MB · up (records) 1.77 MB · images 135.50 MB
+ACCEPT: 200 

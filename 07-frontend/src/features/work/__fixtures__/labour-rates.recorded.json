@@ -1,0 +1,51 @@
+{
+    "count": 4,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": "01a0740a-ba7b-7653-8c37-7a4208cc537a",
+            "role": "contractor:",
+            "role_label": "Apex Utility Svc",
+            "hourly": "95.0000",
+            "overtime_hourly": null,
+            "overtime_after_hours": null,
+            "effective_from": "2026-01-01",
+            "superseded_on": null,
+            "current": true
+        },
+        {
+            "id": "01a0740a-a201-762d-8f70-7e0285e621d4",
+            "role": "field_technician",
+            "role_label": "Field technician",
+            "hourly": "48.5000",
+            "overtime_hourly": "72.7500",
+            "overtime_after_hours": "8.00",
+            "effective_from": "2026-01-01",
+            "superseded_on": null,
+            "current": true
+        },
+        {
+            "id": "01a0740a-a24c-794e-ab0f-bf92ecb1b962",
+            "role": "network_crew",
+            "role_label": "Network crew",
+            "hourly": "55.2500",
+            "overtime_hourly": "82.8750",
+            "overtime_after_hours": "8.00",
+            "effective_from": "2026-01-01",
+            "superseded_on": null,
+            "current": true
+        },
+        {
+            "id": "01a0740a-a22b-7882-83ca-e3f2b7c29722",
+            "role": "senior_technician",
+            "role_label": "Senior technician",
+            "hourly": "61.0000",
+            "overtime_hourly": "91.5000",
+            "overtime_after_hours": "8.00",
+            "effective_from": "2026-01-01",
+            "superseded_on": null,
+            "current": true
+        }
+    ]
+}

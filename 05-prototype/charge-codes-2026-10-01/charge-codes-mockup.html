@@ -1,0 +1,438 @@
+<title>Base & Charge Codes Redesign</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: same product frame as the One-Time Bill mock-up — page head, 3-step rail, main column + sticky summary. SMARTBillHub tokens (07-frontend tokens.css): light-only, square corners, 4px spacing scale. */
+:root{
+  --bg:#f3f2f2; --surface:#ffffff; --panel:#eae9e9; --text:#201e1d; --muted:#605d5d; --faint:#9b9797;
+  --line:#d7d3d3; --accent:#ec3013; --accent-ink:#ae1800; --accent-soft:#fff2ef;
+  --ok:#0f6e3a; --ok-soft:#e6f4ec; --warn:#a65d0a; --warn-soft:#fdf0d8; --bad:#a81600; --bad-soft:#fde4df; --info:#1d4ea8; --info-soft:#e6eefb;
+  --font:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --t-xs:11px; --t-sm:12px; --t-base:13px; --t-md:14px; --t-body:15px; --t-h4:20px; --t-h2:32px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:var(--t-body);line-height:1.55;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:20px 48px;display:flex;flex-direction:column;gap:20px}
+h1,h2,h3{font-weight:800;letter-spacing:-.015em;line-height:1.12;margin:0;text-wrap:balance}
+h1{font-size:var(--t-h2)} h2{font-size:var(--t-h4)} h3{font-size:var(--t-md);font-weight:700}
+.kicker{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.num{font-variant-numeric:tabular-nums}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.demo{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 12px;border:1px dashed var(--faint);font-size:var(--t-sm);color:var(--muted)}
+.demo b{color:var(--text)}
+.chipbtn{border:1px solid var(--line);background:var(--surface);padding:4px 10px;cursor:pointer;font-size:var(--t-sm)}
+.chipbtn[aria-pressed="true"]{border-color:var(--text);font-weight:600}
+.head{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:flex-end}
+.crumb{font-size:var(--t-sm);color:var(--muted)}
+.crumb button{border:0;background:none;padding:0;color:var(--muted);cursor:pointer;font-size:var(--t-sm);text-decoration:underline}
+.tabs{display:flex;gap:24px;border-bottom:1px solid var(--line);overflow-x:auto}
+.tabs button{border:0;background:none;padding:8px 0;cursor:pointer;font-size:var(--t-md);white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--accent);box-shadow:inset 0 -2px 0 var(--accent);font-weight:600}
+.rail{display:flex;border:1px solid var(--line);background:var(--surface)}
+.rail button{flex:1;display:flex;align-items:center;gap:10px;padding:12px 16px;border:0;background:transparent;cursor:pointer;text-align:left;border-right:1px solid var(--line);min-width:0}
+.rail button:last-child{border-right:0}
+.rail .n{width:24px;height:24px;display:grid;place-items:center;border:1.5px solid var(--faint);font-size:var(--t-sm);font-weight:700;flex:none}
+.rail button[data-state="current"]{box-shadow:inset 0 -3px 0 var(--accent)}
+.rail button[data-state="current"] .n{background:var(--accent);border-color:var(--accent);color:#fff}
+.rail button[data-state="done"] .n{background:var(--text);border-color:var(--text);color:#fff}
+.rail .lbl{font-size:var(--t-md);font-weight:600}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:20px;align-items:start}
+@media (max-width:960px){.grid{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--surface);border:1px solid var(--line);padding:20px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.panel-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.stack{display:flex;flex-direction:column;gap:20px;min-width:0}
+.aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px)}
+.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.fields.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:720px){.fields,.fields.two{grid-template-columns:minmax(0,1fr)}}
+.f{display:flex;flex-direction:column;gap:4px;min-width:0}
+.f label,.f .lab{font-size:var(--t-base);font-weight:600}
+.f .req{color:var(--accent)}
+.f input,.f select,.f textarea{border:1px solid var(--line);background:var(--surface);padding:8px 10px;min-height:38px;width:100%;font-size:var(--t-md)}
+.f input[readonly],.f select[disabled]{background:var(--bg);color:var(--muted)}
+.f .help{font-size:var(--t-sm);color:var(--muted)}
+.f .msg{font-size:var(--t-sm);color:var(--bad);font-weight:600}
+.span3{grid-column:1/-1}
+.ticks{display:flex;flex-wrap:wrap;gap:8px 24px}
+.tick{display:flex;gap:8px;align-items:center;font-size:var(--t-md);font-weight:600}
+.tick input{width:16px;height:16px;accent-color:var(--accent)}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:720px){.facts{grid-template-columns:minmax(0,1fr)}}
+.fact{border:1px solid var(--line);background:var(--bg);padding:10px 12px;display:flex;flex-direction:column;gap:2px}
+.fact span{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.fact b{font-size:var(--t-md)}
+.ms{position:relative}
+.ms-btn{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid var(--line);background:var(--surface);min-height:38px;padding:4px 10px;width:100%;cursor:pointer;text-align:left}
+.ms-tags{display:flex;flex-wrap:wrap;gap:4px}
+.ms-tag{background:var(--panel);font-size:var(--t-sm);font-weight:600;padding:2px 8px}
+.ms-ph{color:var(--faint);font-size:var(--t-md)}
+.ms-caret{color:var(--muted);font-size:14px}
+.ms ul{position:absolute;top:calc(100% + 2px);left:0;right:0;z-index:5;background:var(--surface);border:1px solid var(--text);box-shadow:0 12px 32px rgba(45,43,43,.22);margin:0;padding:4px 0;list-style:none}
+.ms li label{display:flex;gap:10px;align-items:center;padding:8px 12px;cursor:pointer;font-size:var(--t-md)}
+.ms li label:hover{background:var(--accent-soft)}
+.ms li input{width:16px;height:16px;accent-color:var(--accent)}
+.combo{position:relative}
+.combo ul{position:absolute;top:calc(100% + 2px);left:0;right:0;z-index:6;background:var(--surface);border:1px solid var(--text);box-shadow:0 12px 32px rgba(45,43,43,.22);max-height:260px;overflow:auto;margin:0;padding:0;list-style:none}
+.combo li{padding:8px 12px;display:flex;justify-content:space-between;gap:12px;cursor:pointer;border-bottom:1px solid var(--line);font-size:var(--t-md)}
+.combo li:last-child{border-bottom:0}
+.combo li:hover,.combo li[aria-selected="true"]{background:var(--accent-soft)}
+.combo li[aria-disabled="true"]{color:var(--faint);cursor:default;background:none}
+.combo li .sub{color:var(--muted);font-size:var(--t-sm)}
+.combo .empty{padding:10px 12px;color:var(--muted);font-size:var(--t-base)}
+td select{border:1px solid var(--line);padding:6px 8px;min-height:32px;background:var(--surface);font-size:var(--t-md);min-width:120px}
+.tw{overflow-x:auto;border:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;font-size:var(--t-base)}
+th{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;font-weight:600;background:var(--bg);padding:8px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+tbody tr:last-child td{border-bottom:0}
+td.r,th.r{text-align:right}
+tr.click{cursor:pointer} tr.click:hover td{background:var(--bg)}
+td input{border:1px solid var(--line);padding:6px 8px;width:110px;font-size:var(--t-md);text-align:right}
+td input.err{border-color:var(--bad);background:var(--bad-soft)}
+td input.zero{border-color:var(--warn);background:var(--warn-soft)}
+td.ro{background:var(--bg);color:var(--muted)}
+.ns{color:var(--faint);font-size:var(--t-sm)}
+.x{border:0;background:none;cursor:pointer;color:var(--muted);font-size:18px;line-height:1;padding:2px 6px}
+.x:hover{color:var(--bad)}
+.tfoot{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:10px 12px;border-top:1px solid var(--line)}
+.tfoot select{border:1px solid var(--line);padding:4px 8px;min-height:30px;background:var(--surface)}
+.pill{display:inline-block;font-size:var(--t-xs);font-weight:700;padding:2px 8px;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.p-ok{background:var(--ok-soft);color:var(--ok)} .p-warn{background:var(--warn-soft);color:var(--warn)}
+.p-off{background:var(--panel);color:var(--muted)} .p-bad{background:var(--bad-soft);color:var(--bad)} .p-info{background:var(--info-soft);color:var(--info)}
+.p-base{background:var(--text);color:#fff}
+.note{display:flex;gap:10px;padding:10px 12px;font-size:var(--t-base);align-items:flex-start}
+.note.warn{background:var(--warn-soft);color:var(--warn)} .note.bad{background:var(--bad-soft);color:var(--bad)} .note.ok{background:var(--ok-soft);color:var(--ok)} .note.info{background:var(--info-soft);color:var(--info)}
+.btn{border:1px solid var(--text);background:var(--surface);padding:0 18px;min-height:40px;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.danger{background:var(--bad);border-color:var(--bad);color:#fff}
+.btn.sm{min-height:30px;padding:0 10px;font-size:12px}
+.btn.link{border:0;background:none;color:var(--accent-ink);padding:0;min-height:0;text-decoration:underline}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:16px}
+.actions .right{display:flex;gap:8px;flex-wrap:wrap}
+.sum{display:flex;flex-direction:column;gap:6px;font-size:var(--t-base)}
+.sum .row{display:flex;justify-content:space-between;gap:12px}
+.sum .row span:first-child{color:var(--muted)}
+.big{font-size:26px;font-weight:800;line-height:1.1;overflow-wrap:anywhere}
+.hr{border-top:1px solid var(--line)}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);padding:12px 16px;display:flex;flex-direction:column;gap:2px}
+.kpi b{font-size:22px;font-weight:800}
+@media (max-width:720px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.acct{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;border:1px solid var(--line);background:var(--bg);padding:12px 16px;margin:0}
+.acct div{display:flex;flex-direction:column;min-width:0}
+.acct dt{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.acct dd{margin:0;font-size:var(--t-md);font-weight:600;overflow-wrap:anywhere}
+@media (max-width:720px){.acct{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.chg{color:var(--accent-ink);font-weight:700}
+@media (prefers-reduced-motion:no-preference){.panel{animation:in .18s ease-out}@keyframes in{from{opacity:.4;transform:translateY(3px)}to{opacity:1;transform:none}}}
+.ibtn{border:0;background:transparent;color:var(--accent-ink);padding:4px;cursor:pointer;display:inline-flex}.ibtn.box{border:1px solid var(--line);color:var(--text);padding:8px}.acts{white-space:nowrap}.newcol{background:var(--warn-soft)}th.newcol{box-shadow:inset 0 -2px 0 var(--warn)}b.code{color:var(--accent-ink);font-weight:500}
+</style>
+
+<div class="wrap">
+  <div class="demo" role="group" aria-label="Demo controls">
+    <b>Design mock-up · example data</b>
+    <span>Screen:</span>
+    <button class="chipbtn" data-scr="list">List</button>
+    <button class="chipbtn" data-scr="view">View details</button>
+    <button class="chipbtn" data-scr="add">Add</button>
+    <button class="chipbtn" data-scr="edit">Edit</button>
+    <span>Example:</span>
+    <select id="exPick" class="chipbtn" aria-label="Example code" style="padding:4px 8px">
+      <option value="BASE-FIRE">BASE-FIRE · base, fire lines by size</option>
+      <option value="BASE-W">BASE-W · base, residential meters</option>
+      <option value="BASE-S">BASE-S · base, sewer, no sizes</option>
+      <option value="BASE-T">BASE-T · base, trash, one size not priced</option>
+      <option value="CONN">CONN · plan, by meter size</option>
+      <option value="DEPOSIT">DEPOSIT · plan, deposit by class</option>
+      <option value="LATE">LATE · plan, penalty %</option>
+      <option value="APPFEE">APP-FEE · other, fixed</option>
+      <option value="REREAD">RE-READ · other, fixed</option>
+      <option value="TAP">TAP · other, entered when used</option>
+    </select>
+  </div>
+  <div id="screen" class="stack"></div>
+</div>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const money=v=>"$"+Number(v).toFixed(2);
+const esc=s=>String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
+const CLASSES=["Residential","Commercial","Industrial"];
+const KINDS={base:"Base charge",plan:"Plan charge",other:"Other charge"};
+/* services, their asset classes and sizes (Settings → Reference data) */
+const SVC={
+ any:{name:"Any service",gl:"4900 — Fees",assets:{}},
+ water:{name:"Water",gl:"4110 — Water",assets:{"Meter":["5/8\"","3/4\"","1\"","1½\"","2\""],"Sub-meter":["5/8\"","3/4\""]}},
+ electric:{name:"Electric",gl:"4120 — Electric",assets:{"Meter":["100 A","200 A","400 A"],"Sub-meter":["100 A"]}},
+ sewer:{name:"Sewer",gl:"4130 — Sewer",assets:{}},
+ trash:{name:"Trash",gl:"4140 — Trash",assets:{"Cart / Dumpster":["CART-35","CART-64","CART-96","DUMP-2","DUMP-4","DUMP-6","DUMP-8"]}},
+ fire:{name:"Fire",gl:"4155 — Fire",assets:{"Fire line":["FL-2","FL-4","FL-6","FL-8","FL-10","FL-12"]}},
+ solar:{name:"Solar",gl:"4170 — Solar",assets:{"Behind-the-meter panel":["SOL-5","SOL-10","SOL-15"]}},
+ battery:{name:"Battery",gl:"4190 — Battery",assets:{"Behind-the-meter battery":["BAT-10","BAT-13.5","BAT-20"]}}
+};
+const MINS={"5/8\"":"4.24","3/4\"":"4.24","1\"":"6.00","1½\"":"9.50","2\"":"14.00"};
+const GENERIC_SIZES=["5/8\"","3/4\"","1\"","2\""];
+/* codes defined in Settings (code, bill line, kind) */
+const SETTINGS=[["BASE-W","Water base charge","base","water"],["BASE-S","Sewer base charge","base","sewer"],["BASE-T","Trash base charge","base","trash"],["BASE-FIRE","Fire base charge","base","fire"],["BASE-SOL","Solar base charge","base","solar"],["BASE-BATT","Battery base charge","base","battery"],["BASE-E","Electric base charge","base","electric"],
+ ["CONN","Connection fee","plan"],["DISC","Disconnect fee","plan"],["RECON","Reconnection fee","plan"],["TRANSFER","Account transfer fee","plan"],["MOVE-OUT","Move-out final read","plan"],["CC-CONV","Card convenience fee","plan"],
+ ["PAPER","Paper bill fee","plan"],["HYDRANT","Hydrant meter rental","plan"],["LATE","Late payment fee","plan"],["NSF","Returned payment fee","plan"],["TAMPER","Tamper fee","plan"],["DEPOSIT","Security deposit","plan"],
+ ["APP-FEE","Application processing fee","other"],["RE-READ","Meter re-read","other"],["METER-TEST","Meter accuracy test","other"],["INSPECT","Backflow inspection","other"],["RETURN-TRIP","Return trip fee","other"],["SEASONAL","Seasonal turn-off / on","other"],["TEMP-SVC","Temporary service","other"],["SAME-DAY","Same-day service","other"],["AFTER-HRS","After-hours service call","other"],["TAP","New service tap fee","other"],["IMPACT","Capacity / impact fee","other"],["DAMAGE","Damaged equipment recovery","other"],["BULK-WATER","Bulk water sale","other"]];
+const IN_USE=["BASE-W","BASE-S","BASE-T","BASE-FIRE","BASE-E","CONN","DISC","RECON","LATE","NSF","TAMPER","DEPOSIT","APP-FEE","TAP"];
+/* example records */
+const R=(o)=>Object.assign({svc:"any",cls:"All",asset:"",pricedBy:"one",amountWhen:"now",type:"One-time",rows:[],tax:false,auto:false,waive:false,own:true,status:"Active",plans:0,bills:0,rev:"$0.00"},o);
+const EX={
+ "BASE-FIRE":R({kind:"base",code:"BASE-FIRE",desc:"Fire base charge",svc:"fire",cls:"All",asset:"Fire line",type:"Recurring",tax:true,auto:true,rows:[{size:"FL-2",amt:"5.00"},{size:"FL-6",amt:"20.00"}],plans:4,bills:84,rev:"$560.00"}),
+ "BASE-W":R({kind:"base",code:"BASE-W",desc:"Water base charge",svc:"water",cls:"Residential",asset:"Meter",type:"Recurring",tax:false,auto:true,rows:[{size:"5/8\"",amt:"8.00"},{size:"3/4\"",amt:"8.00"},{size:"1\"",amt:"11.50"}],plans:3,bills:1306,rev:"$10,840.00"}),
+ "BASE-S":R({kind:"base",code:"BASE-S",desc:"Sewer base charge",svc:"sewer",cls:"All",type:"Recurring",auto:true,rows:[{size:"All sizes",amt:"9.00"}],plans:3,bills:1290,rev:"$11,610.00"}),
+ "BASE-T":R({kind:"base",code:"BASE-T",desc:"Trash base charge",svc:"trash",cls:"All",asset:"Cart / Dumpster",type:"Recurring",auto:true,rows:[{size:"CART-35",amt:"9.00"},{size:"CART-64",amt:"12.00"},{size:"CART-96",amt:""},{size:"DUMP-2",amt:"40.00"},{size:"DUMP-4",amt:"60.00"},{size:"DUMP-6",amt:"80.00"},{size:"DUMP-8",amt:"100.00"}],plans:2,bills:1188,rev:"$13,420.00"}),
+ "CONN":R({kind:"plan",code:"CONN",desc:"Connection fee",type:"One-time",pricedBy:"size",asset:"Meter",rows:[{size:"5/8\"",amt:"45.00"},{size:"1\"",amt:"85.00"},{size:"2\"",amt:"140.00"}],plans:6,bills:12,rev:"$590.00"}),
+ "DEPOSIT":R({kind:"plan",code:"DEPOSIT",desc:"Security deposit",type:"Deposit",pricedBy:"class",rows:[{cls:"Residential",amt:"150.00"},{cls:"Commercial",amt:"500.00"}],own:true,plans:6,bills:9,rev:"Held, not revenue"}),
+ "LATE":R({kind:"plan",code:"LATE",desc:"Late payment fee",type:"Penalty",pricedBy:"class",auto:true,waive:true,rows:[{cls:"Residential",pct:"1.50",min:"5.00"},{cls:"Commercial",pct:"2.00",min:"10.00"}],plans:3,bills:61,rev:"$412.00"}),
+ "APPFEE":R({kind:"other",code:"APP-FEE",desc:"Applications fee",type:"One-time",rows:[{size:"All",amt:"10.00"}],gl:null,plans:0,uses:7,bills:7,rev:"$70.00"}),
+ "REREAD":R({kind:"other",code:"RE-READ",desc:"Meter re-read",type:"One-time",svc:"water",rows:[{size:"All",amt:"20.00"}],plans:0,uses:14,bills:14,rev:"$280.00"}),
+ "TAP":R({kind:"other",code:"TAP",desc:"New service tap fee",type:"One-time",amountWhen:"used",rows:[],plans:0,uses:2,bills:2,rev:"$3,400.00"})
+};
+const LIST=[
+ ["BASE-W","Water base charge","base","Water","Residential","3 sizes","Active"],["BASE-E","Electric base charge","base","Electric","All","3 sizes","Active"],["BASE-S","Sewer base charge","base","Sewer","All","$9.00","Active"],
+ ["BASE-T","Trash base charge","base","Trash","All","7 sizes","Active"],["BASE-FIRE","Fire base charge","base","Fire","All","2 of 6 sizes","Active"],
+ ["CONN","Connection fee","plan","Any","By meter size","$45 – $140","Active"],["DISC","Disconnect fee","plan","Any","By meter size","$45.00","Active"],["RECON","Reconnection fee","plan","Any","All","$75.00","Active"],
+ ["TRANSFER","Account transfer fee","plan","Any","All","$15.00","Active"],["MOVE-OUT","Move-out final read","plan","Any","All","$20.00","Active"],["CC-CONV","Card convenience fee","plan","Any","All","$2.95","Active"],
+ ["PAPER","Paper bill fee","plan","Any","All","$2.00","Active"],["HYDRANT","Hydrant meter rental","plan","Water","By meter size","$50.00","Active"],["LATE","Late payment fee","plan","Any","By class","1.5% – 2%","Active"],
+ ["NSF","Returned payment fee","plan","Any","All","$30.00","Active"],["TAMPER","Tamper fee","plan","Any","All","$250.00","Active"],["DEPOSIT","Security deposit","plan","Any","By class","$150 – $500","Active"],
+ ["APP-FEE","Application processing fee","other","Any","All","$25.00","Active"],["RE-READ","Meter re-read","other","Any","All","$20.00","Active"],["METER-TEST","Meter accuracy test","other","Any","All","$25.00","Active"],
+ ["INSPECT","Backflow inspection","other","Any","All","$30.00","Active"],["RETURN-TRIP","Return trip fee","other","Any","All","$30.00","Active"],["SEASONAL","Seasonal turn-off / on","other","Any","All","$25.00","Active"],
+ ["TEMP-SVC","Temporary service","other","Any","All","$40.00","Active"],["SAME-DAY","Same-day service","other","Any","All","$50.00","Active"],["AFTER-HRS","After-hours service call","other","Any","All","$75.00","Active"],
+ ["TAP","New service tap fee","other","Any","All","When used","Active"],["IMPACT","Capacity / impact fee","other","Any","All","When used","Active"],["DAMAGE","Damaged equipment recovery","other","Any","All","When used","Active"],["BULK-WATER","Bulk water sale","other","Any","All","When used","Active"]
+];
+const exKey=c=>Object.keys(EX).find(k=>EX[k].code===c);
+const S={scr:"list",ex:"BASE-FIRE",step:0,view:"overview",filter:"all",q:"",combo:false,cq:"",saved:false,d:null,why:"",whyErr:false,from:"2026-11-01",to:""};
+const clone=o=>JSON.parse(JSON.stringify(o));
+const D=()=>S.d;
+const fd=v=>{if(!v)return"No end";const[y,m,d]=v.split("-");return`${m}/${d}/${y}`};
+const assetsOf=k=>Object.keys(SVC[k].assets);
+const sizesOf=d=>d.kind==="base"?(SVC[d.svc].assets[d.asset]||[]):d.pricedBy==="size"?((d.svc!=="any"&&SVC[d.svc].assets[d.asset])||GENERIC_SIZES):[];
+const sized=d=>sizesOf(d).length>0;
+const typeOpts=k=>k==="base"?["Recurring"]:k==="plan"?["One-time","Recurring","Penalty","Deposit"]:["One-time"];
+function facts(d){
+ const base=d.kind==="base";
+ return {
+  part: base?"Cut down by days":(d.part||(d.type==="Recurring"?"Cut down by days":"Full amount")),
+  charged: base?"Every bill":(d.charged||({"One-time":"Once, when added","Recurring":"Every bill","Penalty":"When the event happens","Deposit":"Once, at move-in"})[d.type]),
+  locks:{part:base||d.type!=="Recurring",charged:base||d.type==="Deposit",auto:base,tax:d.type==="Deposit"||d.type==="Penalty"}};}
+function priceCols(d){
+ if(d.kind==="base")return {rowKey:sized(d)?"size":null,cols:[[d.cls==="All"?"Every class":d.cls,"amt"]]};
+ if(d.type==="Penalty")return {rowKey:d.pricedBy==="class"?"cls":d.pricedBy==="size"?"size":null,cols:[["Percent","pct"],["Minimum","min"]]};
+ if(d.kind==="other"&&d.amountWhen==="used")return null;
+ return {rowKey:d.pricedBy==="class"?"cls":d.pricedBy==="size"?"size":null,cols:[["Amount","amt"]]};}
+function cells(d){const pc=priceCols(d);if(!pc)return{un:0,zero:0,tot:0};let un=0,zero=0,tot=0;d.rows.forEach(r=>pc.cols.forEach(([,k])=>{tot++;const v=r[k];if(v===undefined||v==="")un++;else if(Number(v)===0)zero++}));return{un,zero,tot};}
+function warnNotes(d){const c=cells(d),pc=priceCols(d);let h="";
+ if(pc&&pc.rowKey&&d.rows.some(r=>!r[pc.rowKey]))h+=`<div class="note bad"><b>Choose a ${pc.rowKey==="size"?"size":"customer class"}</b>&nbsp;for every row.</div>`;
+ if(c.un)h+=`<div class="note warn"><b>${c.un} of ${c.tot} not priced.</b>&nbsp;${d.kind==="base"?"Billed $0.00 with a warning.":"Not charged."}</div>`;
+ if(c.zero)h+=`<div class="note warn"><b>${c.zero} at $0.00.</b>&nbsp;Bills show $0.00.</div>`;return h;}
+
+/* ---------- price table (TableArray) ---------- */
+function table(d,edit){
+ const pc=priceCols(d);
+ if(!pc)return `<div class="note info">Amount is entered when the fee is used.</div>`;
+ const svcName=SVC[d.svc].name;
+ const lead=d.kind==="base"||(pc.rowKey==="size")?[["Utility service",()=>svcName],["Asset",()=>d.asset||"—"]]:[];
+ const showMin=d.kind==="base"&&sized(d)&&d.svc==="water";
+ const used=d.rows.map(r=>r[pc.rowKey]);
+ const keyOpts=pc.rowKey==="size"?sizesOf(d):pc.rowKey==="cls"?CLASSES:[];
+ const head=`<tr><th>#</th>${lead.map(l=>`<th>${l[0]}</th>`).join("")}${pc.rowKey?`<th>${pc.rowKey==="size"?"Size":"Customer class"}</th>`:""}${pc.cols.map(c=>`<th class="r">${c[0]}</th>`).join("")}${showMin?'<th class="r">Minimum</th>':""}${edit&&pc.rowKey?"<th></th>":""}</tr>`;
+ const body=d.rows.map((r,i)=>{
+  const keyCell=pc.rowKey?(edit?`<td><select data-key="${i}" aria-label="Row ${i+1}"><option value="">Choose</option>${keyOpts.filter(o=>o===r[pc.rowKey]||!used.includes(o)).map(o=>`<option ${o===r[pc.rowKey]?"selected":""}>${esc(o)}</option>`).join("")}</select></td>`:`<td><b>${esc(r[pc.rowKey])}</b></td>`):"";
+  return `<tr><td class="ns">${i+1}</td>${lead.map(l=>`<td class="ro">${l[1]()}</td>`).join("")}${keyCell}${pc.cols.map(([lab,k])=>{const v=r[k];
+   if(edit)return `<td class="r"><input class="num ${v!==undefined&&v!==""&&Number(v)===0?"zero":""}" data-ri="${i}" data-c="${k}" value="${v??""}" placeholder="${k==="pct"?"%":"Not priced"}" inputmode="decimal" aria-label="Row ${i+1} ${lab}"></td>`;
+   return `<td class="r num">${v===undefined||v===""?'<span class="ns">Not priced</span>':k==="pct"?Number(v).toFixed(2)+"%":money(v)}</td>`}).join("")}${showMin?`<td class="r num ro">${MINS[r.size]?money(MINS[r.size]):"—"}</td>`:""}${edit&&pc.rowKey?`<td><button class="x" data-rmi="${i}" aria-label="Remove row ${i+1}">×</button></td>`:""}</tr>`}).join("");
+ const free=keyOpts.filter(o=>!used.includes(o));
+ const foot=edit&&pc.rowKey?`<div class="tfoot"><button class="btn sm" id="addRow" ${free.length&&!d.rows.some(r=>!r[pc.rowKey])?"":"disabled"}>+ Add row</button>${free.length?"":`<span class="crumb">Every ${pc.rowKey==="size"?"size":"class"} is used.</span>`}${showMin?'<span class="crumb" style="margin-left:auto">Minimum is set on the rate schedule.</span>':""}</div>`:"";
+ return `<div class="tw"><table><thead>${head}</thead><tbody>${body||'<tr><td colspan="9" class="crumb">No rows yet.</td></tr>'}</tbody></table>${foot}</div>${d.type==="Deposit"?'<div class="note info">Held as a deposit, not revenue. Refunded at close.</div>':""}`;}
+
+/* ---------- LIST ---------- */
+const LX={/* code: [type, customer class, priced by, amount, GL] */
+ "BASE-W":["Recurring","Residential","3 meter sizes","$8.00 – $22.00","4115 — Water base"],"BASE-E":["Recurring","Every customer class","3 meter sizes","$12.00 – $30.00","4110 — Electric"],
+ "BASE-S":["Recurring","Every customer class","One amount","$9.00","4120 — Sewer"],"BASE-T":["Recurring","Every customer class","7 cart / dumpster sizes","$9.00 – $40.00","4130 — Trash"],
+ "BASE-FIRE":["Recurring","Every customer class","6 fire line sizes · 2 priced","$12.00 – $60.00","4155 — Fire"],
+ "CONN":["One-time","Every customer class","By meter size","$45.00 – $140.00","4610 — Service fees"],"DISC":["One-time","Every customer class","By meter size","$45.00","4610 — Service fees"],
+ "RECON":["One-time","Every customer class","One amount","$75.00","4610 — Service fees"],"TRANSFER":["One-time","Every customer class","One amount","$15.00","4610 — Service fees"],
+ "MOVE-OUT":["One-time","Every customer class","One amount","$20.00","4610 — Service fees"],"CC-CONV":["One-time","Every customer class","One amount","$2.95","4620 — Convenience fees"],
+ "PAPER":["Recurring","Every customer class","One amount","$2.00","4620 — Convenience fees"],"HYDRANT":["Recurring","Commercial","By meter size","$50.00","4116 — Water other"],
+ "LATE":["Penalty","Residential, Commercial","By customer class","1.5% – 2.0%","4710 — Penalties"],"NSF":["Penalty","Every customer class","One amount","$30.00","4710 — Penalties"],
+ "TAMPER":["Penalty","Every customer class","One amount","$250.00","4710 — Penalties"],"DEPOSIT":["Deposit","Residential, Commercial","By customer class","$150.00 – $500.00","2310 — Customer deposits"],
+ "APP-FEE":["One-time","Every customer class","One amount","$10.00",""],"TAP":["One-time","Every customer class","Entered when used","—","4640 — Tap & impact fees"],
+ "IMPACT":["One-time","Every customer class","Entered when used","—","4640 — Tap & impact fees"],"DAMAGE":["One-time","Every customer class","Entered when used","—","4630 — Field-service & meter fees"],
+ "BULK-WATER":["One-time","Every customer class","Entered when used","—","4116 — Water other"]};
+const lx=r=>LX[r[0]]||["One-time","Every customer class","One amount",r[5],"4630 — Field-service & meter fees"];
+const ICO={edit:'<path d="M4 20h4L19 9l-4-4L4 16v4z"/>',off:'<path d="M12 3v8M6.3 6.3a8 8 0 1 0 11.4 0"/>',del:'<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>'};
+const ico=(k,l)=>`<button class="ibtn" aria-label="${l}" title="${l}"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICO[k]}</svg></button>`;
+function listScreen(){
+ const rows=LIST.filter(r=>(S.filter==="all"||r[2]===S.filter)&&(r[0]+r[1]).toLowerCase().includes(S.q.toLowerCase()));
+ const count=k=>LIST.filter(r=>r[2]===k).length;
+ return `<header class="head"><div><h1>Plans &amp; Rates</h1><div class="crumb" style="margin-top:4px">4 plans · 9 rate schedules · ${LIST.length} charge codes · 6 discounts · 4 taxes &amp; fees · effective 10/01/2026</div></div><div style="display:flex;gap:8px"><button class="btn">History</button><button class="btn primary" data-scr="add">+ New charge code</button></div></header>
+ <nav class="tabs" aria-label="Plans & Rates"><button>Plans</button><button>Rate schedules</button><button aria-selected="true">Charge codes</button><button>Discounts</button><button>Taxes &amp; fees</button></nav>
+ <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><div class="f" style="flex:1;min-width:220px;max-width:520px"><input id="q" placeholder="Search charge code or description" value="${esc(S.q)}" aria-label="Search charge codes"></div>
+  ${[["all",`All · ${LIST.length}`],["base",`Base · ${count("base")}`],["plan",`Plan · ${count("plan")}`],["other",`Other · ${count("other")}`]].map(([k,l])=>`<button class="chipbtn" data-filter="${k}" aria-pressed="${S.filter===k}">${l}</button>`).join("")}
+  <button class="chipbtn">+ Filter ▾</button><span style="margin-left:auto;display:flex;gap:8px"><button class="ibtn box" aria-label="Download" title="Download"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></button><button class="ibtn box" aria-label="Columns" title="Columns"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16v16H4zM9.5 4v16M14.5 4v16"/></svg></button></span></div>
+ <div class="tw"><table><thead><tr><th>Code ▲</th><th>Description</th><th class="newcol">Kind</th><th>Type</th><th>Service</th><th>Customer class</th><th class="newcol">Priced by</th><th class="r">Amount</th><th>GL account</th><th>Status</th><th>Actions</th></tr></thead><tbody>
+ ${rows.map(r=>{const x=lx(r);return `<tr class="click" tabindex="0" data-open="${r[0]}"><td class="num"><b class="code">${r[0]}</b></td><td>${r[1]}</td><td class="newcol"><span class="pill ${r[2]==="base"?"p-base":r[2]==="plan"?"p-info":"p-off"}">${KINDS[r[2]]}</span></td><td>${x[0]}</td><td>${r[3]==="Any"?"Any service":r[3]}</td><td>${x[1]}</td><td class="newcol">${x[2]}</td><td class="r num">${x[3]}</td><td>${x[4]||'<span class="pill p-warn">Not set</span>'}</td><td><span class="pill p-ok">${r[6]}</span></td><td class="acts">${ico("edit","Edit")}${ico("off","Retire")}${ico("del","Delete")}</td></tr>`}).join("")}
+ </tbody></table></div><div class="crumb">1–${rows.length} of ${rows.length}</div>`;}
+
+/* ---------- VIEW DETAILS ---------- */
+function pricedLabel(d){return d.kind==="base"?`${d.cls==="All"?"Every class":d.cls}${sized(d)?" · by "+d.asset.toLowerCase()+" size":""}`:d.kind==="other"&&d.amountWhen==="used"?"Entered when used":d.pricedBy==="class"?"By customer class":d.pricedBy==="size"?"By "+(d.asset||"meter").toLowerCase()+" size":"One amount"}
+function glOf(d){return d.gl===null?'<span class="pill p-warn">Not set</span>':SVC[d.svc].gl}
+function amountOf(d){if(d.kind==="other"&&d.amountWhen==="used")return"Entered when used";const r=d.rows[0];return r&&r.amt?"$"+r.amt:"—"}
+function viewScreen(){const d=EX[S.ex],s=SVC[d.svc],f=facts(d),k=d.kind,tabs=[["overview","Overview"],["prices","Prices"]].concat(k==="other"?[]:[["plans","Plans"]],[["audit","Audit"]]);
+ if(k==="other"&&S.view==="plans")S.view="overview";
+ const dd=(t,v)=>`<div><dt>${t}</dt><dd>${v}</dd></div>`;
+ let det=dd("Code",d.code)+dd("Bill line",d.desc)+dd("Kind",KINDS[k])+dd("Type",k==="base"?"Every bill":k==="other"?"One-time":d.type)+dd("Service",s.name);
+ if(k==="base")det+=dd("Customer class",d.cls==="All"?"Every class":d.cls)+(d.asset?dd("Asset",d.asset):"")+dd("Priced by",pricedLabel(d));
+ else if(k==="plan")det+=dd("Priced by",pricedLabel(d))+(d.pricedBy==="size"?dd("Asset",d.asset||"Meter"):"");
+ else det+=dd("Priced by",d.amountWhen==="used"?"Entered when used":"One amount")+dd("Amount",amountOf(d));
+ det+=dd("GL account",glOf(d))+dd("Effective from","01/01/2026")+dd("Effective to","No end");
+ let body="";
+ if(S.view==="overview")body=`<section class="panel"><div class="panel-h"><h2>Details</h2></div><dl class="acct">${det}</dl>${d.gl===null?'<div class="note warn">No GL account. Set it in Settings → Accounting.</div>':""}</section>
+  <section class="panel"><div class="panel-h"><h2>How it bills</h2></div><div class="facts">
+   <div class="fact"><span>Part month</span><b>${f.part}</b></div><div class="fact"><span>Charged</span><b>${f.charged}</b></div><div class="fact"><span>May be taxed</span><b>${d.tax?"Yes":"No"}</b></div>
+   <div class="fact"><span>Apply automatically</span><b>${d.auto||k==="base"?"Yes":"No"}</b></div><div class="fact"><span>Staff may waive</span><b>${d.waive?"Yes":"No"}</b></div><div class="fact"><span>Own line on bill</span><b>${d.own?"Yes":"No"}</b></div></div></section>`;
+ else if(S.view==="prices")body=priceCols(d)?`<section class="panel"><div class="panel-h"><h2>Prices</h2><span class="kicker">${pricedLabel(d)}</span></div>${table(d,false)}${warnNotes(d)}</section>`:`<section class="panel"><div class="panel-h"><h2>Prices</h2></div><p>Entered when used.</p></section>`;
+ else if(S.view==="plans")body=`<section class="panel"><div class="tw"><table><thead><tr><th>Plan</th><th>Customer class</th><th class="r">Accounts</th></tr></thead><tbody>${d.plans?`<tr><td>Residential standard</td><td>Residential</td><td class="r num">1,240</td></tr><tr><td>Small commercial</td><td>Commercial</td><td class="r num">66</td></tr>`:'<tr><td colspan="3" class="crumb">Not on a plan. Added by the clerk.</td></tr>'}</tbody></table></div></section>`;
+ else body=`<section class="panel"><div class="tw"><table><thead><tr><th>Version</th><th>Effective from</th><th>Effective to</th><th>What changed</th><th>Who</th><th>Why</th></tr></thead><tbody>
+   ${d.code==="BASE-FIRE"?'<tr><td><span class="pill p-warn">Scheduled</span></td><td class="num">Nov 1, 2026</td><td>—</td><td>FL-6: $20.00 → $24.00</td><td>Vijay Bikkad</td><td>Board approved, Oct 2026</td></tr>':""}
+   <tr><td><span class="pill p-ok">In force</span></td><td class="num">Jun 1, 2026</td><td class="num">${d.code==="BASE-FIRE"?"Oct 31, 2026":"—"}</td><td>Created</td><td>Setup</td><td>Sample data</td></tr></tbody></table></div></section>`;
+ return `<header class="head"><div><div class="crumb"><button data-scr="list">Plans &amp; Rates › Charge codes</button></div><div class="kicker" style="margin-top:8px">${d.code}</div><h1>${d.desc}</h1><div style="display:flex;gap:6px;margin-top:6px"><span class="pill ${k==="base"?"p-base":k==="plan"?"p-info":"p-off"}">${KINDS[k]}</span><span class="pill p-ok">${d.status}</span></div></div>
+  <div style="display:flex;gap:8px"><button class="btn">Duplicate</button><button class="btn primary" data-scr="edit">Edit</button><button class="btn">Retire</button></div></header>
+ ${d.code==="BASE-FIRE"?'<div class="note warn"><b>Change scheduled.</b>&nbsp;New prices start Nov 1, 2026.</div>':""}
+ <div class="kpis">${(()=>{const c=cells(d),t=(l,v,sm)=>`<div class="kpi"><span class="kicker">${l}</span><b class="num"${sm?' style="font-size:18px"':""}>${v}</b></div>`;
+  if(k==="base")return t("Plans carrying it",d.plans)+t("Bills last month",d.bills.toLocaleString())+t("Monthly revenue",d.rev,1)+t("Sizes priced",c.tot?`${c.tot-c.un} of ${c.tot}`:"One amount",1);
+  if(k==="plan")return t("Plans carrying it",d.plans)+t("Bills last month",d.bills.toLocaleString())+t(d.type==="Deposit"?"Held":"Monthly revenue",d.type==="Deposit"?"$18,400.00":d.rev,1)+t("Priced by",pricedLabel(d),1);
+  return t("Times used last month",d.uses||0)+t("Bills last month",d.bills.toLocaleString())+t("Revenue last month",d.rev,1)+t("Amount",amountOf(d),1);})()}</div>
+ <nav class="tabs" role="tablist">${tabs.map(([k,l])=>`<button role="tab" data-view="${k}" aria-selected="${S.view===k}">${l}</button>`).join("")}</nav>${body}`;}
+
+/* ---------- ADD / EDIT ---------- */
+const STEPS=["Details","Pricing","Review"];
+function sel(id,label,opts,val,locked,help){return `<div class="f"><label for="${id}">${label} <span class="req">*</span></label><select id="${id}" ${locked?"disabled":""}>${opts.map(o=>Array.isArray(o)?`<option value="${o[0]}" ${o[0]===val?"selected":""}>${o[1]}</option>`:`<option ${o===val?"selected":""}>${o}</option>`).join("")}</select>${help?`<span class="help">${help}</span>`:locked?'<span class="help">Fixed for this kind.</span>':""}</div>`}
+function yn(id,label,val,locked){return sel(id,label,[["yes","Yes"],["no","No"]],val?"yes":"no",locked)}
+function codeCombo(d,add){
+ if(!add)return `<input id="code" value="${esc(d.code)}" readonly>`;
+ const q=S.cq.trim().toLowerCase();
+ const items=SETTINGS.filter(c=>c[2]===d.kind&&(d.kind!=="base"||c[3]===d.svc)&&!IN_USE.includes(c[0])&&(!q||(c[0]+" "+c[1]).toLowerCase().includes(q)));
+ return `<div class="combo" id="combo"><div class="ms-btn" style="padding:0 10px;cursor:text"><input id="codeQ" role="combobox" aria-expanded="${S.combo}" aria-controls="codeList" autocomplete="off" placeholder="Search codes" value="${esc(S.combo?S.cq:d.code)}" style="border:0;min-height:36px;padding:0;flex:1"><span class="ms-caret" aria-hidden="true">▾</span></div>
+  <ul id="codeList" role="listbox" ${S.combo?"":"hidden"}>${items.length?items.map(([c,b])=>`<li role="option" data-pick="${c}"><span><b>${c}</b> · ${b}</span></li>`).join(""):`<li class="empty" aria-disabled="true">${q?"No code found.":"No free code. Add one in Settings."}</li>`}</ul></div>`;}
+function step1(){const d=D(),add=S.scr==="add",f=facts(d);
+ const svcOpts=Object.entries(SVC).filter(([k])=>!(d.kind==="base"&&k==="any")).map(([k,v])=>[k,v.name]);
+ let kindFields="";
+ if(d.kind==="base"){
+  kindFields=sel("cls","Customer class",["All",...CLASSES].map(c=>[c,c==="All"?"All classes":c]),d.cls,false,"All, or one class.")
+   +(assetsOf(d.svc).length?sel("asset","Asset",assetsOf(d.svc),d.asset,false,"Sizes come from this asset."):`<div class="f"><span class="lab">Asset</span><div class="fact"><b>No sizes for ${SVC[d.svc].name}</b></div></div>`);
+ } else if(d.kind==="plan"){
+  kindFields=sel("ty","Type",typeOpts("plan"),d.type,false)
+   +sel("pby","Priced by",[["class","Customer class"],["size","Asset size"],["one","One amount"]],d.pricedBy,d.type==="Deposit"&&false)
+   +(d.pricedBy==="size"?sel("asset","Asset",d.svc==="any"?["Meter"]:(assetsOf(d.svc).length?assetsOf(d.svc):["Meter"]),d.asset||"Meter",d.svc==="any"):"");
+ } else {
+  kindFields=sel("amw","Amount",[["now","Set now"],["used","Entered when used"]],d.amountWhen,false);
+ }
+ return `<section class="panel"><div class="panel-h"><h2>Charge</h2></div><div class="fields">
+  ${sel("kind","What is it?",Object.entries(KINDS),d.kind,!add,d.kind==="base"?"One per service.":d.kind==="plan"?"Carried by plans.":"Fees a clerk adds.")}
+  ${sel("svc","Service",svcOpts,d.svc,!add)}
+  <div class="f"><label for="${add?"codeQ":"code"}">Code <span class="req">*</span></label>${codeCombo(d,add)}<span class="help">${add?"From Settings.":"On sent bills. Locked."}</span></div>
+  <div class="f"><label for="desc">Bill line <span class="req">*</span></label><input id="desc" value="${esc(d.desc)}"><span class="help">${d.code?"From the code. You can edit.":""}</span></div>
+  ${kindFields}
+ </div></section>
+ <section class="panel"><div class="panel-h"><h2>How it bills</h2></div><div class="fields">
+  ${sel("part","Part month",f.locks.part?[f.part]:["Cut down by days","Full amount"],f.part,f.locks.part)}
+  ${sel("charged","Charged",f.locks.charged?[f.charged]:["Every bill","Once, when added","When the event happens"],f.charged,f.locks.charged)}
+  ${yn("tax","May be taxed",d.tax,f.locks.tax)}${yn("auto","Apply automatically",d.auto||d.kind==="base",f.locks.auto)}${yn("waive","Staff may waive",d.waive,false)}${yn("own","Own line on bill",d.own,false)}
+ </div></section>${act(false,!d.code.trim()||!d.desc.trim())}`;}
+function step2(){const d=D(),c=cells(d);
+ return `<section class="panel"><div class="panel-h"><h2>Prices</h2><span class="kicker">${pricedLabel(d)}${c.tot?` · ${c.tot-c.un} of ${c.tot} priced`:""}</span></div>
+  ${table(d,true)}<div id="wn" class="stack" style="gap:8px">${warnNotes(d)}</div>${d.svc==="sewer"?'<div class="note info">Usage % is on the rate schedule.</div>':""}</section>${act(true,priceCols(d)&&priceCols(d).rowKey&&d.rows.some(r=>!r[priceCols(d).rowKey]))}`;}
+function step3(){const d=D(),add=S.scr==="add",o=EX[S.ex],s=SVC[d.svc],f=facts(d);
+ const ch=[];
+ if(!add){const pc=priceCols(d);if(pc){const key=r=>pc.rowKey?r[pc.rowKey]:"all";const om=Object.fromEntries(o.rows.map(r=>[key(r),r]));
+   d.rows.forEach(r=>pc.cols.forEach(([lab,k])=>{const a=(om[key(r)]||{})[k]??"",b=r[k]??"";if(a!==b)ch.push([`${pc.rowKey?key(r)+" · ":""}${lab}`,a===""?"Not priced":k==="pct"?a+"%":money(a),b===""?"Not priced":k==="pct"?b+"%":money(b)])}));
+   o.rows.forEach(r=>{if(!d.rows.some(x=>key(x)===key(r)))ch.push([key(r),"Listed","Removed"])})}
+  if(o.desc!==d.desc)ch.push(["Bill line",o.desc,d.desc]);if(o.cls!==d.cls)ch.push(["Customer class",o.cls,d.cls]);
+  [["tax","May be taxed"],["waive","Staff may waive"],["own","Own line on bill"]].forEach(([k,l])=>{if(o[k]!==d[k])ch.push([l,o[k]?"Yes":"No",d[k]?"Yes":"No"])})}
+ return `<section class="panel"><div class="panel-h"><h2>Charge</h2></div><dl class="acct">
+   <div><dt>Code</dt><dd>${d.code||"—"}</dd></div><div><dt>Bill line</dt><dd>${esc(d.desc)||"—"}</dd></div><div><dt>Kind</dt><dd>${KINDS[d.kind]}</dd></div><div><dt>Type</dt><dd>${d.type}</dd></div>
+   <div><dt>Service</dt><dd>${s.name}</dd></div><div><dt>Priced by</dt><dd>${pricedLabel(d)}</dd></div><div><dt>Part month</dt><dd>${f.part}</dd></div><div><dt>Charged</dt><dd>${f.charged}</dd></div>
+   <div><dt>May be taxed</dt><dd>${d.tax?"Yes":"No"}</dd></div><div><dt>Apply automatically</dt><dd>${d.auto||d.kind==="base"?"Yes":"No"}</dd></div><div><dt>Staff may waive</dt><dd>${d.waive?"Yes":"No"}</dd></div><div><dt>Own line on bill</dt><dd>${d.own?"Yes":"No"}</dd></div></dl></section>
+ <section class="panel"><div class="panel-h"><h2>Prices</h2></div>${table(d,false)}${warnNotes(d)}</section>
+ ${add?"":`<section class="panel"><div class="panel-h"><h2>What changes</h2><span class="kicker">${ch.length} changes</span></div><div class="tw"><table><thead><tr><th>Item</th><th>Now</th><th>New</th></tr></thead><tbody>${ch.length?ch.map(r=>`<tr><td>${r[0]}</td><td class="num">${r[1]}</td><td class="num chg">${r[2]}</td></tr>`).join(""):'<tr><td colspan="3" class="crumb">Nothing changed yet.</td></tr>'}</tbody></table></div></section>`}
+ <section class="panel"><div class="panel-h"><h2>${add?"When":"When and why"}</h2></div><div class="fields">
+  <div class="f"><label for="from">Effective from <span class="req">*</span></label><input id="from" type="date" value="${S.from}">${S.fromErr?'<span class="msg">Pick a date.</span>':'<span class="help">Bills dated on or after.</span>'}</div>
+  <div class="f"><label for="to">Effective to</label><input id="to" type="date" value="${S.to}" min="${S.from}"><span class="help">Blank means no end.</span></div><div></div>
+  ${add?"":`<div class="f span3"><label for="why">Reason <span class="req">*</span></label><textarea id="why" rows="2" placeholder="Board approved, Oct 2026">${esc(S.why)}</textarea>${S.whyErr?'<span class="msg">Add a reason.</span>':""}</div>`}</div>
+  ${add?"":'<div class="note info">Sent bills keep their price. Open bill runs re-check.</div>'}</section>
+ ${S.saved?`<div class="note ok"><b>${d.code} ${add?"created":"saved"}.</b>&nbsp;Effective ${fd(S.from)}${S.to?" to "+fd(S.to):""}.</div>`:""}
+ <div class="actions"><button class="btn" data-back>Back</button><div class="right"><button class="btn">Save draft</button><button class="btn primary" data-save>${add?"Create charge code":"Save change"}</button></div></div>`;}
+function act(back,block){return `<div class="actions">${back?'<button class="btn" data-back>Back</button>':"<span></span>"}<div class="right"><button class="btn primary" data-next ${block?"disabled":""}>Continue</button></div></div>`;}
+function summary(){const d=D(),c=cells(d);
+ return `<div class="kicker">${S.scr==="add"?"New charge code":"Editing"}</div><div class="big">${d.code||"—"}</div>
+  <div class="sum"><div class="row"><span>Bill line</span><span>${esc(d.desc)||"—"}</span></div><div class="row"><span>Kind</span><span>${KINDS[d.kind]}</span></div><div class="row"><span>Service</span><span>${SVC[d.svc].name}</span></div><div class="row"><span>GL account</span><span>${SVC[d.svc].gl}</span></div><div class="row"><span>Effective</span><span>${S.from?fd(S.from):"—"}${S.to?" – "+fd(S.to):" · no end"}</span></div></div>
+  <div class="hr"></div><div class="sum"><div class="row"><span>Priced by</span><span>${pricedLabel(d)}</span></div><div class="row"><span>Rows</span><span class="num">${d.rows.length||"—"}</span></div>${c.tot?`<div class="row"><span>Priced</span><span class="num">${c.tot-c.un} of ${c.tot}</span></div>`:""}</div>
+  <div>${c.un?`<span class="pill p-warn">${c.un} not priced</span>`:priceCols(d)?'<span class="pill p-ok">All priced</span>':'<span class="pill p-info">Entered when used</span>'}</div>
+  <div class="crumb">${S.saved?"Saved.":"Nothing saved yet."}</div>`;}
+function wizScreen(){const add=S.scr==="add",d=D();
+ return `<header class="head"><div><div class="crumb"><button data-scr="list">Plans &amp; Rates › Charge codes</button>${add?"":` › <button data-scr="view">${d.code}</button>`}</div><h1>${add?"New charge code":"Edit "+d.code}</h1></div><div style="display:flex;gap:8px"><button class="btn" data-scr="${add?"list":"view"}">Cancel</button></div></header>
+ <nav class="rail" aria-label="Steps">${STEPS.map((s,i)=>{const st=i<S.step?"done":i===S.step?"current":"todo";return `<button data-go="${i}" data-state="${st}" aria-current="${i===S.step?"step":"false"}"><span class="n">${st==="done"?"✓":i+1}</span><span class="lbl">${s}</span></button>`}).join("")}</nav>
+ <div class="grid"><main class="stack">${[step1,step2,step3][S.step]()}</main><aside class="aside"><div class="panel" id="sumPanel">${summary()}</div></aside></div>`;}
+
+/* ---------- state changes ---------- */
+function freshRows(d){const pc=priceCols(d);d.rows=!pc?[]:pc.rowKey==="size"?sizesOf(d).slice(0,3).map(z=>({size:z})):pc.rowKey==="cls"?CLASSES.slice(0,2).map(c=>({cls:c})):[{size:"All"}]}
+function newDraft(){const d=R({kind:"base",code:"",desc:"",svc:"battery",cls:"All",asset:"Behind-the-meter battery",type:"Recurring",auto:true});freshRows(d);return d}
+function setKind(k){const d=D();d.kind=k;d.code="";d.desc="";d.type=typeOpts(k)[0];d.part=d.charged=undefined;
+ if(k==="base"){d.svc="battery";d.cls="All";d.asset=assetsOf("battery")[0];d.auto=true}else{d.svc="any";d.pricedBy=k==="plan"?"class":"one";d.asset="";d.amountWhen="now";d.auto=k==="plan"}
+ freshRows(d)}
+function setSvc(k){const d=D();d.svc=k;d.code="";d.desc="";d.asset=assetsOf(k)[0]||"";freshRows(d)}
+function render(){
+ document.querySelectorAll(".demo [data-scr]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.scr===S.scr));
+ $("#exPick").value=S.ex;
+ $("#screen").innerHTML=S.scr==="list"?listScreen():S.scr==="view"?viewScreen():wizScreen();}
+function go(scr){S.scr=scr;S.step=0;S.combo=false;S.cq="";S.saved=false;S.whyErr=false;S.why="";S.to="";
+ if(scr==="add")S.d=newDraft();
+ if(scr==="edit"){S.d=clone(EX[S.ex]);S.from="2026-11-01"}
+ if(scr==="view")S.view="overview";render();window.scrollTo(0,0);}
+const refresh=()=>{const sp=$("#sumPanel");if(sp)sp.innerHTML=summary();const wn=$("#wn");if(wn)wn.innerHTML=warnNotes(D())};
+
+document.addEventListener("click",e=>{const t=e.target;
+ const pk=t.closest("[data-pick]");if(pk){if(pk.getAttribute("aria-disabled")==="true")return;const c=SETTINGS.find(x=>x[0]===pk.dataset.pick);D().code=c[0];D().desc=c[1];S.combo=false;S.cq="";render();return}
+ if(S.combo&&!t.closest("#combo")){S.combo=false;S.cq="";render();if(!t.closest("[data-scr],[data-go],[data-next],[data-back]"))return}
+ const sc=t.closest("[data-scr]");if(sc){go(sc.dataset.scr);return}
+ const op=t.closest("[data-open]");if(op){const k=exKey(op.dataset.open);if(k)S.ex=k;go("view");return}
+ const fl=t.closest("[data-filter]");if(fl){S.filter=fl.dataset.filter;render();return}
+ const vw=t.closest("[data-view]");if(vw){S.view=vw.dataset.view;render();return}
+ if(t.closest("#codeQ")&&!S.combo){S.combo=true;S.cq="";render();$("#codeQ").focus();return}
+ const g=t.closest("[data-go]");if(g){S.step=Number(g.dataset.go);render();return}
+ if(t.closest("[data-next]")){S.step++;render();window.scrollTo(0,0);return}
+ if(t.closest("[data-back]")){S.step--;render();return}
+ if(t.closest("[data-save]")){if(!S.from||(S.scr==="edit"&&!S.why.trim())){S.whyErr=S.scr==="edit"&&!S.why.trim();S.fromErr=!S.from;render();return}S.fromErr=false;S.whyErr=false;S.saved=true;render();return}
+ const rm=t.closest("[data-rmi]");if(rm){D().rows.splice(Number(rm.dataset.rmi),1);render();return}
+ if(t.closest("#addRow")){D().rows.push({});render();return}
+});
+document.addEventListener("change",e=>{const t=e.target,d=D();
+ if(t.id==="exPick"){S.ex=t.value;go(S.scr==="add"?"add":S.scr);return}
+ if(t.dataset&&t.dataset.key!==undefined){const pc=priceCols(d);d.rows[Number(t.dataset.key)][pc.rowKey]=t.value;render();return}
+ const map={kind:()=>setKind(t.value),svc:()=>setSvc(t.value),cls:()=>{d.cls=t.value},asset:()=>{d.asset=t.value;freshRows(d)},
+  ty:()=>{d.type=t.value;d.part=d.charged=undefined;if(t.value==="Deposit")d.pricedBy="class";freshRows(d)},pby:()=>{d.pricedBy=t.value;if(t.value==="size")d.asset=d.svc==="any"?"Meter":(assetsOf(d.svc)[0]||"Meter");freshRows(d)},
+  amw:()=>{d.amountWhen=t.value;freshRows(d)},part:()=>{d.part=t.value},charged:()=>{d.charged=t.value},
+  tax:()=>{d.tax=t.value==="yes"},auto:()=>{d.auto=t.value==="yes"},waive:()=>{d.waive=t.value==="yes"},own:()=>{d.own=t.value==="yes"},
+  from:()=>{S.from=t.value},to:()=>{S.to=t.value}};
+ if(map[t.id]){map[t.id]();render();}
+});
+document.addEventListener("input",e=>{const t=e.target,d=D();
+ if(t.id==="q"){S.q=t.value;const p=t.selectionStart;render();const q=$("#q");q.focus();q.setSelectionRange(p,p);return}
+ if(t.id==="codeQ"){S.cq=t.value;S.combo=true;const p=t.selectionStart;render();const q=$("#codeQ");q.focus();q.setSelectionRange(p,p);return}
+ if(t.id==="desc"){d.desc=t.value;const nb=document.querySelector("[data-next]");if(nb)nb.disabled=!d.code.trim()||!d.desc.trim();refresh();return}
+ if(t.dataset&&t.dataset.ri!==undefined){d.rows[Number(t.dataset.ri)][t.dataset.c]=t.value.trim();t.classList.toggle("zero",t.value.trim()!==""&&Number(t.value)===0);refresh();return}
+ if(t.id==="why"){S.why=t.value;return}
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&S.combo){S.combo=false;S.cq="";render()}});
+render();
+})();
+</script>

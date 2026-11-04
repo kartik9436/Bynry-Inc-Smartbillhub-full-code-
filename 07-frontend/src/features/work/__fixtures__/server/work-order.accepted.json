@@ -1,0 +1,124 @@
+{
+  "id": "01a106a9-8fdd-773d-9efe-8f68ec7147b2",
+  "order_no": "WO-0040",
+  "type": "Meter set",
+  "premise": {
+    "id": "01a106a7-47c3-7b01-810d-4774ba94931b",
+    "premise_no": "P-00058",
+    "address": "3450 Oak Ridge Dr"
+  },
+  "service": "water",
+  "state": "completed",
+  "outcome": "passed",
+  "mode": "our_crew",
+  "is_gate": true,
+  "connection": null,
+  "account": null,
+  "raised_at": "2026-10-04T11:25:38.141813+00:00",
+  "priority": {
+    "id": "01a106a6-e30d-78d8-80e4-3ff125e93b8e",
+    "code": "NORMAL",
+    "name": "Normal",
+    "colour": "info",
+    "rank": 3
+  },
+  "technician": {
+    "kind": "person",
+    "name": "D. Ortiz",
+    "slug": "d-ortiz"
+  },
+  "due_at": "2026-10-07T11:25:38.135061+00:00",
+  "window_start": null,
+  "window_end": null,
+  "dispatch_state": "complete",
+  "source": null,
+  "source_ref": null,
+  "area": {
+    "id": "01a106a6-e1c3-7eba-beda-f5ac33caa690",
+    "code": "IND",
+    "name": "Industrial corridor"
+  },
+  "technician_acceptance": {
+    "state": "pending",
+    "at": null,
+    "reason": null
+  },
+  "hold": null,
+  "accepted": {
+    "by": {
+      "name": "Dana Whitfield"
+    },
+    "at": "2026-10-04T11:25:39.576385+00:00"
+  },
+  "sla": {
+    "due_at": "2026-10-07T11:25:38.135061+00:00",
+    "target": "priority",
+    "at_risk": false
+  },
+  "shape": "completed",
+  "customer": null,
+  "location": {
+    "premises": {
+      "id": "01a106a7-47c3-7b01-810d-4774ba94931b",
+      "premise_no": "P-00058"
+    },
+    "unit": null,
+    "asset": null,
+    "address": "3450 Oak Ridge Dr"
+  },
+  "signature": null,
+  "closed": {
+    "by": {
+      "name": "D. Ortiz"
+    },
+    "at": "2026-10-04T11:25:39.561838+00:00"
+  },
+  "timeline": [
+    {
+      "kind": "raised",
+      "at": "2026-10-04T11:25:38.141813+00:00",
+      "by": null,
+      "detail": null
+    },
+    {
+      "kind": "assigned",
+      "at": "2026-10-04T11:25:38.813977+00:00",
+      "by": {
+        "name": "Dana Whitfield"
+      },
+      "detail": "D. Ortiz"
+    },
+    {
+      "kind": "en_route",
+      "at": "2026-10-04T11:25:39.431449+00:00",
+      "by": {
+        "name": "Dana Whitfield"
+      },
+      "detail": null
+    },
+    {
+      "kind": "on_site",
+      "at": "2026-10-04T11:25:39.437493+00:00",
+      "by": {
+        "name": "Dana Whitfield"
+      },
+      "detail": null
+    },
+    {
+      "kind": "completed",
+      "at": "2026-10-04T11:25:39.561838+00:00",
+      "by": null,
+      "detail": "passed"
+    },
+    {
+      "kind": "accepted",
+      "at": "2026-10-04T11:25:39.576385+00:00",
+      "by": {
+        "name": "Dana Whitfield"
+      },
+      "detail": null
+    }
+  ],
+  "est_duration_minutes": 45,
+  "custom_data": {}
+}

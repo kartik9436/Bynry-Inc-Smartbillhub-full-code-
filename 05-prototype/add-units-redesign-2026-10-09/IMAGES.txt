@@ -1,0 +1,13 @@
+Add units redesign — approved mock-up v3 (https://claude.ai/artifact/QY3qGtU31CqAcxwkqKSif7), 11 images at 1440 wide, CR-176-BRC10 / DEF-MET-10035.
+Example data in the images is an illustration (B14 rule 37). The dashed demo bar at the top is not part of the screen.
+- 01-no-building-continue.png
+- 02-building-search.png
+- 03-building-found.png
+- 04-building-chosen-filled.png
+- 05-services-open.png
+- 06-taken-number.png
+- 07-common-area.png
+- 08-names-numbers-own.png
+- 09-plan-start.png
+- 10-review-units.png
+- 11-review-common-area.png

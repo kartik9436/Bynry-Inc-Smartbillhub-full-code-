@@ -1,0 +1,425 @@
+/* Minimal reset, mirroring the base rules of 05-prototype/styles.css.
+ * Component styles arrive story-by-story with FE-01..21 (B13); no inline
+ * styles anywhere — Modernist tokens only (B8). */
+@import "./tokens.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--line-height-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  line-height: var(--line-height-heading);
+  letter-spacing: var(--letter-spacing-heading);
+}
+
+/* ══ PREFLIGHT IS ON, AND ONLY WHAT WOULD READ AS BROKEN IS PUT BACK ════════
+ *
+ * PO ruling 2026-08-20, shown the measured before/after: *"Im okay with this
+ * one also ; so we dont hav eto worry pixel perfect"*. CR-018 §6's "renders
+ * identically" was the right bar for a class migration, where any movement is
+ * an accident. Preflight is a browser RESET whose whole purpose is to change
+ * what the browser was doing, so the bar is relaxed for this phase.
+ *
+ * Measured across 7,413 elements on 20 screens, four things moved that a person
+ * could see. Two are DIFFERENCES and are accepted; two are DEFECTS and are
+ * fixed here:
+ *
+ *      h1  30px -> 15px    a heading that is body size is not a heading   FIXED
+ *      p   margin 11px->0  84 paragraphs running their text together      FIXED
+ *      h4  margin 19.95->0 headings inside panels that set their own      accepted
+ *      ul  disc -> none    one list, in a place that reads fine unmarked  accepted
+ *
+ * ⚠ AND THE HEADINGS TAKE THE RULED SCALE, NOT THE BROWSER'S. Restoring `2em`
+ * would preserve an arbitrary UA number. **OQ-275 ruled these on 2026-08-19 —
+ * `h1 40 · h2 32 · h3 25 · h4 20 · h5 16` — and those seven type tokens had
+ * never been rendered by anything.** This is the commit where they finally are.
+ * Twelve `h1`s in the product have no size of their own and will grow 30 -> 40px;
+ * every other screen sets its own and is untouched. That is the one change in
+ * Phase 5 a person will notice, and it is the PO's own ratified scale.
+ * ═══════════════════════════════════════════════════════════════════════════ */
+h1 {
+  font-size: var(--text-h1);
+}
+h2 {
+  font-size: var(--text-h2);
+}
+h3 {
+  font-size: var(--text-h3);
+}
+h4 {
+  font-size: var(--text-h4);
+}
+h5 {
+  font-size: var(--text-h5);
+}
+
+/* The browser's own paragraph rhythm, kept: 84 `<p>` elements in this product
+ * have no margin rule of their own, and without this their text runs together.
+ * `1em` because that is what the UA used — a hard-coded 11px would be a
+ * different rule that happens to agree at today's font size. */
+p {
+  margin-block: 1em;
+}
+
+/* ══ AND IT IS TURNED OFF INSIDE THE CUSTOMER PORTAL — B14 rule 39, CR-085 ══
+ *
+ * ⚠ **THIS ONE DECLARATION IS THE LARGEST SINGLE BREACH OF RULE 39, AND FIVE
+ * INDEPENDENT LANES MEASURED IT BEFORE ANYONE FOUND THE CAUSE.** Rule 39
+ * ratifies a field as label → input **5px** → helper **6px**, a 1 : 1 : 4
+ * rhythm whose whole point is that the helper reads as attached to the INPUT
+ * above it. Measured in a browser on 2026-09-11 the portal's helper sat **17px**
+ * below its input and ~16px above the NEXT field's label — so it read as
+ * belonging to the wrong control. 13 of those 17 pixels are this rule.
+ *
+ * ⚠ **AND BECAUSE IT IS `1em` IT IS A DIFFERENT NUMBER AT EVERY FONT SIZE** —
+ * 13px under a 13px helper, 15px under a 15px one. **No fixed spacing scale can
+ * contain a value that changes with the type**, which is why this is scoped out
+ * rather than re-tuned: rule 39 asks for ONE scale, and a margin that is 13 here
+ * and 15 there is a second one by construction.
+ *
+ * ⚠ **WHY SCOPED AND NOT DELETED — THE BLAST RADIUS IS THE POINT.** This file
+ * is shared with the STAFF app, where the comment above is still true: 84
+ * paragraphs there have no margin of their own and run their text together
+ * without it. Deleting the line would fix one portal form and change the
+ * rhythm of ~100 staff screens that nobody asked for and nobody would have
+ * measured. Rule 39's field clause reached us through the customer portal, and
+ * the staff form kit has its own, different defect (`DEF-SHL-4921` — the helper
+ * is rendered BETWEEN the label and the input). Two problems, two fixes.
+ *
+ * ⚠ **IT IS AN ATTRIBUTE SELECTOR AND DECLARES NO CLASS, SO B14 RULE 21 IS
+ * UNTOUCHED** — the portal stays Tailwind-only and this adds nothing for a
+ * component to ask for. The alternative was a `m-0` utility on every `<p>` in
+ * fifty screens: the portal already carries **59 hand-written `m-0` / `my-0`
+ * workarounds**, written one element at a time by lanes who met this rule and
+ * fixed only what was in front of them. That count IS the argument — the rule
+ * was being paid for individually and inconsistently, and 59 is the number of
+ * places it had already been noticed without ever being named.
+ *
+ * `[data-portal]` is the portal's own root, set once in `portal/PortalApp.tsx`.
+ * It is the ROOT and not `[data-portal-frame]` on purpose: three of the fifty
+ * portal addresses (`/help/:slug`, `/visit`, `/visit/:slug`) render no frame at
+ * all, and a reset that covers 47 of 50 is the second scale again.
+ *
+ * ⚠ **`:where()` IS LOAD-BEARING AND THE FIRST DRAFT WITHOUT IT WAS WORSE THAN
+ * THE BUG — CAUGHT BY READING THE BUILT CSS, NOT BY ANY TEST.** Written plainly
+ * as `[data-portal] p`, this selector scores (0,1,1): an attribute plus a type.
+ * Every Tailwind spacing utility is a single class, (0,1,0) — and in the built
+ * sheet both sit OUTSIDE any cascade layer, so specificity alone decides. The
+ * reset would therefore have BEATEN `mt-1.5`, `mb-4`, `m-0` and every other
+ * margin utility on every `<p>` in the portal: rule 39's own 6px helper gap,
+ * written one file away in `primitives.tsx`, would have rendered as 0 — and the
+ * 59 hand-written `m-0` workarounds this fix exists to retire would have
+ * stopped working in the same commit.
+ *
+ * `:where()` contributes NOTHING to specificity, so the selector scores (0,0,1)
+ * — exactly what the `p` rule above scores, which it therefore overrides on
+ * SOURCE ORDER while losing to any class. That is the relationship a reset
+ * should have: it undoes a user-agent default and gets out of the way of
+ * anything a component actually asked for.
+ *
+ * ⚠ **NOTHING IN THIS REPO WOULD HAVE CAUGHT IT.** `tsc`, eslint and every
+ * suite pass either way, and jsdom does not do the cascade. What found it was
+ * grepping `dist/assets/*.css` for the byte offsets of this rule and of
+ * `.mt-1.5` and reading which layer each landed in. That is hard-won law 7's
+ * second habit — *ask what would make this check pass wrongly* — applied to a
+ * CSS rule rather than to a script.                                           */
+:where([data-portal]) p {
+  margin-block: 0;
+}
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   r10 DESIGN-SYSTEM CLASSES THE APP ASKS FOR BY NAME — CR-016 / DEF-308
+   ══════════════════════════════════════════════════════════════════════════
+   `05-prototype/r10-2026-08-16/styles.css` declares 51 component classes and
+   the dc.html's own <style> block adds `.kicker`. A census of every
+   `className=` literal in `07-frontend/src` (CR-016, 2026-08-19) found that
+   36 of those 51 were declared by NO app stylesheet — and that only TWO of
+   the 36 are referenced by the product at all:
+
+     .kicker  — 63 uses across 26 files, the shared `PageHeader` among them
+     .table   —  8 uses across 3 wizard summary tables
+
+   The other 34 are unreferenced: the app has its own class doing the same job
+   under another name (`.modal-*` for `.dialog-*`, `.filter-chip` for `.fchip`,
+   `.table-pager*` for `.pgbar`/`.pgnav`, `.state-frame` for `.empty`,
+   `.status-pill` for `.tag*`, `.sidebar` for `.nav`, `.field-required` for
+   `.req`), or the product has no such surface (`.grayscale`, `.card-kicker`,
+   `.card-meta`, `.elev-*`, `.btn-block`). **A class nothing references is not
+   a defect** — the full mapping is in 12-governance/02-decision-log.md so the
+   next audit does not re-open all 36. Only the two that are ASKED FOR are
+   declared here.
+
+   ⚠ WHY HERE. `global.css` is the one stylesheet `main.tsx` imports, so a
+   class declared here reaches every screen whether or not the component that
+   needs it happens to be mounted. `.kicker`'s 26 callers span nine feature
+   folders; putting it in any one of them is how DEF-244's shape recurs.
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* `.kicker` — quoted verbatim from the design reference, which is the ONLY
+   place it is declared:
+
+     .kicker{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+             color:var(--color-accent);font-family:var(--font-heading);
+             font-weight:800}
+     — 05-prototype/r10-2026-08-16/SMARTBillHub.dc.html:26
+
+   Until this rule existed, all 63 call sites rendered 15px body copy in the
+   tenant's own ink: byte-identical in the DOM to a class that works, invisible
+   to tsc, eslint and vitest, and visible only in computed style. */
+/* ⚠ `.kicker` LEFT ON 2026-08-20 (CR-018 Phase 4b-3, PO: "priotise - kicker +
+   settings-note"). Its six declarations are `components/TextBits.tsx` now.
+
+   The paragraph above is kept because it is the best cautionary tale in this
+   repo: until that rule existed, all 63 call sites rendered 15px body copy in
+   the tenant's own ink — byte-identical in the DOM to a class that works, and
+   visible only in computed style. That is why this migration is proved by a
+   before/after browser census and not by the suite. */
+
+/* `.table` — r10's "— tables —" block, ported. Body type is the ONE size B14
+   rule 20 names (`--table-font-size`, 13.5px); the header tier is
+   `--table-header-font-size` and that token's comment explains the deliberate
+   1px divergence from r10's 11px. Everything else — left alignment, uppercase,
+   0.08em tracking, the 2px header rule and the 1px row rule — is r10 exactly.
+
+   ⚠ `border-collapse: collapse` matters: without it the 2px header border and
+   the 1px row border double up into 3px of grey. */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--table-font-size);
+}
+.table th {
+  text-align: left;
+  font-size: var(--table-header-font-size);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+  padding: var(--space-2);
+  border-bottom: 2px solid var(--color-divider);
+}
+.table td {
+  padding: var(--space-2);
+  border-bottom: 1px solid var(--color-divider);
+}
+.table tbody tr:hover {
+  background: color-mix(in srgb, var(--color-text) 4%, transparent);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   TWO SHARED LAYOUT PATTERNS — DEF-327 / DEF-314 / DEF-315
+   ══════════════════════════════════════════════════════════════════════════
+   G31 measured 125 classes referenced by components and declared by NO
+   stylesheet. Almost all of them are one feature's own and are declared in
+   that feature's sheet. TWO are not: the label/value row and the option
+   chooser are each asked for by components in DIFFERENT feature folders, and
+   the `.kicker` note above records what happens when such a class is put in
+   one of them — "putting it in any one of them is how DEF-244's shape
+   recurs". So they live here, with the other cross-folder classes.
+
+   ⚠ PROVENANCE, STATED HONESTLY. The Product Owner supplied a patch stylesheet
+   (`smartbillhub-fixes.css`, 2026-08-19) carrying these two patterns, and the
+   RULES below are its rules. Its *claim* about them was measured and is FALSE
+   and must not be repeated: the file's header says `.pill.err` "already exists
+   in 11 places", and `class="pill err"` appears **0 times** in this app —
+   11 times in `05-prototype/r10-2026-08-16/SMARTBillHub.dc.html`. The file was
+   written against the PROTOTYPE's markup, not ours. Measured the same way,
+   `.chooser`, `.chooser-option`, `.kv`, `.kv-k`, `.kv-v` and `.status-count`
+   appear **0 times in the prototype too** — they are that file's own coinage,
+   not r10 vocabulary, so "adopt them to converge on r10" is not a reason that
+   survives checking. They are adopted here on their own merits, below, and 25
+   of that file's 27 classes are NOT adopted because nothing in this app asks
+   for them; a class nothing references is dead CSS, not a fix.
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* ── 1 · THE LABEL/VALUE ROW — the "Waiting93" collision (DEF-315) ─────────
+   `<span>Waiting</span><span>93</span>` with no rule between them is two
+   inline boxes with no separation, and JSX strips the whitespace, so the
+   screen reads "Waiting93". A `gap` cannot fix inline; the container has to
+   become flex. That is the whole defect and the whole fix.
+
+   ⚠ ADOPTED OVER THE THREE BESPOKE SETS IT REPLACES, for a reason that is not
+   "shared vocabulary": the app had `kpi-list`/`kpi-label`/`kpi-value` in
+   notifications AND customers, and `cus-modal-fact*` in customers, for one
+   shape. Worse, `kpi-*` COLLIDED with the real `.kpi` stat tile in
+   `KPIStrip.css` — `payments.css` already carries a `.kpi .v .pay-absent`
+   rule aimed at that one — so the same prefix meant two different components.
+   One name for one shape; the collision goes with it.
+
+   NO `font-size` IS SET ON `.kv-list > li`. B14 rule 20 counts table body
+   type product-wide, and a kv row nested in a cell would add a size. */
+.kv-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.kv,
+.kv-list > li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-width: 0;
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-divider);
+}
+.kv:last-child,
+.kv-list > li:last-child {
+  border-bottom: 0;
+}
+.kv-k {
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+  min-width: 0;
+}
+.kv-v {
+  flex: none;
+  text-align: right;
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  /* Tabular numerals so a column of counts aligns — the values here are
+     overwhelmingly figures, and "93" beside "1,204" should share a column. */
+  font-feature-settings: "tnum" 1;
+  white-space: nowrap;
+}
+/* A value that legitimately wraps — an address, a sentence, a reason. */
+.kv-v.wrap {
+  white-space: normal;
+  text-align: right;
+  text-wrap: pretty;
+}
+
+/* ── 2 · THE OPTION CHOOSER — cards that rendered as a paragraph (DEF-314) ──
+   A `<label>` is `display:inline` by default, so a set of option cards with no
+   rule is ONE run of flowing text: the bill-layout chooser printed five layout
+   names, five summaries and five buttons as a single paragraph, which is what
+   the PO photographed. Two folders ask for this shape — billing's layout
+   chooser and metering's upload-source picker — so it is declared once.
+
+   The native radio is kept in the markup and hidden the accessible way (it
+   stays focusable and stays in the a11y tree); the CARD is the affordance, and
+   focus is drawn on the card through `:has(input:focus-visible)`.
+   `position: relative` on the card is load-bearing — the PO's file omitted it,
+   which would have positioned the hidden input against whatever ancestor
+   happened to be positioned. */
+.chooser {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-3) 0 var(--space-4);
+  align-items: stretch;
+}
+.chooser-option {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border-top: 2px solid var(--color-divider);
+  cursor: pointer;
+}
+.chooser-option:hover {
+  background: color-mix(in srgb, var(--color-text) 6%, var(--color-surface));
+}
+/* SELECTED. `is-selected` is the one state name — metering's picker already
+   used it, billing's chooser said `active`, and one shape does not get two
+   state vocabularies. */
+.chooser-option.is-selected,
+.chooser-option:has(input:checked) {
+  border-top-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 6%, var(--color-surface));
+}
+.chooser-option:has(input:focus-visible) {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+/* BLOCKED (BR-SHL-025) — the option is DRAWN and disabled WITH its reason,
+   never hidden. `.co-desc` carries the reason, so it must stay readable: this
+   dims the card, it does not hide the sentence. */
+.chooser-option.is-blocked {
+  cursor: not-allowed;
+  background: transparent;
+  border-top-style: dotted;
+}
+.chooser-option.is-blocked .co-title {
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+}
+/* The control stays in the DOM and in the a11y tree; only the paint goes. */
+.chooser-option > input[type="radio"],
+.chooser-option > input[type="checkbox"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.co-title {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: var(--text-base);
+  line-height: 1.2;
+}
+/* 12.5px → `--text-sm` (12px), NOT 13px. A card DESCRIPTION under a title,
+   which is `sm`'s ruled role ("captions"); `.co-title` above it is 13px, and
+   rounding up would have set the description at the title's own size. */
+.co-desc {
+  font-size: var(--text-sm);
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+  text-wrap: pretty;
+}
+/* The badge/meta row sits at the FOOT of the card whatever the summary's
+   length, so a grid of cards has one baseline for its status chips. */
+.co-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin-top: auto;
+  padding-top: var(--space-2);
+}
+
+@media (max-width: 760px) {
+  .chooser {
+    grid-template-columns: 1fr;
+  }
+  .kv,
+  .kv-list > li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+  .kv-v {
+    text-align: left;
+  }
+}

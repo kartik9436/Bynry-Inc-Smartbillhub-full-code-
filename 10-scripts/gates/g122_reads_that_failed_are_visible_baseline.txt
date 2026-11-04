@@ -1,0 +1,14 @@
+# G122 — fact-drawing screens that do not yet guard their reads.
+#
+# ⚠ THIS FILE MAY ONLY SHRINK. A file listed here is a KNOWN instance of
+# DEF-WRK-4518's class, not an exemption: the screen renders over a read it
+# never got, and a person cannot tell that from a screen that loaded nothing.
+# G122 fails if a listed file starts guarding and its line is not removed.
+#
+# Measured 2026-09-07 over the whole of 07-frontend/src/features: nine screens
+# draw a FactList from a query of their own. EIGHT guard both states — including
+# BillRunWizard, which the gate's first, over-specified draft reported and which
+# answers the pending question by ternary rather than by early return. ONE does
+# not, and it is a live defect rather than a style difference.
+#
+07-frontend/src/features/work/TemplateDetailPage.tsx — DEF-WRK-4637. Two queries, neither guarded; an unknown or foreign template id leaves the header on the word "Loading" for ever with Edit, Duplicate, Deactivate and Delete drawn live over nothing. Confirmed in a browser on 2026-09-07 and it does not settle after 20 seconds.

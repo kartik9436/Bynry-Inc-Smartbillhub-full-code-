@@ -1,0 +1,20 @@
+{
+  "open_total": 15,
+  "unassigned": {
+    "count": 11
+  },
+  "due_today": {
+    "count": 0,
+    "urgent": 0
+  },
+  "in_field": {
+    "count": 1
+  },
+  "awaiting_approval": {
+    "count": 4
+  },
+  "overdue": {
+    "count": 0,
+    "worst": null
+  }
+}

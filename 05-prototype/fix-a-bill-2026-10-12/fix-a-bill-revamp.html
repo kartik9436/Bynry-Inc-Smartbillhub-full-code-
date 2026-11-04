@@ -1,0 +1,766 @@
+<title>Fix a Bill Revamp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: SMARTBillHub app frame, same as the One-Time Bill redesign — option cards, 4-step rail, main column + sticky summary. Square corners, 4px scale. */
+:root{
+  --bg:#f3f2f2; --surface:#ffffff; --panel:#eae9e9; --text:#201e1d; --muted:#605d5d; --faint:#9b9797;
+  --line:#d7d3d3; --accent:#ec3013; --accent-ink:#ae1800; --accent-soft:#fff2ef; --on-accent:#ffffff;
+  --ok:#0f6e3a; --ok-soft:#e6f4ec; --warn:#8a4d06; --warn-soft:#fdf0d8; --bad:#a81600; --bad-soft:#fde4df; --info:#1d4ea8; --info-soft:#e6eefb;
+  --s-electric:#ec3013; --s-water:#1e6b8f; --s-sewer:#5a5555; --s-gas:#c47a1d; --s-trash:#3a6b3d;
+  --font:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --t-xs:11px; --t-sm:12px; --t-base:13px; --t-md:14px; --t-body:15px; --t-h4:20px; --t-h2:32px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#171615; --surface:#22201f; --panel:#2d2b2a; --text:#efeceb; --muted:#b0abaa; --faint:#7d7877;
+  --line:#3b3837; --accent:#ff5a3c; --accent-ink:#ff8a72; --accent-soft:#3a1d17; --on-accent:#1a0a06;
+  --ok:#5cc98c; --ok-soft:#173326; --warn:#f0b35a; --warn-soft:#3a2a12; --bad:#ff7a63; --bad-soft:#3d1c16; --info:#8fb3ff; --info-soft:#1a2740;
+  --s-electric:#ff5a3c; --s-water:#4fa3c9; --s-sewer:#a19b9a; --s-gas:#e0a14f; --s-trash:#6fae73; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#171615; --surface:#22201f; --panel:#2d2b2a; --text:#efeceb; --muted:#b0abaa; --faint:#7d7877;
+  --line:#3b3837; --accent:#ff5a3c; --accent-ink:#ff8a72; --accent-soft:#3a1d17; --on-accent:#1a0a06;
+  --ok:#5cc98c; --ok-soft:#173326; --warn:#f0b35a; --warn-soft:#3a2a12; --bad:#ff7a63; --bad-soft:#3d1c16; --info:#8fb3ff; --info-soft:#1a2740;
+  --s-electric:#ff5a3c; --s-water:#4fa3c9; --s-sewer:#a19b9a; --s-gas:#e0a14f; --s-trash:#6fae73; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:var(--t-body);line-height:1.55;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:20px 48px;display:flex;flex-direction:column;gap:20px}
+h1,h2,h3{font-weight:800;letter-spacing:-.015em;line-height:1.12;margin:0;text-wrap:balance}
+h1{font-size:var(--t-h2)} h2{font-size:var(--t-h4)} h3{font-size:var(--t-md);font-weight:700}
+.kicker{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.num{font-variant-numeric:tabular-nums}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+p{margin:0}
+
+.demo{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 12px;border:1px dashed var(--faint);font-size:var(--t-sm);color:var(--muted)}
+.demo b{color:var(--text)}
+.chipbtn{border:1px solid var(--line);background:var(--surface);padding:4px 10px;cursor:pointer;font-size:var(--t-sm)}
+.chipbtn[aria-pressed="true"]{border-color:var(--text);font-weight:600}
+.head{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:flex-end}
+.crumb{font-size:var(--t-sm);color:var(--muted)}
+
+/* option cards */
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.opt{background:var(--surface);border:1px solid var(--line);padding:14px 16px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:4px;min-width:0}
+.opt strong{font-size:var(--t-body)}
+.opt span{font-size:var(--t-sm);color:var(--muted)}
+.opt[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 3px 0 var(--accent)}
+.opt[disabled]{cursor:default;opacity:.55}
+.subs{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.sub{border:1px solid var(--line);background:var(--surface);padding:6px 12px;cursor:pointer;font-size:var(--t-md)}
+.sub[aria-pressed="true"]{background:var(--text);border-color:var(--text);color:var(--bg);font-weight:600}
+.sub[disabled]{cursor:default;opacity:.55}
+
+/* rail */
+.rail{display:flex;border:1px solid var(--line);background:var(--surface)}
+.rail button{flex:1;display:flex;align-items:center;gap:10px;padding:12px 16px;border:0;background:transparent;cursor:pointer;text-align:left;border-right:1px solid var(--line);min-width:0}
+.rail button:last-child{border-right:0}
+.rail .n{width:24px;height:24px;display:grid;place-items:center;border:1.5px solid var(--faint);font-size:var(--t-sm);font-weight:700;flex:none}
+.rail button[data-state="current"]{box-shadow:inset 0 -3px 0 var(--accent)}
+.rail button[data-state="current"] .n{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.rail button[data-state="done"] .n{background:var(--text);border-color:var(--text);color:var(--bg)}
+.rail button[disabled]{cursor:default;color:var(--faint)}
+.rail .lbl{font-size:var(--t-md);font-weight:600}
+.rail .hint{font-size:var(--t-xs);color:var(--muted);display:block;font-weight:400}
+@media (max-width:640px){.rail .hint{display:none}.rail button{justify-content:center;padding:10px 6px}}
+
+.grid{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:960px){.grid{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--surface);border:1px solid var(--line);padding:20px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.panel-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.stack{display:flex;flex-direction:column;gap:20px;min-width:0}
+.aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px)}
+
+.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:720px){.fields{grid-template-columns:minmax(0,1fr)}}
+.f{display:flex;flex-direction:column;gap:4px;min-width:0}
+.f label,.f .lab{font-size:var(--t-base);font-weight:600}
+.req{color:var(--accent)}
+.f input,.f select{border:1px solid var(--line);background:var(--surface);padding:8px 10px;min-height:38px;width:100%;font-size:var(--t-md)}
+.f input[readonly]{background:var(--bg);color:var(--muted)}
+.help{font-size:var(--t-sm);color:var(--muted)}
+.span2{grid-column:span 2} .span3{grid-column:1/-1}
+@media (max-width:720px){.span2{grid-column:auto}}
+
+.combo{position:relative}
+.combo .cin{display:flex;align-items:center;border:1px solid var(--line);background:var(--surface)}
+.combo .cin:focus-within{border-color:var(--text)}
+.combo .cin input{border:0;flex:1;min-width:0;padding:8px 10px;min-height:38px;font-size:var(--t-md);background:transparent}
+.combo .cin input:focus-visible{outline:0}
+.combo .caret{padding:0 12px;color:var(--muted);font-size:14px;pointer-events:none}
+.combo ul{position:absolute;top:calc(100% + 2px);left:0;right:0;z-index:5;background:var(--surface);border:1px solid var(--text);box-shadow:0 12px 32px rgba(0,0,0,.22);max-height:280px;overflow:auto;margin:0;padding:0;list-style:none}
+.combo li{padding:8px 12px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;cursor:pointer;border-bottom:1px solid var(--line)}
+.combo li:last-child{border-bottom:0}
+.combo li .nm{font-weight:600;font-size:var(--t-md)}
+.combo li .sub2{grid-column:1/-1;font-size:var(--t-sm);color:var(--muted)}
+.combo li[aria-selected="true"]{background:var(--accent-soft)}
+.combo li mark{background:none;color:var(--accent-ink);font-weight:700}
+.combo .empty{padding:10px 12px;color:var(--muted);font-size:var(--t-base);cursor:default}
+.acct{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;border:1px solid var(--line);background:var(--bg);padding:12px 16px;margin:0}
+.acct div{display:flex;flex-direction:column;min-width:0}
+.acct dt{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.acct dd{margin:0;font-size:var(--t-md);font-weight:600;overflow-wrap:anywhere}
+@media (max-width:720px){.acct{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.tw{overflow-x:auto;border:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;font-size:var(--t-base)}
+th{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;font-weight:600;background:var(--bg);padding:8px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr:last-child td{border-bottom:0}
+td.r,th.r{text-align:right}
+td input[type=text],td input:not([type]){border:1px solid var(--line);background:var(--surface);padding:6px 8px;width:110px;font-size:var(--t-md)}
+tr.muted td{color:var(--faint)}
+tr.moved td{background:var(--accent-soft)}
+.tot td{font-weight:700;background:var(--bg)}
+.svc{display:inline-flex;align-items:center;gap:8px;font-weight:600}
+.dot{width:10px;height:10px;flex:none}
+.chk{width:16px;height:16px;accent-color:var(--accent)}
+
+.pill{display:inline-block;font-size:var(--t-xs);font-weight:700;padding:2px 8px;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.p-ok{background:var(--ok-soft);color:var(--ok)} .p-warn{background:var(--warn-soft);color:var(--warn)}
+.p-off{background:var(--panel);color:var(--muted)} .p-bad{background:var(--bad-soft);color:var(--bad)} .p-info{background:var(--info-soft);color:var(--info)}
+.up{color:var(--bad)} .down{color:var(--ok)}
+
+.note{display:flex;gap:10px;padding:10px 12px;font-size:var(--t-base);align-items:flex-start;flex-wrap:wrap}
+.note.warn{background:var(--warn-soft);color:var(--warn)} .note.bad{background:var(--bad-soft);color:var(--bad)} .note.ok{background:var(--ok-soft);color:var(--ok)} .note.info{background:var(--info-soft);color:var(--info)}
+.note b{color:inherit}
+
+.btn{border:1px solid var(--text);background:var(--surface);padding:0 18px;min-height:40px;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.danger{background:var(--bad);border-color:var(--bad);color:var(--on-accent)}
+.btn.sm{min-height:30px;padding:0 10px;font-size:12px}
+.btn.link{border:0;background:none;color:var(--accent-ink);padding:0;min-height:0;text-decoration:underline}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:16px}
+.actions .right{display:flex;gap:8px;flex-wrap:wrap}
+
+.sum{display:flex;flex-direction:column;gap:6px;font-size:var(--t-base)}
+.sum .row{display:flex;justify-content:space-between;gap:12px}
+.sum .row span:first-child{color:var(--muted)}
+.big{font-size:26px;font-weight:800;line-height:1.1}
+.hr{border-top:1px solid var(--line)}
+.muted-s{font-size:var(--t-base);color:var(--muted)}
+
+/* side by side bills */
+.sbs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+@media (max-width:720px){.sbs{grid-template-columns:minmax(0,1fr)}}
+.billcard{border:1px solid var(--line);display:flex;flex-direction:column;min-width:0}
+.billcard .bh{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;padding:10px 14px;border-bottom:3px solid var(--text);align-items:baseline}
+.billcard.new .bh{border-bottom-color:var(--accent)}
+.billcard table{font-size:var(--t-base)}
+.cmp tr.grp td{background:var(--panel);font-weight:700;font-size:var(--t-sm);padding:6px 12px}
+.cmp tr.grp .pill{margin-left:6px;vertical-align:middle}
+.cmp td{height:52px}
+.cmp tr.grp td{height:auto}
+.corr td{white-space:nowrap}
+.corr select,.corr input{border:1px solid var(--line);background:var(--surface);padding:6px 8px;font-size:var(--t-base);max-width:210px}
+.corr td{padding:8px}
+.iconbtn{width:32px;height:32px;display:grid;place-items:center;border:1px solid transparent;background:none;color:var(--muted);cursor:pointer}
+.iconbtn:hover{color:var(--bad);border-color:var(--line);background:var(--bad-soft)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{display:inline-flex;gap:4px;align-items:center;border:1px solid var(--line);padding:2px 8px;font-size:var(--t-sm);cursor:pointer}
+.chip input{accent-color:var(--accent)}
+.tabs{display:flex;flex-wrap:wrap;gap:0;border-bottom:1px solid var(--line)}
+.tabs button{border:0;background:none;padding:8px 14px;cursor:pointer;font-size:var(--t-md);border-bottom:3px solid transparent}
+.tabs button[aria-selected="true"]{border-bottom-color:var(--accent);font-weight:700}
+
+/* tiles */
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:720px){.tiles{grid-template-columns:minmax(0,1fr)}}
+.tile{border:1px solid var(--line);background:var(--bg);padding:12px 14px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.tile span{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.tile b{font-size:20px;font-weight:800}
+.tile small{font-size:var(--t-sm);color:var(--muted)}
+
+.says{display:flex;flex-direction:column;gap:8px}
+.say{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--line);font-size:var(--t-md)}
+.say:last-child{border-bottom:0}
+.say b{font-size:var(--t-body);text-align:right}
+
+details.panel>summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+details.panel>summary::-webkit-details-marker{display:none}
+details.panel>summary .chev{width:28px;height:28px;border:1px solid var(--line);display:grid;place-items:center;font-size:14px;transition:transform .15s}
+details.panel[open]>summary .chev{transform:rotate(180deg)}
+details.panel:not([open]){gap:0}
+.ack{display:flex;gap:10px;align-items:center;font-weight:600;font-size:var(--t-md)}
+.ack input{width:18px;height:18px;accent-color:var(--accent)}
+.done{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.done .check{width:44px;height:44px;background:var(--ok);color:var(--surface);display:grid;place-items:center;font-size:24px;font-weight:800}
+.routed{display:flex;flex-direction:column;gap:4px;font-size:var(--t-base)}
+.routed .lab{font-size:var(--t-base);font-weight:600}
+.routed ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px;color:var(--muted)}
+.routed li::marker{color:var(--faint)}
+
+/* data map */
+.src{display:none;font-family:var(--mono);font-size:10.5px;font-style:normal;color:var(--info);background:var(--info-soft);padding:1px 6px;margin-left:6px;white-space:nowrap;vertical-align:middle;letter-spacing:0;text-transform:none;font-weight:500}
+.src.new{color:var(--warn);background:var(--warn-soft)}
+body.map .src{display:inline-block}
+.legend{display:none;gap:12px;flex-wrap:wrap;font-size:var(--t-sm);color:var(--muted);align-items:center}
+body.map .legend{display:flex}
+@media (prefers-reduced-motion:no-preference){.panel{animation:in .18s ease-out}@keyframes in{from{opacity:.5;transform:translateY(3px)}to{opacity:1;transform:none}}}
+</style>
+
+<div class="wrap">
+  <div class="demo" role="group" aria-label="Mock-up controls">
+    <b>Design mock-up · example data</b>
+    <span>Who is using it:</span>
+    <button class="chipbtn" id="r-clerk" aria-pressed="true">Clerk</button>
+    <button class="chipbtn" id="r-appr" aria-pressed="false">Approver</button>
+    <span>·</span>
+    <button class="chipbtn" id="mapbtn" aria-pressed="false">Show where each value comes from</button>
+    <span class="legend"><i class="src" style="display:inline-block">served today</i><i class="src new" style="display:inline-block">new work</i></span>
+  </div>
+
+  <header class="head">
+    <div><div class="crumb">Billing › Fix a bill</div><h1>Fix a bill</h1></div>
+    <button class="btn sm" id="restart">Start over</button>
+  </header>
+
+  <nav class="rail" id="rail" aria-label="Steps"></nav>
+
+  <div class="grid">
+    <main class="stack" id="main"></main>
+  </div>
+</div>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const r2=v=>Math.round((v+Number.EPSILON)*100)/100;
+const money=v=>(v<0?"−$":"$")+Math.abs(v).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,",");
+const signed=v=>v===0?"$0.00":(v>0?"+":"")+money(v);
+const cls=v=>v>0?"up":v<0?"down":"";
+const src=(t,isNew)=>`<i class="src${isNew?" new":""}">${t}</i>`;
+const dot=s=>`<span class="dot" style="background:var(--s-${s})"></span>`;
+
+/* ---------- reasons (seeded classes from correction_reasons.py) ---------- */
+const REASONS={
+  wrong_read:{t:"Wrong reading",k:"R"}, wrong_rate:{t:"Wrong plan",k:"R"}, sched:{t:"Wrong rate",k:"R"}, wrong_tax:{t:"Wrong tax",k:"R"},
+  missed:{t:"A charge was missed",k:"R"}, in_error:{t:"A charge was billed in error",k:"R"}, discount:{t:"Wrong discount",k:"R"}, deposit:{t:"Wrong deposit",k:"R"},
+  period:{t:"Wrong period or service",k:"R"}, theft:{t:"Theft, restated",k:"R"},
+  goodwill:{t:"Goodwill credit",k:"C"},
+  name:{t:"Customer name",k:"D"}, address:{t:"Mailing address",k:"D"}, unit:{t:"Premises or unit label",k:"D"}, meter:{t:"Meter number or read dates",k:"D"}, template:{t:"Template or language",k:"D"},
+};
+const KLASS={R:["Re-price","Old bill credited. Corrected bill issued."],C:["Credit only","A credit note. No new bill."],D:["Reprint only","Same amounts. Bill reissued with the right details."]};
+const ALLOWED={
+  one:Object.keys(REASONS), many:Object.keys(REASONS),
+  run:["wrong_rate","sched","wrong_tax","missed","in_error","discount","template"], price:["wrong_rate","sched","wrong_tax","missed","in_error","discount"],
+};
+const ROUTED=[["This bill should never have existed","Cancel bill"],["A period was never billed","One-time bill"],["Payment went on the wrong bill","Payments"],["Details wrong, nothing sent yet","Account"]];
+
+/* ---------- one customer example ---------- */
+const ACCTS=[
+  {name:"Ben Bennett",no:"AC-2026-00002",addr:"418 Pecan St",plan:"Residential Standard",status:"Active",bal:393.10,cycle:"Cycle 7 · monthly"},
+  {name:"Ben Zabala",no:"AC-2026-00026",addr:"77 Live Oak Dr",plan:"Residential Standard",status:"Active",bal:0,cycle:"Cycle 7 · monthly"},
+  {name:"Bennett Farm Supply LLC",no:"AC-2026-00311",addr:"2200 FM 359 · Suite B",plan:"Small Commercial",status:"Active",bal:612.40,cycle:"Cycle 3 · monthly"},
+  {name:"Ben Bennett",no:"AC-2025-01904",addr:"61 Oak Ave",plan:"Residential Standard",status:"Closed",bal:0,cycle:"Cycle 7 · monthly"},
+  {name:"Ana Alvarez",no:"AC-2026-00001",addr:"416 Pecan St",plan:"Residential Standard",status:"Active",bal:171.23,cycle:"Cycle 7 · monthly"},
+  {name:"Sara Jonson",no:"AC-2026-00055",addr:"12 Magnolia Ln",plan:"Residential Standard",status:"Active",bal:0,cycle:"Cycle 7 · monthly"},
+];
+let ACCT=ACCTS[0];
+const matches=()=>{const q=S.q.trim().toLowerCase();return ACCTS.filter(a=>!q||[a.name,a.no,a.addr].join(" ").toLowerCase().includes(q));};
+const hl=t=>{const q=S.q.trim();if(!q)return t;const i=t.toLowerCase().indexOf(q.toLowerCase());return i<0?t:t.slice(0,i)+"<mark>"+t.slice(i,i+q.length)+"</mark>"+t.slice(i+q.length);};
+function comboItems(){const m=matches();if(!m.length)return '<li class="empty" role="option" aria-disabled="true">No account found.</li>';
+  return m.map((a,i)=>`<li role="option" id="opt-${i}" data-acct="${ACCTS.indexOf(a)}" aria-selected="${i===S.hi}"><span class="nm">${hl(a.name)}</span><span class="pill ${a.status==="Active"?"p-ok":"p-off"}">${a.status}</span><span class="sub2 num">${hl(a.no)} · ${hl(a.addr)}</span></li>`).join("");}
+function refreshCombo(){const ul=$("#acct-list"),inp=$("#f-acct");if(!ul)return;ul.innerHTML=comboItems();ul.hidden=!S.combo;inp.setAttribute("aria-expanded",String(S.combo));
+  const on=ul.querySelector('[aria-selected="true"]');if(on){inp.setAttribute("aria-activedescendant",on.id);on.scrollIntoView({block:"nearest"});}else inp.removeAttribute("aria-activedescendant");}
+function pickAcct(i){ACCT=ACCTS[i];S.q=`${ACCT.name} · ${ACCT.no}`;S.combo=false;S.hi=0;render();}
+/* ---------- example rating data: plans, versions, rate types ---------- */
+const PLANS=[
+  {id:"res",name:"Residential Standard",vers:[["res-v4","v4","Jan 1, 2026"],["res-v5","v5","Oct 1, 2026"]]},
+  {id:"tou",name:"Residential Time-of-Use",vers:[["tou-v2","v2","Apr 1, 2026"]]},
+  {id:"sc",name:"Small Commercial",vers:[["sc-v1","v1","Jan 1, 2026"],["sc-v2","v2","Jul 1, 2026"]]},
+];
+const BILLED_VER="res-v4";
+const GAS={type:"seasonal",base:9,summer:.80,winter:1.05};
+const RS={
+  "res-v4":{elec:{type:"tiered",base:12,tiers:[[500,.1150],[Infinity,.1380]]},water:{type:"tiered",base:8,tiers:[[5,3.25],[5,4.50],[Infinity,5.75]]},sewer:{type:"pct",base:6,pct:.40},gas:GAS,trash:{type:"flat",rate:15}},
+  "res-v5":{elec:{type:"tiered",base:12,tiers:[[500,.1190],[Infinity,.1450]]},water:{type:"tiered",base:8,tiers:[[5,3.60],[5,5.10],[Infinity,6.40]]},sewer:{type:"pct",base:6,pct:.40},gas:GAS,trash:{type:"flat",rate:15}},
+  "tou-v2":{elec:{type:"tou",base:14,on:.1850,off:.0920},water:{type:"tiered",base:8,tiers:[[5,3.60],[5,5.10],[Infinity,6.40]]},sewer:{type:"pct",base:6,pct:.40},gas:GAS,trash:{type:"flat",rate:15}},
+  "sc-v1":{elec:{type:"demand",base:25,on:.1700,off:.0880,kw:6.50},water:{type:"flat",base:15,rate:4.20},sewer:{type:"pct",base:12,pct:.45},gas:{type:"seasonal",base:14,summer:.75,winter:.98},trash:{type:"flat",rate:22}},
+  "sc-v2":{elec:{type:"demand",base:25,on:.1750,off:.0900,kw:6.75},water:{type:"flat",base:15,rate:4.35},sewer:{type:"pct",base:12,pct:.45},gas:{type:"seasonal",base:14,summer:.78,winter:1.01},trash:{type:"flat",rate:22}},
+};
+const TYPE_WORD={tiered:"Tiered",tou:"Time of use",demand:"Time of use + demand",flat:"Flat",pct:"% of water",seasonal:"Seasonal"};
+const TAXSET={state:["State sales tax",[["1","1.00%"],["0","Exempt"]],"Every charge"],local:["Local utility tax",[["2","2.00%"],["1.5","1.50%"],["0","Exempt"]],"Electric and gas"],puc:["PUC fee",[["0.25","0.25%"],["0","Not charged"]],"Electric"]};
+const BILLED_TAX={state:"1",local:"2",puc:"0.25"};
+const CHARGES=[["MTEST","Meter test",40,"water"],["RECON","Reconnection fee",75,"electric"],["PAPER","Paper bill fee",2.5,"electric"],["HYDR","Hydrant flow test",25,"water"]];
+const SVCS=["electric","water","sewer","gas","trash"];
+const SVCNAME={electric:"Electric",water:"Water",sewer:"Sewer",gas:"Gas",trash:"Trash"};
+const TEMPLATES=[["std_en","Standard bill · English"],["std_es","Standard bill · Español"],["large_en","Large print · English"]];
+const up4=v=>{const t=(Math.round(Math.abs(v)*1e4)/1e4).toFixed(4).replace(/(\.\d\d\d*?)0+$/,"$1");return (v<0?"−$":"$")+t;};   /* unit price: up to 4 places (hard rule 2 exception) */
+const fq=(v,u,dp)=>`${v.toLocaleString("en-US",{minimumFractionDigits:dp,maximumFractionDigits:dp})} ${u}`;
+
+/* Rate a bill from its usage. Returns sections of lines (id stable across versions) + taxes per authority. */
+function rate(u,vid,o){
+  o=o||{}; vid=o.vid||vid; const R={}; ["elec","water","sewer","gas","trash"].forEach(k=>R[k]=RS[(o.sched&&o.sched[k])||vid][k]); const secs=[], prorate=o.days?o.days/u.days:1, off=o.svcOff||[], rm=o.removed||[];
+  const L=(id,label,qty,rt,amt,kind)=>({id,label,qty,rt,amt:r2(amt),kind});
+  const base=(svc,amt)=>L(svc+"-base","Base charge",prorate!==1?`${o.days} of ${u.days} days`:"1 month",up4(amt),amt*prorate,"base");
+  const tierLines=(svc,q,tiers,unit,dp)=>{const out=[];let left=q,lo=0;tiers.forEach((t,i)=>{if(left<=0)return;const take=Math.min(left,t[0]);const hi=t[0]===Infinity?"+":"–"+(lo+t[0]);
+      out.push(L(`${svc}-t${i+1}`,`Tier ${i+1} · ${lo}${hi} ${unit}`,fq(take,unit,dp),up4(t[1])+" / "+unit,take*t[1],"usage"));left=r2(left-take);lo+=t[0];});return out;};
+  // electric
+  const E=R.elec; let el=[base("e",E.base)];
+  if(E.type==="tiered") el=el.concat(tierLines("e",u.kwh,E.tiers,"kWh",0));
+  else { el.push(L("e-on","On-peak",fq(u.on,"kWh",0),up4(E.on)+" / kWh",u.on*E.on,"usage"),L("e-off","Off-peak",fq(u.off,"kWh",0),up4(E.off)+" / kWh",u.off*E.off,"usage"));
+    if(E.type==="demand") el.push(L("e-kw","Peak demand",fq(u.kw,"kW",1),up4(E.kw)+" / kW",u.kw*E.kw,"demand")); }
+  secs.push({id:"electric",title:"Electric",type:TYPE_WORD[E.type],lines:el});
+  // water
+  const W=R.water; let wl=[base("w",W.base)];
+  wl=wl.concat(W.type==="tiered"?tierLines("w",u.kgal,W.tiers,"kgal",1):[L("w-flat","Usage",fq(u.kgal,"kgal",1),up4(W.rate)+" / kgal",u.kgal*W.rate,"usage")]);
+  secs.push({id:"water",title:"Water",type:TYPE_WORD[W.type],lines:wl});
+  // sewer: % of the water usage charge
+  const wUse=r2(wl.filter(l=>l.kind==="usage"&&!rm.includes(l.id)&&!off.includes("water")).reduce((t,l)=>t+l.amt,0));
+  secs.push({id:"sewer",title:"Sewer",type:TYPE_WORD.pct,lines:[base("s",R.sewer.base),L("s-pct",`${Math.round(R.sewer.pct*100)}% of water usage`,money(wUse),Math.round(R.sewer.pct*100)+"%",wUse*R.sewer.pct,"usage")]});
+  // gas: seasonal split inside the period
+  const G=R.gas; const gl=[base("g",G.base),L("g-sum","Summer · Oct 1–15".replace("Oct",u.m),fq(u.gs,"therm",0),up4(G.summer)+" / therm",u.gs*G.summer,"usage")];
+  if(u.gw) gl.push(L("g-win",`Winter · ${u.m} 16–${u.days}`,fq(u.gw,"therm",0),up4(G.winter)+" / therm",u.gw*G.winter,"usage"));
+  if(!u.gw) gl[1].label=`Summer · ${u.m} 1–${u.days}`;
+  secs.push({id:"gas",title:"Gas",type:TYPE_WORD.seasonal,lines:gl});
+  secs.push({id:"trash",title:"Trash",type:"Flat per cart",lines:[L("t-cart","Per cart",fq(u.carts,"cart",0),up4(R.trash.rate)+" / cart",u.carts*R.trash.rate,"usage")]});
+  // charge codes
+  const ch=[["PAPER",1]].concat(o.extra||[]).map(([c,q])=>{const x=CHARGES.find(y=>y[0]===c);return L("c-"+c+(q!==1?"x":""),`${x[1]} · ${c}`,fq(q,"×",0).replace(" ×"," ×").replace(/^(\S+) ×$/,"$1"),up4(x[2]),x[2]*q,"charge");});
+  secs.push({id:"charges",title:"Charge codes",type:"Fixed amount",lines:ch});
+  if(o.deposit!==undefined) secs.push({id:"dep",title:"Deposits",type:"Held · not taxed",lines:[L("dep-DEP","Security deposit · DEP","1",up4(o.deposit),o.deposit,"deposit")]});
+  // switch off services / removed lines
+  secs.forEach(s=>s.lines.forEach(l=>{if(off.includes(s.id)||rm.includes(l.id))l.amt=0;}));
+  // discounts
+  const eUse=r2(secs[0].lines.filter(l=>l.kind!=="base").reduce((t,l)=>t+l.amt,0));
+  secs.push({id:"disc",title:"Discounts",type:"Programs",lines:[L("d-senior","Senior · 5% of electric usage · v1",money(eUse),"5%",-eUse*.05,"disc"),L("d-liheap","Low-income credit · LIHEAP · v2","1 month",up4(-5),-5,"disc")].concat((o.discAdd||[]).includes("d-autopay")?[L("d-autopay","Autopay credit · v1","1 month",up4(-2),-2,"disc")]:[])});
+  secs.forEach(s=>s.lines.forEach(l=>{if(rm.includes(l.id))l.amt=0;}));
+  const sec=id=>r2(secs.find(s=>s.id===id).lines.reduce((t,l)=>t+l.amt,0));
+  const sub=r2(secs.reduce((t,s)=>t+s.lines.reduce((a,l)=>a+l.amt,0),0));
+  const tr=o.tax||BILLED_TAX;
+  const depAmt=secs.some(x=>x.id==="dep")?sec("dep"):0;
+  const taxes=[["state",r2(sub-depAmt)],["local",r2(sec("electric")+sec("gas"))],["puc",sec("electric")]].map(([k,b])=>{const p=parseFloat(tr[k])/100;return {id:"x-"+k,label:TAXSET[k][0],qty:"on "+money(b),rt:tr[k]+"%",amt:r2(b*p)};});
+  const tax=r2(taxes.reduce((t,x)=>t+x.amt,0));
+  return {secs,taxes,sub,tax,total:r2(sub+tax)};
+}
+
+/* ---------- one customer example ---------- */
+const BILLS=[
+  {no:"BL-2607-000017",per:"Jul 1 – Jul 31, 2026",m:"Jul",paid:1,state:"Paid",post:"Sep 2026",u:{m:"Jul",days:31,kwh:950,on:260,off:690,kw:7.8,kgal:12.4,gs:22,gw:0,carts:1}},
+  {no:"BL-2608-000033",per:"Aug 1 – Aug 31, 2026",m:"Aug",paid:1,state:"Paid",post:"Sep 2026",u:{m:"Aug",days:31,kwh:1000,on:280,off:720,kw:8.1,kgal:13.0,gs:20,gw:0,carts:1}},
+  {no:"BL-2609-000041",per:"Sep 1 – Sep 30, 2026",m:"Sep",paid:0,state:"Issued",post:"Sep 2026",u:{m:"Sep",days:30,kwh:890,on:240,off:650,kw:7.0,kgal:10.6,gs:19,gw:0,carts:1}},
+  {no:"BL-2610-000053",per:"Oct 1 – Oct 31, 2026",m:"Oct",paid:0,state:"Issued",post:"Oct 2026",u:{m:"Oct",days:31,kwh:812,on:212,off:600,kw:6.4,kgal:9.1,gs:18,gw:20,carts:1}},
+];
+BILLS.forEach(b=>{b.orig=rate(b.u,BILLED_VER);b.total=b.orig.total;b.paid=b.paid?b.total:0;});
+ACCTS[0].bal=r2(BILLS.reduce((t,b)=>t+b.total-b.paid,0));
+
+/* the corrected bill: the reason changes an INPUT, and the bill is rated again */
+const SCHEDS=[["elec","Electric usage"],["water","Water usage"],["sewer","Sewer"],["gas","Gas usage"],["trash","Trash carts"]];
+const SHORT={res:"Res Std",tou:"Res TOU",sc:"Sm Comm"};
+const SCHED_VERS=k=>Object.keys(RS).map(id=>{const P=PLANS.find(p=>p.vers.some(v=>v[0]===id)),V=P.vers.find(v=>v[0]===id);return [id,`${SHORT[P.id]} ${V[1]} · ${TYPE_WORD[RS[id][k].type]||"Flat"}${id===BILLED_VER?" · on the bill":""}`];});
+const DISCS=[["d-senior","Senior · 5% of electric usage"],["d-liheap","Low-income credit · LIHEAP · −$5.00"],["d-autopay","Autopay credit · −$2.00"]];
+const pnl=(title,right,body)=>`<section class="panel"><div class="panel-h"><h2>${title}</h2><span class="kicker">${right||""}</span></div>${body}</section>`;
+/* ---------- ONE TABLE: every reason is a row. "What happens" is derived from all rows (BR-BIL-042: R > C > D). ---------- */
+const PREC=["R","C","D"];
+const curK=()=>{const ks=S.corr.map(r=>REASONS[r.reason].k);return PREC.find(k=>ks.includes(k))||"R";};
+function syncReason(){const k=curK();const r=S.corr.find(x=>REASONS[x.reason].k===k);S.reason=r?r.reason:ALLOWED[subKey()][0];}
+const reasonsText=()=>[...new Set(S.corr.map(r=>REASONS[r.reason].t))].join(" · ")||"—";
+const METERS=[["W-10442","W-10442 · water"]];
+const FIELDS={name:["Customer name","Ben Benett","Ben Bennett"],address:["Mailing address","418 Pecon St, Brazos Bend, TX 77416","418 Pecan St, Brazos Bend, TX 77461"],
+  unit:["Unit label","Unit 8","Unit B"],meter:["Meter number","W-10424","W-10442"],template:["Template","Standard bill · English","std_es"]};
+const lastIdx=()=>BILLS.indexOf(picked().slice(-1)[0]);
+const newRow=reason=>{const r={id:Math.random().toString(36).slice(2,8),reason,bills:null};
+  switch(reason){
+    case "wrong_read": r.item="W-10442";r.val="1162.4";r.bills=[lastIdx()];break;
+    case "theft": r.item="W-10442";r.val="14.0";r.bills=[lastIdx()];break;
+    case "wrong_rate": r.item="res";r.val="res-v5";break;
+    case "sched": r.item="water";r.val="res-v5";break;
+    case "wrong_tax": r.item="local";r.val="1.5";break;
+    case "missed": r.item="MTEST";r.val="1";break;
+    case "in_error": r.item="c-PAPER";break;
+    case "discount": r.act="remove";r.item="d-senior";break;
+    case "deposit": r.item="DEP";r.val="150.00";r.bills=[lastIdx()];break;
+    case "period": r.item="dates";r.val="2026-10-01";r.val2="2026-10-20";r.bills=[lastIdx()];break;
+    case "goodwill": r.item="credit";r.val="25.00";r.bills=[lastIdx()];break;
+    default: if(FIELDS[reason]){r.item=reason;r.val=FIELDS[reason][2];}
+  }
+  return r;};
+function ensureRows(){
+  const ok=ALLOWED[subKey()];
+  S.corr=S.corr.filter(r=>ok.includes(r.reason));
+  if(!S.corr.length) S.corr.push(newRow(isCust()&&S.sub==="one"?"wrong_read":"wrong_rate"));
+  const P=picked().map(b=>BILLS.indexOf(b));
+  S.corr.forEach(r=>{if(r.bills){r.bills=r.bills.filter(i=>P.includes(i));if(!r.bills.length)r.bills=[P[P.length-1]];if(r.bills.length===P.length)r.bills=null;}});
+  syncReason();
+}
+/* the rating options + usage changes the rows produce for one bill */
+function optsFor(bi,o,u){
+  S.corr.filter(r=>r.bills===null||r.bills.includes(bi)).forEach(r=>{
+    switch(r.reason){
+      case "wrong_read": u.kgal=Math.max(0,r2((parseFloat(r.val)||0)-1150.8));break;
+      case "theft": u.kgal=parseFloat(r.val)||0;break;
+      case "wrong_rate": o.vid=r.val;break;
+      case "sched": (o.sched=o.sched||{})[r.item]=r.val;break;
+      case "wrong_tax": o.tax={...(o.tax||BILLED_TAX),[r.item]:r.val};break;
+      case "missed": (o.extra=o.extra||[]).push([r.item,parseFloat(r.val)||0]);break;
+      case "in_error": (o.removed=o.removed||[]).push(r.item);break;
+      case "discount": if(r.act==="add")(o.discAdd=o.discAdd||[]).push(r.item); else (o.removed=o.removed||[]).push(r.item);break;
+      case "period": if(r.item==="dates"){const d=Math.round((new Date(r.val2)-new Date(r.val))/864e5)+1;if(d>0&&d!==u.days)o.days=d;} else (o.svcOff=o.svcOff||[]).push(r.item);break;
+      case "goodwill": o.goodwill=r2((o.goodwill||0)+(parseFloat(r.val)||0));break;
+      case "deposit": o.deposit=parseFloat(r.val)||0;break;
+    }
+  });
+  return o;
+}
+function linesFor(b){
+  const k=curK(), u={...b.u}, o={};
+  optsFor(BILLS.indexOf(b),o,u);
+  if(k==="R"){ const fix=rate(u,BILLED_VER,o);
+    if(o.goodwill){fix.secs.find(s=>s.id==="disc").lines.push({id:"d-goodwill",label:"Goodwill credit",qty:"1",rt:up4(-o.goodwill),amt:-o.goodwill,kind:"disc"});fix.total=r2(fix.total-o.goodwill);fix.sub=r2(fix.sub-o.goodwill);}
+    return {pre:b.orig,fix,vid:o.vid||BILLED_VER,t0:b.orig.total,t1:fix.total,tax0:b.orig.tax,tax1:fix.tax,good:o.goodwill||0}; }
+  return {pre:b.orig,fix:b.orig,vid:BILLED_VER,t0:b.orig.total,t1:r2(b.orig.total-(k==="C"?(o.goodwill||0):0)),tax0:b.orig.tax,tax1:b.orig.tax,good:o.goodwill||0};
+}
+function corrTable(bulk){
+  const P=picked(), idx=P.map(b=>BILLS.indexOf(b)), lastB=P[P.length-1];
+  const sel=(id,list,val,lab)=>`<select id="${id}" aria-label="${lab}">${list.map(o=>`<option value="${o[0]}" ${o[0]===val?"selected":""}>${o[1]}</option>`).join("")}</select>`;
+  const inp=(id,val,lab,w)=>`<input id="${id}" class="num" value="${val}" aria-label="${lab}" style="width:${w||96}px">`;
+  const allowed=ALLOWED[subKey()];
+  const whatSel=r=>`<select id="c-type-${r.id}" aria-label="What was wrong">${["R","C","D"].map(k=>{const g=allowed.filter(c=>REASONS[c].k===k);return g.length?`<optgroup label="${KLASS[k][0]}">${g.map(c=>`<option value="${c}" ${c===r.reason?"selected":""}>${REASONS[c].t}</option>`).join("")}</optgroup>`:"";}).join("")}</select>`;
+  const lines=lastB?lastB.orig.secs.flatMap(sc=>sc.lines.map(l=>[l.id,`${sc.title} · ${l.label} · ${money(l.amt)}`])):[["c-PAPER","Paper bill fee"]];
+  const rows=S.corr.map((r,n)=>{
+    let item="",chg="",val="";
+    switch(r.reason){
+      case "wrong_read": item=sel(`c-item-${r.id}`,METERS,r.item,"Meter");chg=`<span class="muted-s">Billed 1,159.9</span>`;val=inp(`c-val-${r.id}`,r.val,"Correct reading")+` <span class="muted-s">${Math.max(0,r2((parseFloat(r.val)||0)-1150.8)).toFixed(1)} kgal</span>`;break;
+      case "theft": item=sel(`c-item-${r.id}`,METERS,r.item,"Meter");chg=`<span class="muted-s">Assessed usage</span>`;val=inp(`c-val-${r.id}`,r.val,"Assessed kgal")+` <span class="muted-s">kgal</span>`;break;
+      case "wrong_rate": item=sel(`c-item-${r.id}`,PLANS.map(p=>[p.id,p.name]),r.item,"Plan");chg="Use version";val=sel(`c-val-${r.id}`,PLANS.find(p=>p.id===r.item).vers.map(v=>[v[0],`${v[1]} · from ${v[2]}${v[0]===BILLED_VER?" · on the bill":""}`]),r.val,"Version");break;
+      case "sched": item=sel(`c-item-${r.id}`,SCHEDS,r.item,"Rate schedule");chg="Use version";val=sel(`c-val-${r.id}`,SCHED_VERS(r.item),r.val,"Schedule version");break;
+      case "wrong_tax": item=sel(`c-item-${r.id}`,Object.keys(TAXSET).map(k=>[k,TAXSET[k][0]]),r.item,"Tax");chg=`<span class="muted-s">Billed ${BILLED_TAX[r.item]}%</span>`;val=sel(`c-val-${r.id}`,TAXSET[r.item][1],r.val,"Rate");break;
+      case "missed": item=sel(`c-item-${r.id}`,CHARGES.map(c=>[c[0],`${c[0]} · ${c[1]} · ${money(c[2])}`]),r.item,"Charge code");chg="Add";val=inp(`c-val-${r.id}`,r.val,"Quantity",64)+` <span class="muted-s">×</span>`;break;
+      case "in_error": item=sel(`c-item-${r.id}`,lines,r.item,"Line on the bill");chg="Remove";val=`<span class="muted-s">—</span>`;break;
+      case "discount": item=sel(`c-item-${r.id}`,DISCS,r.item,"Discount");chg=sel(`c-act-${r.id}`,[["add","Add"],["remove","Remove"]],r.act,"Change");val=`<span class="muted-s">—</span>`;break;
+      case "period": item=sel(`c-item-${r.id}`,[["dates","Period dates"]].concat(SVCS.map(s=>[s,SVCNAME[s]+" service"])),r.item,"What");
+        if(r.item==="dates"){chg=`<span class="muted-s">Billed ${lastB?lastB.per:""}</span>`;val=`<input id="c-val-${r.id}" type="date" value="${r.val}" aria-label="Should start"> – <input id="c-val2-${r.id}" type="date" value="${r.val2}" aria-label="Should end">`;}
+        else {chg="Not on this bill";val=`<span class="muted-s">—</span>`;} break;
+      case "deposit": item=`<span>Security deposit · DEP</span>`;chg=`<span class="muted-s">Billed $0.00</span>`;val=inp(`c-val-${r.id}`,r.val,"Deposit amount");break;
+      case "goodwill": item=`<span>Credit</span>`;chg="Amount";val=inp(`c-val-${r.id}`,r.val,"Credit amount")+``;break;
+      default: { const F=FIELDS[r.reason]; item=`<span>${F[0]}</span>`;chg=`<span class="muted-s">Was ${F[1]}</span>`;
+        val=r.reason==="template"?sel(`c-val-${r.id}`,TEMPLATES,r.val,"Reissue as"):`<input id="c-val-${r.id}" value="${r.val}" aria-label="Should read" style="width:220px">`; }
+    }
+    const k=REASONS[r.reason].k;
+    const apply=bulk?`<span class="muted-s">Every bill</span>`:P.length===1?`<span class="muted-s num">${P[0].m}</span>`:
+      `<div class="chips">${idx.map(i=>`<label class="chip"><input type="checkbox" data-cbill="${r.id}:${i}" ${r.bills===null||r.bills.includes(i)?"checked":""}> ${BILLS[i].m}</label>`).join("")}</div>`;
+    return `<tr><td class="num muted-s">${n+1}</td><td>${whatSel(r)}<div><span class="pill ${k==="R"?"p-info":k==="C"?"p-ok":"p-off"}" style="margin-top:4px">${KLASS[k][0]}</span></div></td><td>${item}</td><td>${chg}</td><td>${val}</td><td>${apply}</td><td><button class="iconbtn" type="button" data-cdel="${r.id}" aria-label="Remove correction ${n+1}" title="Remove" ${S.corr.length===1?"disabled":""}><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6"/></svg></button></td></tr>`;}).join("");
+  const k=curK();
+  return `<section class="panel"><div class="panel-h"><h2>What was wrong</h2><span class="kicker">${S.corr.length} correction${S.corr.length===1?"":"s"}${src("GET /corrections/reasons · plans · schedules · charge codes · taxes · discounts")}</span></div>
+    <div class="note ${k==="R"?"info":k==="C"?"ok":""}" style="${k==="D"?"background:var(--panel)":""}"><b>What happens: ${KLASS[k][0]}.</b>&nbsp;${KLASS[k][1]}${S.corr.length>1&&new Set(S.corr.map(r=>REASONS[r.reason].k)).size>1?" The strongest correction decides.":""}</div>
+    <div class="tw"><table class="corr"><thead><tr><th>#</th><th>What was wrong</th><th>Item</th><th>Billed / change</th><th>Should be</th><th>Apply to</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><button class="btn sm" type="button" id="c-add">Add a correction</button><span class="help">Base charges come with the plan version. A wrong price inside a version is fixed in Plans &amp; Rates.</span></div>
+    <div class="routed"><span class="lab">Not done here${src("routed_elsewhere")}</span><ul>${ROUTED.map(r=>`<li>${r[0]} → <button class="btn link" type="button">${r[1]}</button></li>`).join("")}</ul></div></section>`;
+}
+function pageChanges(){
+  const ds=S.corr.filter(r=>REASONS[r.reason].k==="D");
+  if(!ds.length) return "";
+  return pnl("What changes on the page",(curK()==="D"?"Amounts stay the same":"Also on the new bill")+src("field · was · becomes",1),`<div class="tw"><table><thead><tr><th>Field</th><th>Was</th><th>Becomes</th></tr></thead><tbody>${ds.map(r=>{const F=FIELDS[r.reason];const v=r.reason==="template"?TEMPLATES.find(t=>t[0]===r.val)[1]:r.val;return `<tr class="${F[1]!==v?"moved":""}"><td>${F[0]}</td><td>${F[1]}</td><td><b>${v}</b></td></tr>`;}).join("")}</tbody></table></div>`);
+}
+function stepFix(){
+  let h=corrTable(!isCust());
+  if(isCust()){ h+=pageChanges(); h+=sideBySide(); }
+  else h+=bulkResult();
+  return h+actions(true,"Continue");
+}
+
+/* ---------- bulk examples ---------- */
+const RUNS=[["R-2610-07","Cycle 7 · October 2026",48,9312.60,4120.00],["R-2610-03","Cycle 3 · October 2026",61,11904.15,6311.40]];
+const BULKROWS={
+  run:[["AC-2026-00001","Ana Alvarez",158.10,171.23],["AC-2026-00002","Ben Bennett",198.90,212.31],["AC-2026-00003","Clara Castillo",204.66,219.02],["AC-2026-00004","Dev Duval",143.20,153.88],["AC-2026-00005","Elena Ellery",176.45,189.40],["AC-2026-00006","Farid Fontaine",61.00,61.00],["AC-2026-00007","Grace Gagnon",212.80,228.61],["AC-2026-00008","Hugo Hollis",189.35,202.92]],
+  price:[["AC-2026-00011","Kaya Kowalski",231.40,224.79],["AC-2026-00013","Mira Marchetti",198.10,192.62],["AC-2026-00014","Noor Nakamura",176.95,172.14],["AC-2026-00015","Omar Okonkwo",58.00,58.00],["AC-2026-00016","Priya Petrov",245.30,237.53],["AC-2026-00017","Quentin Quinlan",187.60,182.41],["AC-2026-00018","Rosa Rasmussen",209.75,203.88],["AC-2026-00019","Sam Sandoval",166.20,161.91]],
+};
+const BULKSUM={
+  run:{bills:48,accts:48,billed:9312.60,paid:4120.00,up:[44,412.36],down:[0,0],same:4,posts:"Oct 2026",excluded:"2 already in an open case · 1 draft"},
+  price:{bills:96,accts:52,billed:18744.90,paid:12850.25,up:[0,0],down:[71,-612.45],same:25,posts:"Aug bills → Sep 2026 · Sep bills → Sep 2026",excluded:"1 already in an open case"},
+};
+
+/* ---------- state ---------- */
+const S0=()=>({opt:"cust",sub:"one",step:0,role:"clerk",reason:"wrong_read",read:"1162.4",good:"25.00",picked:{one:[3],many:[1,2,3]},
+  q:"Ben Bennett · AC-2026-00002",combo:false,hi:0,corr:[],
+  pFrom:"2026-10-01",pTo:"2026-10-31",svcOn:["electric","water","sewer","gas","trash"],theftUse:"14.0",theftNote:"Bypass found at meter W-10442 on Oct 20. Photos taken.",
+  det:{name:"Ben Bennett",street:"418 Pecan St",city:"Brazos Bend",st:"TX",zip:"77461",unit:"Unit B",meter:"W-10442",rFrom:"2026-10-01",rTo:"2026-10-31",tmpl:"std_es"},
+  bPlan:"res",bVer:"res-v4",bTax:"1.5",bCharge:"MTEST",bTmpl:"std_es",run:"R-2610-07",runFilter:"",rFrom:"2026-08-01",rTo:"2026-09-30",wrong:"water_t2",tab:0,ack:false,sent:false,issued:false,fin:false});
+let S=S0();
+function subKey(){return S.sub;}
+function isCust(){return S.opt==="cust";}
+function picked(){return isCust()?S.picked[S.sub].map(i=>BILLS[i]):[];}
+function ensureReason(){ensureRows();}
+
+/* ---------- money aggregates ---------- */
+function custAgg(){
+  const rows=picked().map(b=>({b,...linesFor(b)}));
+  const d=r2(rows.reduce((t,r)=>t+r.t1-r.t0,0));
+  const paid=r2(rows.reduce((t,r)=>t+r.b.paid,0));
+  return {rows,d,paid,t0:r2(rows.reduce((t,r)=>t+r.t0,0)),t1:r2(rows.reduce((t,r)=>t+r.t1,0))};
+}
+function bulkAgg(){const s=BULKSUM[S.sub];const d=r2(s.up[1]+s.down[1]);return {...s,d};}
+
+/* ---------- top: options + sub-options + rail ---------- */
+const STEPS=[["Bills","Which bills"],["Fix","What was wrong"],["Check","What it does"],["Send","Approve and issue"]];
+function choosePanel(){
+  const opts=[["cust","One customer","One bill, or several months on one account"],["bulk","Bulk","A whole billing run, or one price mistake across runs"]]
+    .map(o=>`<button class="opt" type="button" data-opt="${o[0]}" aria-pressed="${S.opt===o[0]}"><strong>${o[1]}</strong><span>${o[2]}</span></button>`).join("");
+  const subs=(isCust()?[["one","One bill"],["many","Several months"]]:[["run","A billing run"],["price","A price mistake"]])
+    .map(s=>`<option value="${s[0]}" ${S.sub===s[0]?"selected":""}>${s[1]}</option>`).join("");
+  return `<section class="panel"><div class="panel-h"><h2>What are you fixing</h2></div>
+    <div class="opts" role="group" aria-label="What are you fixing">${opts}</div>
+    <div class="fields"><div class="f"><label for="f-sub">${isCust()?"Bills on this account":"Which bills"} <span class="req">*</span></label><select id="f-sub">${subs}</select></div></div></section>`;
+}
+function renderTop(){
+  $("#rail").innerHTML=STEPS.map((s,i)=>{const st=S.issued||i<S.step?"done":i===S.step?"current":"todo";
+    return `<button data-go="${i}" data-state="${st}" ${i>S.step||S.issued||(S.sent&&i<3)?"disabled":""} aria-current="${i===S.step?"step":"false"}"><span class="n">${st==="done"?"✓":i+1}</span><span><span class="lbl">${s[0]}</span><span class="hint">${s[1]}</span></span></button>`;}).join("");
+}
+
+/* ---------- STEP 1 · BILLS ---------- */
+function stepBills(){
+  let h=choosePanel();
+  if(isCust()){
+    h+=`<section class="panel"><div class="panel-h"><h2>Customer</h2></div>
+      <div class="f"><label for="f-acct">Find account <span class="req">*</span>${src("customer search")}</label>
+        <div class="combo"><div class="cin"><input id="f-acct" role="combobox" aria-expanded="${S.combo}" aria-controls="acct-list" aria-autocomplete="list" autocomplete="off" value="${S.q}" placeholder="Type to search"><span class="caret" aria-hidden="true">▾</span></div>
+        <ul id="acct-list" role="listbox" aria-label="Accounts" ${S.combo?"":"hidden"}>${comboItems()}</ul></div>
+        <span class="help">Name, account number or address.</span></div>
+      <dl class="acct"><div><dt>Customer</dt><dd>${ACCT.name}</dd></div><div><dt>Account</dt><dd class="num">${ACCT.no}</dd></div><div><dt>Address</dt><dd>${ACCT.addr}</dd></div><div><dt>Plan</dt><dd>${ACCT.plan}</dd></div><div><dt>Status</dt><dd><span class="pill p-ok">${ACCT.status}</span></dd></div><div><dt>Balance</dt><dd class="num">${money(ACCT.bal)}</dd></div><div><dt>Cycle</dt><dd>${ACCT.cycle}</dd></div><div><dt>Last bill</dt><dd class="num">Oct 31, 2026</dd></div></dl></section>`;
+    const sel=S.picked[S.sub], multi=S.sub==="many";
+    const rows=BILLS.map((b,i)=>`<tr class="${sel.includes(i)?"moved":""}"><td><input class="chk" type="${multi?"checkbox":"radio"}" name="pickbill" id="pb-${i}" data-pick="${i}" ${sel.includes(i)?"checked":""} aria-label="Pick ${b.no}"></td><td class="num">${b.no}</td><td class="num">${b.per}</td><td class="r num">${money(b.total)}</td><td class="r num">${money(b.paid)}</td><td><span class="pill ${b.state==="Paid"?"p-ok":"p-info"}">${b.state}</span></td></tr>`).join("");
+    const p=picked();
+    h+=`<section class="panel"><div class="panel-h"><h2>${multi?"Tick the bills to fix":"Pick the bill"}</h2><span class="kicker">${BILLS.length} sent bills${src("GET /corrections/resolve")}</span></div>
+      <div class="tw"><table><thead><tr><th></th><th>Bill</th><th>Period</th><th class="r">Amount</th><th class="r">Paid</th><th>State</th></tr></thead><tbody>${rows}
+      <tr class="tot"><td></td><td colspan="2">${p.length} picked${src("resolve → totals")}</td><td class="r num">${money(r2(p.reduce((t,b)=>t+b.total,0)))}</td><td class="r num">${money(r2(p.reduce((t,b)=>t+b.paid,0)))}</td><td></td></tr></tbody></table></div>
+      <div class="note info">Nov 2026 is a draft. Fix it in its bill run.</div>
+      ${multi?src("several bills in one case",1):""}</section>`;
+  } else if(S.sub==="run"){
+    const run=RUNS.find(r=>r[0]===S.run);
+    h+=`<section class="panel"><div class="panel-h"><h2>Billing run</h2></div><div class="fields">
+      <div class="f span2"><label for="f-run">Run <span class="req">*</span>${src("bill runs")}</label><select id="f-run">${RUNS.map(r=>`<option value="${r[0]}" ${r[0]===S.run?"selected":""}>${r[1]} · ${r[2]} bills</option>`).join("")}</select></div>
+      <div class="f"><label for="f-rf">Only part of it${src("service_code · plan_id")}</label><select id="f-rf"><option value="">The whole run</option><option value="svc:water" ${S.runFilter==="svc:water"?"selected":""}>Only Water</option><option value="svc:sewer" ${S.runFilter==="svc:sewer"?"selected":""}>Only Sewer</option><option value="plan:sc" ${S.runFilter==="plan:sc"?"selected":""}>Only Small Commercial</option></select></div></div></section>`;
+    h+=bulkBillsTable(run[2],run[3],run[4]);
+  } else {
+    h+=`<section class="panel"><div class="panel-h"><h2>The price mistake</h2></div><div class="fields">
+      <div class="f"><label for="f-rfrom">From <span class="req">*</span></label><input id="f-rfrom" type="date" value="${S.rFrom}"></div>
+      <div class="f"><label for="f-rto">To <span class="req">*</span></label><input id="f-rto" type="date" value="${S.rTo}"></div>
+      <div class="f"><label for="f-wrong">What was wrong <span class="req">*</span>${src("rate · tax · charge + dates",1)}</label><select id="f-wrong"><option value="water_t2" ${S.wrong==="water_t2"?"selected":""}>Rate · Water tier 2 ($4.50 / kgal)</option><option value="tax_local" ${S.wrong==="tax_local"?"selected":""}>Tax · Local 2.00%</option><option value="fee_mtest" ${S.wrong==="fee_mtest"?"selected":""}>Charge · Meter test fee</option></select></div>
+      </div><div class="note warn">Fix the price in Plans &amp; Rates first. This finds the bills that used it.</div></section>`;
+    h+=bulkBillsTable(96,18744.90,12850.25);
+  }
+  return h+actions(false,"Continue");
+}
+function bulkBillsTable(n,billed,paid){
+  const rows=BULKROWS[S.sub].map(r=>`<tr><td class="num">${r[0]}</td><td>${r[1]}</td><td class="r num">${money(r[2])}</td><td><span class="pill p-info">Issued</span></td></tr>`).join("");
+  const s=BULKSUM[S.sub];
+  return `<section class="panel"><div class="panel-h"><h2>Bills it covers</h2><span class="kicker">${n} bills · ${s.accts} accounts${src("GET /corrections/resolve · paged")}</span></div>
+   <div class="tw"><table><thead><tr><th>Account</th><th>Customer</th><th class="r">Amount</th><th>State</th></tr></thead><tbody>${rows}
+   <tr class="tot"><td colspan="2">All ${n} bills${src("resolve → totals")}</td><td class="r num">${money(billed)}</td><td class="num">Paid ${money(paid)}</td></tr></tbody></table></div>
+   <span class="muted-s">Showing 8 of ${n}.</span>
+   <div class="note warn"><b>Left out:</b>&nbsp;${s.excluded}.</div></section>`;
+}
+
+/* ---------- STEP 2 · FIX ---------- */
+/* Old bill and new bill: one row per line id, so the two sides line up even when the rate type changes. */
+function cmpRows(pre,fix){
+  const order=[];const seen=new Set();
+  [pre,fix].forEach(B=>B.secs.forEach(s=>{if(!seen.has("s:"+s.id)){seen.add("s:"+s.id);order.push({sec:s.id});}}));
+  const rows=[];
+  order.forEach(({sec})=>{
+    const a=pre.secs.find(s=>s.id===sec), b=fix.secs.find(s=>s.id===sec);
+    rows.push({head:true,sec,title:(a||b).title,ta:a&&a.type,tb:b&&b.type,sa:a?r2(a.lines.reduce((t,l)=>t+l.amt,0)):0,sb:b?r2(b.lines.reduce((t,l)=>t+l.amt,0)):0});
+    const ids=[];[a,b].forEach(s=>s&&s.lines.forEach(l=>{if(!ids.includes(l.id))ids.push(l.id);}));
+    ids.forEach(id=>rows.push({sec,a:a&&a.lines.find(l=>l.id===id),b:b&&b.lines.find(l=>l.id===id)}));
+  });
+  return rows;
+}
+function cell(l){return l?`<td><div>${l.label}</div><div class="muted-s num">${l.qty} × ${l.rt}</div></td><td class="r num">${money(l.amt)}</td>`:`<td class="muted-s">—</td><td class="r num muted-s">—</td>`;}
+function side(B,rows,which,other){
+  const tx=B.taxes, ox=other.taxes;
+  return `<table class="cmp"><tbody>${rows.map(r=>{
+    if(r.head){const t=which==="a"?r.ta:r.tb, s=which==="a"?r.sa:r.sb, typeMoved=r.ta!==r.tb;
+      return `<tr class="grp"><td>${r.sec in SVCNAME?`<span class="svc">${dot(r.sec)}${r.title}</span>`:r.title} ${t?`<span class="pill ${typeMoved&&which==="b"?"p-warn":"p-off"}">${t}</span>`:""}</td><td class="r num">${money(s)}</td></tr>`;}
+    const l=r[which], o=r[which==="a"?"b":"a"], moved=!l||!o||l.amt!==o.amt||l.qty!==o.qty||l.rt!==o.rt;
+    return `<tr class="${moved&&which==="b"?"moved":""}">${cell(l)}</tr>`;}).join("")}
+    <tr class="grp"><td>Subtotal</td><td class="r num">${money(B.sub)}</td></tr>
+    <tr class="grp"><td>Taxes</td><td class="r num">${money(B.tax)}</td></tr>
+    ${tx.map((x,i)=>`<tr class="${which==="b"&&x.amt!==ox[i].amt?"moved":""}"><td><div>${x.label}</div><div class="muted-s num">${x.rt} ${x.qty}</div></td><td class="r num">${money(x.amt)}</td></tr>`).join("")}
+    <tr class="tot"><td>Total</td><td class="r num">${money(B.total)}</td></tr></tbody></table>`;
+}
+function sideBySide(){
+  const A=custAgg(); const i=Math.min(S.tab,A.rows.length-1); const r=A.rows[i];
+  const tabs=A.rows.length>1?`<div class="tabs" role="tablist">${A.rows.map((x,j)=>`<button role="tab" data-tab="${j}" aria-selected="${j===i}">${x.b.m} · <span class="${cls(r2(x.t1-x.t0))}">${signed(r2(x.t1-x.t0))}</span></button>`).join("")}</div>`:"";
+  const k=curK(), d=r2(r.t1-r.t0);
+  let right;
+  if(k==="C") right=`<div class="billcard new"><div class="bh"><b>Credit note</b><span class="kicker">New</span></div><table><tbody><tr><td>Goodwill credit · ${r.b.no}</td><td class="r num">${money(-r.good)}</td></tr><tr class="tot"><td>Bill now owes</td><td class="r num">${money(r.t1)}</td></tr></tbody></table></div>`;
+  else { const rows=cmpRows(r.pre,r.fix);
+    right=`<div class="billcard new"><div class="bh"><b>${k==="D"?"Reissued":"Corrected"} bill</b><span class="kicker">${k==="R"?planLabel(r.vid):"Same amounts"}</span></div>${side(r.fix,rows,"b",r.pre)}</div>`;
+    return `<section class="panel"><div class="panel-h"><h2>Old bill and new bill</h2><span class="kicker">${A.rows.length} bill${A.rows.length>1?"s":""} · every line${src("the_lines · the_money")}</span></div>${tabs}
+    <div class="sbs"><div class="billcard"><div class="bh"><b>${r.b.no}</b><span class="kicker">${planLabel(BILLED_VER)}</span></div>${side(r.pre,rows,"a",r.fix)}</div>${right}</div>${changeNote(d,A)}</section>`; }
+  return `<section class="panel"><div class="panel-h"><h2>Old bill and credit</h2><span class="kicker">${src("the_money")}</span></div>${tabs}
+    <div class="sbs"><div class="billcard"><div class="bh"><b>${r.b.no}</b><span class="kicker">${planLabel(BILLED_VER)}</span></div>${side(r.pre,cmpRows(r.pre,r.pre),"a",r.pre)}</div>${right}</div>${changeNote(d,A)}</section>`;
+}
+const planLabel=v=>{const P=PLANS.find(p=>p.vers.some(x=>x[0]===v));const V=P.vers.find(x=>x[0]===v);return `${P.name} · ${V[1]}`;};
+const changeNote=(d,A)=>`<div class="note ${d>0?"warn":"ok"}"><b>This bill ${d>0?"rises":d<0?"drops":"stays the same"}${d!==0?" by "+money(Math.abs(d)):""}.</b>${A.rows.length>1?`&nbsp;All ${A.rows.length} bills: ${signed(A.d)}.`:""}</div>`;
+function bulkResult(){
+  const s=bulkAgg();
+  const rows=BULKROWS[S.sub].map(r=>{const d=r2(r[3]-r[2]);return `<tr class="${d?"moved":""}"><td class="num">${r[0]}</td><td>${r[1]}</td><td class="r num">${money(r[2])}</td><td class="r num">${money(r[3])}</td><td class="r num ${cls(d)}">${signed(d)}</td></tr>`;}).join("");
+  return `<section class="panel"><div class="panel-h"><h2>Each bill, was and becomes</h2><span class="kicker">${s.bills} bills${src("bulk case rows")}</span></div>
+   <div class="tiles"><div class="tile"><span>Going up</span><b class="num up">${s.up[0]} · ${signed(s.up[1])}</b><small>Customers owe more</small></div><div class="tile"><span>Going down</span><b class="num down">${s.down[0]} · ${signed(s.down[1])}</b><small>Customers owe less</small></div><div class="tile"><span>No change</span><b class="num">${s.same}</b><small>Left as they are</small></div></div>
+   <span class="muted-s">Up and down are never added together.${src("bulk aggregate")}</span>
+   <div class="tw"><table><thead><tr><th>Account</th><th>Customer</th><th class="r">Was</th><th class="r">Becomes</th><th class="r">Change</th></tr></thead><tbody>${rows}</tbody></table></div><span class="muted-s">Showing 8 of ${s.bills}.</span></section>`;
+}
+
+/* ---------- STEP 3 · CHECK ---------- */
+function stepCheck(){
+  const k=curK(); let h="";
+  if(isCust()){
+    const A=custAgg(); const unpaid=r2(A.rows.reduce((t,r)=>t+(r.b.paid?0:r.t1),0)); const paidD=r2(A.rows.reduce((t,r)=>t+(r.b.paid?r.t1-r.t0:0),0));
+    const owe=r2(ACCT.bal+A.d), refund=paidD<0;
+    h+=`<section class="panel"><div class="panel-h"><h2>For ${ACCT.name}</h2></div><div class="says">
+      <div class="say"><span>Owes now${src("the_customers_balance")}</span><b class="num">${money(ACCT.bal)} → ${money(owe)}</b></div>
+      <div class="say"><span>Refund${src("settlement")}</span><b>${refund?"No. "+money(-paidD)+" comes off the next bill.":"No"}</b></div>
+      <div class="say"><span>They receive${src("documents · channels")}</span><b>${k==="R"?A.rows.length+" credit note"+(A.rows.length>1?"s":"")+" + "+A.rows.length+" new bill"+(A.rows.length>1?"s":""):k==="C"?"1 credit note":A.rows.length+" reissued bill"+(A.rows.length>1?"s":"")} · by post</b></div>
+      <div class="say"><span>New due date${src("due date",1)}</span><b class="num">${k==="R"&&unpaid?"Nov 21, 2026":"Unchanged"}</b></div></div>
+      ${A.d>0?'<div class="note warn"><b>This asks the customer for more.</b></div>':""}</section>`;
+    h+=`<section class="panel"><div class="panel-h"><h2>Existing bills</h2><span class="kicker">Never edited</span></div><div class="tw"><table><thead><tr><th>Bill</th><th>Becomes</th><th class="r">Paid</th><th class="r">Moves to new bill</th><th class="r">Still owed</th></tr></thead><tbody>
+      ${A.rows.map(r=>{const takes=Math.min(r.b.paid,r.t1);return `<tr><td class="num">${r.b.no}</td><td>${k==="R"?'<span class="pill p-off">Corrected</span> → new bill':k==="C"?'<span class="pill p-ok">Credited</span>':'<span class="pill p-off">Reissued</span>'}</td><td class="r num">${money(r.b.paid)}</td><td class="r num">${k==="R"?money(takes):"—"}</td><td class="r num">${money(r2(r.t1-takes))}</td></tr>`;}).join("")}
+      </tbody></table></div><span class="muted-s">${src("settlement → paid_to_date · replacement_takes · returns_to_credit · still_owed")} ${src("late fees on the old bill",1)}</span></section>`;
+    const acc={};const add=(n,v)=>{acc[n]=r2((acc[n]||0)+v);};
+    if(k==="R") A.rows.forEach(r=>{const ss=(B,id)=>{const x=B.secs.find(q=>q.id===id);return x?x.lines.reduce((t,l)=>t+l.amt,0):0;};
+      ["electric","water","sewer","gas","trash"].forEach(id=>add(SVCNAME[id]+" revenue",ss(r.fix,id)-ss(r.pre,id)));add("Fee revenue (charge codes)",ss(r.fix,"charges")-ss(r.pre,"charges"));add("Discounts given",ss(r.fix,"disc")-ss(r.pre,"disc"));add("Customer deposits held (liability)",ss(r.fix,"dep")-ss(r.pre,"dep"));
+      r.fix.taxes.forEach((x,i)=>add(x.label+" payable",x.amt-r.pre.taxes[i].amt));});
+    if(k==="C") add("Concessions (goodwill)",A.d);
+    h+=financePanel(k,A.rows.map(r=>({no:r.b.no,post:r.b.post,d:r2(r.t1-r.t0),t0:r.t0,t1:r.t1,tax:r2(r.tax1-r.tax0)})),Object.entries(acc));
+  } else {
+    const s=bulkAgg();
+    h+=`<section class="panel"><div class="panel-h"><h2>For the customers</h2></div><div class="says">
+      <div class="say"><span>Owe more</span><b class="num up">${s.up[0]} customers · ${signed(s.up[1])}</b></div>
+      <div class="say"><span>Owe less</span><b class="num down">${s.down[0]} customers · ${signed(s.down[1])}</b></div>
+      <div class="say"><span>Refunds${src("settlement, per bill")}</span><b>None. Credit comes off the next bill.</b></div>
+      <div class="say"><span>They receive</span><b>${s.bills-s.same} credit notes + ${s.bills-s.same} new bills · by post</b></div></div></section>
+     <section class="panel"><div class="panel-h"><h2>Existing bills</h2><span class="kicker">Never edited</span></div><div class="says">
+      <div class="say"><span>Credited and replaced</span><b class="num">${s.bills-s.same}</b></div><div class="say"><span>Left as they are</span><b class="num">${s.same}</b></div>
+      <div class="say"><span>Payments moved to new bills</span><b class="num">${money(S.sub==="run"?2014.60:7421.15)}</b></div></div></section>`;
+    const n=s.bills-s.same, t0=S.sub==="run"?8901.30:15420.70;
+    h+=financePanel("R",[{no:"All "+n+" bills",post:s.posts,d:s.d,t0,t1:r2(t0+s.d),tax:r2(s.d*0.0196)}]);
+  }
+  return h+actions(true,"Continue");
+}
+function financePanel(k,rows,brk){
+  const open=S.role==="appr"||S.fin;
+  const d=r2(rows.reduce((t,r)=>t+r.d,0)), t0=r2(rows.reduce((t,r)=>t+r.t0,0)), t1=r2(rows.reduce((t,r)=>t+r.t1,0)), tx=r2(rows.reduce((t,r)=>t+r.tax,0));
+  const water=r2((d-tx)*0.963), sewer=r2(d-tx-water);
+  let body;
+  if(k==="D") body=`<div class="note ok">Nothing posts. The amounts do not change.</div>`;
+  else body=`<div class="tw"><table><thead><tr><th>Entry</th><th>Debit</th><th>Credit</th><th class="r">Amount</th></tr></thead><tbody>
+     <tr><td>${k==="C"?"Credit note":"Credit notes"}</td><td>${k==="C"?"Concessions":"Revenue and tax"}</td><td>Accounts receivable</td><td class="r num">${money(k==="C"?-d:t0)}</td></tr>
+     ${k==="R"?`<tr><td>New bills</td><td>Accounts receivable</td><td>Revenue and tax</td><td class="r num">${money(t1)}</td></tr>`:""}
+     <tr class="tot"><td colspan="3">Net to the books</td><td class="r num ${cls(d)}">${signed(d)}</td></tr></tbody></table></div>
+     ${k!=="D"?`<div class="tw"><table><thead><tr><th>Account</th><th class="r">Change</th></tr></thead><tbody>${(brk||[["Water revenue",water],["Sewer revenue",sewer],["Local utility tax payable",tx]]).map(([n,v])=>`<tr class="${v?"":"muted"}"><td>${n}</td><td class="r num ${cls(v)}">${signed(v)}</td></tr>`).join("")}<tr class="tot"><td>Accounts receivable</td><td class="r num">${signed(d)}</td></tr></tbody></table></div>`:""}
+     <div class="tw"><table><thead><tr><th>Bill</th><th>Posts in${src("posting_period · per bill",1)}</th><th class="r">Change</th></tr></thead><tbody>${rows.map(r=>`<tr><td class="num">${r.no}</td><td>${r.post}${/Sep 2026/.test(r.post)&&/Jul|Aug/.test(r.no+"")?"":""}</td><td class="r num ${cls(r.d)}">${signed(r.d)}</td></tr>`).join("")}</tbody></table></div>
+     <span class="muted-s">Books closed through Aug 2026. Earlier bills post in Sep 2026.</span>`;
+  return `<details class="panel" id="finp" ${open?"open":""}><summary><h2>For finance</h2><span style="display:flex;gap:12px;align-items:center"><span class="kicker">Net ${signed(d)}${src("the_ledger_handoff · tax_by_authority")}</span><span class="chev" aria-hidden="true">▾</span></span></summary>${body}</details>`;
+}
+
+/* ---------- STEP 4 · SEND ---------- */
+function stepSend(){
+  const k=curK(), cust=isCust();
+  const A=cust?custAgg():null, B=cust?null:bulkAgg();
+  const d=cust?A.d:B.d, n=cust?A.rows.length:B.bills-B.same;
+  const who=cust?`${ACCT.name} · ${ACCT.no}`:(S.sub==="run"?RUNS.find(r=>r[0]===S.run)[1]:"Water tier 2 · Aug 1 – Sep 30, 2026");
+  if(S.issued){
+    const nos=cust?A.rows.map((r,i)=>`<div class="row"><span>${r.b.no}</span><b class="num">${k==="D"?"Reissued":"CN-2610-00"+(41+i)+(k==="R"?" · BL-2610-00"+(118+i):"")}</b></div>`).join(""):`<div class="row"><span>Done</span><b class="num">${n}</b></div><div class="row"><span>Failed</span><b class="num">0</b></div><div class="row"><span>Already done</span><b class="num">0</b></div>`;
+    return `<section class="panel done"><div class="check" aria-hidden="true">✓</div><h2>${n} bill${n>1?"s":""} corrected</h2>
+      <div class="sum" style="width:100%;max-width:460px">${nos}<div class="row"><span>Net change</span><b class="num ${cls(d)}">${signed(d)}</b></div><div class="row"><span>Case</span><b class="num">FX-2610-0012</b></div></div>
+      <span class="muted-s">${src("/execute → succeeded · failed · skipped_already_done")}</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" type="button">View ${cust?"account":"case"}</button><button class="btn" id="again" type="button">Fix another bill</button></div></section>`;
+  }
+  const card=`<div class="panel-h"><div><div class="kicker">${cust?"One customer":"Bulk"} · ${reasonsText()}</div><h2 style="margin-top:4px">${who}</h2></div>
+      <div style="text-align:right"><div class="kicker">Net change</div><div class="big num ${cls(d)}">${signed(d)}</div><div class="muted-s">${n} bill${n>1?"s":""}</div></div></div>`;
+  if(S.sent&&S.role==="clerk") return `<section class="panel">${card}<div class="note info"><b>Waiting for approval.</b>&nbsp;Sent to Finance manager · R. Chen.${src("the_gate → approver_role",0)} ${src("approver name",1)}</div>
+    <span class="muted-s">Switch to Approver above to continue.</span><div class="actions"><span></span><div class="right"><button class="btn" id="abandon" type="button">Close without correcting</button></div></div></section>`;
+  if(S.role==="appr"&&S.sent) return `<section class="panel">${card}<div class="note info">Sent by Dana Whitfield · Oct 12, 2026.${src("initiated_by")}</div>
+    <div class="note warn">If any figure changes before you approve, the preview is refused and made again.</div>
+    <div class="actions"><button class="btn" data-back type="button">Back</button><div class="right"><button class="btn" id="abandon" type="button">Send back</button><button class="btn danger" id="approve" type="button">Approve and issue</button></div></div><span class="muted-s">${src("POST /approve → /execute")}</span></section>`;
+  if(S.role==="appr") return `<section class="panel">${card}<div class="note info">Nothing has been sent for approval yet.</div></section>`;
+  return `<section class="panel">${card}
+    <div class="tw"><table><tbody><tr><td>What was wrong</td><td class="r">${reasonsText()}</td></tr><tr><td>What happens</td><td class="r">${KLASS[k][0]}</td></tr><tr><td>Approver</td><td class="r">Finance manager</td></tr><tr><td>Sent by post</td><td class="r num">${k==="C"?1:n*(k==="R"?2:1)} documents</td></tr></tbody></table></div>
+    <div class="note bad"><b>Nothing is saved until you send it.</b></div>
+    <label class="ack"><input type="checkbox" id="ack" ${S.ack?"checked":""}> I checked the amounts</label>
+    <div class="actions"><button class="btn" data-back type="button">Back</button><div class="right"><button class="btn danger" id="send" type="button" ${S.ack?"":"disabled"}>Send for approval</button></div></div>
+    <span class="muted-s">${src("POST /corrections · moved here from step 1",1)}</span></section>`;
+}
+function actions(back,label){return `<div class="actions">${back?'<button class="btn" data-back type="button">Back</button>':"<span></span>"}<div class="right"><button class="btn primary" data-next type="button">${label}</button></div></div>`;}
+
+/* ---------- summary ---------- */
+function renderSummary(){
+  const cust=isCust(), k=REASONS[S.reason].k;
+  let d,n,acc;
+  if(cust){const A=custAgg();d=A.d;n=A.rows.length;acc=1;}else{const B=bulkAgg();d=B.d;n=B.bills;acc=B.accts;}
+  const state=S.issued?'<span class="pill p-ok">Done</span>':S.sent?'<span class="pill p-info">Waiting for approval</span>':'<span class="pill p-off">Not saved</span>';
+  const subT={one:"One bill",many:"Several months",run:"A billing run",price:"A price mistake"}[S.sub];
+  $("#summary").innerHTML=`<div class="kicker">${cust?"One customer":"Bulk"} · ${subT}</div>
+   <div class="big num ${S.step>0?cls(d):""}">${S.step>0?signed(d):"—"}</div><div class="muted-s">${S.step>0?"Net change":"Pick a reason to see the change"}</div>
+   ${!cust&&S.step>0?`<div class="sum"><div class="row"><span>Going up</span><span class="num up">${bulkAgg().up[0]} · ${signed(bulkAgg().up[1])}</span></div><div class="row"><span>Going down</span><span class="num down">${bulkAgg().down[0]} · ${signed(bulkAgg().down[1])}</span></div></div>`:""}
+   <div class="hr"></div><div class="sum"><div class="row"><span>Bills</span><span class="num">${n}</span></div><div class="row"><span>Accounts</span><span class="num">${acc}</span></div>
+   ${S.step>0?`<div class="row"><span>Reason</span><span>${REASONS[S.reason].t}</span></div><div class="row"><span>What happens</span><span>${KLASS[k][0]}</span></div>`:""}</div>
+   <div class="hr"></div><div class="sum"><div class="row"><span>Case</span>${state}</div></div>`;
+}
+
+/* ---------- render ---------- */
+function render(){
+  ensureReason(); renderTop();
+  $("#main").innerHTML=[stepBills,stepFix,stepCheck,stepSend][S.step]();
+  $("#r-clerk").setAttribute("aria-pressed",S.role==="clerk");$("#r-appr").setAttribute("aria-pressed",S.role==="appr");
+}
+document.addEventListener("click",e=>{
+  const t=e.target.closest("button");
+  if(!t)return;
+  if(t.dataset.opt&&S.step===0){S.opt=t.dataset.opt;S.sub=S.opt==="cust"?"one":"run";S.tab=0;render();}
+  else if(t.dataset.sub&&S.step===0){S.sub=t.dataset.sub;S.tab=0;render();}
+  else if(t.dataset.go!==undefined){S.step=+t.dataset.go;render();}
+  else if(t.dataset.tab!==undefined){S.tab=+t.dataset.tab;render();}
+  else if(t.hasAttribute("data-next")){S.step=Math.min(3,S.step+1);render();scrollTo({top:0});}
+  else if(t.hasAttribute("data-back")){S.step=Math.max(0,S.step-1);render();}
+  else if(t.id==="c-add"){S.corr.push(newRow(ALLOWED[subKey()].includes("missed")?"missed":ALLOWED[subKey()][0]));ensureRows();render();}
+  else if(t.dataset.cdel){if(S.corr.length>1)S.corr=S.corr.filter(x=>x.id!==t.dataset.cdel);ensureRows();render();}
+  else if(t.id==="send"){S.sent=true;render();}
+  else if(t.id==="approve"){S.issued=true;render();}
+  else if(t.id==="abandon"||t.id==="again"||t.id==="restart"){const role=S.role;S=S0();S.role=role;ACCT=ACCTS[0];render();}
+  else if(t.id==="r-clerk"){S.role="clerk";render();}
+  else if(t.id==="r-appr"){S.role="appr";if(S.sent)S.step=3;render();}
+  else if(t.id==="mapbtn"){const on=!document.body.classList.contains("map");document.body.classList.toggle("map",on);t.setAttribute("aria-pressed",on);}
+});
+document.addEventListener("change",e=>{
+  const t=e.target;
+  if(t.dataset.pick!==undefined){const i=+t.dataset.pick;const a=S.picked[S.sub];
+    if(S.sub==="one")S.picked.one=[i];else{const j=a.indexOf(i);if(j>=0){if(a.length>1)a.splice(j,1);}else a.push(i);a.sort();}S.tab=0;render();}
+  else if(t.id&&t.id.startsWith("c-type-")){const r=S.corr.find(x=>x.id===t.id.slice(7));const n=newRow(t.value);Object.assign(r,{...n,id:r.id});ensureRows();render();}
+  else if(t.id&&t.id.startsWith("c-val2-")){S.corr.find(x=>x.id===t.id.slice(7)).val2=t.value;render();}
+  else if(t.id&&t.id.startsWith("c-item-")){const r=S.corr.find(x=>x.id===t.id.slice(7));r.item=t.value;if(r.reason==="wrong_rate"){const P=PLANS.find(p=>p.id===t.value);r.val=P.vers[P.vers.length-1][0];}if(r.reason==="wrong_tax")r.val=TAXSET[t.value][1][1]?TAXSET[t.value][1][1][0]:TAXSET[t.value][1][0][0];if(r.reason==="sched")r.val=BILLED_VER;if(r.reason==="period"&&t.value==="dates"){r.val="2026-10-01";r.val2="2026-10-20";}render();}
+  else if(t.id&&t.id.startsWith("c-val-")){S.corr.find(x=>x.id===t.id.slice(6)).val=t.value;render();}
+  else if(t.id&&t.id.startsWith("c-act-")){S.corr.find(x=>x.id===t.id.slice(6)).act=t.value;render();}
+  else if(t.dataset.cbill){const [id,i]=t.dataset.cbill.split(":");const r=S.corr.find(x=>x.id===id);const all=picked().map(b=>BILLS.indexOf(b));let a=r.bills===null?all.slice():r.bills.slice();const j=a.indexOf(+i);if(j>=0){if(a.length>1)a.splice(j,1);}else a.push(+i);r.bills=a.length===all.length?null:a.sort();render();}
+  else if(t.dataset.tax){S.taxes[t.dataset.tax]=t.value;render();}
+  else if(t.id==="f-plan"||t.id==="b-plan"){const c=t.id==="f-plan";const P=PLANS.find(p=>p.id===t.value);S[c?"plan":"bPlan"]=t.value;S[c?"ver":"bVer"]=P.vers[P.vers.length-1][0];render();}
+  else if(t.dataset.rm!==undefined){const i=t.dataset.rm,a=S.remove,j=a.indexOf(i);if(j>=0)a.splice(j,1);else a.push(i);render();}
+  else if(t.dataset.svc){const a=S.svcOn,j=a.indexOf(t.dataset.svc);if(j>=0){if(a.length>1)a.splice(j,1);}else a.push(t.dataset.svc);render();}
+  else if(t.dataset.det){S.det[t.dataset.det]=t.value;render();}
+  else if(["f-ver","f-charge","f-qty","f-pfrom","f-pto","f-theft"].includes(t.id)){const m={"f-ver":"ver","f-charge":"charge","f-qty":"chQty","f-pfrom":"pFrom","f-pto":"pTo","f-theft":"theftUse"};S[m[t.id]]=t.value;render();}
+  else if(["b-ver","b-tax","b-charge","b-tmpl"].includes(t.id)){const m={"b-ver":"bVer","b-tax":"bTax","b-charge":"bCharge","b-tmpl":"bTmpl"};S[m[t.id]]=t.value;}
+  else if(t.id==="f-tnote"){S.theftNote=t.value;}
+  else if(t.id==="f-sub"){S.sub=t.value;S.tab=0;render();}
+  else if(t.id==="f-reason"){setReason(t.value);S.tab=0;render();}
+  else if(t.id==="f-run"){S.run=t.value;render();}
+  else if(t.id==="f-rf"){S.runFilter=t.value;}
+  else if(t.id==="f-wrong"){S.wrong=t.value;}
+  else if(t.id==="ack"){S.ack=t.checked;const b=$("#send");if(b)b.disabled=!S.ack;}
+  else if(t.id==="f-read"){S.read=t.value;render();}
+  else if(t.id==="f-good"){S.good=t.value;render();}
+});
+document.addEventListener("input",e=>{if(e.target.id==="f-acct"){S.q=e.target.value;S.combo=true;S.hi=0;refreshCombo();}});
+document.addEventListener("focusin",e=>{if(e.target.id==="f-acct"){S.q="";e.target.value="";S.combo=true;S.hi=0;refreshCombo();}});
+document.addEventListener("focusout",e=>{if(e.target.id==="f-acct")setTimeout(()=>{if(document.activeElement&&document.activeElement.id==="f-acct")return;if(S.combo){S.combo=false;S.q=`${ACCT.name} · ${ACCT.no}`;const i=$("#f-acct");if(i)i.value=S.q;refreshCombo();}},150);});
+document.addEventListener("mousedown",e=>{const li=e.target.closest("#acct-list li[data-acct]");if(li){e.preventDefault();pickAcct(+li.dataset.acct);}});
+document.addEventListener("keydown",e=>{if(e.target.id!=="f-acct")return;const n=matches().length;
+  if(e.key==="ArrowDown"){e.preventDefault();S.combo=true;S.hi=Math.min(n-1,S.hi+1);refreshCombo();}
+  else if(e.key==="ArrowUp"){e.preventDefault();S.hi=Math.max(0,S.hi-1);refreshCombo();}
+  else if(e.key==="Enter"&&S.combo&&n){e.preventDefault();pickAcct(ACCTS.indexOf(matches()[S.hi]));}
+  else if(e.key==="Escape"){S.combo=false;refreshCombo();}});
+document.addEventListener("toggle",e=>{if(e.target.id==="finp"&&S.role==="clerk")S.fin=e.target.open;},true);
+render();
+})();
+</script>

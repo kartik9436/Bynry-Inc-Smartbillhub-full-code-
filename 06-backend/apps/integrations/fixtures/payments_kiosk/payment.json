@@ -1,0 +1,13 @@
+{
+  "eventId": "K-88231",
+  "eventType": "payment",
+  "kioskId": "KSK-014",
+  "accountNumber": "ACC-1048",
+  "amount": "42.10",
+  "currency": "USD",
+  "tender": "CASH",
+  "takenAt": "2026-09-03T14:02:11-05:00",
+  "settledAt": "2026-09-03T14:02:11-05:00",
+  "riskFlag": "review",
+  "receiptNumber": "R-2026-0903-0147"
+}

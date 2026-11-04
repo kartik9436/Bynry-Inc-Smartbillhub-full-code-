@@ -1,0 +1,8 @@
+AC-2026-00054 (Rosa Delgado, move-in W3) sms_reminders = true (ticked in the move-in wizard)
+          created_at           |       template_code       | channel | recipient_address | reason | status |  account_no   
+-------------------------------+---------------------------+---------+-------------------+--------+--------+---------------
+ 2026-10-05 02:32:41.397237+00 | sms_visit_booked          | sms     | +1 512 555 0142   | -      | queued | AC-2026-00054
+ 2026-10-05 02:33:03.468494+00 | sms_technician_on_the_way | sms     | +1 512 555 0142   | -      | queued | AC-2026-00054
+ 2026-10-05 02:34:53.10787+00  | transfer_field_visit_sms  | sms     | +1 512 555 0177   | -      | queued | AC-2026-00003
+(3 rows)
+

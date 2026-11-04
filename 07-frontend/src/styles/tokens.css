@@ -1,0 +1,405 @@
+/* ── Webfont ────────────────────────────────────────────────────────────────
+ * THE FONT WAS NEVER LOADED. Both this file and 05-prototype/styles.css name
+ * "Archivo" as --font-heading and --font-body, and only the prototype ever
+ * fetched it — so every screen in the application has rendered in system-ui
+ * since the shell was built, which is exactly the difference the PO saw
+ * (2026-08-10: "font in Prototype and font in application is different").
+ *
+ * The comment below this block has said "Webfont loading (Archivo) is decided
+ * with the AppShell story packet" since W0. It was decided by nobody until the
+ * PO ratified Archivo on 2026-10-20 ("our style's font", OQ-272 (a)). Same
+ * shape as the unpassed shell props found the same day: a gap recorded in a
+ * comment, never scheduled, invisible until someone looked at the product.
+ *
+ * This is the design system's own line, copied from 05-prototype/styles.css.
+ * `display=swap` renders in the fallback immediately and swaps when Archivo
+ * arrives, so a slow font never blanks the page.
+ *
+ * FOLLOW-UP, not done here, and still OQ-272 (b): self-host the woff2 files. A Google Fonts request
+ * is a third-party dependency on every page load and a privacy consideration
+ * for a utility's staff data; self-hosting removes both. It needs the files
+ * fetched and committed, which this environment's network policy blocks.
+ * ────────────────────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=swap');
+
+/* ── Trace ─────────────────────────────────────────────────────────────────
+ * Design tokens (FI-05, B13 §2) — PORTED, NOT INVENTED, from the signed
+ * prototype reference:
+ *   05-prototype/styles.css            (":root" token sheet — "Modernist")
+ *   05-prototype/UtilityBilling.html   (inline <style>: service dot colors)
+ * Values only; the prototype's runtime/JS/layout is never ported (CLAUDE.md law).
+ * Retune tokens in the prototype first, then re-port here.
+ * ──────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ── Core surface & ink (styles.css :root, top block) ─────────────────── */
+  --color-bg: #f3f2f2;
+  --color-surface: #eae9e9;
+  --color-text: #201e1d;
+  --color-accent: #ec3013;
+  --color-accent-2: #e15b47;
+  --color-divider: color-mix(in srgb, #201e1d 40%, transparent);
+
+  /* ── Neutral ramp (styles.css "Tonal ramps" — OKLCH, shared lightness) ── */
+  --color-neutral-100: #f8f4f4;
+  --color-neutral-200: #eae7e7;
+  --color-neutral-300: #d7d3d3;
+  --color-neutral-400: #bab6b6;
+  --color-neutral-500: #9b9797;
+  --color-neutral-600: #6b6767; /* Group A F-01, PO/QA 2026-10-23: was #7d7979 (4.30 on white); 5.58 on white, 5.00 on #f3f2f2 */
+  --color-neutral-700: #605d5d;
+  --color-neutral-800: #444141;
+  --color-neutral-900: #2d2b2b;
+
+  /* Group A F-09 (PO/QA 2026-10-23): the 3:1 grey for a non-text boundary.
+     3.50 on white, 3.14 on #f3f2f2. Used by the border of an input, select
+     or textarea, and (Group A decision 4) the future step's circle and last
+     year's chart bar — NOTHING else. Dividers and card lines stay
+     --color-neutral-300 #d7d3d3. */
+  --color-field-border: #8c8888;
+  /* Group A decision 6 (PO/QA 2026-10-23): the fill of a staff input,
+     select or textarea — white, so the field border reads 3.50 (it read
+     2.89 on --color-surface #eae9e9). */
+  --color-field-fill: #ffffff;
+  /* Text on an accent-filled surface (rest, hover, pressed). On staff
+     screens, the ink the contrast rule picks for the stock accent ramp
+     (Group A decision 7): black on #ec3013 (5.00), white on #dd2b0f (4.74)
+     and #ae1800 (7.17) — lib/contrast.ts STOCK_ACCENT_INKS. The portal
+     frame sets each one for the utility's own colour (GuestFrame.tsx
+     brandStyle, Group A ruling 3(a)). */
+  --color-on-accent: #000000;
+  --color-on-accent-600: #ffffff;
+  --color-on-accent-700: #ffffff;
+  /* Brand-coloured TEXT (Group A decision 2). The accent itself on staff
+     screens; the portal frame sets the brand's darkened text shade
+     (#EC3013 -> #D02A11, 5.22 on white, 4.67 on #f3f2f2). */
+  --color-accent-text: var(--color-accent);
+
+  /* ── Accent ramp (styles.css) ─────────────────────────────────────────── */
+  --color-accent-100: #fff2ef;
+  --color-accent-200: #ffe0d9;
+  --color-accent-300: #ffc4b8;
+  --color-accent-400: #ff9783;
+  --color-accent-500: #ff563c;
+  --color-accent-600: #dd2b0f;
+  --color-accent-700: #ae1800;
+  --color-accent-800: #7c1405;
+  --color-accent-900: #4d170e;
+
+  /* ── Accent-2 ramp (styles.css) ───────────────────────────────────────── */
+  --color-accent-2-100: #fff2ef;
+  --color-accent-2-200: #ffe0da;
+  --color-accent-2-300: #ffc4b9;
+  --color-accent-2-400: #ff9784;
+  --color-accent-2-500: #ef6853;
+  --color-accent-2-600: #c94b39;
+  --color-accent-2-700: #9e3526;
+  --color-accent-2-800: #71261b;
+  --color-accent-2-900: #471d16;
+
+  /* ── Semantic status colors (styles.css "Semantic colors", 2026-08-07) ──
+     Status meaning ONLY (success / warning / danger — StatusPill FE-10),
+     never decoration. */
+  --color-success-100: #e6f4ec;
+  --color-success-500: #1f9d57;
+  --color-success-700: #0f6e3a;
+  --color-warning-100: #fdf0d8;
+  --color-warning-500: #e08a1e;
+  --color-warning-700: #a65d0a;
+  --color-danger-100: #fde4df;
+  --color-danger-500: #e0341a;
+  --color-danger-700: #a81600;
+  /* ── INFO — the fifth semantic status, added 2026-08-26 for DEF-722 ──────
+     PO ruling 2026-08-26, verbatim: *"have differnt color for diff pill - you
+     can define colors - recommendation: A"*. BR-CUS-055 seeds SIX account
+     statuses and `StatusPill` had FOUR tones, so two statuses had to share a
+     colour; option A is one colour per status.
+
+     Five of the six are servable from the tokens that already exist (green /
+     amber / red / pale grey / solid grey). The SIXTH is not: `Vacation hold`
+     means *paused at the customer's request, nothing is wrong* and every
+     remaining ramp in this file — accent #ec3013, accent-2 #ef6853 — is a
+     red-orange that reads as an alarm. A cool hue is the missing meaning, not
+     a preference, which is why this is a new token rather than a reuse.
+     ⚠ It is deliberately NOT one of the ten `--color-service-*` blues below.
+     Those are a DIFFERENT vocabulary (which service, not what state), they
+     render as saturated letter badges beside these pills on S17, and A12's
+     rule is that a semantic token carries status meaning only.
+     Contrast measured, not assumed: #1d4ea8 on #e6eefb is 6.64:1 — above
+     WCAG AA 4.5 and inside the band the existing four already occupy
+     (warning 4.45 · neutral 5.30 · success 5.59 · danger 6.24).
+     ⚠ NO `--color-info-500`. The other three ramps carry one because a 500 is
+     rendered somewhere; nothing renders this one, and a token that exists so
+     the set looks tidy is a value no gate has ever proved (hard-won law 1). */
+  --color-info-100: #e6eefb;
+  --color-info-700: #1d4ea8;
+
+  /* ── Service colors — TEN, one per service, IN SEED ORDER ────────────────
+     One fixed dot colour per utility service, used by service tags/chips
+     (`.rating-tag.svc-*` in features/rating/PlansRates.css).
+
+     SIX are r9's, ported from `UtilityBilling.html`'s inline <style>.
+     FOUR are new — OQ-273 RULED 2026-08-20 (decision log, commit 4e78da4).
+     The PO put the gap to Claude Design and ruled on the answer, verbatim:
+     *"you can take the color codes and apply to our services"*. So the four
+     HUES are the proposal's and the ASSIGNMENTS are ours, because three of the
+     four services it named (`reclaimed`, `irrigation`, a SECOND `broadband`)
+     are not services this product sells and three of ours were not in it.
+
+     ⚠ `broadband` KEEPS #6b3d8a. The proposal renamed it "bundle" — not a
+     service — and minted a second broadband at #a8256b; that hex goes to
+     thermal_heat instead. NO SERVICE GETS TWO COLOURS.
+
+     ⚠ SOLAR IS THE WEAKEST FIT AND IS RECORDED AS SUCH, so the next person does
+     not assume it was intended. Solar reads AMBER to any operator, and amber is
+     held by gas #c47a1d. Olive is the closest remaining hue to the sun and is
+     clear of trash #3a6b3d on lightness, but it is a compromise forced by an
+     occupied palette, not a choice anyone would make from scratch.
+
+     THE TWO CONSTRAINTS EVERY ONE OF THEM WAS CHECKED AGAINST:
+       1. clear of the brand accent #ec3013 (which is ALSO electric's dot, so a
+          new red would collide twice over), and
+       2. distinguishable at 8x8px against the other nine — the size the dot is
+          actually drawn at. Rendered and photographed, not reasoned about:
+          `07-frontend/e2e/CR-018-phase2c-swatches.spec.ts`.
+
+     ⚠ THE TOKEN NAME IS HYPHENATED AND THE CLASS NAME IS NOT, and that is
+     forced rather than sloppy. The class is built at runtime as
+     `svc-${service.code}` (ratingShared.tsx:273, RateSchedulesTab.tsx:516) and
+     the CODES carry underscores (`storm_water`, `thermal_heat`, from
+     tenancy/migrations/0001_initial.py SERVICE_SEED). A Tailwind theme key with
+     an underscore does not yield a usable utility name, so the TOKEN hyphenates
+     and the SELECTOR keeps the underscore the code gives it. */
+  --color-service-electric: #ec3013;
+  --color-service-water: #1e6b8f;
+  --color-service-gas: #c47a1d;
+  --color-service-sewer: #5a5555;
+  --color-service-trash: #3a6b3d;
+  --color-service-storm-water: #2f4a7a; /* OQ-273 — chosen FOR storm water */
+  --color-service-solar: #7a9a2a; /* OQ-273 — the weakest fit; see above */
+  --color-service-broadband: #6b3d8a;
+  --color-service-thermal-heat: #a8256b; /* OQ-273 — the only warm hue left */
+  --color-service-battery: #3aa39b; /* OQ-273 — lighter/greener than water */
+  /* CR-063 — FIRE, the ELEVENTH service (2026-09-02).
+     ⚠ NOT A NEW BRIGHT RED, AND THE CONSTRAINT IS THE ONE THIS FILE ALREADY
+     STATES SIX LINES UP: #ec3013 is electric's dot AND the brand accent, so a
+     second red in that register would collide twice over. #8f1f14 is a deep
+     oxide red — clearly warm, clearly fire, and separated from #ec3013 by VALUE
+     rather than by hue.
+     ⚠ VALUE SEPARATION IS WHAT A 6px DOT LOSES FIRST — this file says exactly
+     that about storm water beside water — so fire ALSO takes the HOLLOW dot,
+     which OQ-273's answer ratified as a GENERAL rule and not a one-off:
+     any service family that outgrows safe hue separation gets a SHAPE variant.
+     A deuteranope reads ring-versus-disc at any size; two reds they cannot.
+     The BADGE needs none of this — fire's letter is `F` and nothing else
+     claims it. */
+  --color-service-fire: #8f1f14;
+
+  /* ── Typography (styles.css font tokens + base type rules) ──────────────
+     Webfont loading (Archivo) is decided with the AppShell story packet;
+     the token keeps the prototype's stack with its system fallback. */
+  --font-heading: "Archivo", system-ui, sans-serif;
+  --font-heading-weight: 800;
+  --font-body: "Archivo", system-ui, sans-serif;
+
+  /* ── THE TYPE SCALE — RULED, NOT INHERITED ────────────────────────────────
+     Decision log 2026-08-19, "THE TYPE SCALE IS RULED — OQ-275 and OQ-276
+     CLOSED" (commit 4b6baa6). r10 is the design authority (PO ruling
+     2026-08-16) and this scale is r10's OWN usage named rather than invented,
+     which is why each step carries the role it was named FOR: a size with no
+     role is a size the next lane picks by eye.
+
+     Every step is declared here ONCE and mirrored into `tailwind.css`'s
+     `@theme` for as long as both files exist; `tailwindTheme.test.ts` asserts
+     the two agree token by token.
+
+     ⚠ 9px IS NOT A STEP AND MUST NEVER BECOME ONE. It is below the readability
+     floor in `05-prototype/r10-2026-08-16/UI-RULES.md`; the one declaration
+     that used it was re-pointed at `--text-xs`. 10px and the half-steps
+     (10.5 / 12.5 / 13.5) are hand-nudges, absorbed per site by looking at each
+     — see the decision log row for the judgement made at every one.
+
+     ⚠ THE TWO EXCEPTIONS ARE RATIFIED FIGURES, NOT STRAYS: `--table-font-size`
+     (13.5px) and `--table-header-font-size` (12px) below are B14 rule 20's own
+     numbers and CR-016's conformance register asserts them across 24 screens.
+     They are not absorbed into a step. */
+  --text-display: 56px; /* marketing / signup hero */
+  --text-h1: 40px; /* full-page wizard title */
+  --text-h2: 32px; /* page-head title — THE APP DEFAULT, every screen head */
+  --text-h3: 25px;
+  --text-h4: 20px;
+  --text-h5: 16px;
+  /* ⚠ THERE IS NO --text-h6, AND THAT IS DELIBERATE. It existed until
+     2026-08-19 at 13px, which is `--text-base`'s step — two names for one size,
+     and the ruling names `base`. Its ten callers were card and panel titles,
+     not a sixth heading level, so they read `var(--text-base)` now. Do not
+     re-add it: the h6 ELEMENT still inherits global.css's h1..h6 family and
+     weight, and its size comes from whatever class the screen gives it. */
+  --text-xs: 11px; /* pill labels, kickers, table meta */
+  --text-sm: 12px; /* dense table body, captions */
+  --text-base: 13px; /* panel body, form labels */
+  --text-md: 14px; /* emphasised body */
+  --text-body: 15px; /* body default */
+
+  /* ── The METRIC tier · three steps, RULED 2026-08-19 (OQ-278 CLOSED) ─────
+     Decision log 2026-08-19, "OQ-278 RULED — three metric tokens, and a metric
+     is not a heading" (commit 6a13828). The PO put OQ-278 to Claude Design and
+     adopted its scale; r10 is the design authority and these are r10's own
+     metric sizes named.
+
+     ⚠ THE ROLE IS THE WHOLE POINT: A METRIC IS NOT A HEADING. A KPI value, a
+     stat figure and a money total are LARGE TYPE THAT IS NOT A TITLE, and
+     giving them heading tokens is what produced the drift these three close.
+     So they deliberately carry NO weight and NO tracking modifier in
+     `tailwind.css` — every metric site already sets its own weight (800 on the
+     KPI and the "Today" figure, 600 on a net-pair value) and a heading step
+     would overwrite it. They carry a LEADING only, because a figure is set
+     tight and every one of these sites was already writing `line-height: 1`.
+
+     ⚠ AND THE MIRROR IS EQUALLY WRONG: do NOT point a TITLE at one of these.
+     `--text-h1` is 40px and our 40px is `payments.css .pay-today-amount`, a
+     money figure at weight 800 with no heading element near it — filing that
+     as `--text-h1` would put a KPI in the title scale, which is the exact
+     mistake this tier exists to stop. Filing a modal title as a metric is the
+     same mistake pointed the other way.
+
+     ⚠ AND THAT MIRROR MISTAKE WAS LIVE IN THIS FILE UNTIL 2026-08-20. Three
+     TITLES — `.modal-title`, `.rcw-head-title`, `.brun-h` — read
+     `var(--text-metric-sm)` for want of a 22px heading name. OQ-279 RULED
+     (decision log 2026-08-20, commit 5dbf2d7): three sites is not a role, so
+     they are ABSORBED into the heading scale (h3 25px, h3 25px, h4 20px) and
+     22px is a metric size and nothing else. Only `.lookup-card .v` and
+     `.rd-figure-value` are left on `--text-metric-sm`, and both are figures.
+
+     ⚠ THE LOCK BELOW IS NOT DECORATION — IT IS THE ORDERING THAT MADE THIS
+     URGENT. OQ-274 ratified a desktop-first breakpoint set whose density steps
+     take the KPI 30 → 26 → 22. The moment those steps are wired, ANY heading
+     still resolving through a metric key changes size on a narrower viewport,
+     on a screen nobody is looking at, and no test in this repo reads rendered
+     output to catch it. Absorb first, then wire — never the other way. */
+  --text-metric-sm: 22px; /* KPI values only — never a heading */
+  --text-metric: 26px; /* KPI values only — never a heading. THE role default */
+  --text-metric-lg: 32px; /* KPI values only — never a heading. Largest figure */
+  --line-height-metric-sm: 1.15;
+  --line-height-metric: 1.1;
+
+  /* ── The two BUTTON figures, ratified by B14 rule 5 ("Two button sizes only
+     — default and small (12px). No inline font sizes.") and enforced by
+     CR-016's conformance register at ["12px","14px"] across 24 screens.
+
+     ⚠ THEY ARE NOT ALIASES OF `--text-md` AND `--text-sm`, WHICH THEY HAPPEN TO
+     EQUAL. They are separate ratified law: retuning the body scale must not
+     silently resize every button in the product, and rule 5's figures must not
+     move because a panel wanted different prose. The `@theme` block has carried
+     both since Phase 0 for exactly this reason; they are declared HERE too so
+     that a stylesheet — which cannot reach a theme-only key — has a name to
+     write instead of the literal rule 5's own second sentence forbids. */
+  --text-btn: 14px;
+  --text-btn-sm: 12px;
+  --line-height-body: 1.55;
+  --line-height-heading: 1.12;
+  --letter-spacing-heading: -0.015em;
+
+  /* ── Spacing (styles.css) ─────────────────────────────────────────────── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  /* B14 rule 39's missing seventh step, added 2026-09-11 (CR-085). Declared in
+     BOTH places the others are, because that is where the others are — see
+     tailwind.css's own note for why there is no second `--sp-N` family. */
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* ── Radii (styles.css — Modernist is square; keep 0, do not "fix") ───── */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+
+  /* ── Elevation (styles.css — soft ink-tinted shadows on light ground) ─── */
+  --shadow-sm: 0 1px 2px color-mix(in srgb, #2d2b2b 14%, transparent);
+  --shadow-md: 0 3px 10px color-mix(in srgb, #2d2b2b 16%, transparent);
+  --shadow-lg: 0 12px 32px color-mix(in srgb, #2d2b2b 22%, transparent);
+
+  /* ── Measure (prototype r10 `UI-RULES.md` rule 18, AS AMENDED) ──────────
+   * r10's written rule 18 says: "Descriptions cap at 66% of the content width,
+   * not half."
+   *
+   * ⚠ **WE SHIP 80%, NOT 66% — PO ruling 2026-08-16, verbatim: "make it 80%",
+   * "across the app".** The ruling came after the 66% value was already in this
+   * file and applied to six stylesheets, so the number below is a deliberate
+   * divergence from the design bundle's own words, not a mistake to "fix" back.
+   * `05-prototype/r10-2026-08-16/UI-RULES.md` still reads 66% and is left alone
+   * on purpose: that folder is the design artefact stored verbatim, and editing
+   * it would destroy the record of what was handed over. The override lives in
+   * `12-governance/02-decision-log.md`, dated, with the PO's own sentence.
+   *
+   * SO: if you find this token disagreeing with rule 18, the token is right.
+   *
+   * THE VALUE IS A PERCENTAGE OF THE CONTENT COLUMN, NOT A CHARACTER COUNT,
+   * and that is the whole reason this token exists. Before it, the app capped
+   * descriptions EIGHT different ways — 56ch, 60ch (three files), 68ch, 70ch,
+   * 72ch, 78ch — so "the description width" was not one thing anybody could
+   * change. A `ch` cap also drifts against the rule as the viewport grows: 60ch
+   * is roughly half a 1440px content column and roughly a third of a 2560px
+   * one, so the same declaration honoured the rule at one width and broke it at
+   * every other.
+   *
+   * Use this on any explanatory paragraph sitting under a heading. Do NOT use
+   * it on body copy inside a narrow card — those are already measure-bound by
+   * the card, and 80% of a 320px panel is unreadable.
+   */
+  --desc-measure: 80%;
+
+  /**
+   * B14 rule 20 — **table type is ONE size everywhere; no inline overrides.**
+   * The ratified figure is 13.5px (B14, from r10's UI-RULES).
+   *
+   * ⚠ THIS TOKEN WAS ALREADY BEING USED BEFORE IT EXISTED. `RoutesCyclesWizards.css`
+   * read `var(--table-font-size, 13.5px)` and nothing declared it, so the
+   * fallback was doing all the work — the same shape as `btn-icon-sm`, a name
+   * referenced by one file and declared by none (DEF-198). Declared here so it
+   * is one place a person can change, exactly as `--desc-measure` was for
+   * rule 18 after the app turned out to cap descriptions eight different ways.
+   *
+   * ⚠ AND RULE 20 IS NOT YET TRUE PRODUCT-WIDE. Measured 2026-08-17 the product
+   * had THREE table sizes: the shared `DataTable` at 13px, `.settings-table` at
+   * 14px and `.rcw-table` at 13.5px. This pass points the two Settings tables at
+   * the token, which is the surface the PO asked about ("in Routes and Cycle -
+   * ensure UI is develope correctly as per UI rules"). **`DataTable` is still
+   * 13px and is deliberately untouched here** — it renders every list in the
+   * product, so moving it is its own change with its own walkthrough, and
+   * silently restyling the whole app inside a Routes & Cycles fix would be the
+   * wrong blast radius. DEF-223 stays open naming that remainder.
+   */
+  --table-font-size: 13.5px;
+
+  /**
+   * The table HEADER tier — the label row above `--table-font-size`'s body type.
+   *
+   * ⚠ THIS IS A DELIBERATE 1px DIVERGENCE FROM r10, AND IT IS FORCED BY B14
+   * RULE 5. r10's own design system draws the header at 11px:
+   *
+   *     .table th { text-align:left; font-size:11px; letter-spacing:0.08em;
+   *                 text-transform:uppercase; ... border-bottom:2px solid ... }
+   *     — 05-prototype/r10-2026-08-16/styles.css, "— tables —"
+   *
+   * r10 makes the whole `<th>` the sort target (`.lt thead th{cursor:pointer}`)
+   * and contains NO button. Our `DataTable` puts a real `<button class=
+   * "table-sort">` inside every sortable header, because a click target that is
+   * not a button cannot be reached from a keyboard — and that button inherits
+   * the header's size. B14 rule 5 is ratified law: *"Two button sizes only —
+   * default and small (12px). No inline font sizes."* At r10's 11px the sort
+   * control becomes a THIRD button size on every list screen in the product.
+   *
+   * So the header tier is 12px — rule 5's small tier — and the sort button
+   * inherits it and conforms. The worked figure: 11px header ⇒ 3 button sizes
+   * measured (11/12/14); 12px header ⇒ 2 (12/14), which is what rule 5 says.
+   * Recorded in 12-governance/02-decision-log.md with this reasoning; raised to
+   * the PO as OQ-267 (make the whole `<th>` clickable instead, and go back to
+   * r10's 11px). Everything else in r10's `.table th` — uppercase, 0.08em
+   * tracking, the 2px bottom border — is ported exactly.
+   */
+  --table-header-font-size: 12px;
+}

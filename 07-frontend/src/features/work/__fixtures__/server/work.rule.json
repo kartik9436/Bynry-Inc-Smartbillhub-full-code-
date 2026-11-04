@@ -1,0 +1,41 @@
+{
+  "id": "01a108cd-5349-7855-ae7a-eb2d4ffb7485",
+  "name": "Backflow test due — FIX-6",
+  "source_module": "assets",
+  "trigger_kind": "asset_past_certification_life",
+  "params": {},
+  "triggers": [
+    {
+      "seq": 1,
+      "kind": "asset_age_rule",
+      "params": {},
+      "module": "assets",
+      "moment": "overnight"
+    }
+  ],
+  "template": {
+    "id": "01a108bc-e921-75eb-95a0-8400365c463e",
+    "name": "Site inspection & mark-out"
+  },
+  "priority": null,
+  "assignment": {},
+  "assign_to": {
+    "kind": "nobody",
+    "id": null
+  },
+  "notifications": [],
+  "escalation": {},
+  "escalations": [],
+  "enabled": true,
+  "incomplete": [],
+  "this_month": 4,
+  "jobs_raised": 4,
+  "last_fired_at": "2026-10-04T21:24:10.659456+00:00",
+  "tonight": {
+    "subjects": 4,
+    "would_raise": 0,
+    "already_open": 0,
+    "cannot_raise": 0,
+    "cannot_raise_reasons": {}
+  }
+}

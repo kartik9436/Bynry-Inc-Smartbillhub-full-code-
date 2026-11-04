@@ -1,0 +1,35 @@
+  [R. Patel] POST   /auth/session -> 201 (736 ms)
+  [R. Patel] POST   /work/mobile/capture-token -> 200 (75 ms)
+  [Dana] POST   /auth/session -> 201 (724 ms)
+
+── WO-0108: a close with a required photo missing; a 2 MB photo; Accept held ──
+  [R. Patel] GET    /work/mobile/changes?page_size=50 -> 200 (470 ms)
+  [R. Patel] GET    /work/mobile/jobs/01a10a23-8597-776f-b960-2a06afbea081 -> 200 (116 ms)
+  [R. Patel] POST   /work/mobile/jobs/01a10a23-8597-776f-b960-2a06afbea081/accept -> 200 (79 ms)
+  [R. Patel] POST   /work/mobile/jobs/01a10a23-8597-776f-b960-2a06afbea081/sync -> 200 (183 ms)
+  [R. Patel] POST   /work/mobile/jobs/01a10a23-8597-776f-b960-2a06afbea081/sync -> 200 (128 ms)
+  [Dana] GET    /work-orders/01a10a23-8597-776f-b960-2a06afbea081 -> 200 (256 ms)
+   PASS · a close with a required photo missing is not completed · sync 200 result=refused ack=None detail={"message": "BIZ-LOCKED (work.order.photos_still_needed)", "code": "BIZ-LOCKED", "message_key": "work.order.photos_still_needed", "params": {"missing": 1, "first": "Photograph the meter face"}, "br_ref": "BR-WRK-040"} · order state=planned
+  [R. Patel] POST   /work/mobile/jobs/01a10a23-8597-776f-b960-2a06afbea081/sync -> 200 (67 ms)
+  [R. Patel] POST   /work/mobile/jobs/01a10a23-8597-776f-b960-2a06afbea081/sync -> 200 (152 ms)
+  [Dana] GET    /work-orders/01a10a23-8597-776f-b960-2a06afbea081 -> 200 (235 ms)
+   PASS · with the photo declared and its bytes still on the phone, the close is accepted · result=accepted state=completed photos_uploading=1
+  [Dana] POST   /work-orders/01a10a23-8597-776f-b960-2a06afbea081/accept -> 409 (79 ms)
+   PASS · Accept is held while a required photo uploads · accept 409 work.order.photos_uploading params={'count': 1}
+  [R. Patel] PUT    /work/mobile/photos/3a1812f3-0837-4686-a214-305e1d57e321 -> 200 (1019 ms)
+  [R. Patel] GET    /work/mobile/photos/3a1812f3-0837-4686-a214-305e1d57e321 -> 200 (72 ms)
+   PASS · a 2 MB photo is accepted, never refused for size · PUT 4,082,031 bytes -> 200 state=landed then landed
+  [Dana] POST   /work-orders/01a10a23-8597-776f-b960-2a06afbea081/accept -> 200 (459 ms)
+   PASS · Accept is available once the photo has landed · accept 200
+
+── WO-0109: reassigned while the phone was offline ──
+  [R. Patel] GET    /work/mobile/changes?page_size=50 -> 200 (470 ms)
+  [R. Patel] GET    /work/mobile/jobs/01a10a23-85dc-72fc-9060-d0d6943ea712 -> 200 (108 ms)
+  [R. Patel] POST   /work/mobile/jobs/01a10a23-85dc-72fc-9060-d0d6943ea712/accept -> 200 (99 ms)
+      captured offline by R. Patel: 3 items (held on the device)
+  [Dana] POST   /work-orders/01a10a23-85dc-72fc-9060-d0d6943ea712/assignments -> 200 (131 ms)
+      office reassigns to M. Chen: 200 {"assignment_id": "01a10a25-56bd-77cb-9137-750fe97ec1c2", "order_no": "WO-0109", "act": "reassign", "dispatch_state": "scheduled", "technician": {"kind": "person", "name": "M. Chen", "slug": "m-chen"}
+  [R. Patel] POST   /work/mobile/jobs/01a10a23-85dc-72fc-9060-d0d6943ea712/sync -> 200 (169 ms)
+   PASS · a job reassigned while offline keeps the items, flagged for review · sync 200: held_for_review=3/3 acknowledged=3 reasons=['work.mobile.not_your_job']
+
+PHOTO: {"photo_id": "3a1812f3-0837-4686-a214-305e1d57e321", "bytes_sent": 4082031}

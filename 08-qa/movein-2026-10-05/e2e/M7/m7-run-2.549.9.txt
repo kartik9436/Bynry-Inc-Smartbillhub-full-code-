@@ -1,0 +1,120 @@
+
+── M7 · Government · Schools — Water, Sewer, Trash · government exemption · PO number on bills
+  PASS  M7 · Units     · U-00010 is offered as vacant before the move-in
+  PASS  M7 · Units     · step 1 lists Water
+  PASS  M7 · Units     · step 1 lists Sewer
+  PASS  M7 · Units     · step 1 lists Trash
+  PASS  M7 · Assets    · step 1 asks an opening read for W-M7
+  FAIL  M7 · Accounts  · step 2 offers Government (the PO's M7: Government · Schools) — [DEF-CUS-9786] offered: residential, commercial, industrial, agricultural, institutional, municipal, builder_developer
+  PASS  M7 · Accounts  · Search customer ID answers "new"
+  PASS  M7 · Accounts  · no match block is drawn for a new person
+  PASS  M7 · Payments  · Fees total reads $25.00 — $25.00
+  PASS  M7 · Payments  · no fee row is taxed at move-in (no Taxable column, no tax row)
+  PASS  M7 · Billing   · step 3 offers Tax exempt to the billing clerk
+  PASS  M7 · Billing   · the exemption list offers "Government entity"
+  PASS  M7 · Billing   · the certificate PDF is chosen on step 3
+  PASS  M7 · Payments  · step 3 says $25.00 goes on the first bill — $25.00 goes on the first bill.
+  PASS  M7 · Billing   · Review shows the PO PO-2026-118
+  NOTE  M7 · Complete warned deposit_carry_forward_unavailable: no deposit was carried forward from an earlier account
+  PASS  M7 · Accounts  · Move-in completed prints no raw server code
+  PASS  M7 · Messages  · Move-in completed counts the queued welcome (not 0 queued) — reads "3 queued"
+  PASS  M7 · Accounts  · Move-in completed names an MVI- number — MVI-26-0007
+2026-10-06 06:38:51,998 INFO apps.billing.resolution_switch ruled path skipped trash for account AC-2026-00057: billed one line per size
+2026-10-06 06:38:51,998 INFO apps.billing.resolution_switch ruled path served R3, R4 for account AC-2026-00057
+  PASS  M7 · Accounts  · one move record MVI-26-0007 exists
+  PASS  M7 · Accounts  · the move record is a move-in
+  PASS  M7 · Accounts  · the move-in is dated as typed
+  PASS  M7 · Accounts  · the account is active
+  PASS  M7 · Accounts  · the account opens on the move-in date
+  PASS  M7 · Accounts  · the account type is the one the clerk picked
+  PASS  M7 · Accounts  · the sub-type is the one the clerk picked
+  PASS  M7 · Accounts  · the account is on the case's unit
+  PASS  M7 · Accounts  · exactly one customer holds the account
+  PASS  M7 · Accounts  · the customer's name is as typed
+  PASS  M7 · Accounts  · the customer is a person/company as picked
+  PASS  M7 · Accounts  · a NEW customer holds this one account only (nothing was linked)
+  PASS  M7 · Accounts  · one agreement per started service
+  PASS  M7 · Accounts  · every agreement starts on the move-in date
+  PASS  M7 · Units     · the unit stores no status or occupancy (it is derived)
+  PASS  M7 · Units     · the unit now has exactly one open account (reads Occupied)
+  PASS  M7 · Assets    · an opening read for each meter the clerk read, and none other
+  PASS  M7 · Assets    · W-M7's opening read is 1462.0 as typed
+  PASS  M7 · Assets    · W-M7's opening read is in kgal, the meter's own unit
+  PASS  M7 · Assets    · W-M7's opening read is dated the move-in date
+  PASS  M7 · Assets    · W-M7's opening read is committed
+  PASS  M7 · Assets    · the move-in wrote no asset status (meter status is derived) — 0 asset audit rows read since the move
+  PASS  M7 · Payments  · the fee lines are the plan's deposit and connection charge
+  PASS  M7 · Payments  · no tax was charged on any move-in fee (OQ-BIL-12788 (a))
+  PASS  M7 · Payments  · Add to bill: no payment was recorded
+  PASS  M7 · Payments  · every payment wrote audit_log (hard rule 7)
+  PASS  M7 · Accounts  · the move-in wrote audit_log account.moved_in
+  PASS  M7 · Payments  · every journal entry for the account balances DR = CR (hard rule 5) — 0 entries read, 0 payment(s) not journaled yet (none; a check journals when it clears)
+  PASS  M7 · Billing   · the first-bill preview prices (every started service has what it needs)
+  PASS  M7 · Billing   · the first bill carries the move-in's fee lines
+  PASS  M7 · Billing   · no fee or deposit line on the first bill is taxable
+  PASS  M7 · Billing   · the first bill carries each move-in fee line at its recorded amount
+  PASS  M7 · Billing   · every tax line on the first bill names a tax (1 tax lines read)
+  PASS  M7 · Billing   · the first bill carries NO City of Cedar Ford utility tax (its certificate removes it)
+  PASS  M7 · Billing   · the first bill carries NO TX State Utility Tax (not this account's class)
+  PASS  M7 · Billing   · the first bill STILL carries Local · Bexar County (an exemption removes only its own tax)
+  PASS  M7 · Billing   · trash is priced for 3 carts, $45.00 (count × size price)
+  FAIL  M7 · Billing   · the first bill carries the account's PO PO-2026-118 — [DEF-BIL-9787] the PO appears nowhere in the first-bill preview
+  PASS  M7 · Billing   · one exemption certificate is recorded on the account (by the billing clerk)
+  PASS  M7 · Billing   · the certificate is GOVERNMENT for the City of Cedar Ford utility tax
+  PASS  M7 · Billing   · the certificate number, issued and expiry dates are as typed
+  PASS  M7 · Billing   · the account's blanket tax-exempt flag is NOT set (ruling (A): only the named tax)
+  PASS  M7 · Billing   · the certificate government-exemption-letter.pdf is filed on the account, in its KYC folder
+  PASS  M7 · Billing   · the account carries PO PO-2026-118 as typed (accounts.po_number)
+  PASS  M7 · Route     · every service point of the unit is on a route (3 points)
+  PASS  M7 · Route     · every service point of the unit is on a billing cycle (3 points)
+  PASS  M7 · Route     · the unit holds a place in its route's walk order
+  PASS  M7 · Work      · one work order per field-visit row
+  PASS  M7 · Messages  · the move-in's welcome is queued (3 rows)
+  PASS  M7 · Messages  · a receipt is queued for each payment (0 rows for 0 payments)
+  PASS  M7 · Messages  · no message is marked sent (BR-NOT-013: queued is never sent)
+  NOTE  M7 · first bill · usage · trash - 3 × Trash 96-gallon cart · 45.00
+  NOTE  M7 · first bill · usage · water usage · 93.60
+  NOTE  M7 · first bill · base · water base charge · 68.00
+  NOTE  M7 · first bill · usage · sewer usage — 90.00% of water volume · 81.00
+  NOTE  M7 · first bill · base · sewer base charge · 9.00
+  NOTE  M7 · first bill · fee · Connection charge · 25.00
+  NOTE  M7 · first bill · tax · Tax Local · 5.93
+  PASS  M7 · Units     · /premises/units/01a10fa7-9ebd-7732-9b2e-4a89df90e758 opens (h1 drawn, no error page)
+  PASS  M7 · Units     · the unit reads Occupied
+  PASS  M7 · Units     · the unit names account AC-2026-00057
+  PASS  M7 · Units     · the unit names the account holder (AC-2026-00057 · Cedar Ford Independent School District)
+  PASS  M7 · Assets    · /assets/01a10fa7-9f0d-7732-86ca-f439b7f9220d opens (h1 drawn, no error page)
+  PASS  M7 · Assets    · W-M7 is on account AC-2026-00057
+  PASS  M7 · Assets    · W-M7 reads Installed (derived, the move-in wrote no status)
+  PASS  M7 · Assets    · W-M7 names the account holder (AC-2026-00057 · Cedar Ford Independent School District)
+  PASS  M7 · Assets    · /assets/01a10fa7-9f0d-7732-86ca-f439b7f9220d?tab=reads opens (h1 drawn, no error page)
+  PASS  M7 · Assets    · W-M7's Reads tab shows the opening read 1462
+  PASS  M7 · Assets    · W-M7's Reads tab shows it in kgal
+  PASS  M7 · Accounts  · /accounts/01a10fef-add1-7d1d-a0cf-afc586f81b68 opens (h1 drawn, no error page)
+  PASS  M7 · Accounts  · the account shows Cedar Ford Independent School District
+  PASS  M7 · Accounts  · the account shows Municipal
+  PASS  M7 · Accounts  · the account lists Sewer
+  PASS  M7 · Accounts  · the account lists Trash
+  PASS  M7 · Accounts  · the account lists Water
+  PASS  M7 · Accounts  · the account's title is the account holder Cedar Ford Independent School District — title reads "Cedar Ford Independent School District"
+  PASS  M7 · Payments  · /accounts/01a10fef-add1-7d1d-a0cf-afc586f81b68?tab=payments opens (h1 drawn, no error page)
+  PASS  M7 · Billing   · /moves/MVI-26-0007?tab=billing opens (h1 drawn, no error page)
+  PASS  M7 · Billing   · the move's Billing tab lists CONN
+  PASS  M7 · Billing   · the fees total $25.00
+  PASS  M7 · Route     · /reads/routes/01a10fa7-9f96-787a-bdc5-f52bcea11365 opens (h1 drawn, no error page)
+  PASS  M7 · Route     · route RT-006 is the unit's (Matrix walk)
+  PASS  M7 · Messages  · /moves/MVI-26-0007?tab=messages opens (h1 drawn, no error page)
+  PASS  M7 · Messages  · the move's Messages tab lists the welcome
+  PASS  M7 · Accounts  · /moves/MVI-26-0007 opens (h1 drawn, no error page)
+  PASS  M7 · Accounts  · the move-in record reads MVI-26-0007
+  PASS  M7 · Accounts  · the move-in record names AC-2026-00057
+  PASS  M7 · Assets    · the move-in record no longer reads 'Waiting on a read' (every meter read)
+  PASS  M7 · Accounts  · the account shows exemption certificate CF-GOV-2026-0077
+  FAIL  M7 · Accounts  · the account shows its PO PO-2026-118 (printed on every bill) — [DEF-CUS-9788] 
+  PASS  M7 · Accounts  · /moves/MVI-26-0007?tab=account opens (h1 drawn, no error page)
+  FAIL  M7 · Accounts  · the move's Account tab shows the PO PO-2026-118 — [DEF-CUS-9788] "PO-2026-118" not on /moves/MVI-26-0007?tab=account
+  PASS  M7 · Billing   · the move's Billing tab names exemption certificate CF-GOV-2026-0077 — Tax Exempt
+
+── summary
+  M7: 100 PASS · 4 FAIL
+4 FAIL

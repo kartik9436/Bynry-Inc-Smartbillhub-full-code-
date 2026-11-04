@@ -1,0 +1,6132 @@
+{
+ "rows": {
+  "water-tiered-residential": {
+   "key": "water-tiered-residential",
+   "service": "water",
+   "model": "tiered",
+   "klass": "Residential",
+   "name": "WC C1 water Tiered Residential",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "W-58",
+      "minimum": "15.00"
+     },
+     {
+      "size": "W-34",
+      "minimum": "40.00"
+     }
+    ],
+    "price": "4.4096",
+    "tier2": "5.5120"
+   },
+   "id": "01a0f883-bf23-7d6a-922a-8a3392fb36e6",
+   "add": true,
+   "listText": "WC C1 water Tiered Residential Water Tiered Residential BASE-W 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f883-bf2a-7b91-a348-15b9815ba382",
+   "change": true,
+   "v2": "01a0f883-ecb8-720b-b6c7-a1dbe601450f",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f884-00b6-7e38-b016-517698d29ecb",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "35.25",
+    "waiting": null,
+    "expected": "35.25",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "65.81",
+    "waiting": null,
+    "expected": "65.81",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 35.25/35.25 · after 65.81/65.81",
+   "done": true,
+   "seconds": 40
+  },
+  "electric-flat-every": {
+   "key": "electric-flat-every",
+   "service": "electric",
+   "model": "flat",
+   "klass": "Every class",
+   "name": "WC C1 electric Flat Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "E-1P-100",
+      "minimum": "80.00"
+     },
+     {
+      "size": "E-1P-200",
+      "minimum": "120.00"
+     }
+    ],
+    "price": "0.1245"
+   },
+   "id": "01a0f884-5078-7d3f-bdcd-bef427314bdc",
+   "add": true,
+   "listText": "WC C1 electric Flat Every class Electric Flat Every class BASE-E 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f884-5081-720c-ac30-68f907a35403",
+   "change": true,
+   "v2": "01a0f884-7724-7f68-83b7-40cf876f4e42",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f884-8512-703f-a0c0-8f670e805249",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "80.00",
+    "waiting": null,
+    "expected": "80.00",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "80.00",
+    "waiting": null,
+    "expected": "80.00",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 80.00/80.00 · after 80.00/80.00",
+   "done": true,
+   "seconds": 27
+  },
+  "electric-tiered-every": {
+   "key": "electric-tiered-every",
+   "service": "electric",
+   "model": "tiered",
+   "klass": "Every class",
+   "name": "WC C1 electric Tiered Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "E-1P-100",
+      "minimum": "80.00"
+     },
+     {
+      "size": "E-1P-200",
+      "minimum": "120.00"
+     }
+    ],
+    "price": "0.1245",
+    "tier2": "0.1556"
+   },
+   "id": "01a0f884-b664-783f-9bc7-3f72ff4c3cbc",
+   "add": true,
+   "listText": "WC C1 electric Tiered Every class Electric Tiered Every class BASE-E 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f884-b66a-7fb6-ad38-5bcb886568a4",
+   "change": true,
+   "v2": "01a0f884-de47-7baa-9aff-a31a27123b8d",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f884-e886-734d-85da-62e84aa09249",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "80.00",
+    "waiting": null,
+    "expected": "80.00",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "93.24",
+    "waiting": null,
+    "expected": "93.24",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 80.00/80.00 · after 93.24/93.24",
+   "done": true,
+   "seconds": 27
+  },
+  "electric-time_of_use-every": {
+   "key": "electric-time_of_use-every",
+   "service": "electric",
+   "model": "time_of_use",
+   "klass": "Every class",
+   "name": "WC C1 electric TOU Every class",
+   "notes": [
+    "BILL before {\"status\":\"billed_base_zero\",\"versions\":[\"2026-10-01\"],\"oneVersion\":true,\"got\":\"80.01\",\"waiting\":null,\"expected\":\"80.00\",\"ok\":false,\"note\":\"DEF-RAT-9013: one cent over the minimum — the lines round on their own, the top-up is measured unrounded (finance ruling after {\"status\":\"billed_base_zero\",\"versions\":[\"2026-11-01\"],\"oneVersion\":true,\"got\":\"89.05\",\"waiting\":null,\"expected\":\"89.05\",\"ok\":true}"
+   ],
+   "typed": {
+    "sizes": [
+     {
+      "size": "E-1P-100",
+      "minimum": "80.00"
+     },
+     {
+      "size": "E-1P-200",
+      "minimum": "120.00"
+     }
+    ],
+    "price": "0.1245",
+    "peak": "0.1867"
+   },
+   "id": "01a0f885-1f4e-7afd-ab5c-b8a74d851fc4",
+   "add": true,
+   "listText": "WC C1 electric TOU Every class Electric Time-of-use Every class BASE-E 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f885-1f5a-7049-8824-a27dc0c01b61",
+   "change": true,
+   "v2": "01a0f885-4624-7396-8248-ab6427be087f",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f885-52a3-7a90-bf24-48fc9569f60f",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "80.01",
+    "waiting": null,
+    "expected": "80.00",
+    "ok": false,
+    "note": "DEF-RAT-9013: one cent over the minimum — the lines round on their own, the top-up is measured unrounded (finance ruling)"
+   },
+   "billAfter": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "89.05",
+    "waiting": null,
+    "expected": "89.05",
+    "ok": true
+   },
+   "bill": false,
+   "billFigure": "before 80.00/80.01 · after 89.05/89.05",
+   "done": true,
+   "seconds": 27
+  },
+  "electric-demand-every": {
+   "key": "electric-demand-every",
+   "service": "electric",
+   "model": "demand",
+   "klass": "Every class",
+   "name": "WC C1 electric Demand Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "E-1P-100",
+      "minimum": "80.00"
+     },
+     {
+      "size": "E-1P-200",
+      "minimum": "120.00"
+     }
+    ],
+    "price": "0.1245"
+   },
+   "id": "01a0f885-8ad8-71db-86a0-e88ba3c8ae86",
+   "add": true,
+   "listText": "WC C1 electric Demand Every class Electric Demand Every class BASE-E 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f885-8ae2-7d23-b3f7-8b73af627faa",
+   "change": true,
+   "v2": "01a0f885-babf-777a-895f-37d0a5121903",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f885-c843-7e9d-bc13-a21b80b77edc",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "197.25",
+    "waiting": null,
+    "expected": "197.25",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "233.20",
+    "waiting": null,
+    "expected": "233.20",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 197.25/197.25 · after 233.20/233.20",
+   "done": true,
+   "seconds": 29
+  },
+  "electric-seasonal-every": {
+   "key": "electric-seasonal-every",
+   "service": "electric",
+   "model": "seasonal",
+   "klass": "Every class",
+   "name": "WC C1 electric Seasonal Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "E-1P-100",
+      "minimum": "80.00"
+     },
+     {
+      "size": "E-1P-200",
+      "minimum": "120.00"
+     }
+    ],
+    "price": "0.1245"
+   },
+   "id": "01a0f885-fda6-7127-950f-58c56169ecb3",
+   "add": true,
+   "listText": "WC C1 electric Seasonal Every class Electric Seasonal Every class BASE-E 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f885-fdab-74e4-9d15-6a1aefde63e9",
+   "change": true,
+   "v2": "01a0f886-27b6-778b-8136-f9814bc22e60",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f886-365c-7896-be3e-208435669169",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "80.00",
+    "waiting": null,
+    "expected": "80.00",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "80.00",
+    "waiting": null,
+    "expected": "80.00",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 80.00/80.00 · after 80.00/80.00",
+   "done": true,
+   "seconds": 30
+  },
+  "electric-capacity-every": {
+   "key": "electric-capacity-every",
+   "service": "electric",
+   "model": "capacity",
+   "klass": "Every class",
+   "name": "WC C1 electric Capacity Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "E-1P-100",
+      "minimum": "80.00"
+     },
+     {
+      "size": "E-1P-200",
+      "minimum": "120.00"
+     }
+    ],
+    "price": "0.1245"
+   },
+   "id": "01a0f886-7601-77e7-ba28-611248a90237",
+   "add": true,
+   "listText": "WC C1 electric Capacity Every class Electric Capacity Every class BASE-E 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f886-7606-7028-8ea6-8446b7a890ee",
+   "change": true,
+   "v2": "01a0f886-a394-7b2d-bc6b-6d88fde7ff51",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f886-b162-7f19-87ad-8937777a4465",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "80.00",
+    "waiting": null,
+    "expected": "80.00",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "80.00",
+    "waiting": null,
+    "expected": "80.00",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 80.00/80.00 · after 80.00/80.00",
+   "done": true,
+   "seconds": 31
+  },
+  "electric-percent_of_service-every": {
+   "key": "electric-percent_of_service-every",
+   "service": "electric",
+   "model": "percent_of_service",
+   "klass": "Every class",
+   "name": "WC C1 electric Percent Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "E-1P-100",
+      "minimum": "80.00"
+     },
+     {
+      "size": "E-1P-200",
+      "minimum": "120.00"
+     }
+    ],
+    "price": "40",
+    "basis": "water",
+    "unitPrice": "0.1245"
+   },
+   "id": "01a0f886-eee4-7d28-8baa-2372ed9c4103",
+   "add": true,
+   "listText": "WC C1 electric Percent Every class Electric Percent of another service Every class BASE-E 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f886-eeec-79ce-b696-6b6c6bfb8551",
+   "change": true,
+   "v2": "01a0f887-1baa-7904-95c4-d5045cdedfc3",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f887-2be4-7b54-bdea-13627d229892",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "follows_basis",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "80.00",
+    "waiting": null,
+    "expected": "80.00",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "follows_basis",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "80.00",
+    "waiting": null,
+    "expected": "80.00",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 80.00/80.00 · after 80.00/80.00",
+   "done": true,
+   "seconds": 33
+  },
+  "water-flat-every": {
+   "key": "water-flat-every",
+   "service": "water",
+   "model": "flat",
+   "klass": "Every class",
+   "name": "WC C1 water Flat Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "W-58",
+      "minimum": "15.00"
+     },
+     {
+      "size": "W-34",
+      "minimum": "40.00"
+     }
+    ],
+    "price": "4.4096"
+   },
+   "id": "01a0f887-6dc2-77ea-b76e-52831a9bd267",
+   "add": true,
+   "listText": "WC C1 water Flat Every class Water Flat Every class BASE-W-J70 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f887-6dcc-7c44-b070-36dae3ba2b30",
+   "change": true,
+   "v2": "01a0f887-9a41-7486-a683-97faaa1a6a03",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f887-a701-7030-ac83-6afac91bd6cc",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "43.25",
+    "waiting": null,
+    "expected": "43.25",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "71.80",
+    "waiting": null,
+    "expected": "71.80",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 43.25/43.25 · after 71.80/71.80",
+   "done": true,
+   "seconds": 29
+  },
+  "water-tiered-every": {
+   "key": "water-tiered-every",
+   "service": "water",
+   "model": "tiered",
+   "klass": "Every class",
+   "name": "WC C1 water Tiered Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "W-58",
+      "minimum": "15.00"
+     },
+     {
+      "size": "W-34",
+      "minimum": "40.00"
+     }
+    ],
+    "price": "4.4096",
+    "tier2": "5.5120"
+   },
+   "id": "01a0f887-dd60-70d5-aee7-99d38987e22f",
+   "add": true,
+   "listText": "WC C1 water Tiered Every class Water Tiered Every class BASE-W-J70 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f887-dd6f-7f84-b41a-83408aa9ebc6",
+   "change": true,
+   "v2": "01a0f888-08a6-7d49-896f-981e5e5ad513",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f888-166a-7751-9f70-d60d84c9f8c2",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "43.25",
+    "waiting": null,
+    "expected": "43.25",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "76.11",
+    "waiting": null,
+    "expected": "76.11",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 43.25/43.25 · after 76.11/76.11",
+   "done": true,
+   "seconds": 29
+  },
+  "water-time_of_use-every": {
+   "key": "water-time_of_use-every",
+   "service": "water",
+   "model": "time_of_use",
+   "klass": "Every class",
+   "name": "WC C1 water TOU Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "W-58",
+      "minimum": "15.00"
+     },
+     {
+      "size": "W-34",
+      "minimum": "40.00"
+     }
+    ],
+    "price": "4.4096",
+    "peak": "6.6144"
+   },
+   "id": "01a0f888-5147-7ed8-b1d7-8875b80529f3",
+   "add": true,
+   "listText": "WC C1 water TOU Every class Water Time-of-use Every class BASE-W-J70 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f888-515c-7cf7-9c33-f0d880235981",
+   "change": true,
+   "v2": "01a0f888-8cb8-7287-826e-589722c28834",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f888-9814-7869-a803-8e743393cfef",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "48.38",
+    "waiting": null,
+    "expected": "48.38",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "81.23",
+    "waiting": null,
+    "expected": "81.23",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 48.38/48.38 · after 81.23/81.23",
+   "done": true,
+   "seconds": 34
+  },
+  "water-demand-every": {
+   "key": "water-demand-every",
+   "service": "water",
+   "model": "demand",
+   "klass": "Every class",
+   "name": "WC C1 water Demand Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "W-58",
+      "minimum": "15.00"
+     },
+     {
+      "size": "W-34",
+      "minimum": "40.00"
+     }
+    ],
+    "price": "4.4096"
+   },
+   "id": "01a0f888-d4ec-752f-aab4-bde2074c57eb",
+   "add": true,
+   "listText": "WC C1 water Demand Every class Water Demand Every class BASE-W-J70 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f888-d4f8-711f-96b1-41c32c4e4518",
+   "change": true,
+   "v2": "01a0f889-0594-78a8-ab21-16494fd85bcf",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f889-1262-7b42-b1ff-ac792c6ede04",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "67.80",
+    "waiting": null,
+    "expected": "67.80",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "105.90",
+    "waiting": null,
+    "expected": "105.90",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 67.80/67.80 · after 105.90/105.90",
+   "done": true,
+   "seconds": 30
+  },
+  "water-seasonal-every": {
+   "key": "water-seasonal-every",
+   "service": "water",
+   "model": "seasonal",
+   "klass": "Every class",
+   "name": "WC C1 water Seasonal Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "W-58",
+      "minimum": "15.00"
+     },
+     {
+      "size": "W-34",
+      "minimum": "40.00"
+     }
+    ],
+    "price": "4.4096"
+   },
+   "id": "01a0f889-4799-7f56-b325-25dc2c19ca61",
+   "add": true,
+   "listText": "WC C1 water Seasonal Every class Water Seasonal Every class BASE-W-J70 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f889-47a8-77ba-9cae-1fca39ea5407",
+   "change": true,
+   "v2": "01a0f889-6e88-76ca-8165-257d933c4e63",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f889-7c41-7228-a93f-92ea763c6812",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "43.25",
+    "waiting": null,
+    "expected": "43.25",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "71.80",
+    "waiting": null,
+    "expected": "71.80",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 43.25/43.25 · after 71.80/71.80",
+   "done": true,
+   "seconds": 29
+  },
+  "water-capacity-every": {
+   "key": "water-capacity-every",
+   "service": "water",
+   "model": "capacity",
+   "klass": "Every class",
+   "name": "WC C1 water Capacity Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "W-58",
+      "minimum": "15.00"
+     },
+     {
+      "size": "W-34",
+      "minimum": "40.00"
+     }
+    ],
+    "price": "4.4096"
+   },
+   "id": "01a0f889-b7bc-73a7-b0d2-59cc4ca142b2",
+   "add": true,
+   "listText": "WC C1 water Capacity Every class Water Capacity Every class BASE-W-J70 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f889-b7c7-7ad1-8933-13a68dbdced4",
+   "change": true,
+   "v2": "01a0f889-e663-7a97-ac65-f74aed2af209",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f889-f42d-7d30-8cf8-65eb48a59e3e",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "43.25",
+    "waiting": null,
+    "expected": "43.25",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "71.80",
+    "waiting": null,
+    "expected": "71.80",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 43.25/43.25 · after 71.80/71.80",
+   "done": true,
+   "seconds": 30
+  },
+  "water-percent_of_service-every": {
+   "key": "water-percent_of_service-every",
+   "service": "water",
+   "model": "percent_of_service",
+   "klass": "Every class",
+   "name": "WC C1 water Percent Every class",
+   "notes": [
+    "BILL before {\"status\":\"follows_basis\",\"versions\":[\"2026-10-01\"],\"oneVersion\":true,\"got\":\"1691.64\",\"waiting\":null,\"expected\":\"860.82\",\"ok\":false,\"note\":\"DEF-BIL-9014: the percent is charged on each of 2 meters; expected once\"} after {\"status\":\"follows_basis\",\"versions\":[\"2026-11-01\"],\"oneVersion\":true,\"got\":\"2397.18\",\"waiting\":null,\"expected\":\"1213.59\",\"ok\":false,\"note\":\"DEF-BIL-9014: the percent is charged on each of 2 meters; expected once\"}"
+   ],
+   "typed": {
+    "sizes": [
+     {
+      "size": "W-58",
+      "minimum": "15.00"
+     },
+     {
+      "size": "W-34",
+      "minimum": "40.00"
+     }
+    ],
+    "price": "40",
+    "basis": "electric",
+    "unitPrice": "4.4096"
+   },
+   "id": "01a0f88a-2ca7-79c3-96de-4f9c3d7f434b",
+   "add": true,
+   "listText": "WC C1 water Percent Every class Water Percent of another service Every class BASE-W-J70 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f88a-2cab-73ab-8ef6-a9c0bfa966e5",
+   "change": true,
+   "v2": "01a0f88a-5513-738e-aeb3-506b2d00ecde",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f88a-604b-7136-bfdb-aee4282e15b4",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "follows_basis",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "1691.64",
+    "waiting": null,
+    "expected": "860.82",
+    "ok": false,
+    "note": "DEF-BIL-9014: the percent is charged on each of 2 meters; expected once"
+   },
+   "billAfter": {
+    "status": "follows_basis",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "2397.18",
+    "waiting": null,
+    "expected": "1213.59",
+    "ok": false,
+    "note": "DEF-BIL-9014: the percent is charged on each of 2 meters; expected once"
+   },
+   "bill": false,
+   "billFigure": "before 860.82/1691.64 · after 1213.59/2397.18",
+   "done": true,
+   "seconds": 27
+  },
+  "gas-flat-every": {
+   "key": "gas-flat-every",
+   "service": "gas",
+   "model": "flat",
+   "klass": "Every class",
+   "name": "WC C1 gas Flat Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "G-250",
+      "minimum": "10.00"
+     },
+     {
+      "size": "G-425",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "0.9800"
+   },
+   "id": "01a0f88a-96ce-710b-814d-f1d13cde9cf0",
+   "add": true,
+   "listText": "WC C1 gas Flat Every class Gas Flat Every class BASE-G-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f88a-96d5-7b18-aeaa-e248558c830e",
+   "change": true,
+   "v2": "01a0f88a-c2bc-74db-9ca2-f646cd770a94",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f88a-cd2b-7659-b613-ab3e645eb97d",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 47.50/47.50 · after 61.50/61.50",
+   "done": true,
+   "seconds": 24,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "47.50",
+    "waiting": null,
+    "expected": "47.50",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "61.50",
+    "waiting": null,
+    "expected": "61.50",
+    "ok": true
+   }
+  },
+  "gas-tiered-every": {
+   "key": "gas-tiered-every",
+   "service": "gas",
+   "model": "tiered",
+   "klass": "Every class",
+   "name": "WC C1 gas Tiered Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "G-250",
+      "minimum": "10.00"
+     },
+     {
+      "size": "G-425",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "0.9800",
+    "tier2": "1.2250"
+   },
+   "id": "01a0f88a-f713-76d2-9d4f-fe1bc666abeb",
+   "add": true,
+   "listText": "WC C1 gas Tiered Every class Gas Tiered Every class BASE-G-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f88a-f722-7f3d-b884-7e94fab218f5",
+   "change": true,
+   "v2": "01a0f88b-24ee-7890-85c2-5c33ece416b5",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f88b-2f7f-7de2-bd0f-db05390760eb",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 57.13/57.13 · after 69.83/69.83",
+   "done": true,
+   "seconds": 26,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "57.13",
+    "waiting": null,
+    "expected": "57.13",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "69.83",
+    "waiting": null,
+    "expected": "69.83",
+    "ok": true
+   }
+  },
+  "gas-time_of_use-every": {
+   "key": "gas-time_of_use-every",
+   "service": "gas",
+   "model": "time_of_use",
+   "klass": "Every class",
+   "name": "WC C1 gas TOU Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "G-250",
+      "minimum": "10.00"
+     },
+     {
+      "size": "G-425",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "0.9800",
+    "peak": "1.4700"
+   },
+   "id": "01a0f88b-5cd3-7c29-80b5-399a59f3b22b",
+   "add": true,
+   "listText": "WC C1 gas TOU Every class Gas Time-of-use Every class BASE-G-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f88b-5cdc-793b-ab86-20f69794b3c2",
+   "change": true,
+   "v2": "01a0f88b-8a40-74cd-8f08-84f4b868c9d5",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f88b-95df-71eb-8737-68b1b9a60d8e",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 53.74/53.74 · after 67.95/67.95",
+   "done": true,
+   "seconds": 27,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "53.74",
+    "waiting": null,
+    "expected": "53.74",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "67.95",
+    "waiting": null,
+    "expected": "67.95",
+    "ok": true
+   }
+  },
+  "gas-demand-every": {
+   "key": "gas-demand-every",
+   "service": "gas",
+   "model": "demand",
+   "klass": "Every class",
+   "name": "WC C1 gas Demand Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "G-250",
+      "minimum": "10.00"
+     },
+     {
+      "size": "G-425",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "0.9800"
+   },
+   "id": "01a0f88b-c146-7c5c-b656-0d8186682c20",
+   "add": true,
+   "listText": "WC C1 gas Demand Every class Gas Demand Every class BASE-G-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f88b-c14e-71db-a5c0-cd4b47ac651c",
+   "change": true,
+   "v2": "01a0f88b-e4cb-76db-a8bd-4df3dd5e70ed",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f88b-ee13-7d42-84df-35041e784bda",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 75.00/75.00 · after 94.50/94.50",
+   "done": true,
+   "seconds": 21,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "75.00",
+    "waiting": null,
+    "expected": "75.00",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "94.50",
+    "waiting": null,
+    "expected": "94.50",
+    "ok": true
+   }
+  },
+  "gas-seasonal-every": {
+   "key": "gas-seasonal-every",
+   "service": "gas",
+   "model": "seasonal",
+   "klass": "Every class",
+   "name": "WC C1 gas Seasonal Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "G-250",
+      "minimum": "10.00"
+     },
+     {
+      "size": "G-425",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "0.9800"
+   },
+   "id": "01a0f88c-14ec-7eaf-955d-f30f9e72092d",
+   "add": true,
+   "listText": "WC C1 gas Seasonal Every class Gas Seasonal Every class BASE-G-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f88c-14f1-7c18-97a0-43fce71fe133",
+   "change": true,
+   "v2": "01a0f88c-3a83-7827-a6be-276fa497a30b",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f88c-4561-74b7-b5b6-b3ee981d4d65",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 47.50/47.50 · after 61.50/61.50",
+   "done": true,
+   "seconds": 21,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "47.50",
+    "waiting": null,
+    "expected": "47.50",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "61.50",
+    "waiting": null,
+    "expected": "61.50",
+    "ok": true
+   }
+  },
+  "gas-capacity-every": {
+   "key": "gas-capacity-every",
+   "service": "gas",
+   "model": "capacity",
+   "klass": "Every class",
+   "name": "WC C1 gas Capacity Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "G-250",
+      "minimum": "10.00"
+     },
+     {
+      "size": "G-425",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "0.9800"
+   },
+   "id": "01a0f88c-6702-7e8f-9baf-957a29e8e884",
+   "add": true,
+   "listText": "WC C1 gas Capacity Every class Gas Capacity Every class BASE-G-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f88c-6711-7533-8a79-a99fcb6a3470",
+   "change": true,
+   "v2": "01a0f88c-93a8-7d75-9ea3-dcb0525023ac",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f88c-a12b-7207-befc-ecbc88b69665",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 47.50/47.50 · after 61.50/61.50",
+   "done": true,
+   "seconds": 25,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "47.50",
+    "waiting": null,
+    "expected": "47.50",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "61.50",
+    "waiting": null,
+    "expected": "61.50",
+    "ok": true
+   }
+  },
+  "gas-percent_of_service-every": {
+   "key": "gas-percent_of_service-every",
+   "service": "gas",
+   "model": "percent_of_service",
+   "klass": "Every class",
+   "name": "WC C1 gas Percent Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "G-250",
+      "minimum": "10.00"
+     },
+     {
+      "size": "G-425",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "40",
+    "basis": "water",
+    "unitPrice": "0.9800"
+   },
+   "id": "01a0f88c-c9b5-7afb-bd88-2d30b963a08b",
+   "add": true,
+   "listText": "WC C1 gas Percent Every class Gas Percent of another service Every class BASE-G-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f88c-c9bb-71ae-b864-cd474b72c986",
+   "change": true,
+   "v2": "01a0f88c-f26d-7fb2-a6c0-a114a040ff9a",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f88c-fe6b-73b1-9a70-68a2760d52ae",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 11.73/11.73 · after 14.79/14.79",
+   "done": true,
+   "seconds": 26,
+   "billBefore": {
+    "status": "follows_basis",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "11.73",
+    "waiting": null,
+    "expected": "11.73",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "follows_basis",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "14.79",
+    "waiting": null,
+    "expected": "14.79",
+    "ok": true
+   }
+  },
+  "sewer-flat-every": {
+   "key": "sewer-flat-every",
+   "service": "sewer",
+   "model": "flat",
+   "klass": "Every class",
+   "name": "WC C1 sewer Flat Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [],
+    "price": "5.0000"
+   },
+   "id": "01a0f88d-2f81-7ebe-a5eb-82ea503050ab",
+   "add": true,
+   "listText": "WC C1 sewer Flat Every class Sewer Flat Every class BASE-S — 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f88d-2f8c-7a7d-b4b2-526a3f65b538",
+   "change": true,
+   "v2": "01a0f88d-5f6b-75e7-a9b2-59901bac6eea",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "fixedId": "01a0f88d-6bd4-7a88-9c87-cb8f5d9e1745",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "25.20",
+    "waiting": null,
+    "expected": "25.20",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "33.00",
+    "waiting": null,
+    "expected": "33.00",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 25.20/25.20 · after 33.00/33.00",
+   "done": true,
+   "seconds": 39
+  },
+  "sewer-tiered-every": {
+   "key": "sewer-tiered-every",
+   "service": "sewer",
+   "model": "tiered",
+   "klass": "Every class",
+   "name": "WC C1 sewer Tiered Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [],
+    "price": "5.0000",
+    "tier2": "6.2500"
+   },
+   "id": "01a0f88d-c83a-736c-b8be-e4df8088c41f",
+   "add": true,
+   "listText": "WC C1 sewer Tiered Every class Sewer Tiered Every class BASE-S — 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f88d-c83e-7344-8d7e-ac324615e315",
+   "change": true,
+   "v2": "01a0f88d-f650-7ab3-a220-46ace67bf05a",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "fixedId": "01a0f88e-083c-77f9-9afa-ff7f4f7c15b2",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "25.20",
+    "waiting": null,
+    "expected": "25.20",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "33.00",
+    "waiting": null,
+    "expected": "33.00",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 25.20/25.20 · after 33.00/33.00",
+   "done": true,
+   "seconds": 34
+  },
+  "sewer-demand-every": {
+   "key": "sewer-demand-every",
+   "service": "sewer",
+   "model": "demand",
+   "klass": "Every class",
+   "name": "WC C1 sewer Demand Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [],
+    "price": "5.0000"
+   },
+   "id": "01a0f892-7cee-7779-ae29-8399ed6de22f",
+   "add": true,
+   "listText": "WC C1 sewer Demand Every class Sewer Demand Every class BASE-S — 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f892-7d04-75d2-bbaf-055dfbf8d988",
+   "change": true,
+   "v2": "01a0f892-adfe-7602-83f1-1ed561b7ff95",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "fixedId": "01a0f892-b9ae-7e9a-a757-c8c7231466ac",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "31.80",
+    "waiting": null,
+    "expected": "31.80",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "40.70",
+    "waiting": null,
+    "expected": "40.70",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 31.80/31.80 · after 40.70/40.70",
+   "done": true,
+   "seconds": 36
+  },
+  "sewer-seasonal-every": {
+   "key": "sewer-seasonal-every",
+   "service": "sewer",
+   "model": "seasonal",
+   "klass": "Every class",
+   "name": "WC C1 sewer Seasonal Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [],
+    "price": "5.0000"
+   },
+   "id": "01a0f893-0a34-78be-a25d-06e42283b7db",
+   "add": true,
+   "listText": "WC C1 sewer Seasonal Every class Sewer Seasonal Every class BASE-S — 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f893-0a39-7cd3-ac4a-8d8dfaa0e914",
+   "change": true,
+   "v2": "01a0f893-3b30-7532-89da-d6aa4da28271",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "fixedId": "01a0f893-49f0-707b-8e82-8f89ebee82d1",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "25.20",
+    "waiting": null,
+    "expected": "25.20",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "33.00",
+    "waiting": null,
+    "expected": "33.00",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 25.20/25.20 · after 33.00/33.00",
+   "done": true,
+   "seconds": 35
+  },
+  "sewer-capacity-every": {
+   "key": "sewer-capacity-every",
+   "service": "sewer",
+   "model": "capacity",
+   "klass": "Every class",
+   "name": "WC C1 sewer Capacity Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [],
+    "price": "5.0000"
+   },
+   "id": "01a0f893-9115-7ba8-ae23-80a85a5c5a32",
+   "add": true,
+   "listText": "WC C1 sewer Capacity Every class Sewer Capacity Every class BASE-S — 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f893-911e-71bd-944b-c9d2a7c29bd8",
+   "change": true,
+   "v2": "01a0f893-bde4-7e70-a1ac-5eb338291798",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "fixedId": "01a0f893-ca8f-7ba1-932c-e3e9c821c535",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "25.20",
+    "waiting": null,
+    "expected": "25.20",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "33.00",
+    "waiting": null,
+    "expected": "33.00",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 25.20/25.20 · after 33.00/33.00",
+   "done": true,
+   "seconds": 32
+  },
+  "sewer-percent_of_service-every": {
+   "key": "sewer-percent_of_service-every",
+   "service": "sewer",
+   "model": "percent_of_service",
+   "klass": "Every class",
+   "name": "WC C1 sewer Percent Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [],
+    "price": "40",
+    "basis": "water",
+    "unitPrice": "5.0000"
+   },
+   "id": "01a0f894-1150-771f-a7e2-d3ae8529618c",
+   "add": true,
+   "listText": "WC C1 sewer Percent Every class Sewer Percent of another service Every class BASE-S — 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f894-115f-74c4-8946-9fcc2ee03fc9",
+   "change": true,
+   "v2": "01a0f894-4408-7800-b83e-41b88b32eb5b",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "fixedId": "01a0f894-50c0-7403-959b-613167dc3fdd",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "follows_basis",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "17.40",
+    "waiting": null,
+    "expected": "17.40",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "follows_basis",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "33.00",
+    "waiting": null,
+    "expected": "33.00",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 17.40/17.40 · after 33.00/33.00",
+   "done": true,
+   "seconds": 35
+  },
+  "trash-flat-every": {
+   "key": "trash-flat-every",
+   "service": "trash",
+   "model": "flat",
+   "klass": "Every class",
+   "name": "WC C2 trash Flat Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "CART-96",
+      "minimum": "25.00"
+     },
+     {
+      "size": "DUMP-2",
+      "minimum": "60.00"
+     }
+    ],
+    "price": "15.0000"
+   },
+   "id": "01a0f8a0-f5c1-70b5-9d07-c5b9acf4f0e8",
+   "add": true,
+   "listText": "WC C2 trash Flat Every class Trash Flat Every class BASE-T 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8a0-f5cd-76d9-836c-8ada9a25d75b",
+   "change": true,
+   "v2": "01a0f8a1-2966-79b4-9158-19d24371c252",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8a1-39f9-7df8-83f5-bbb40573bbbb",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "25.00",
+    "waiting": null,
+    "expected": "25.00",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "25.00",
+    "waiting": null,
+    "expected": "25.00",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 25.00/25.00 · after 25.00/25.00",
+   "done": true,
+   "seconds": 43
+  },
+  "storm_water-flat-every": {
+   "key": "storm_water-flat-every",
+   "service": "storm_water",
+   "model": "flat",
+   "klass": "Every class",
+   "name": "WC C1 storm_water Flat Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "SW-APT",
+      "minimum": "10.00"
+     },
+     {
+      "size": "SW-COM-L",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "3.2500"
+   },
+   "id": "01a0f898-8316-7d27-966a-f6a02a62d09d",
+   "add": true,
+   "listText": "WC C1 storm_water Flat Every class Storm water Flat Every class BASE-SW-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f898-8325-77d2-b8f9-147000552a1e",
+   "change": true,
+   "v2": "01a0f898-b16d-7da1-8e84-382caada7819",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f898-c138-7db1-a3e6-e07a27ad369b",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 25.85/25.85 · after 28.25/28.25",
+   "done": true,
+   "seconds": 30,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "25.85",
+    "waiting": null,
+    "expected": "25.85",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "28.25",
+    "waiting": null,
+    "expected": "28.25",
+    "ok": true
+   }
+  },
+  "storm_water-tiered-every": {
+   "key": "storm_water-tiered-every",
+   "service": "storm_water",
+   "model": "tiered",
+   "klass": "Every class",
+   "name": "WC C1 storm_water Tiered Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "SW-APT",
+      "minimum": "10.00"
+     },
+     {
+      "size": "SW-COM-L",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "3.2500",
+    "tier2": "4.0625"
+   },
+   "id": "01a0f898-f2ad-7c30-bc44-668bf38af8b9",
+   "add": true,
+   "listText": "WC C1 storm_water Tiered Every class Storm water Tiered Every class BASE-SW-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f898-f2b7-76f2-9dfb-48d1115c0a2e",
+   "change": true,
+   "v2": "01a0f899-1cc5-7dc8-8b0a-add57175f3c7",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f899-28d4-7123-81f2-c038e588f1a0",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 26.81/26.81 · after 28.81/28.81",
+   "done": true,
+   "seconds": 27,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "26.81",
+    "waiting": null,
+    "expected": "26.81",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "28.81",
+    "waiting": null,
+    "expected": "28.81",
+    "ok": true
+   }
+  },
+  "storm_water-time_of_use-every": {
+   "key": "storm_water-time_of_use-every",
+   "service": "storm_water",
+   "model": "time_of_use",
+   "klass": "Every class",
+   "name": "WC C1 storm_water TOU Every class",
+   "notes": [
+    "BILL before {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"} after {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"}"
+   ],
+   "typed": {
+    "sizes": [
+     {
+      "size": "SW-APT",
+      "minimum": "10.00"
+     },
+     {
+      "size": "SW-COM-L",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "3.2500",
+    "peak": "4.8750"
+   },
+   "id": "01a0f899-5d42-7567-9a5d-d41cdfb7fb24",
+   "add": true,
+   "listText": "WC C1 storm_water TOU Every class Storm water Time-of-use Every class BASE-SW-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f899-5d4c-7234-a690-8062ba83c2d3",
+   "change": true,
+   "v2": "01a0f899-8e5a-737d-bda1-391e7b791e50",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f899-9cde-79c3-b9b1-eb4d475bb359",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": false,
+   "billFigure": "before —/refused · after —/refused",
+   "done": true,
+   "seconds": 33,
+   "billBefore": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   },
+   "billAfter": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   }
+  },
+  "storm_water-demand-every": {
+   "key": "storm_water-demand-every",
+   "service": "storm_water",
+   "model": "demand",
+   "klass": "Every class",
+   "name": "WC C1 storm_water Demand Every class",
+   "notes": [
+    "BILL before {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"} after {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"}"
+   ],
+   "typed": {
+    "sizes": [
+     {
+      "size": "SW-APT",
+      "minimum": "10.00"
+     },
+     {
+      "size": "SW-COM-L",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "3.2500"
+   },
+   "id": "01a0f899-e0d7-7d13-bfa2-3428850213c2",
+   "add": true,
+   "listText": "WC C1 storm_water Demand Every class Storm water Demand Every class BASE-SW-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f899-e0f3-7593-acd5-4f9a90a82276",
+   "change": true,
+   "v2": "01a0f89a-168b-7797-b484-9405714593ac",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f89a-2334-731c-a474-f34f2756b133",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": false,
+   "billFigure": "before —/refused · after —/refused",
+   "done": true,
+   "seconds": 32,
+   "billBefore": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   },
+   "billAfter": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   }
+  },
+  "storm_water-seasonal-every": {
+   "key": "storm_water-seasonal-every",
+   "service": "storm_water",
+   "model": "seasonal",
+   "klass": "Every class",
+   "name": "WC C1 storm_water Seasonal Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "SW-APT",
+      "minimum": "10.00"
+     },
+     {
+      "size": "SW-COM-L",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "3.2500"
+   },
+   "id": "01a0f89a-586b-7d96-8a71-ee957ef533eb",
+   "add": true,
+   "listText": "WC C1 storm_water Seasonal Every class Storm water Seasonal Every class BASE-SW-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f89a-5873-74a3-90fd-6f2efd619dcb",
+   "change": true,
+   "v2": "01a0f89a-828d-74b1-a5c6-4f6ecd8b64ad",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f89a-8eef-73f7-b476-437d0ae1eeea",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 25.85/25.85 · after 28.25/28.25",
+   "done": true,
+   "seconds": 29,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "25.85",
+    "waiting": null,
+    "expected": "25.85",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "28.25",
+    "waiting": null,
+    "expected": "28.25",
+    "ok": true
+   }
+  },
+  "storm_water-capacity-every": {
+   "key": "storm_water-capacity-every",
+   "service": "storm_water",
+   "model": "capacity",
+   "klass": "Every class",
+   "name": "WC C1 storm_water Capacity Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "SW-APT",
+      "minimum": "10.00"
+     },
+     {
+      "size": "SW-COM-L",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "3.2500"
+   },
+   "id": "01a0f89a-cec9-7f4a-bfe4-b9ccdb779137",
+   "add": true,
+   "listText": "WC C1 storm_water Capacity Every class Storm water Capacity Every class BASE-SW-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f89a-cedc-7796-aef1-af7a085380a7",
+   "change": true,
+   "v2": "01a0f89a-fcd4-7b79-911b-c93e224baf4f",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f89b-0d34-7581-9152-b92aaef1f7fa",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 25.85/25.85 · after 28.25/28.25",
+   "done": true,
+   "seconds": 31,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "25.85",
+    "waiting": null,
+    "expected": "25.85",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "28.25",
+    "waiting": null,
+    "expected": "28.25",
+    "ok": true
+   }
+  },
+  "storm_water-percent_of_service-every": {
+   "key": "storm_water-percent_of_service-every",
+   "service": "storm_water",
+   "model": "percent_of_service",
+   "klass": "Every class",
+   "name": "WC C1 storm_water Percent Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "SW-APT",
+      "minimum": "10.00"
+     },
+     {
+      "size": "SW-COM-L",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "40",
+    "basis": "water",
+    "unitPrice": "3.2500"
+   },
+   "id": "01a0f89b-445c-749c-aa47-cd31ab0f1bf5",
+   "add": true,
+   "listText": "WC C1 storm_water Percent Every class Storm water Percent of another service Every class BASE-SW-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f89b-446b-7c35-b4ba-15aa31582b82",
+   "change": true,
+   "v2": "01a0f89b-790e-721e-a9c1-ca2e4aa89bad",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f89b-87c0-780b-9244-ae2303e8e5b6",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 14.66/14.66 · after 24.80/24.80",
+   "done": true,
+   "seconds": 30,
+   "billBefore": {
+    "status": "follows_basis",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "14.66",
+    "waiting": null,
+    "expected": "14.66",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "follows_basis",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "24.80",
+    "waiting": null,
+    "expected": "24.80",
+    "ok": true
+   }
+  },
+  "solar-flat-every": {
+   "key": "solar-flat-every",
+   "service": "solar",
+   "model": "flat",
+   "klass": "Every class",
+   "name": "WC C1 solar Flat Every class",
+   "notes": [
+    "BILL before {\"status\":\"billed\",\"versions\":[\"2026-10-01\"],\"oneVersion\":true,\"got\":\"10.01\",\"waiting\":null,\"expected\":\"10.00\",\"ok\":false,\"note\":\"DEF-RAT-9013: one cent over the minimum — the lines round on their own, the top-up is measured unrounded (finance ruling)\"} after {\"status\":\"billed\",\"versions\":[\"2026-11-01\"],\"oneVersion\":true,\"got\":\"10.00\",\"waiting\":null,\"expected\":\"10.00\",\"ok\":true}"
+   ],
+   "typed": {
+    "sizes": [
+     {
+      "size": "SOL-P1",
+      "minimum": "10.00"
+     },
+     {
+      "size": "SOL-P2",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "0.0800"
+   },
+   "id": "01a0f89b-bd86-7085-8b44-23f385660ec7",
+   "add": true,
+   "listText": "WC C1 solar Flat Every class Solar Flat Every class BASE-SOL-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f89b-bd91-7d67-a218-02fb096cd482",
+   "change": true,
+   "v2": "01a0f89b-e873-7a54-bdca-fca5a098b7fa",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f89b-f745-7945-a678-1f2f6d44b8b3",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": false,
+   "billFigure": "before 10.00/10.01 · after 10.00/10.00",
+   "done": true,
+   "seconds": 32,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "10.01",
+    "waiting": null,
+    "expected": "10.00",
+    "ok": false,
+    "note": "DEF-RAT-9013: one cent over the minimum — the lines round on their own, the top-up is measured unrounded (finance ruling)"
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "10.00",
+    "waiting": null,
+    "expected": "10.00",
+    "ok": true
+   }
+  },
+  "solar-tiered-every": {
+   "key": "solar-tiered-every",
+   "service": "solar",
+   "model": "tiered",
+   "klass": "Every class",
+   "name": "WC C1 solar Tiered Every class",
+   "notes": [
+    "BILL before {\"status\":\"billed\",\"versions\":[\"2026-10-01\"],\"oneVersion\":true,\"got\":\"10.01\",\"waiting\":null,\"expected\":\"10.00\",\"ok\":false,\"note\":\"DEF-RAT-9013: one cent over the minimum — the lines round on their own, the top-up is measured unrounded (finance ruling)\"} after {\"status\":\"billed\",\"versions\":[\"2026-11-01\"],\"oneVersion\":true,\"got\":\"10.00\",\"waiting\":null,\"expected\":\"10.00\",\"ok\":true}"
+   ],
+   "typed": {
+    "sizes": [
+     {
+      "size": "SOL-P1",
+      "minimum": "10.00"
+     },
+     {
+      "size": "SOL-P2",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "0.0800",
+    "tier2": "0.1000"
+   },
+   "id": "01a0f89c-44fa-7fa9-a286-b56967e0ef3f",
+   "add": true,
+   "listText": "WC C1 solar Tiered Every class Solar Tiered Every class BASE-SOL-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f89c-4520-7e60-aad4-37c9ad9539e0",
+   "change": true,
+   "v2": "01a0f89c-7775-7eda-8dca-77170e26bb52",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f89c-86fe-7d84-8efb-2947502c1402",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": false,
+   "billFigure": "before 10.00/10.01 · after 10.00/10.00",
+   "done": true,
+   "seconds": 33,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "10.01",
+    "waiting": null,
+    "expected": "10.00",
+    "ok": false,
+    "note": "DEF-RAT-9013: one cent over the minimum — the lines round on their own, the top-up is measured unrounded (finance ruling)"
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "10.00",
+    "waiting": null,
+    "expected": "10.00",
+    "ok": true
+   }
+  },
+  "solar-time_of_use-every": {
+   "key": "solar-time_of_use-every",
+   "service": "solar",
+   "model": "time_of_use",
+   "klass": "Every class",
+   "name": "WC C1 solar TOU Every class",
+   "notes": [
+    "BILL before {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"} after {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"}"
+   ],
+   "typed": {
+    "sizes": [
+     {
+      "size": "SOL-P1",
+      "minimum": "10.00"
+     },
+     {
+      "size": "SOL-P2",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "0.0800",
+    "peak": "0.1200"
+   },
+   "id": "01a0f89c-be13-70fc-be7f-bc52240bf6f4",
+   "add": true,
+   "listText": "WC C1 solar TOU Every class Solar Time-of-use Every class BASE-SOL-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f89c-be21-7e00-8ca4-cb207bd588e5",
+   "change": true,
+   "v2": "01a0f89c-f493-754d-ae24-7f4b192a6908",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f89d-0608-76a9-a29f-4a0a7dfff315",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": false,
+   "billFigure": "before —/refused · after —/refused",
+   "done": true,
+   "seconds": 35,
+   "billBefore": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   },
+   "billAfter": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   }
+  },
+  "solar-demand-every": {
+   "key": "solar-demand-every",
+   "service": "solar",
+   "model": "demand",
+   "klass": "Every class",
+   "name": "WC C1 solar Demand Every class",
+   "notes": [
+    "BILL before {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"} after {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"}"
+   ],
+   "typed": {
+    "sizes": [
+     {
+      "size": "SOL-P1",
+      "minimum": "10.00"
+     },
+     {
+      "size": "SOL-P2",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "0.0800"
+   },
+   "id": "01a0f89d-4453-71e1-84fb-5f3fa41226ac",
+   "add": true,
+   "listText": "WC C1 solar Demand Every class Solar Demand Every class BASE-SOL-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f89d-4460-72c7-be0e-f840d7d62383",
+   "change": true,
+   "v2": "01a0f89d-6bd3-75c4-af39-fa903d247c17",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f89d-769d-7991-b4b0-3153881375c2",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": false,
+   "billFigure": "before —/refused · after —/refused",
+   "done": true,
+   "seconds": 25,
+   "billBefore": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   },
+   "billAfter": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   }
+  },
+  "solar-seasonal-every": {
+   "key": "solar-seasonal-every",
+   "service": "solar",
+   "model": "seasonal",
+   "klass": "Every class",
+   "name": "WC C1 solar Seasonal Every class",
+   "notes": [
+    "BILL before {\"status\":\"billed\",\"versions\":[\"2026-10-01\"],\"oneVersion\":true,\"got\":\"10.01\",\"waiting\":null,\"expected\":\"10.00\",\"ok\":false,\"note\":\"DEF-RAT-9013: one cent over the minimum — the lines round on their own, the top-up is measured unrounded (finance ruling)\"} after {\"status\":\"billed\",\"versions\":[\"2026-11-01\"],\"oneVersion\":true,\"got\":\"10.00\",\"waiting\":null,\"expected\":\"10.00\",\"ok\":true}"
+   ],
+   "typed": {
+    "sizes": [
+     {
+      "size": "SOL-P1",
+      "minimum": "10.00"
+     },
+     {
+      "size": "SOL-P2",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "0.0800"
+   },
+   "id": "01a0f89d-a916-7c72-bf9b-ea3fcf029c08",
+   "add": true,
+   "listText": "WC C1 solar Seasonal Every class Solar Seasonal Every class BASE-SOL-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f89d-a91e-78d7-810a-3adee5361ee7",
+   "change": true,
+   "v2": "01a0f89d-d795-797b-a373-b3dafe259f7b",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f89d-ec44-7faf-9272-2f803e88c959",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": false,
+   "billFigure": "before 10.00/10.01 · after 10.00/10.00",
+   "done": true,
+   "seconds": 38,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "10.01",
+    "waiting": null,
+    "expected": "10.00",
+    "ok": false,
+    "note": "DEF-RAT-9013: one cent over the minimum — the lines round on their own, the top-up is measured unrounded (finance ruling)"
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "10.00",
+    "waiting": null,
+    "expected": "10.00",
+    "ok": true
+   }
+  },
+  "solar-capacity-every": {
+   "key": "solar-capacity-every",
+   "service": "solar",
+   "model": "capacity",
+   "klass": "Every class",
+   "name": "WC C1 solar Capacity Every class",
+   "notes": [
+    "BILL before {\"status\":\"billed\",\"versions\":[\"2026-10-01\"],\"oneVersion\":true,\"got\":\"10.01\",\"waiting\":null,\"expected\":\"10.00\",\"ok\":false,\"note\":\"DEF-RAT-9013: one cent over the minimum — the lines round on their own, the top-up is measured unrounded (finance ruling)\"} after {\"status\":\"billed\",\"versions\":[\"2026-11-01\"],\"oneVersion\":true,\"got\":\"10.00\",\"waiting\":null,\"expected\":\"10.00\",\"ok\":true}"
+   ],
+   "typed": {
+    "sizes": [
+     {
+      "size": "SOL-P1",
+      "minimum": "10.00"
+     },
+     {
+      "size": "SOL-P2",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "0.0800"
+   },
+   "id": "01a0f89e-3d45-7d82-a9ab-4a689ebd75b8",
+   "add": true,
+   "listText": "WC C1 solar Capacity Every class Solar Capacity Every class BASE-SOL-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f89e-3d52-7c5b-abc4-2a2470197fc1",
+   "change": true,
+   "v2": "01a0f89e-6840-7c15-8edb-e1987fa1cdea",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f89e-747d-7c43-a226-7780e3614af1",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": false,
+   "billFigure": "before 10.00/10.01 · after 10.00/10.00",
+   "done": true,
+   "seconds": 29,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "10.01",
+    "waiting": null,
+    "expected": "10.00",
+    "ok": false,
+    "note": "DEF-RAT-9013: one cent over the minimum — the lines round on their own, the top-up is measured unrounded (finance ruling)"
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "10.00",
+    "waiting": null,
+    "expected": "10.00",
+    "ok": true
+   }
+  },
+  "sewer-time_of_use-every": {
+   "key": "sewer-time_of_use-every",
+   "service": "sewer",
+   "model": "time_of_use",
+   "klass": "Every class",
+   "name": "WC C2 sewer TOU Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [],
+    "price": "5.0000",
+    "peak": "7.5000"
+   },
+   "id": "01a0f8a1-f120-7874-acc4-a1b32803de04",
+   "add": true,
+   "listText": "WC C2 sewer TOU Every class Sewer Time-of-use Every class BASE-S — 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8a1-f138-77ca-b37c-31c9e3c17836",
+   "change": true,
+   "v2": "01a0f8a2-308d-7427-9f98-816fd14618f9",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "fixedId": "01a0f8a2-4598-7c94-81f0-574b3b13a477",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "27.90",
+    "waiting": null,
+    "expected": "27.90",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "37.20",
+    "waiting": null,
+    "expected": "37.20",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 27.90/27.90 · after 37.20/37.20",
+   "done": true,
+   "seconds": 47
+  },
+  "trash-tiered-every": {
+   "key": "trash-tiered-every",
+   "service": "trash",
+   "model": "tiered",
+   "klass": "Every class",
+   "name": "WC C2 trash Tiered Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "CART-96",
+      "minimum": "25.00"
+     },
+     {
+      "size": "DUMP-2",
+      "minimum": "60.00"
+     }
+    ],
+    "price": "15.0000",
+    "tier2": "18.7500"
+   },
+   "id": "01a0f8a2-b06f-7ab9-9ef6-b61c8b069607",
+   "add": true,
+   "listText": "WC C2 trash Tiered Every class Trash Tiered Every class BASE-T 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8a2-b083-7ad6-ba01-95bb0b9751ac",
+   "change": true,
+   "v2": "01a0f8a2-f674-740c-806f-10a786849884",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8a3-0e4c-7dc3-b728-16dfdab3037c",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "25.00",
+    "waiting": null,
+    "expected": "25.00",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "25.00",
+    "waiting": null,
+    "expected": "25.00",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 25.00/25.00 · after 25.00/25.00",
+   "done": true,
+   "seconds": 59
+  },
+  "trash-time_of_use-every": {
+   "key": "trash-time_of_use-every",
+   "service": "trash",
+   "model": "time_of_use",
+   "klass": "Every class",
+   "name": "WC C2 trash TOU Every class",
+   "notes": [
+    "BILL before {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"} after {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"}"
+   ],
+   "typed": {
+    "sizes": [
+     {
+      "size": "CART-96",
+      "minimum": "25.00"
+     },
+     {
+      "size": "DUMP-2",
+      "minimum": "60.00"
+     }
+    ],
+    "price": "15.0000",
+    "peak": "22.5000"
+   },
+   "id": "01a0f8a3-9588-7a7d-8c29-815ec7e07755",
+   "add": true,
+   "listText": "WC C2 trash TOU Every class Trash Time-of-use Every class BASE-T 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8a3-9591-7b3f-aea0-28d827a56a26",
+   "change": true,
+   "v2": "01a0f8a3-d61c-7cd2-9ee7-8bf7b32f9139",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8a3-f550-727f-8fa4-9f3efb2cb3b6",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   },
+   "billAfter": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   },
+   "bill": false,
+   "billFigure": "before —/refused · after —/refused",
+   "done": true,
+   "seconds": 58
+  },
+  "trash-demand-every": {
+   "key": "trash-demand-every",
+   "service": "trash",
+   "model": "demand",
+   "klass": "Every class",
+   "name": "WC C2 trash Demand Every class",
+   "notes": [
+    "BILL before {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"} after {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"}"
+   ],
+   "typed": {
+    "sizes": [
+     {
+      "size": "CART-96",
+      "minimum": "25.00"
+     },
+     {
+      "size": "DUMP-2",
+      "minimum": "60.00"
+     }
+    ],
+    "price": "15.0000"
+   },
+   "id": "01a0f8a4-761c-70dd-9a0e-fdaf7d30f574",
+   "add": true,
+   "listText": "WC C2 trash Demand Every class Trash Demand Every class BASE-T 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8a4-7630-71e3-b4e1-f9794382bbcc",
+   "change": true,
+   "v2": "01a0f8a4-c490-7e64-a7af-46705ed7e805",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8a4-d5a6-7199-b9a5-c1d8771827e4",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   },
+   "billAfter": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   },
+   "bill": false,
+   "billFigure": "before —/refused · after —/refused",
+   "done": true,
+   "seconds": 50
+  },
+  "trash-seasonal-every": {
+   "key": "trash-seasonal-every",
+   "service": "trash",
+   "model": "seasonal",
+   "klass": "Every class",
+   "name": "WC C2 trash Seasonal Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "CART-96",
+      "minimum": "25.00"
+     },
+     {
+      "size": "DUMP-2",
+      "minimum": "60.00"
+     }
+    ],
+    "price": "15.0000"
+   },
+   "id": "01a0f8a5-2e5e-75fd-8883-706ba5d25704",
+   "add": true,
+   "listText": "WC C2 trash Seasonal Every class Trash Seasonal Every class BASE-T 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8a5-2e6c-7e6d-98fb-d5b96103fd37",
+   "change": true,
+   "v2": "01a0f8a5-5762-7294-95fe-465db42edb94",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8a5-6377-7721-8c64-3d03f3e8a704",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "25.00",
+    "waiting": null,
+    "expected": "25.00",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "25.00",
+    "waiting": null,
+    "expected": "25.00",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 25.00/25.00 · after 25.00/25.00",
+   "done": true,
+   "seconds": 30
+  },
+  "trash-capacity-every": {
+   "key": "trash-capacity-every",
+   "service": "trash",
+   "model": "capacity",
+   "klass": "Every class",
+   "name": "WC C2 trash Capacity Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "CART-96",
+      "minimum": "25.00"
+     },
+     {
+      "size": "DUMP-2",
+      "minimum": "60.00"
+     }
+    ],
+    "price": "15.0000"
+   },
+   "id": "01a0f8a5-a593-7855-8044-822d498d96d2",
+   "add": true,
+   "listText": "WC C2 trash Capacity Every class Trash Capacity Every class BASE-T 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8a5-a59c-786f-a372-0469884f18e3",
+   "change": true,
+   "v2": "01a0f8a5-d420-7696-9960-b1580ccfb9e5",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8a5-e167-774d-afe6-ba72f6cb627a",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "25.00",
+    "waiting": null,
+    "expected": "25.00",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "25.00",
+    "waiting": null,
+    "expected": "25.00",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 25.00/25.00 · after 25.00/25.00",
+   "done": true,
+   "seconds": 34
+  },
+  "trash-percent_of_service-every": {
+   "key": "trash-percent_of_service-every",
+   "service": "trash",
+   "model": "percent_of_service",
+   "klass": "Every class",
+   "name": "WC C2 trash Percent Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "CART-96",
+      "minimum": "25.00"
+     },
+     {
+      "size": "DUMP-2",
+      "minimum": "60.00"
+     }
+    ],
+    "price": "40",
+    "basis": "water",
+    "unitPrice": "15.0000"
+   },
+   "id": "01a0f8a6-269b-7e32-bee4-cbbb5a56e1cc",
+   "add": true,
+   "listText": "WC C2 trash Percent Every class Trash Percent of another service Every class BASE-T 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8a6-26aa-73df-bb2f-e03ce7e93e64",
+   "change": true,
+   "v2": "01a0f8a6-599c-7f7d-98b6-e2102a687944",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8a6-6adb-7486-88dc-b6b6cdc536c9",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "follows_basis",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "37.20",
+    "waiting": null,
+    "expected": "37.20",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "follows_basis",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "84.00",
+    "waiting": null,
+    "expected": "84.00",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 37.20/37.20 · after 84.00/84.00",
+   "done": true,
+   "seconds": 41
+  },
+  "solar-percent_of_service-every": {
+   "key": "solar-percent_of_service-every",
+   "service": "solar",
+   "model": "percent_of_service",
+   "klass": "Every class",
+   "name": "WC C2 solar Percent Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "SOL-P1",
+      "minimum": "10.00"
+     },
+     {
+      "size": "SOL-P2",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "40",
+    "basis": "water",
+    "unitPrice": "0.0800"
+   },
+   "id": "01a0f8a6-cbdd-718a-831f-8c0b7dd4de72",
+   "add": true,
+   "listText": "WC C2 solar Percent Every class Solar Percent of another service Every class BASE-SOL-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8a6-cbfc-77fd-acb3-8490094cd326",
+   "change": true,
+   "v2": "01a0f8a6-fa68-7da2-b7b8-3ef56d55fa86",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8a7-0704-7684-8660-46530c397707",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 10.00/10.00 · after 10.00/10.00",
+   "done": true,
+   "seconds": 32,
+   "billBefore": {
+    "status": "follows_basis",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "10.00",
+    "waiting": null,
+    "expected": "10.00",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "follows_basis",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "10.00",
+    "waiting": null,
+    "expected": "10.00",
+    "ok": true
+   }
+  },
+  "broadband-flat-every": {
+   "key": "broadband-flat-every",
+   "service": "broadband",
+   "model": "flat",
+   "klass": "Every class",
+   "name": "WC C2 broadband Flat Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "BB-100",
+      "minimum": "10.00"
+     },
+     {
+      "size": "BB-500",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "49.9900"
+   },
+   "id": "01a0f8a7-440e-751e-b2f7-a15cbf7f8cc7",
+   "add": true,
+   "listText": "WC C2 broadband Flat Every class Broadband Flat Every class BASE-BB-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8a7-4417-765a-9eb7-b4726a59e036",
+   "change": true,
+   "v2": "01a0f8a7-71ab-7320-9c4c-bed25e815f1b",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8a7-819e-7a29-97a3-c34b78cb990e",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 4619.00/4619.00 · after 5519.00/5519.00",
+   "done": true,
+   "seconds": 34,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "4619.00",
+    "waiting": null,
+    "expected": "4619.00",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "5519.00",
+    "waiting": null,
+    "expected": "5519.00",
+    "ok": true
+   }
+  },
+  "broadband-tiered-every": {
+   "key": "broadband-tiered-every",
+   "service": "broadband",
+   "model": "tiered",
+   "klass": "Every class",
+   "name": "WC C2 broadband Tiered Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "BB-100",
+      "minimum": "10.00"
+     },
+     {
+      "size": "BB-500",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "49.9900",
+    "tier2": "62.4875"
+   },
+   "id": "01a0f8a7-d0df-71fd-b948-e8cd5dcb65db",
+   "add": true,
+   "listText": "WC C2 broadband Tiered Every class Broadband Tiered Every class BASE-BB-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8a7-d0ea-7c3c-a02d-b41b859d6e2a",
+   "change": true,
+   "v2": "01a0f8a8-04ae-78d0-90c4-ea24bb2124f1",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8a8-19d2-7a06-bae9-44ad53c5b638",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 6186.26/6186.26 · after 6231.26/6231.26",
+   "done": true,
+   "seconds": 38,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "6186.26",
+    "waiting": null,
+    "expected": "6186.26",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "6231.26",
+    "waiting": null,
+    "expected": "6231.26",
+    "ok": true
+   }
+  },
+  "broadband-time_of_use-every": {
+   "key": "broadband-time_of_use-every",
+   "service": "broadband",
+   "model": "time_of_use",
+   "klass": "Every class",
+   "name": "WC C2 broadband TOU Every class",
+   "notes": [
+    "BILL before {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"} after {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"}"
+   ],
+   "typed": {
+    "sizes": [
+     {
+      "size": "BB-100",
+      "minimum": "10.00"
+     },
+     {
+      "size": "BB-500",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "49.9900",
+    "peak": "74.9850"
+   },
+   "id": "01a0f8a8-6534-71d0-b5f3-56d88a2e1cf5",
+   "add": true,
+   "listText": "WC C2 broadband TOU Every class Broadband Time-of-use Every class BASE-BB-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8a8-6542-7de5-a21e-cd4d25e0fe29",
+   "change": true,
+   "v2": "01a0f8a8-9d48-715b-bc31-9f6e00f3db29",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8a8-afc0-78da-9f1f-ce96b8fc75d9",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": false,
+   "billFigure": "before —/refused · after —/refused",
+   "done": true,
+   "seconds": 40,
+   "billBefore": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   },
+   "billAfter": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   }
+  },
+  "broadband-demand-every": {
+   "key": "broadband-demand-every",
+   "service": "broadband",
+   "model": "demand",
+   "klass": "Every class",
+   "name": "WC C2 broadband Demand Every class",
+   "notes": [
+    "BILL before {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"} after {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"}"
+   ],
+   "typed": {
+    "sizes": [
+     {
+      "size": "BB-100",
+      "minimum": "10.00"
+     },
+     {
+      "size": "BB-500",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "49.9900"
+   },
+   "id": "01a0f8a9-00a8-721b-be74-c0d4df19a351",
+   "add": true,
+   "listText": "WC C2 broadband Demand Every class Broadband Demand Every class BASE-BB-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8a9-00dc-7257-900d-052e481ea6c2",
+   "change": true,
+   "v2": "01a0f8a9-37fd-724a-b468-9aafee4c58f3",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8a9-47cc-7c85-bfc6-854202ffae8c",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": false,
+   "billFigure": "before —/refused · after —/refused",
+   "done": true,
+   "seconds": 37,
+   "billBefore": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   },
+   "billAfter": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   }
+  },
+  "broadband-seasonal-every": {
+   "key": "broadband-seasonal-every",
+   "service": "broadband",
+   "model": "seasonal",
+   "klass": "Every class",
+   "name": "WC C2 broadband Seasonal Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "BB-100",
+      "minimum": "10.00"
+     },
+     {
+      "size": "BB-500",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "49.9900"
+   },
+   "id": "01a0f8a9-8a6a-7125-b61c-c21fa45ef5e3",
+   "add": true,
+   "listText": "WC C2 broadband Seasonal Every class Broadband Seasonal Every class BASE-BB-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8a9-8a75-767b-ac36-1e23ed1cb93b",
+   "change": true,
+   "v2": "01a0f8a9-bc6a-74f0-a8c9-f6938f490c48",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8a9-cd90-73ea-bf4c-6001aef2b709",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 4619.00/4619.00 · after 5519.00/5519.00",
+   "done": true,
+   "seconds": 35,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "4619.00",
+    "waiting": null,
+    "expected": "4619.00",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "5519.00",
+    "waiting": null,
+    "expected": "5519.00",
+    "ok": true
+   }
+  },
+  "broadband-capacity-every": {
+   "key": "broadband-capacity-every",
+   "service": "broadband",
+   "model": "capacity",
+   "klass": "Every class",
+   "name": "WC C2 broadband Capacity Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "BB-100",
+      "minimum": "10.00"
+     },
+     {
+      "size": "BB-500",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "49.9900"
+   },
+   "id": "01a0f8aa-1752-709b-b561-e12ed029bad5",
+   "add": true,
+   "listText": "WC C2 broadband Capacity Every class Broadband Capacity Every class BASE-BB-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8aa-175d-70e7-b1c1-dda88b881268",
+   "change": true,
+   "v2": "01a0f8aa-4628-71ec-855b-f976d1ae482d",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8aa-5415-7375-bf48-bb0fd3c8268b",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 4619.00/4619.00 · after 5519.00/5519.00",
+   "done": true,
+   "seconds": 33,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "4619.00",
+    "waiting": null,
+    "expected": "4619.00",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "5519.00",
+    "waiting": null,
+    "expected": "5519.00",
+    "ok": true
+   }
+  },
+  "broadband-percent_of_service-every": {
+   "key": "broadband-percent_of_service-every",
+   "service": "broadband",
+   "model": "percent_of_service",
+   "klass": "Every class",
+   "name": "WC C2 broadband Percent Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "BB-100",
+      "minimum": "10.00"
+     },
+     {
+      "size": "BB-500",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "40",
+    "basis": "water",
+    "unitPrice": "49.9900"
+   },
+   "id": "01a0f8aa-9859-7e91-a1a4-1da46c91da14",
+   "add": true,
+   "listText": "WC C2 broadband Percent Every class Broadband Percent of another service Every class BASE-BB-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8aa-9861-739d-9624-2447b09b9361",
+   "change": true,
+   "v2": "01a0f8aa-ca2e-7b6e-ac5c-2de7cece9ffd",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8aa-dba7-7530-b2ea-51ea0d4fb5d4",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 133.98/133.98 · after 289.95/289.95",
+   "done": true,
+   "seconds": 33,
+   "billBefore": {
+    "status": "follows_basis",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "133.98",
+    "waiting": null,
+    "expected": "133.98",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "follows_basis",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "289.95",
+    "waiting": null,
+    "expected": "289.95",
+    "ok": true
+   }
+  },
+  "thermal_heat-flat-every": {
+   "key": "thermal_heat-flat-every",
+   "service": "thermal_heat",
+   "model": "flat",
+   "klass": "Every class",
+   "name": "WC C2 thermal_heat Flat Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "TH-T5",
+      "minimum": "10.00"
+     },
+     {
+      "size": "TH-T10",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "0.0650"
+   },
+   "id": "01a0f8ab-1aae-7d88-90fc-0cc476791fe2",
+   "add": true,
+   "listText": "WC C2 thermal_heat Flat Every class Thermal/Heat Flat Every class BASE-TH-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8ab-1abd-712e-a62e-a2aae605a587",
+   "change": true,
+   "v2": "01a0f8ab-474c-74ec-bcf8-eb5e39101d51",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8ab-57d0-7d04-99bc-ee3503d96c6f",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 11.30/11.30 · after 11.35/11.35",
+   "done": true,
+   "seconds": 32,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "11.30",
+    "waiting": null,
+    "expected": "11.30",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "11.35",
+    "waiting": null,
+    "expected": "11.35",
+    "ok": true
+   }
+  },
+  "thermal_heat-tiered-every": {
+   "key": "thermal_heat-tiered-every",
+   "service": "thermal_heat",
+   "model": "tiered",
+   "klass": "Every class",
+   "name": "WC C2 thermal_heat Tiered Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "TH-T5",
+      "minimum": "10.00"
+     },
+     {
+      "size": "TH-T10",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "0.0650",
+    "tier2": "0.0813"
+   },
+   "id": "01a0f8ab-9382-7da8-a49b-a0214bc707b9",
+   "add": true,
+   "listText": "WC C2 thermal_heat Tiered Every class Thermal/Heat Tiered Every class BASE-TH-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8ab-9390-71c8-9369-2848fa7b0218",
+   "change": true,
+   "v2": "01a0f8ab-c04c-707c-b6ac-7ac37c9ddbee",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8ab-cc36-758f-9a3f-42bfe7af9205",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 11.30/11.30 · after 11.35/11.35",
+   "done": true,
+   "seconds": 28,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "11.30",
+    "waiting": null,
+    "expected": "11.30",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "11.35",
+    "waiting": null,
+    "expected": "11.35",
+    "ok": true
+   }
+  },
+  "thermal_heat-time_of_use-every": {
+   "key": "thermal_heat-time_of_use-every",
+   "service": "thermal_heat",
+   "model": "time_of_use",
+   "klass": "Every class",
+   "name": "WC C2 thermal_heat TOU Every class",
+   "notes": [
+    "BILL before {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"} after {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"}"
+   ],
+   "typed": {
+    "sizes": [
+     {
+      "size": "TH-T5",
+      "minimum": "10.00"
+     },
+     {
+      "size": "TH-T10",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "0.0650",
+    "peak": "0.0975"
+   },
+   "id": "01a0f8ac-01b0-7a98-a332-69b89b04b724",
+   "add": true,
+   "listText": "WC C2 thermal_heat TOU Every class Thermal/Heat Time-of-use Every class BASE-TH-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8ac-01c0-7db5-91b8-f285f25c0c9e",
+   "change": true,
+   "v2": "01a0f8ac-2c2e-7d86-b041-3889f11d0031",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8ac-3792-79ce-a558-f2043bc791c2",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": false,
+   "billFigure": "before —/refused · after —/refused",
+   "done": true,
+   "seconds": 28,
+   "billBefore": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   },
+   "billAfter": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   }
+  },
+  "thermal_heat-demand-every": {
+   "key": "thermal_heat-demand-every",
+   "service": "thermal_heat",
+   "model": "demand",
+   "klass": "Every class",
+   "name": "WC C2 thermal_heat Demand Every class",
+   "notes": [
+    "BILL before {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"} after {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"}"
+   ],
+   "typed": {
+    "sizes": [
+     {
+      "size": "TH-T5",
+      "minimum": "10.00"
+     },
+     {
+      "size": "TH-T10",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "0.0650"
+   },
+   "id": "01a0f8ac-6cfb-7976-9cf0-e8ca3a4d54c0",
+   "add": true,
+   "listText": "WC C2 thermal_heat Demand Every class Thermal/Heat Demand Every class BASE-TH-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8ac-6d08-7998-82fa-2f102b5a8191",
+   "change": true,
+   "v2": "01a0f8ac-9751-7b97-afe3-e8dfcd1d5158",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8ac-a411-7521-b41e-f5c34db42339",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": false,
+   "billFigure": "before —/refused · after —/refused",
+   "done": true,
+   "seconds": 28,
+   "billBefore": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   },
+   "billAfter": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   }
+  },
+  "thermal_heat-seasonal-every": {
+   "key": "thermal_heat-seasonal-every",
+   "service": "thermal_heat",
+   "model": "seasonal",
+   "klass": "Every class",
+   "name": "WC C2 thermal_heat Seasonal Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "TH-T5",
+      "minimum": "10.00"
+     },
+     {
+      "size": "TH-T10",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "0.0650"
+   },
+   "id": "01a0f8ac-e160-7664-8887-abe47ce7beb0",
+   "add": true,
+   "listText": "WC C2 thermal_heat Seasonal Every class Thermal/Heat Seasonal Every class BASE-TH-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8ac-e169-7f9c-8af2-55de40893eda",
+   "change": true,
+   "v2": "01a0f8ad-090c-7a88-8d41-ec5eb0e82213",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8ad-136c-74d7-9fad-b5b21caf216c",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 11.30/11.30 · after 11.35/11.35",
+   "done": true,
+   "seconds": 30,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "11.30",
+    "waiting": null,
+    "expected": "11.30",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "11.35",
+    "waiting": null,
+    "expected": "11.35",
+    "ok": true
+   }
+  },
+  "thermal_heat-capacity-every": {
+   "key": "thermal_heat-capacity-every",
+   "service": "thermal_heat",
+   "model": "capacity",
+   "klass": "Every class",
+   "name": "WC C2 thermal_heat Capacity Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "TH-T5",
+      "minimum": "10.00"
+     },
+     {
+      "size": "TH-T10",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "0.0650"
+   },
+   "id": "01a0f8ad-52ce-72ed-b6d4-c6e2c06d2bcf",
+   "add": true,
+   "listText": "WC C2 thermal_heat Capacity Every class Thermal/Heat Capacity Every class BASE-TH-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8ad-52d7-7a8d-8e6a-96560a80497a",
+   "change": true,
+   "v2": "01a0f8ad-7a54-7a84-84df-758abbbca281",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8ad-847d-7d79-9ab6-00a10d7c0dbb",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 11.30/11.30 · after 11.35/11.35",
+   "done": true,
+   "seconds": 27,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "11.30",
+    "waiting": null,
+    "expected": "11.30",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "11.35",
+    "waiting": null,
+    "expected": "11.35",
+    "ok": true
+   }
+  },
+  "thermal_heat-percent_of_service-every": {
+   "key": "thermal_heat-percent_of_service-every",
+   "service": "thermal_heat",
+   "model": "percent_of_service",
+   "klass": "Every class",
+   "name": "WC C2 thermal_heat Percent Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "TH-T5",
+      "minimum": "10.00"
+     },
+     {
+      "size": "TH-T10",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "40",
+    "basis": "water",
+    "unitPrice": "0.0650"
+   },
+   "id": "01a0f8ad-c04f-708a-9a13-73cc8ee341ff",
+   "add": true,
+   "listText": "WC C2 thermal_heat Percent Every class Thermal/Heat Percent of another service Every class BASE-TH-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8ad-c064-7ada-864a-6887b35ed7df",
+   "change": true,
+   "v2": "01a0f8ad-e9bc-7f1a-b132-acee8f53bd8b",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8ad-f859-7a46-9c2c-0e8812dbebc9",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 11.15/11.15 · after 11.35/11.35",
+   "done": true,
+   "seconds": 31,
+   "billBefore": {
+    "status": "follows_basis",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "11.15",
+    "waiting": null,
+    "expected": "11.15",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "follows_basis",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "11.35",
+    "waiting": null,
+    "expected": "11.35",
+    "ok": true
+   }
+  },
+  "battery-flat-every": {
+   "key": "battery-flat-every",
+   "service": "battery",
+   "model": "flat",
+   "klass": "Every class",
+   "name": "WC C2 battery Flat Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "BAT-5",
+      "minimum": "10.00"
+     },
+     {
+      "size": "BAT-10",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "4.0000"
+   },
+   "id": "01a0f8ae-346d-71fb-8f36-33c1550d7786",
+   "add": true,
+   "listText": "WC C2 battery Flat Every class Battery Flat Every class BASE-BAT-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8ae-3476-7d6d-b201-389fa3060499",
+   "change": true,
+   "v2": "01a0f8ae-62e1-7b65-a858-d5dd2891d393",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8ae-6ecc-7620-a7f8-7308db47cdca",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 25.00/25.00 · after 28.00/28.00",
+   "done": true,
+   "seconds": 28,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "25.00",
+    "waiting": null,
+    "expected": "25.00",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "28.00",
+    "waiting": null,
+    "expected": "28.00",
+    "ok": true
+   }
+  },
+  "battery-tiered-every": {
+   "key": "battery-tiered-every",
+   "service": "battery",
+   "model": "tiered",
+   "klass": "Every class",
+   "name": "WC C2 battery Tiered Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "BAT-5",
+      "minimum": "10.00"
+     },
+     {
+      "size": "BAT-10",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "4.0000",
+    "tier2": "5.0000"
+   },
+   "id": "01a0f8ae-a0dd-7c94-a717-35a108eb16a6",
+   "add": true,
+   "listText": "WC C2 battery Tiered Every class Battery Tiered Every class BASE-BAT-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8ae-a0e3-78fa-9286-b3e84f424cbe",
+   "change": true,
+   "v2": "01a0f8ae-cb2a-72ed-88ee-df07911c0232",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8ae-d560-7dff-aa29-1164f86eaefe",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 25.00/25.00 · after 28.00/28.00",
+   "done": true,
+   "seconds": 27,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "25.00",
+    "waiting": null,
+    "expected": "25.00",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "28.00",
+    "waiting": null,
+    "expected": "28.00",
+    "ok": true
+   }
+  },
+  "battery-time_of_use-every": {
+   "key": "battery-time_of_use-every",
+   "service": "battery",
+   "model": "time_of_use",
+   "klass": "Every class",
+   "name": "WC C2 battery TOU Every class",
+   "notes": [
+    "BILL before {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"} after {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"}"
+   ],
+   "typed": {
+    "sizes": [
+     {
+      "size": "BAT-5",
+      "minimum": "10.00"
+     },
+     {
+      "size": "BAT-10",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "4.0000",
+    "peak": "6.0000"
+   },
+   "id": "01a0f8af-0cc9-7e4d-92e2-848958d69943",
+   "add": true,
+   "listText": "WC C2 battery TOU Every class Battery Time-of-use Every class BASE-BAT-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8af-0cd3-7f10-bc85-4d45479540dd",
+   "change": true,
+   "v2": "01a0f8af-388e-7d2d-92b7-79ddc3f968f5",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8af-452a-7d24-b49e-a0b88ac23f91",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": false,
+   "billFigure": "before —/refused · after —/refused",
+   "done": true,
+   "seconds": 29,
+   "billBefore": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   },
+   "billAfter": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   }
+  },
+  "battery-demand-every": {
+   "key": "battery-demand-every",
+   "service": "battery",
+   "model": "demand",
+   "klass": "Every class",
+   "name": "WC C2 battery Demand Every class",
+   "notes": [
+    "BILL before {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"} after {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"}"
+   ],
+   "typed": {
+    "sizes": [
+     {
+      "size": "BAT-5",
+      "minimum": "10.00"
+     },
+     {
+      "size": "BAT-10",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "4.0000"
+   },
+   "id": "01a0f8af-7d8b-78cb-a21f-6e313d9cbb6f",
+   "add": true,
+   "listText": "WC C2 battery Demand Every class Battery Demand Every class BASE-BAT-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8af-7d99-7511-b251-66038fe9993f",
+   "change": true,
+   "v2": "01a0f8af-ab27-7d05-81e1-800de62107de",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8af-b924-772b-8794-98920db8d47d",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": false,
+   "billFigure": "before —/refused · after —/refused",
+   "done": true,
+   "seconds": 30,
+   "billBefore": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   },
+   "billAfter": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   }
+  },
+  "battery-seasonal-every": {
+   "key": "battery-seasonal-every",
+   "service": "battery",
+   "model": "seasonal",
+   "klass": "Every class",
+   "name": "WC C2 battery Seasonal Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "BAT-5",
+      "minimum": "10.00"
+     },
+     {
+      "size": "BAT-10",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "4.0000"
+   },
+   "id": "01a0f8af-f3c9-77e3-9df0-195338649946",
+   "add": true,
+   "listText": "WC C2 battery Seasonal Every class Battery Seasonal Every class BASE-BAT-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8af-f3dc-7590-9613-fae429430638",
+   "change": true,
+   "v2": "01a0f8b0-2128-7380-b1dc-0b7205bff34d",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8b0-2d4e-75f3-ac0a-fd545ec1171f",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 25.00/25.00 · after 28.00/28.00",
+   "done": true,
+   "seconds": 31,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "25.00",
+    "waiting": null,
+    "expected": "25.00",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "28.00",
+    "waiting": null,
+    "expected": "28.00",
+    "ok": true
+   }
+  },
+  "battery-capacity-every": {
+   "key": "battery-capacity-every",
+   "service": "battery",
+   "model": "capacity",
+   "klass": "Every class",
+   "name": "WC C2 battery Capacity Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "BAT-5",
+      "minimum": "10.00"
+     },
+     {
+      "size": "BAT-10",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "4.0000"
+   },
+   "id": "01a0f8b0-69fd-7e9f-a46c-75be941d1f94",
+   "add": true,
+   "listText": "WC C2 battery Capacity Every class Battery Capacity Every class BASE-BAT-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8b0-6a10-7eba-a23c-c1c81d590989",
+   "change": true,
+   "v2": "01a0f8b0-9599-7aaa-af32-102ea7121b1f",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8b0-a45c-7ab5-bfb0-3970f88365fb",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 25.00/25.00 · after 28.00/28.00",
+   "done": true,
+   "seconds": 28,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "25.00",
+    "waiting": null,
+    "expected": "25.00",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "28.00",
+    "waiting": null,
+    "expected": "28.00",
+    "ok": true
+   }
+  },
+  "battery-percent_of_service-every": {
+   "key": "battery-percent_of_service-every",
+   "service": "battery",
+   "model": "percent_of_service",
+   "klass": "Every class",
+   "name": "WC C2 battery Percent Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "BAT-5",
+      "minimum": "10.00"
+     },
+     {
+      "size": "BAT-10",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "40",
+    "basis": "water",
+    "unitPrice": "4.0000"
+   },
+   "id": "01a0f8b0-d8ec-74cb-8149-53927d73673e",
+   "add": true,
+   "listText": "WC C2 battery Percent Every class Battery Percent of another service Every class BASE-BAT-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8b0-d8f9-767a-9673-f78558f96e3c",
+   "change": true,
+   "v2": "01a0f8b1-0259-7d13-8e43-6d65164971a7",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8b1-0db0-72e5-9d7d-e87bb0e846b6",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 15.12/15.12 · after 27.60/27.60",
+   "done": true,
+   "seconds": 27,
+   "billBefore": {
+    "status": "follows_basis",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "15.12",
+    "waiting": null,
+    "expected": "15.12",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "follows_basis",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "27.60",
+    "waiting": null,
+    "expected": "27.60",
+    "ok": true
+   }
+  },
+  "fire-flat-every": {
+   "key": "fire-flat-every",
+   "service": "fire",
+   "model": "flat",
+   "klass": "Every class",
+   "name": "WC C2 fire Flat Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "FL-2",
+      "minimum": "10.00"
+     },
+     {
+      "size": "FL-4",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "12.0000"
+   },
+   "id": "01a0f8b1-41e4-79b5-a600-c3a23748a80d",
+   "add": true,
+   "listText": "WC C2 fire Flat Every class Fire Flat Every class BASE-FIRE-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8b1-41ec-7180-b606-562031f905ac",
+   "change": true,
+   "v2": "01a0f8b1-69bf-7868-a9e1-45973f4843d0",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8b1-774b-7cff-af44-8e6f0e0f87b0",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 23.50/23.50 · after 25.00/25.00",
+   "done": true,
+   "seconds": 29,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "23.50",
+    "waiting": null,
+    "expected": "23.50",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "25.00",
+    "waiting": null,
+    "expected": "25.00",
+    "ok": true
+   }
+  },
+  "fire-tiered-every": {
+   "key": "fire-tiered-every",
+   "service": "fire",
+   "model": "tiered",
+   "klass": "Every class",
+   "name": "WC C2 fire Tiered Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "FL-2",
+      "minimum": "10.00"
+     },
+     {
+      "size": "FL-4",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "12.0000",
+    "tier2": "15.0000"
+   },
+   "id": "01a0f8b1-badd-7cf9-8605-a5f4b335f3d1",
+   "add": true,
+   "listText": "WC C2 fire Tiered Every class Fire Tiered Every class BASE-FIRE-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8b1-baec-72a6-9041-2510acbb6191",
+   "change": true,
+   "v2": "01a0f8b1-e9f4-7a97-aab9-6ddc7d4ecd36",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8b1-f525-7591-8f38-b5569cde0077",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 23.50/23.50 · after 25.00/25.00",
+   "done": true,
+   "seconds": 32,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "23.50",
+    "waiting": null,
+    "expected": "23.50",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "25.00",
+    "waiting": null,
+    "expected": "25.00",
+    "ok": true
+   }
+  },
+  "fire-time_of_use-every": {
+   "key": "fire-time_of_use-every",
+   "service": "fire",
+   "model": "time_of_use",
+   "klass": "Every class",
+   "name": "WC C2 fire TOU Every class",
+   "notes": [
+    "BILL before {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"} after {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"}"
+   ],
+   "typed": {
+    "sizes": [
+     {
+      "size": "FL-2",
+      "minimum": "10.00"
+     },
+     {
+      "size": "FL-4",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "12.0000",
+    "peak": "18.0000"
+   },
+   "id": "01a0f8b2-3312-7e9d-951e-8cd2fd571a21",
+   "add": true,
+   "listText": "WC C2 fire TOU Every class Fire Time-of-use Every class BASE-FIRE-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8b2-331c-7490-aaf2-5197fb77753a",
+   "change": true,
+   "v2": "01a0f8b2-5c80-78bd-9bf8-942a8198e4ca",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8b2-67e4-7f8e-bfec-28169357ae9b",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": false,
+   "billFigure": "before —/refused · after —/refused",
+   "done": true,
+   "seconds": 28,
+   "billBefore": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   },
+   "billAfter": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   }
+  },
+  "fire-demand-every": {
+   "key": "fire-demand-every",
+   "service": "fire",
+   "model": "demand",
+   "klass": "Every class",
+   "name": "WC C2 fire Demand Every class",
+   "notes": [
+    "BILL before {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"} after {\"ok\":false,\"expected\":\"—\",\"got\":\"refused\",\"note\":\"DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them\"}"
+   ],
+   "typed": {
+    "sizes": [
+     {
+      "size": "FL-2",
+      "minimum": "10.00"
+     },
+     {
+      "size": "FL-4",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "12.0000"
+   },
+   "id": "01a0f8b2-a012-70ef-8666-0a5e3dd3621c",
+   "add": true,
+   "listText": "WC C2 fire Demand Every class Fire Demand Every class BASE-FIRE-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8b2-a020-7992-9d80-0c044b19f6b5",
+   "change": true,
+   "v2": "01a0f8b2-cafa-78d4-813e-35cd260b8266",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8b2-d7ba-746e-b299-f93e0b8b8981",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": false,
+   "billFigure": "before —/refused · after —/refused",
+   "done": true,
+   "seconds": 30,
+   "billBefore": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   },
+   "billAfter": {
+    "ok": false,
+    "expected": "—",
+    "got": "refused",
+    "note": "DEF-RAT-9015: a counted or shared service has no meter reads, so time of use and demand can never bill; the save now refuses them"
+   }
+  },
+  "fire-seasonal-every": {
+   "key": "fire-seasonal-every",
+   "service": "fire",
+   "model": "seasonal",
+   "klass": "Every class",
+   "name": "WC C2 fire Seasonal Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "FL-2",
+      "minimum": "10.00"
+     },
+     {
+      "size": "FL-4",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "12.0000"
+   },
+   "id": "01a0f8b3-1012-7244-b680-7cb733e8ae90",
+   "add": true,
+   "listText": "WC C2 fire Seasonal Every class Fire Seasonal Every class BASE-FIRE-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8b3-101b-7e4d-b81b-a4b6cf82132a",
+   "change": true,
+   "v2": "01a0f8b3-3a04-7b56-9d05-0ed4a5c4dfcc",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8b3-46c3-754b-8e89-313351cfbca5",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 23.50/23.50 · after 25.00/25.00",
+   "done": true,
+   "seconds": 29,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "23.50",
+    "waiting": null,
+    "expected": "23.50",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "25.00",
+    "waiting": null,
+    "expected": "25.00",
+    "ok": true
+   }
+  },
+  "fire-capacity-every": {
+   "key": "fire-capacity-every",
+   "service": "fire",
+   "model": "capacity",
+   "klass": "Every class",
+   "name": "WC C2 fire Capacity Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "FL-2",
+      "minimum": "10.00"
+     },
+     {
+      "size": "FL-4",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "12.0000"
+   },
+   "id": "01a0f8b3-8754-7314-9f62-2cc02efa14f1",
+   "add": true,
+   "listText": "WC C2 fire Capacity Every class Fire Capacity Every class BASE-FIRE-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8b3-875e-73b4-89a5-0a2f95172ec4",
+   "change": true,
+   "v2": "01a0f8b3-aed0-7a30-b5b8-8b6c1aba8c8c",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8b3-bb17-7bdc-b6e0-a3f128ebfbcf",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 23.50/23.50 · after 25.00/25.00",
+   "done": true,
+   "seconds": 27,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "23.50",
+    "waiting": null,
+    "expected": "23.50",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "25.00",
+    "waiting": null,
+    "expected": "25.00",
+    "ok": true
+   }
+  },
+  "fire-percent_of_service-every": {
+   "key": "fire-percent_of_service-every",
+   "service": "fire",
+   "model": "percent_of_service",
+   "klass": "Every class",
+   "name": "WC C2 fire Percent Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "FL-2",
+      "minimum": "10.00"
+     },
+     {
+      "size": "FL-4",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "40",
+    "basis": "water",
+    "unitPrice": "12.0000"
+   },
+   "id": "01a0f8b3-eb7e-7310-b1e3-3f182260e03f",
+   "add": true,
+   "listText": "WC C2 fire Percent Every class Fire Percent of another service Every class BASE-FIRE-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8b3-eb89-7b78-99f6-c00c7faf0f85",
+   "change": true,
+   "v2": "01a0f8b4-1195-7dee-a521-312bfbfcc270",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8b4-1c93-7fae-bac7-e5cb1f086870",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 39.36/39.36 · after 76.80/76.80",
+   "done": true,
+   "seconds": 25,
+   "billBefore": {
+    "status": "follows_basis",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "39.36",
+    "waiting": null,
+    "expected": "39.36",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "follows_basis",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "76.80",
+    "waiting": null,
+    "expected": "76.80",
+    "ok": true
+   }
+  },
+  "water-flat-residential": {
+   "key": "water-flat-residential",
+   "service": "water",
+   "model": "flat",
+   "klass": "Residential",
+   "name": "WC C2 water Flat Residential",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "W-58",
+      "minimum": "15.00"
+     },
+     {
+      "size": "W-34",
+      "minimum": "40.00"
+     }
+    ],
+    "price": "4.4096"
+   },
+   "id": "01a0f8b4-4ecc-7df2-ab57-393c9ea209e7",
+   "add": true,
+   "listText": "WC C2 water Flat Residential Water Flat Residential BASE-W 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8b4-4ed9-79b8-ac01-08502c0856ed",
+   "change": true,
+   "v2": "01a0f8b4-7b8f-7e53-b407-a9042af6bb86",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8b4-860a-7aca-a9f2-b7f51cb7f8f6",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "35.25",
+    "waiting": null,
+    "expected": "35.25",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "61.50",
+    "waiting": null,
+    "expected": "61.50",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 35.25/35.25 · after 61.50/61.50",
+   "done": true,
+   "seconds": 29
+  },
+  "water-flat-commercial": {
+   "key": "water-flat-commercial",
+   "service": "water",
+   "model": "flat",
+   "klass": "Commercial",
+   "name": "WC C2 water Flat Commercial",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "W-58",
+      "minimum": "15.00"
+     },
+     {
+      "size": "W-34",
+      "minimum": "40.00"
+     }
+    ],
+    "price": "4.4096"
+   },
+   "id": "01a0f8b4-becd-7fe7-b647-61898de25072",
+   "add": true,
+   "listText": "WC C2 water Flat Commercial Water Flat Commercial BASE-W-COM 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8b4-bed3-71ab-a330-a81748337ae2",
+   "change": true,
+   "v2": "01a0f8b4-e1a8-7549-ba4d-9af009e3bb5d",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8b4-ec20-711f-b818-42da37b41e7f",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "35.25",
+    "waiting": null,
+    "expected": "35.25",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "61.50",
+    "waiting": null,
+    "expected": "61.50",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 35.25/35.25 · after 61.50/61.50",
+   "done": true,
+   "seconds": 25
+  },
+  "water-seasonal-commercial": {
+   "key": "water-seasonal-commercial",
+   "service": "water",
+   "model": "seasonal",
+   "klass": "Commercial",
+   "name": "WC C2 water Seasonal Commercial",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "W-58",
+      "minimum": "15.00"
+     },
+     {
+      "size": "W-34",
+      "minimum": "40.00"
+     }
+    ],
+    "price": "4.4096"
+   },
+   "id": "01a0f8b5-2192-7a2e-9661-50d8053f362d",
+   "add": true,
+   "listText": "WC C2 water Seasonal Commercial Water Seasonal Commercial BASE-W-COM 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8b5-21ac-740d-a8ff-62f4a1879829",
+   "change": true,
+   "v2": "01a0f8b5-47bf-7a84-9fbe-c3db3e2e4569",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8b5-53c2-7fc4-b4a5-d9e579887697",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "35.25",
+    "waiting": null,
+    "expected": "35.25",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "61.50",
+    "waiting": null,
+    "expected": "61.50",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 35.25/35.25 · after 61.50/61.50",
+   "done": true,
+   "seconds": 27
+  },
+  "electric-flat-residential": {
+   "key": "electric-flat-residential",
+   "service": "electric",
+   "model": "flat",
+   "klass": "Residential",
+   "name": "WC C2 electric Flat Residential",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "E-1P-100",
+      "minimum": "80.00"
+     },
+     {
+      "size": "E-1P-200",
+      "minimum": "120.00"
+     }
+    ],
+    "price": "0.1245"
+   },
+   "id": "01a0f8b5-8b89-700b-9cb7-2c85cac79cb3",
+   "add": true,
+   "listText": "WC C2 electric Flat Residential Electric Flat Residential BASE-E 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8b5-8b92-78dc-9efe-aacbb317a3bc",
+   "change": true,
+   "v2": "01a0f8b5-b4a4-7ca0-8404-01bf4a74b0b9",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8b5-bdda-744e-ab54-266b920bb090",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "80.00",
+    "waiting": null,
+    "expected": "80.00",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "80.00",
+    "waiting": null,
+    "expected": "80.00",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 80.00/80.00 · after 80.00/80.00",
+   "done": true,
+   "seconds": 27
+  },
+  "electric-flat-commercial": {
+   "key": "electric-flat-commercial",
+   "service": "electric",
+   "model": "flat",
+   "klass": "Commercial",
+   "name": "WC C2 electric Flat Commercial",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "E-1P-100",
+      "minimum": "80.00"
+     },
+     {
+      "size": "E-1P-200",
+      "minimum": "120.00"
+     }
+    ],
+    "price": "0.1245"
+   },
+   "id": "01a0f8b5-f411-704d-85ee-00a66a095831",
+   "add": true,
+   "listText": "WC C2 electric Flat Commercial Electric Flat Commercial BASE-E-COM 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8b5-f422-7f45-9375-f549e0bc2256",
+   "change": true,
+   "v2": "01a0f8b6-1809-704b-b4fc-d805e38150a7",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8b6-21dc-7ece-b085-5ad2cc9ec6ea",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "80.00",
+    "waiting": null,
+    "expected": "80.00",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "80.00",
+    "waiting": null,
+    "expected": "80.00",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 80.00/80.00 · after 80.00/80.00",
+   "done": true,
+   "seconds": 26
+  },
+  "electric-time_of_use-residential": {
+   "key": "electric-time_of_use-residential",
+   "service": "electric",
+   "model": "time_of_use",
+   "klass": "Residential",
+   "name": "WC C2 electric TOU Residential",
+   "notes": [
+    "BILL before {\"status\":\"billed_base_zero\",\"versions\":[\"2026-10-01\"],\"oneVersion\":true,\"got\":\"80.01\",\"waiting\":null,\"expected\":\"80.00\",\"ok\":false,\"note\":\"DEF-RAT-9013: one cent over the minimum — the lines round on their own, the top-up is measured unrounded (finance ruling after {\"status\":\"billed_base_zero\",\"versions\":[\"2026-11-01\"],\"oneVersion\":true,\"got\":\"89.05\",\"waiting\":null,\"expected\":\"89.05\",\"ok\":true}"
+   ],
+   "typed": {
+    "sizes": [
+     {
+      "size": "E-1P-100",
+      "minimum": "80.00"
+     },
+     {
+      "size": "E-1P-200",
+      "minimum": "120.00"
+     }
+    ],
+    "price": "0.1245",
+    "peak": "0.1867"
+   },
+   "id": "01a0f8b6-5b72-7b22-9951-df2f656c8cf7",
+   "add": true,
+   "listText": "WC C2 electric TOU Residential Electric Time-of-use Residential BASE-E 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8b6-5b82-7dd7-ac09-2b9f06329fbb",
+   "change": true,
+   "v2": "01a0f8b6-7b9f-7819-98f1-bc2a438b1d1d",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8b6-8500-7857-abe5-f6395086c93a",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "80.01",
+    "waiting": null,
+    "expected": "80.00",
+    "ok": false,
+    "note": "DEF-RAT-9013: one cent over the minimum — the lines round on their own, the top-up is measured unrounded (finance ruling)"
+   },
+   "billAfter": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "89.05",
+    "waiting": null,
+    "expected": "89.05",
+    "ok": true
+   },
+   "bill": false,
+   "billFigure": "before 80.00/80.01 · after 89.05/89.05",
+   "done": true,
+   "seconds": 25
+  },
+  "electric-demand-commercial": {
+   "key": "electric-demand-commercial",
+   "service": "electric",
+   "model": "demand",
+   "klass": "Commercial",
+   "name": "WC C2 electric Demand Commercial",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "E-1P-100",
+      "minimum": "80.00"
+     },
+     {
+      "size": "E-1P-200",
+      "minimum": "120.00"
+     }
+    ],
+    "price": "0.1245"
+   },
+   "id": "01a0f8b6-bbbd-7477-8cbf-f1a3265c5dd2",
+   "add": true,
+   "listText": "WC C2 electric Demand Commercial Electric Demand Commercial BASE-E-COM 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8b6-bbc7-7359-9bc9-920141c57f86",
+   "change": true,
+   "v2": "01a0f8b6-e023-7b98-851c-fac0c77fccfc",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8b6-ea19-796a-93b9-880a16ed216b",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "197.25",
+    "waiting": null,
+    "expected": "197.25",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "233.20",
+    "waiting": null,
+    "expected": "233.20",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 197.25/197.25 · after 233.20/233.20",
+   "done": true,
+   "seconds": 26
+  },
+  "trash-flat-residential": {
+   "key": "trash-flat-residential",
+   "service": "trash",
+   "model": "flat",
+   "klass": "Residential",
+   "name": "WC C2 trash Flat Residential",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "CART-96",
+      "minimum": "25.00"
+     },
+     {
+      "size": "DUMP-2",
+      "minimum": "60.00"
+     }
+    ],
+    "price": "15.0000"
+   },
+   "id": "01a0f8b7-2271-773f-addf-cf7fd7785919",
+   "add": true,
+   "listText": "WC C2 trash Flat Residential Trash Flat Residential BASE-T 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8b7-2278-7f3f-ac27-343fd89f7961",
+   "change": true,
+   "v2": "01a0f8b7-48a2-7f52-8b37-c66936c3f03a",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8b7-5258-7381-9cbc-2f85aeb3c77f",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "25.00",
+    "waiting": null,
+    "expected": "25.00",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "25.00",
+    "waiting": null,
+    "expected": "25.00",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 25.00/25.00 · after 25.00/25.00",
+   "done": true,
+   "seconds": 28
+  },
+  "trash-capacity-commercial": {
+   "key": "trash-capacity-commercial",
+   "service": "trash",
+   "model": "capacity",
+   "klass": "Commercial",
+   "name": "WC C2 trash Capacity Commercial",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "CART-96",
+      "minimum": "25.00"
+     },
+     {
+      "size": "DUMP-2",
+      "minimum": "60.00"
+     }
+    ],
+    "price": "15.0000"
+   },
+   "id": "01a0f8b7-8be2-75db-af5a-5713d372b44e",
+   "add": true,
+   "listText": "WC C2 trash Capacity Commercial Trash Capacity Commercial BASE-T 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8b7-8beb-7e03-8bbf-fa39ab02516b",
+   "change": true,
+   "v2": "01a0f8b7-aeb9-7afe-b172-a2080edc4a52",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8b7-b90c-74ce-a5bf-dc10fe2af1d4",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "25.00",
+    "waiting": null,
+    "expected": "25.00",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "25.00",
+    "waiting": null,
+    "expected": "25.00",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 25.00/25.00 · after 25.00/25.00",
+   "done": true,
+   "seconds": 25
+  },
+  "sewer-percent_of_service-residential": {
+   "key": "sewer-percent_of_service-residential",
+   "service": "sewer",
+   "model": "percent_of_service",
+   "klass": "Residential",
+   "name": "WC C2 sewer Percent Residential",
+   "notes": [],
+   "typed": {
+    "sizes": [],
+    "price": "40",
+    "basis": "water",
+    "unitPrice": "5.0000"
+   },
+   "id": "01a0f8b7-fb19-7922-8ae8-baed4d46984a",
+   "add": true,
+   "listText": "WC C2 sewer Percent Residential Sewer Percent of another service Residential BASE-S — 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8b7-fb21-7a16-b592-0f7cf939a4c0",
+   "change": true,
+   "v2": "01a0f8b8-2236-78b5-ba0a-4b578c955575",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "fixedId": "01a0f8b8-2c7e-7b1d-ad43-5ebf531545f1",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "follows_basis",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "17.40",
+    "waiting": null,
+    "expected": "17.40",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "follows_basis",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "33.00",
+    "waiting": null,
+    "expected": "33.00",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 17.40/17.40 · after 33.00/33.00",
+   "done": true,
+   "seconds": 34
+  },
+  "electric-demand-industrial": {
+   "key": "electric-demand-industrial",
+   "service": "electric",
+   "model": "demand",
+   "klass": "Industrial",
+   "name": "WC C2 electric Demand Industrial",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "E-1P-100",
+      "minimum": "80.00"
+     },
+     {
+      "size": "E-1P-200",
+      "minimum": "120.00"
+     }
+    ],
+    "price": "0.1245"
+   },
+   "id": "01a0f8b8-7b2a-7f9e-82d2-adc22b299fc4",
+   "add": true,
+   "listText": "WC C2 electric Demand Industrial Electric Demand Industrial BASE-E-IND 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8b8-7b32-7efe-a0a9-fc05b4ad9cc8",
+   "change": true,
+   "v2": "01a0f8b8-a6e8-7ebc-96a9-9dc7d7ee6ca9",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8b8-b2f8-7470-a154-6cd697f574dc",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "197.25",
+    "waiting": null,
+    "expected": "197.25",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed_base_zero",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "233.20",
+    "waiting": null,
+    "expected": "233.20",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 197.25/197.25 · after 233.20/233.20",
+   "done": true,
+   "seconds": 33
+  },
+  "gas-flat-agricultural": {
+   "key": "gas-flat-agricultural",
+   "service": "gas",
+   "model": "flat",
+   "klass": "Agricultural",
+   "name": "WC C2 gas Flat Agricultural",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "G-250",
+      "minimum": "10.00"
+     },
+     {
+      "size": "G-425",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "0.9800"
+   },
+   "id": "01a0f8b8-f220-79a7-83f0-0d96b3508383",
+   "add": true,
+   "listText": "WC C2 gas Flat Agricultural Gas Flat Agricultural BASE-G-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8b8-f229-7f4a-935b-98ed9d3adcfe",
+   "change": true,
+   "v2": "01a0f8b9-272c-7bc3-bb13-f808b86663d6",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8b9-31a7-7f85-a577-35c74cf264f0",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 47.50/47.50 · after 61.50/61.50",
+   "done": true,
+   "seconds": 28,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "47.50",
+    "waiting": null,
+    "expected": "47.50",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "61.50",
+    "waiting": null,
+    "expected": "61.50",
+    "ok": true
+   }
+  },
+  "water-tiered-institutional": {
+   "key": "water-tiered-institutional",
+   "service": "water",
+   "model": "tiered",
+   "klass": "Institutional",
+   "name": "WC C2 water Tiered Institutional",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "W-58",
+      "minimum": "15.00"
+     },
+     {
+      "size": "W-34",
+      "minimum": "40.00"
+     }
+    ],
+    "price": "4.4096",
+    "tier2": "5.5120"
+   },
+   "id": "01a0f8b9-62d4-7255-a205-77605e094ead",
+   "add": true,
+   "listText": "WC C2 water Tiered Institutional Water Tiered Institutional BASE-W-J70 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8b9-62e5-7b16-b260-17b300816e90",
+   "change": true,
+   "v2": "01a0f8b9-8e4c-7d05-a6c4-717c11f482f6",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8b9-a06c-7055-bcf7-1c21dff2a107",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "43.25",
+    "waiting": null,
+    "expected": "43.25",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "76.11",
+    "waiting": null,
+    "expected": "76.11",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 43.25/43.25 · after 76.11/76.11",
+   "done": true,
+   "seconds": 37
+  },
+  "sewer-flat-municipal": {
+   "key": "sewer-flat-municipal",
+   "service": "sewer",
+   "model": "flat",
+   "klass": "Municipal",
+   "name": "WC C2 sewer Flat Municipal",
+   "notes": [],
+   "typed": {
+    "sizes": [],
+    "price": "5.0000"
+   },
+   "id": "01a0f8b9-f4ec-72f9-8481-0e019433f424",
+   "add": true,
+   "listText": "WC C2 sewer Flat Municipal Sewer Flat Municipal BASE-S — 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8b9-f4f4-72ff-9507-96e1b5e8ce03",
+   "change": true,
+   "v2": "01a0f8ba-1e8b-7235-a460-7ade44c6f7a9",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "fixedId": "01a0f8ba-2b7b-7a4e-b1e6-dba095d0cefa",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "25.20",
+    "waiting": null,
+    "expected": "25.20",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "33.00",
+    "waiting": null,
+    "expected": "33.00",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 25.20/25.20 · after 33.00/33.00",
+   "done": true,
+   "seconds": 34
+  },
+  "trash-tiered-builder_or_developer": {
+   "key": "trash-tiered-builder_or_developer",
+   "service": "trash",
+   "model": "tiered",
+   "klass": "Builder or developer",
+   "name": "WC C2 trash Tiered Builder or developer",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "CART-96",
+      "minimum": "25.00"
+     },
+     {
+      "size": "DUMP-2",
+      "minimum": "60.00"
+     }
+    ],
+    "price": "15.0000",
+    "tier2": "18.7500"
+   },
+   "id": "01a0f8ba-7a4f-7dfa-9757-dfd1d6438149",
+   "add": true,
+   "listText": "WC C2 trash Tiered Builder or developer Trash Tiered Builder or developer BASE-T 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8ba-7a5f-7eb2-a9b7-06454ac04748",
+   "change": true,
+   "v2": "01a0f8ba-a8ee-79e8-bd13-84f0ca9dc4ee",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8ba-b2d5-721e-a963-baafa225d2c8",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "25.00",
+    "waiting": null,
+    "expected": "25.00",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "25.00",
+    "waiting": null,
+    "expected": "25.00",
+    "ok": true
+   },
+   "bill": true,
+   "billFigure": "before 25.00/25.00 · after 25.00/25.00",
+   "done": true,
+   "seconds": 33
+  },
+  "storm_water-flat-government": {
+   "key": "storm_water-flat-government",
+   "service": "storm_water",
+   "model": "flat",
+   "klass": "Government",
+   "name": "WC C2 storm_water Flat Government",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "SW-APT",
+      "minimum": "10.00"
+     },
+     {
+      "size": "SW-COM-L",
+      "minimum": "20.00"
+     }
+    ],
+    "price": "3.2500"
+   },
+   "id": "01a0f8ba-fecf-75b5-b5c9-b4fd8ab5dc03",
+   "add": true,
+   "listText": "WC C2 storm_water Flat Government Storm water Flat Government BASE-SW-WC 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8ba-fed5-7590-b5ae-32c7176b0540",
+   "change": true,
+   "v2": "01a0f8bb-2b89-7508-af03-8ab9837e157e",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8bb-3734-7de6-b13b-fe73531adbe4",
+   "history": true,
+   "planNames": true,
+   "planDate": true,
+   "plan": true,
+   "bill": true,
+   "billFigure": "before 25.85/25.85 · after 28.25/28.25",
+   "done": true,
+   "seconds": 31,
+   "billBefore": {
+    "status": "billed",
+    "versions": [
+     "2026-10-01"
+    ],
+    "oneVersion": true,
+    "got": "25.85",
+    "waiting": null,
+    "expected": "25.85",
+    "ok": true
+   },
+   "billAfter": {
+    "status": "billed",
+    "versions": [
+     "2026-11-01"
+    ],
+    "oneVersion": true,
+    "got": "28.25",
+    "waiting": null,
+    "expected": "28.25",
+    "ok": true
+   }
+  }
+ },
+ "drawings": {},
+ "drawingRows": {
+  "water-tiered-residential": {
+   "key": "water-tiered-residential",
+   "service": "water",
+   "model": "tiered",
+   "klass": "Residential",
+   "name": "WC D3 water Tiered Residential",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "W-58",
+      "minimum": "15.00"
+     },
+     {
+      "size": "W-34",
+      "minimum": "40.00"
+     }
+    ],
+    "price": "4.4096",
+    "tier2": "5.5120"
+   },
+   "id": "01a0f8e6-8356-75b1-9b9d-49dc2d2b6d76",
+   "add": true,
+   "listText": "WC D3 water Tiered Residential Water Tiered Residential BASE-W 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8e6-835b-74c0-9a97-3516b0580c56",
+   "change": true,
+   "v2": "01a0f8e6-b56f-7fb6-a126-7326d9417fed",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8e6-cd05-7635-9ab6-c5153360afb6",
+   "history": true
+  },
+  "electric-flat-every": {
+   "key": "electric-flat-every",
+   "service": "electric",
+   "model": "flat",
+   "klass": "Every class",
+   "name": "WC D3 electric Flat Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "E-1P-100",
+      "minimum": "80.00"
+     },
+     {
+      "size": "E-1P-200",
+      "minimum": "120.00"
+     }
+    ],
+    "price": "0.1245"
+   },
+   "id": "01a0f8e6-ea49-77ff-adbd-9ec4b628cd0f",
+   "add": true,
+   "listText": "WC D3 electric Flat Every class Electric Flat Every class BASE-E 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8e6-ea4e-753b-9b88-274d0e9f31ed",
+   "change": true,
+   "v2": "01a0f8e7-0b4f-733e-9148-d75332c79b81",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8e7-1489-7b54-899d-40f56a0a4096",
+   "history": true
+  },
+  "trash-capacity-every": {
+   "key": "trash-capacity-every",
+   "service": "trash",
+   "model": "capacity",
+   "klass": "Every class",
+   "name": "WC D3 trash Capacity Every class",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "CART-96",
+      "minimum": "25.00"
+     },
+     {
+      "size": "DUMP-2",
+      "minimum": "60.00"
+     }
+    ],
+    "price": "15.0000"
+   },
+   "id": "01a0f8e7-2eca-76e5-8e49-e6e6acc4df53",
+   "add": true,
+   "listText": "WC D3 trash Capacity Every class Trash Capacity Every class BASE-T 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8e7-2ed0-7dcf-a19d-a3caf0650309",
+   "change": true,
+   "v2": "01a0f8e7-52c0-73fd-be4b-044a7611aade",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8e7-5ce1-7eeb-b3cc-009890d7ab3d",
+   "history": true
+  },
+  "water-seasonal-commercial": {
+   "key": "water-seasonal-commercial",
+   "service": "water",
+   "model": "seasonal",
+   "klass": "Commercial",
+   "name": "WC D3 water Seasonal Commercial",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "W-58",
+      "minimum": "15.00"
+     },
+     {
+      "size": "W-34",
+      "minimum": "40.00"
+     }
+    ],
+    "price": "4.4096"
+   },
+   "id": "01a0f8e7-780c-7887-97b0-1e0e7e769536",
+   "add": true,
+   "listText": "WC D3 water Seasonal Commercial Water Seasonal Commercial BASE-W-COM 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8e7-781a-718b-b900-ed5b02922e3a",
+   "change": true,
+   "v2": "01a0f8e7-9b2f-7edd-bdb8-09a61562b706",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8e7-a58c-787f-a99b-4dac4aa31e01",
+   "history": true
+  },
+  "electric-time_of_use-residential": {
+   "key": "electric-time_of_use-residential",
+   "service": "electric",
+   "model": "time_of_use",
+   "klass": "Residential",
+   "name": "WC D3 electric TOU Residential",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "E-1P-100",
+      "minimum": "80.00"
+     },
+     {
+      "size": "E-1P-200",
+      "minimum": "120.00"
+     }
+    ],
+    "price": "0.1245",
+    "peak": "0.1867"
+   },
+   "id": "01a0f8e7-c0b9-7336-b427-2bd653fe4bf2",
+   "add": true,
+   "listText": "WC D3 electric TOU Residential Electric Time-of-use Residential BASE-E 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8e7-c0c0-77cd-b2ce-f9a012937995",
+   "change": true,
+   "v2": "01a0f8e7-e4df-7ff9-8066-fe9d740ec8ff",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8e7-ed7b-75f3-ac28-40bcb3c1d9b6",
+   "history": true
+  },
+  "electric-demand-commercial": {
+   "key": "electric-demand-commercial",
+   "service": "electric",
+   "model": "demand",
+   "klass": "Commercial",
+   "name": "WC D3 electric Demand Commercial",
+   "notes": [],
+   "typed": {
+    "sizes": [
+     {
+      "size": "E-1P-100",
+      "minimum": "80.00"
+     },
+     {
+      "size": "E-1P-200",
+      "minimum": "120.00"
+     }
+    ],
+    "price": "0.1245"
+   },
+   "id": "01a0f8e8-0851-79b8-b343-a6dee7f0dda2",
+   "add": true,
+   "listText": "WC D3 electric Demand Commercial Electric Demand Commercial BASE-E-COM 2 of 2 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8e8-085b-724f-86df-5570d5da0897",
+   "change": true,
+   "v2": "01a0f8e8-2bd5-7f13-80ef-3808383a953d",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "minimumToBilling": true,
+   "fixedId": "01a0f8e8-35fe-7ffc-bd68-eced7b548c9c",
+   "history": true
+  },
+  "sewer-percent_of_service-residential": {
+   "key": "sewer-percent_of_service-residential",
+   "service": "sewer",
+   "model": "percent_of_service",
+   "klass": "Residential",
+   "name": "WC D3 sewer Percent Residential",
+   "notes": [],
+   "typed": {
+    "sizes": [],
+    "price": "40",
+    "basis": "water",
+    "unitPrice": "5.0000"
+   },
+   "id": "01a0f8e8-5263-713f-a9bd-2053b3c198bc",
+   "add": true,
+   "listText": "WC D3 sewer Percent Residential Sewer Percent of another service Residential BASE-S — 10/01/2026 — — In force ",
+   "listOk": true,
+   "db": true,
+   "v1": "01a0f8e8-5267-723d-a023-9a7208463017",
+   "change": true,
+   "v2": "01a0f8e8-7b5b-7196-a39d-293bcb728dfd",
+   "fixedOn": "v1",
+   "fix": true,
+   "oneVersion": true,
+   "fixedId": "01a0f8e8-8583-72e4-b6c5-36b25e9db4b2",
+   "history": true
+  }
+ }
+}

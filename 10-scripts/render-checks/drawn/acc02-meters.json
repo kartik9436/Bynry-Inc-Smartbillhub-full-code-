@@ -1,0 +1,38 @@
+{
+ "tab": "meters",
+ "note": "Transcribed from 04-docs/05-modules/03-customers/blueprint/02-account-detail.md — ACC-T07 and ACC-T07R, the EXTRACTED TEXT, not from looking at the picture, so anybody can re-check it against the source.",
+ "drawn": {
+  "toolbar": "All · Electric · Water · Installed · Removed · Filter ▾ · ⚲ Search by meter number or serial · Sort: Meter # ▼ · Columns ▾ · ⇩ Export",
+  "footer": "1–3 of 3 · Rows per page 50 100 200 ‹ ›",
+  "readLog": "ACC-T07R at ?tab=meters&meter=e-4417&view=reads — head 'Read log — E-4417', group THE METER (Meter · Service · Meter type · Read method · Installed · Multiplier · Status · Reads held 24, newest first), table THE READS (DATE ▼ · CHANNEL · READING · USAGE · EXPORT · HOW IT WAS COLLECTED · STATUS), footer 'Read from the meter's own record · Export the log · Close'",
+  "rules": [
+   "Read log opens that one meter's reads over this unit without leaving the tab. It is a row action rather than a table per meter, because a unit with six meters would otherwise push the list itself off the screen.",
+   "The meters belong to the unit, not to the account — they stay when the occupant leaves. The services this account holds are a separate fact and live in the Service group on Overview.",
+   "Two of the columns look alike and are not: meter type is what the meter IS, read method is how the reading is COLLECTED."
+  ]
+ },
+ "groups": [
+  {
+   "col": "left",
+   "slug": "meters",
+   "heading": "METERS ON THIS UNIT",
+   "table": [
+    "METER #",
+    "SERVICE",
+    "METER TYPE",
+    "READ METHOD",
+    "INSTALLED",
+    "MULTIPLIER",
+    "LAST READ",
+    "READ ON",
+    "STATUS",
+    "ACTIONS"
+   ],
+   "elsewhere": {
+    "⇩ Export (both tables)": "not rendered — POST /exports registers neither a meter list nor a read log, and BR-SHL-010 keeps an undeclared capability unrendered rather than wired to a 404 (hard-won law 2). The same sentence AccountDocumentsTab and DisconnectsTab already make.",
+    "The read log as a MODAL": "opens OVER the tab as an addressable panel at ?meter=<id> instead. It holds a table of its own and the drawing gives it its own address, which is the modal-or-screen test's own answer, and it is WorkOrderPanel's existing shape one module over (B14 rule 38 — the UI rules own how a thing is built).",
+    "Sort: Meter # ▼ as a control": "the sort IS meter number and it is the only one offered, so no header is pressable — a control with one option is not a control. The order is compareMeters, numeric-aware so M-999 precedes M-4021."
+   }
+  }
+ ]
+}

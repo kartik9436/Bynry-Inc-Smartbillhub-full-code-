@@ -1,0 +1,162 @@
+name: qa
+on:
+  pull_request:
+    paths: ["08-qa/**", "06-backend/**", "07-frontend/**", ".github/workflows/qa.yml"]
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DEF-057 — WHAT THIS JOB USED TO BE, so nobody rebuilds it.
+#
+# Until 2026-08-11 the whole file was one shell `if`:
+#
+#     if [ -f 08-qa/01-e2e/package.json ] && ls 08-qa/01-e2e/tests/*.spec.ts; then
+#       echo "E2E suite present — wire Playwright run here when the app boots."
+#     else
+#       echo "::notice::QA E2E suites pending app bring-up. Passing by design."
+#     fi
+#
+# NEITHER PATH EXISTED. There is no package.json under 08-qa/01-e2e, and that
+# tests/ directory holds a markdown SPECIFICATION, not a runnable spec — so the
+# condition was unsatisfiable by construction, the else-branch ran on every pull
+# request, and the job printed "Passing by design" forever. It would have gone
+# on printing it after fifty journey specs were written in 07-frontend/e2e,
+# because it was not looking there. **A job whose only possible outcomes are
+# "passed" and "passed" is not a check.**
+#
+# The PO ruled on it the same day, verbatim: **"we ahve to prove against human
+# clicking"** (12-governance/02-decision-log.md, 2026-08-11).
+#
+# So this job now BOOTS THE PRODUCT and drives a browser through it:
+# Postgres → migrate → seed the Brazos Bend fixture → seed the one issued bill
+# → Django → the BUILT SPA on one origin → Playwright. And the suite reports how
+# many assertions it actually executed (07-frontend/e2e/support/census.ts),
+# failing when a browser assertion count of ZERO would otherwise have read as a
+# pass. `E2E_ALLOW_NO_APP_SERVER` is NOT set anywhere below, deliberately.
+# ─────────────────────────────────────────────────────────────────────────────
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    services:
+      # The database is EXTERNAL in every real environment (docker-compose.yml
+      # says so and says why); in CI a service container is that external
+      # Postgres. 16, matching the pinned server version.
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: smartbillhub
+          POSTGRES_PASSWORD: smartbillhub
+          POSTGRES_DB: sbh_e2e
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U smartbillhub"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgres://smartbillhub:smartbillhub@localhost:5432/sbh_e2e
+      DJANGO_SETTINGS_MODULE: config.settings.local
+      E2E_BASE_URL: http://127.0.0.1:8080
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: 07-frontend/package-lock.json
+
+      - name: Install backend
+        working-directory: 06-backend
+        run: pip install -e ".[dev]"
+      - name: Install frontend
+        working-directory: 07-frontend
+        run: npm ci
+      - name: Typecheck the E2E harness
+        working-directory: 07-frontend
+        # `tsconfig.json` includes only `src`, so the repo-wide `tsc --noEmit`
+        # every packet quotes as green has never looked at e2e/ at all. This is
+        # that directory's first typecheck (see tsconfig.e2e.json).
+        run: npm run typecheck:e2e
+
+      - name: Install Chromium
+        working-directory: 07-frontend
+        # --with-deps: a bare `install chromium` on a fresh runner downloads the
+        # browser and then fails to launch it for want of system libraries, which
+        # surfaces three steps later as an unreadable timeout.
+        run: npx playwright install --with-deps chromium
+
+      - name: Boot the stack (Postgres + Django + built SPA, one origin)
+        run: ./08-qa/01-e2e/stack/boot_stack.sh
+
+      - name: Playwright journeys
+        working-directory: 07-frontend
+        # The census reporter prints the executed-assertion count and FAILS a run
+        # that executed no browser assertion — the half of DEF-057 that matters.
+        # It also writes the run receipt the wave-close gate below reads:
+        # 07-frontend/journey-evidence/ (DEF-113 — it used to be written into
+        # test-results/, which Playwright PURGES at the start of every run, so a
+        # receipt could be destroyed seconds after it was produced). Do NOT add
+        # `--reporter=…` here: a CLI reporter flag REPLACES the config's list,
+        # which silently removes the census and takes both of those with it.
+        run: npx playwright test
+
+      # G12, the journey gate, in its wave-close mode — with the stack still up
+      # and the run receipt fresh, which is the only moment it can check that
+      # every ACTIVATED journey actually RAN and passed. Per-merge G12 (specs,
+      # naming convention and index freshness) runs in the ordinary gate suite;
+      # this step adds the half no repo-only check can do. It is deliberately
+      # AFTER the Playwright step and NOT `if: always()` — a suite that did not
+      # run leaves nothing to vouch for it.
+      - name: Wave-close journey gate (G12)
+        run: python3 10-scripts/gates/run_gates.py --wave-close
+
+      - name: Stack logs (on failure)
+        if: failure()
+        run: |
+          for log in /tmp/sbh-e2e-stack/*.log; do
+            echo "──────── ${log} ────────"
+            tail -60 "${log}"
+          done
+
+      - name: Playwright report (on failure)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: 07-frontend/playwright-report/
+          retention-days: 7
+
+      - name: Stop the stack
+        if: always()
+        run: ./08-qa/01-e2e/stack/boot_stack.sh --stop
+
+  # The 304 journey DOCUMENTS in 08-qa/01-e2e/journeys/ are still documents:
+  # they activate one at a time through the wiring index as their last story is
+  # built (07-frontend/e2e/README.md), and gate G12 is the check that an
+  # activated one is named, claimed and green. This job does not claim
+  # otherwise — it says what is automated and what is not, with counts read from
+  # the generated index rather than counted by hand, so a reader cannot mistake
+  # one for the other. It is a REPORT, not a gate.
+  journey-coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: How much of the journey catalog executes today
+        run: |
+          python3 - <<'PY'
+          import json
+          index = json.load(open("08-qa/01-e2e/01-journey-story-index.json"))
+          specs = index["activated"]
+          other = index["non_journey_specs"]
+          print(f"journey documents ......... {index['journey_files']}")
+          print(f"ACTIVATED journeys ........ {len(specs)} {specs}")
+          print(f"story-ready, not activated  {len(index['ready_by_stories'])}")
+          print(f"browser specs claiming no journey id: {len(other)} {other}")
+          print()
+          print("Journey documents are NOT tests. `activated` is the only field that")
+          print("says a browser executes one; the wiring index decides it, and gate")
+          print("G12 enforces that an activated journey has a spec named for it and")
+          print("green in the last run.")
+          PY

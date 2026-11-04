@@ -1,0 +1,39 @@
+# G64 — WHICH GOLDEN FIGURES ARE VERIFIED BY THE ENGINE (DEF-2846, 2026-09-01)
+#
+# THE IDENTITY, NOT A CEILING. Every line names one GT and the test file that
+# hands its inputs to `apps.billing.rating_seam` and asserts B5's frozen
+# outputs. Adding or deleting an engine golden test makes G64 fail until this
+# file moves in the same commit.
+#
+# WHY THE NAMES AND NOT JUST A COUNT: "14" tells a reader nothing about whether
+# GT-24 is one of them, and the whole of DEF-2846 is a count that was read as a
+# claim about a range.
+#
+# ⚠ THIS IS NOT THE HARNESS COUNT. `10-scripts/03-golden-verify.py` reports
+# 33 PASS and checks the DOCUMENTS: it recomputes B4/B5's own figures and
+# imports no application code, so it cannot go red when the engine drifts. This
+# file is the other number — 15 of the 61 signed GTs (14 until GT-34 joined on
+# 2026-10-01) — and it is the one that
+# protects a customer's bill.
+#
+# THE 47 THAT HAVE NO ENGINE TEST ARE NOT PARKED HERE, AND THAT IS DELIBERATE.
+# A baseline would turn "three quarters of the signed billing figures are not
+# checked against the engine" into a number that looks handled. It is open work
+# and it stays visible in DEF-2846.
+#
+# Format: GT-<n> <test file under 06-backend/tests/golden/>
+GT-1 test_gt01_flat_residential.py
+GT-2 test_gt02_tiered_water.py
+GT-3 test_gt03_proration_move_in.py
+GT-4 test_gt04_meter_rollover.py
+GT-5 test_gt05_tier_multiplier.py
+GT-6 test_gt06_credit_note.py
+GT-7 test_gt07_partial_allocation.py
+GT-8 test_gt08_late_fee.py
+GT-9 test_gt09_estimation_trueup.py
+GT-10 test_gt10_tax_base.py
+GT-11 test_gt11_exempt_account.py
+GT-16 test_gt16_opening_journal_entry.py
+GT-24 test_gt24_budget_chain.py
+GT-34 test_gt34_season_crossing_period.py
+GT-47 test_gt47_payment_plan_schedule.py

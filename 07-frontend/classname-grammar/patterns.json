@@ -1,0 +1,317 @@
+{
+  "_README": "07-frontend/classname-grammar/README.md",
+  "_what": "THE ONE SOURCE for the regexes that read class names out of a .tsx file. Read by BOTH 10-scripts/gates/g31_declared_classes.py (Python re) and 07-frontend/src/styles/routeBUtilities.test.ts (JS RegExp). Closes OQ-277. Edit a pattern here and both readers change together; edit it in a reader and that reader's own corpus check goes red.",
+  "_why_json": "JSON because it is the only format both a Python gate and a vitest test can read with no dependency and no runtime in common. gates.yml installs Python and nothing else; ci-frontend.yml runs node and nothing else. Neither workflow can call the other, which is exactly why the grammar had to be duplicated in the first place.",
+  "_how_to_use": "Python: re.compile(spec['source']). JS: new RegExp(spec['source'], 'g'). No flags beyond 'g' anywhere — see forbidden_constructs.",
+  "_order": "The two passes are (a) quoted over the WHOLE expression and (b) template + interpolation split. Both, always, and never merged into one alternation.",
+  "version": "2",
+  "_forbidden_how_checked": "Both readers scan a pattern with a tiny walker that skips ESCAPE PAIRS and CHARACTER-CLASS BODIES before looking for these. Without it the check is a naive substring search, and `[^\"]*` — which every pattern here uses — trips the `^` rule on its first run. `^`/`$` are refused only as bare metacharacters; `\\A`/`\\Z` only as escape pairs; the `(?...)` forms only outside a class. The walker is 14 lines and is written identically in both languages, which is the ONE piece of shared logic this file cannot express as data.",
+  "forbidden_constructs": [
+    {
+      "literal": "^",
+      "why": "An anchor. Python `re` and JS `RegExp` differ around newlines and trailing newlines, and `^\\s*` matching across a newline is precisely the G34 bug that misreported a line number. No shared pattern uses one; corpus case C7 is the proof that none is needed.",
+      "kind": "bare"
+    },
+    {
+      "literal": "$",
+      "why": "Same, and worse: Python's `$` matches before a trailing newline, JS's (without /m) does not. The one pattern in this grammar that needs an anchor is TOKEN — which is why TOKEN is NOT shared (see not_shared below).",
+      "kind": "bare"
+    },
+    {
+      "literal": "(?P",
+      "why": "Python-only named group syntax. JS spells it `(?<name>...)`.",
+      "kind": "bare"
+    },
+    {
+      "literal": "(?<",
+      "why": "JS named group / lookbehind. Python spells named groups `(?P<...>)`; lookbehind is `(?<=`/`(?<!` in both but must be fixed-width in Python and need not be in JS.",
+      "kind": "bare"
+    },
+    {
+      "literal": "\\A",
+      "why": "Python-only start-of-string anchor.",
+      "kind": "escape"
+    },
+    {
+      "literal": "\\Z",
+      "why": "Python-only end-of-string anchor. JS uses `$` (see above).",
+      "kind": "escape"
+    },
+    {
+      "literal": "(?#",
+      "why": "Python-only inline comment.",
+      "kind": "bare"
+    },
+    {
+      "literal": "(?i",
+      "why": "An inline flag group. Python accepts `(?i)` only at the start of a pattern; JS has no inline flags at all.",
+      "kind": "bare"
+    }
+  ],
+  "residual_difference": "`\\s` is used (twice) and is not byte-identical between the engines: Python's includes U+001C..U+001F, JS's includes U+FEFF and the Unicode Zs set. No .tsx file in this repo contains either, and the corpus proves the patterns agree on real source. Recorded rather than hidden — if a probe ever disagrees, this sentence is the first place to look.",
+  "verification": "Every pattern below carries probes whose expected matches were produced by Python `re` and then asserted, unchanged, in JS. Both readers re-run all of them, so 'these mean the same thing in both engines' is a check that runs, not a claim in a comment (hard-won law 1). A probe row is [full_match, group_1, ...group_n] with null for a group that did not participate — the one place Python's None and JS's undefined had to be normalised.",
+  "patterns": {
+    "classname": {
+      "source": "className\\s*=\\s*(?:\"([^\"]*)\"|\\{((?:[^{}]|\\{[^{}]*\\})*)\\})",
+      "group_count": 2,
+      "why": "The attribute itself. Group 1 is a plain string attribute (`className=\"a b\"`); group 2 is the whole expression inside `className={...}`. Exactly one group matches per hit. The braced branch tolerates ONE level of nested braces — `(?:[^{}]|\\{[^{}]*\\})*` — which is what a `${...}` interpolation costs; a second level is out of scope for both readers, identically.",
+      "probes": [
+        {
+          "input": "<i className=\"a b\" />",
+          "matches": [
+            [
+              "className=\"a b\"",
+              "a b",
+              null
+            ]
+          ]
+        },
+        {
+          "input": "<i className={x ? \"p\" : \"q\"} />",
+          "matches": [
+            [
+              "className={x ? \"p\" : \"q\"}",
+              null,
+              "x ? \"p\" : \"q\""
+            ]
+          ]
+        },
+        {
+          "input": "<i\n  className={`t ${\n    s ? \"u\" : \"v\"\n  }`}\n/>",
+          "matches": [
+            [
+              "className={`t ${\n    s ? \"u\" : \"v\"\n  }`}",
+              null,
+              "`t ${\n    s ? \"u\" : \"v\"\n  }`"
+            ]
+          ]
+        },
+        {
+          "input": "<i class=\"a\" />",
+          "matches": []
+        },
+        {
+          "input": "<i className = \"spaced\" />",
+          "matches": [
+            [
+              "className = \"spaced\"",
+              "spaced",
+              null
+            ]
+          ]
+        }
+      ]
+    },
+    "comparison": {
+      "source": "[=!]==?\\s*(?:\"[^\"]*\"|'[^']*')",
+      "group_count": 0,
+      "why": "A comparison OPERAND IS A VALUE, NOT A CLASS. Struck out of the expression before anything else reads it, so `row.state === \"auto\"` contributes `auto` to nothing. `[=!]` then `==?` needs two characters, so a plain assignment `x = \"y\"` is not a comparison and its string survives — proved by a probe below.",
+      "probes": [
+        {
+          "input": "row.state === \"auto\"",
+          "matches": [
+            [
+              "=== \"auto\""
+            ]
+          ]
+        },
+        {
+          "input": "mode !==\n  'compact'",
+          "matches": [
+            [
+              "!==\n  'compact'"
+            ]
+          ]
+        },
+        {
+          "input": "a == \"x\"",
+          "matches": [
+            [
+              "== \"x\""
+            ]
+          ]
+        },
+        {
+          "input": "x = \"y\"",
+          "matches": []
+        },
+        {
+          "input": "b !== 'z'",
+          "matches": [
+            [
+              "!== 'z'"
+            ]
+          ]
+        }
+      ]
+    },
+    "quoted": {
+      "source": "\"([^\"]*)\"|'([^']*)'",
+      "group_count": 2,
+      "why": "PASS (a) — every quoted string ANYWHERE in the expression, INCLUDING inside a template's `${...}`. This is where a state class like `\" is-selected\"` lives. It must run over the whole expression, not over what the template pass left behind.",
+      "probes": [
+        {
+          "input": "\"a\" and 'b'",
+          "matches": [
+            [
+              "\"a\"",
+              "a",
+              null
+            ],
+            [
+              "'b'",
+              null,
+              "b"
+            ]
+          ]
+        },
+        {
+          "input": "\"\"",
+          "matches": [
+            [
+              "\"\"",
+              "",
+              null
+            ]
+          ]
+        },
+        {
+          "input": "none here",
+          "matches": []
+        },
+        {
+          "input": "\"outer ${inner ? 'x' : 'y'}\"",
+          "matches": [
+            [
+              "\"outer ${inner ? 'x' : 'y'}\"",
+              "outer ${inner ? 'x' : 'y'}",
+              null
+            ]
+          ]
+        }
+      ]
+    },
+    "template": {
+      "source": "`([^`]*)`",
+      "group_count": 1,
+      "why": "PASS (b), part 1 — the body of a template literal. Run SEPARATELY from `quoted`, never as one alternation: a single alternation lets the backtick branch swallow the template whole, taking the quoted strings inside its `${...}` with it. That is not a theory, it is how the referenced count once went 871 -> 870 while losing two real classes and looking like an improvement.",
+      "probes": [
+        {
+          "input": "`a ${b} c`",
+          "matches": [
+            [
+              "`a ${b} c`",
+              "a ${b} c"
+            ]
+          ]
+        },
+        {
+          "input": "no ticks",
+          "matches": []
+        },
+        {
+          "input": "`` and `x`",
+          "matches": [
+            [
+              "``",
+              ""
+            ],
+            [
+              "`x`",
+              "x"
+            ]
+          ]
+        }
+      ]
+    },
+    "interpolation": {
+      "source": "\\$\\{[^{}]*\\}",
+      "group_count": 0,
+      "why": "PASS (b), part 2 — SPLIT the template body on this to get the STATIC chunks around the interpolations. The static chunk at the front is where the base class lives (`rd-source-card`), and dropping it is the other half of the same 871 -> 870 bug.",
+      "probes": [
+        {
+          "input": "`a${b}c${d}e`",
+          "matches": [
+            [
+              "${b}"
+            ],
+            [
+              "${d}"
+            ]
+          ]
+        },
+        {
+          "input": "${ nested ${x} }",
+          "matches": [
+            [
+              "${x}"
+            ]
+          ]
+        },
+        {
+          "input": "no interp",
+          "matches": []
+        }
+      ]
+    },
+    "kit_constant": {
+      "source": "\\bconst\\s+[A-Za-z_$][\\w$]*\\s*=\\s*([^;]*);",
+      "group_count": 1,
+      "why": "OQ-280. A COMPONENT KIT KEEPS ITS UTILITIES OUT OF `className=`, so the classname pattern cannot see them and both readers went blind the moment a shared class became a component. Phase 3 planted `itmes-center` in buttonKit.ts and got `routeBUtilities.test.ts` 5 passed and G31 PASS / 0 undeclared. This matches a module-level `const NAME = <anything>;` and hands the BODY to `quoted`, which already knows how to read strings — the same two-pass shape `classname` uses, deliberately, so the two readers stay comparable line by line. Body is `[^;]*` so it stops at the statement's own semicolon; a kit constant containing a `;` INSIDE a string would truncate, which is a real limit and is stated rather than hidden — no such constant exists today and a utility class cannot contain one.",
+      "probes": [
+        {
+          "input": "const STRUCTURE =\n  \"inline-flex items-center \" +\n  \"border rounded-md\";",
+          "matches": [
+            [
+              "const STRUCTURE =\n  \"inline-flex items-center \" +\n  \"border rounded-md\";",
+              "\"inline-flex items-center \" +\n  \"border rounded-md\""
+            ]
+          ]
+        },
+        {
+          "input": "const FONT_SIZE = {\n  default: \"text-btn\",\n  sm: \"text-btn-sm\",\n} as const;",
+          "matches": [
+            [
+              "const FONT_SIZE = {\n  default: \"text-btn\",\n  sm: \"text-btn-sm\",\n} as const;",
+              "{\n  default: \"text-btn\",\n  sm: \"text-btn-sm\",\n} as const"
+            ]
+          ]
+        },
+        {
+          "input": "let X = \"y\";",
+          "matches": []
+        },
+        {
+          "input": "const PAD = \"px-[14.4px]\";",
+          "matches": [
+            [
+              "const PAD = \"px-[14.4px]\";",
+              "\"px-[14.4px]\""
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "not_shared": {
+    "token": {
+      "_why_not_shared": "THE ONE PATTERN THAT IS GENUINELY DIFFERENT, AND IT IS NOT DRIFT. The two readers ask different questions of a token. G31 asks 'could a stylesheet declare this name?' and the answer for `sm:cg-variant-utility` or `text-[13px]` is no, forever — accepting them would report utilities as undeclared classes and make the gate cry wolf. The vitest check asks 'could Tailwind compile this candidate?' and the answer is yes, which is the entire reason that check exists. Merging the two would break one of them. There is also a second, quieter reason: this is the only pattern that needs anchors, and anchors are the construct the two engines least agree on (see forbidden_constructs).",
+      "_how_it_is_watched": "Unshared is not unwatched. Corpus case C10 asks for one token each reader must judge differently, and BOTH readers assert set equality against `corpus.expected.json` — so the divergence has an exact expected size of one, and a reader that drifts by one more fails in its own workflow.",
+      "python": {
+        "source": "-?[_a-zA-Z][\\w-]*$",
+        "used_with": "re.fullmatch",
+        "accepts": "a name a stylesheet could declare"
+      },
+      "typescript": {
+        "source": "^-?[_a-zA-Z[][\\w[\\]().,%#/:^~*+-]*$",
+        "used_with": "RegExp.test",
+        "accepts": "the above plus a Tailwind candidate: variants (`sm:`), arbitrary values (`text-[13px]`), fractions (`w-1/2`)"
+      }
+    }
+  },
+  "shared_rules": {
+    "trailing_dash_is_a_prefix": "A token ending in `-` is a PREFIX an interpolation completes (`svc-${service}`), never a class name. Six live in the app. Both readers drop them; corpus case C6 asserts it. Not expressible as a regex here because it applies AFTER whitespace-splitting a blob, so it is stated once and implemented identically in both.",
+    "whitespace_split": "A blob is split on whitespace and empty pieces are dropped. Python `str.split()` does this natively; JS `split(/\\s+/)` can yield a leading empty string, which the reader drops explicitly. Same result, proved by the corpus.",
+    "kit_string_is_all_or_nothing": "A kit constant's string contributes its tokens ONLY IF EVERY whitespace-separated token is utility-shaped: it starts with a lowercase letter or digit and contains no `://`. The check is on the WHOLE STRING, not per token, and that is the point — `const LABEL = \"Save changes\";` is rejected entire because `Save` is not utility-shaped, so `changes` never leaks in as a class name. A false positive here would report ordinary copy as an undeclared class and get the whole grammar switched off, which is DEF-323's lesson one register over."
+  }
+}

@@ -1,0 +1,7 @@
+stored window_start (UTC) 2026-10-06T13:00:00+00:00
+stored window_end   (UTC) 2026-10-06T17:00:00+00:00
+order/edit appointment    2026-10-06 08:00–12:00 (America/Chicago)
+history label             08:00–12:00
+technician day card       08:00–12:00
+customer text             Tuesday, October 6, 2026 · 08:00–12:00
+printed sheet             Tue Oct 6, 2026 · 08:00–12:00

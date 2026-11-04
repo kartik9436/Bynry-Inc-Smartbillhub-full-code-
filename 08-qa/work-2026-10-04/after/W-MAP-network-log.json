@@ -1,0 +1,706 @@
+{
+  "shipped": {
+    "label": "as shipped",
+    "tileHost": "https://server.arcgisonline.com",
+    "leaflet": true,
+    "attribution": "Leaflet | Tiles © Esri",
+    "tileImgs": 12,
+    "tileSrcs": [
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1871",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1872",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1871",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1872",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1870",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1873",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1870",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1873",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1869",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1874",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1869",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1874"
+    ],
+    "tilesLoaded": 0,
+    "pins": [
+      {
+        "pin": "WO-0016",
+        "hollow": "true",
+        "inside": true,
+        "left": "453px"
+      },
+      {
+        "pin": "WO-0018",
+        "hollow": "true",
+        "inside": true,
+        "left": "453px"
+      },
+      {
+        "pin": "WO-0019",
+        "hollow": "true",
+        "inside": true,
+        "left": "453px"
+      },
+      {
+        "pin": "WO-0021",
+        "hollow": "true",
+        "inside": true,
+        "left": "605px"
+      },
+      {
+        "pin": "WO-0022",
+        "hollow": "true",
+        "inside": true,
+        "left": "605px"
+      },
+      {
+        "pin": "WO-0023",
+        "hollow": "true",
+        "inside": true,
+        "left": "605px"
+      },
+      {
+        "pin": "WO-0024",
+        "hollow": "true",
+        "inside": true,
+        "left": "605px"
+      },
+      {
+        "pin": "WO-0025",
+        "hollow": "false",
+        "inside": true,
+        "left": "698px"
+      },
+      {
+        "pin": "WO-0026",
+        "hollow": "true",
+        "inside": true,
+        "left": "698px"
+      },
+      {
+        "pin": "WO-0027",
+        "hollow": "true",
+        "inside": true,
+        "left": "698px"
+      },
+      {
+        "pin": "WO-0028",
+        "hollow": "true",
+        "inside": true,
+        "left": "698px"
+      },
+      {
+        "pin": "WO-0029",
+        "hollow": "true",
+        "inside": true,
+        "left": "698px"
+      },
+      {
+        "pin": "WO-0033",
+        "hollow": "true",
+        "inside": true,
+        "left": "526px"
+      },
+      {
+        "pin": "WO-0034",
+        "hollow": "true",
+        "inside": true,
+        "left": "526px"
+      },
+      {
+        "pin": "WO-0037",
+        "hollow": "false",
+        "inside": true,
+        "left": "608px"
+      },
+      {
+        "pin": "WO-0038",
+        "hollow": "false",
+        "inside": true,
+        "left": "608px"
+      },
+      {
+        "pin": "WO-0039",
+        "hollow": "true",
+        "inside": true,
+        "left": "608px"
+      }
+    ],
+    "unplaced": 0,
+    "tiles": [
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1871",
+        "outcome": "failed: csp"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1872",
+        "outcome": "failed: csp"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1871",
+        "outcome": "failed: csp"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1872",
+        "outcome": "failed: csp"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1870",
+        "outcome": "failed: csp"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1873",
+        "outcome": "failed: csp"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1870",
+        "outcome": "failed: csp"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1873",
+        "outcome": "failed: csp"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1869",
+        "outcome": "failed: csp"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1874",
+        "outcome": "failed: csp"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1869",
+        "outcome": "failed: csp"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1874",
+        "outcome": "failed: csp"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1871",
+        "outcome": "failed: csp"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1872",
+        "outcome": "failed: csp"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1871",
+        "outcome": "failed: csp"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1872",
+        "outcome": "failed: csp"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1870",
+        "outcome": "failed: csp"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1873",
+        "outcome": "failed: csp"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1870",
+        "outcome": "failed: csp"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1873",
+        "outcome": "failed: csp"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1869",
+        "outcome": "failed: csp"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1874",
+        "outcome": "failed: csp"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1869",
+        "outcome": "failed: csp"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1874",
+        "outcome": "failed: csp"
+      }
+    ],
+    "refusals": [
+      "Refused to load the image 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1871' because it violates the following Content Security Policy directive: \"img-src 'self' data: blob:\".\n",
+      "Refused to load the image 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1872' because it violates the following Content Security Policy directive: \"img-src 'self' data: blob:\".\n",
+      "Refused to load the image 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1871' because it violates the following Content Security Policy directive: \"img-src 'self' data: blob:\".\n",
+      "Refused to load the image 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1872' because it violates the following Content Security Policy directive: \"img-src 'self' data: blob:\".\n",
+      "Refused to load the image 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1870' because it violates the following Content Security Policy directive: \"img-src 'self' data: blob:\".\n",
+      "Refused to load the image 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1873' because it violates the following Content Security Policy directive: \"img-src 'self' data: blob:\".\n",
+      "Refused to load the image 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1870' because it violates the following Content Security Policy directive: \"img-src 'self' data: blob:\".\n",
+      "Refused to load the image 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1873' because it violates the following Content Security Policy directive: \"img-src 'self' data: blob:\".\n",
+      "Refused to load the image 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1869' because it violates the following Content Security Policy directive: \"img-src 'self' data: blob:\".\n",
+      "Refused to load the image 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1874' because it violates the following Content Security Policy directive: \"img-src 'self' data: blob:\".\n",
+      "Refused to load the image 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1869' because it violates the following Content Security Policy directive: \"img-src 'self' data: blob:\".\n",
+      "Refused to load the image 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1874' because it violates the following Content Security Policy directive: \"img-src 'self' data: blob:\".\n",
+      "Refused to load the image 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1871' because it violates the following Content Security Policy directive: \"img-src 'self' data: blob:\".\n",
+      "Refused to load the image 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1872' because it violates the following Content Security Policy directive: \"img-src 'self' data: blob:\".\n",
+      "Refused to load the image 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1871' because it violates the following Content Security Policy directive: \"img-src 'self' data: blob:\".\n",
+      "Refused to load the image 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1872' because it violates the following Content Security Policy directive: \"img-src 'self' data: blob:\".\n",
+      "Refused to load the image 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1870' because it violates the following Content Security Policy directive: \"img-src 'self' data: blob:\".\n",
+      "Refused to load the image 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1873' because it violates the following Content Security Policy directive: \"img-src 'self' data: blob:\".\n",
+      "Refused to load the image 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1870' because it violates the following Content Security Policy directive: \"img-src 'self' data: blob:\".\n",
+      "Refused to load the image 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1873' because it violates the following Content Security Policy directive: \"img-src 'self' data: blob:\".\n",
+      "Refused to load the image 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1869' because it violates the following Content Security Policy directive: \"img-src 'self' data: blob:\".\n",
+      "Refused to load the image 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1874' because it violates the following Content Security Policy directive: \"img-src 'self' data: blob:\".\n",
+      "Refused to load the image 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1869' because it violates the following Content Security Policy directive: \"img-src 'self' data: blob:\".\n",
+      "Refused to load the image 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1874' because it violates the following Content Security Policy directive: \"img-src 'self' data: blob:\".\n"
+    ]
+  },
+  "network": {
+    "label": "page policy bypassed — do the tile requests leave the browser?",
+    "tileHost": "https://server.arcgisonline.com",
+    "leaflet": true,
+    "attribution": "Leaflet | Tiles © Esri",
+    "tileImgs": 12,
+    "tileSrcs": [
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1871",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1872",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1871",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1872",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1870",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1873",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1870",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1873",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1869",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1874",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1869",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1874"
+    ],
+    "tilesLoaded": 0,
+    "pins": [
+      {
+        "pin": "WO-0016",
+        "hollow": "true",
+        "inside": true,
+        "left": "453px"
+      },
+      {
+        "pin": "WO-0018",
+        "hollow": "true",
+        "inside": true,
+        "left": "453px"
+      },
+      {
+        "pin": "WO-0019",
+        "hollow": "true",
+        "inside": true,
+        "left": "453px"
+      },
+      {
+        "pin": "WO-0021",
+        "hollow": "true",
+        "inside": true,
+        "left": "605px"
+      },
+      {
+        "pin": "WO-0022",
+        "hollow": "true",
+        "inside": true,
+        "left": "605px"
+      },
+      {
+        "pin": "WO-0023",
+        "hollow": "true",
+        "inside": true,
+        "left": "605px"
+      },
+      {
+        "pin": "WO-0024",
+        "hollow": "true",
+        "inside": true,
+        "left": "605px"
+      },
+      {
+        "pin": "WO-0025",
+        "hollow": "false",
+        "inside": true,
+        "left": "698px"
+      },
+      {
+        "pin": "WO-0026",
+        "hollow": "true",
+        "inside": true,
+        "left": "698px"
+      },
+      {
+        "pin": "WO-0027",
+        "hollow": "true",
+        "inside": true,
+        "left": "698px"
+      },
+      {
+        "pin": "WO-0028",
+        "hollow": "true",
+        "inside": true,
+        "left": "698px"
+      },
+      {
+        "pin": "WO-0029",
+        "hollow": "true",
+        "inside": true,
+        "left": "698px"
+      },
+      {
+        "pin": "WO-0033",
+        "hollow": "true",
+        "inside": true,
+        "left": "526px"
+      },
+      {
+        "pin": "WO-0034",
+        "hollow": "true",
+        "inside": true,
+        "left": "526px"
+      },
+      {
+        "pin": "WO-0037",
+        "hollow": "false",
+        "inside": true,
+        "left": "608px"
+      },
+      {
+        "pin": "WO-0038",
+        "hollow": "false",
+        "inside": true,
+        "left": "608px"
+      },
+      {
+        "pin": "WO-0039",
+        "hollow": "true",
+        "inside": true,
+        "left": "608px"
+      }
+    ],
+    "unplaced": 0,
+    "tiles": [
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1871",
+        "outcome": "failed: net::ERR_TUNNEL_CONNECTION_FAILED"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1872",
+        "outcome": "failed: net::ERR_TUNNEL_CONNECTION_FAILED"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1871",
+        "outcome": "failed: net::ERR_TUNNEL_CONNECTION_FAILED"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1872",
+        "outcome": "failed: net::ERR_TUNNEL_CONNECTION_FAILED"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1870",
+        "outcome": "failed: net::ERR_TUNNEL_CONNECTION_FAILED"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1873",
+        "outcome": "failed: net::ERR_TUNNEL_CONNECTION_FAILED"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1870",
+        "outcome": "failed: net::ERR_TUNNEL_CONNECTION_FAILED"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1873",
+        "outcome": "failed: net::ERR_TUNNEL_CONNECTION_FAILED"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1869",
+        "outcome": "failed: net::ERR_TUNNEL_CONNECTION_FAILED"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1874",
+        "outcome": "failed: net::ERR_TUNNEL_CONNECTION_FAILED"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1869",
+        "outcome": "failed: net::ERR_TUNNEL_CONNECTION_FAILED"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1874",
+        "outcome": "failed: net::ERR_TUNNEL_CONNECTION_FAILED"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1871",
+        "outcome": "pending"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1872",
+        "outcome": "pending"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1871",
+        "outcome": "pending"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1872",
+        "outcome": "pending"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1870",
+        "outcome": "pending"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1873",
+        "outcome": "pending"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1870",
+        "outcome": "pending"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1873",
+        "outcome": "pending"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1869",
+        "outcome": "pending"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1874",
+        "outcome": "pending"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1869",
+        "outcome": "pending"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1874",
+        "outcome": "pending"
+      }
+    ],
+    "refusals": []
+  },
+  "blocked": {
+    "label": "tile host blocked",
+    "tileHost": "https://server.arcgisonline.com",
+    "leaflet": true,
+    "attribution": "Leaflet | Tiles © Esri",
+    "tileImgs": 12,
+    "tileSrcs": [
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1871",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1872",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1871",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1872",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1870",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1873",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1870",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1873",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1869",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1874",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1869",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1874"
+    ],
+    "tilesLoaded": 0,
+    "pins": [
+      {
+        "pin": "WO-0016",
+        "hollow": "true",
+        "inside": true,
+        "left": "453px"
+      },
+      {
+        "pin": "WO-0018",
+        "hollow": "true",
+        "inside": true,
+        "left": "453px"
+      },
+      {
+        "pin": "WO-0019",
+        "hollow": "true",
+        "inside": true,
+        "left": "453px"
+      },
+      {
+        "pin": "WO-0021",
+        "hollow": "true",
+        "inside": true,
+        "left": "605px"
+      },
+      {
+        "pin": "WO-0022",
+        "hollow": "true",
+        "inside": true,
+        "left": "605px"
+      },
+      {
+        "pin": "WO-0023",
+        "hollow": "true",
+        "inside": true,
+        "left": "605px"
+      },
+      {
+        "pin": "WO-0024",
+        "hollow": "true",
+        "inside": true,
+        "left": "605px"
+      },
+      {
+        "pin": "WO-0025",
+        "hollow": "false",
+        "inside": true,
+        "left": "698px"
+      },
+      {
+        "pin": "WO-0026",
+        "hollow": "true",
+        "inside": true,
+        "left": "698px"
+      },
+      {
+        "pin": "WO-0027",
+        "hollow": "true",
+        "inside": true,
+        "left": "698px"
+      },
+      {
+        "pin": "WO-0028",
+        "hollow": "true",
+        "inside": true,
+        "left": "698px"
+      },
+      {
+        "pin": "WO-0029",
+        "hollow": "true",
+        "inside": true,
+        "left": "698px"
+      },
+      {
+        "pin": "WO-0033",
+        "hollow": "true",
+        "inside": true,
+        "left": "526px"
+      },
+      {
+        "pin": "WO-0034",
+        "hollow": "true",
+        "inside": true,
+        "left": "526px"
+      },
+      {
+        "pin": "WO-0037",
+        "hollow": "false",
+        "inside": true,
+        "left": "608px"
+      },
+      {
+        "pin": "WO-0038",
+        "hollow": "false",
+        "inside": true,
+        "left": "608px"
+      },
+      {
+        "pin": "WO-0039",
+        "hollow": "true",
+        "inside": true,
+        "left": "608px"
+      }
+    ],
+    "unplaced": 0,
+    "tiles": [
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1871",
+        "outcome": "failed: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1872",
+        "outcome": "failed: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1871",
+        "outcome": "failed: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1872",
+        "outcome": "failed: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1870",
+        "outcome": "failed: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1873",
+        "outcome": "failed: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1870",
+        "outcome": "failed: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1873",
+        "outcome": "failed: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1869",
+        "outcome": "failed: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1874",
+        "outcome": "failed: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1869",
+        "outcome": "failed: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1874",
+        "outcome": "failed: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1871",
+        "outcome": "failed: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1872",
+        "outcome": "failed: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1871",
+        "outcome": "failed: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1872",
+        "outcome": "failed: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1870",
+        "outcome": "failed: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1873",
+        "outcome": "failed: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1870",
+        "outcome": "failed: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1873",
+        "outcome": "failed: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1869",
+        "outcome": "failed: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3372/1874",
+        "outcome": "failed: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1869",
+        "outcome": "failed: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+      },
+      {
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/13/3373/1874",
+        "outcome": "failed: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+      }
+    ],
+    "refusals": []
+  },
+  "problems": []
+}
